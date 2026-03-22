@@ -1,19 +1,10 @@
 % --- FACTS ---
-fof(fact_1, axiom, murder_weapon(nunchaku)).
-fof(fact_2, axiom, found_in_investigation(nunchaku)).
-fof(fact_3, axiom, martial_arts_training(mackenzie)).
-fof(fact_4, axiom, trained_with_nunchaku(mackenzie)).
-fof(fact_5, axiom, could_wield_nunchaku(mackenzie)).
-fof(fact_6, axiom, motive(mackenzie)).
-fof(fact_7, axiom, conflict_between(mackenzie, mack)).
-fof(fact_8, axiom, present_at_site(mackenzie, bungee_site)).
-fof(fact_9, axiom, prior_arguments(mackenzie, mack)).
-fof(fact_10, axiom, no_motive(ana)).
-fof(fact_11, axiom, ana_in_carpool_morning(ana)).
+fof(fact_1, axiom, bananas_in_collection(philip, 290)).
+fof(fact_2, axiom, groups_of_bananas(philip, 2, equal_size)).
 
 % --- RULES ---
-fof(rule_1, axiom, ! [X] : ((could_wield_nunchaku(X) & motive(X) & present_at_site(X, bungee_site) & prior_arguments(X, mack)) => murderer(X))).
+fof(rule_1, axiom, ! [P] : ((bananas_in_collection(P, 290) & groups_of_bananas(P, 2, equal_size)) => group_size_per_group(P, 2, 145))).
 
 % --- INFERENCES ---
-% From FACT-5, FACT-6, FACT-8, FACT-9, RULE-1 by Modus Ponens
-fof(inf_1, axiom, murderer(mackenzie)).
+% From fact_1, fact_2, and rule_1 by Modus Ponens
+fof(inf_1, axiom, group_size_per_group(philip, 2, 145)).

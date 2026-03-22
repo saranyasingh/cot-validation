@@ -12,21 +12,6 @@ client = OpenAI()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ─── Read structured FOL from main.py output ─────────────────────────────────
-
-fol_path = os.path.join(SCRIPT_DIR, "structured_fol.txt")
-if not os.path.exists(fol_path):
-    print(f"Error: {fol_path} not found. Run main.py first.")
-    raise SystemExit(1)
-
-with open(fol_path) as f:
-    structured_fol = f.read()
-
-print("=== Structured FOL (from file) ===")
-print(structured_fol)
-
-# ─── Stage 3: Convert Structured FOL → TPTP-FOF ─────────────────────────────
-
 TPTP_TEMPLATE = '''\
 Convert the following structured first-order logic into TPTP-FOF syntax.
 
@@ -76,20 +61,6 @@ fof(inf_1, axiom, ground_wet(t_12)).
 === CONVERT NOW ===
 '''
 
-tptp_prompt = TPTP_TEMPLATE.format(structured_fol=structured_fol)
-tptp_response = client.responses.create(model="gpt-5-nano", input=tptp_prompt)
-
-tptp_output = tptp_response.output_text
-print("\n=== First Order Logic (TPTP) ===")
-print(tptp_output)
-
-tptp_path = os.path.join(SCRIPT_DIR, "output.tptp")
-with open(tptp_path, "w") as f:
-    f.write(tptp_output)
-print(f"Wrote {tptp_path}")
-
-# ─── Stage 4: Theorem Prover Validation ──────────────────────────────────────
-
 
 def find_prover():
     """Find an available TPTP-compatible theorem prover."""
@@ -129,55 +100,52 @@ def parse_tptp(tptp_text):
     return axioms, inferences
 
 
-def run_prover(tptp_file):
-    """Validate each inference by proving it as a conjecture from the axioms."""
+def convert_and_check(structured_fol: str) -> tuple[str, bool, str]:
+    """
+    Convert structured FOL to TPTP and optionally run prover validation.
+    Returns (tptp_text, has_errors, error_report).
+    """
+    tptp_prompt = TPTP_TEMPLATE.format(structured_fol=structured_fol)
+    tptp_response = client.responses.create(model="gpt-5-nano", input=tptp_prompt)
+    tptp_output = tptp_response.output_text
+
+    tptp_path = os.path.join(SCRIPT_DIR, "output.tptp")
+    with open(tptp_path, "w") as f:
+        f.write(tptp_output)
+
     name, base_args = find_prover()
     if name is None:
-        print("\n=== Theorem Prover ===")
-        print("No TPTP theorem prover found. Install one with:")
-        print("  brew install eprover    # E Theorem Prover")
-        print("  # or download Vampire from https://vprover.github.io/")
-        return
+        return tptp_output, False, "No theorem prover available; skipping formal validation."
 
-    print(f"\n=== Theorem Prover Validation ({name}) ===")
-
-    with open(tptp_file) as f:
-        tptp_text = f.read()
-
-    # First, syntax-check the entire file
+    # Syntax check (eprover only)
     if name == "eprover":
         syntax_check = subprocess.run(
-            ["eprover", "--syntax-only", "--tptp3-format", tptp_file],
+            ["eprover", "--syntax-only", "--tptp3-format", tptp_path],
             capture_output=True, text=True, timeout=10,
         )
         if syntax_check.returncode != 0:
-            print("TPTP syntax error:")
-            print(syntax_check.stderr or syntax_check.stdout)
-            return
-        print("Syntax check passed.")
+            error_msg = (syntax_check.stderr or syntax_check.stdout).strip()
+            return tptp_output, True, f"TPTP syntax error:\n{error_msg}"
 
-    axioms, inferences = parse_tptp(tptp_text)
+    axioms, inferences = parse_tptp(tptp_output)
 
     if not inferences:
-        print("No inferences found to validate.")
-        return
+        return tptp_output, False, "No inferences found to validate."
 
-    print(f"Found {len(axioms)} axiom(s), {len(inferences)} inference(s) to validate.\n")
-
+    errors = []
+    inference_results = []
     proven_so_far = []
+
     for comment, fof_line in inferences:
-        # Extract inference name and formula from: fof(inf_N, axiom, <formula>).
         match = re.match(r'fof\((inf_\d+),\s*\w+,\s*(.+)\)\.\s*$', fof_line)
         if not match:
-            print(f"  Could not parse: {fof_line}")
+            errors.append(f"Could not parse inference line: {fof_line}")
             continue
 
         inf_name = match.group(1)
         formula = match.group(2)
 
-        # Build problem: all axioms + previously proven inferences + this as conjecture
-        problem_lines = axioms + proven_so_far
-        problem_lines.append(f"fof({inf_name}, conjecture, {formula}).")
+        problem_lines = axioms + proven_so_far + [f"fof({inf_name}, conjecture, {formula})."]
         problem_text = '\n'.join(problem_lines)
 
         with tempfile.NamedTemporaryFile(
@@ -197,6 +165,7 @@ def run_prover(tptp_file):
                 status = "PROVED"
             elif re.search(r'SZS status\s+(CounterSatisfiable|Satisfiable)', output):
                 status = "NOT PROVED"
+                errors.append(f"{inf_name}: NOT PROVED — inference does not follow from axioms")
             elif re.search(r'SZS status\s+Timeout', output):
                 status = "TIMEOUT"
             elif re.search(r'SZS status\s+', output):
@@ -206,17 +175,50 @@ def run_prover(tptp_file):
                 status = "UNKNOWN"
 
             prefix = f"  {comment}\n" if comment else ""
-            print(f"{prefix}  {inf_name}: {status}")
+            inference_results.append(f"{prefix}  {inf_name}: {status}")
 
         except subprocess.TimeoutExpired:
-            print(f"  {inf_name}: TIMEOUT (30s)")
+            inference_results.append(f"  {inf_name}: TIMEOUT")
         except Exception as e:
-            print(f"  {inf_name}: ERROR ({e})")
+            err = f"{inf_name}: ERROR ({e})"
+            inference_results.append(f"  {err}")
+            errors.append(err)
         finally:
             os.unlink(tmp_path)
 
-        # Add as axiom for subsequent proofs regardless of status
         proven_so_far.append(fof_line)
 
+    report = "\n".join(inference_results)
+    has_errors = bool(errors)
+    if has_errors:
+        report += "\n\nProver errors:\n" + "\n".join(errors)
 
-run_prover(tptp_path)
+    return tptp_output, has_errors, report
+
+
+def main():
+    fol_path = os.path.join(SCRIPT_DIR, "structured_fol.txt")
+    if not os.path.exists(fol_path):
+        print(f"Error: {fol_path} not found. Run main.py first.")
+        raise SystemExit(1)
+
+    with open(fol_path) as f:
+        structured_fol = f.read()
+
+    print("=== Structured FOL (from file) ===")
+    print(structured_fol)
+
+    tptp_output, has_errors, report = convert_and_check(structured_fol)
+
+    print("\n=== First Order Logic (TPTP) ===")
+    print(tptp_output)
+
+    tptp_path = os.path.join(SCRIPT_DIR, "output.tptp")
+    print(f"Wrote {tptp_path}")
+
+    print("\n=== Theorem Prover Validation ===")
+    print(report)
+
+
+if __name__ == "__main__":
+    main()

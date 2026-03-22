@@ -1,18 +1,9 @@
 ## FACTS
-FACT-1: The murder weapon used was a nunchaku :: MurderWeapon(nunchaku)
-FACT-2: A nunchaku was found in the investigation :: FoundInInvestigation(nunchaku)
-FACT-3: Mackenzie has martial arts training :: MartialArtsTraining(mackenzie)
-FACT-4: Mackenzie trained with nunchaku :: TrainedWithNunchaku(mackenzie)
-FACT-5: Mackenzie could wield nunchaku :: CouldWieldNunchaku(mackenzie)
-FACT-6: Mackenzie had motive :: Motive(mackenzie)
-FACT-7: Mackenzie and Mack were in conflict at the site :: ConflictBetween(mackenzie, mack)
-FACT-8: Mackenzie was present at the bungee site :: PresentAtSite(mackenzie, bungee_site)
-FACT-9: Mackenzie had prior arguments with Mack :: PriorArguments(mackenzie, mack)
-FACT-10: Ana lacked a clear motive :: NoMotive(ana)
-FACT-11: Ana was present in the early morning carpool :: AnaInCarpoolMorning(ana)
+FACT-1: BananasInCollection(philip, 290)
+FACT-2: GroupsOfBananas(philip, 2, EqualSize)
 
 ## RULES
-RULE-1: ∀x ((CouldWieldNunchaku(x) ∧ Motive(x) ∧ PresentAtSite(x, bungee_site) ∧ PriorArguments(x, mack)) → Murderer(x)) :: If a person could wield nunchaku, has motive, was present at the bungee site, and had prior arguments with Mack, then they are the murderer
+RULE-1: If a person p has 290 bananas in their collection and the bananas are organized into 2 equal-sized groups, then each group has 145 bananas :: ∀p (BananasInCollection(p, 290) ∧ GroupsOfBananas(p, 2, EqualSize) → GroupSizePerGroup(p, 2, 145))
 
 ## INFERENCES
-INF-1: From FACT-5, FACT-6, FACT-8, FACT-9 and RULE-1 by Modus Ponens: The murderer is Mackenzie :: Murderer(mackenzie)
+INF-1: From FACT-1, FACT-2, and RULE-1 by Modus Ponens: GroupSizePerGroup(philip, 2, 145) :: (FACT-1, FACT-2, RULE-1) procedure: Modus Ponens
