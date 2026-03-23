@@ -1,0 +1,23 @@
+FACTS
+FACT-1: Anne is green :: IsGreen(anne)
+FACT-2: Anne is rough :: IsRough(anne)
+FACT-3: Anne is smart :: IsSmart(anne)
+FACT-4: Anne is young :: IsYoung(anne)
+FACT-5: Bob is rough :: IsRough(bob)
+FACT-6: Charlie is big :: IsBig(charlie)
+FACT-7: Charlie is rough :: IsRough(charlie)
+FACT-8: Charlie is smart :: IsSmart(charlie)
+FACT-9: Charlie is white :: IsWhite(charlie)
+FACT-10: Harry is green :: IsGreen(harry)
+FACT-11: Harry is white :: IsWhite(harry)
+
+RULES
+RULE-1: Young, green things are smart :: ∀x ((IsYoung(x) ∧ IsGreen(x)) → IsSmart(x))
+RULE-2: All quiet, white things are rough :: ∀x ((IsQuiet(x) ∧ IsWhite(x)) → IsRough(x))
+RULE-3: Rough things are white :: ∀x (IsRough(x) → IsWhite(x))
+RULE-4: If something is young then it is big :: ∀x (IsYoung(x) → IsBig(x))
+RULE-5: All white things are young :: ∀x (IsWhite(x) → IsYoung(x))
+RULE-6: Young things are white :: ∀x (IsYoung(x) → IsWhite(x))
+RULE-7: All quiet, green things are white :: ∀x ((IsQuiet(x) ∧ IsGreen(x)) → IsWhite(x))
+RULE-8: Big things are green :: ∀x (IsBig(x) → IsGreen(x))
+RULE-9: Quiet things are big :: ∀x (IsQuiet(x) → IsBig(x))

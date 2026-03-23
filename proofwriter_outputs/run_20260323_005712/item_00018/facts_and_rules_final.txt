@@ -1,0 +1,23 @@
+FACTS
+FACT-1: Bob is cold :: IsCold(bob)
+FACT-2: Dave is kind :: IsKind(dave)
+FACT-3: Dave is young :: IsYoung(dave)
+FACT-4: Gary is big :: IsBig(gary)
+FACT-5: Gary is cold :: IsCold(gary)
+FACT-6: Gary is white :: IsWhite(gary)
+FACT-7: Gary is young :: IsYoung(gary)
+FACT-8: Harry is cold :: IsCold(harry)
+FACT-9: Harry is kind :: IsKind(harry)
+FACT-10: Harry is white :: IsWhite(harry)
+FACT-11: Harry is young :: IsYoung(harry)
+
+RULES
+RULE-1: Smart, young people are furry :: ∀x ((IsSmart(x) ∧ IsYoung(x)) → IsFurry(x))
+RULE-2: All kind, furry people are big :: ∀x ((IsKind(x) ∧ IsFurry(x)) → IsBig(x))
+RULE-3: Smart, big people are furry :: ∀x ((IsSmart(x) ∧ IsBig(x)) → IsFurry(x))
+RULE-4: All white, kind people are young :: ∀x ((IsWhite(x) ∧ IsKind(x)) → IsYoung(x))
+RULE-5: If someone is furry and big then they are cold :: ∀x ((IsFurry(x) ∧ IsBig(x)) → IsCold(x))
+RULE-6: If someone is big then they are furry :: ∀x (IsBig(x) → IsFurry(x))
+RULE-7: All cold, smart people are big :: ∀x ((IsCold(x) ∧ IsSmart(x)) → IsBig(x))
+RULE-8: All young people are smart :: ∀x (IsYoung(x) → IsSmart(x))
+RULE-9: All cold, young people are white :: ∀x ((IsCold(x) ∧ IsYoung(x)) → IsWhite(x))

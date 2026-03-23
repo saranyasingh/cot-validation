@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Bear_is_cold :: IsCold(the_bear) [From FACT-5, RULE-2 by Modus Ponens]
+INF-2: Bear_likes_rabbit :: Likes(the_bear, the_rabbit) [From Bear_is_cold, RULE-3 by Modus Ponens]
+
+ANSWER: True

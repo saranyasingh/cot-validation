@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: IsNice(bob) :: IsKind(bob) [From FACT-4] by RULE-3
+INF-2: IsGreen(bob) :: IsNice(bob) [From INF-1] by RULE-5
+
+ANSWER: True

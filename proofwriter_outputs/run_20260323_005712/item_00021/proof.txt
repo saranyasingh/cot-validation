@@ -1,0 +1,8 @@
+## INFERENCES
+INF-1: Dave is young :: IsYoung(dave)  [From FACT-3]
+INF-2: Dave is smart :: IsSmart(dave)  [From FACT-3, RULE-8]
+INF-3: Dave is furry :: IsFurry(dave)  [From INF-2, INF-1 by RULE-1]
+INF-4: Dave is big :: IsBig(dave)  [From INF-3, FACT-2 by RULE-2]
+INF-5: Dave is cold :: IsCold(dave)  [From INF-3, INF-4 by RULE-5]
+
+ANSWER: True

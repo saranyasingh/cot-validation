@@ -1,0 +1,4 @@
+## INFERENCES
+INF-1: Rough(bald_eagle) :: Chases(bald_eagle, lion) → Rough(bald_eagle)  [From FACT-1, RULE-8 by Modus Ponens]
+
+ANSWER: False

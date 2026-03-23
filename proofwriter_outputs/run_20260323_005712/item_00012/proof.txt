@@ -1,0 +1,9 @@
+## INFERENCES
+INF-1: RabbitIsYoung :: IsYoung(rabbit) [From FACT-11]
+INF-2: RabbitIsKind :: IsKind(rabbit) [From INF-1 by RULE-5]
+INF-3: RabbitNeedsBear :: Needs(rabbit, bear) [From INF-2 by RULE-1]
+INF-4: BearIsYoung :: IsYoung(bear) [From INF-3 by RULE-4]
+INF-5: BearIsKind :: IsKind(bear) [From INF-4 by RULE-5]
+INF-6: BearNeedsBear :: Needs(bear, bear) [From INF-5 by RULE-1]
+
+ANSWER: False

@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Erin is furry :: IsFurry(erin)  [From FACT-5]
+INF-2: Erin is big :: IsBig(erin)  [From FACT-5, RULE-9 by Modus Ponens]
+
+ANSWER: False

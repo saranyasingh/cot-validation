@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Charlie is white :: IsWhite(charlie) [From FACT-9]
+INF-2: Charlie is white :: IsWhite(charlie) [From FACT-7, RULE-3 by Modus Ponens]
+
+ANSWER: False

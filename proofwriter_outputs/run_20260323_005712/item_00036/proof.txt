@@ -1,0 +1,7 @@
+## INFERENCES
+INF-1: bald_eagle needs dog :: Needs(bald_eagle, dog) [From FACT-5, RULE-6]
+INF-2: lion green :: IsGreen(lion) [From FACT-13, RULE-4]
+INF-3: lion blue :: IsBlue(lion) [From INF-2, RULE-3]
+INF-4: eats(lion, bald_eagle) :: Eats(lion, bald_eagle) [From FACT-12, RULE-1]
+
+ANSWER: Unknown

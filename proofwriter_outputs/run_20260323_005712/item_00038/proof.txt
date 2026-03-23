@@ -1,0 +1,11 @@
+## INFERENCES
+INF-1: Erin is white :: IsWhite(erin) [From FACT-6]
+INF-2: Erin is furry :: IsFurry(erin) [From FACT-5]
+INF-3: Erin is big :: IsBig(erin) [From RULE-9, INF-2]
+INF-4: Erin is rough :: IsRough(erin) [From RULE-4, INF-3]
+INF-5: Erin is kind :: IsKind(erin) [From RULE-7, INF-4]
+INF-6: Erin is nice :: IsNice(erin) [From RULE-3, INF-5]
+INF-7: Erin is green :: IsGreen(erin) [From RULE-5, INF-6]
+INF-8: Erin is white :: IsWhite(erin) [From RULE-6, INF-7]
+
+ANSWER: False

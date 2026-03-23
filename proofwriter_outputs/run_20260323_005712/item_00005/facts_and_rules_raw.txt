@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: The bear is green :: IsGreen(the_bear)
+FACT-2: The bear likes the mouse :: Likes(the_bear, the_mouse)
+FACT-3: The bear needs the cow :: Needs(the_bear, the_cow)
+FACT-4: The bear needs the mouse :: Needs(the_bear, the_mouse)
+FACT-5: The bear sees the cow :: Sees(the_bear, the_cow)
+FACT-6: The bear sees the mouse :: Sees(the_bear, the_mouse)
+FACT-7: The cow likes the bear :: Likes(the_cow, the_bear)
+FACT-8: The cow sees the bear :: Sees(the_cow, the_bear)
+FACT-9: The mouse likes the cow :: Likes(the_mouse, the_cow)
+FACT-10: The mouse sees the rabbit :: Sees(the_mouse, the_rabbit)
+FACT-11: The rabbit is young :: IsYoung(the_rabbit)
+
+## RULES
+RULE-1: If someone is kind then they need the bear :: ∀x (IsKind(x) → Needs(x, the_bear))
+RULE-2: If someone sees the cow then they are cold :: ∀x (Sees(x, the_cow) → IsCold(x))
+RULE-3: If someone is cold then they like the rabbit :: ∀x (IsCold(x) → Likes(x, the_rabbit))
+RULE-4: If someone needs the bear then the bear is young :: ∀x (Needs(x, the_bear) → IsYoung(the_bear))
+RULE-5: Young people are kind :: ∀x (IsYoung(x) → IsKind(x))
+RULE-6: If someone is round then they like the mouse :: ∀x (IsRound(x) → Likes(x, the_mouse))
+RULE-7: If someone likes the bear and they like the mouse then the bear likes the mouse :: ∀x ((Likes(x, the_bear) ∧ Likes(x, the_mouse)) → Likes(the_bear, the_mouse))
+RULE-8: If someone likes the cow then the cow likes the bear :: ∀x (Likes(x, the_cow) → Likes(the_cow, the_bear))
+RULE-9: If someone is round and they do not need the bear then they see the rabbit :: ∀x ((IsRound(x) ∧ ¬Needs(x, the_bear)) → Sees(x, the_rabbit))

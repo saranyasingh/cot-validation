@@ -1,0 +1,8 @@
+## INFERENCES
+INF-1: Rabbit is young :: Young(rabbit) [From FACT-11]
+INF-2: Rabbit is kind :: Kind(rabbit) [From INF-1, RULE-5 by Modus Ponens]
+INF-3: Rabbit needs the bear :: Needs(rabbit, bear) [From INF-2, RULE-1 by Modus Ponens]
+INF-4: Bear is young :: Young(bear) [From INF-3, RULE-4 by Modus Ponens]
+INF-5: Bear is kind :: Kind(bear) [From INF-4, RULE-5 by Modus Ponens]
+
+ANSWER: True

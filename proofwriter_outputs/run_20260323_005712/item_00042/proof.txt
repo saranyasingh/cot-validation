@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: Gary is furry :: IsFurry(gary)  [From FACT-7 by fact]
+INF-2: Gary is big :: IsBig(gary)  [From INF-1 by RULE-9]
+INF-3: Gary is rough :: IsRough(gary)  [From INF-2 by RULE-4]
+
+ANSWER: False

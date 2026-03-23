@@ -1,0 +1,502 @@
+[
+  {
+    "id": "item_00001",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear needs the mouse",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00002",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The mouse does not see the rabbit",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00003",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The rabbit is kind",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00004",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The rabbit is not kind",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00005",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear likes the rabbit",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00006",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear does not like the rabbit",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00007",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear is young",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00008",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear is not young",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00009",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear is kind",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00010",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear is not kind",
+    "expected": "False",
+    "predicted": "Unknown",
+    "correct": false,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00011",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear needs the bear",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00012",
+    "theory": "The bear is green. The bear likes the mouse. The bear needs the cow. The bear needs the mouse. The bear sees the cow. The bear sees the mouse. The cow likes the bear. The cow sees the bear. The mouse likes the cow. The mouse sees the rabbit. The rabbit is young. If someone is kind then they need the bear. If someone sees the cow then they are cold. If someone is cold then they like the rabbit. If someone needs the bear then the bear is young. Young people are kind. If someone is round then they like the mouse. If someone likes the bear and they like the mouse then the bear likes the mouse. If someone likes the cow then the cow likes the bear. If someone is round and they do not need the bear then they see the rabbit.",
+    "question": "The bear does not need the bear",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00013",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Gary is white",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00014",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Bob is not cold",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00015",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Harry is smart",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00016",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Harry is not smart",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00017",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Harry is big",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00018",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is not furry",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00019",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is big",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00020",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is not big",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00021",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is cold",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00022",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is not cold",
+    "expected": "False",
+    "predicted": "Unknown",
+    "correct": false,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00023",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is white",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00024",
+    "theory": "Bob is cold. Dave is kind. Dave is young. Gary is big. Gary is cold. Gary is white. Gary is young. Harry is cold. Harry is kind. Harry is white. Harry is young. Smart, young people are furry. All kind, furry people are big. Smart, big people are furry. All white, kind people are young. If someone is furry and big then they are cold. If someone is big then they are furry. All cold, smart people are big. All young people are smart. All cold, young people are white.",
+    "question": "Dave is not white",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00025",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The dog eats the lion",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00026",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle does not need the cow",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00027",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The cow eats the bald eagle",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00028",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle is not rough",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00029",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle chases the bald eagle",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00030",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The lion is not blue",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00031",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle eats the bald eagle",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00032",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle does not eat the bald eagle",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00033",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle is green",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00034",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The bald eagle is not green",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00035",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The dog chases the lion",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00036",
+    "theory": "The bald eagle chases the lion. The bald eagle is blue. The bald eagle is nice. The bald eagle is round. The bald eagle needs the cow. The bald eagle needs the lion. The cow chases the bald eagle. The cow is round. The cow needs the bald eagle. The dog eats the lion. The dog is blue. The lion chases the bald eagle. The lion eats the bald eagle. The lion eats the cow. If someone chases the bald eagle then they eat the bald eagle. If someone needs the dog and they are green then the dog chases the lion. All green people are blue. If someone eats the bald eagle then they are green. If someone eats the lion then the lion needs the bald eagle. If someone needs the cow then they need the dog. If someone is rough then they chase the bald eagle. If someone chases the lion then they are rough. If someone is rough and they eat the dog then the dog eats the cow.",
+    "question": "The dog does not chase the lion",
+    "expected": "False",
+    "predicted": "Unknown",
+    "correct": false,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00037",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Bob is kind",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 3,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00038",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is not white",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00039",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Gary is big",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00040",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is not big",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00041",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Bob is green",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 2,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00042",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Gary is not rough",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00043",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Bob is white",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 2,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00044",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is not kind",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 2,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00045",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is nice",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00046",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is not nice",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 2,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00047",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is green",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00048",
+    "theory": "Anne is big. Anne is green. Anne is nice. Bob is kind. Erin is furry. Erin is white. Gary is furry. Gary is green. Gary is nice. Gary is white. If Gary is white then Gary is big. If Anne is nice then Anne is green. Kind people are nice. Big people are rough. If someone is nice then they are green. Green people are white. All rough people are kind. All nice people are big. Furry people are big.",
+    "question": "Erin is not green",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00049",
+    "theory": "Anne is green. Anne is rough. Anne is smart. Anne is young. Bob is rough. Charlie is big. Charlie is rough. Charlie is smart. Charlie is white. Harry is green. Harry is white. Young, green things are smart. All quiet, white things are rough. Rough things are white. If something is young then it is big. All white things are young. Young things are white. All quiet, green things are white. Big things are green. Quiet things are big.",
+    "question": "Anne is green",
+    "expected": "True",
+    "predicted": "True",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  },
+  {
+    "id": "item_00050",
+    "theory": "Anne is green. Anne is rough. Anne is smart. Anne is young. Bob is rough. Charlie is big. Charlie is rough. Charlie is smart. Charlie is white. Harry is green. Harry is white. Young, green things are smart. All quiet, white things are rough. Rough things are white. If something is young then it is big. All white things are young. Young things are white. All quiet, green things are white. Big things are green. Quiet things are big.",
+    "question": "Charlie is not white",
+    "expected": "False",
+    "predicted": "False",
+    "correct": true,
+    "rule_attempts": 1,
+    "passed_grounding": true
+  }
+]

@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: IsCold(bear) :: IsCold(bear) [From Sees(bear, cow) by RULE-2]
+INF-2: Likes(bear, rabbit) :: Likes(bear, rabbit) [From IsCold(bear) by RULE-3]
+
+ANSWER: Unknown

@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: IsRough(bald_eagle) :: IsRough(bald_eagle) [From FACT-1, RULE-8 by applying If someone chases the lion then they are rough]
+INF-2: Chases(bald_eagle, bald_eagle) :: Chases(bald_eagle, bald_eagle) [From INF-1, RULE-7 by applying If someone is rough then they chase the bald eagle]
+INF-3: Eats(bald_eagle, bald_eagle) :: Eats(bald_eagle, bald_eagle) [From INF-2, RULE-1 by applying If someone chases the bald eagle then they eat the bald eagle]
+
+ANSWER: True

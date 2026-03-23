@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: Bob is nice :: IsNice(bob)  [From FACT-4, RULE-3 by Modus Ponens]
+INF-2: Bob is green :: IsGreen(bob)  [From INF-1, RULE-5 by Modus Ponens]
+INF-3: Bob is white :: IsWhite(bob)  [From INF-2, RULE-6 by Modus Ponens]
+
+ANSWER: True

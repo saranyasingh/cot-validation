@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: If Gary is white then Gary is big :: IsWhite(gary) → IsBig(gary)  [From RULE-1 by Universal Instantiation]
+INF-2: Gary is big :: IsWhite(gary) [From FACT-10], IsWhite(gary) → IsBig(gary) [From RULE-1 by Universal Instantiation] by Modus Ponens
+
+ANSWER: True

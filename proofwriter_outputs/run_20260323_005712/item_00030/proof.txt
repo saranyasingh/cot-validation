@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: Eats(lion, bald_eagle) :: Eats(lion, bald_eagle) [From FACT-13]
+INF-2: Green(lion) :: Green(lion) [From INF-1, RULE-4 by Modus Ponens]
+INF-3: Blue(lion) :: Blue(lion) [From INF-2, RULE-3 by Modus Ponens]
+
+ANSWER: False

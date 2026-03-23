@@ -1,0 +1,9 @@
+## INFERENCES
+INF-1: bald_eagle is rough :: Rough(bald_eagle)  [From FACT-1 by RULE-8]
+INF-2: bald_eagle chases bald_eagle :: Chases(bald_eagle, bald_eagle)  [From INF-1 by RULE-7]
+INF-3: bald_eagle eats bald_eagle :: Eats(bald_eagle, bald_eagle)  [From INF-2 by RULE-1]
+INF-4: bald_eagle is green :: Green(bald_eagle)  [From INF-3 by RULE-4]
+INF-5: bald_eagle needs dog :: Needs(bald_eagle, dog)  [From FACT-5 by RULE-6]
+INF-6: dog chases lion :: Chases(dog, lion)  [From INF-5, INF-4 by RULE-2]
+
+ANSWER: True

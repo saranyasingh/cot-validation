@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Harry is young :: IsYoung(harry) [From FACT-11]
+INF-2: Harry is smart :: IsSmart(harry) [From INF-1, RULE-8 by Modus Ponens]
+
+ANSWER: False

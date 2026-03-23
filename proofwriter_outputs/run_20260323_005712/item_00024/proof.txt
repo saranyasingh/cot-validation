@@ -1,0 +1,8 @@
+## INFERENCES
+INF-1: IsSmart(dave) :: IsSmart(dave)  [From FACT-3 by RULE-8]
+INF-2: IsFurry(dave) :: IsFurry(dave)  [From IsSmart(dave) ∧ IsYoung(dave) by RULE-1]
+INF-3: IsBig(dave) :: IsBig(dave)  [From IsKind(dave) ∧ IsFurry(dave) by RULE-2]
+INF-4: IsCold(dave) :: IsCold(dave)  [From IsFurry(dave) ∧ IsBig(dave) by RULE-5]
+INF-5: IsWhite(dave) :: IsWhite(dave)  [From IsCold(dave) ∧ IsYoung(dave) by RULE-9]
+
+ANSWER: False

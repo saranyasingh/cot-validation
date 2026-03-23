@@ -1,0 +1,9 @@
+## INFERENCES
+INF-1: Erin is furry :: IsFurry(erin)  [From FACT-5, by fact]
+INF-2: Erin is big :: IsBig(erin)  [From INF-1, by RULE-9]
+INF-3: Erin is rough :: IsRough(erin)  [From INF-2, by RULE-4]
+INF-4: Erin is kind :: IsKind(erin)  [From INF-3, by RULE-7]
+INF-5: Erin is nice :: IsNice(erin)  [From INF-4, by RULE-3]
+INF-6: Erin is green :: IsGreen(erin)  [From INF-5, by RULE-5]
+
+ANSWER: True

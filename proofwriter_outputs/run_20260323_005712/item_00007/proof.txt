@@ -1,0 +1,7 @@
+## INFERENCES
+INF-1: Rabbit is young :: IsYoung(rabbit) [From FACT-11]
+INF-2: Rabbit is kind :: IsKind(rabbit) [From INF-1, RULE-5]
+INF-3: Rabbit needs the bear :: Needs(rabbit, bear) [From INF-2, RULE-1]
+INF-4: Bear is young :: IsYoung(bear) [From INF-3, RULE-4]
+
+ANSWER: True

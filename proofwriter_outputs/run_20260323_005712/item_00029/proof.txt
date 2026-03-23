@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: The bald eagle is rough :: IsRough(bald_eagle) [From FACT-1, RULE-8 by Modus Ponens]
+INF-2: The bald eagle chases the bald eagle :: Chases(bald_eagle, bald_eagle) [From INF-1, RULE-7 by Modus Ponens]
+
+ANSWER: True

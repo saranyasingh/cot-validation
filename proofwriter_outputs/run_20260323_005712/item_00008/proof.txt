@@ -1,0 +1,12 @@
+## INFERENCES
+INF-1: The bear is not young :: ¬IsYoung(bear)  [Converted to FOL]
+
+INF-2: IsYoung(rabbit) :: IsYoung(rabbit)  [From FACT-11]
+
+INF-3: IsKind(rabbit) :: IsKind(rabbit)  [From IsYoung(rabbit) by RULE-5]
+
+INF-4: Needs(rabbit, bear) :: Needs(rabbit, bear)  [From IsKind(rabbit) by RULE-1]
+
+INF-5: IsYoung(bear) :: IsYoung(bear)  [From Needs(rabbit, bear) by RULE-4]
+
+ANSWER: False

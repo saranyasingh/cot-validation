@@ -1,0 +1,22 @@
+FACTS
+FACT-1: Anne is big :: IsBig(anne)
+FACT-2: Anne is green :: IsGreen(anne)
+FACT-3: Anne is nice :: IsNice(anne)
+FACT-4: Bob is kind :: IsKind(bob)
+FACT-5: Erin is furry :: IsFurry(erin)
+FACT-6: Erin is white :: IsWhite(erin)
+FACT-7: Gary is furry :: IsFurry(gary)
+FACT-8: Gary is green :: IsGreen(gary)
+FACT-9: Gary is nice :: IsNice(gary)
+FACT-10: Gary is white :: IsWhite(gary)
+
+RULES
+RULE-1: If Gary is white then Gary is big :: IsWhite(gary) → IsBig(gary)
+RULE-2: If Anne is nice then Anne is green :: ∀x (IsNice(x) → IsGreen(x))
+RULE-3: Kind people are nice :: ∀x (IsKind(x) → IsNice(x))
+RULE-4: Big people are rough :: ∀x (IsBig(x) → IsRough(x))
+RULE-5: If someone is nice then they are green :: ∀x (IsNice(x) → IsGreen(x))
+RULE-6: Green people are white :: ∀x (IsGreen(x) → IsWhite(x))
+RULE-7: All rough people are kind :: ∀x (IsRough(x) → IsKind(x))
+RULE-8: All nice people are big :: ∀x (IsNice(x) → IsBig(x))
+RULE-9: Furry people are big :: ∀x (IsFurry(x) → IsBig(x))

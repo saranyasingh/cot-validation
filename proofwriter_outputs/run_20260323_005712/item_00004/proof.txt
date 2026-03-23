@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: The rabbit is young :: IsYoung(rabbit) [From FACT-11]
+INF-2: The rabbit is kind :: IsKind(rabbit) [From FACT-11, RULE-5 by Young people are kind]
+
+ANSWER: False

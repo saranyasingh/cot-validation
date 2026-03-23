@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Dave is smart :: IsSmart(dave)  [From FACT-3: IsYoung(dave) ; RULE-8: IsYoung(x) → IsSmart(x) by Modus Ponens]
+INF-2: Dave is furry :: IsFurry(dave)  [From INF-1: IsSmart(dave) ; FACT-3: IsYoung(dave) by RULE-1: Smart, young people are furry]
+
+ANSWER: Unknown
