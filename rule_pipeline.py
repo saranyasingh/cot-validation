@@ -5,14 +5,17 @@ Key difference from main.py:
   - RULES are extracted only from the given theory — no LLM-invented rules.
   - Verification checks that every extracted rule is explicitly grounded in the
     theory text before the proof is generated.
-  - The LLM then proves/disproves statements using ONLY those grounded rules.
-  - Benchmarks True/False/Unknown classification accuracy on ProofWriter.
+  - Tracks pre-verification vs post-verification accuracy to measure how much
+    rule grounding actually helps.
+
+Feed data from load_data.py:
+    python load_data.py --proofwriter --limit 100
+    python rule_pipeline.py --dataset-file proofwriter.json
 
 Usage:
-    python rule_pipeline.py
-    python rule_pipeline.py --client kimi --depth 1 --limit 20
-    python rule_pipeline.py --dataset-file my_data.json
-    python rule_pipeline.py --output-dir ./pw_run
+    python rule_pipeline.py --dataset-file proofwriter.json
+    python rule_pipeline.py --dataset-file proofwriter.json --client kimi
+    python rule_pipeline.py --dataset-file proofwriter.json --output-dir ./pw_run
 """
 
 import argparse
@@ -21,7 +24,6 @@ import os
 import re
 from datetime import datetime
 from dotenv import load_dotenv
-from datasets import load_dataset
 
 from clients import make_client, OpenAILLMClient
 
@@ -29,53 +31,44 @@ load_dotenv()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-HF_DATASET = "D3xter1922/proofwriter-dataset"
-
 # ── Prompt Templates ────────────────────────────────────────────────────────────
 
-THEORY_TO_FOL_PROMPT = '''\
-You are given a logical theory. Extract its facts and rules into structured first-order logic.
-
-=== CRITICAL CONSTRAINT ===
-- FACTS must come ONLY from explicit statements in the theory (not rules/conditionals).
-- RULES must come ONLY from conditional statements explicitly present in the theory.
-- Do NOT add commonsense knowledge, background rules, or anything not written in the theory.
-- Every RULE must be directly traceable to a sentence in the theory.
+FACTS_TO_FOL_PROMPT = '''\
+Convert each numbered fact below into a ground FOL formula. Translate only — do not add or remove facts.
 
 === SYNTAX ===
-- Quantifiers: ∀ (universal), ∃ (existential)
-- Connectives: ∧ (and), ∨ (or), → (implies), ¬ (not)
-- Predicates: CamelCase (e.g., IsYoung, IsBig, IsKind, Chases)
+- Predicates: CamelCase (e.g., IsYoung, IsBig, Chases)
 - Constants: lowercase with underscores (e.g., bald_eagle, anne, the_cat)
-- Variables: single lowercase letters (x, y, z)
-
-=== OUTPUT CATEGORIES ===
-
-## FACTS
-Ground atomic formulas directly from the theory. No quantifiers. One per line.
-
-## RULES
-Universally quantified implications from the theory's conditional statements.
-Every rule MUST start with ∀. One per line.
+- No quantifiers — these are ground atoms.
 
 === OUTPUT FORMAT ===
-LABEL: <exact natural language from theory> :: <FOL formula>
+FACT-1: <original sentence> :: <FOL formula>
+FACT-2: ...
 
-Labels: FACT-1, FACT-2, ..., RULE-1, RULE-2, ...
-Output ONLY the two sections. No extra explanation.
+Output ONLY the labeled lines, one per fact.
 
-=== EXAMPLE ===
-Theory: "Anne is young. The cat is big. If something is young then it is kind."
+=== FACTS ===
+{facts}
+'''
 
-## FACTS
-FACT-1: Anne is young :: IsYoung(anne)
-FACT-2: The cat is big :: IsBig(the_cat)
+RULES_TO_FOL_PROMPT = '''\
+Convert each numbered rule below into a universally quantified FOL formula. Translate only — do not add or remove rules.
 
-## RULES
-RULE-1: If something is young then it is kind :: ∀x (IsYoung(x) → IsKind(x))
+=== SYNTAX ===
+- Quantifiers: ∀ (universal)
+- Connectives: ∧ (and), ∨ (or), → (implies), ¬ (not)
+- Predicates: CamelCase (e.g., IsYoung, IsBig, Chases)
+- Variables: single lowercase letters (x, y, z)
+- Every rule MUST start with ∀.
 
-=== THEORY ===
-{theory}
+=== OUTPUT FORMAT ===
+RULE-1: <original sentence> :: <FOL formula>
+RULE-2: ...
+
+Output ONLY the labeled lines, one per rule.
+
+=== RULES ===
+{rules}
 '''
 
 RULE_GROUNDING_PROMPT = '''\
@@ -114,7 +107,7 @@ Output ONLY the corrected ## FACTS and ## RULES sections in the same format.
 '''
 
 CONSTRAINED_PROOF_PROMPT = '''\
-You are given a verified set of FACTS and RULES extracted from a theory, and a statement to evaluate.
+You are given a set of FACTS and RULES extracted from a theory, and a statement to evaluate.
 
 === CRITICAL CONSTRAINT ===
 Use ONLY the FACTS and RULES listed below — no new rules, no background knowledge.
@@ -144,62 +137,6 @@ Output ONLY the ## INFERENCES section and the ANSWER line.
 '''
 
 
-# ── Data Loading ────────────────────────────────────────────────────────────────
-
-def _parse_row(en: str, ro: str, idx: int) -> dict | None:
-    """
-    Parse one row from D3xter1922/proofwriter-dataset.
-
-    en field: "$answer$ ; $proof$ ; $question$ = <q> ; $context$ = sent1: ... sentN: ..."
-    ro field: "$answer$ = True/False/Unknown ; $proof$ = sentX"
-    """
-    # Extract question from en
-    q_match = re.search(r'\$question\$\s*=\s*(.+?)\s*;', en)
-    if not q_match:
-        return None
-    question = q_match.group(1).strip().rstrip('.')
-
-    # Extract context (theory) from en — everything after "$context$ ="
-    ctx_match = re.search(r'\$context\$\s*=\s*(.+)$', en, re.DOTALL)
-    if not ctx_match:
-        return None
-    # Sentences are labelled "sentN: <text>." — join them as plain prose
-    raw_ctx = ctx_match.group(1).strip()
-    sentences = re.findall(r'sent\d+:\s*(.+?)(?=\s+sent\d+:|$)', raw_ctx)
-    theory = " ".join(s.strip().rstrip('.') + '.' for s in sentences) if sentences else raw_ctx
-
-    # Extract answer from ro
-    ans_match = re.search(r'\$answer\$\s*=\s*(True|False|Unknown)', ro, re.IGNORECASE)
-    expected = ans_match.group(1).capitalize() if ans_match else "Unknown"
-
-    return {
-        "id": f"item_{idx:05d}",
-        "theory": theory,
-        "question": question,
-        "expected": expected,
-    }
-
-
-def fetch_proofwriter(split: str = "test", limit: int = 50) -> list[dict]:
-    """Load ProofWriter items using the datasets library."""
-    print(f"Loading {HF_DATASET} ({split} split, up to {limit} items)...")
-    ds = load_dataset(HF_DATASET, split=split)
-
-    items = []
-    for i, row in enumerate(ds):
-        if len(items) >= limit:
-            break
-        translation = row.get("translation", {})
-        en = translation.get("en", "")
-        ro = translation.get("ro", "")
-        parsed = _parse_row(en, ro, i + 1)
-        if parsed:
-            items.append(parsed)
-
-    print(f"Loaded {len(items)} items.")
-    return items
-
-
 # ── Utilities ────────────────────────────────────────────────────────────────────
 
 def _write(path: str, content: str):
@@ -209,15 +146,11 @@ def _write(path: str, content: str):
 
 
 def extract_answer(text: str) -> str:
-    """Parse ANSWER: True/False/Unknown from proof output."""
     match = re.search(r'^ANSWER:\s*(True|False|Unknown)', text, re.MULTILINE | re.IGNORECASE)
-    if match:
-        return match.group(1).capitalize()
-    return "Unknown"
+    return match.group(1).capitalize() if match else "Unknown"
 
 
 def extract_rules(facts_and_rules: str) -> str:
-    """Return only the RULE-N lines from a facts+rules block."""
     lines = [l.strip() for l in facts_and_rules.splitlines() if re.match(r'RULE-\d+:', l.strip())]
     return "\n".join(lines) if lines else "(no rules)"
 
@@ -225,7 +158,8 @@ def extract_rules(facts_and_rules: str) -> str:
 # ── Per-Item Pipeline ────────────────────────────────────────────────────────────
 
 def run_item(
-    theory: str,
+    facts: list[str],
+    rules: list[str],
     question: str,
     reasoning_client,
     verifier_client,
@@ -235,97 +169,103 @@ def run_item(
     """
     Constrained proof pipeline for one ProofWriter item.
 
-    Stage 1: Extract facts + rules from theory (reasoning client)
-    Stage 2: Verify all rules are grounded in theory (verifier client); repair if not
-    Stage 3: Generate proof using only verified rules (reasoning client)
+    Facts and rules are loaded directly from the dataset — the LLM only
+    translates them to FOL, it does not extract or invent them.
 
-    Returns: {answer, facts_and_rules, proof, rule_attempts, passed_grounding}
+    Stage 1: Translate pre-loaded facts + rules to FOL (reasoning client)
+    Stage 2: Prove with unverified FOL → pre_answer
+    Stage 3: Verify FOL translation didn't add rules; repair if so (verifier + reasoning)
+    Stage 4: Prove with verified FOL → post_answer
+
+    Returns: {pre_answer, post_answer, facts_and_rules_final, rule_attempts, passed_grounding}
     """
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        _write(os.path.join(output_dir, "theory.txt"), theory)
-        _write(os.path.join(output_dir, "question.txt"), question)
+        _write(os.path.join(output_dir, "facts_input.txt"),   "\n".join(facts))
+        _write(os.path.join(output_dir, "rules_input.txt"),   "\n".join(rules))
+        _write(os.path.join(output_dir, "question.txt"),      question)
 
-    # ── Stage 1: Theory → Structured FOL ──────────────────────────────────────
-    print("  [stage 1] Extracting facts and rules from theory...")
-    facts_and_rules = reasoning_client.complete(
-        THEORY_TO_FOL_PROMPT.format(theory=theory)
-    )
+    # ── Stage 1: Translate pre-loaded facts + rules to FOL ────────────────────
+    print("  [stage 1] Translating dataset facts and rules to FOL...")
+    numbered_facts = "\n".join(f"{i+1}. {f}" for i, f in enumerate(facts))
+    numbered_rules = "\n".join(f"{i+1}. {r}" for i, r in enumerate(rules))
+
+    facts_fol = reasoning_client.complete(FACTS_TO_FOL_PROMPT.format(facts=numbered_facts))
+    rules_fol = reasoning_client.complete(RULES_TO_FOL_PROMPT.format(rules=numbered_rules))
+    facts_and_rules = f"## FACTS\n{facts_fol}\n\n## RULES\n{rules_fol}"
     print(facts_and_rules)
-
     if output_dir:
         _write(os.path.join(output_dir, "facts_and_rules_raw.txt"), facts_and_rules)
 
-    # ── Stage 2: Verify rule grounding with repair loop ────────────────────────
+    # ── Stage 2: Prove with raw (unverified) FOL translation ──────────────────
+    print("  [stage 2] Generating pre-verification proof...")
+    pre_proof = reasoning_client.complete(
+        CONSTRAINED_PROOF_PROMPT.format(facts_and_rules=facts_and_rules, question=question)
+    )
+    pre_answer = extract_answer(pre_proof)
+    print(f"  Pre-verification answer: {pre_answer}")
+    if output_dir:
+        _write(os.path.join(output_dir, "proof_pre.txt"), pre_proof)
+
+    # ── Stage 3: Verify the FOL translation didn't hallucinate extra rules ─────
+    # We check the translated rules against the original natural-language rules.
     grounding_reports = []
     passed_grounding = False
     rule_attempts = 0
+    theory_rules_text = "\n".join(rules)   # ground truth from dataset
 
     for attempt in range(1, max_retries + 1):
         rule_attempts = attempt
         rules_text = extract_rules(facts_and_rules)
 
-        print(f"  [stage 2, attempt {attempt}] Checking rule grounding...")
+        print(f"  [stage 3, attempt {attempt}] Checking rule grounding...")
         grounding_report = verifier_client.complete(
-            RULE_GROUNDING_PROMPT.format(theory=theory, rules=rules_text)
+            RULE_GROUNDING_PROMPT.format(theory=theory_rules_text, rules=rules_text)
         ).strip()
         grounding_reports.append(grounding_report)
         print(grounding_report)
-
         if output_dir:
-            _write(
-                os.path.join(output_dir, f"grounding_attempt_{attempt}.txt"),
-                grounding_report,
-            )
+            _write(os.path.join(output_dir, f"grounding_attempt_{attempt}.txt"), grounding_report)
 
         if "HALLUCINATED" not in grounding_report:
             passed_grounding = True
-            print("  [grounding] All rules grounded in theory.")
+            print("  [grounding] All rules match dataset.")
             break
 
-        print("  [grounding] Hallucinated rules found. Repairing extraction...")
-        facts_and_rules = reasoning_client.complete(
+        print("  [grounding] Extra rules found in translation. Repairing...")
+        rules_fol = reasoning_client.complete(
             RULE_REPAIR_PROMPT.format(
-                theory=theory,
+                theory=theory_rules_text,
                 facts_and_rules=facts_and_rules,
                 error_report=grounding_report,
             )
         )
+        facts_and_rules = f"## FACTS\n{facts_fol}\n\n## RULES\n{rules_fol}"
         print(facts_and_rules)
-
         if output_dir:
-            _write(
-                os.path.join(output_dir, f"facts_and_rules_attempt_{attempt}.txt"),
-                facts_and_rules,
-            )
+            _write(os.path.join(output_dir, f"facts_and_rules_attempt_{attempt}.txt"), facts_and_rules)
     else:
-        print(f"  [warning] Max retries reached. Proceeding with best available rules.")
+        print("  [warning] Max retries reached. Proceeding with best available translation.")
 
     if output_dir:
         _write(os.path.join(output_dir, "facts_and_rules_final.txt"), facts_and_rules)
 
-    # ── Stage 3: Generate constrained proof ────────────────────────────────────
-    print("  [stage 3] Generating constrained proof...")
-    proof = reasoning_client.complete(
-        CONSTRAINED_PROOF_PROMPT.format(
-            facts_and_rules=facts_and_rules,
-            question=question,
-        )
+    # ── Stage 4: Prove with verified FOL ──────────────────────────────────────
+    print("  [stage 4] Generating post-verification proof...")
+    post_proof = reasoning_client.complete(
+        CONSTRAINED_PROOF_PROMPT.format(facts_and_rules=facts_and_rules, question=question)
     )
-    print(proof)
-
-    answer = extract_answer(proof)
-
+    post_answer = extract_answer(post_proof)
+    print(f"  Post-verification answer: {post_answer}")
     if output_dir:
-        _write(os.path.join(output_dir, "proof.txt"), proof)
-        _write(os.path.join(output_dir, "answer.txt"), answer)
+        _write(os.path.join(output_dir, "proof_post.txt"), post_proof)
 
     return {
-        "answer": answer,
-        "facts_and_rules": facts_and_rules,
-        "proof": proof,
-        "rule_attempts": rule_attempts,
-        "passed_grounding": passed_grounding,
+        "pre_answer":        pre_answer,
+        "post_answer":       post_answer,
+        "facts_and_rules":   facts_and_rules,
+        "rule_attempts":     rule_attempts,
+        "passed_grounding":  passed_grounding,
         "grounding_reports": grounding_reports,
     }
 
@@ -340,29 +280,34 @@ def run_benchmark(
     max_retries: int = 3,
 ) -> dict:
     total = len(items)
-    correct = 0
-    passed_grounding_count = 0
-    total_attempts = 0
+    pre_correct = post_correct = 0
+    passed_grounding_count = total_attempts = 0
+    corrected = 0   # wrong pre → right post  (verification helped)
+    regressed = 0   # right pre → wrong post  (verification hurt)
     results = []
 
-    class_correct = {"True": 0, "False": 0, "Unknown": 0}
-    class_total   = {"True": 0, "False": 0, "Unknown": 0}
+    pre_class_correct  = {"True": 0, "False": 0, "Unknown": 0}
+    post_class_correct = {"True": 0, "False": 0, "Unknown": 0}
+    class_total        = {"True": 0, "False": 0, "Unknown": 0}
 
-    print(f"\n{'ID':<22} {'Expected':<10} {'Predicted':<10} {'Grounded':<10} {'OK'}")
-    print("-" * 60)
+    print(f"\n{'ID':<22} {'Expected':<10} {'Pre':>6} {'Post':>6} {'Grnd':>6} {'Fixed':>6}")
+    print("-" * 62)
 
     for item in items:
         item_id  = item["id"]
-        theory   = item["theory"]
         question = item["question"]
         expected = item["expected"]
         item_dir = os.path.join(output_dir, item_id)
 
+        facts    = item["facts"]
+        rules    = item["rules"]
+
         print(f"\n[{item_id}] {question[:70]}")
-        print(f"  Expected: {expected}")
+        print(f"  Expected: {expected} | {len(facts)} facts, {len(rules)} rules")
 
         result = run_item(
-            theory=theory,
+            facts=facts,
+            rules=rules,
             question=question,
             reasoning_client=reasoning_client,
             verifier_client=verifier_client,
@@ -370,35 +315,56 @@ def run_benchmark(
             output_dir=item_dir,
         )
 
-        predicted = result["answer"]
-        ok = predicted == expected
+        pre_ans  = result["pre_answer"]
+        post_ans = result["post_answer"]
+        pre_ok   = pre_ans  == expected
+        post_ok  = post_ans == expected
 
-        if ok:
-            correct += 1
+        if pre_ok:
+            pre_correct += 1
+        if post_ok:
+            post_correct += 1
         if result["passed_grounding"]:
             passed_grounding_count += 1
         total_attempts += result["rule_attempts"]
-        class_total[expected]  = class_total.get(expected, 0) + 1
-        if ok:
-            class_correct[expected] = class_correct.get(expected, 0) + 1
+
+        class_total[expected]         = class_total.get(expected, 0) + 1
+        if pre_ok:
+            pre_class_correct[expected]  = pre_class_correct.get(expected, 0) + 1
+        if post_ok:
+            post_class_correct[expected] = post_class_correct.get(expected, 0) + 1
+
+        fixed = ""
+        if not pre_ok and post_ok:
+            corrected += 1
+            fixed = "✓ fixed"
+        elif pre_ok and not post_ok:
+            regressed += 1
+            fixed = "✗ regr."
 
         results.append({
             "id":               item_id,
-            "theory":           theory,
             "question":         question,
             "expected":         expected,
-            "predicted":        predicted,
-            "correct":          ok,
+            "num_facts":        len(facts),
+            "num_rules":        len(rules),
+            "pre_answer":       pre_ans,
+            "post_answer":      post_ans,
+            "pre_correct":      pre_ok,
+            "post_correct":     post_ok,
             "rule_attempts":    result["rule_attempts"],
             "passed_grounding": result["passed_grounding"],
         })
 
-        g_mark  = "✓" if result["passed_grounding"] else "✗"
-        ok_mark = "✓" if ok else "✗"
-        print(f"\n{item_id:<22} {expected:<10} {predicted:<10} {g_mark:<10} {ok_mark}")
+        pre_m  = "✓" if pre_ok  else "✗"
+        post_m = "✓" if post_ok else "✗"
+        g_m    = "✓" if result["passed_grounding"] else "✗"
+        print(f"\n{item_id:<22} {expected:<10} {pre_m:>6} {post_m:>6} {g_m:>6}  {fixed}")
 
     # ── Aggregate summary ──────────────────────────────────────────────────────
-    acc            = correct / total if total else 0
+    pre_acc        = pre_correct  / total if total else 0
+    post_acc       = post_correct / total if total else 0
+    delta          = post_acc - pre_acc
     grounding_rate = passed_grounding_count / total if total else 0
     avg_attempts   = total_attempts / total if total else 0
 
@@ -407,37 +373,50 @@ def run_benchmark(
 
     per_class = {
         cls: {
-            "correct":  class_correct.get(cls, 0),
-            "total":    class_total.get(cls, 0),
-            "accuracy": round(class_correct.get(cls, 0) / class_total[cls], 4)
-                        if class_total.get(cls) else 0,
+            "total":          class_total.get(cls, 0),
+            "pre_correct":    pre_class_correct.get(cls, 0),
+            "post_correct":   post_class_correct.get(cls, 0),
+            "pre_accuracy":   round(pre_class_correct.get(cls, 0)  / class_total[cls], 4) if class_total.get(cls) else 0,
+            "post_accuracy":  round(post_class_correct.get(cls, 0) / class_total[cls], 4) if class_total.get(cls) else 0,
         }
         for cls in ("True", "False", "Unknown")
     }
 
     summary = {
-        "total":                      total,
-        "correct":                    correct,
-        "accuracy":                   round(acc, 4),
-        "grounding_rate":             round(grounding_rate, 4),
-        "avg_rule_repair_attempts":   round(avg_attempts, 2),
-        "per_class":                  per_class,
+        "total":                    total,
+        "pre_verification":  {"correct": pre_correct,  "accuracy": round(pre_acc,  4)},
+        "post_verification": {"correct": post_correct, "accuracy": round(post_acc, 4)},
+        "delta":                    round(delta, 4),
+        "corrected_by_verification": corrected,
+        "regressed_by_verification": regressed,
+        "grounding_rate":            round(grounding_rate, 4),
+        "avg_rule_repair_attempts":  round(avg_attempts, 2),
+        "per_class":                 per_class,
     }
 
-    print("\n" + "=" * 60)
-    print(f"{'PROOFWRITER RESULTS':^60}")
-    print("=" * 60)
-    print(f"  Total items               : {total}")
-    print(f"  Correct                   : {correct}/{total}  ({acc:.1%})")
-    print(f"  Rules fully grounded      : {passed_grounding_count}/{total}  ({grounding_rate:.1%})")
-    print(f"  Avg rule-repair attempts  : {avg_attempts:.2f}")
+    direction = "better" if delta > 0 else "worse" if delta < 0 else "no change"
+
+    print("\n" + "=" * 62)
+    print(f"{'PROOFWRITER RESULTS':^62}")
+    print("=" * 62)
+    print(f"  Total items                  : {total}")
+    print(f"  Pre-verification accuracy    : {pre_correct}/{total}  ({pre_acc:.1%})")
+    print(f"  Post-verification accuracy   : {post_correct}/{total}  ({post_acc:.1%})")
+    print(f"  Delta                        : {delta:+.1%} ({direction})")
     print()
-    print(f"  -- Per-Class Accuracy --")
+    print(f"  Corrected by verification    : {corrected}  (wrong→right)")
+    print(f"  Regressed by verification    : {regressed}  (right→wrong)")
+    print()
+    print(f"  Rules fully grounded         : {passed_grounding_count}/{total}  ({grounding_rate:.1%})")
+    print(f"  Avg rule-repair attempts     : {avg_attempts:.2f}")
+    print()
+    print(f"  -- Per-Class Accuracy (pre → post) --")
     for cls in ("True", "False", "Unknown"):
-        n = class_correct.get(cls, 0)
-        d = class_total.get(cls, 0)
-        print(f"  {cls:<8}: {n}/{d}  ({pct(n, d)})")
-    print("=" * 60)
+        n_pre  = pre_class_correct.get(cls, 0)
+        n_post = post_class_correct.get(cls, 0)
+        d      = class_total.get(cls, 0)
+        print(f"  {cls:<8}: {pct(n_pre, d)} → {pct(n_post, d)}  ({d} items)")
+    print("=" * 62)
 
     _write(os.path.join(output_dir, "summary.json"), json.dumps(summary, indent=2))
     _write(os.path.join(output_dir, "results.json"), json.dumps(results, indent=2))
@@ -454,20 +433,8 @@ if __name__ == "__main__":
         description="Ruleset-constrained proof pipeline on ProofWriter.",
     )
     parser.add_argument(
-        "--split", default="test",
-        help="Dataset split: train / validation / test (default: test).",
-    )
-    parser.add_argument(
-        "--limit", "-n", type=int, default=50,
-        help="Number of items to fetch from HuggingFace (default: 50).",
-    )
-    parser.add_argument(
-        "--dataset-file", default=None,
-        help=(
-            "Use a local JSON file instead of fetching from HuggingFace. "
-            "Expects a list of {id, theory, question, expected} objects, "
-            "or a dict with an 'items' key."
-        ),
+        "--dataset-file", "-f", required=True,
+        help="Path to a ProofWriter JSON file (from load_data.py --proofwriter).",
     )
     parser.add_argument(
         "--output-dir", "-o", default=None,
@@ -489,13 +456,10 @@ if __name__ == "__main__":
     reasoning_client = make_client(args.client)
     verifier_client  = OpenAILLMClient()
 
-    if args.dataset_file:
-        with open(args.dataset_file) as f:
-            raw = json.load(f)
-        items = raw if isinstance(raw, list) else raw.get("items", raw)
-        print(f"Loaded {len(items)} items from {args.dataset_file}")
-    else:
-        items = fetch_proofwriter(split=args.split, limit=args.limit)
+    with open(args.dataset_file) as f:
+        raw = json.load(f)
+    items = raw if isinstance(raw, list) else raw.get("items", raw)
+    print(f"Loaded {len(items)} items from {args.dataset_file}")
 
     run_id     = datetime.now().strftime("run_%Y%m%d_%H%M%S")
     base_dir   = args.output_dir or os.path.join(SCRIPT_DIR, "proofwriter_outputs")
@@ -505,7 +469,6 @@ if __name__ == "__main__":
     print(f"\n=== ProofWriter Benchmark (rule_pipeline) ===")
     print(f"Reasoning client : {args.client}")
     print(f"Verifier client  : openai")
-    print(f"Split            : {args.split}")
     print(f"Items            : {len(items)}")
     print(f"Max retries      : {args.max_retries}")
     print(f"Output           : {output_dir}\n")

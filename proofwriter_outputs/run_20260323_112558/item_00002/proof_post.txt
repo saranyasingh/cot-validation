@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: The mouse does not see the rabbit :: ¬Sees(mouse, rabbit) [From the statement to evaluate]
+INF-2: The mouse sees the rabbit :: Sees(mouse, rabbit) [From FACT-10]
+INF-3: Contradiction arises from ¬Sees(mouse, rabbit) and Sees(mouse, rabbit) :: Sees(mouse, rabbit) ∧ ¬Sees(mouse, rabbit) → False [From INF-1, INF-2 by classical logic]
+
+ANSWER: False

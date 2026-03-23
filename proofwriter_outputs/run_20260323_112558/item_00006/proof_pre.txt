@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: IsCold(bear) :: Sees(bear, cow) → IsCold(bear) [From FACT-5, RULE-2 by Modus Ponens]
+INF-2: Likes(bear, rabbit) :: IsCold(bear) → Likes(bear, rabbit) [From INF-1, RULE-3 by Modus Ponens]
+
+ANSWER: False

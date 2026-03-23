@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: The rabbit is young :: Young(rabbit)  [From FACT-11 by Fact]
+INF-2: The rabbit is kind :: Kind(rabbit)  [From FACT-11, RULE-12 by universal instantiation and Modus Ponens]
+
+ANSWER: False

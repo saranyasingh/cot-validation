@@ -1,0 +1,5 @@
+## INFERENCES
+INF-1: Bear is cold :: Cold(bear) [From FACT-5, RULE-2 by Modus Ponens]
+INF-2: Bear likes the rabbit :: Likes(bear, rabbit) [From INF-1, RULE-3 by Modus Ponens]
+
+ANSWER: True

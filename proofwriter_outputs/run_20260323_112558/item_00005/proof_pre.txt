@@ -1,0 +1,6 @@
+## INFERENCES
+INF-1: The bear sees the cow :: Sees(bear, cow) [From FACT-5 by RULE-2]
+INF-2: The bear is cold :: Cold(bear) [From FACT-5 by RULE-2]
+INF-3: The bear likes the rabbit :: Likes(bear, rabbit) [From Cold(bear) by RULE-3]
+
+ANSWER: True
