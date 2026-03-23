@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_balance(olivia, balance_78)).
+fof(fact_2, axiom, spends(olivia, amount_15)).
+fof(fact_3, axiom, subtract(balance_78, amount_15, balance_63)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,B,S,B2] : ((has_balance(P,B) & spends(P,S) & subtract(B,S,B2)) => has_balance(P,B2))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, has_balance(olivia, balance_63)).

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: The collection has 290 bananas :: TotalBananas(n_290)
+FACT-2: The bananas are organized into 2 groups :: BananasOrganizedIntoGroups(n_290, g_2)
+FACT-3: 290 equals 2 times 145 :: NEqualsGTimesS(n_290, g_2, s_145)
+
+## RULES
+RULE-1: ∀n,g,s (NEqualsGTimesS(n,g,s) → GroupSize(n,g,s)) :: If n equals g times s, then the per-group size is s
+
+## INFERENCES
+INF-1: From FACT-3 and RULE-1 by Modus Ponens: The per-group size is 145 bananas :: GroupSize(n_290, g_2, s_145)

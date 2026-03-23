@@ -1,0 +1,8 @@
+Context: The problem states that the total weight of all strawberries from Marco and his dad is 30 pounds, and dad's strawberries weigh 11 pounds. We assume weights add without overlap or extra sources.
+
+- Premise 1: The combined weight W(Marco) + W(Dad) = 30 pounds.
+- Premise 2: The weight W(Dad) = 11 pounds.
+- Premise 3: If W(Marco) + W(Dad) = 30 and W(Dad) = 11, then W(Marco) = 30 − 11.
+- Conclusion: W(Marco) = 19 pounds.
+
+The answer is: 19

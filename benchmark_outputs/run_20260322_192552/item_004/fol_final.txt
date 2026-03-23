@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The book has 3 chapters :: BookHasChapters(book, three)
+FACT-2: Each chapter has the same number of pages :: AllChaptersHaveSamePages(book)
+FACT-3: The total number of pages in the book is 594 :: TotalPages(book, five_hundred_ninety_four)
+
+## RULES
+RULE-1: If a book has 3 chapters and all chapters have the same number of pages, then there exists a per-chapter page count p such that the total pages equals 3 times p :: ∀b [BookHasChapters(b, three) ∧ AllChaptersHaveSamePages(b) → ∃p (PagesPerChapter(b, p) ∧ TotalPagesEqualsThreeTimes(b, p))]
+RULE-2: If total pages equal three times p and the total pages equal 594, then p equals 198 :: ∀b ∀p [TotalPagesEqualsThreeTimes(b, p) ∧ TotalPages(b, five_hundred_ninety_four) → p = one_hundred_ninety_eight]
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, RULE-1 by Modus Ponens and Universal Instantiation: there exists p such that PagesPerChapter(book, p) ∧ TotalPagesEqualsThreeTimes(book, p) :: ∃p (PagesPerChapter(book, p) ∧ TotalPagesEqualsThreeTimes(book, p))
+INF-2: From INF-1, FACT-3, RULE-2 by Modus Ponens: PagesPerChapter(book, one_hundred_ninety_eight) :: PagesPerChapter(book, one_hundred_ninety_eight)

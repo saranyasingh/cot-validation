@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Philip has 290 bananas in total :: BananasTotal(philip, 290)
+FACT-2: The bananas are organized into 2 groups :: GroupsOfBananas(philip, 2)
+FACT-3: The sum of the sizes of the two banana groups equals 290 :: SumGroupSizesEqualsTotal(philip, 290)
+
+## RULES
+RULE-1: If a subject has 2 banana groups, the sum of the group sizes equals 290, and the group sizes are equal, then each group contains 145 bananas :: ∀s ((GroupsOfBananas(s, 2) ∧ SumGroupSizesEqualsTotal(s, 290) ∧ GroupSizesAreEqual(s)) → BananaGroupSize(s, 145))
+
+## INFERENCES
+INF-1: No BananaGroupSize(philip, 145) can be inferred because the antecedent GroupSizesAreEqual(philip) is not asserted.

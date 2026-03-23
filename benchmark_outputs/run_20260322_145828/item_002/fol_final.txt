@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: CombinedWeight(marco, dad, 30) :: CombinedWeight(marco, dad, 30)
+FACT-2: DadWeight(dad, 11) :: DadWeight(dad, 11)
+
+## RULES
+RULE-1: ∀m ∀d ((CombinedWeight(m, d, 30) ∧ DadWeight(d, 11)) → MarcoWeight(m, 19))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, RULE-1 by Universal Instantiation and Modus Ponens: MarcoWeight(marco, 19)

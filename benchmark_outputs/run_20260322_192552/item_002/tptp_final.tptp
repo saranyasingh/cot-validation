@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, TotalWeight(marco_strawberries, dad_strawberries, thirty_pounds)).
+fof(fact_2, axiom, Weight(dad_strawberries, eleven_pounds)).
+fof(fact_3, axiom, Subtract(thirty_pounds, eleven_pounds, nineteen_pounds)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,W,WB,R] : ((TotalWeight(A,B,W) & Weight(B,WB) & Subtract(W,WB,R)) => Weight(A,R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, Weight(marco_strawberries, nineteen_pounds)).

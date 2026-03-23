@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Marco’s dad’s strawberries weighed 11 pounds :: weight(dads_strawberries, 11)
+FACT-2: The total weight of Marco’s strawberries and Dad’s strawberries is 30 pounds :: total_weight(marco_strawberries, dads_strawberries, 30)
+
+## RULES
+RULE-1: If the total weight of two items is T, and the weight of one item is W, then the weight of the other item is T minus W :: ∀x ∀y ∀w ∀t (weight(x, w) ∧ total_weight(x, y, t) → weight(y, $difference(t, w)))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, RULE-1 by Universal Instantiation and Modus Ponens: The weight of Marco’s strawberries is 30 minus 11 :: weight(marco_strawberries, $difference(30, 11))

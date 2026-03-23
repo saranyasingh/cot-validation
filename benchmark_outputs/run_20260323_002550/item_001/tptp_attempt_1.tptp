@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_oranges(87)).
+fof(fact_2, axiom, organized_into_groups(oranges, 93)).
+fof(fact_3, axiom, total_bananas(290)).
+fof(fact_4, axiom, organized_into_groups(bananas, 2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Total] : ! [Groups] : ((total_items(X, Total) & organized_into_groups(X, Groups)) => group_size(X, Total ÷ Groups))).
+
+% --- INFERENCES ---
+% From FACT-3, FACT-4, RULE-1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, group_size(bananas, 290 ÷ 2)).
+% From inf_1 by Arithmetic
+fof(inf_2, axiom, group_size(bananas, 145)).

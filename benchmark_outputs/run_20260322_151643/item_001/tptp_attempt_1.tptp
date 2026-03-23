@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_bananas(n_290)).
+fof(fact_2, axiom, bananas_organized_into_groups(n_290, g_2)).
+fof(fact_3, axiom, n_equals_g_times_s(n_290, g_2, s_145)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, G, S] : (n_equals_g_times_s(N, G, S) => group_size(N, G, S))).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, group_size(n_290, g_2, s_145)).

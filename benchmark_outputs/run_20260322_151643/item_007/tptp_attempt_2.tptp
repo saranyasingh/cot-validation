@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, tower_uses(tower, blocks_in_tower_50)).
+fof(fact_2, axiom, house_uses(house, blocks_in_house_20)).
+fof(fact_3, axiom, minus(blocks_in_tower_50, blocks_in_house_20, blocks_in_diff_30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, H, A, B, D] : ( tower_uses(T, A) & house_uses(H, B) & minus(A, B, D) => difference_in_blocks(T, H, D) )).
+fof(rule_2, axiom, ! [T, H, D] : ( difference_in_blocks(T, H, D) => tower_increases_blocks_more_than(T, H, D) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 and rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_in_blocks(tower, house, blocks_in_diff_30)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, tower_increases_blocks_more_than(tower, house, blocks_in_diff_30)).

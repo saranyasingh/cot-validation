@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, oranges(seventy_two)).
+fof(fact_2, axiom, bag_capacity(eight)).
+fof(fact_3, axiom, mul(eight, nine, seventy_two)).
+fof(fact_4, axiom, bag_count(nine)).
+fof(fact_5, axiom, leq(seventy_two, seventy_two)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [K, N, O] : ((bag_capacity(K) & bag_count(N) & mul(K, N, O)) => max_pack_with(N, O))).
+fof(rule_2, axiom, ! [O, N, M] : ((oranges(O) & bag_count(N) & max_pack_with(N, M) & leq(O, M)) => can_pack(O, N))).
+fof(rule_3, axiom, ! [O, K, N, O1] : ((oranges(O) & bag_capacity(K) & bag_count(N) & max_pack_with(N, O1) & mul(K, N, O1) & O = O1) => needs_bags(N))).
+
+% --- INFERENCES ---
+% From fact_2, fact_4, fact_3 by Modus Ponens
+fof(inf_1, axiom, max_pack_with(nine, seventy_two)).
+% From fact_1, fact_4, fact_5, inf_1 by Modus Ponens
+fof(inf_2, axiom, can_pack(seventy_two, nine)).
+% From fact_1, fact_4, fact_3, inf_1 by Modus Ponens
+fof(inf_3, axiom, needs_bags(nine)).

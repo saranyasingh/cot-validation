@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Jessie’s current weight is 66 kg :: CurrentWeight(jessie, w_66)
+FACT-2: Jessie has weight lost of 126 kg :: WeightLost(jessie, w_126)
+FACT-3: 66 + 126 = 192 :: Plus(w_66, w_126, w_192)
+
+## RULES
+RULE-1: The initial weight equals current weight plus lost weight :: ∀p ∀c ∀l ∀w ((CurrentWeight(p,c) ∧ WeightLost(p,l) ∧ Plus(c,l,w)) → InitialWeight(p,w))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3, RULE-1 by Modus Ponens and Universal Instantiation: Jessie’s initial weight is 192 :: InitialWeight(jessie, w_192)

@@ -1,13 +1,21 @@
 
 from dotenv import load_dotenv
-from openai import OpenAI
 import re
 import os
 
+from clients import OpenAILLMClient
+
 load_dotenv()
-client = OpenAI()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_default_client = None
+
+
+def _get_default_client():
+    global _default_client
+    if _default_client is None:
+        _default_client = OpenAILLMClient()
+    return _default_client
 
 VERIFY_PROMPT = '''\
 You are a careful verifier of logical reasoning. You are given a short story
@@ -56,7 +64,7 @@ RULE-N: IMPLAUSIBLE — <brief explanation>
 Output ONLY these lines, nothing else.'''
 
 
-def verify_fol(story_text: str, structured_fol: str) -> tuple[bool, str]:
+def verify_fol(story_text: str, structured_fol: str, client=None) -> tuple[bool, str]:
     """
     Run fact grounding + rule plausibility checks.
     Returns (has_errors, report_text).
@@ -70,11 +78,8 @@ def verify_fol(story_text: str, structured_fol: str) -> tuple[bool, str]:
     facts_text = "\n".join(f"{label}: {gloss}" for label, gloss, _ in facts)
     rules_text = "\n".join(f"{label}: {gloss}" for label, gloss, _ in rules)
 
-    verify_response = client.responses.create(
-        model="gpt-5-nano",
-        input=VERIFY_PROMPT.format(story=story_text, facts=facts_text, rules=rules_text),
-    )
-    report = verify_response.output_text.strip()
+    llm = client if client is not None else _get_default_client()
+    report = llm.complete(VERIFY_PROMPT.format(story=story_text, facts=facts_text, rules=rules_text)).strip()
 
     result_lines = [l.strip() for l in report.splitlines() if l.strip()]
     has_errors = any("UNSUPPORTED" in l or "IMPLAUSIBLE" in l for l in result_lines)

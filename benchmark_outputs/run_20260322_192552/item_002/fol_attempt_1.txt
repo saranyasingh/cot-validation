@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: The total weight of Marco's strawberries and his dad's strawberries is thirty_pounds :: TotalWeight(marco_strawberries, dad_strawberries, thirty_pounds)
+FACT-2: The weight of Marco's dad's strawberries is eleven_pounds :: Weight(dad_strawberries, eleven_pounds)
+FACT-3: The difference between thirty_pounds and eleven_pounds is nineteen_pounds :: Subtract(thirty_pounds, eleven_pounds, nineteen_pounds)
+
+## RULES
+RULE-1: If A and B together weigh W and B weighs WB, and W minus WB equals R, then A weighs R :: ∀A,B,W,WB,R (TotalWeight(A,B,W) ∧ Weight(B,WB) ∧ Subtract(W,WB,R) → Weight(A,R))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3, and RULE-1 by Modus Ponens: The weight of Marco's strawberries is nineteen_pounds :: Weight(marco_strawberries, nineteen_pounds)

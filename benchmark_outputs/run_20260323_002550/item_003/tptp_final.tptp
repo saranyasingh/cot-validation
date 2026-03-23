@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, (spent(edward, 6, books) & quantity(books, 2))).
+fof(fact_2, axiom, same_price(books)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, T, I, N] : ((spent(A, T, I) & quantity(I, N) & same_price(I)) => price_per_item(I, $quotient(T, N)))).
+
+% --- INFERENCES ---
+% From fact_1 by Simplification
+fof(inf_1, axiom, spent(edward, 6, books)).
+% From fact_1 by Simplification
+fof(inf_2, axiom, quantity(books, 2)).
+% From inf_1, inf_2, fact_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, price_per_item(books, $quotient(6, 2))).
+% From inf_3 by Arithmetic
+fof(inf_4, axiom, price_per_item(books, 3)).

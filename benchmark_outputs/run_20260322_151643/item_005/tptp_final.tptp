@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, money_in_wallet(olivia, amount_78)).
+fof(fact_2, axiom, subtract(amount_78, amount_15, amount_63)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, A, S, L] : ( (money_in_wallet(P, A) & subtract(A, S, L)) => amount_left(P, L) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, amount_left(olivia, amount_63)).

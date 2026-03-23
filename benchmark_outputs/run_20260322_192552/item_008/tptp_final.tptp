@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, current_weight(jessie, w_66)).
+fof(fact_2, axiom, weight_lost(jessie, w_126)).
+fof(fact_3, axiom, sum(w_66, w_126, w_192)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, C, L, X] : ((current_weight(P, C) & weight_lost(P, L) & sum(C, L, X)) => weight_before(P, X))).
+fof(rule_2, axiom, ! [A, B, X, Y] : ((sum(A, B, X) & sum(A, B, Y)) => equals(X, Y))).
+fof(rule_3, axiom, ! [P, B, X] : ((weight_before(P, B) & equals(B, X)) => weight_before(P, X))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Modus Ponens
+fof(inf_1, axiom, weight_before(jessie, w_192)).

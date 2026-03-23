@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, lost_crayons(he, 412)).
+fof(fact_2, axiom, gave_crayons(he, 90, friends)).
+fof(fact_3, axiom, difference(412, 90, 322)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, A, B, R] : ((lost_crayons(P, A) & gave_crayons(P, B, R)) => difference_between(P, A, B))).
+fof(rule_2, axiom, ! [A, B, D] : (difference(A, B, D) => difference_value(D))).
+fof(rule_3, axiom, ! [P, A, B, D] : ((difference_between(P, A, B) & difference(A, B, D)) => more_lost_than_given(P, D))).
+fof(rule_4, axiom, ! [P, D] : (more_lost_than_given(P, D) => answer(D))).
+
+% --- INFERENCES ---
+% From fact_1 and fact_2 using rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_between(he, 412, 90)).
+
+% From inf_1 and fact_3 using rule_3 by Modus Ponens
+% From INF-1 and FACT-3 using RULE-3 by Modus Ponens
+fof(inf_2, axiom, more_lost_than_given(he, 322)).
+
+% From inf_2 using rule_4 by Modus Ponens
+% From INF-2 by Modus Ponens
+fof(inf_3, axiom, answer(322)).

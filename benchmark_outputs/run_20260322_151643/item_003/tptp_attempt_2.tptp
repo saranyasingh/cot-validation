@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(edward, two_books)).
+fof(fact_2, axiom, spent(edward, two_books, six_dollars)).
+fof(fact_3, axiom, prices_are_equal(two_books)).
+fof(fact_4, axiom, two_books(two_books)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [E, BKS] : ((bought(E, BKS) & spent(E, BKS, six_dollars) & prices_are_equal(BKS) & two_books(BKS)) => per_book_price(E, BKS, three_dollars))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3, FACT-4, RULE-1 by Modus Ponens
+fof(inf_1, axiom, per_book_price(edward, two_books, three_dollars)).

@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: TotalBooks(three_hundred_sixty) :: TotalBooks(three_hundred_sixty)
+FACT-2: Shelves(nine) :: Shelves(nine)
+FACT-3: ExistsPForEqualDivision(three_hundred_sixty, nine) :: ExistsPForEqualDivision(three_hundred_sixty, nine)
+
+## RULES
+RULE-1: ∀T ∀N (ExistsPForEqualDivision(T, N) → ∃p (Product(T, N, p) ∧ BooksPerShelf(p))) :: ∀T ∀N (ExistsPForEqualDivision(T, N) → ∃p (Product(T, N, p) ∧ BooksPerShelf(p)))
+RULE-2: ∀T ∀N ∀p (Product(T, N, p) → BooksPerShelf(p)) :: ∀T ∀N ∀p (Product(T, N, p) → BooksPerShelf(p))
+
+## INFERENCES
+INF-1: From FACT-3 and RULE-1 by Modus Ponens: There exists p such that Product(three_hundred_sixty, nine, p) ∧ BooksPerShelf(p) :: ∃p (Product(three_hundred_sixty, nine, p) ∧ BooksPerShelf(p))
+
+INF-2: From INF-1 and RULE-2 by Modus Ponens: BooksPerShelf(p) :: BooksPerShelf(p)
+
+INF-3: By applying arithmetic substitution (anchored to the chain-of-thought step 360 = 9 × 40), infer BooksPerShelf(forty) :: BooksPerShelf(forty)

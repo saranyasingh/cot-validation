@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, lost(412)).
+fof(fact_2, axiom, given_to_friends(90)).
+fof(fact_3, axiom, initial_crayons(110)).
+fof(fact_4, axiom, answer(322)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [L:int, G:int] : ((lost(L) & given_to_friends(G)) => ? [D:int] : subtract(L, G, D))).
+fof(rule_2, axiom, ! [L:int, G:int] : ((lost(L) & given_to_friends(G) & L = 412 & G = 90) => subtract(L, G, 322))).
+fof(rule_3, axiom, ! [L:int, G:int, D:int] : (subtract(L, G, D) => difference_is(L, G, D))).
+fof(rule_4, axiom, ! [L:int, G:int, D:int] : (difference_is(L, G, D) => answer(D))).
+fof(rule_5, axiom, ! [I:int, L:int, G:int, D:int] : ((initial_crayons(I) & lost(L) & given_to_friends(G) & subtract(L, G, D)) => answer(D))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 via RULE-2 (instantiating L=412, G=90) and Modus Ponens
+fof(inf_1, axiom, subtract(412, 90, 322)).
+% From inf_1 via RULE-3 by Modus Ponens
+fof(inf_2, axiom, difference_is(412, 90, 322)).
+% From inf_2 via RULE-4 by Modus Ponens
+fof(inf_3, axiom, answer(322)).
+% From fact_3, inf_1 via RULE-5 by Modus Ponens
+fof(inf_4, axiom, answer(322)).

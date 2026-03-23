@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — CanPack(O, n) does not guarantee that the exact number of bags needed is n (it only asserts feasibility with n bags, not minimality).

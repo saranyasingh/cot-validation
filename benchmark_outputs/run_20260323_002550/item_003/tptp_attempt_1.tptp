@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, spent(edward, 6, two_books)).
+fof(fact_2, axiom, same_price(two_books)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : ! [N] : ! [I] : ((spent(A, N, I) & same_price(I)) => price_per_item(I, A / N))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, price_per_item(two_books, 6 / 2)).
+% From inf_1 by Arithmetic
+fof(inf_2, axiom, cost_per_book(3)).

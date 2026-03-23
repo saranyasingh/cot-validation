@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The book has 3 chapters :: BookChapters(book, 3)
+FACT-2: The book has a total of 594 pages :: BookTotalPages(book, 594)
+
+## RULES
+RULE-1: 3 chapters and pages per chapter and total pages imply total pages equal 3 times pages per chapter :: ∀b ∀P ∀T (BookChapters(b, 3) ∧ PagesPerChapter(b, P) ∧ BookTotalPages(b, T) → T = 3 × P)
+RULE-2: If a book has 3 chapters and total pages T, there exists P such that PagesPerChapter(b, P) ∧ T = 3 × P :: ∀b ∀T (BookChapters(b, 3) ∧ BookTotalPages(b, T) → ∃P (PagesPerChapter(b, P) ∧ T = 3 × P))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 using RULE-2 by Modus Ponens: ∃P (PagesPerChapter(book, P) ∧ 594 = 3 × P) :: derived from FACT-1, FACT-2, RULE-2
+INF-2: From INF-1 by Arithmetic Solving: PagesPerChapter(book, 198) :: derived from INF-1
+INF-3: Conclusion: Each chapter has 198 pages :: PagesPerChapter(book, 198) :: derived from INF-2

@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Dad's strawberries weigh 11 pounds :: Equals(dad_strawberries, n_11)
+FACT-2: Marco's strawberries plus Dad's strawberries weigh 30 pounds :: SumEquals(marco_strawberries, dad_strawberries, n_30)
+
+## RULES
+RULE-1: If someone’s weight plus another weight equals 30 and the other weight equals 11, then the first weight equals 19 pounds :: ∀x ∀y (SumEquals(x, y, n_30) ∧ Equals(y, n_11) → Equals(x, w_19))
+
+## INFERENCES
+INF-1: From FACT-2, FACT-1, RULE-1 by Universal Instantiation and Modus Ponens: Marco's strawberries weight is 19 pounds :: Equals(marco_strawberries, w_19)

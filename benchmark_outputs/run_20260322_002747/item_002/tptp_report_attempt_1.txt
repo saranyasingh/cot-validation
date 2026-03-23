@@ -1,0 +1,10 @@
+  % From fact_3, rule_1 by Modus Ponens
+  inf_1: PROVED
+  % From inf_1, rule_2 by Modus Ponens
+  inf_2: NOT PROVED
+  % From inf_2 by Arithmetic substitution (360 = 9 × 40)
+  inf_3: NOT PROVED
+
+Prover errors:
+inf_2: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms

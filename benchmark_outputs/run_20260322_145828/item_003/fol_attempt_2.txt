@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Two books cost a total of six dollars :: TotalCost(two_books, six_dollars)
+FACT-2: Edward has twelve dollars left :: MoneyLeft(edward, twelve_dollars)
+
+## RULES
+RULE-1: ∀N ∀T (TotalCost(N, T) → ∃P (Multiply(N, P, T) ∧ PricePerBook(P)))
+RULE-2: ∀N ∀T ∀P ((TotalCost(N, T) ∧ Multiply(N, P, T)) → PricePerBook(P))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Modus Ponens: ∃P (Multiply(two_books, P, six_dollars) ∧ PricePerBook(P))
+INF-2: From INF-1, FACT-1, and RULE-2 by Existential Instantiation and Modus Ponens: PricePerBook(a) :: PricePerBook(a) for some a such that Multiply(two_books, a, six_dollars) ∧ TotalCost(two_books, six_dollars)

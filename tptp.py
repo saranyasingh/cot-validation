@@ -1,16 +1,24 @@
 
 from dotenv import load_dotenv
-from openai import OpenAI
 import subprocess
 import tempfile
 import shutil
 import re
 import os
 
+from clients import OpenAILLMClient
+
 load_dotenv()
-client = OpenAI()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_default_client = None
+
+
+def _get_default_client():
+    global _default_client
+    if _default_client is None:
+        _default_client = OpenAILLMClient()
+    return _default_client
 
 TPTP_TEMPLATE = '''\
 Convert the following structured first-order logic into TPTP-FOF syntax.
@@ -100,14 +108,13 @@ def parse_tptp(tptp_text):
     return axioms, inferences
 
 
-def convert_and_check(structured_fol: str) -> tuple[str, bool, str]:
+def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]:
     """
     Convert structured FOL to TPTP and optionally run prover validation.
     Returns (tptp_text, has_errors, error_report).
     """
-    tptp_prompt = TPTP_TEMPLATE.format(structured_fol=structured_fol)
-    tptp_response = client.responses.create(model="gpt-5-nano", input=tptp_prompt)
-    tptp_output = tptp_response.output_text
+    llm = client if client is not None else _get_default_client()
+    tptp_output = llm.complete(TPTP_TEMPLATE.format(structured_fol=structured_fol))
 
     tptp_path = os.path.join(SCRIPT_DIR, "output.tptp")
     with open(tptp_path, "w") as f:

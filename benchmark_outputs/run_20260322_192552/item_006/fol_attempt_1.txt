@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: The quantity lost is 412 :: Lost(412)
+FACT-2: The quantity given to friends is 90 :: GivenToFriends(90)
+FACT-3: The initial crayons are 110 :: InitialCrayons(110)
+FACT-4: The final answer is 322 :: Answer(322)
+
+## RULES
+RULE-1: If something is lost and something is given to friends, there exists a difference :: ∀L ∀G (Lost(L) ∧ GivenToFriends(G) → ∃D Subtract(L, G, D))
+RULE-2: If L equals 412 and G equals 90 and Lost(L) and GivenToFriends(G) then Subtract(L, G, 322) :: ∀L ∀G ((Lost(L) ∧ GivenToFriends(G) ∧ L = 412 ∧ G = 90) → Subtract(L, G, 322))
+RULE-3: If Subtract(L, G, D) then DifferenceIs(L, G, D) :: ∀L ∀G ∀D (Subtract(L, G, D) → DifferenceIs(L, G, D))
+RULE-4: If DifferenceIs(L, G, D) then Answer(D) :: ∀L ∀G ∀D (DifferenceIs(L, G, D) → Answer(D))
+RULE-5: If InitialCrayons(I) and Lost(L) and GivenToFriends(G) and Subtract(L, G, D) then Answer(D) :: ∀I ∀L ∀G ∀D ((InitialCrayons(I) ∧ Lost(L) ∧ GivenToFriends(G) ∧ Subtract(L, G, D)) → Answer(D))
+
+## INFERENCES
+INF-1: Subtract(412, 90, 322) :: Derived from FACT-1, FACT-2 via RULE-2 (instantiating L=412, G=90) and Modus Ponens
+INF-2: DifferenceIs(412, 90, 322) :: Derived from INF-1 via RULE-3 (Modus Ponens)
+INF-3: Answer(322) :: Derived from INF-2 via RULE-4 (Modus Ponens)
+INF-4: Answer(322) :: Derived from FACT-3, INF-1, RULE-5 (Modus Ponens)

@@ -1,0 +1,9 @@
+- Premise 1: The library has a total of T = 360 books.
+- Premise 2: There are N = 9 shelves.
+- Premise 3: The books are divided equally among the shelves, so there exists a number p such that T = p × N (each shelf has p books).
+- Premise 4: From Premise 3, p = T / N.
+- Premise 5: Substitute values: p = 360 / 9.
+- Premise 6: Since 360 = 9 × 40, we have p = 40.
+- Conclusion: Each shelf has p = 40 books.
+
+The answer is: 40

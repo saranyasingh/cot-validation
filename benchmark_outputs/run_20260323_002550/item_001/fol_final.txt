@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: There are 87 oranges total :: total(oranges, 87)
+FACT-2: Oranges are organized into 93 groups :: groups(oranges, 93)
+FACT-3: There are 290 bananas total :: total(bananas, 290)
+FACT-4: Bananas are organized into 2 groups :: groups(bananas, 2)
+
+## RULES
+RULE-1: If a total quantity of items is organized into a number of equal groups, then the size of each group is the total divided by the number of groups :: ∀x ∀t ∀g (total(x, t) ∧ groups(x, g) → group_size(x, $quotient_int(t, g)))
+
+## INFERENCES
+INF-1: From FACT-3, FACT-4, RULE-1 by Universal Instantiation and Modus Ponens: The size of each banana group is 290 ÷ 2 :: group_size(bananas, $quotient_int(290, 2))
+INF-2: From INF-1 by Arithmetic: Each banana group has 145 bananas :: group_size(bananas, 145)

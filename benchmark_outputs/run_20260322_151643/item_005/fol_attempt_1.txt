@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Olivia has 78 dollars in her wallet :: MoneyInWallet(olivia, amount_78)
+FACT-2: 78 minus 15 equals 63 :: Subtract(amount_78, amount_15, amount_63)
+
+## RULES
+RULE-1: If a person starts with amount a and a - s = l, then the person has l left :: ∀p ∀a ∀s ∀l ((MoneyInWallet(p, a) ∧ Subtract(a, s, l)) → AmountLeft(p, l))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2 and RULE-1 via Universal Instantiation and Modus Ponens: Olivia has 63 dollars left :: AmountLeft(olivia, amount_63)

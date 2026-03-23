@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_cost(two_books, six_dollars)).
+fof(fact_2, axiom, money_left(edward, twelve_dollars)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ! [T] : ( total_cost(N, T) => ? [P] : ( multiply(N, P, T) & price_per_book(P) ) ) ).
+fof(rule_2, axiom, ! [N] : ! [T] : ! [P] : ( ( total_cost(N, T) & multiply(N, P, T) ) => price_per_book(P) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ? [P] : ( multiply(two_books, P, six_dollars) & price_per_book(P) ) ).
+
+% From INF-1, FACT-1, and RULE-2 by Existential Instantiation and Modus Ponens
+fof(inf_2, axiom, price_per_book(a)).

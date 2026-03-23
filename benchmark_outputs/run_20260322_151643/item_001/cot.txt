@@ -1,0 +1,8 @@
+Premise 1: The collection contains N = 290 bananas.
+Premise 2: The bananas are organized into G_b = 2 groups, with all bananas allocated to these groups.
+Premise 3: If a total N is partitioned into G equal groups, then the size s of each group satisfies N = G × s.
+Premise 4: Substituting N = 290 and G = 2 gives 290 = 2 × s.
+Premise 5: Solving for s yields s = 290 / 2 = 145.
+Conclusion: Each banana group contains 145 bananas.
+
+The answer is: 145

@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Jessie’s weight before starting to jog :: WeightBefore(jessie, w_before)
+FACT-2: Jessie lost 126 kg :: WeightLost(jessie, w_126)
+FACT-3: Jessie currently weighs 66 kg :: CurrentWeight(jessie, w_66)
+FACT-4: 66 + 126 = 192 :: Sum(w_66, w_126, w_192)
+
+## RULES
+RULE-1: If a person p weighed b before, lost l, and currently weighs c, then Sum(c, l, b) :: ∀p ∀b ∀l ∀c (WeightBefore(p,b) ∧ WeightLost(p,l) ∧ CurrentWeight(p,c) → Sum(c, l, b))
+RULE-2: If Sum(a,b,x) and Sum(a,b,y) then Equals(x,y) :: ∀a ∀b ∀x ∀y (Sum(a,b,x) ∧ Sum(a,b,y) → Equals(x,y))
+RULE-3: If WeightBefore(p,b) and Equals(b, x) then WeightBefore(p, x) :: ∀p ∀b ∀x ((WeightBefore(p,b) ∧ Equals(b, x)) → WeightBefore(p, x))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3 via RULE-1: Sum(w_66, w_126, w_before)
+INF-2: From INF-1 and FACT-4 via RULE-2: Equals(w_before, w_192)
+INF-3: From FACT-1 and INF-2 via RULE-3: WeightBefore(jessie, w_192)

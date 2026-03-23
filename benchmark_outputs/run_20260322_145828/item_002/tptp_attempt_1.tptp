@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, combined_weight(marco, dad, w_30)).
+
+fof(fact_2, axiom, dad_weight(dad, w_11)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [M, D, W, Wd, Wm] : ( ( combined_weight(M, D, W) & dad_weight(D, Wd) & subtract(W, Wd, Wm) ) => marco_weight(M, Wm) ) ).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, marco_weight(marco, w_19)).

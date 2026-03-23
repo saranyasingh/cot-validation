@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: The house uses 20 blocks :: HouseUsesBlocks(house, blocks_20)
+FACT-2: The tower uses 50 blocks :: TowerUsesBlocks(tower, blocks_50)
+FACT-3: The difference between 50 and 20 blocks is 30 blocks :: Difference(blocks_50, blocks_20, blocks_30)
+
+## RULES
+RULE-1: (HouseUsesBlocks(house, blocks_20) ∧ TowerUsesBlocks(tower, blocks_50) ∧ Difference(blocks_50, blocks_20, blocks_30)) → MoreBlocksThan(tower, house, blocks_30)
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3, RULE-1 by Modus Ponens: The tower uses 30 more blocks than the house :: MoreBlocksThan(tower, house, blocks_30)

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story explicitly states the book has 3 chapters.
+FACT-2: SUPPORTED — The story states all chapters have the same number of pages.
+FACT-3: SUPPORTED — The story states the total pages are 594.
+RULE-1: PLAUSIBLE — It follows that total pages equal 3 times the per-chapter pages.
+RULE-2: PLAUSIBLE — From 3p = 594, p = 198.

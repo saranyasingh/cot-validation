@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: TotalBooks(360)
+FACT-2: Shelves(9)
+FACT-3: Product(9, 40, 360)
+
+## RULES
+RULE-1: ∀N ∀p ∀T (Product(N, p, T) → BooksPerShelf(p))
+
+## INFERENCES
+INF-1: From FACT-3 and RULE-1 by Modus Ponens: BooksPerShelf(40)
