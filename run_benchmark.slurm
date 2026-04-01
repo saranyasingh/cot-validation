@@ -6,7 +6,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=16G
-#SBATCH --partition=cpu          # change to your cluster's partition name
+#SBATCH --partition=kempner         # change to your cluster's partition name
 
 # ── Optional: email notifications ──────────────────────────────────────────────
 # #SBATCH --mail-type=END,FAIL
