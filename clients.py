@@ -67,6 +67,24 @@ class DeepSeekLLMClient(LLMClient):
         return response.choices[0].message.content
 
 
+class VLLMLLMClient(LLMClient):
+    """Uses a locally-running vLLM server (OpenAI-compatible Chat Completions API)."""
+
+    def __init__(self):
+        self._client = _OpenAI(
+            base_url=os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1"),
+            api_key="token-abc123",  # vLLM requires a non-empty key; value doesn't matter
+        )
+        self.model = os.getenv("VLLM_MODEL", "meta-llama/Llama-3.2-1B-Instruct")
+
+    def complete(self, prompt: str) -> str:
+        response = self._client.chat.completions.create(
+            model=self.model,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.choices[0].message.content
+
+
 def make_client(name: str) -> LLMClient:
     if name == "openai":
         return OpenAILLMClient()
@@ -74,4 +92,6 @@ def make_client(name: str) -> LLMClient:
         return KimiLLMClient()
     if name == "deepseek":
         return DeepSeekLLMClient()
-    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'kimi', or 'deepseek'.")
+    if name == "vllm":
+        return VLLMLLMClient()
+    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'kimi', 'deepseek', or 'vllm'.")

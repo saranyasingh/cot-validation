@@ -260,7 +260,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--client", "-c",
-        choices=["openai", "kimi", "deepseek"],
+        choices=["openai", "kimi", "deepseek", "vllm"],
         default="openai",
         help="Reasoning client for CoT/FOL generation (default: openai). "
              "Verification always uses openai.",
