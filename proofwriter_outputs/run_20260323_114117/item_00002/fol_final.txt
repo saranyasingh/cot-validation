@@ -1,0 +1,37 @@
+## FACTS
+LABEL: The bear is green :: Green(the_bear)
+LABEL: The bear likes the mouse :: Likes(the_bear, the_mouse)
+LABEL: The bear needs the cow :: Needs(the_bear, the_cow)
+LABEL: The bear needs the mouse :: Needs(the_bear, the_mouse)
+LABEL: The bear sees the cow :: Sees(the_bear, the_cow)
+LABEL: The bear sees the mouse :: Sees(the_bear, the_mouse)
+LABEL: The cow likes the bear :: Likes(the_cow, the_bear)
+LABEL: The cow sees the bear :: Sees(the_cow, the_bear)
+LABEL: The mouse likes the cow :: Likes(the_mouse, the_cow)
+LABEL: The mouse sees the rabbit :: Sees(the_mouse, the_rabbit)
+LABEL: The rabbit is young :: Young(the_rabbit)
+
+## RULES
+LABEL: If someone is kind then they need the bear :: ∀x (Kind(x) → Needs(x, the_bear))
+LABEL: If someone sees the cow then they are cold :: ∀x (Sees(x, the_cow) → Cold(x))
+LABEL: If someone is cold then they like the rabbit :: ∀x (Cold(x) → Likes(x, the_rabbit))
+LABEL: If someone needs the bear then the bear is young :: ∀x (Needs(x, the_bear) → Young(the_bear))
+LABEL: If someone is round then they like the mouse :: ∀x (Round(x) → Likes(x, the_mouse))
+LABEL: If someone likes the bear and they like the mouse then the bear likes the mouse :: ∀x ((Likes(x, the_bear) ∧ Likes(x, the_mouse)) → Likes(the_bear, the_mouse))
+LABEL: If someone likes the cow then the cow likes the bear :: ∀x (Likes(x, the_cow) → Likes(the_cow, the_bear))
+LABEL: If someone is round and they do not need the bear then they see the rabbit :: ∀x ((Round(x) ∧ ¬Needs(x, the_bear)) → Sees(x, the_rabbit))
+LABEL: If someone is young then they are kind :: ∀x (Young(x) → Kind(x))
+
+## INFERENCES
+LABEL: Sees(the_mouse, the_rabbit) :: given
+LABEL: Young(the_rabbit) :: given
+LABEL: Kind(the_rabbit) :: from Young(the_rabbit) by RULE-9
+LABEL: Needs(the_rabbit, the_bear) :: from Kind(the_rabbit) by RULE-1
+LABEL: Young(the_bear) :: from Needs(the_rabbit, the_bear) by RULE-4
+LABEL: Kind(the_bear) :: from Young(the_bear) by RULE-9
+LABEL: Needs(the_bear, the_bear) :: from Kind(the_bear) by RULE-1
+LABEL: Sees(the_bear, the_cow) :: given
+LABEL: Cold(the_bear) :: from Sees(the_bear, the_cow) by RULE-2
+LABEL: Likes(the_bear, the_rabbit) :: from Cold(the_bear) by RULE-3
+LABEL: Likes(the_mouse, the_cow) :: given
+LABEL: Likes(the_cow, the_bear) :: from Likes(the_mouse, the_cow) by RULE-7

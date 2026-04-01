@@ -1,21 +1,18 @@
 """
-rule_pipeline.py — Ruleset-constrained proof pipeline on ProofWriter.
+rule_pipeline.py — ProofWriter pipeline mirroring main.py.
 
-Key difference from main.py:
-  - RULES are extracted only from the given theory — no LLM-invented rules.
-  - Verification checks that every extracted rule is explicitly grounded in the
-    theory text before the proof is generated.
-  - Tracks pre-verification vs post-verification accuracy to measure how much
-    rule grounding actually helps.
+Mirrors main.py exactly:
+  CoT → Structured FOL → Verify → TPTP → repair loop
 
-Feed data from load_data.py:
-    python load_data.py --proofwriter --limit 100
+Two differences from main.py:
+  1. The CoT prompt is given the explicit facts (from the problem) and rules
+     (from the dataset ruleset) so the model reasons within that closed world.
+  2. The verify step checks that FACTS are grounded in the problem statement
+     and RULES are grounded in the provided ruleset — not commonsense plausibility.
+
+Generate data first:
+    python load_data.py --proofwriter --split test --limit 100
     python rule_pipeline.py --dataset-file proofwriter.json
-
-Usage:
-    python rule_pipeline.py --dataset-file proofwriter.json
-    python rule_pipeline.py --dataset-file proofwriter.json --client kimi
-    python rule_pipeline.py --dataset-file proofwriter.json --output-dir ./pw_run
 """
 
 import argparse
@@ -25,119 +22,161 @@ import re
 from datetime import datetime
 from dotenv import load_dotenv
 
+import tptp as tptp_module
 from clients import make_client, OpenAILLMClient
 
 load_dotenv()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# ── Prompt Templates ────────────────────────────────────────────────────────────
 
-FACTS_TO_FOL_PROMPT = '''\
-Convert each numbered fact below into a ground FOL formula. Translate only — do not add or remove facts.
+# ─── Prompt Templates ──────────────────────────────────────────────────────────
 
-=== SYNTAX ===
-- Predicates: CamelCase (e.g., IsYoung, IsBig, Chases)
-- Constants: lowercase with underscores (e.g., bald_eagle, anne, the_cat)
-- No quantifiers — these are ground atoms.
+COT_PROMPT = '''\
+You are given a set of facts and a ruleset. Using ONLY these facts and rules,
+determine whether the statement is True, False, or Unknown.
 
-=== OUTPUT FORMAT ===
-FACT-1: <original sentence> :: <FOL formula>
-FACT-2: ...
+Provide a step-by-step logical argument where each step follows from the previous one,
+citing which facts and rules you are applying. If the statement cannot be proved or
+disproved from the given facts and rules, it is Unknown.
 
-Output ONLY the labeled lines, one per fact.
+End your answer with: The answer is: True
+                  or: The answer is: False
+                  or: The answer is: Unknown
 
-=== FACTS ===
+=== FACTS (from the problem) ===
 {facts}
+
+=== RULES (from the ruleset) ===
+{rules}
+
+=== STATEMENT TO EVALUATE ===
+{question}
 '''
 
-RULES_TO_FOL_PROMPT = '''\
-Convert each numbered rule below into a universally quantified FOL formula. Translate only — do not add or remove rules.
+STRUCTURED_FOL_TEMPLATE = '''\
+Convert the following chain-of-thought reasoning into structured first-order logic (FOL).
 
 === SYNTAX ===
-- Quantifiers: ∀ (universal)
+- Quantifiers: ∀ (universal), ∃ (existential)
 - Connectives: ∧ (and), ∨ (or), → (implies), ¬ (not)
-- Predicates: CamelCase (e.g., IsYoung, IsBig, Chases)
-- Variables: single lowercase letters (x, y, z)
-- Every rule MUST start with ∀.
+- Predicates: CamelCase (e.g., IsKind, Visits, Needs, Sees)
+- Constants: lowercase with underscores (e.g., anne, the_bear, mr_smith)
+- Variables: single lowercase letters (x, y, z) — only in quantified formulas
+
+=== OUTPUT CATEGORIES ===
+Produce exactly three sections:
+
+## FACTS
+Ground atomic formulas taken directly from the problem facts. No quantifiers.
+Each fact is one atomic predicate applied to constants.
+
+## RULES
+Universally quantified implications taken directly from the given ruleset.
+Every rule MUST start with ∀. Do NOT add rules not present in the ruleset.
+
+## INFERENCES
+Derived conclusions. Each inference MUST cite the FACT/RULE/INF labels it depends on
+and name the inference rule used (Modus Ponens, Universal Instantiation, etc.).
+The final inference should establish the answer (True/False/Unknown).
 
 === OUTPUT FORMAT ===
-RULE-1: <original sentence> :: <FOL formula>
-RULE-2: ...
+Each line: LABEL: <natural language gloss> :: <FOL formula>
+Labels: FACT-1, FACT-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
 
-Output ONLY the labeled lines, one per rule.
+=== CONSTRAINTS ===
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Do NOT add commonsense or background rules not in the ruleset.
+- Every inference MUST cite its premises by label.
+- Output ONLY the three sections. No extra explanation.
 
-=== RULES ===
+=== PROBLEM FACTS ===
+{facts}
+
+=== RULESET ===
 {rules}
+
+=== CHAIN OF THOUGHT REASONING TO CONVERT ===
+{cot_text}
 '''
 
-RULE_GROUNDING_PROMPT = '''\
-Check whether each extracted RULE is explicitly stated in the theory as a conditional.
-Mark rules that were invented or generalised beyond what the theory says as HALLUCINATED.
+FOL_REPAIR_TEMPLATE = '''\
+The following structured FOL extraction has errors.
+Your job is to fix all reported errors and produce a corrected version.
 
-=== THEORY ===
-{theory}
+=== ORIGINAL CHAIN OF THOUGHT REASONING ===
+{cot_text}
+
+=== CURRENT STRUCTURED FOL (with errors) ===
+{structured_fol}
+
+=== ERROR REPORT ===
+{error_report}
+
+=== CONSTRAINTS ===
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTP syntax issues must be corrected.
+
+=== PROBLEM FACTS ===
+{facts}
+
+=== RULESET ===
+{rules}
+
+Output ONLY the three sections (## FACTS, ## RULES, ## INFERENCES) with labeled lines.
+LABEL: <natural language gloss> :: <FOL formula>
+No extra explanation.
+'''
+
+VERIFY_PROMPT = '''\
+You are verifying a structured FOL extraction for a logic puzzle.
+
+**A) Fact Grounding** — Each FACT must come directly from the problem statement.
+- SUPPORTED: the fact is directly stated in the problem facts.
+- UNSUPPORTED: the fact was invented, modified, or not present in the problem facts.
+
+**B) Rule Grounding** — Each RULE must come directly from the given ruleset.
+- GROUNDED: the rule matches a rule in the provided ruleset.
+- HALLUCINATED: the rule was invented or is not in the provided ruleset.
+
+=== PROBLEM FACTS (facts must come from here) ===
+{problem_facts}
+
+=== RULESET (rules must come from here) ===
+{ruleset}
+
+=== EXTRACTED FACTS ===
+{facts}
 
 === EXTRACTED RULES ===
 {rules}
 
-For each rule respond with exactly one line:
-RULE-N: GROUNDED — <the sentence in the theory that supports this rule>
+For each FACT, respond with exactly one line:
+FACT-N: SUPPORTED
 or
-RULE-N: HALLUCINATED — <brief explanation of what was added that isn't in the theory>
+FACT-N: UNSUPPORTED — <brief explanation>
 
-Output ONLY these lines.
-'''
+For each RULE, respond with exactly one line:
+RULE-N: GROUNDED
+or
+RULE-N: HALLUCINATED — <brief explanation>
 
-RULE_REPAIR_PROMPT = '''\
-The following rule extraction from a theory contains hallucinated rules not present in the theory.
-Fix the extraction so that every RULE is directly grounded in the theory.
-
-=== THEORY ===
-{theory}
-
-=== CURRENT EXTRACTION (with errors) ===
-{facts_and_rules}
-
-=== GROUNDING ERRORS ===
-{error_report}
-
-Remove or correct all HALLUCINATED rules. Keep all FACTS as-is.
-Output ONLY the corrected ## FACTS and ## RULES sections in the same format.
-'''
-
-CONSTRAINED_PROOF_PROMPT = '''\
-You are given a set of FACTS and RULES extracted from a theory, and a statement to evaluate.
-
-=== CRITICAL CONSTRAINT ===
-Use ONLY the FACTS and RULES listed below — no new rules, no background knowledge.
-If the statement cannot be proved or disproved from these alone, answer Unknown.
-
-=== FACTS AND RULES ===
-{facts_and_rules}
-
-=== STATEMENT TO EVALUATE ===
-{question}
-
-=== INSTRUCTIONS ===
-1. Convert the statement to FOL.
-2. Attempt to prove it step by step, citing only the FACT/RULE labels above.
-3. If you cannot prove it, attempt to prove its negation.
-4. Conclude True (proved), False (negation proved), or Unknown (neither proved).
-
-=== OUTPUT FORMAT ===
-## INFERENCES
-INF-1: <gloss> :: <FOL formula>  [From FACT-X, RULE-Y by <inference rule>]
-INF-2: ...
-
-ANSWER: True
-(or False, or Unknown)
-
-Output ONLY the ## INFERENCES section and the ANSWER line.
+Output ONLY these lines, nothing else.
 '''
 
 
-# ── Utilities ────────────────────────────────────────────────────────────────────
+# ─── Utilities ─────────────────────────────────────────────────────────────────
+
+def extract_answer(text: str) -> str:
+    """Extract True/False/Unknown from 'The answer is: X'."""
+    match = re.search(r'[Tt]he answer is[:\s]+(True|False|Unknown)', text)
+    if match:
+        return match.group(1)
+    return "Unknown"
+
 
 def _write(path: str, content: str):
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -145,17 +184,39 @@ def _write(path: str, content: str):
         f.write(content)
 
 
-def extract_answer(text: str) -> str:
-    match = re.search(r'^ANSWER:\s*(True|False|Unknown)', text, re.MULTILINE | re.IGNORECASE)
-    return match.group(1).capitalize() if match else "Unknown"
+# ─── Verify (ProofWriter-specific) ─────────────────────────────────────────────
+
+def verify_fol(problem_facts: list[str], ruleset: list[str],
+               structured_fol: str, client) -> tuple[bool, str]:
+    """
+    Check that FACTS are grounded in the problem and RULES are in the ruleset.
+    Returns (has_errors, report_text).
+    """
+    facts  = re.findall(r'^(FACT-\d+):\s*(.+?)\s*::\s*(.+)$', structured_fol, re.MULTILINE)
+    rules  = re.findall(r'^(RULE-\d+):\s*(.+?)\s*::\s*(.+)$', structured_fol, re.MULTILINE)
+
+    if not facts and not rules:
+        return True, "No FACT or RULE lines found in the structured FOL."
+
+    facts_text = "\n".join(f"{label}: {gloss}" for label, gloss, _ in facts)
+    rules_text = "\n".join(f"{label}: {gloss}" for label, gloss, _ in rules)
+
+    report = client.complete(VERIFY_PROMPT.format(
+        problem_facts="\n".join(problem_facts),
+        ruleset="\n".join(ruleset),
+        facts=facts_text,
+        rules=rules_text,
+    )).strip()
+
+    has_errors = any(
+        kw in line
+        for line in report.splitlines()
+        for kw in ("UNSUPPORTED", "HALLUCINATED")
+    )
+    return has_errors, report
 
 
-def extract_rules(facts_and_rules: str) -> str:
-    lines = [l.strip() for l in facts_and_rules.splitlines() if re.match(r'RULE-\d+:', l.strip())]
-    return "\n".join(lines) if lines else "(no rules)"
-
-
-# ── Per-Item Pipeline ────────────────────────────────────────────────────────────
+# ─── Per-Item Pipeline ──────────────────────────────────────────────────────────
 
 def run_item(
     facts: list[str],
@@ -167,110 +228,137 @@ def run_item(
     output_dir: str = None,
 ) -> dict:
     """
-    Constrained proof pipeline for one ProofWriter item.
+    CoT → Structured FOL → Verify (fact+rule grounding) → TPTP → repair loop.
 
-    Facts and rules are loaded directly from the dataset — the LLM only
-    translates them to FOL, it does not extract or invent them.
-
-    Stage 1: Translate pre-loaded facts + rules to FOL (reasoning client)
-    Stage 2: Prove with unverified FOL → pre_answer
-    Stage 3: Verify FOL translation didn't add rules; repair if so (verifier + reasoning)
-    Stage 4: Prove with verified FOL → post_answer
-
-    Returns: {pre_answer, post_answer, facts_and_rules_final, rule_attempts, passed_grounding}
+    Mirrors main.py's run_pipeline exactly. The only differences:
+      - CoT is given the explicit facts and rules.
+      - Verify checks grounding against the problem + ruleset, not plausibility.
     """
+    facts_str = "\n".join(f"- {f}" for f in facts)
+    rules_str = "\n".join(f"- {r}" for r in rules)
+
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
-        _write(os.path.join(output_dir, "facts_input.txt"),   "\n".join(facts))
-        _write(os.path.join(output_dir, "rules_input.txt"),   "\n".join(rules))
-        _write(os.path.join(output_dir, "question.txt"),      question)
+        _write(os.path.join(output_dir, "question.txt"),  question)
+        _write(os.path.join(output_dir, "facts_input.txt"), facts_str)
+        _write(os.path.join(output_dir, "rules_input.txt"), rules_str)
 
-    # ── Stage 1: Translate pre-loaded facts + rules to FOL ────────────────────
-    print("  [stage 1] Translating dataset facts and rules to FOL...")
-    numbered_facts = "\n".join(f"{i+1}. {f}" for i, f in enumerate(facts))
-    numbered_rules = "\n".join(f"{i+1}. {r}" for i, r in enumerate(rules))
-
-    facts_fol = reasoning_client.complete(FACTS_TO_FOL_PROMPT.format(facts=numbered_facts))
-    rules_fol = reasoning_client.complete(RULES_TO_FOL_PROMPT.format(rules=numbered_rules))
-    facts_and_rules = f"## FACTS\n{facts_fol}\n\n## RULES\n{rules_fol}"
-    print(facts_and_rules)
+    # ── Stage 1: Chain-of-Thought ─────────────────────────────────────────────
+    print("=== Stage 1: Chain-of-Thought Reasoning ===")
+    cot_text = reasoning_client.complete(COT_PROMPT.format(
+        facts=facts_str, rules=rules_str, question=question,
+    ))
+    print(cot_text)
     if output_dir:
-        _write(os.path.join(output_dir, "facts_and_rules_raw.txt"), facts_and_rules)
+        _write(os.path.join(output_dir, "cot.txt"), cot_text)
 
-    # ── Stage 2: Prove with raw (unverified) FOL translation ──────────────────
-    print("  [stage 2] Generating pre-verification proof...")
-    pre_proof = reasoning_client.complete(
-        CONSTRAINED_PROOF_PROMPT.format(facts_and_rules=facts_and_rules, question=question)
-    )
-    pre_answer = extract_answer(pre_proof)
-    print(f"  Pre-verification answer: {pre_answer}")
-    if output_dir:
-        _write(os.path.join(output_dir, "proof_pre.txt"), pre_proof)
+    # ── Stage 2: Initial FOL Extraction ──────────────────────────────────────
+    print("\n=== Stage 2: Initial FOL Extraction ===")
+    structured_fol = reasoning_client.complete(STRUCTURED_FOL_TEMPLATE.format(
+        facts=facts_str, rules=rules_str, cot_text=cot_text,
+    ))
+    print(structured_fol)
 
-    # ── Stage 3: Verify the FOL translation didn't hallucinate extra rules ─────
-    # We check the translated rules against the original natural-language rules.
-    grounding_reports = []
-    passed_grounding = False
-    rule_attempts = 0
-    theory_rules_text = "\n".join(rules)   # ground truth from dataset
+    verify_reports = []
+    tptp_reports   = []
+    passed_verify  = False
+    passed_tptp    = False
+    tptp_text      = ""
+    attempts_used  = 0
 
     for attempt in range(1, max_retries + 1):
-        rule_attempts = attempt
-        rules_text = extract_rules(facts_and_rules)
+        attempts_used = attempt
+        print(f"\n--- Pipeline Attempt {attempt} of {max_retries} ---")
 
-        print(f"  [stage 3, attempt {attempt}] Checking rule grounding...")
-        grounding_report = verifier_client.complete(
-            RULE_GROUNDING_PROMPT.format(theory=theory_rules_text, rules=rules_text)
-        ).strip()
-        grounding_reports.append(grounding_report)
-        print(grounding_report)
         if output_dir:
-            _write(os.path.join(output_dir, f"grounding_attempt_{attempt}.txt"), grounding_report)
+            _write(os.path.join(output_dir, f"fol_attempt_{attempt}.txt"), structured_fol)
 
-        if "HALLUCINATED" not in grounding_report:
-            passed_grounding = True
-            print("  [grounding] All rules match dataset.")
-            break
-
-        print("  [grounding] Extra rules found in translation. Repairing...")
-        rules_fol = reasoning_client.complete(
-            RULE_REPAIR_PROMPT.format(
-                theory=theory_rules_text,
-                facts_and_rules=facts_and_rules,
-                error_report=grounding_report,
-            )
+        # ── Verify: facts from problem, rules from ruleset ────────────────────
+        print("\n[verify] Checking fact and rule grounding...")
+        verify_errors, verify_report = verify_fol(
+            facts, rules, structured_fol, client=verifier_client,
         )
-        facts_and_rules = f"## FACTS\n{facts_fol}\n\n## RULES\n{rules_fol}"
-        print(facts_and_rules)
+        verify_reports.append(verify_report)
+        print(verify_report)
         if output_dir:
-            _write(os.path.join(output_dir, f"facts_and_rules_attempt_{attempt}.txt"), facts_and_rules)
+            _write(os.path.join(output_dir, f"verify_attempt_{attempt}.txt"), verify_report)
+
+        if verify_errors:
+            print("\n[verify] Errors found. Asking LLM to repair...")
+            structured_fol = reasoning_client.complete(FOL_REPAIR_TEMPLATE.format(
+                cot_text=cot_text,
+                structured_fol=structured_fol,
+                error_report=verify_report,
+                facts=facts_str,
+                rules=rules_str,
+            ))
+            print("\n[repair] Updated FOL:")
+            print(structured_fol)
+            continue  # re-verify on next attempt
+
+        passed_verify = True
+
+        # ── TPTP: convert and run theorem prover ──────────────────────────────
+        print("\n[tptp] Converting FOL to TPTP and running prover...")
+        tptp_text, tptp_errors, tptp_report = tptp_module.convert_and_check(
+            structured_fol, client=verifier_client,
+        )
+        tptp_reports.append(tptp_report)
+        print("\n[tptp] TPTP output:")
+        print(tptp_text)
+        print("\n[tptp] Prover report:")
+        print(tptp_report)
+        if output_dir:
+            _write(os.path.join(output_dir, f"tptp_attempt_{attempt}.tptp"), tptp_text)
+            _write(os.path.join(output_dir, f"tptp_report_attempt_{attempt}.txt"), tptp_report)
+
+        if tptp_errors:
+            print("\n[tptp] Errors found. Asking LLM to repair...")
+            structured_fol = reasoning_client.complete(FOL_REPAIR_TEMPLATE.format(
+                cot_text=cot_text,
+                structured_fol=structured_fol,
+                error_report=f"TPTP/Prover errors:\n{tptp_report}",
+                facts=facts_str,
+                rules=rules_str,
+            ))
+            print("\n[repair] Updated FOL:")
+            print(structured_fol)
+            passed_verify = False  # must re-verify after repair
+            continue
+
+        passed_tptp = True
+        print("\n=== All checks passed! ===")
+        break
+
     else:
-        print("  [warning] Max retries reached. Proceeding with best available translation.")
+        print(f"\n[warning] Max retries ({max_retries}) reached. Using best available FOL.")
 
     if output_dir:
-        _write(os.path.join(output_dir, "facts_and_rules_final.txt"), facts_and_rules)
+        _write(os.path.join(output_dir, "fol_final.txt"), structured_fol)
+        _write(os.path.join(output_dir, "tptp_final.tptp"), tptp_text)
+        if verify_reports:
+            _write(os.path.join(output_dir, "verify_final.txt"), verify_reports[-1])
 
-    # ── Stage 4: Prove with verified FOL ──────────────────────────────────────
-    print("  [stage 4] Generating post-verification proof...")
-    post_proof = reasoning_client.complete(
-        CONSTRAINED_PROOF_PROMPT.format(facts_and_rules=facts_and_rules, question=question)
-    )
-    post_answer = extract_answer(post_proof)
-    print(f"  Post-verification answer: {post_answer}")
+    answer = extract_answer(cot_text)
     if output_dir:
-        _write(os.path.join(output_dir, "proof_post.txt"), post_proof)
+        _write(os.path.join(output_dir, "answer.txt"), answer)
+
+    print(f"\n=== Final Answer: {answer} ===")
 
     return {
-        "pre_answer":        pre_answer,
-        "post_answer":       post_answer,
-        "facts_and_rules":   facts_and_rules,
-        "rule_attempts":     rule_attempts,
-        "passed_grounding":  passed_grounding,
-        "grounding_reports": grounding_reports,
+        "answer":         answer,
+        "cot_text":       cot_text,
+        "structured_fol": structured_fol,
+        "tptp_text":      tptp_text,
+        "attempts":       attempts_used,
+        "passed_verify":  passed_verify,
+        "passed_tptp":    passed_tptp,
+        "verify_reports": verify_reports,
+        "tptp_reports":   tptp_reports,
     }
 
 
-# ── Benchmark ────────────────────────────────────────────────────────────────────
+# ─── Benchmark ─────────────────────────────────────────────────────────────────
 
 def run_benchmark(
     items: list[dict],
@@ -280,27 +368,23 @@ def run_benchmark(
     max_retries: int = 3,
 ) -> dict:
     total = len(items)
-    pre_correct = post_correct = 0
-    passed_grounding_count = total_attempts = 0
-    corrected = 0   # wrong pre → right post  (verification helped)
-    regressed = 0   # right pre → wrong post  (verification hurt)
+    correct = passed_verify_count = passed_tptp_count = needed_retry_count = 0
+    total_attempts = 0
     results = []
 
-    pre_class_correct  = {"True": 0, "False": 0, "Unknown": 0}
-    post_class_correct = {"True": 0, "False": 0, "Unknown": 0}
-    class_total        = {"True": 0, "False": 0, "Unknown": 0}
+    class_correct = {"True": 0, "False": 0, "Unknown": 0}
+    class_total   = {"True": 0, "False": 0, "Unknown": 0}
 
-    print(f"\n{'ID':<22} {'Expected':<10} {'Pre':>6} {'Post':>6} {'Grnd':>6} {'Fixed':>6}")
-    print("-" * 62)
+    print(f"\n{'ID':<22} {'Expected':<10} {'Got':<10} {'Verify':<8} {'TPTP':<6} {'OK'}")
+    print("-" * 64)
 
     for item in items:
         item_id  = item["id"]
+        facts    = item["facts"]
+        rules    = item["rules"]
         question = item["question"]
         expected = item["expected"]
         item_dir = os.path.join(output_dir, item_id)
-
-        facts    = item["facts"]
-        rules    = item["rules"]
 
         print(f"\n[{item_id}] {question[:70]}")
         print(f"  Expected: {expected} | {len(facts)} facts, {len(rules)} rules")
@@ -315,108 +399,86 @@ def run_benchmark(
             output_dir=item_dir,
         )
 
-        pre_ans  = result["pre_answer"]
-        post_ans = result["post_answer"]
-        pre_ok   = pre_ans  == expected
-        post_ok  = post_ans == expected
+        predicted = result["answer"]
+        ok        = predicted == expected
 
-        if pre_ok:
-            pre_correct += 1
-        if post_ok:
-            post_correct += 1
-        if result["passed_grounding"]:
-            passed_grounding_count += 1
-        total_attempts += result["rule_attempts"]
-
-        class_total[expected]         = class_total.get(expected, 0) + 1
-        if pre_ok:
-            pre_class_correct[expected]  = pre_class_correct.get(expected, 0) + 1
-        if post_ok:
-            post_class_correct[expected] = post_class_correct.get(expected, 0) + 1
-
-        fixed = ""
-        if not pre_ok and post_ok:
-            corrected += 1
-            fixed = "✓ fixed"
-        elif pre_ok and not post_ok:
-            regressed += 1
-            fixed = "✗ regr."
+        if ok:                           correct += 1
+        if result["passed_verify"]:      passed_verify_count += 1
+        if result["passed_tptp"]:        passed_tptp_count   += 1
+        if result["attempts"] > 1:       needed_retry_count  += 1
+        total_attempts += result["attempts"]
+        class_total[expected]  = class_total.get(expected, 0) + 1
+        if ok:
+            class_correct[expected] = class_correct.get(expected, 0) + 1
 
         results.append({
-            "id":               item_id,
-            "question":         question,
-            "expected":         expected,
-            "num_facts":        len(facts),
-            "num_rules":        len(rules),
-            "pre_answer":       pre_ans,
-            "post_answer":      post_ans,
-            "pre_correct":      pre_ok,
-            "post_correct":     post_ok,
-            "rule_attempts":    result["rule_attempts"],
-            "passed_grounding": result["passed_grounding"],
+            "id":            item_id,
+            "question":      question,
+            "expected":      expected,
+            "predicted":     predicted,
+            "correct":       ok,
+            "attempts":      result["attempts"],
+            "passed_verify": result["passed_verify"],
+            "passed_tptp":   result["passed_tptp"],
         })
 
-        pre_m  = "✓" if pre_ok  else "✗"
-        post_m = "✓" if post_ok else "✗"
-        g_m    = "✓" if result["passed_grounding"] else "✗"
-        print(f"\n{item_id:<22} {expected:<10} {pre_m:>6} {post_m:>6} {g_m:>6}  {fixed}")
+        v_m  = "✓" if result["passed_verify"] else "✗"
+        t_m  = "✓" if result["passed_tptp"]   else "✗"
+        ok_m = "✓" if ok else "✗"
+        print(f"\n{item_id:<22} {expected:<10} {predicted:<10} {v_m:<8} {t_m:<6} {ok_m}")
 
-    # ── Aggregate summary ──────────────────────────────────────────────────────
-    pre_acc        = pre_correct  / total if total else 0
-    post_acc       = post_correct / total if total else 0
-    delta          = post_acc - pre_acc
-    grounding_rate = passed_grounding_count / total if total else 0
-    avg_attempts   = total_attempts / total if total else 0
+    # ── Summary ───────────────────────────────────────────────────────────────
+    acc          = correct / total if total else 0
+    verify_rate  = passed_verify_count / total if total else 0
+    tptp_rate    = passed_tptp_count   / total if total else 0
+    retry_rate   = needed_retry_count  / total if total else 0
+    avg_attempts = total_attempts      / total if total else 0
 
     def pct(n, d):
         return f"{n/d:.1%}" if d else "n/a"
 
     per_class = {
         cls: {
-            "total":          class_total.get(cls, 0),
-            "pre_correct":    pre_class_correct.get(cls, 0),
-            "post_correct":   post_class_correct.get(cls, 0),
-            "pre_accuracy":   round(pre_class_correct.get(cls, 0)  / class_total[cls], 4) if class_total.get(cls) else 0,
-            "post_accuracy":  round(post_class_correct.get(cls, 0) / class_total[cls], 4) if class_total.get(cls) else 0,
+            "correct":  class_correct.get(cls, 0),
+            "total":    class_total.get(cls, 0),
+            "accuracy": round(class_correct.get(cls, 0) / class_total[cls], 4)
+                        if class_total.get(cls) else 0,
         }
         for cls in ("True", "False", "Unknown")
     }
 
     summary = {
-        "total":                    total,
-        "pre_verification":  {"correct": pre_correct,  "accuracy": round(pre_acc,  4)},
-        "post_verification": {"correct": post_correct, "accuracy": round(post_acc, 4)},
-        "delta":                    round(delta, 4),
-        "corrected_by_verification": corrected,
-        "regressed_by_verification": regressed,
-        "grounding_rate":            round(grounding_rate, 4),
-        "avg_rule_repair_attempts":  round(avg_attempts, 2),
-        "per_class":                 per_class,
+        "total":           total,
+        "correct":         correct,
+        "accuracy":        round(acc, 4),
+        "passed_verify":   passed_verify_count,
+        "verify_rate":     round(verify_rate, 4),
+        "passed_tptp":     passed_tptp_count,
+        "tptp_rate":       round(tptp_rate, 4),
+        "needed_retry":    needed_retry_count,
+        "retry_rate":      round(retry_rate, 4),
+        "avg_attempts":    round(avg_attempts, 2),
+        "per_class":       per_class,
     }
 
-    direction = "better" if delta > 0 else "worse" if delta < 0 else "no change"
-
-    print("\n" + "=" * 62)
-    print(f"{'PROOFWRITER RESULTS':^62}")
-    print("=" * 62)
-    print(f"  Total items                  : {total}")
-    print(f"  Pre-verification accuracy    : {pre_correct}/{total}  ({pre_acc:.1%})")
-    print(f"  Post-verification accuracy   : {post_correct}/{total}  ({post_acc:.1%})")
-    print(f"  Delta                        : {delta:+.1%} ({direction})")
+    print("\n" + "=" * 64)
+    print(f"{'PROOFWRITER RESULTS':^64}")
+    print("=" * 64)
+    print(f"  Total items       : {total}")
+    print(f"  Correct           : {correct}/{total}  ({acc:.1%})")
     print()
-    print(f"  Corrected by verification    : {corrected}  (wrong→right)")
-    print(f"  Regressed by verification    : {regressed}  (right→wrong)")
+    print(f"  -- Pipeline Internals --")
+    print(f"  Passed verify     : {passed_verify_count}/{total}  ({verify_rate:.1%})")
+    print(f"  Passed TPTP       : {passed_tptp_count}/{total}  ({tptp_rate:.1%})")
+    print(f"  Needed retry      : {needed_retry_count}/{total}  ({retry_rate:.1%})")
+    print(f"  Avg attempts/item : {avg_attempts:.2f}")
     print()
-    print(f"  Rules fully grounded         : {passed_grounding_count}/{total}  ({grounding_rate:.1%})")
-    print(f"  Avg rule-repair attempts     : {avg_attempts:.2f}")
-    print()
-    print(f"  -- Per-Class Accuracy (pre → post) --")
+    print(f"  -- Per-Class Accuracy --")
     for cls in ("True", "False", "Unknown"):
-        n_pre  = pre_class_correct.get(cls, 0)
-        n_post = post_class_correct.get(cls, 0)
-        d      = class_total.get(cls, 0)
-        print(f"  {cls:<8}: {pct(n_pre, d)} → {pct(n_post, d)}  ({d} items)")
-    print("=" * 62)
+        n = class_correct.get(cls, 0)
+        d = class_total.get(cls, 0)
+        print(f"  {cls:<8}: {n}/{d}  ({pct(n, d)})")
+    print("=" * 64)
 
     _write(os.path.join(output_dir, "summary.json"), json.dumps(summary, indent=2))
     _write(os.path.join(output_dir, "results.json"), json.dumps(results, indent=2))
@@ -426,15 +488,15 @@ def run_benchmark(
     return summary
 
 
-# ── CLI ────────────────────────────────────────────────────────────────────────────
+# ─── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Ruleset-constrained proof pipeline on ProofWriter.",
+        description="ProofWriter pipeline: CoT → FOL → Verify → TPTP (mirrors main.py).",
     )
     parser.add_argument(
         "--dataset-file", "-f", required=True,
-        help="Path to a ProofWriter JSON file (from load_data.py --proofwriter).",
+        help="ProofWriter JSON from load_data.py --proofwriter.",
     )
     parser.add_argument(
         "--output-dir", "-o", default=None,
@@ -442,14 +504,11 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--max-retries", "-r", type=int, default=3,
-        help="Max rule-grounding repair attempts per item (default: 3).",
+        help="Max verify/TPTP repair attempts per item (default: 3).",
     )
     parser.add_argument(
         "--client", "-c", choices=["openai", "kimi", "deepseek"], default="openai",
-        help=(
-            "Reasoning client for theory extraction and proof generation "
-            "(default: openai). Verification always uses openai."
-        ),
+        help="Reasoning client for CoT/FOL (default: openai). Verification always uses openai.",
     )
     args = parser.parse_args()
 
@@ -466,7 +525,7 @@ if __name__ == "__main__":
     output_dir = os.path.join(base_dir, run_id)
     os.makedirs(output_dir, exist_ok=True)
 
-    print(f"\n=== ProofWriter Benchmark (rule_pipeline) ===")
+    print(f"\n=== ProofWriter Benchmark ===")
     print(f"Reasoning client : {args.client}")
     print(f"Verifier client  : openai")
     print(f"Items            : {len(items)}")

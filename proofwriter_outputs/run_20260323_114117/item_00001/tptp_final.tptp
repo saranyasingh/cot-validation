@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, green(bear)).
+fof(fact_2, axiom, likes(bear, mouse)).
+fof(fact_3, axiom, needs(bear, cow)).
+fof(fact_4, axiom, needs(bear, mouse)).
+fof(fact_5, axiom, sees(bear, cow)).
+fof(fact_6, axiom, sees(bear, mouse)).
+fof(fact_7, axiom, likes(cow, bear)).
+fof(fact_8, axiom, sees(cow, bear)).
+fof(fact_9, axiom, likes(mouse, cow)).
+fof(fact_10, axiom, sees(mouse, rabbit)).
+fof(fact_11, axiom, young(rabbit)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (kind(X) => needs(X, bear))).
+fof(rule_2, axiom, ! [X] : (sees(X, cow) => cold(X))).
+fof(rule_3, axiom, ! [X] : (cold(X) => likes(X, rabbit))).
+fof(rule_4, axiom, ! [X] : (needs(X, bear) => young(bear))).
+fof(rule_5, axiom, ! [X] : (round(X) => likes(X, mouse))).
+fof(rule_6, axiom, ! [X] : ((likes(X, bear) & likes(X, mouse)) => likes(bear, mouse))).
+fof(rule_7, axiom, ! [X] : (likes(X, cow) => likes(cow, bear))).
+fof(rule_8, axiom, ! [X] : ((round(X) & ~needs(X, bear)) => sees(X, rabbit))).
+
+% --- INFERENCES ---
+% From fact_4 by Premise
+fof(inf_1, axiom, needs(bear, mouse)).

@@ -1,0 +1,7 @@
+  % From FACT-10 by Fact
+  inf_1: PROVED
+  % From FACT-10, derive the negation of Sees(the_mouse, the_rabbit)
+  inf_2: NOT PROVED
+
+Prover errors:
+inf_2: NOT PROVED — inference does not follow from axioms

@@ -1,0 +1,11 @@
+Step 1: From the Facts, we have The mouse sees the rabbit. This gives sees(mouse, rabbit) as true. (Fact)
+
+Step 2: The statement to evaluate is The mouse does not see the rabbit, i.e., not sees(mouse, rabbit). We check whether any Rule or Fact derives not sees(mouse, rabbit).
+
+Step 3: Review the Rules. None of the rules derive a negative seeing relation (¬sees). All rules produce positive predicates (e.g., cold, like, see, young) and there is no rule that yields not sees(...) for any entity.
+
+Step 4: Since sees(mouse, rabbit) is true (Step 1) and there is no rule deriving not sees(mouse, rabbit), the claim not sees(mouse, rabbit) cannot be proven and is contradicted by a known fact.
+
+Conclusion: The statement is False.
+
+The answer is: False

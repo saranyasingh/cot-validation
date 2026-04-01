@@ -39,7 +39,6 @@ from clients import make_client, OpenAILLMClient
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-
 # ─── Answer Normalization ──────────────────────────────────────────────────────
 
 def normalize(answer: str) -> str:
