@@ -7,6 +7,7 @@
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=48G
 #SBATCH --gres=gpu:1                 # request 1 GPU; change to gpu:a100:1 etc. if needed
+#SBATCH --account=kempner_undergrads
 #SBATCH --partition=kempner              # change to your cluster's GPU partition name
 
 # ── Optional: email notifications ──────────────────────────────────────────────
