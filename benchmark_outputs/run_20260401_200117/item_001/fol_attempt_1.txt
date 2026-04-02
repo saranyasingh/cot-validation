@@ -1,0 +1,8 @@
+**FACTS:**  
+FACT-1: TotalBananas(290) :: 290  
+
+**RULES:**  
+Rule-1: DivideByGroup(290, 2) :: ∀t ((TotalBananas(t) = 290) → (∃g GroupOfBananas(g)) ∧ (∀b BananasInGroup(b, g)))  
+
+**INFERENCES:**  
+INF-1: NumberPerGroup(145) :: Rule-1(290, 2)

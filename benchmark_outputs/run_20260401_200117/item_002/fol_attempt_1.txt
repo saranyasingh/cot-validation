@@ -1,0 +1,9 @@
+FACT-1: Library has 360 books :: Books(360)
+FACT-2: 360 books are divided among 9 shelves :: DividedBy(360, 9)
+FACT-3: Each shelf gets an equal share :: EqualShare(Books, Shelves)
+
+## RULES
+RULE-1: Equal distribution implies division :: DivisionEquals(Shares, Divisor, Quotient)
+
+## INFERENCES
+INF-1: There are 40 books on each shelf :: Infer(Shelves, 40) from Fact-2 and Rule-1

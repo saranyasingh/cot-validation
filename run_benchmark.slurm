@@ -24,19 +24,27 @@ OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 # export DEEPSEEK_API_KEY=""
 
 # ── Environment setup ──────────────────────────────────────────────────────────
-# Activate your conda/venv environment if needed:
-# source ~/.bashrc
-# conda activate my-env
-# OR:
-# source /path/to/venv/bin/activate
+# Compute nodes often have no `python` on PATH (only python3, or after module load).
+# Uncomment if your site requires it (see run_benchmark_vllm.slurm for FASRC example):
+# module load python/3.12.11-fasrc02
 
 # Create log directory
 mkdir -p slurm_logs
 
 cd "$SLURM_SUBMIT_DIR"
 
+if [ -f "${SLURM_SUBMIT_DIR}/.venv/bin/activate" ]; then
+    source "${SLURM_SUBMIT_DIR}/.venv/bin/activate"
+fi
+PYTHON="${PYTHON:-$(command -v python3 2>/dev/null || command -v python 2>/dev/null)}"
+if [ -z "$PYTHON" ]; then
+    echo "ERROR: No Python found. Load a module, create .venv, or set PYTHON=/path/to/python" >&2
+    exit 1
+fi
+
 echo "Job ID      : $SLURM_JOB_ID"
 echo "Node        : $SLURMD_NODENAME"
+echo "Python      : $PYTHON ($("$PYTHON" -c 'import sys; print(sys.version.split()[0])' 2>/dev/null || echo unknown))"
 echo "Dataset     : $DATASET"
 echo "Client      : $CLIENT"
 echo "Max retries : $MAX_RETRIES"
@@ -49,7 +57,7 @@ if [ -n "$OUTPUT_DIR" ]; then
     OUTPUT_ARG="--output-dir $OUTPUT_DIR"
 fi
 
-python benchmark.py \
+"$PYTHON" benchmark.py \
     --dataset "$DATASET" \
     --client "$CLIENT" \
     --max-retries "$MAX_RETRIES" \

@@ -1,2 +1,7 @@
+
+benchmark_outputslurm_logs/
 .env
-benchmark_output
+*.err
+.hf_token
+*.out
+slurm_logs/

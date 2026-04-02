@@ -75,7 +75,7 @@ class VLLMLLMClient(LLMClient):
             base_url=os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1"),
             api_key="token-abc123",  # vLLM requires a non-empty key; value doesn't matter
         )
-        self.model = os.getenv("VLLM_MODEL", "meta-llama/Llama-3.2-1B-Instruct")
+        self.model = os.getenv("VLLM_MODEL", "Qwen/Qwen2.5-1.5B-Instruct")
 
     def complete(self, prompt: str) -> str:
         response = self._client.chat.completions.create(

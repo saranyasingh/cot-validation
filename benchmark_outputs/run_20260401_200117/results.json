@@ -1,0 +1,130 @@
+[
+  {
+    "id": "item_001",
+    "question": "There are 87 oranges and 290 bananas in Philip's collection. If the bananas are organized into 2 groups and oranges are organized into 93 groups. How big is each group of bananas?",
+    "expected": "145",
+    "plain": {
+      "answer": "The answer is: 145",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "Each group of bananas contains 145 bananas",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_002",
+    "question": "A library has 360 books divided equally among 9 shelves. How many books are on each shelf?",
+    "expected": "40",
+    "plain": {
+      "answer": "40",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "40",
+      "correct": true,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_003",
+    "question": "A farmer has 48 apples and 72 oranges. He packs the oranges into bags of 8. How many bags of oranges does he need?",
+    "expected": "9",
+    "plain": {
+      "answer": "The answer is: 9",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "9",
+      "correct": true,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_004",
+    "question": "There are 5 buses carrying 30 students each and 3 vans carrying 12 students each. How many students are there in total?",
+    "expected": "186",
+    "plain": {
+      "answer": "186",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "186",
+      "correct": true,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_005",
+    "question": "A store sells pencils for $0.25 each. If Sarah buys 16 pencils, how much does she spend in dollars?",
+    "expected": "4",
+    "plain": {
+      "answer": "",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "X = $4",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_006",
+    "question": "A recipe requires 3 cups of flour for every 2 cups of sugar. If you use 9 cups of flour, how many cups of sugar do you need?",
+    "expected": "6",
+    "plain": {
+      "answer": "6",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "6 cups of sugar",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_007",
+    "question": "A car travels 60 miles per hour. How many miles does it travel in 2.5 hours?",
+    "expected": "150",
+    "plain": {
+      "answer": "150 miles",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "150 miles",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_008",
+    "question": "A class has 32 students. The teacher divides them into groups of 4. How many groups are there?",
+    "expected": "8",
+    "plain": {
+      "answer": "8",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "There are 8 groups",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  }
+]
