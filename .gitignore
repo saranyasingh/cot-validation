@@ -1,3 +1,6 @@
 .env
 .hf_token
 benchmark_outputslurm_logs/
+slurm_logs/
+*.out
+*.err
