@@ -1,0 +1,17 @@
+Job ID      : 3069191
+Node        : holygpu8a19105
+GPU(s)      : 0
+Python      : /n/home06/ssingh/cot-validation/.venv/bin/python3 (/n/home06/ssingh/cot-validation/.venv/bin/python3)
+Model       : meta-llama/Llama-3.2-1B-Instruct
+Dataset     : dataset.json
+Max retries : 3
+Start time  : Wed Apr  1 19:14:50 EDT 2026
+──────────────────────────────────────────
+Starting vLLM via: vllm serve ...
+Waiting for vLLM server on port 8000...
+INFO 04-01 19:16:39 [scheduler.py:216] Chunked prefill is enabled with max_num_batched_tokens=2048.
+WARNING 04-01 19:16:39 [argparse_utils.py:203] With `vllm serve`, you should provide the model as a positional argument or in a config file instead of via the `--model` option. The `--model` option will be removed in v0.13.
+[1;36m(APIServer pid=3023976)[0;0m INFO 04-01 19:16:39 [api_server.py:1977] vLLM API server version 0.11.2
+[1;36m(APIServer pid=3023976)[0;0m INFO 04-01 19:16:39 [utils.py:253] non-default args: {'model_tag': 'meta-llama/Llama-3.2-1B-Instruct', 'model': 'meta-llama/Llama-3.2-1B-Instruct', 'max_model_len': 4096}
+ERROR: vLLM did not start within 300s. Exiting.
+Shutting down vLLM (PID 3023976)...

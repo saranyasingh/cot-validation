@@ -1,0 +1,14 @@
+To convert the given chain-of-thought reasoning into structured first-order logic (FOL):
+
+## FACTS
+FACT-1: FarmerHas(72, Oranges) :: TotalOranges = 72
+
+FACT-2: EachBagContains(8, Oranges) :: CapacityPerBag = 8
+
+## RULES
+RULE-1: NumberOfBagsNeeded(TotalOranges, CapacityPerBag) :: NumberOfBags = TotalOranges / CapacityPerBag
+
+## INFERENCES
+INF-1: NumberOfBags = 72 / 8 :: NumberOfBags = 9
+
+Therefore, the final answer is: 9.

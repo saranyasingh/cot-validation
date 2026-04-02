@@ -1,0 +1,8 @@
+## FACTS
+Fact-1: PencilCost(0.25) :: CostPerPencil = 0.25
+
+## RULES
+Rule-1: TotalCost(p, c) :: TotalAmount = p * c :: TotalAmount = 16 * 0.25
+
+## INFERENCES
+Inference-1: TotalSpent = Fact-1, Rule-1 by Modus Ponens: TotalSpent = 4

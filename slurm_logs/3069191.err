@@ -1,0 +1,105 @@
+[1;36m(APIServer pid=3023976)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+[1;36m(APIServer pid=3023976)[0;0m     response.raise_for_status()
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/requests/models.py", line 1028, in raise_for_status
+[1;36m(APIServer pid=3023976)[0;0m     raise HTTPError(http_error_msg, response=self)
+[1;36m(APIServer pid=3023976)[0;0m requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m The above exception was the direct cause of the following exception:
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 479, in cached_files
+[1;36m(APIServer pid=3023976)[0;0m     hf_hub_download(
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+[1;36m(APIServer pid=3023976)[0;0m     return fn(*args, **kwargs)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+[1;36m(APIServer pid=3023976)[0;0m     return _hf_hub_download_to_cache_dir(
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+[1;36m(APIServer pid=3023976)[0;0m     _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1662, in _raise_on_head_call_error
+[1;36m(APIServer pid=3023976)[0;0m     raise head_call_error
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1550, in _get_metadata_or_catch_error
+[1;36m(APIServer pid=3023976)[0;0m     metadata = get_hf_file_metadata(
+[1;36m(APIServer pid=3023976)[0;0m                ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+[1;36m(APIServer pid=3023976)[0;0m     return fn(*args, **kwargs)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 1467, in get_hf_file_metadata
+[1;36m(APIServer pid=3023976)[0;0m     r = _request_wrapper(
+[1;36m(APIServer pid=3023976)[0;0m         ^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+[1;36m(APIServer pid=3023976)[0;0m     response = _request_wrapper(
+[1;36m(APIServer pid=3023976)[0;0m                ^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+[1;36m(APIServer pid=3023976)[0;0m     hf_raise_for_status(response)
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 420, in hf_raise_for_status
+[1;36m(APIServer pid=3023976)[0;0m     raise _format(GatedRepoError, message, response) from e
+[1;36m(APIServer pid=3023976)[0;0m huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-69cda757-44aaae1a0ab610de454bdc12;fc01f294-6e81-4f91-a255-10f70337148d)
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json.
+[1;36m(APIServer pid=3023976)[0;0m Access to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m The above exception was the direct cause of the following exception:
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/bin/vllm", line 6, in <module>
+[1;36m(APIServer pid=3023976)[0;0m     sys.exit(main())
+[1;36m(APIServer pid=3023976)[0;0m              ^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 73, in main
+[1;36m(APIServer pid=3023976)[0;0m     args.dispatch_function(args)
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 60, in cmd
+[1;36m(APIServer pid=3023976)[0;0m     uvloop.run(run_server(args))
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+[1;36m(APIServer pid=3023976)[0;0m     return __asyncio.run(
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/asyncio/runners.py", line 195, in run
+[1;36m(APIServer pid=3023976)[0;0m     return runner.run(main)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/asyncio/runners.py", line 118, in run
+[1;36m(APIServer pid=3023976)[0;0m     return self._loop.run_until_complete(task)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+[1;36m(APIServer pid=3023976)[0;0m     return await main
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 2024, in run_server
+[1;36m(APIServer pid=3023976)[0;0m     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 2043, in run_server_worker
+[1;36m(APIServer pid=3023976)[0;0m     async with build_async_engine_client(
+[1;36m(APIServer pid=3023976)[0;0m                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/contextlib.py", line 210, in __aenter__
+[1;36m(APIServer pid=3023976)[0;0m     return await anext(self.gen)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 195, in build_async_engine_client
+[1;36m(APIServer pid=3023976)[0;0m     async with build_async_engine_client_from_engine_args(
+[1;36m(APIServer pid=3023976)[0;0m                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/contextlib.py", line 210, in __aenter__
+[1;36m(APIServer pid=3023976)[0;0m     return await anext(self.gen)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 221, in build_async_engine_client_from_engine_args
+[1;36m(APIServer pid=3023976)[0;0m     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+[1;36m(APIServer pid=3023976)[0;0m                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/engine/arg_utils.py", line 1351, in create_engine_config
+[1;36m(APIServer pid=3023976)[0;0m     maybe_override_with_speculators(
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/transformers_utils/config.py", line 530, in maybe_override_with_speculators
+[1;36m(APIServer pid=3023976)[0;0m     config_dict, _ = PretrainedConfig.get_config_dict(
+[1;36m(APIServer pid=3023976)[0;0m                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+[1;36m(APIServer pid=3023976)[0;0m     config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+[1;36m(APIServer pid=3023976)[0;0m                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+[1;36m(APIServer pid=3023976)[0;0m     resolved_config_file = cached_file(
+[1;36m(APIServer pid=3023976)[0;0m                            ^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 322, in cached_file
+[1;36m(APIServer pid=3023976)[0;0m     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[1;36m(APIServer pid=3023976)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3023976)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/utils/hub.py", line 543, in cached_files
+[1;36m(APIServer pid=3023976)[0;0m     raise OSError(
+[1;36m(APIServer pid=3023976)[0;0m OSError: You are trying to access a gated repo.
+[1;36m(APIServer pid=3023976)[0;0m Make sure to have access to it at https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct.
+[1;36m(APIServer pid=3023976)[0;0m 401 Client Error. (Request ID: Root=1-69cda757-44aaae1a0ab610de454bdc12;fc01f294-6e81-4f91-a255-10f70337148d)
+[1;36m(APIServer pid=3023976)[0;0m 
+[1;36m(APIServer pid=3023976)[0;0m Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct/resolve/main/config.json.
+[1;36m(APIServer pid=3023976)[0;0m Access to model meta-llama/Llama-3.2-1B-Instruct is restricted. You must have access to it and be authenticated to access it. Please log in.

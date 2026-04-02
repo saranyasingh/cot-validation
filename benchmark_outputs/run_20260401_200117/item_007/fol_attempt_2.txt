@@ -1,0 +1,14 @@
+## FACTS
+```plaintext
+Fact-1: Speed(miles_per_hour) = 60 :: Speed(60)
+```
+
+## RULES
+```plaintext
+Rule-1: Distance traveled = Speed * Time :: ∀t (Speed(s) → Distance(travelled) = s * Time(time))
+```
+
+## INFERENCES
+```plaintext
+Inference-1: Distance = 60 * 2.5 :: Rule-1(Fact-1, Fact-2)
+```

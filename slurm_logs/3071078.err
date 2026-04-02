@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/n/home06/ssingh/cot-validation/benchmark.py", line 270, in <module>
+    reasoning_client = make_client(args.client)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/home06/ssingh/cot-validation/clients.py", line 90, in make_client
+    return OpenAILLMClient()
+           ^^^^^^^^^^^^^^^^^
+  File "/n/home06/ssingh/cot-validation/clients.py", line 26, in __init__
+    self._client = _OpenAI()
+                   ^^^^^^^^^
+  File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/openai/_client.py", line 139, in __init__
+    raise OpenAIError(
+openai.OpenAIError: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable

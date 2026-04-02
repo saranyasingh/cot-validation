@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, books(360)).
+fof(fact_2, axiom, divided_by(360, 9)).
+fof(fact_3, axiom, equal_share(books, shelves)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Shares, Divisor, Quotient] : (equal_share(Shares, Divisor) => division_equals(Shares, Divisor, Quotient))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, division_equals(360, 9, 40)).

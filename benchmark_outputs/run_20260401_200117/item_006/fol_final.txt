@@ -1,0 +1,8 @@
+### Facts
+FACT-1: FlourFlourRatio(3, 2) :: (∀f f\_flour, s s\_sugar) (3 / 2 = f\_flour / s\_sugar)
+
+### Rules
+RULE-1: SugarSugarRatio(2, 3) :: (∀f f\_flour, s s\_sugar) (2 / 3 = f\_flour / s\_sugar)
+
+### Inferences
+INF-1: Given 9 cups of flour, calculate the required sugar :: (∀f f\_flour, s s\_sugar) (3 / 2 = 9 / s\_sugar) -> (∃s s\_sugar) (s\_sugar = 6)

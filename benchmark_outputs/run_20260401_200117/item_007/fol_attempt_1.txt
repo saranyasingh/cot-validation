@@ -1,0 +1,18 @@
+Let's convert the chain-of-thought reasoning into structured first-order logic (FOL):
+
+### Facts
+```plaintext
+Fact-1: Speed(miles_per_hour) = 60 :: Speed(60)
+```
+
+### Rules
+```plaintext
+Rule-1: Distance traveled = Speed * Time :: ∀t (Speed(s) → Distance(travelled) = s * Time(time))
+```
+
+### Inferences
+```plaintext
+Inference-1: Distance = 60 * 2.5 :: Rule-1(Fact-1, Fact-2)
+```
+
+This conversion captures the essence of the problem using FOL, ensuring clarity and precision in representing the logical structure of the reasoning process.

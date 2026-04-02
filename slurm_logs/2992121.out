@@ -1,0 +1,11 @@
+Job ID      : 2992121
+Node        : holygpu8a19602
+GPU(s)      : 0
+Model       : meta-llama/Llama-3.2-1B-Instruct
+Dataset     : dataset.json
+Max retries : 3
+Start time  : Wed Apr  1 11:41:25 EDT 2026
+──────────────────────────────────────────
+Waiting for vLLM server on port 8000...
+ERROR: vLLM did not start within 300s. Exiting.
+Shutting down vLLM (PID 2089446)...

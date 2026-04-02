@@ -1,0 +1,87 @@
+[1;36m(APIServer pid=3913825)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+[1;36m(APIServer pid=3913825)[0;0m     response.raise_for_status()
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/requests/models.py", line 1028, in raise_for_status
+[1;36m(APIServer pid=3913825)[0;0m     raise HTTPError(http_error_msg, response=self)
+[1;36m(APIServer pid=3913825)[0;0m requests.exceptions.HTTPError: 429 Client Error: Too Many Requests for url: https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct
+[1;36m(APIServer pid=3913825)[0;0m 
+[1;36m(APIServer pid=3913825)[0;0m The above exception was the direct cause of the following exception:
+[1;36m(APIServer pid=3913825)[0;0m 
+[1;36m(APIServer pid=3913825)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/bin/vllm", line 6, in <module>
+[1;36m(APIServer pid=3913825)[0;0m     sys.exit(main())
+[1;36m(APIServer pid=3913825)[0;0m              ^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 73, in main
+[1;36m(APIServer pid=3913825)[0;0m     args.dispatch_function(args)
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 60, in cmd
+[1;36m(APIServer pid=3913825)[0;0m     uvloop.run(run_server(args))
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+[1;36m(APIServer pid=3913825)[0;0m     return __asyncio.run(
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/asyncio/runners.py", line 195, in run
+[1;36m(APIServer pid=3913825)[0;0m     return runner.run(main)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/asyncio/runners.py", line 118, in run
+[1;36m(APIServer pid=3913825)[0;0m     return self._loop.run_until_complete(task)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+[1;36m(APIServer pid=3913825)[0;0m     return await main
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 2024, in run_server
+[1;36m(APIServer pid=3913825)[0;0m     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 2043, in run_server_worker
+[1;36m(APIServer pid=3913825)[0;0m     async with build_async_engine_client(
+[1;36m(APIServer pid=3913825)[0;0m                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/contextlib.py", line 210, in __aenter__
+[1;36m(APIServer pid=3913825)[0;0m     return await anext(self.gen)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 195, in build_async_engine_client
+[1;36m(APIServer pid=3913825)[0;0m     async with build_async_engine_client_from_engine_args(
+[1;36m(APIServer pid=3913825)[0;0m                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/sw/Miniforge3-25.3.1-0/lib/python3.12/contextlib.py", line 210, in __aenter__
+[1;36m(APIServer pid=3913825)[0;0m     return await anext(self.gen)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 236, in build_async_engine_client_from_engine_args
+[1;36m(APIServer pid=3913825)[0;0m     async_llm = AsyncLLM.from_vllm_config(
+[1;36m(APIServer pid=3913825)[0;0m                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/utils/func_utils.py", line 116, in inner
+[1;36m(APIServer pid=3913825)[0;0m     return fn(*args, **kwargs)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 203, in from_vllm_config
+[1;36m(APIServer pid=3913825)[0;0m     return cls(
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 114, in __init__
+[1;36m(APIServer pid=3913825)[0;0m     tokenizer = init_tokenizer_from_configs(self.model_config)
+[1;36m(APIServer pid=3913825)[0;0m                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 287, in init_tokenizer_from_configs
+[1;36m(APIServer pid=3913825)[0;0m     return get_tokenizer(
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/vllm/transformers_utils/tokenizer.py", line 213, in get_tokenizer
+[1;36m(APIServer pid=3913825)[0;0m     tokenizer = AutoTokenizer.from_pretrained(
+[1;36m(APIServer pid=3913825)[0;0m                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py", line 1156, in from_pretrained
+[1;36m(APIServer pid=3913825)[0;0m     return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2113, in from_pretrained
+[1;36m(APIServer pid=3913825)[0;0m     return cls._from_pretrained(
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2395, in _from_pretrained
+[1;36m(APIServer pid=3913825)[0;0m     tokenizer = cls._patch_mistral_regex(
+[1;36m(APIServer pid=3913825)[0;0m                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2442, in _patch_mistral_regex
+[1;36m(APIServer pid=3913825)[0;0m     _is_local or (not _is_local and is_base_mistral(pretrained_model_name_or_path))
+[1;36m(APIServer pid=3913825)[0;0m                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/transformers/tokenization_utils_base.py", line 2432, in is_base_mistral
+[1;36m(APIServer pid=3913825)[0;0m     model = model_info(model_id)
+[1;36m(APIServer pid=3913825)[0;0m             ^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+[1;36m(APIServer pid=3913825)[0;0m     return fn(*args, **kwargs)
+[1;36m(APIServer pid=3913825)[0;0m            ^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 2661, in model_info
+[1;36m(APIServer pid=3913825)[0;0m     hf_raise_for_status(r)
+[1;36m(APIServer pid=3913825)[0;0m   File "/n/home06/ssingh/cot-validation/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 476, in hf_raise_for_status
+[1;36m(APIServer pid=3913825)[0;0m     raise _format(HfHubHTTPError, str(e), response) from e
+[1;36m(APIServer pid=3913825)[0;0m huggingface_hub.errors.HfHubHTTPError: 429 Client Error: Too Many Requests for url: https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct (Request ID: Root=1-69cda9e2-371e26c67d759941784ba0cd;64835185-05e2-495f-9be1-bfe57e3ababf)
+[1;36m(APIServer pid=3913825)[0;0m 
+[1;36m(APIServer pid=3913825)[0;0m We had to rate limit your IP (140.247.111.5). To continue using our service, create a HF account or login to your existing account, and make sure you pass a HF_TOKEN if you're using the API.

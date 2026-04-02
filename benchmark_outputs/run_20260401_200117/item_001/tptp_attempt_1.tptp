@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_bananas(290)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ((total_bananas(T) = 290) => ? [G] : (group_of_bananas(G) & ! [B] : bananas_in_group(B, G)))). 
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_per_group(145)).

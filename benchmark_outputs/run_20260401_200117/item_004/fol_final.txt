@@ -1,0 +1,13 @@
+FACT-1: There are 5 buses :: Buses(5)
+
+FACT-2: Each bus carries 30 students :: ∀b (Buses(b) → StudentsCarried(b) = 30)
+
+FACT-3: There are 3 vans :: Vans(3)
+
+FACT-4: Each van carries 12 students :: ∀v (Vans(v) → StudentsCarried(v) = 12)
+
+INF-1: From FACT-1, FACT-2, and FACT-4 by Addition: TotalStudents = StudentsCarried(Buses) + StudentsCarried(Vans) :: ∀s (TotalStudents(s) = StudentsCarried(Buses(s)) + StudentsCarried(Vans(s)))
+
+INF-2: Substitute the numbers: TotalStudents = 5 * 30 + 3 * 12 :: TotalStudents = 150 + 36 :: TotalStudents = 186
+
+Therefore, the answer is **186**.
