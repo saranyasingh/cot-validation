@@ -29,9 +29,9 @@ VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 export OPENAI_API_KEY="$(cat ~/.openai_key)"
 
 # ── Environment setup ──────────────────────────────────────────────────────────
-module load python/3.12.11-fasrc02 cuda/12.4.1-fasrc01
-source "${SLURM_SUBMIT_DIR}/.venv/bin/activate"
-PYTHON="${PYTHON:-$(command -v python3)}"
+source ~/.bashrc
+conda activate vllm-inference
+# OR: source /path/to/venv/bin/activate
 
 mkdir -p slurm_logs
 cd "$SLURM_SUBMIT_DIR"
