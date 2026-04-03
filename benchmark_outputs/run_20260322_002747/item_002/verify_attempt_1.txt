@@ -1,5 +1,0 @@
-FACT-1: SUPPORTED — The story states there are 360 total books.
-FACT-2: SUPPORTED — The story states there are 9 shelves.
-FACT-3: SUPPORTED — The facts include ExistsPForEqualDivision(360, 9), matching equal division among shelves.
-RULE-1: PLAUSIBLE — From ExistsPForEqualDivision(T, N), there exists p such that Product(T, N, p) ∧ BooksPerShelf(p).
-RULE-2: PLAUSIBLE — From Product(T, N, p), it follows that BooksPerShelf(p).

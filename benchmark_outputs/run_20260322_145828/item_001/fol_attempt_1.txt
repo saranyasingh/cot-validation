@@ -1,9 +1,0 @@
-## FACTS
-FACT-1: There are 290 bananas in total :: BananasTotal(bananas_290)
-FACT-2: The bananas are organized into 2 groups :: BananasGroupedInto(bananas_290, groups_2)
-
-## RULES
-RULE-1: If a collection of bananas is total and is organized into two groups, then each group has 145 bananas :: ∀t (BananasTotal(t) ∧ BananasGroupedInto(t, groups_2) → PerGroupBananas(t, bananas_145))
-
-## INFERENCES
-INF-1: From FACT-1 and RULE-1 by Modus Ponens: PerGroupBananas(bananas_290, bananas_145)

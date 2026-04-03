@@ -1,9 +1,0 @@
-## FACTS
-FACT-1: BananaTotal(bananas_290) :: BananaTotal(bananas_290)
-FACT-2: BananaGroups(groups_2) :: BananaGroups(groups_2)
-
-## RULES
-RULE-1: ∀N ∀G ((BananaTotal(N) ∧ BananaGroups(G)) → ∃S (GroupSize(N,G,S) ∧ Quotient(N,G,S))) :: If a total N of bananas is partitioned into G equal groups, there exists S such that GroupSize(N,G,S) and Quotient(N,G,S)
-
-## INFERENCES
-INF-1: From FACT-1, FACT-2, RULE-1 by Universal Instantiation and Existential Introduction: There exists S such that GroupSize(bananas_290, groups_2, S) ∧ Quotient(bananas_290, groups_2, S) :: Universal Instantiation; Existential Introduction

@@ -1,9 +1,0 @@
-## FACTS
-FACT-1: CombinedWeight(marco, dad, w_30) :: CombinedWeight(marco, dad, w_30)
-FACT-2: DadWeight(dad, w_11) :: DadWeight(dad, w_11)
-
-## RULES
-RULE-1: ∀m ∀d ∀W ∀Wd ∀Wm ((CombinedWeight(m, d, W) ∧ DadWeight(d, Wd) ∧ Subtract(W, Wd, Wm)) → MarcoWeight(m, Wm)) :: ∀m ∀d ∀W ∀Wd ∀Wm ((CombinedWeight(m, d, W) ∧ DadWeight(d, Wd) ∧ Subtract(W, Wd, Wm)) → MarcoWeight(m, Wm))
-
-## INFERENCES
-INF-1: From FACT-1, FACT-2, RULE-1 by Universal Instantiation and Modus Ponens: MarcoWeight(marco, w_19)

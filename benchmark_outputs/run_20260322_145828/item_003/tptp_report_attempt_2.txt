@@ -1,7 +1,0 @@
-  % From fact_1, rule_1 by Modus Ponens
-  inf_1: PROVED
-  % From INF-1, FACT-1, and RULE-2 by Existential Instantiation and Modus Ponens
-  inf_2: NOT PROVED
-
-Prover errors:
-inf_2: NOT PROVED — inference does not follow from axioms

@@ -1,4 +1,0 @@
-FACT-1: SUPPORTED — The story states the book has 594 pages in total.
-FACT-2: SUPPORTED — The story states the book has 3 chapters.
-FACT-3: SUPPORTED — The story states each chapter has the same number of pages.
-RULE-1: PLAUSIBLE — It correctly specifies pages per chapter as total pages divided by chapters when chapters are equal.

@@ -1,7 +1,0 @@
-FACT-1: SUPPORTED — Directly stated: he lost 412 crayons.
-FACT-2: SUPPORTED — Directly stated: he gave 90 crayons.
-FACT-3: SUPPORTED — Entailed by FACT-1 and FACT-2: 412 − 90 = 322.
-RULE-1: PLAUSIBLE — A general principle that a loss and a gift create a difference between the two amounts.
-RULE-2: PLAUSIBLE — If a difference between a and b is d, then there exists a difference value d.
-RULE-3: PLAUSIBLE — Reasonable inference: if there is a difference between a and b equal to d, then p moreLostThanGiven by d.
-RULE-4: PLAUSIBLE — Reasonable to conclude the final answer is d when MoreLostThanGiven(p, d) holds.

@@ -1,9 +1,0 @@
-1) Premise: The book has 3 chapters. (Given)
-2) Premise: Each chapter has the same number of pages. (Given)
-3) Definition: Let p be the number of pages per chapter. Then the total pages T satisfy T = 3 * p. (From 1 and 2)
-4) Premise: The total number of pages in the book is 594. (Given)
-5) Therefore 3 * p = 594. (From 3 and 4)
-6) Arithmetic: p = 594 / 3 = 198. (From 5)
-7) Therefore each chapter has 198 pages. (From 6)
-8) Note: The fact that Frank took 607 days to finish the book does not affect the page count. (Observation)
-9) The answer is: 198
