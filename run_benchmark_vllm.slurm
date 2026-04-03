@@ -25,7 +25,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 
-export OPENAI_API_KEY="your-api-key-here"
+export OPENAI_API_KEY="$(cat ~/.openai_key)"
 
 # ── Environment setup ──────────────────────────────────────────────────────────
 module load python/3.12.11-fasrc02 cuda/12.4.1-fasrc01
