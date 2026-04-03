@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Jack received 10 emails in the morning :: ReceivedEmails(morning, 10)
+FACT-2: Jack received 3 emails in the afternoon :: ReceivedEmails(afternoon, 3)
+
+## RULES
+RULE-1: If someone receives an email in the morning, they receive an email in the afternoon :: ∀x (ReceivedEmails(morning, x) → ReceivedEmails(afternoon, x))
+RULE-2: Subtracting two quantities gives the difference between them :: SubtractionDifference(x, y, z) := x - y = z
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: ReceivedEmails(morning, 10) implies ReceivedEmails(afternoon, 10)
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: ReceivedEmails(afternoon, 3) implies ReceivedEmails(afternoon, 3)
+INF-3: Applying subtraction difference to get the difference in emails :: SubtractionDifference(ReceivedEmails(morning, 10), ReceivedEmails(afternoon, 3), MoreEmailsInMorningThanAfternoon) :: MoreEmailsInMorningThanAfternoon = 10 - 3 = 7
+
+Therefore, the answer is: MoreEmailsInMorningThanAfternoon :: 7

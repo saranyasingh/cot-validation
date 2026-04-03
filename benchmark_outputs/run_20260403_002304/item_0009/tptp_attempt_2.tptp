@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_tickets(dave))..
+fof(fact_2, axiom, used_tickets(12, toys))..
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ((remaining_tickets(X) = 14) => has_tickets(X, 26)))..
+fof(rule_2, axiom, ! [T, U] : ( used_tickets(T, U) => less_than_tickets(T, has_tickets(dave))))..
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Universal Instantiation
+fof(inf_1, axiom, has_tickets(dave))..
+% From FACT-2, RULE-2 by Universal Instantiation
+fof(inf_2, axiom, less_than_tickets(12, has_tickets(dave)))..
+% INF-3: RemainingTickets(Dave) = InitialTickets(Dave) + RemainingTicketsAfterPurchase()
+fof(inf_3, axiom, remaining_tickets(dave) = initial_tickets(dave) + remaining_tickets_after_purchase())..
+% INF-4: InitialTickets(Dave) = RemainingTicketsAfterPurchase() + 12
+fof(inf_4, axiom, initial_tickets(dave) = remaining_tickets_after_purchase() + 12)..
+% INF-5: InitialTickets(Dave) = 14 + 12
+fof(inf_5, axiom, initial_tickets(dave) = 14 + 12)..
+% INF-6: InitialTickets(Dave) = 26
+fof(inf_6, axiom, initial_tickets(dave) = 26)..

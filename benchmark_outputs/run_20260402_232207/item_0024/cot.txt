@@ -1,0 +1,44 @@
+**Logical Syllogism**
+
+1. **Premise 1:** A book has 2 chapters.
+   - This establishes that we are dealing with a book divided into two distinct sections.
+
+2. **Premise 2:** The second chapter is 36 pages long.
+   - This gives us information about the length of the second part of the book.
+
+3. **Premise 3:** There are a total of 67 pages in the book.
+   - This provides the total number of pages across both chapters.
+
+4. **Conclusion:**
+   - To find out how many pages are in the first chapter, we subtract the number of pages in the second chapter from the total number of pages in the book.
+
+**Step-by-Step Reasoning:**
+
+- Let's denote the number of pages in the first chapter as \( P_1 \) and the number of pages in the second chapter as \( P_2 \).
+  
+- From Premise 1, we know:
+  \[
+  P_1 + P_2 = 67
+  \]
+
+- From Premise 2, we know:
+  \[
+  P_2 = 36
+  \]
+
+- Substitute \( P_2 \) into the equation from Premise 1:
+  \[
+  P_1 + 36 = 67
+  \]
+
+- Solve for \( P_1 \):
+  \[
+  P_1 = 67 - 36
+  \]
+  \[
+  P_1 = 31
+  \]
+
+Therefore, the number of pages in the first chapter is:
+
+The answer is: 31 pages.

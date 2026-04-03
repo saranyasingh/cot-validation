@@ -1,0 +1,54 @@
+1. Let's start by defining the variables:
+   - Let \( J \) be the number of peaches Jake has.
+   - Let \( S \) be the number of peaches Steven has.
+   - Let \( G \) be the number of peaches Jill has.
+
+2. We know from the problem statement that Steven has 8 more peaches than Jill:
+   \[
+   S = G + 8
+   \]
+   Since we're given that Steven has 5 peaches:
+   \[
+   5 = G + 8
+   \]
+
+3. Solving for \( G \):
+   \[
+   G = 5 - 8
+   \]
+   \[
+   G = -3
+   \]
+
+4. Now, let's find out how many peaches Jake has:
+   \[
+   J = S - 3
+   \]
+   Given \( S = 5 \), we substitute it into the equation:
+   \[
+   J = 5 - 3
+   \]
+   \[
+   J = 2
+   \]
+
+5. Finally, to determine how many more peaches Jake has compared to Jill, we subtract Jill's peaches from Jake's peaches:
+   \[
+   \text{Difference} = J - G
+   \]
+   Substituting the values we found:
+   \[
+   \text{Difference} = 2 - (-3)
+   \]
+   Simplifying this expression:
+   \[
+   \text{Difference} = 2 + 3
+   \]
+   \[
+   \text{Difference} = 5
+   \]
+
+6. Therefore, the answer is: 
+   \[
+   \boxed{5}
+   \]

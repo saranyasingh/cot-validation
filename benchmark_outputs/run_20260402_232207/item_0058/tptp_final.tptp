@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, starts_with_paul(267)).
+fof(fact_2, axiom, lost_crayons_paul(231)).
+fof(fact_3, axiom, gave_away_crayons_paul(308)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, N] : (less_after_loss(X, N) <=> (starts_with(X, N) & lost(N)))).
+fof(rule_2, axiom, ! [X, N] : (reduced_by_givingaway(X, N) <=> (gives_away(X, N) & has(X, N)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, less_than_starts_paul).
+
+% From fact_2, fact_3 by arithmetic reasoning
+fof(inf_2, axiom, more_lost_than_gave_away).
+
+% From fact_2, fact_3 by arithmetic reasoning
+fof(inf_3, axiom, equal_differences).

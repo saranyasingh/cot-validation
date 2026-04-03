@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: ManyBooksExist() :: True
+
+## RULES
+RULE-1: TotalBooks = BooksRead + RemainingBooks :: ∀(total_books, books_read, remaining_books) (TotalBooks(total_books, books_read, remaining_books) ↔ (∀books (BooksExist(books) → (BooksRead(books) ∧ RemainingBooks(books)))))
+
+## INFERENCES
+INF-1: TotalNumberOfBooks = 13 + 8 :: TotalBooks(TotalNumberOfBooks, 13, 8)

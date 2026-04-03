@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Frank puts 11 pieces of candy in each bag :: PutsCandyInBag(x, 11)
+FACT-2: He has 22 pieces of candy :: HasCandy(y, 22)
+
+### RULES
+RULE-1: If \( x \) is divisible by \( d \), then there exists an integer quotient \( q \) such that \( x = dq \). :: DivisibleBy(x, d, q)
+RULE-2: If \( x \) is divisible by \( d \) and \( y \geq 0 \), then \( x \mod d = y \) and \( 0 \leq y < d \). :: ModuloDivision(x, d, y)
+
+### INFERENCES
+INF-1: There exist integers \( q \) and \( r \) such that \( q \cdot 11 + r = 22 \) and \( 0 \leq r < 11 \) :: InfersDivisibility(22, 11, q, r)
+INF-2: Since \( 22 \div 11 = 2 \), the division results in no remainder :: IntegerResult(q, 22, 2)
+INF-3: Thus, Frank can create 2 bags containing 11 pieces of candy each :: BagsCreated(2, 11)
+
+Therefore, the answer is: 2 bags.

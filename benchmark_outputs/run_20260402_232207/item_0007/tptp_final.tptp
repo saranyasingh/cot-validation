@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, blocks(randy, 95)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, N] : (blocks(X, N) => (builds_house(X, N) | builds_tower(X, N)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, builds_house(randy, 95) | builds_tower(randy, 95)).
+
+fof(inf_2, axiom, builds_house(randy, 20)).
+fof(inf_3, axiom, builds_tower(randy, 50)).
+fof(inf_4, axiom, difference_of(builds_tower(randy, 50), builds_house(randy, 20))).

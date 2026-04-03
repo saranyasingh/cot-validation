@@ -1,0 +1,18 @@
+## FACTS
+
+FACT-1: Jack received 4 emails in the morning :: ReceivedEmails(4, t_morning)
+FACT-2: Jack received 6 emails in the afternoon :: ReceivedEmails(6, t_afternoon)
+
+## RULES
+
+RULE-1: Total received emails during the day = ReceivedEmails(x, t_morning) + ReceivedEmails(y, t_afternoon) :: TotalReceivedEmails = ReceivedEmails(4, t_morning) + ReceivedEmails(6, t_afternoon)
+
+## INFERENCES
+
+INF-1: Total received emails during the day :: TotalReceivedEmails() :: TotalReceivedEmails = ReceivedEmails(4, t_morning) + ReceivedEmails(6, t_afternoon)
+
+INF-2: Email sent in the day = SentLetters(x, t_morning) + SentLetters(y, t_afternoon) :: TotalSentLetters = SentLetters(2, t_morning) + SentLetters(8, t_afternoon)
+
+INF-3: Total letters sent during the day :: TotalSentLetters() :: TotalSentLetters = SentLetters(2, t_morning) + SentLetters(8, t_afternoon)
+
+INF-4: Conclusion: Total emails sent in the day :: TotalSentLetters() :: TotalSentLetters = SentLetters(2, t_morning) + SentLetters(8, t_afternoon)

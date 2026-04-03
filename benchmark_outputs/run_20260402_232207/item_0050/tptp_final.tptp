@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, received_emails(morning, 10)).
+fof(fact_2, axiom, received_emails(afternoon, 5)).
+fof(fact_3, axiom, received_emails(evening, 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : (total_received(X, Y, Z) <=> (received_emails(morning, X) + received_emails(afternoon, Y) + received_emails(evening, Z))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Arithmetic
+fof(inf_1, axiom, (received_emails(afternoon, 5) - received_emails(evening, 4))).

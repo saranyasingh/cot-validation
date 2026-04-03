@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — Directly stated: Paul gave away 90 crayons.
+FACT-2: SUPPORTED — Directly stated: Paul lost 412 crayons.
+RULE-1: PLAUSIBLE — A reasonable existential relation that if there is a loss, there exists something given away (consistent with the story).
+RULE-2: PLAUSIBLE — There exists a crayon given away by Paul (follows from FACT-1).
+RULE-3: PLAUSIBLE — There exists a crayon lost by Paul (follows from FACT-2).

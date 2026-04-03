@@ -1,0 +1,62 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These are the facts directly stated in the problem without any quantifiers.
+
+**Fact-1:** There are 557 grams of wax available initially. 
+\[
+\text{AvailableWax} ::= AvailableWax(t_0) \land WaxAmount(557)
+\]
+
+**Fact-2:** A total of 17 grams of wax is required.
+\[
+\text{RequiredWax} ::= RequiredWax(t_0) \land WaxAmount(17)
+\]
+
+### Rules
+These are universally quantified implications based on external or linguistic knowledge that apply to all times.
+
+**Rule-1:** The amount of wax used equals the difference between the total required wax and the available wax.
+\[
+\forall t (AvailableWax(t) \rightarrow \text{UsedWax}(t))
+\]
+
+### Inferences
+These are derived conclusions using the provided facts and rules. Each inference must cite its premise(s) and state which inference rule was used.
+
+**Inference-1:** Given that there is enough wax available, no additional wax will be used beyond what is available.
+\[
+\text{If } \text{AvailableWax}(t_0), \text{ then } \text{UsedWax}(t_0) = 0
+\]
+
+**Inference-2:** Since the total required wax is less than the available wax, some wax can be used before the requirement is met.
+\[
+\text{If } \text{RequiredWax}(t_0) \land \text{AvailableWax}(t_0), \text{ then } \text{UsedWax}(t_0) > 0
+\]
+
+**Inference-3:** To find out if there is sufficient wax left after using some, calculate the remaining wax.
+\[
+\text{RemainingWax} ::= RemainingWax(t_0) \land \text{AvailableWax}(t_0) \land \text{UsedWax}(t_0)
+\]
+
+Finally, let’s combine these components into the final FOL statements:
+
+#### Facts
+```plaintext
+Fact-1: AvailableWax(t_0) ∧ WaxAmount(557)
+Fact-2: RequiredWax(t_0) ∧ WaxAmount(17)
+```
+
+#### Rules
+```plaintext
+Rule-1: AvailableWax(t_0) → UsedWax(t_0)
+```
+
+#### Inferences
+```plaintext
+Inference-1: If AvailableWax(t_0), then UsedWax(t_0) = 0
+Inference-2: If RequiredWax(t_0) ∧ AvailableWax(t_0), then UsedWax(t_0) > 0
+Inference-3: RemainingWax(t_0) := AvailableWax(t_0) ∧ UsedWax(t_0)
+```
+
+This structure ensures that each step logically builds upon previous information while adhering to the constraints and requirements specified.

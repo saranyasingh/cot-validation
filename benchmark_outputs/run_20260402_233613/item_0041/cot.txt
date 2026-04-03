@@ -1,0 +1,33 @@
+Premise 1: There are 5 red peaches in the basket.
+Premise 2: There are 14 yellow peaches in the basket.
+Premise 3: There are 6 green peaches in the basket.
+
+The conclusion we want to draw is that there are 14 yellow peaches and 6 green peaches in total in the basket.
+
+Logical Syllogism:
+
+P1 → R (There are 5 red peaches)
+P2 → Y (There are 14 yellow peaches)
+P3 → G (There are 6 green peaches)
+
+From P1 and P2, we know:
+R + Y = Total number of peaches
+
+Substituting known values:
+5 + 14 = Total number of peaches
+
+Total number of peaches = 19
+
+Now, let's find out how many green and yellow peaches together make up this total:
+G + Y = Total number of peaches
+
+Substitute the value of total peaches:
+G + 14 = 19
+
+To solve for G, subtract 14 from both sides:
+G = 19 - 14
+G = 5
+
+So, there are 5 green peaches in the basket.
+
+Therefore, the answer is: Green and yellow peaches combined make up 14 peaches, which means there are 5 green peaches. The remaining peaches must be yellow, making it 14 yellow peaches.

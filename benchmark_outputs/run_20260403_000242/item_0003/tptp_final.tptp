@@ -1,0 +1,8 @@
+% --- FACTS ---
+fof(fact_1, axiom, book_count(edward, 2)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1 by Inference
+fof(inf_1, axiom, ! [I] : ( in_book_list(edward, I) => price_of(I) = 3 ) ).

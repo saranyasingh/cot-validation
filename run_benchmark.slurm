@@ -16,6 +16,7 @@
 DATASET="${DATASET:-dataset.json}"
 CLIENT="${CLIENT:-openai}"       # openai | kimi | deepseek
 MAX_RETRIES="${MAX_RETRIES:-3}"
+NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 
 # ── API keys — set these in your cluster environment or uncomment and fill in ──
@@ -59,12 +60,17 @@ OUTPUT_ARG=""
 if [ -n "$OUTPUT_DIR" ]; then
     OUTPUT_ARG="--output-dir $OUTPUT_DIR"
 fi
+NUM_PROBLEMS_ARG=""
+if [ -n "$NUM_PROBLEMS" ]; then
+    NUM_PROBLEMS_ARG="--num-problems $NUM_PROBLEMS"
+fi
 
 "$PYTHON" benchmark.py \
     --dataset "$DATASET" \
     --client "$CLIENT" \
     --max-retries "$MAX_RETRIES" \
-    $OUTPUT_ARG
+    $OUTPUT_ARG \
+    $NUM_PROBLEMS_ARG
 
 echo "──────────────────────────────────────────"
 echo "End time : $(date)"

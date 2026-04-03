@@ -1,0 +1,33 @@
+This task involves converting a specific logical deduction process into First Order Logic (FOL). Here’s how I would structure it based on your instructions:
+
+### Facts
+```plaintext
+FACT-1: Edward spent $6 on two books :: Expenditure(Edward, t, 6) ∧ Book(Edward, t, 2)
+```
+
+### Rules
+Rules are universally quantified implications that represent external or linguistic knowledge. Since no additional rules are provided beyond the premise, there will be no rules section.
+
+### Inferences
+```plaintext
+INF-1: From Fact-1, Rule-1 by Modus Ponens: Each book costs the same amount of money :: ∀b (BookCost(b) ↔ Expenditure(Edward, t, 6))
+```
+In this case, since each book cost the same amount, let’s denote this common cost as `book_cost`. Thus, every book should have an equal cost.
+
+### Final Answer
+Since there are no additional premises or rules, the final output remains the inferred facts and rule:
+
+#### Facts:
+```plaintext
+FACT-1: Edward spent $6 on two books :: Expenditure(Edward, t, 6) ∧ Book(Edward, t, 2)
+```
+
+#### Rules:
+There are none, as no further rules are needed.
+
+#### Inferences:
+```plaintext
+INF-1: From Fact-1, Rule-1 by Modus Ponens: Each book costs the same amount of money :: ∀b (BookCost(b) ↔ Expenditure(Edward, t, 6))
+```
+
+These steps ensure that the logical deductions follow from the initial premises without any ambiguity or additional constraints.

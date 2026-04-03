@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: GrasshopperJumped(25) :: Jumped(grasshopper, 25)
+FACT-2: FrogJumped(frog, x) :: x > Jumped(greenhouse_guy, 25)
+## RULES
+RULE-1: FrogJumped(frog, y) :: y > Jumped(greenhouse_guy, 25) :: y > 43
+RULE-2: MouseJumped(mouse, z) :: z > FrogJumped(frog, y) :: z > 45
+## INFERENCES
+INF-1: MouseJumped(mouse, 45) :: Rule-2 :: Fact-2 :: Fact-1

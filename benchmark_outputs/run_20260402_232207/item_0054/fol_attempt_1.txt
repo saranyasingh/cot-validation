@@ -1,0 +1,9 @@
+**FACTS**
+
+FACT-1: Jack received 6 emails in the morning :: MorningEmails(Jack) = 6
+
+FACT-2: Jack received 2 emails in the afternoon :: AfternoonEmails(Jack) = 2
+
+**INFERENCES**
+
+INF-1: From FACT-1, RULE-1 by Subtraction: MoreMorningThanAfternoon :: MorningEmails(Jack) - AfternoonEmails(Jack) = 4

@@ -1,0 +1,40 @@
+This seems to be a simple arithmetic problem rather than a logical deduction involving FOL. Let's break down the steps:
+
+### Given Information:
+1. **Premise 1:** Frank puts 11 pieces of candy in each bag.
+2. **Premise 2:** He has 22 pieces of candy.
+3. **Conclusion:** Therefore, he would have 2 bags of candy.
+
+### Reasoning:
+To determine how many bags Frank can make with 22 pieces of candy if each bag holds 11 pieces, we perform the division \( \frac{22}{11} \). This calculation will give us the number of bags.
+
+\[ \text{Number of Bags} = \frac{\text{Total Pieces}}{\text{Pieces per Bag}} = \frac{22}{11} = 2 \]
+
+### Conclusion:
+Frank would have 2 bags of candy.
+
+### Converting to First-Order Logic (FOL):
+We don't need to explicitly represent this using FOL because the problem is straightforward arithmetic. However, let's structure it according to the required format:
+
+#### Facts:
+- Fact-1: TotalCandy(22) :: 22
+- Fact-2: CandyPerBag(11) :: 11
+
+#### Rules:
+No specific rules needed since it's just an arithmetic operation.
+
+#### Inferences:
+INF-1: NumberOfBags :: Fact-1 / Fact-2 :: 22 / 11 :: 2
+
+So, the final output would look like:
+
+```
+## FACTS
+Fact-1: TotalCandy(22) :: 22
+Fact-2: CandyPerBag(11) :: 11
+
+## RULES
+
+## INFERENCES
+INF-1: NumberOfBags :: Fact-1 / Fact-2 :: 22 / 11 :: 2
+```

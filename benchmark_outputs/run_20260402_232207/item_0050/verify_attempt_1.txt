@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story explicitly states 10 emails in the morning.
+FACT-2: SUPPORTED — The story explicitly states 5 emails in the afternoon.
+FACT-3: SUPPORTED — The story explicitly states 4 emails in the evening.
+RULE-1: PLAUSIBLE — It correctly defines total as the sum of morning, afternoon, and evening counts.

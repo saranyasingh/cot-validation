@@ -1,0 +1,17 @@
+### ## FACTS
+FACT-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+FACT-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+FACT-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+
+### ## RULES
+RULE-1: IF AmountNeedsFlour(), THEN FlourNeeded > FlourAdded :: ∀x (AmountNeedsFlour(x) → FlourNeeded(x) > FlourAdded(x))
+RULE-2: ADDS_MORE_FLOUR_THAN_SUGAR(FlourNeeded, SugarNeeded) :: FlourNeeded > SugarNeeded
+
+### ## INFERENCES
+INF-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+INF-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+INF-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+INF-4: NeedsFlourAndSugar(NeededFlour, NeededSugar) :: NeededFlour = 14 cups ∧ NeededSugar = 4 cups
+INF-5: NeedsFlour(10) :: FlourNeeded = 10 cups
+INF-6: AddsMoreFlourThanSugar(10, 4) :: FlourNeeded > SugarNeeded
+INF-7

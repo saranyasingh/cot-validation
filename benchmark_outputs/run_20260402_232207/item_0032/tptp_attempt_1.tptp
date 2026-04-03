@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_people_at_once(18)).
+fof(fact_2, axiom, capacity_per_seat(9)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ( total_people(P) => seats_needed(P, P / capacity) )).
+fof(rule_2, axiom, ! [S] : ( capacity(S) => S = 9 )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_seats(18, 9)).

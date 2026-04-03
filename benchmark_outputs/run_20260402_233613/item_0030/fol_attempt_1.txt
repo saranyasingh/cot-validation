@@ -1,0 +1,61 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). Here’s the process broken down step-by-step:
+
+### Facts
+1. **Total Cups of Sugar Needed**: \( \text{SugarNeeded} = 9 \) cups
+2. **Total Cups of Flour Needed**: \( \text{FlourNeeded} = 14 \) cups
+3. **Cups of Salt Added**: \( \text{SaltAdded} = 40 \) cups
+4. **Cups of Flour Already Added**: \( \text{FlourAdded} = 4 \) cups
+
+### Rules
+5. **Total Flour Calculation**:
+   - \( \text{FlourLeftToAdd} = \text{FlourNeeded} - \text{FlourAdded} \)
+
+6. **Comparison Between Flour and Sugar**:
+   - \( \text{DifferenceBetweenFlourAndSugar} = \text{FlourLeftToAdd} - \text{SugarNeeded} \)
+
+### Inferences
+7. **Calculate Remaining Flour to Add**:
+   - Using Rule 5, derive the formula for the remaining flour to be added:
+     \( \text{FlourLeftToAdd} ::= \text{FlourNeeded} - \text{FlourAdded} \)
+
+8. **Compare Remaining Flour with Sugar Needed**:
+   - Using Rule 6, derive the formula for the difference between the remaining flour and the amount of sugar needed:
+     \( \text{DifferenceBetweenFlourAndSugar} ::= \text{FlourLeftToAdd} - \text{SugarNeeded} \)
+
+### Final Conversion
+Here are the FOL formulas based on the provided facts and rules:
+
+#### Facts
+1. Fact-1: \( \text{SugarNeeded} = 9 \) cups
+2. Fact-2: \( \text{FlourNeeded} = 14 \) cups
+3. Fact-3: \( \text{FlourAdded} = 4 \) cups
+4. Fact-4: \( \text{FlourLeftToAdd} ::= \text{FlourNeeded} - \text{FlourAdded} \)
+5. Fact-5: \( \text{DifferenceBetweenFlourAndSugar} ::= \text{FlourLeftToAdd} - \text{SugarNeeded} \)
+
+#### Rules
+6. Rule-1: \( \text{FlourLeftToAdd} ::= \text{FlourNeeded} - \text{FlourAdded} \)
+7. Rule-2: \( \text{DifferenceBetweenFlourAndSugar} ::= \text{FlourLeftToAdd} - \text{SugarNeeded} \)
+
+#### Inferences
+8. Infer-1: \( \text{FlourLeftToAdd} ::= \text{FlourNeeded} - \text{FlourAdded} \)
+9. Infer-2: \( \text{DifferenceBetweenFlourAndSugar} ::= \text{FlourLeftToAdd} - \text{SugarNeeded} \)
+
+### Final Answer
+In order to express this conversion clearly, I will present the results using the specified output format:
+
+```
+## FACTS
+Fact-1: SugarNeeded = 9
+Fact-2: FlourNeeded = 14
+Fact-3: FlourAdded = 4
+Fact-4: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+Fact-5: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded
+
+## RULES
+Rule-1: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+Rule-2: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded
+
+## INFERENCES
+Infer-1: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+Infer-2: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded
+```

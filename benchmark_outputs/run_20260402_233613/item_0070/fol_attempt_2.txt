@@ -1,0 +1,10 @@
+```plaintext
+## FACTS
+FACT-1: Dan had $4 initially :: Money(Dan, t_initial) ∧ Amount(4, t_initial)
+
+## RULES
+RULE-1: Starting with X dollars, spending Y dollars leaves Z dollars :: Money(X, t_start) ∧ Spend(Y, t_start) → Money(Z, t_end)
+
+## INFERENCES
+INF-1: Spending $3 resulted in $1 left :: Money(4, t_initial) ∧ Spend(-3, t_initial) → Money(1, t_after_spending)
+```

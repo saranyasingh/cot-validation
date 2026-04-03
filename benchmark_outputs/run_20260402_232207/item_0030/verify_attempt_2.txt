@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states the recipe calls for 14 cups of flour.
+FACT-2: SUPPORTED — The story says she already put in 4 cups of flour.
+FACT-3: SUPPORTED — It is implied more flour is required since 4 < 14.
+RULE-1: PLAUSIBLE — It captures that FlourNeeded > FlourAdded in this context.
+RULE-2: PLAUSIBLE — The recipe requires more flour (14) than sugar (9), so this comparison is reasonable.

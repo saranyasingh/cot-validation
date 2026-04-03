@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker(29) & cake(30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, M] : ( (integer(N) & integer(M)) => divides(M, N) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [I] : ( crackers(I) => cracker(I / 3) ) ).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, ! [J] : ( cakes(J) => cake(J / 3) ) ).

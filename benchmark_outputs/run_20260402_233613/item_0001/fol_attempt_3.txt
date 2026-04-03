@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: There are 87 oranges :: NumberOfOranges(87)
+FACT-2: There are 290 bananas :: NumberOfBans(290)
+FACT-3: Bananas are organized into 2 groups :: OrganizedIntoGroups(bananas, 2)
+FACT-4: Oranges are organized into 93 groups :: OrganizedIntoGroups(oranges, 93)
+
+## RULES
+RULE-1: If a group divides the total number of items evenly, then the size of that group is equal to the total number divided by the number of groups :: Divisor(Divide, total_items, groups) → EqualSize(group_size, total_items, groups)
+
+## INFERENCES
+INF-1: Each group of bananas contains 145 bananas :: Forall(x)(Divisor(bananas, x, 2) → EqualSize(x, 145))

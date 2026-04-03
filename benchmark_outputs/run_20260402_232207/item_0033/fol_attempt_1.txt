@@ -1,0 +1,45 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. Fact-1: Each house receives 2 junk mails. :: ∀h (Houses(h) → JunkMails(h) = 2)
+2. Fact-2: Total number of junk mails needed is 14. :: ∀j (JunkMails(j) = 14)
+
+### Rules
+3. Rule-1: If each house receives 2 junk mails, then the total number of houses must satisfy this condition. :: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → Houses(h)))
+
+### Inferences
+4. Inferencing the number of houses based on the rules:
+   - From Fact-1, we have the implication ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → Houses(h)))
+   - Given Fact-2, we know ∀j (JunkMails(j) = 14)
+   - By universal instantiation, we consider one specific house h where Houses(h) holds.
+   - Applying Rule-1 to House h, we get (∀j (JunkMails(j) = 2) → Houses(h))
+   - Since JunkMails(h) = 14, which contradicts the assumption that JunkMails(j) = 2 for all j.
+   - Therefore, our initial premise must hold true, implying there are indeed Houses(h).
+   - Using Rule-1 again but now considering multiple houses, we conclude that the total number of houses is calculated by dividing the total number of junk mails by the number of junk mails per house.
+   - Hence, the number of houses is \( \frac{14}{2} = 7 \).
+
+5. Final Conclusion: The number of houses in a block is **7**.
+
+### Converted FOL Formulas
+#### FACTS
+FACT-1: ∀h (Houses(h) → JunkMails(h) = 2)
+FACT-2: ∀j (JunkMails(j) = 14)
+
+#### RULES
+Rule-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → Houses(h)))
+
+#### INFERENCES
+INF-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14))
+INF-2: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14)) → NumberOfHouses = 7
+
+### Summary
+```plaintext
+FACT-1: ∀h (Houses(h) → JunkMails(h) = 2)
+FACT-2: ∀j (JunkMails(j) = 14)
+
+RULE-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → Houses(h)))
+INF-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14))
+INF-2: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14)) → NumberOfHouses = 7
+```
+
+This conversion effectively translates the logical steps into formal FOL statements, ensuring clarity and precision in representing the reasoning process.

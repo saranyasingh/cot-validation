@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_english(ryan)).
+
+fof(fact_2, axiom, learning_chinese(ryan)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (learning_english(D) => learning_english_sum(D)) & ! [D] : (learning_chinese(D) => learning_chinese_sum(D))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, learning_english_sum(ryan)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, learning_chinese_sum(ryan)).
+
+% From fact_1, fact_2, rule_1 by Addition
+fof(inf_3, axiom, learning_english_sum(ryan) + learning_chinese_sum(ryan)).

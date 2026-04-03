@@ -1,0 +1,3 @@
+TPTP syntax error:
+% Type mismatch in argument #1 of red_peaches(X1): expected $int but got $i
+eprover: cte_typecheck.c:327: TypeInferSort: Assertion `false' failed.

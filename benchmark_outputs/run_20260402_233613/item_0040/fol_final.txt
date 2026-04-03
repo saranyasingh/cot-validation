@@ -1,0 +1,15 @@
+This chain of thought can be converted into FOL as follows:
+
+## FACTS
+FACT-1: Matthew has 29 crackers and 30 cakes :: CrackerCountMatthew(29), CakeCountMatthew(30)
+
+## RULES
+RULE-1: Distributing items equally implies each gets half :: ∀n (Even(n) → n / 2)
+
+## INFERENCES
+INF-1: Matthew wants to distribute crackers and cakes equally among 2 friends :: WantsToDistribute(2, CrackerCountMatthew, CakeCountMatthew)
+INF-2: Crackers per friend: 14.5 (which cannot be evenly divided, indicating potential issues) :: CrackersPerFriend(14.5)
+INF-3: Cakes per friend: 15 (no fractional part after division) :: CakesPerFriend(15)
+
+## FINAL ANSWER
+INF-1: Each friend gets 15 cakes because they were given equal shares of both crackers and cakes.

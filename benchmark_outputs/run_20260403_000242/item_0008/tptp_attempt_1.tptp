@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, current_weight(jessie, 66_kg)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : (W = 66_kg + 126_kg)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, initial_weight(jessie, 192_kg)).

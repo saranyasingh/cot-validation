@@ -1,0 +1,9 @@
+## FACTS
+- AmountAvailable(104)
+
+## RULES
+- Dividing an amount by another gives the quotient if both amounts are positive.
+
+## INFERENCES
+- ∃n (AmountAvailable(n) ∧ NumberOfDVDs(n, 104)) :: Given that there exists some amount 'n' which satisfies the condition AmountAvailable(n), it implies that there exists at least one 'n' such that NumberOfDVDs(n, 104) holds true.
+- ∃n (NumberOfDVDs(n, 104) ∧ n = 4) :: Given that there exists some amount 'n' for which NumberOfDVDs(n, 104) holds true, it also means that n equals 4.

@@ -1,0 +1,14 @@
+### ## FACTS
+FACT-1: Zachary did 44 push-ups :: PushUp(Zachary, 44)
+
+FACT-2: David did 58 more push-ups than Zachary :: ∀t (PushUp(David, t) → PushUp(Zachary, t) → PushUp(David, t+58))
+
+### ## RULES
+RULE-1: Total push-ups for David :: ∀t (PushUp(David, t))
+RULE-2: Total push-ups for Zachary :: PushUp(Zachary, 44)
+RULE-3: Summing up push-ups :: (∀t (PushUp(David, t) → PushUp(Zachary, t)) → PushUp(Zachary, 44) → (∃t (PushUp(David, t)) ∧ PushUp(Zachary, t)))
+
+### ## INFERENCES
+INF-1: Total push-ups David did :: Rule-1
+INF-2: Total push-ups Zachary did :: Rule-2
+INF-3: Total push-ups Zachary and David did together :: Rule-3

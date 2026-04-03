@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: ReceivedEmails(morning) :: ReceivedEmails("morning")
+FACT-2: SentLetters(afternoon) :: SentLetters("afternoon")
+
+### RULES
+RULE-1: TotalSentEmails(overall) :: ∀t (ReceivedEmails(t) ∨ SentLetters(t))
+RULE-2: SentEmailsInMorning :: ∀t (t ∈ "morning" → SentEmails(t))
+RULE-3: SentEmailsInAfternoon :: ∀t (t ∈ "afternoon" → SentEmails(t))
+
+### INFERENCES
+INF-1: TotalSentEmails(morning, afternoon) :: (∀t ((t ∈ "morning" ∧ ReceivedEmails(t)) ∨ SentEmails(t)) ∧ ∀t ((t ∈ "afternoon" ∧ ReceivedEmails(t)) ∨ SentEmails(t)))
+INF-2: TotalSentEmails(morning) :: (∃t (t ∈ "morning" ∧ SentEmails(t)))
+INF-3: TotalSentEmails(afternoon) :: (∃t (t ∈ "afternoon" ∧ SentEmails(t)))
+INF-4: SentEmailsOverall :: (∃t ((t ∈ "morning" ∧ SentEmails(t)) ∨ (t ∈ "afternoon" ∧ SentEmails(t))))
+INF-5: TotalSentEmails :: (∃t ((t ∈ "morning" ∧ TotalSentEmails(morning)) ∨ (t ∈ "afternoon" ∧ TotalSentEmails(afternoon))))

@@ -1,0 +1,18 @@
+This logical syllogism can be represented in FOL as follows:
+
+### FACTS
+FACT-1: Kelly has 106 Nintendo games initially :: Games(Kelly, t_initial) 
+
+FACT-2: Kelly gives away 64 games :: Games(Kelly, t_giveaway)  
+
+### RULES
+Rule-1: If someone has some amount of something, then they lose that much if they give it away :: ∀Games(g, t) → ∀amount(a) (Games(g, t) → Loss(g, t, a)) 
+
+### INFERENCES
+INF-1: Kelly loses 64 games after giving them away :: ∀Games(Games(Kelly, t_giveaway), t_giveaway) → Loss(Games(Kelly, t_giveaway), t_giveaway, 64)  
+
+INF-2: After losing 64 games, Kelly still has the original 106 games minus these lost ones :: ∀Games(Games(Kelly, t_initial), t_initial) ∧ ∀Loss(Loss(Kelly, t_givenaway, 64), t_givenaway) → Remaining(Games(Kelly, t_final), t_final) where t_final > t_initial 
+
+INF-3: Kelly ends up with 42 games after the transaction :: Remaining(Games(Kelly, t_final), t_final) = 106 - 64 = 42
+
+Therefore, after giving away 64 games, Kelly has 42 games left.

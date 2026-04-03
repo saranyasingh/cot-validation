@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, earnings_per_week(2)).
+fof(fact_2, axiom, total_earnings(178)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Rate, Time] : ( earnings(Rate, Time) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by EarningsPerWeek
+fof(inf_1, axiom, earnings_per_week_lewis(2)).
+
+% From inf_1, by Multiplication
+fof(inf_2, axiom, total_earnings_total(Earnings, Weeks)).
+
+% From inf_2, by SolveForWeeks
+fof(inf_3, axiom, solve_for_weeks(NumberOfWeeks)).
+
+% From inf_3, by EquationSetup
+fof(inf_4, axiom, equation_for_earnings(TotalEarnings, Earnings)).
+
+% From inf_4, by Substitution
+fof(inf_5, axiom, equation_substitution(equation_for_earnings(TotalEarnings, Earnings), Earnings)).
+
+% From inf_5, by SolveEquation
+fof(inf_6, axiom, solve_equation(solve_for_weeks(NumberOfWeeks))).
+
+% The harvest lasted for 89 weeks
+fof(inf_7, axiom, harvest_duration(89)).

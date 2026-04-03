@@ -1,0 +1,16 @@
+### ## FACTS
+FACT-1: Each house receives 2 junk mails :: HouseReceivesJunkMail(house)
+
+FACT-2: There are 14 pieces of junk mail in total :: TotalJunkMail(total_junks)
+
+### ## RULES
+RULE-1: Given that each house receives 2 junk mails, there must be enough junk mails to distribute among houses. :: ∀house (HouseReceivesJunkMail(house) → TotalJunkMail ≥ 2*HouseReceivesJunkMail(house))
+
+RULE-2: Since the mailman distributes 14 pieces of junk mail evenly across all houses, the total number of junk mails should match the calculation. :: ∀total_junks (TotalJunkMail(total_junks) ↔ (∀house (HouseReceivesJunkMail(house)) ∧ Sum(HouseReceivesJunkMail(house))) = total_junks)
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1, we know each house gets 2 junk mails. :: HouseReceivesJunkMail(house) → TotalJunkMail ≥ 2*HouseReceivesJunkMail(house)
+
+INF-2: Given that the total number of junk mails is 14, the sum of junk mails received by each house equals 14. :: TotalJunkMail(14) ↔ (∀house (HouseReceivesJunkMail(house)) ∧ Sum(HouseReceivesJunkMail(house))) = 14
+
+INF-3: By combining INF-1 and INF-2, we conclude that if each house receives 2 junk mails, then the total number of junk mails must indeed be 14. :: ∴ TotalJunkMail(14) ↔ (∀house (HouseReceivesJunkMail(house)) ∧ Sum(HouseReceivesJunkMail(house))) = 14

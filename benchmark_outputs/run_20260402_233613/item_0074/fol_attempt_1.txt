@@ -1,0 +1,33 @@
+### Facts
+- Fact-1: There are 20 houses in a block :: Houses(20)
+
+- Fact-2: Each house receives 32 pieces of junk mail :: MailPerHouse(32)
+
+### Rules
+- Rule-1: If there are \( n \) houses, then each house gets \( m \) pieces of mail :: Mail(n, m)
+
+### Inferences
+- INF-1: Given 20 houses, each receiving 32 pieces of mail :: Mail(20, 32)
+
+- INF-2: Total pieces of junk mail = Number of houses × Mail per house :: TotalJunkMail(Houses, MailPerHouse)
+
+- INF-3: Calculate the total pieces of junk mail :: TotalJunkMailCalculation
+
+### Conversion to FOL
+#### Facts
+```
+Fact-1: Houses(20)
+Fact-2: MailPerHouse(32)
+```
+
+#### Rules
+```
+Rule-1: Mail(n, m) ↔ ∀h (Houses(h) → Mail(h, m))
+```
+
+#### Inferences
+```
+INF-1: Mail(20, 32)
+INF-2: TotalJunkMail(Houses, MailPerHouse)
+INF-3: TotalJunkMailCalculation := House * MailPerHouse
+```

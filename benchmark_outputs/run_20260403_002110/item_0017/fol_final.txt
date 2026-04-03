@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Each basket contains 19 red peaches and 4 green peaches :: (RedPeachesInBasket(x) ∧ GreenPeachesInBasket(x))
+FACT-2: There are 15 such baskets :: (BasketsCounted(15))
+FACT-3: A peach in a basket is either red or green :: (IsPeachType(RedPeachesInBasket(x)) ∨ IsPeachType(GreenPeachesInBasket(x)))
+
+### RULES
+RULE-1: If a basket contains both red and green peaches, then it contains 23 peaches :: (ContainsBothTypesOfPeaches(x) → Has23Peaches(x))
+RULE-2: Given a specific basket x, if it contains 23 peaches, then the total number of peaches in that basket is 23 :: (Has23Peaches(x) → TotalNumberOfPeaches(x) = 23)
+
+### INFERENCES
+INF-1: From Fact-1 and Rule-1, every basket contains 23 peaches :: (∀x ContainsBothTypesOfPeaches(x) → Has23Peaches(x))
+INF-2: From Fact-2 and INF-1, there are 15 baskets containing 23 peaches each :: (∀x BasketsCounted(15) → (∃y ContainsBothTypesOfPeaches(y) & TotalNumberOfPeaches(y) = 23))
+INF-3: From Fact-3 and INF-2, the total number of peaches in all baskets is 345 :: (∀x BasketsCounted(15) → (∃y ContainsBothTypesOfPeaches(y) & TotalNumberOfPeaches(y) = 23))

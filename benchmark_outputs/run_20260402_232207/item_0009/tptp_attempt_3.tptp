@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_tickets(dave, T)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (initial_tickets(dave, T) => final_tickets_after_buy(dave, minus(T, 12)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, minus(T, 12) = 14).
+
+% From inf_1 by addition
+fof(inf_2, axiom, T = 26).
+
+% From inf_2 by substitution
+fof(inf_3, axiom, initial_tickets(dave, 26)).

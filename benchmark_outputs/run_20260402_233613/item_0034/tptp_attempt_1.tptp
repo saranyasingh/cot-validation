@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, BottleCaps(initial_bottle_caps) = 71).
+
+fof(fact_2, axiom, Wrappers(initial_wrappers) = 24).
+
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : (BottleCaps(W) > Wrappers(W))).
+
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, BottleCaps(28) > Wrappers(16)).

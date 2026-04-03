@@ -1,0 +1,34 @@
+Let's break down the problem and construct a logical argument to determine how many rows Faye can make with her pencils:
+
+1. **Premise 1:** Faye has 35 packs of pencils.
+   - This establishes the total number of pencil packs available.
+
+2. **Premise 2:** Each pack contains 4 pencils.
+   - This gives us the number of pencils per pack.
+
+3. **Premise 3:** Faye wants to place the pencils into rows with 2 pencils in each row.
+   - This specifies the number of pencils per row.
+
+Now, let's apply these premises logically:
+
+- First, calculate the total number of pencils:
+  \[
+  \text{Total number of pencils} = \text{Number of packs} \times \text{Pencils per pack}
+  \]
+  Substituting the given values:
+  \[
+  \text{Total number of pencils} = 35 \times 4 = 140
+  \]
+
+Next, we need to find out how many rows of 2 pencils can be made from these 140 pencils:
+\[
+\text{Number of rows} = \frac{\text{Total number of pencils}}{\text{Pencils per row}}
+\]
+Substituting the numbers we have:
+\[
+\text{Number of rows} = \frac{140}{2} = 70
+\]
+
+Therefore, based on our logical steps and calculations, Faye can make 70 rows with her pencils.
+
+The answer is: 70 rows.

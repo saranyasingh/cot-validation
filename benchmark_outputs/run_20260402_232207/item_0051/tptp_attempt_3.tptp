@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_pages = 555).
+
+fof(fact_2, axiom, chapters = 5).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Total_pages, Chapters] : (pages_per_chapter(Total_pages, Chapters) = divide_into_parts(Total_pages, Chapters))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, pages_per_chapter(555, 5) = 111).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, there_are_x_pages_in_each_chapter = divide_into_parts(555, 5)).

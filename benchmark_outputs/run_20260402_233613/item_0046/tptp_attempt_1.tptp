@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, winter_almost_here()).
+fof(fact_2, axiom, migrate_to_warm_countries_when_winter_approaches()).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : ( migrates_to_warm_country(A) => winter_almost_here() )).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, migrate_to_warm_countries_when_winter_approaches()).
+
+% From inferred data about Africa/Asia bird_families
+fof(inf_2, axiom, (africa_fams_flew_to(10) & asia_fams_flew_to(22))).
+% From inferred counts for Africa/Asia
+fof(inf_3, axiom, (africa_fams_flew_to(42) & asia_fams_flew_to(31))).
+% Difference calculation step
+fof(inf_4, axiom, difference(africa_fams_flew_to(42), asia_fams_flew_to(31), 11)).
+% Final result representation
+fof(inf_5, axiom, final_difference(11)).
+% Substitution of values into a concrete arithmetic expression
+fof(inf_6, axiom, subtract(42,31) = 11).

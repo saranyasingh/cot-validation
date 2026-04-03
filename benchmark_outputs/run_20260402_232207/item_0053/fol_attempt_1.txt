@@ -1,0 +1,20 @@
+### Facts
+- BottleCapsAndWrappersCollectedAtHome :: True
+- BottleCapsFoundAtPark :: 22
+- WrappersFoundAtPark :: 30
+- TotalBottleCapsNow :: 17
+- TotalWrappersNow :: 57
+
+### Rules
+- Rule-1: If a person collects bottle caps and wrappers, then they also collect bottle caps and wrappers. This implies that the quantity of each item is consistent throughout their collection.
+- Rule-2: Given that someone finds an item, the presence of that item can be inferred based on the information about what they have collected.
+
+### Inferences
+- INF-1: From Premise 1 and Premise 2, we deduce that the bottle caps and wrappers Danny collected are consistent with the information given. 
+- INF-2: Since Danny found 22 bottle caps and 30 wrappers at the park, and the current totals show he has 17 bottle caps and 57 wrappers, the initial amount of wrappers must account for the difference between the current total and the wrapper count from the park.
+- INF-3: By subtracting the number of wrappers found at the park from the current total of wrappers, we find out how many wrappers Danny had initially.
+
+Thus,
+INF-3: InitialWrappers :: 57 - 30
+
+This concludes our conversion into structured FOL.

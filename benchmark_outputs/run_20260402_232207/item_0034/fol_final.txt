@@ -1,0 +1,9 @@
+## FACTS
+LABEL: FACT-1 :: DannyInitialBottleCaps(71)
+LABEL: FACT-2 :: DannyInitialWrappers(24)
+
+## RULES
+LABEL: DIFFERENTIATE_BOTTLECAPS_AND_WRAPERS :: DIFFERENTIATE(BottleCaps, Wrappers) ::= BottleCaps - Wrappers
+
+## INFERENCES
+LABEL: DIFFERENTIAL_BOTTLECAPS_AND_WRAPERS :: DIFFERENTIAL(BottleCaps, Wrappers) ::= DIFFERENTIATE(BottleCaps, Wrappers)(DannyInitialBottleCaps(71), DannyInitialWrappers(24))

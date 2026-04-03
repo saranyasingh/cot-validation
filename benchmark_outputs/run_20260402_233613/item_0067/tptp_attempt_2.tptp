@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, math_pages(5)).
+fof(fact_2, axiom, reading_pages(10)).
+fof(fact_3, axiom, biology_pages(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (total_pages(P) = math_pages(P) + reading_pages(P) + biology_pages(P))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [P] : (total_pages(P) = math_pages(P) + reading_pages(P) + biology_pages(P))).

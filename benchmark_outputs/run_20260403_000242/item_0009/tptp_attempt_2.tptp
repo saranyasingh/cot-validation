@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, tickets_spent(dave, 12)).
+fof(fact_2, axiom, tickets_left(dave, 14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ( tickets_spent(dave, N) => tickets_won(dave, tickets_spent(dave) + tickets_left(dave)))). 
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, tickets_won(dave) = tickets_spent(dave) + tickets_left(dave)).
+% From fact_1 and fact_2 by arithmetic
+fof(inf_2, axiom, tickets_won(dave) = 26).

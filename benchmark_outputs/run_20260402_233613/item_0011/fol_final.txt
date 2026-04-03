@@ -1,0 +1,15 @@
+### LABEL: FACTS :: 
+FACT-1: Dave originally had 15 apps :: AppCount(Dave, t_0) = 15
+FACT-2: Dave added 71 new apps :: NewAppsAdded(Dave) = 71
+
+### LABEL: RULES ::
+Rule-1: If Dave has x apps and deletes y apps, then he has x - y apps remaining :: DeleteApps(x, y, z) := x - y = z
+
+### LABEL: INFERENCES ::
+INF-1: After adding 71 new apps, Dave has 86 apps :: Apply Rule-1 with x=15, y=71, z=86
+INF-2: Dave ends up with 14 apps after deleting some :: FinalAppCount(Dave) = 14
+
+INF-3: Calculate the difference between initial and final app counts :: DifferenceInApps(InitialApps, FinalApps) := InitialApps - FinalApps
+INF-4: Using INF-1 and INF-2, calculate the number of apps deleted :: NumberDeletedApps := DifferenceInApps(86, 14)
+
+INF-5: Verify the calculation of deleted apps :: CheckIfCorrectlyCalculated(DeleteApps(86, 14)) := True

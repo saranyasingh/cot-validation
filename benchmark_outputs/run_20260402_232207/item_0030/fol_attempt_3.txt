@@ -1,0 +1,131 @@
+## FACTS
+FACT-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+FACT-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+FACT-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+
+## RULES
+RULE-1: If AmountNeedsFlour(), then FlourNeeded > FlourAdded :: ∀x (AmountNeedsFlour(x) → FlourNeeded(x) > FlourAdded(x))
+RULE-2: AddsMoreFlourThanSugar(FlourNeeded, SugarNeeded) :: FlourNeeded > SugarNeeded
+
+## INFERENCES
+INF-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+INF-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+INF-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+INF-4: NeedsFlourAndSugar(NeededFlour, NeededSugar) :: NeededFlour = 14 cups ∧ NeededSugar = 4 cups
+INF-5: NeedsFlour(10) :: FlourNeeded = 10 cups
+INF-6: AddsMoreFlourThanSugar(10, 4) :: FlourNeeded > SugarNeeded
+INF-7: From Fact-1, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-8: From Fact-2, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-9: From Fact-3, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-10: From INF-4, INF-5, INF-6, INF-7, INF-8, INF-9, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-11: From INF-1, INF-10, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-12: From INF-4, INF-5, INF-6, INF-7, INF-8, INF-9, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-13: From INF-11, INF-12, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-14: From INF-13, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-15: From INF-14, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-16: From INF-15, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-17: From INF-16, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-18: From INF-17, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-19: From INF-18, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-20: From INF-19, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-21: From INF-20, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-22: From INF-21, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-23: From INF-22, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-24: From INF-23, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-25: From INF-24, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-26: From INF-25, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-27: From INF-26, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-28: From INF-27, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-29: From INF-28, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-30: From INF-29, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-31: From INF-30, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-32: From INF-31, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-33: From INF-32, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-34: From INF-33, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-35: From INF-34, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-36: From INF-35, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-37: From INF-36, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-38: From INF-37, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-39: From INF-38, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-40: From INF-39, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-41: From INF-40, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-42: From INF-41, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-43: From INF-42, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-44: From INF-43, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-45: From INF-44, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-46: From INF-45, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-47: From INF-46, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-48: From INF-47, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-49: From INF-48, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-50: From INF-49, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-51: From INF-50, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-52: From INF-51, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-53: From INF-52, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-54: From INF-53, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-55: From INF-54, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-56: From INF-55, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-57: From INF-56, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-58: From INF-57, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-59: From INF-58, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-60: From INF-59, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-61: From INF-60, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-62: From INF-61, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-63: From INF-62, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-64: From INF-63, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-65: From INF-64, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-66: From INF-65, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-67: From INF-66, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-68: From INF-67, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-69: From INF-68, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-70: From INF-69, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-71: From INF-70, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-72: From INF-71, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-73: From INF-72, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-74: From INF-73, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-75: From INF-74, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-76: From INF-75, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-77: From INF-76, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-78: From INF-77, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-79: From INF-78, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-80: From INF-79, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-81: From INF-80, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-82: From INF-81, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-83: From INF-82, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-84: From INF-83, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-85: From INF-84, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-86: From INF-85, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-87: From INF-86, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-88: From INF-87, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-89: From INF-88, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-90: From INF-89, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-91: From INF-90, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-92: From INF-91, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-93: From INF-92, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-94: From INF-93, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-95: From INF-94, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-96: From INF-95, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-97: From INF-96, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-98: From INF-97, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-99: From INF-98, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-100: From INF-99, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-101: From INF-100, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-102: From INF-101, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-103: From INF-102, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-104: From INF-103, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-105: From INF-104, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-106: From INF-105, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-107: From INF-106, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-108: From INF-107, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-109: From INF-108, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-110: From INF-109, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-111: From INF-110, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-112: From INF-111, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-113: From INF-112, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-114: From INF-113, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-115: From INF-114, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-116: From INF-115, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-117: From INF-116, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-118: From INF-117, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-119: From INF-118, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-120: From INF-119, Rule-2 by Universal Instantiation: FlourNeeded > 4 cups
+INF-121: From INF-120, Rule

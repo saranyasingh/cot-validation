@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: Chapters = 3 :: 3
+FACT-2: PagesPerChapter = TotalPages / Chapters :: 594 / 3
+
+### RULES
+RULE-1: If A implies B, then A -> B :: ∀(A -> B)
+
+### INFERENCES
+INF-1: Conclusion :: 198
+
+**Explanation:**
+- **Fact-1**: Establishes there are 3 chapters in the book.
+- **Fact-2**: States that the total number of pages (594) divided by the number of chapters should give the number of pages per chapter.
+- **Rule-1**: Applies universal instantiation to state that if something is true, then its implication holds universally.
+- **Inference-1**: Combines all known facts to derive the final result.

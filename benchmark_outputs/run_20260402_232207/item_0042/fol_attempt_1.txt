@@ -1,0 +1,11 @@
+This chain of thought has been converted into structured First-Order Logic (FOL):
+
+## FACTS
+FACT-1: Ryan spends 7 hours on learning English each day :: LearningEnglish(7)
+FACT-2: Ryan spends 4 hours on learning Spanish each day :: LearningSpanish(4)
+
+## RULES
+No rules were involved in this reasoning process.
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Subtraction: Ryan spends 3 more hours on learning English than on learning Spanish :: (LearningEnglish(7) - LearningSpanish(4)) = 3

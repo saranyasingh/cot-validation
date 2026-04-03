@@ -1,0 +1,48 @@
+To convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These represent the initial conditions and events described in the premise.
+
+#### Fact-1: Initial number of children on the bus.
+\[ \text{Children\_on\_bus} = 21 \]
+
+#### Fact-2: Number of children who got off the bus.
+\[ \text{Children\_got\_off} = 10 \]
+
+#### Fact-3: Final number of children on the bus after some additional children got on.
+\[ \text{Final\_children\_on\_bus} = 16 \]
+
+### Rules
+These represent universally quantified implications based on the premises.
+
+#### Rule-1: Remaining children after some get off the bus.
+\[ \forall x (\text{Children\_on\_bus}(x) \rightarrow (\text{Children\_got\_off}(x) \rightarrow \text{Remaining\_children}(x))) \]
+
+#### Rule-2: Adding children to the bus increases the total number of children.
+\[ \forall x (\text{Children\_got\_on}(x) \rightarrow \text{Children\_on\_bus}(x+1)) \]
+
+### Inferences
+These derive the unknown quantity using the facts and rules provided.
+
+#### Inf-1: Calculating the number of children who got on the bus.
+\[ \text{Children\_got\_on} = \text{Final\_children\_on\_bus} - \text{Children\_on\_bus} \]
+Substitute the values:
+\[ \text{Children\_got\_on} = 16 - 21 \]
+\[ \text{Children\_got\_on} = -5 \]
+
+This result seems incorrect because it implies fewer children than initially present, which contradicts the scenario described. Re-evaluating the steps might involve rechecking the interpretation of the problem statement.
+
+**Revised Steps:**
+Since the scenario indicates that more children joined the bus, let's reconsider the process logically:
+
+1. Start with 21 children.
+2. Subtract those who got off: \( 21 - 10 = 11 \).
+3. Add the number of children who got on, resulting in:
+   \[ 11 + Y = 16 \]
+   Solving for \( Y \):
+   \[ Y = 16 - 11 \]
+   \[ Y = 5 \]
+
+Thus, 5 children got on the bus.
+
+**Corrected Final Answer: 5 children got on the bus.**

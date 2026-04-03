@@ -1,0 +1,41 @@
+This problem involves deductive reasoning based on given facts and conclusions about the number of items collected by Danny at the park. Here's the breakdown in terms of FOL (First-Order Logic):
+
+### Facts
+These are the direct statements from the premise without any quantifiers or rules.
+
+#### Fact-1: Danny collected bottle caps and wrappers.
+\[ \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+#### Fact-2: At the park, Danny found 11 bottle caps and 28 wrappers.
+\[ \text{AtPark}(p, d, \text{bottle\_caps}, x) \land \text{AtPark}(p, d, \text{wrappers}, x) \land \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+#### Fact-3: After collecting, Danny now has 68 bottle caps and 51 wrappers in his collection.
+\[ \text{AfterCollecting}(d, \text{bottle\_caps}, x) \land \text{AfterCollecting}(d, \text{wrappers}, x) \land \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+### Rules
+These are universal quantified implications that express external or linguistic knowledge relevant to the problem.
+
+#### Rule-1: If someone collects bottle caps and wrappers, then after collecting, the number of each item remains unchanged.
+\[ \forall x (\text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \rightarrow \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x)) \]
+
+### Inferences
+These are derived conclusions based on the given facts and rules.
+
+#### Infer-1: From Fact-1, Rule-1 by Universal Instantiation: 
+\[ \text{If Danny collects bottle caps and wrappers, then after collecting, the number of each item remains unchanged.} \]
+\[ \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \rightarrow \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+#### Infer-2: Given Fact-2 and the result from Rule-1,
+\[ \text{AfterCollecting}(d, \text{bottle\_caps}, x) \land \text{AfterCollecting}(d, \text{wrappers}, x) \]
+\[ \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \rightarrow \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+#### Infer-3: Calculating the difference in numbers:
+\[ \text{Number of wrappers after collection} = 51 \]
+\[ \text{Number of bottle caps after collection} = 68 \]
+\[ \text{Difference in number of wrappers and bottle caps} = 51 - 68 \]
+
+### Final Answer
+To summarize, the difference in the number of wrappers and bottle caps Danny found at the park is calculated as:
+\[ \text{Difference} = 51 - 68 = -17 \]
+
+Thus, Danny found fewer wrappers than bottle caps at the park.

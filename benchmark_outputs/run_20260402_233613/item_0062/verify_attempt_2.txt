@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — The story states FrogJumped = GrasshopperJumped + 18 (43 inches), not FrogJumped(18).
+FACT-3: UNSUPPORTED — The story states MouseJumped = FrogJumped + 2 (45 inches), not MouseJumped(2).
+
+RULE-1: IMPLAUSIBLE — It asserts FrogJumped(ExtraDistance) as a general principle, which misrepresents the frog's actual jump and distorts the relation to the extra distance.

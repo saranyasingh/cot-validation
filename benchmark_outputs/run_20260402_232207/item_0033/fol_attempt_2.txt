@@ -1,0 +1,10 @@
+### ## FACTS
+FACT-1: ∀h (Houses(h) → JunkMails(h) = 2)
+FACT-2: ∀j (JunkMails(j) = 14)
+
+### ## RULES
+Rule-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → Houses(h)))
+
+### ## INFERENCES
+INF-1: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14))
+INF-2: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14)) → NumberOfHouses = 7

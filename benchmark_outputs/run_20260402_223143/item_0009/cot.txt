@@ -1,0 +1,20 @@
+Premise 1: At the arcade, Dave had won some tickets.
+Premise 2: Dave used 12 tickets to buy some toys.
+Premise 3: After buying the toys, Dave still has 14 tickets left.
+
+We need to determine how many tickets Dave won initially.
+
+Let's break down the information given:
+- Let \( W \) represent the total number of tickets Dave won initially.
+- We know that after using 12 tickets, Dave has 14 tickets left.
+
+From Premise 3, we have:
+\[ W - 12 = 14 \]
+
+To find \( W \), we add 12 to both sides of the equation:
+\[ W = 14 + 12 \]
+\[ W = 26 \]
+
+Therefore, Dave won 26 tickets at the arcade.
+
+The answer is: 26

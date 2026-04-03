@@ -1,0 +1,9 @@
+LABEL: ## FACTS :: Total\_blocks\_used = HouseBlocks + TowerBlocks
+LABEL: ## RULES :: TowerBlocks = 50
+LABEL: ## RULES :: HouseBlocks = 20
+
+LABEL: ## RULES :: Difference = TowerBlocks - HouseBlocks
+
+LABEL: ## INFERENCES :: Difference = 50 - 20 = 30
+LABEL: ## INFERENCES :: More blocks used for tower than house: TowerBlocks > HouseBlocks
+LABEL: ## INFERENCES :: Conclusion: 30 more blocks used for the tower compared to building the house

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story explicitly says there are 3 chapters.
+
+FACT-2: SUPPORTED — The PagesPerChapter = TotalPages / Chapters relation follows from having equal-sized chapters and a total page count.
+
+RULE-1: PLAUSIBLE — It is a valid logical tautology: if A implies B, then the statement "A -> B" expresses that implication.

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Each basket contains 19 red peaches :: RedPeachesInBasket(x) ≡ x = 19
+FACT-2: Each basket contains 4 green peaches :: GreenPeachesInBasket(y) ≡ y = 4
+FACT-3: There are 15 such baskets :: NumberOfBaskets(z) ≡ z = 15
+
+## RULES
+RULE-1: Total peaches in each basket = Red peaches + Green peaches :: RedAndGreenPeachesInBasket(u) ≡ u = RedPeachesInBasket(v) + GreenPeachesInBasket(w)
+RULE-2: Total peaches in all baskets = Total peaches in each basket * Number of Baskets :: TotalPeachesInAllBaskets(p) ≡ p = ∑(u = RedAndGreenPeachesInBasket(v)) * NumberOfBaskets(z)
+
+## INFERENCES
+INF-1: The total number of peaches in all the baskets together is **345** :: TotalPeachesInAllBaskets(p) = (19 + 4) * 15 = 345

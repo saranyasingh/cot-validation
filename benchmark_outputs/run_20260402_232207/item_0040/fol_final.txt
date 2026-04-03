@@ -1,0 +1,15 @@
+### ## FACTS
+```plaintext
+FACT-1: Matthew has 29 crackers and 30 cakes :: Cracker(29), Cake(30)
+```
+
+### ## RULES
+```plaintext
+RULE-1: If Matthew has N items, they can be distributed among M people :: ∀N(M ∈ ℤ ∧ N ∈ ℤ) -> (∀M(N / M ∈ ℤ))
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: Each person receives an equal number of crackers :: ∀i(i ∈ {crackers}) -> Cracker(i / 3)
+INF-2: Each person receives an equal number of cakes :: ∀j(j ∈ {cakes}) -> Cake(j / 3)
+```

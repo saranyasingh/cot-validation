@@ -1,0 +1,6 @@
+LABEL: FACT 1 :: J = 5
+LABEL: RULE 1 :: (J + 4) + J = 14
+LABEL: INF 1 :: J = 5
+LABEL: INF 2 :: (J + 4) = 9
+LABEL: INF 3 :: TotalApplesAdamJackieTogether = 14
+LABEL: INF 4 :: B = 20

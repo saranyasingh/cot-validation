@@ -1,0 +1,31 @@
+### ## FACTS
+LABEL: FACT 1 :: Danny collected bottle caps and wrappers :: (∃bottleCaps b caps) ∧ (∃wrappers w rws)
+
+LABEL: FACT 2 :: Danny found 11 bottle caps and 28 wrappers at the park :: (bottleCaps f11) ∧ (wrappers f28)
+
+LABEL: FACT 3 :: Now Danny has 68 bottle caps and 51 wrappers in his collection :: (bottleCaps c68) ∧ (wrappers c51)
+
+### ## RULES
+LABEL: RULE 1 :: There exists at least one item type :: ∃x x_type
+
+LABEL: RULE 2 :: Two instances cannot have different properties simultaneously :: ¬(∃x x_type & ∀y y_type)
+
+LABEL: RULE 3 :: If A then B implies C :: (A → B) → (A → C)
+
+LABEL: RULE 4 :: Negation of existential quantifier :: ¬(∃x P(x)) ≡ ∀x ¬P(x)
+
+LABEL: RULE 5 :: Quantified statements imply negated counterparts :: (∀x P(x)) → (¬∀x ¬P(x))
+
+LABEL: RULE 6 :: Addition rule for subtraction :: (a + b) - c = a - c + b - c
+
+LABEL: RULE 7 :: Subtraction rule for addition :: (a + b) - c = a + (b - c)
+
+LABEL: RULE 8 :: Multiplication rule for addition :: (a + b) * c = a * c + b * c
+
+LABEL: RULE 9 :: Division rule for multiplication :: (a * b) / c = a * (b / c)
+
+LABEL: RULE 10 :: Equality rule for difference :: a - b = -(b - a)
+
+LABEL: RULE 11 :: Identity rule for addition :: a + 0 = a
+
+LABEL: RULE 12 :: Identity rule for multiplication :: a * 1 = a

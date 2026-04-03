@@ -1,0 +1,40 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_flour(14)).
+
+fof(fact_2, axiom, already_added_flour(4)).
+
+fof(fact_3, axiom, flour_needed > flour_added).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( amount_needs_flour(X) => flour_needed(X) > flour_added(X) )).
+
+fof(rule_2, axiom, ! [F, S] : ( adds_more_flour_than_sugar(F, S) => F > S ) ).
+
+
+% --- INFERENCES ---
+% From fact_1
+fof(inf_1, axiom, needs_flour(14)).
+
+% From fact_2
+fof(inf_2, axiom, already_added_flour(4)).
+
+% From fact_3
+fof(inf_3, axiom, flour_needed > flour_added).
+
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_7, axiom, flour_needed(14) > flour_added(14)).
+
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_8, axiom, flour_needed(4) > flour_added(4)).
+
+% From fact_3, rule_1 by Universal Instantiation
+fof(inf_9, axiom, flour_needed > flour_added).
+
+% From NeedsFlourAndSugar(NeededFlour, NeededSugar)
+fof(inf_4, axiom, ! [NeededFlour, NeededSugar] : ( needs_flour_and_sugar(NeededFlour, NeededSugar) => ( needs_flour(NeededFlour) & needs_sugar(NeededSugar) ) ) ).
+
+% From NeedsFlour(10)
+fof(inf_5, axiom, needs_flour(10)).
+
+% From AddsMoreFlourThanSugar(10, 4)
+fof(inf_6, axiom, 10 > 4).

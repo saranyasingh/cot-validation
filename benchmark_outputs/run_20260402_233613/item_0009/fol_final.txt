@@ -1,0 +1,13 @@
+### ## FACTS
+LABEL: FACT-1 :: TicketsWon(Dave)
+LABEL: FACT-2 :: UsedTickets(Dave, 12)
+LABEL: FACT-3 :: LeftTickets(Dave, 14)
+
+### ## RULES
+LABEL: RULE-1 :: InitialTickets = TicketsWon - UsedTickets :: Rule1
+LABEL: RULE-2 :: FinalTickets = InitialTickets + RemainingTickets :: Rule2
+
+### ## INFERENCES
+LABEL: INFER-1 :: InitialTickets > 12 :: From Fact-1 and Fact-2
+LABEL: INFER-2 :: FinalTickets = InitialTickets + 14 :: Substitute values for Variables in Rule-2
+LABEL: INFER-3 :: Conclusion :: FinalTickets = 26 :: Substitute values for Variables in INFER-2

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — Directly stated in the story.
+FACT-2: SUPPORTED — Explicitly stated in the story.
+FACT-3: SUPPORTED — Entailed by the given facts (all peaches are red or green).
+RULE-1: PLAUSIBLE — Consistent with the facts: baskets with both colors have 23 peaches.
+RULE-2: PLAUSIBLE — Trivial tautology: if a basket contains 23 peaches, then its total is 23.

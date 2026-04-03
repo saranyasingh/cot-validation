@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, packs_of_pencils(faye, 35)).
+fof(fact_2, axiom, pencils_per_pack(4)).
+fof(fact_3, axiom, rows_with_2_pencils(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, N, M] : (groups(X, N, M))).
+fof(rule_2, axiom, ! [Amount, Pattern, Count] : (complete_rows(Amount, Pattern, Count))).
+fof(rule_3, axiom, ! [M, Amount, Count] : (form_complete_row(M, Amount, Count))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by multiplication
+fof(inf_1, axiom, calculate_total_pencils(140)).
+
+% From inf_1 by division
+fof(inf_2, axiom, determine_rows_with_pattern(70, 2)).
+
+% From inf_2 by conclusion
+fof(inf_3, axiom, conclusion(70)).

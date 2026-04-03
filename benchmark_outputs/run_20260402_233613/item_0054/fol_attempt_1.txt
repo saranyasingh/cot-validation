@@ -1,0 +1,3 @@
+INF-1: Jack received 6 emails in the morning :: MorningEmails(x) ≡ 6
+INF-2: Jack received 2 emails in the afternoon :: AfternoonEmails(y) ≡ 2
+INF-3: Difference between morning and afternoon emails :: MorningMoreThanAfternoon(z) ≡ MorningEmails(x) - AfternoonEmails(y)

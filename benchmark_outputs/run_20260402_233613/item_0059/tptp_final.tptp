@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, razorback_tshirt_shop_makes(78)).
+
+fof(fact_2, axiom, total_t_shirts_sold = 186).
+
+fof(fact_3, axiom, razorback_tshirt_shop_makes(78) * 14).
+
+% --- RULES ---
+fof(rule_1, axiom, total_t_shirts_sold = arkansas_game + texas_tech_game => arkansas_game + texas_tech_game = 186).
+
+fof(rule_2, axiom, razorback_tshirt_shop_makes_78_off_each_t_shirt * number_of_t_shirts_sold_during_texas_tech_game => razorback_tshirt_shop_makes(78) * 14).
+
+% --- INFERENCES ---
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_1, axiom, razorback_tshirt_shop_makes(1092)).

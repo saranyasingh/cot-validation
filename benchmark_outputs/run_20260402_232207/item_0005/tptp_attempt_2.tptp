@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, starting_amount(olivia, 78)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (starting_amount(X) & amount_spent(X) => remaining_amount(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_amount(63)).

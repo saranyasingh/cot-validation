@@ -1,0 +1,6 @@
+LABEL: FACT-1 :: TicketsWon(Dave)
+LABEL: FACT-2 :: UsedTickets(Dave, 12)
+LABEL: FACT-3 :: LeftTickets(Dave, 14)
+
+LABEL: RULE-1 :: InitialTickets = TicketsWon - UsedTickets :: Rule1
+LABEL: RULE-2 :: FinalTickets = InitialTickets + RemainingTickets :: Rule2

@@ -1,0 +1,47 @@
+This problem involves converting a narrative into logical statements using First-Order Logic (FOL). Let's break down each step based on the given context and convert them accordingly:
+
+### Premises
+1. **After a typhoon, 13 trees in Haley's backyard died.**
+   - This can be represented as: \( D_{\text{trees}}(t_1) \rightarrow T_{\text{typhoon}, t_1} \)
+     Where \( D_{\text{trees}}(t_1) \) denotes that 13 trees died at time \( t_1 \).
+   
+2. **She had grown 3 trees initially.**
+   - This can be represented as: \( G_{\text{trees}}(t_2) \rightarrow T_{\text{initial}, t_2} \)
+     Where \( G_{\text{trees}}(t_2) \) denotes that she grew 3 trees at time \( t_2 \).
+
+### Conclusion
+- **Therefore, 10 more trees died in the typhoon than those that survived.**
+
+To derive this conclusion logically, let's assume some variables:
+- \( S_t \): Set of times Haley started growing trees.
+- \( F_t \): Set of times Haley finished growing trees.
+  
+We'll denote the total number of trees that died as \( T_{\text{total}} \) and the number of trees that survived as \( S_{\text{survived}} \).
+
+From premise 1, if Haley died 13 trees at time \( t_1 \), then \( D_{\text{trees}}(t_1) \) holds true.
+From premise 2, if Haley grew 3 trees at any point before finishing, then \( G_{\text{trees}}(t_2) \) holds true.
+
+Since the number of trees that died is greater than the number of trees that survived, we conclude that:
+\[ T_{\text{total}} > S_{\text{survived}} \]
+
+Let's summarize the conversion into FOL:
+
+### Facts
+1. \( D_{\text{trees}}(t_1) \rightarrow T_{\text{typhoon}, t_1} \)
+2. \( G_{\text{trees}}(t_2) \rightarrow T_{\text{initial}, t_2} \)
+
+### Rules
+No rules needed for this simple case; just facts.
+
+### Inferences
+1. \( T_{\text{total}} > S_{\text{survived}} \)
+
+Thus, the final output in FOL form is:
+
+```
+FACT-1: D_{\text{trees}}(t_1) \rightarrow T_{\text{typhoon}, t_1}
+
+FACT-2: G_{\text{trees}}(t_2) \rightarrow T_{\text{initial}, t_2}
+
+INF-1: T_{\text{total}} > S_{\text{survived}}
+```

@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — Directly stated as 54 sacks.
+FACT-2: SUPPORTED — Directly stated as 18 sacks per day.
+FACT-3: SUPPORTED — The relationship d_days = n_sacks / s_sacks matches the story.
+
+RULE-1: IMPLAUSIBLE — Uses a universal quantifier over all t; not a sound general principle.
+RULE-2: IMPLAUSIBLE — Same issue as RULE-1; overly general.
+RULE-3: PLAUSIBLE — Reasonable general principle: days = total sacks / sacks per day.

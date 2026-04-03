@@ -1,0 +1,10 @@
+**FACTS**
+FACT-1: Melissa scored a total of 91 points :: TotalPoints = 91
+FACT-2: She played in 13 games :: NumberOfGames = 13
+FACT-3: She scored the same number of points in each game :: PointsPerGame = 91 / 13
+
+**RULES**
+RULE-1: If two quantities are equal, they represent the same value :: EqualValues(P, PointsPerGame) if PointsPerGame = 91 / 13
+
+**INFERENCES**
+INF-1: From Fact-1 and Rule-1, Melissa scored 7 points in each game :: P = 7

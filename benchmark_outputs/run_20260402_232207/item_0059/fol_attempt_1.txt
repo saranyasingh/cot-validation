@@ -1,0 +1,5 @@
+FACT-1: NumberOfTShirtsSoldDuringTexasTechGame = TotalNumberOfTShirtsSold - NumberOfTShirtsSoldDuringArkansasGame :: 186 - 172 = 14
+
+RULE-1: RevenueFromTShirtsDuringTexasTechGame = NumberOfTShirtsSoldDuringTexasTechGame * ProfitPerT-Shirt :: 14 * 78
+
+INF-1: RevenueFromTShirtsDuringTexasTechGame = $1092 :: 14 * 78 = 1092

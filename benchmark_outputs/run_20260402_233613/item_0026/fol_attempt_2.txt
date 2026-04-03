@@ -1,0 +1,19 @@
+### FACTS
+FACT-1: Lewis earns $2 per week :: EarningsPerWeek(2)
+FACT-2: Total earnings during harvest = $178 :: TotalEarnings(178)
+
+### RULES
+RULE-1: Earnings = Rate * Time :: Earnings(Rate, Time)
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by EarningsPerWeek: Lewis's weekly earnings = $2 :: EarningsPerWeekLewis(Earnings)
+INF-2: Total earnings = Weekly earnings * Number of weeks :: TotalEarningsTotal(Earnings, Weeks)
+INF-3: Solve for number of weeks using TotalEarningsTotal :: SolveForWeeks(NumberOfWeeks)
+
+#### Solving for Weeks:
+INF-4: Set up the equation for total earnings :: EquationForEarnings(TotalEarnings, Earnings)
+INF-5: Substitute known values into the equation :: EquationSubstitution(EquationForEarnings, Earnings)
+INF-6: Solve for the number of weeks :: SolveEquation(SolveForWeeks(NumberOfWeeks))
+
+#### Conclusion:
+INF-7: The harvest lasted for 89 weeks :: HarvestDuration(89)

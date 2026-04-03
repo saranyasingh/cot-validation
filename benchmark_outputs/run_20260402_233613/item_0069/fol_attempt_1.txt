@@ -1,0 +1,13 @@
+**FACTS**
+
+FACT-1: Frank reads 22 pages per day :: ReadingRate(22, x)
+FACT-2: It took Frank 569 days to finish the book :: BookCompletionTime(569, x)
+
+**RULES**
+
+RULE-1: If someone reads a certain number of pages per day, they will read the book in a specific number of days :: ∀x (ReadingRate(rate, x) → BookCompletionTime(days, x))
+RULE-2: Multiplication distributes over addition :: ∀a b c (a * (b + c) = a * b + a * c)
+
+**INFERENCES**
+
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Frank reads the book in 569 days :: BookCompletionTime(569, ReadingRate(22, x))

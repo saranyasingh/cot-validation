@@ -1,0 +1,3 @@
+LABEL: Fact 1 :: Books(bryan, 34)
+LABEL: Fact 2 :: BookShelves(bookshelf1, 2) ∧ BookShelves(bookshelf2, 2)
+LABEL: Rule 1 :: (∀n m (Books(p, n) ∧ BookShelves(shelf1, m) ∧ BookShelves(shelf2, m) → ∃k (Books(k, shelf1) ∧ Books(k, shelf2))))

@@ -1,0 +1,17 @@
+### ## FACTS
+```plaintext
+Fact-1: AvailableWax(t_0) ∧ WaxAmount(557)
+Fact-2: RequiredWax(t_0) ∧ WaxAmount(17)
+```
+
+### ## RULES
+```plaintext
+Rule-1: AvailableWax(t_0) → UsedWax(t_0)
+```
+
+### ## INFERENCES
+```plaintext
+Inference-1: If AvailableWax(t_0), then UsedWax(t_0) = 0
+Inference-2: If RequiredWax(t_0) ∧ AvailableWax(t_0), then UsedWax(t_0) > 0
+Inference-3: RemainingWax(t_0) := AvailableWax(t_0) ∧ UsedWax(t_0)
+```

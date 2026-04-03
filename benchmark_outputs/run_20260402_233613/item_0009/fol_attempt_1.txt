@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Dave won some tickets :: TicketsWon(Dave)
+FACT-2: Dave used 12 tickets to buy some toys :: UsedTickets(Dave, 12)
+FACT-3: After buying the toys, Dave has 14 tickets left :: LeftTickets(Dave, 14)
+
+## RULES
+RULE-1: InitialTickets = TicketsWon - UsedTickets :: Rule1
+RULE-2: FinalTickets = InitialTickets + RemainingTickets :: Rule2
+
+## INFERENCES
+INF-1: Dave's initial number of tickets = 26 :: InitialTickets = TicketsWon - UsedTickets
+
+This conclusion can be derived using Rule 1 and Fact 1, where Dave won some tickets and used 12 of them to buy toys. Adding these together gives his initial ticket count before the purchase.

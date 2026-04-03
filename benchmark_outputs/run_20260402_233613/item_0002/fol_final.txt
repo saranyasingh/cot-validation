@@ -1,0 +1,12 @@
+This logical syllogism can be represented in FOL as follows:
+
+### FACTS
+FACT-1: Marco's dad's strawberries weighed 11 pounds :: StrawberryWeight(dad_strawberries, 11)
+
+FACT-2: Together, their strawberries (including Marco's) weighed 30 pounds :: StrawberryTotalWeight(total_strawberries, 30)
+
+### RULES
+No rules apply here since there are no conditional statements or universal quantifications needed.
+
+### INFERENCES
+INF-1: From FACT-1 and FACT-2, conclude the weight of Marco's strawberries :: StrawberryWeight(marco_strawberries, 19)

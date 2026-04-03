@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker_count_matthew(29) & cake_count_matthew(30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (even(N) => div(N, 2))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, wants_to_distribute(2, cracker_count_matthew, cake_count_matthew)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, crackers_per_friend(14.5)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, cakes_per_friend(15)).

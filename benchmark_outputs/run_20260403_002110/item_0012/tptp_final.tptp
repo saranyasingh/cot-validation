@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, J = 5).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [J] : (((J + 4) + J) = 14) => (((2 * J) + 4) = 14)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, (J + 4) = 9).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, TotalApples Adam JackieTogether = 14).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, B = 20).

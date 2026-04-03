@@ -1,0 +1,19 @@
+```plaintext
+## FACTS
+```
+Fact-1: Houses(20)
+Fact-2: MailPerHouse(32)
+```
+
+## RULES
+```
+Rule-1: Mail(n, m) ↔ ∀h (Houses(h) → Mail(h, m))
+```
+
+## INFERENCES
+```
+INF-1: Mail(20, 32)
+INF-2: TotalJunkMail(Houses, MailPerHouse)
+INF-3: TotalJunkMailCalculation := House * MailPerHouse
+```
+```

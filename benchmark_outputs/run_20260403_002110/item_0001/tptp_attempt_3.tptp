@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_oranges(87)).
+fof(fact_2, axiom, number_of_bans(290)).
+fof(fact_3, axiom, organized_into_groups(bananas, 2)).
+fof(fact_4, axiom, organized_into_groups(oranges, 93)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, M, X] : (divisor(N, X, M) => size_of_group(X, div(N, M)))).
+
+% --- INFERENCES ---
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : (divisor(bananas, X, 2) => size_of_group(X, 145))).

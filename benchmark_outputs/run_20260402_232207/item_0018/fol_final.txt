@@ -1,0 +1,19 @@
+## FACTS
+LABEL: FACT-1 :: BaseballCardsOriginal = 309
+LABEL: FACT-2 :: AceCardsOriginal = 356
+
+## RULES
+LABEL: RULE-1 :: TotalOriginalCards = BaseballCardsOriginal + AceCardsOriginal
+LABEL: RULE-2 :: BaseballCardsLeft = BaseballCardsOriginal - BaseballCardsGivenAway
+LABEL: RULE-3 :: AceCardsLeft = AceCardsOriginal - BaseballCardsGivenAway
+
+## INFERENCES
+LABEL: INF-1 :: TotalOriginalCards - BaseballCardsGivenAway = TotalRemainingCards
+LABEL: INF-2 :: BaseballCardsLeft = TotalOriginalCards - BaseballCardsGivenAway
+LABEL: INF-3 :: AceCardsLeft = AceCardsOriginal - BaseballCardsGivenAway
+LABEL: INF-4 :: BaseballCardsGivenAway = BaseballCardsOriginal - BaseballCardsLeft
+LABEL: INF-5 :: TotalRemainingCards = BaseballCardsLeft + AceCardsLeft
+LABEL: INF-6 :: A = TotalOriginalCards - BaseballCardsGivenAway
+LABEL: INF-7 :: AceCardsLeft = 356 - (665 - 415)
+LABEL: INF-8 :: MoreBaseballCardsThanAceCards = BaseballCardsLeft - AceCardsLeft
+LABEL: INF-9 :: MoreBaseballCardsThanAceCards = 309

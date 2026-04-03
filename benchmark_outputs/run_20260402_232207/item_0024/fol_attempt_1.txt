@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: BookHasTwoChapters :: BookHas(2, Chapters)
+FACT-2: SecondChapterLength :: Length(36, Pages)
+FACT-3: TotalBookPages :: Total(Pages, 67)
+
+### RULES
+RULE-1: SumOfPartsEqualsTotal :: ∀P₁, P₂ (P₁ + P₂ = Total) -> (BookHas(P₁) ∧ BookHas(P₂))
+RULE-2: ChapterCountIsConsistentWithTotal :: BookHas(n, Chapters) → Total(Pages, n)
+
+### INFERENCES
+INF-1: NumberOfFirstChapter :: Number(31, Pages) :: 
+From RULE-1 and RULE-2, infer the number of pages in the first chapter based on the given constraints.

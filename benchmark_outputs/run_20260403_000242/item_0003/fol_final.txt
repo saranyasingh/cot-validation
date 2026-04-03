@@ -1,0 +1,22 @@
+This conversion involves translating the given chain of thought into first-order logic statements based on the provided guidelines. Here’s how you can structure your answer:
+
+### FACTS
+```plaintext
+FACT-1: Edward bought two books :: BookCount(Edward, 2)
+```
+
+### RULES
+No rules were explicitly stated in the original text, so no rules will be included here.
+
+### INFERENCES
+The final deduction can be expressed as an inference:
+
+```plaintext
+INF-1: Each book cost $3 :: (∀i ∈ BookList(Edward); Price(i) = $3)
+```
+
+Here, `BookList(Edward)` represents the list of books owned by Edward, and `Price(i)` denotes the price of the \(i\)-th book. Since the premise states that each book costs the same amount, we can infer that the price of every book is $3.
+
+Thus, the final answer is:
+
+**Each book cost $3.**

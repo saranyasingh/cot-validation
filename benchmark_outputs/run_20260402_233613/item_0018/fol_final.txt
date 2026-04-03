@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: Nell originally had 309 baseball cards :: BaseballCards(Nell, 309)
+FACT-2: Nell originally had 356 Ace cards :: AceCards(Nell, 356)
+
+### ## RULES
+RULE-1: Initial sum equals final sum plus transferred items :: ∀x (InitialSum(x) = FinalSum(x) + TransferredItems(x))
+RULE-2: Given items subtracted from the initial count :: ∀y (GivenItems(y) - InitialCount(y) = TransferredItems(y))
+
+### ## INFERENCES
+INF-1: Nell originally had 309 baseball cards and 356 Ace cards :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356)
+INF-2: After giving some cards to Jeff, Nell has 415 baseball cards and 106 Ace cards remaining :: BaseballCards(Nell, 415) ∧ AceCards(Nell, 106)
+INF-3: The difference in the remaining cards is 309 :: BaseballCards(Nell, 415) - AceCards(Nell, 106) = 309

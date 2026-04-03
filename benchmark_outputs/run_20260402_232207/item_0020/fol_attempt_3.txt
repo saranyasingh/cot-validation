@@ -1,0 +1,12 @@
+LABEL: Facts :: 
+FACT-1: NumberOfGirlsInSchool = 34
+FACT-2: NumberOfBoysInSchool = 841
+
+LABEL: Rules ::
+Rule-1: DifferenceBetweenBoysAndGirls = NumberOfBoys - NumberOfGirls
+Rule-2: UniversalQuantifierForBoys = ∃x (NumberOfBoys(x))
+Rule-3: UniversalQuantifierForGirls = ∃y (NumberOfGirls(y))
+
+LABEL: Inferences ::
+INF-1: DifferenceBetweenBoysAndGirls = 841 - 34
+INF-2: Conclusion: SchoolHasMoreBoysThanGirls = DifferenceBetweenBoysAndGirls

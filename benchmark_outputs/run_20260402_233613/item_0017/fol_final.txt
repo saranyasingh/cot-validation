@@ -1,0 +1,11 @@
+## FACTS
+LABEL: Fact 1 :: RedPeachesInBasket(x) ≡ x = 19
+LABEL: Fact 2 :: GreenPeachesInBasket(y) ≡ y = 4
+LABEL: Fact 3 :: NumberOfBaskets(z) ≡ z = 15
+
+## RULES
+LABEL: Rule 1 :: RedAndGreenPeachesInBasket(u) ≡ u = RedPeachesInBasket(v) + GreenPeachesInBasket(w)
+LABEL: Rule 2 :: TotalPeachesInAllBaskets(p) ≡ p = ∑(u = RedAndGreenPeachesInBasket(v)) * NumberOfBaskets(z)
+
+## INFERENCES
+LABEL: Inference 1 :: TotalPeachesInAllBaskets(p) = (19 + 4) * 15 = 345

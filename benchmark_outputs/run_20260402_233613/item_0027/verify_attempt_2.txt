@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The story indicates total wax needed is 17 g, not WaxRequired(WaxAvailable).
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — It asserts WaxRequired(WaxAvailable), which would misrepresent the actual required amount given the available wax.

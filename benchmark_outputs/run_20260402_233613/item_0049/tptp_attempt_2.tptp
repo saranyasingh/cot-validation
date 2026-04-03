@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [D] : learning(english, D)).
+
+fof(fact_2, axiom, ! [D] : learning(cheinese, D)).
+
+fof(fact_3, axiom, ! [D] : ((D = 1 | D = 2 | D = 3 | D = 4 | D = 5) => study(D))).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (learning(english, D) => study(D))).
+
+fof(rule_2, axiom, ! [D] : (learning(cheinese, D) => study(D))).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Universal Instantiation
+fof(inf_1, axiom, study(1) => learning(english, 1)).
+
+% From fact_3, rule_2 by Universal Instantiation
+fof(inf_2, axiom, study(1) => learning(cheinese, 1)).
+
+% From fact_3, rule_1 by Universal Instantiation (d = 2)
+fof(inf_3, axiom, study(2) => learning(english, 2)).
+
+% From fact_3, rule_2 by Universal Instantiation (d = 2)
+fof(inf_4, axiom, study(2) => learning(cheinese, 2)).
+
+% From fact_3, rule_1 by Universal Instantiation (d = 3)
+fof(inf_5, axiom, study(3) => learning(english, 3)).
+
+% From fact_3, rule_2 by Universal Instantiation (d = 3)
+fof(inf_6, axiom, study(3) => learning(cheinese, 3)).

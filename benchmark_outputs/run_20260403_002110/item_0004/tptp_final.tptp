@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, chapters = 3).
+
+fof(fact_2, axiom, pages_per_chapter = 198).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (a(T) => b(T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, final_conclusion(198)).

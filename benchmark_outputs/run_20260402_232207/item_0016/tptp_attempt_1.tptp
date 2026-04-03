@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, pack_of_pencils(35)).
+fof(fact_2, axiom, pencils_per_pack(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ( total_pencils(N) = N * pencils_per_pack(N) )).
+fof(rule_2, axiom, ! [P] : ( number_rows(P) = P / pencils_per_row(P) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_rows(70)).

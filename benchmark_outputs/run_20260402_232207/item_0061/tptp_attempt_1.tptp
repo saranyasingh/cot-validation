@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_chinese_time(5, t_day)).
+
+fof(fact_2, axiom, learning_english_time(7, t_day)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (learning_chinese_time(5, T) => learning_english_time(7, T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, learning_chinese_time(5, t_day)).
+
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_2, axiom, learning_english_time(7, t_day)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, learning_english_time(7, t_day)).

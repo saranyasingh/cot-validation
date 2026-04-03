@@ -1,0 +1,18 @@
+### ## FACTS
+```plaintext
+FACT-1: TotalNumberOfStudents = 270
+```
+
+### ## RULES
+```plaintext
+RULE-1: For any two non-negative integers \(T\) and \(S\), if \(T\) divided by \(S\) equals an integer quotient \(Q\), then the quotient \(Q\) represents the number of groups when dividing \(T\) into equal parts of size \(S\).
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: The number of grades can be calculated by dividing the total number of students by the number of students per grade.
+INF-2: Given the total number of students (\(T\)) and the number of students per grade (\(S\)), the number of grades (\(G\)) is \(G = \frac{T}{S}\).
+INF-3: Substituting the given values (\(T = 270\) and \(S = 5\)), the calculation yields \(G = \frac{270}{5} = 54\).
+```
+
+This correction addresses the errors in the original chain of reasoning and produces a logically consistent structure for extracting the number of grades from the given facts.

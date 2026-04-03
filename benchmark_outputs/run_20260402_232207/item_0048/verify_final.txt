@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states Ron stands at 14 feet.
+FACT-2: SUPPORTED — From "Dean is 8 feet shorter than Ron" and "Ron stands at 14 feet," Height(Dean) = 14 − 8.
+RULE-1: PLAUSIBLE — A generic TallerThan(A, B, t) relation is a sensible principle.
+RULE-2: IMPLAUSIBLE — It would assert Dean is taller than Ron, which contradicts the given heights.

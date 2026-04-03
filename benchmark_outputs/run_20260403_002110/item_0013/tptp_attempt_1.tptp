@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, amount_available(104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (amount_available(104) => number_of_dvds(N, 104))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Division
+fof(inf_1, axiom, number_of_dvds(4, 104)).

@@ -1,0 +1,10 @@
+LABEL: FACTS :: 
+FACT-1: Dave used 12 tickets to buy some toys :: TicketsSpent(dave, 12)
+FACT-2: After buying the toys, Dave has 14 tickets left :: TicketsLeft(dave, 14)
+
+LABEL: RULES ::
+RULE-1: If someone uses n tickets to buy something, they win n tickets plus their remaining tickets :: ∀n (TicketsSpent(dave, n) → TicketsWon(dave, TicketsSpent(dave) + TicketsLeft(dave)))
+
+LABEL: INFERENCES ::
+INF-1: From FACT-1 and RULE-1, Dave's initial ticket count can be calculated :: TicketsWon(dave) ::= TicketsSpent(dave) + TicketsLeft(dave) (where TicketsSpent(dave) = 12 and TicketsLeft(dave) = 14) 
+INF-2: Hence, the total number of tickets Dave won is 26 :: TicketsWon(dave) = 12 + 14 = 26

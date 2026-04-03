@@ -1,0 +1,5 @@
+LABEL: KidsFromLawrenceCountyGoingToCamp :: 610769
+LABEL: KidsFromLawrenceCountyStayingAtHome :: 590796
+LABEL: AdditionalKidsOutsideLawrenceCountyAttendingCamp :: 22
+
+LABEL: TotalKidsInLawrenceCounty :: ((KidsFromLawrenceCountyGoingToCamp + KidsFromLawrenceCountyStayingAtHome + AdditionalKidsOutsideLawrenceCountyAttendingCamp))

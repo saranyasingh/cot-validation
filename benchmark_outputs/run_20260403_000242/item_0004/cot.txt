@@ -1,0 +1,36 @@
+Let's break down this problem using a logical syllogism:
+
+1. **Premise 1:** The book has 3 chapters.
+   - This establishes that we need to divide the total number of pages by the number of chapters to find out how many pages are in each chapter.
+
+2. **Premise 2:** Each chapter has the same number of pages.
+   - This assumption allows us to conclude that if we know the total number of pages and the number of chapters, we can determine the number of pages per chapter.
+
+3. **Premise 3:** The total number of pages in the book is 594.
+   - We have been given this information directly as part of the problem statement.
+
+4. **Premise 4:** It took Frank 607 days to finish the book.
+   - This fact about time doesn't directly affect our calculation of page numbers but provides additional context about how long it took to read the entire book.
+
+5. **Conclusion:** To find the number of pages in each chapter, we use the formula:
+   \[
+   \text{Pages per chapter} = \frac{\text{Total pages}}{\text{Number of chapters}}
+   \]
+
+Now let's apply these premises logically:
+
+- From Premises 1 and 2, we deduce that the number of pages per chapter must be an integer because we cannot have a fraction of a page.
+- From Premises 1 and 3, we calculate the number of pages per chapter as follows:
+  \[
+  \text{Pages per chapter} = \frac{594}{3}
+  \]
+- Performing the division gives us:
+  \[
+  \text{Pages per chapter} = 198
+  \]
+
+Therefore, the conclusion based on our logical steps is:
+
+The answer is: 198
+
+This means each chapter in Frank’s book contains 198 pages.

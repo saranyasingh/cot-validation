@@ -1,0 +1,45 @@
+To determine how many more baseball cards than Ace cards Nell has after giving some away, we need to follow these steps:
+
+1. Calculate the total number of baseball cards Nell originally had.
+2. Calculate the total number of Ace cards Nell originally had.
+3. Determine how many baseball cards she gave to Jeff.
+4. Determine how many Ace cards she gave to Jeff.
+5. Subtract the number of Ace cards given from the original number of Ace cards to find out how many she has left.
+6. Compare the remaining baseball cards to the remaining Ace cards to find the difference.
+
+Let's start with step-by-step calculations:
+
+1. Total baseball cards initially:
+   \[
+   309 + 356 = 665
+   \]
+
+2. Total Ace cards initially:
+   \[
+   356
+   \]
+
+3. Let \( x \) be the number of baseball cards Nell gave to Jeff. Then, the equation for baseball cards left is:
+   \[
+   665 - x = 415
+   \]
+   Solving for \( x \):
+   \[
+   x = 665 - 415 = 250
+   \]
+
+4. Number of Ace cards left:
+   \[
+   356 - (x)
+   \]
+   Substituting \( x = 250 \):
+   \[
+   356 - 250 = 106
+   \]
+
+5. Now compare the remaining baseball cards to the remaining Ace cards:
+   \[
+   415 - 106 = 309
+   \]
+
+So, Nell has 309 more baseball cards than Ace cards left. The answer is: 309.

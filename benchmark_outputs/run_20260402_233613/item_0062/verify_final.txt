@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED — Grasshopper jumped 25 inches is stated in the story.
+FACT-2: UNSUPPORTED — The story says the frog jumped 18 inches farther than the grasshopper (total 43 inches), but FACT-2 encodes FrogJumped(GrasshopperJump(18)), misrepresenting the relation.
+RULE-1: PLAUSIBLE — It captures the idea that the frog jumped an extra distance beyond the grasshopper’s jump, which matches the story’s comparison.

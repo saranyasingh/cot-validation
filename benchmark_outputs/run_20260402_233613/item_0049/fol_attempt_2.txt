@@ -1,0 +1,39 @@
+### ## FACTS
+FACT-1: Ryan spends 6 hours on learning English every day. :: ∀d (Learning(English, d))
+FACT-2: Ryan spends 7 hours on learning Chinese every day. :: ∀d (Learning(Cheinese, d))
+FACT-3: Ryan studies for 5 days. :: ∀d ∈ {1, 2, 3, 4, 5} (Study(d))
+
+### ## RULES
+RULE-1: Learning(English, d) implies Study(d). :: ∀d (Learning(English, d) → Study(d))
+RULE-2: Learning(Cheinese, d) implies Study(d). :: ∀d (Learning(Cheinese, d) → Study(d))
+
+### ## INFERENCES
+INF-1: From FACT-3, Rule-1 by Universal Instantiation: Study(1) → Learning(English, 1)
+INF-2: From FACT-3, Rule-2 by Universal Instantiation: Study(1) → Learning(Cheinese, 1)
+INF-3: Study(2) → Learning(English, 2)
+INF-4: Study(2) → Learning(Cheinese, 2)
+...
+INF-18: Study(5) → Learning(English, 5)
+INF-19: Study(5) → Learning(Cheinese, 5)
+
+INF-20: From INF-18, Rule-1 by Universal Instantiation: Learning(English, 1) → Study(1)
+INF-21: From INF-19, Rule-2 by Universal Instantiation: Learning(Cheinese, 1) → Study(1)
+INF-22: From INF-18, Rule-1 by Universal Instantiation: Learning(English, 2) → Study(2)
+INF-23: From INF-19, Rule-2 by Universal Instantiation: Learning(Cheinese, 2) → Study(2)
+...
+INF-38: From INF-22, Rule-1 by Universal Instantiation: Learning(English, 5) → Study(5)
+INF-39: From INF-23, Rule-2 by Universal Instantiation: Learning(Cheinese, 5) → Study(5)
+
+INF-40: Combining INF-18 and INF-38: (∀d ∈ {1, 2, 3, 4, 5}) ((Learning(English, d) → Study(d)) ∧ (Learning(Cheinese, d) → Study(d)))
+INF-41: Simplifying INF-40: (∀d ∈ {1, 2, 3, 4, 5}) (Study(d))
+INF-42: From INF-41, Rule-1 by Universal Generalization: ∀d (Study(d))
+
+INF-43: Combining INF-19 and INF-39: (∀d ∈ {1, 2, 3, 4, 5}) ((Learning(English, d) → Study(d)) ∧ (Learning(Cheinese, d) → Study(d)))
+INF-44: Simplifying INF-43: (∀d ∈ {1, 2, 3, 4, 5}) (Study(d))
+INF-45: From INF-44, Rule-2 by Universal Generalization: ∀d (Study(d))
+
+INF-46: Total study hours for English = ∑_{d=1}^{5} Study(d) = 6 × 5 = 30 hours
+INF-47: Total study hours for Chinese = ∑_{d=1}^{5} Study(d) = 7 × 5 = 35 hours
+INF-48: Combined total study hours = 30 + 35 = 65 hours
+
+Therefore, the combined total hours Ryan spends studying both languages is 65 hours.

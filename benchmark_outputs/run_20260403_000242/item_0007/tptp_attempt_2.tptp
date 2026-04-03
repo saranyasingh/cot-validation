@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, building_house(blocks_20)).
+
+fof(fact_2, axiom, building_tower(blocks_50)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : (building_something(B) => using_blocks(B))).
+
+fof(rule_2, axiom, ! [X] : (building_house(X) => using_blocks(building_house(X)))).
+
+fof(rule_3, axiom, ! [X] : (building_tower(X) => using_blocks(building_tower(X)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, using_blocks(building_house(blocks_20))).
+
+% From rule_2 and using_blocks(building_house)
+fof(inf_2, axiom, using_blocks(building_house) = 20).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, using_blocks(building_tower(blocks_50))).
+
+% From rule_3 and using_blocks(building_tower)
+fof(inf_4, axiom, using_blocks(building_tower) = 50).
+
+% To find the difference
+fof(inf_5, axiom, abs(using_blocks(building_tower) - using_blocks(building_house)) = 30).
+
+% Therefore, Randy used 30 more blocks to build the tower than the house
+fof(inf_6, axiom, 30 = 30).

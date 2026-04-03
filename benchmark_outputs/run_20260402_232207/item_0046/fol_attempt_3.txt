@@ -1,0 +1,16 @@
+LABEL: FACTS ::
+```plaintext
+FACT-1: There are eight bird families living near a mountain. :: BirdsNearMountain(8).
+```
+
+
+LABEL: RULES :: 
+```plaintext
+RULE-1: If a family flies away, they fly to a certain location. :: FlyingAway(Family, Location).
+```
+
+LABEL: INFERENCES :: 
+```plaintext
+INF-1: Calculate the total number of bird families that flew away. :: TotalFlyAway = BirdsNearMountain(8) + BirdsNearMountain(14) + BirdsNearMountain(31).
+INF-2: Determine how many more bird families flew to Africa compared to Asia. :: MoreToAfrica = BirdsNearMountain(42) - BirdsNearMountain(31).
+```

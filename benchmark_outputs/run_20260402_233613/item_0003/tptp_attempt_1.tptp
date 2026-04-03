@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, expenditure(edward, t, 6) & book(edward, t, 2)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [B] : (book_cost(B) <=> expenditure(edward, t, 6))).

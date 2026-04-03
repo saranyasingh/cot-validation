@@ -1,0 +1,5 @@
+FACT-1: Books: 7 :: BookCount(books)
+FACT-2: Action Figures: 3 :: ActionFigureCount(action_figures)
+RULE-1: Adding an item to the collection increases the count of that type :: ∀type (Quantity(type) + Quantity(additional_item) = Total(type))
+INF-1: After adding 2 action figures, the total becomes 5 :: UpdatedActionFigures(updated_action_figures)
+INF-2: Subtracting the number of added action figures from the initial book count gives the difference :: Difference(book_count, updated_action_figures)

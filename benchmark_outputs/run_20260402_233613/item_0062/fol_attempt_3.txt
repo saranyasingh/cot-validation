@@ -1,0 +1,12 @@
+```plaintext
+## FACTS
+FACT-1: GrasshopperJumped(25) :: GrasshopperJump(x) = 25
+FACT-2: FrogJumped(GrasshopperJump(18)) :: FrogJump(x) = GrasshopperJump(x) + 18
+FACT-3: MouseJumped(MouseJump(x) = FrogJump(x) + 2)
+
+## RULES
+RULE-1: FrogJumped(ExtraDistance) :: FrogJump(x) = GrasshopperJump(x) + ExtraDistance
+
+## INFERENCES
+INF-1: MouseJumped(45) :: MouseJump(x) = FrogJump(x) + 2
+```

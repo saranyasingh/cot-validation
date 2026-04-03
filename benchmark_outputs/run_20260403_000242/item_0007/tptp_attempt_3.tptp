@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, building_house(20)).
+
+fof(fact_2, axiom, building_tower(50)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : (building_something(B) => using_blocks(B))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, using_blocks(building_house) = 20).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, using_blocks(building_tower) = 50).
+
+% From inf_1, inf_2 by Arithmetic
+fof(inf_3, axiom, abs(using_blocks(building_tower) - using_blocks(building_house)) = abs(50 - 20)).
+
+% From inf_3 by Arithmetic
+fof(inf_4, axiom, abs(50 - 20) = 30).

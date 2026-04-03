@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_books(books)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : ((total_books / number_of_shelves) = books_on_each_shelf(S))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, books_on_each_shelf(1)).

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Ryan spends 5 hours on learning Chinese every day :: LearningChineseTime(5, t_day)
+FACT-2: Ryan spends 2 hours more on learning English than on learning Chinese :: LearningEnglishTime(7, t_day)
+
+## RULES
+RULE-1: For any given day \( t \), if Ryan learns Chinese for 5 hours, he also learns English for 7 hours :: ∀t (LearningChineseTime(5, t) → LearningEnglishTime(7, t))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Ryan spends 5 hours on learning Chinese on any given day :: LearningChineseTime(5, t_day)
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: Ryan spends 7 hours on learning English on any given day :: LearningEnglishTime(7, t_day)
+INF-3: Conclusion: Ryan spends 7 hours on learning English each day :: LearningEnglishTime(7, t_day)

@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED — The relation d_days = n_sacks / s_sacks follows from the scenario (days = total sacks / per-day rate).
+RULE-1: IMPLAUSIBLE — It overgeneralizes n_sacks to always be 54 across all contexts.
+RULE-2: IMPLAUSIBLE — It overgeneralizes s_sacks to always be 18 across all contexts.
+RULE-3: PLAUSIBLE

@@ -1,0 +1,8 @@
+### ## FACTS
+- **Label**: INITIAL_BALANCE :: 78
+
+### ## RULES
+- **Label**: ADDITION_RULE :: A + B = C -> D + E = F if C = D and E = F
+
+### ## INFERENCES
+- **Label**: BALANCE_AFTER_SALE :: 78 - 15 = 63

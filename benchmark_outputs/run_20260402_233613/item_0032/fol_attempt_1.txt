@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: There are 18 people who can ride the Ferris wheel simultaneously :: NumberOfPeople(18)
+
+## RULES
+RULE-1: Each seat on the Ferris wheel can hold 9 people :: SeatCapacity(9)
+
+## INFERENCES
+INF-1: Therefore, the Ferris wheel must have 2 seats :: NumberOfSeats(2)

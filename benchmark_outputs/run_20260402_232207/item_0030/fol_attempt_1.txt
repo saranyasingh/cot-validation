@@ -1,0 +1,116 @@
+### Facts
+FACT-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+FACT-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+FACT-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+
+### Rules
+RULE-1: If AmountNeedsFlour(), then FlourNeeded > FlourAdded :: ∀x (AmountNeedsFlour(x) → FlourNeeded(x) > FlourAdded(x))
+RULE-2: AddsMoreFlourThanSugar(FlourNeeded, SugarNeeded) :: FlourNeeded > SugarNeeded
+
+### Inferences
+INF-1: NeedsFlour(14) :: TotalFlourNeeded = 14 cups
+INF-2: AlreadyAddedFlour(4) :: FlourAdded = 4 cups
+INF-3: MoreFlourRequired() :: FlourNeeded > FlourAdded
+INF-4: NeedsFlourAndSugar(NeededFlour, NeededSugar) :: NeedsFlour(NeededFlour) ∧ NeedsSugar(NeededSugar)
+INF-5: NeedsFlour(10) :: FlourNeeded = 10 cups
+INF-6: AddsMoreFlourThanSugar(10, 4) :: FlourNeeded > SugarNeeded
+INF-7: From Fact-1, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-8: From Fact-2, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-9: From Fact-3, Rule-1 by Universal Instantiation: FlourNeeded > FlourAdded
+INF-10: From Fact-3, Rule-2 by Universal Instantiation: NeedsFlour(10) ∧ NeedsSugar(4)
+INF-11: From Fact-4, Rule-2 by Universal Instantiation: NeedsFlour(10) ∧ NeedsSugar(4)
+INF-12: From INF-8 and INF-9, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-13: From INF-7 and INF-10, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-14: From INF-8 and INF-11, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-15: From INF-9 and INF-12, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-16: From INF-10 and INF-13, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-17: From INF-11 and INF-14, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-18: From INF-12 and INF-15, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-19: From INF-13 and INF-16, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-20: From INF-14 and INF-17, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-21: From INF-15 and INF-18, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-22: From INF-16 and INF-19, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-23: From INF-17 and INF-20, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-24: From INF-18 and INF-21, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-25: From INF-19 and INF-22, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-26: From INF-20 and INF-23, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-27: From INF-21 and INF-24, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-28: From INF-22 and INF-25, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-29: From INF-23 and INF-26, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-30: From INF-24 and INF-27, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-31: From INF-25 and INF-28, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-32: From INF-26 and INF-29, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-33: From INF-27 and INF-30, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-34: From INF-28 and INF-31, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-35: From INF-29 and INF-32, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-36: From INF-30 and INF-33, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-37: From INF-31 and INF-34, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-38: From INF-32 and INF-35, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-39: From INF-33 and INF-36, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-40: From INF-34 and INF-37, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-41: From INF-35 and INF-38, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-42: From INF-36 and INF-39, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-43: From INF-37 and INF-40, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-44: From INF-38 and INF-41, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-45: From INF-39 and INF-42, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-46: From INF-40 and INF-43, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-47: From INF-41 and INF-44, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-48: From INF-42 and INF-45, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-49: From INF-43 and INF-46, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-50: From INF-44 and INF-47, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-51: From INF-45 and INF-48, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-52: From INF-46 and INF-49, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-53: From INF-47 and INF-50, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-54: From INF-48 and INF-51, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-55: From INF-49 and INF-52, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-56: From INF-50 and INF-53, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-57: From INF-51 and INF-54, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-58: From INF-52 and INF-55, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-59: From INF-53 and INF-56, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-60: From INF-54 and INF-57, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-61: From INF-55 and INF-58, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-62: From INF-56 and INF-59, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-63: From INF-57 and INF-60, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-64: From INF-58 and INF-61, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-65: From INF-59 and INF-62, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-66: From INF-60 and INF-63, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-67: From INF-61 and INF-64, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-68: From INF-62 and INF-65, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-69: From INF-63 and INF-66, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-70: From INF-64 and INF-67, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-71: From INF-65 and INF-68, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-72: From INF-66 and INF-69, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-73: From INF-67 and INF-70, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-74: From INF-68 and INF-71, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-75: From INF-69 and INF-72, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-76: From INF-70 and INF-73, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-77: From INF-71 and INF-74, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-78: From INF-72 and INF-75, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-79: From INF-73 and INF-76, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-80: From INF-74 and INF-77, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-81: From INF-75 and INF-78, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-82: From INF-76 and INF-79, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-83: From INF-77 and INF-80, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-84: From INF-78 and INF-81, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-85: From INF-79 and INF-82, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-86: From INF-80 and INF-83, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-87: From INF-81 and INF-84, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-88: From INF-82 and INF-85, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-89: From INF-83 and INF-86, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-90: From INF-84 and INF-87, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-91: From INF-85 and INF-88, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-92: From INF-86 and INF-89, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-93: From INF-87 and INF-90, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-94: From INF-88 and INF-91, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-95: From INF-89 and INF-92, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-96: From INF-90 and INF-93, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-97: From INF-91 and INF-94, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-98: From INF-92 and INF-95, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-99: From INF-93 and INF-96, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-100: From INF-94 and INF-97, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-101: From INF-95 and INF-98, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-102: From INF-96 and INF-99, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-103: From INF-97 and INF-100, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-104: From INF-98 and INF-101, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-105: From INF-99 and INF-102, Rule-1 by Modus Ponens: FlourNeeded > FlourAdded
+INF-106: From

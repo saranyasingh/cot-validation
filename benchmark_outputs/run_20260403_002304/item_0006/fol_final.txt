@@ -1,0 +1,13 @@
+```plaintext
+## FACTS
+FACT-1: Paul gave away 90 crayons :: GivenAwayCrayonsPaul(90)
+FACT-2: Paul lost 412 crayons :: LostCrayonsPaul(412)
+
+## RULES
+RULE-1: If x is the crayon loss, then there exists some crayon given away by Paul :: If(LostCrayonsPaul(x), ∃y(GivenAwayCrayonsPaul(y)))
+RULE-2: There exists a crayon given away by Paul :: ∃y(GivenAwayCrayonsPaul(y))
+RULE-3: There exists a crayon lost by Paul :: ∃w(LostCrayonsPaul(w))
+
+## INFERENCES
+INF-1: Difference in crayons lost and given away :: ∀x ((LostCrayonsPaul(x)) → (∃y (GivenAwayCrayonsPaul(y))) ∧ (∃z (GivenAwayCrayonsPaul(z)))) ∧ (∃w (LostCrayonsPaul(w))) ∧ (∃v (GivenAwayCrayonsPaul(v))) ∧ (LostCrayonsPaul(w) > GivenAwayCrayonsPaul(v))
+```

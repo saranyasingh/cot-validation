@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Adam has 4 more apples than Jackie :: A = J + 4
+
+## RULES
+Rule-1: If Adam has \( A \) apples and Jackie has \( J \) apples, then together they have 14 apples :: A + J = 14
+
+## INFERENCES
+INF-1: From Fact-1 and Rule-1 by Substitution: Adam and Jackie together have 14 apples :: A + J = 14
+
+INF-2: From INF-1, simplify the equation: \( A + J = 14 \)
+
+INF-3: Solve the simplified equation for \( A \): \( A = 14 - J \)
+
+INF-4: Find the value of \( J \) using the given information: \( J = 5 \)
+
+INF-5: Calculate Adam's apples: \( A = J + 4 = 5 + 4 = 9 \)
+
+INF-6: Determine Bob's apples: \( B = A + J + 6 = 9 + 5 + 6 = 20 \)
+
+Therefore, Bob has 20 apples.

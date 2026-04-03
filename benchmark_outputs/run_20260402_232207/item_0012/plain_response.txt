@@ -1,0 +1,31 @@
+Let's denote the number of apples Jackie has as \( J \).
+
+According to the problem:
+1. Adam has 4 more apples than Jackie.
+   So, Adam has \( J + 4 \) apples.
+2. Together, Adam and Jackie have 14 apples.
+   Therefore, \( (J + 4) + J = 14 \).
+
+Now let's solve for \( J \):
+\[
+(J + 4) + J = 14 \\
+2J + 4 = 14 \\
+2J = 10 \\
+J = 5
+\]
+
+So, Jackie has 5 apples.
+
+Next, we calculate how many apples Adam has:
+\[
+\text{Adam} = J + 4 = 5 + 4 = 9
+\]
+
+Now, we find out how many apples Bob has:
+\[
+\text{Bob} = \text{Adam} + (\text{Adam} + \text{Jackie}) = 9 + (9 + 5) = 9 + 14 = 23
+\]
+
+Therefore, Bob has 23 apples.
+
+The answer is: 23

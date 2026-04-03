@@ -1,0 +1,16 @@
+### FACTS
+FACT-1: RoomWidth(W) :: 7 feet
+FACT-2: CarpetArea(A) :: 14 square feet
+
+### RULES
+RULE-1: Length(L) :: L × Width(W) :: ∀L (Length(L) → L × W)
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: RoomWidth(W) :: 7 feet :: L
+
+INF-2: From FACT-2, RULE-1 by Modus Ponens: CarpetArea(A) :: L × RoomWidth(W) :: 14 square feet :: L
+
+INF-3: From INF-1 and INF-2: Length(L) :: L :: 2 feet
+
+Therefore,
+INF-3: Length of Jesse's room is 2 feet.

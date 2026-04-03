@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Lewis earns $2 every week :: Earns($2 per week)
+
+### RULES
+Rule-1: If someone earns $2 per week, then they earn 178 dollars over 89 weeks :: ∀w (Earns($2 per week) → Earned(178, w))
+
+### INFERENCES
+INF-1: From Fact-1 and Rule-1 by Modus Ponens: The harvest lasted for 89 weeks :: Earned(178, 89)

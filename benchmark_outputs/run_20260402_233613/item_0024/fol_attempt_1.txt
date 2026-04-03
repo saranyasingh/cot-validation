@@ -1,0 +1,36 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: Chapter 1 has 31 pages :: PageCount(Chapter 1) = 31
+```
+
+### Rules
+There are no specific rules provided in the chain-of-thought reasoning. However, if we assume there were some logical deductions or conditions, they might look something like this:
+
+#### Rule 1: Deduction from Premises
+```plaintext
+Rule-1: If Chapter 2 has 36 pages, then the total number of pages minus the pages in Chapter 2 equals the pages in Chapter 1.
+```
+This can be represented as:
+```plaintext
+∀P (PageCount(Chapter 2) = 36 → PageCount(Chapter 1) = TotalPages - PageCount(Chapter 2))
+```
+
+However, since the actual deduction step isn't explicitly stated, we'll keep it as a placeholder rule without any specific premises.
+
+### Inferences
+Since there are no specific premises or steps leading to an inference, the final conclusion will be the direct result of combining facts.
+
+#### Inference 1: Calculate Pages in Chapter 1
+```plaintext
+INF-1: The first chapter has 31 pages :: PageCount(Chapter 1) = 31
+```
+
+### Final Answer
+The final answer is:
+```plaintext
+INF-1: The first chapter has 31 pages :: PageCount(Chapter 1) = 31
+```
+
+So, the first chapter has 31 pages.

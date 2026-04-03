@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: StandingAt(Ron, t_14) → Ron stands at 14 feet
+LABEL: FACT-2 :: Height(Dean) = StandingAt(Ron, t_14) - 8 :: Dean is 8 feet shorter than Ron
+LABEL: RULE-1 :: TallerThan(A, B, t) :: A is taller than B at time t
+LABEL: RULE-2 :: TallerThan(Height(D), Height(R), t) :: Height(D) > Height(R) at time t

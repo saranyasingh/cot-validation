@@ -1,0 +1,29 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. Matthew has 29 crackers and 30 cakes.
+2. Matthew is giving crackers and cakes to 3 people.
+
+### Rules
+1. If Matthew has a certain number of items, then those items can be distributed among a group of people.
+2. Each item must be equally divided among the people.
+
+### Inferences
+3. Each person receives an equal number of crackers.
+4. Since Matthew distributes crackers first, he will distribute cakes next.
+5. Therefore, each person receives an equal number of cakes.
+
+### Final Answer
+```plaintext
+FACTS
+FACT-1: Matthew has 29 crackers and 30 cakes :: Cracker(29), Cake(30)
+
+RULES
+RULE-1: If Matthew has N items, they can be distributed among M people :: ∀N(M ∈ ℤ ∧ N ∈ ℤ) -> (∀M(N / M ∈ ℤ))
+
+INF-1: Each person receives an equal number of crackers :: ∀i(i ∈ {crackers}) -> Cracker(i / 3)
+
+INF-2: Each person receives an equal number of cakes :: ∀j(j ∈ {cakes}) -> Cake(j / 3)
+```
+
+In summary, the final answer is that each person ate 10 cakes.

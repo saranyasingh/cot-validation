@@ -1,0 +1,5 @@
+FACT-1: Olivia started with $78 :: StartingAmount(x) ::= 78
+
+RULE-1: Spending $15 results in remaining amount = Initial Total - Amount Spent :: ∀x (StartingAmount(x) ∧ AmountSpent(x) → RemainingAmount(x)) ::= (∀x (StartingAmount(x) ∧ AmountSpent(x))) → (RemainingAmount(x))
+
+INF-1: After spending $15, Olivia has $63 left :: RemainingAmount(63) ::= (StartingAmount(78) ∧ AmountSpent(15))

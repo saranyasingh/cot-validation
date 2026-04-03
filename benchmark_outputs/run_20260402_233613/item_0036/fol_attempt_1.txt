@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: Edward had $0 before spending his money :: Wealth(x) ∧ SpendingMoney(x)
+
+### RULES
+No rules applicable here since there's no external knowledge or specific rules about Edward's wealth or expenditures.
+
+### INFERENCES
+INF-1: Since Edward spent all his money, he must have had $0 before spending :: Wealth(Edward) → SpendingMoney(Edward) & ¬Wealth(Edward)
+
+This conclusion directly follows from Premise 1, indicating that Edward had zero wealth before making any expenditures.

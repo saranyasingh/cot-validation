@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_oranges(54)).
+fof(fact_2, axiom, harvest_rate(18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Q, R] : ( time(Q, R) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Division
+fof(inf_1, axiom, time(54, 18)).
+
+% From inf_1, rule_1 by Division
+fof(inf_2, axiom, days(3)).

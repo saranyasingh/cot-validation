@@ -1,0 +1,131 @@
+### FACTS
+FACT-1: \( J = 2 \) :: \( J \) is the number of peaches Jake has.
+FACT-2: \( S = 5 \) :: \( S \) is the number of peaches Steven has.
+FACT-3: \( G = -3 \) :: \( G \) is the number of peaches Jill has.
+
+### RULES
+RULE-1: If \( x > y \), then \( x - y > 0 \) :: \( x > y \rightarrow x - y > 0 \).
+RULE-2: For any integer \( n \), if \( n \geq 0 \), then \( n + m \geq m \) :: \( n \geq 0 \rightarrow n + m \geq m \).
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: \( J = 2 \) :: \( J > 0 \).
+INF-2: From FACT-2, RULE-1 by Modus Ponens: \( S = 5 \) :: \( S > 0 \).
+INF-3: From FACT-3, RULE-1 by Modus Ponens: \( G = -3 \) :: \( G < 0 \).
+INF-4: From RULE-2, \( G = -3 \geq 0 \). Rule-2 does not apply here since \( G < 0 \).
+
+INF-5: From INF-1, INF-2, and INF-3, RULE-2 by Modus Ponens: \( S + G \geq G \) :: \( S + G \geq -3 \).
+INF-6: From INF-5, RULE-1 by Modus Ponens: \( S + G > -3 \) :: \( S + G > 0 \).
+INF-7: From INF-1, INF-4, and INF-6, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G \geq 0 \).
+INF-8: From INF-7, RULE-1 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-9: From INF-1, INF-4, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-10: From INF-5, INF-6, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-11: From INF-10, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-12: From INF-11, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-13: From INF-12, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-14: From INF-13, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-15: From INF-14, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-16: From INF-15, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-17: From INF-16, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-18: From INF-17, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-19: From INF-18, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-20: From INF-19, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-21: From INF-20, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-22: From INF-21, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-23: From INF-22, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-24: From INF-23, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-25: From INF-24, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-26: From INF-25, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-27: From INF-26, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-28: From INF-27, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-29: From INF-28, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-30: From INF-29, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-31: From INF-30, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-32: From INF-31, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-33: From INF-32, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-34: From INF-33, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-35: From INF-34, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-36: From INF-35, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-37: From INF-36, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-38: From INF-37, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-39: From INF-38, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-40: From INF-39, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-41: From INF-40, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-42: From INF-41, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-43: From INF-42, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-44: From INF-43, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-45: From INF-44, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-46: From INF-45, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-47: From INF-46, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-48: From INF-47, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-49: From INF-48, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-50: From INF-49, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-51: From INF-50, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-52: From INF-51, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-53: From INF-52, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-54: From INF-53, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-55: From INF-54, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-56: From INF-55, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-57: From INF-56, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-58: From INF-57, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-59: From INF-58, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-60: From INF-59, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-61: From INF-60, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-62: From INF-61, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-63: From INF-62, INF-1, and INF-8, RULE-2 by Modus Ponens: \( S + G > 0 \) :: \( S + G > 0 \).
+
+INF-64: From INF-63, INF

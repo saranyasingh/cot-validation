@@ -1,0 +1,17 @@
+To determine how many unripe apples are left on Rachel's tree after picking some, we can follow these steps:
+
+1. **Identify the total number of apples initially**: The tree originally had 7 ripe apples.
+2. **Determine the current number of apples on the tree**: After Rachel picked 7 apples, there are 5 apples remaining on the tree.
+3. **Calculate the number of apples that were not picked**: Since there are 5 apples left and 7 were picked, this means \(5 + 7 = 12\) apples were picked in total (assuming all picked apples were ripe).
+4. **Find out how many apples were picked specifically to get unripe**: Out of the 12 picked apples, since 3 are already identified as ripe, the remaining unpicked ones must be unripe.
+   \[
+   12 - 3 = 9
+   \]
+5. **Add the number of ripe apples to the number of unripe apples**:
+   \[
+   9 \text{ (unripe)} + 3 \text{ (ripe)} = 12
+   \]
+
+Therefore, the total number of unripe apples on the tree now is 9.
+
+The answer is: 9

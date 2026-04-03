@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Winter is almost here :: WinterAlmostHere()
+FACT-2: Most animals migrate to warmer countries when winter approaches :: MigrateToWarmCountriesWhenWinterApproaches()
+
+## RULES
+RULE-1: If an animal migrates to a warmer country during winter, then it does so because winter is approaching :: ∀a (MigratesToWarmCountry(a) → WinterAlmostHere())
+
+## INFERENCES
+INF-1: From RULE-1, we can derive that all animals that migrate to warmer countries during winter do so because winter is approaching :: MigrateToWarmCountriesWhenWinterApproaches()
+
+INF-2: Since there are 8 bird families living near the mountain, let's denote them as B1 through B8. Some of these birds fly to Africa while others fly to Asia. Let’s assume A10 bird families flew to Africa and A22 bird families flew to Asia.
+
+INF-3: From Step 4, we have 42 birds flying to Africa and 31 birds flying to Asia.
+
+INF-4: To determine the difference in the number of bird families flying to Africa compared to those flying to Asia, we subtract the number of birds flying to Asia from the number of birds flying to Africa.
+
+INF-5: Applying the subtraction from Step 4 to get the final result: 
+   Number of birds flying to Africa - Number of birds flying to Asia = Difference
+   
+INF-6: Substitute the values:  
+   42 - 31 = 11
+
+Therefore, there were **11** more bird families that flew away to Africa than those that flew away to Asia.

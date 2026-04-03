@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states the recipe calls for 14 cups of flour.
+FACT-2: SUPPORTED — The story says she already put in 4 cups of flour.
+FACT-3: SUPPORTED — The story implies that more flour is required to reach the 14-cup total.
+RULE-1: IMPLAUSIBLE — Not universally valid; the remaining flour to add is not guaranteed to exceed what has already been added.
+RULE-2: PLAUSIBLE — A reasonable principle: if FlourNeeded > SugarNeeded, then more flour will be added than sugar.

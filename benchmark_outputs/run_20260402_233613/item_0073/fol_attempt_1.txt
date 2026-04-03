@@ -1,0 +1,23 @@
+This chain of thought involves analyzing the logical structure based on the described events and calculations. Here's the conversion to FOL:
+
+```plaintext
+## FACTS
+FACT-1: InitialPens(106) :: Pen(x) ∧ x ∈ {pens}
+FACT-2: RemainingPens(14) :: Pen(y) ∧ y ∈ {pens} ∧ ¬Pen(z) ∧ z ∈ {pens}
+
+## RULES
+RULE-1: If a pen is held by someone, they own that pen :: ∀z(Pen(z) → Owns(z, z))
+RULE-2: After selling, the remaining pens are those not yet sold :: ∀y(Sold(y) → ¬Pen(y))
+
+## INFERENCES
+INF-1: TotalPensSold :: Pen(x) ∧ Sold(x) :: Pen(x) ∧ Owns(x, x) ∧ ¬Pen(y) ∧ y ∈ {pens} ∧ Sold(y) → ¬Pen(y) → ¬Pen(x) → Sold(x)
+```
+
+### Explanation:
+- **FACT-1** and **FACT-2** represent the initial state (106 pens) and the final state (remaining 14 pens).
+  
+- **RULE-1** states that if a pen is owned by someone, they own that pen, ensuring ownership consistency.
+  
+- **RULE-2** ensures that only the remaining pens are considered after they've been sold.
+  
+- **INF-1** combines these rules to infer the condition under which a pen can be sold without contradicting its ownership status.

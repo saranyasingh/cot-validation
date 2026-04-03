@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, sweet_cookies_paco(8)).
+fof(fact_2, axiom, salty_cookies_paco(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C] : (initial_cookie_count(C) => final_cookie_count(C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, sweet_cookies_paco(0)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, salty_cookies_paco(6)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, ! [S] : (sweet_cookies_paco(S) = 8)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_4, axiom, ! [S] : (salty_cookies_paco(S) = 34)).
+% From Premises 3 and 4 by Some Rule
+fof(inf_5, axiom, ! [S] : (saltier_cookies_eaten(S) > sweeter_cookies_eaten(S))).

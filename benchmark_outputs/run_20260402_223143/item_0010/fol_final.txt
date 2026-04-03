@@ -1,0 +1,11 @@
+### ## FACTS
+LABEL: Books(bryan, 34) :: ∀x (Books(x, 34))
+LABEL: BookShelves(bookshelf1, 2) ∧ BookShelves(bookshelf2, 2) :: ∃x ∃y (BookShelves(x, y))
+
+### ## RULES
+LABEL: Rule 1 :: (∀n m (Books(p, n) ∧ BookShelves(shelf1, m) ∧ BookShelves(shelf2, m) → ∃k (Books(k, shelf1) ∧ Books(k, shelf2)))) :: Deduction
+
+### ## INFERENCES
+LABEL: (∃k (Books(k, bookshelf1) ∧ Books(k, bookshelf2))) :: (∃x (Books(x, 34) ∧ ∃y (BookShelves(y, 2))))
+LABEL: k = 17 :: ((∃x (Books(x, 34) ∧ ∃y (BookShelves(y, 2)))) → ∃k (Books(k, 17)))
+LABEL: Conclusion :: k = 17

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states "Jesse's room is 7 feet wide," which directly supports RoomWidth(W) with W = 7.
+
+FACT-2: UNSUPPORTED — The story does not state the room area; it only mentions carpet area (14 square feet), not the room area A.
+
+RULE-1: IMPLAUSIBLE — The rule "Length(L)" is not a substantive general principle; it does not specify how length relates to area or width, so it fails as a usable inference rule for this case.

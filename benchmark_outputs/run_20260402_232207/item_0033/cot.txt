@@ -1,0 +1,13 @@
+To determine how many houses are in a block given that the mailman gives 2 junk mails per house and needs to give out 14 pieces of junk mail, we can use a logical syllogism:
+
+**Premise 1:** Each house receives 2 junk mails.
+- This tells us that if there were no houses, the total number of junk mails would be zero because each house contributes exactly 2 mails.
+
+**Premise 2:** The total number of junk mails needed is 14.
+- We know this value directly from the problem statement.
+
+**Conclusion:** Therefore, the number of houses must be \( \frac{14}{2} = 7 \).
+
+So, the number of houses in a block is **7**.
+
+The answer is: 7.

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, received_emails(morning, 10)).
+fof(fact_2, axiom, received_emails(afternoon, 3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (received_emails(morning, X) => received_emails(afternoon, X))).
+fof(rule_2, axiom, ! [X, Y, Z] : (subtraction_difference(X, Y, Z) <=> (X - Y = Z))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, received_emails(afternoon, 10)).
+
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_2, axiom, received_emails(afternoon, 3) => received_emails(afternoon, 3)).
+
+% From inf_1, inf_2, rule_2 by SubtractionDifference
+fof(inf_3, axiom, more_emails_in_morning_than_afternoon = 7).

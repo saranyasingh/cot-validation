@@ -1,0 +1,72 @@
+Let's convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL). 
+
+### Facts
+
+These are statements presented without any logical implication or quantification.
+
+```plaintext
+FACT-1: Number_of_Girls = 34
+```
+
+```plaintext
+FACT-2: Number_of_Boys = 841
+```
+
+### Rules
+
+These are universally quantified implications based on the premises provided.
+
+```plaintext
+RULE-1: If the number of girls is G and the number of boys is B, then the difference D is calculated as D = B - G.
+```
+
+### Inferences
+
+These are derived conclusions using the rules and facts provided.
+
+```plaintext
+INF-1: Given NUMBER_OF_Girls = 34 and NUMBER_OF_Boys = 841, calculate the difference D.
+```
+
+Now let’s translate each step logically:
+
+1. **Identify the total number of girls and boys:**
+   ```plaintext
+   Let G be the number of girls and B be the number of boys.
+   ```
+   
+2. **Substitute the known quantities:**
+   ```plaintext
+   G = 34
+   B = 841
+   ```
+
+3. **Calculate the difference between the number of boys and girls:**
+   ```plaintext
+   D = B - G
+   ```
+
+4. **Perform the calculation:**
+   ```plaintext
+   D = 841 - 34
+   ```
+
+5. **Final result:**
+   ```plaintext
+   D = 807
+   ```
+
+Putting all this together in FOL form:
+
+#### **Inference Label**: INF-1 :: ∀G, B (B - G = DIFFERENCE)
+
+Where `DIFFERENCE` is defined as:
+```plaintext
+DIFFERENCE = 841 - 34
+```
+
+So, the final conversion would look like:
+
+```plaintext
+INF-1: From FACT-1 and FACT-2, by Rule-1, Calculating DIFFERENCE = B - G :: DIFFERENCE = 841 - 34
+```

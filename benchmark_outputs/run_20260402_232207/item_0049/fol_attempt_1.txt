@@ -1,0 +1,6 @@
+FACT-1: Ryan spends 6 hours per day on learning English :: LearningEnglish(1)
+FACT-2: Ryan spends 7 hours per day on learning Chinese :: LearningChinese(1)
+RULE-1: Summing the daily hours gives the total hours :: ∀d (LearningEnglish(d) → LearningEnglishSum(d)) ∧ ∀d (LearningChinese(d) → LearningChineseSum(d))
+INF-1: Total hours spent on English: LearningEnglishSum(1) :: LearningEnglishSum(1)
+INF-2: Total hours spent on Chinese: LearningChineseSum(1) :: LearningChineseSum(1)
+INF-3: Total hours spent on both languages: LearningEnglishSum(1) + LearningChineseSum(1) :: LearningEnglishSum(1) + LearningChineseSum(1)

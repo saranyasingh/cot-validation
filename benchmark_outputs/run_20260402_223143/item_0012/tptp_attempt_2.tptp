@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, A = J + 4).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, J] : (A + J = 14)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Substitution
+fof(inf_1, axiom, A + J = 14).
+
+% From INF-1, simplify the equation
+fof(inf_2, axiom, A + J = 14).
+
+% From INF-2, solve the simplified equation for A
+fof(inf_3, axiom, A = 14 - J).
+
+% From INF-3, find the value of J
+fof(inf_4, axiom, J = 5).
+
+% From INF-4, calculate Adam's apples
+fof(inf_5, axiom, A = 9).
+
+% From INF-5, determine Bob's apples
+fof(inf_6, axiom, B = 20).

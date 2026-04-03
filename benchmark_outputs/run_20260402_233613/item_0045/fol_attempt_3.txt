@@ -1,0 +1,24 @@
+## FACTS
+```plaintext
+FACT-1: RingTossGameEarningsDay1To44($382)
+FACT-2: RingTossGameEarningsRemainingDays($374)
+```
+
+## RULES
+No rules provided in the original premise; hence no rules needed.
+
+## INFERENCES
+```plaintext
+INF-1: TotalEarnings = RingTossGameEarningsDay1To44 + RingTossGameEarningsRemainingDays
+```
+Where `RingTossGameEarningsRemainingDays` represents the earnings from the remaining 10 days after the first 44 days.
+
+Now, substituting the given values:
+```plaintext
+INF-1: TotalEarnings = $382 + $374
+```
+
+Performing the addition:
+```plaintext
+INF-1: TotalEarnings = $756
+```

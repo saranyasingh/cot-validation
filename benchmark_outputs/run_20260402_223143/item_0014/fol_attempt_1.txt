@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Books: 7 :: BookCount(books, 7)
+FACT-2: Action figures: 3 :: ActionFigureCount(action_figures, 3)
+
+## RULES
+RULE-1: If an item is added to the shelf, the count increases by one :: Add(ItemAdded, ItemCount)
+
+## INFERENCES
+INF-1: Updated number of action figures = 3 + 2 :: ActionFigureCount(updated_action_figures, 5)
+INF-2: Difference between books and action figures = Books - Updated number of action figures :: BookCount(books, 7) ∧ ActionFigureCount(updated_action_figures, 5) → BookCount(books, 7) - ActionFigureCount(updated_action_figures, 5)

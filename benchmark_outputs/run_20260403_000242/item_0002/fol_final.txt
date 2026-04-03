@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Marco's dad's strawberries weighed 11 pounds :: DadStrawberries(t_dad) ∧ Weight(11 pounds)
+FACT-2: Together their strawberries weighed 30 pounds :: Together(Strawberries, t_together) ∧ Weight(30 pounds)
+
+## RULES
+None needed for this problem.
+
+## INFERENCES
+INF-1: Marco's strawberries weigh 19 pounds :: Weight(Marco's strawberries) = 19 pounds

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: TotalPeopleAtOnce(18) :: TotalPeopleAtOnce(18)
+FACT-2: CapacityPerSeat(9) :: CapacityPerSeat(9)
+
+## RULES
+RULE-1: SeatsNeeded(TotalPeople, Capacity) :: ∀p (TotalPeople(p) → SeatsNeeded(p, p / Capacity)) 
+RULE-2: CapacityPerSeat(9) :: ∀s (Capacity(s) → s = 9)
+
+## INFERENCES
+INF-1: NumberOfSeats = 2 :: NumberOfSeats(18, 9)

@@ -1,0 +1,23 @@
+Let's break down this problem into a series of logical steps:
+
+1. **Premise**: We start with a total amount of money.
+   - Premise (P1): "You have 104 dollars."
+
+2. **Premise**: Each pack of DVDs costs a certain amount.
+   - Premise (P2): "Each pack of DVDs costs 26 dollars."
+
+3. **Premise**: To determine how many packs we can buy, we need to divide the total amount of money by the cost per pack.
+   - Premise (P3): "To find out how many packs we can buy, we perform the division \( \frac{104}{26} \)."
+
+4. **Calculation**:
+   - Perform the division \( \frac{104}{26} \).
+   - First, recognize that both numbers end in zeros when divided, which simplifies our calculation significantly.
+   - Simplify the fraction \( \frac{104}{26} \) by dividing both numerator and denominator by their greatest common divisor (GCD), which is 2.
+     - \( \frac{104 \div 2}{26 \div 2} = \frac{52}{13} \)
+   - Now, simplify further since 52 is divisible by 13.
+     - \( \frac{52 \div 13}{13 \div 13} = \frac{4}{1} = 4 \)
+
+5. **Conclusion**:
+   - From the calculation, we find that you can buy 4 packs of DVDs with $104.
+
+The answer is: 4

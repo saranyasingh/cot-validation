@@ -1,0 +1,44 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. Let \( t_{\text{harvest}} \) be the time when the oranges were harvested.
+2. Let \( n_sacks \) be the total number of sacks of oranges harvested.
+3. Let \( s\_sacks \) be the number of sacks harvested per day.
+4. Let \( d\_days \) be the total number of days required to harvest all the sacks.
+
+**Facts:**
+
+1. \( n_sacks = 54 \)
+2. \( s\_sacks = 18 \)
+3. \( d\_days = \frac{n_sacks}{s\_sacks} \)
+
+### Rules
+1. \( \forall t (n_sacks = 54) \)
+2. \( \forall t (s\_sacks = 18) \)
+3. \( \forall t (d\_days = \frac{n_sacks}{s\_sacks}) \)
+
+### Inferences
+1. \( \text{From Fact 1, Rule 1 by Modus Ponens: } \text{d\_days = } \frac{54}{18} \)
+2. \( \text{d\_days = 3} \)
+
+Thus, the answer is: 3 days
+
+### Output Format
+```plaintext
+## FACTS
+FACT-1: n_sacks = 54 :: n_sacks = 54
+FACT-2: s_sacks = 18 :: s_sacks = 18
+FACT-3: d_days = \frac{n_sacks}{s_sacks} :: d_days = \frac{54}{18}
+
+## RULES
+RULE-1: \forall t (n_sacks = 54) :: n_sacks = 54
+RULE-2: \forall t (s_sacks = 18) :: s_sacks = 18
+RULE-3: \forall t (d_days = \frac{n_sacks}{s_sacks}) :: d_days = \frac{54}{18}
+
+## INFERENCES
+INF-1: From Fact-1, Rule-1 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+INF-2: From Fact-2, Rule-2 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+INF-3: From Fact-3, Rule-3 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+```
+
+This structure clearly outlines each step and ensures clarity in converting the logical reasoning into formal FOL.

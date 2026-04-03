@@ -1,0 +1,29 @@
+Here is the conversion of the provided chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+FACT-1: Paul received a box containing 110 crayons as a gift :: ReceivedCrayons(Paul, 110)
+
+### RULES
+RULE-1: If Paul receives a gift, then he has more crayons :: ∀x (ReceivedGift(x) → HasMoreCrayons(x))
+
+### INFERENCES
+INF-1: Paul gave away 90 crayons :: GaveAwayCrayons(90)
+
+INF-2: Paul lost 412 crayons :: LostCrayons(412)
+
+INF-3: Paul’s initial number of crayons is greater than what he lost :: MoreThanLost(Crystals)
+
+INF-4: Paul’s initial number of crayons is equal to his final number of crayons plus what he gave away and lost :: InitialFinalRelation(Paul)
+
+INF-5: The difference between what Paul lost and what he gave away is 322 :: DifferenceBetweenLossAndGivingAway(322)
+
+### LABELS
+- **FACT-1:** ReceivedCrayons(Paul, 110)
+- **RULE-1:** ReceivedGift(x) → HasMoreCrayons(x)
+- **INF-1:** GaveAwayCrayons(90)
+- **INF-2:** LostCrayons(412)
+- **INF-3:** MoreThanLost(Crystals)
+- **INF-4:** InitialFinalRelation(Paul)
+- **INF-5:** DifferenceBetweenLossAndGivingAway(322)
+
+This FOL representation captures the logical structure derived from the given information and reasoning steps.

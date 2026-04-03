@@ -1,0 +1,26 @@
+### ## FACTS
+
+```plaintext
+Fact-1: NumberOfHouses(20)
+Fact-2: PiecesOfJunkMailPerHouse(32)
+```
+
+### ## RULES
+
+```plaintext
+Rule-1: MailDistribution(NumberOfHouses, PiecesOfJunkMailPerHouse) ↔ (∀h (Houses(h) → Mail(h, NumberOfHouses * PiecesOfJunkMailPerHouse)))
+```
+
+### ## INFERENCES
+
+```plaintext
+INF-1: TotalPiecesOfJunkMailCalculation := NumberOfHouses * PiecesOfJunkMailPerHouse
+INF-2: TotalPiecesOfJunkMail := NumberOfHouses * PiecesOfJunkMailPerHouse
+```
+
+### ## SOLUTION
+
+#### LABEL: Calculate Total Pieces of Junk Mail :: Rule-1
+```plaintext
+MailDistribution(20, 32)
+```

@@ -1,0 +1,9 @@
+### ## FACTS
+ACTIONFigures(Jerry, t_initial) :: ActionFigures(Jerry, t_initial) ∧ InitialNumber(4)
+ACTIONFigures(Jerry, later_time) :: ActionFigures(Jerry, later_time) ∧ AddedActionFigures(later_time, 6)
+
+### ## RULES
+INF-1: TotalActionFigures :: ACTIONFigures(Jerry, t_initial) ∧ ACTIONFigures(Jerry, later_time) ∧ (∃t (AddedActionFigures(t, x))) -> TotalActionFigures(10)
+
+### ## INFERENCES
+INF-1: TotalActionFigures :: ACTIONFigures(Jerry, t_initial) ∧ ACTIONFigures(Jerry, later_time) ∧ (∃t (AddedActionFigures(t, x))) -> TotalActionFigures(10)

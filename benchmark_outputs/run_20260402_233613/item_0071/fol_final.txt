@@ -1,0 +1,10 @@
+### ## FACTS
+### LABEL: TOTAL_FRUITS :: Total(fruits) = Number_of_bananas + Number_of_oranges
+### LABEL: ORANGE_GROUPS :: Number_of_orange_groups = 178
+### LABEL: NUM_ORANGES_PER_GROUP :: Number_of_oranges_per_group = Total_fruits / Number_of_orange_groups
+
+### ## RULES
+### Label: NONE
+
+### ## INFERENCES
+### LABEL: NUM_ORANGES_PER_GROUP :: ∀g (g ∈ Groups → Oranges(g) -> Number(OrangesInGroup(g))) :: ((Total_fruits / Number_of_orange_groups) -> Number(OrangesInGroup(g)))

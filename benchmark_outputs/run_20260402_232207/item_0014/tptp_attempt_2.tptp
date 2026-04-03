@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, book_count(books) = 7).
+
+fof(fact_2, axiom, action_figure_count(action_figures) = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Type] : ( quantity(Type) + quantity(Additional) = total(Type) )). 
+
+% --- INFERENCES ---
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_1, axiom, updated_action_figures(updated_action_figures)).
+
+% From FACT-1, RULE-1 by Subtraction
+fof(inf_2, axiom, difference(book_count, updated_action_figures)).

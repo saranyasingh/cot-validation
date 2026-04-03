@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, page_count(chapter_1) = 31).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (page_count(chapter_2) = 36 => page_count(chapter_1) = total_pages - page_count(chapter_2))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, page_count(chapter_1) = 31).

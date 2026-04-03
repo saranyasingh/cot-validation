@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : (red_peaches_per_basket(X) = 19 & green_peaches_per_basket(X) = 4)).
+
+fof(fact_2, axiom, baskets_count = 15).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1 by Definition
+fof(inf_1, axiom, ! [Z] : ( total_peaches(Z) = red_peaches_per_basket(Z) + green_peaches_per_basket(Z) )).
+
+% From fact_2 by Definition
+fof(inf_2, axiom, total_peaches(1) = 19 + 4).
+
+% From fact_2 by Definition
+fof(inf_3, axiom, total_peaches(15) = 19 * 15 + 4 * 15).

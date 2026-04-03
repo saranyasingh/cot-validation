@@ -1,0 +1,50 @@
+Let's convert the chain-of-thought reasoning into structured First-Order Logic (FOL). We'll follow the provided guidelines and output the facts, rules, and inferences step-by-step.
+
+### Facts
+These are the direct statements derived from the story without any quantification.
+
+#### Fact-1: Adam has 4 more apples than Jackie.
+```plaintext
+Fact-1: AdamHasMoreThanJackieApples(4)
+```
+
+#### Fact-2: Together Adam and Jackie have 14 apples.
+```plaintext
+Fact-2: AdamAndJackieHave14Apples()
+```
+
+### Rules
+These are universally quantified implications based on external knowledge.
+
+#### Rule-1: If it rains at a time, the ground is wet at that time.
+This rule will help us understand the temporal aspect but won't be directly relevant here since no specific times are mentioned.
+
+### Inferences
+We derive new conclusions using the facts and rules. 
+
+#### Inf-1: From Fact-1, Rule-1 by Modus Ponens: Adam has 4 more apples than Jackie.
+This is a simple application of the modus ponens rule.
+
+#### Inf-2: Adam has 9 apples.
+From Fact-1, we know Adam has \( J + 4 \) apples where \( J \) is the number of apples Jackie has. Since \( J = 5 \):
+\[ \text{Adam's Apples} = 5 + 4 = 9 \]
+
+#### Inf-3: Together, Adam and Jackie have 14 apples.
+This is explicitly stated in Fact-2:
+\[ \text{AdamAndJackieHave14Apples()} \]
+
+#### Inf-4: Bob has 6 apples more than Adam and Jackie together.
+From Inf-3, we can calculate Bob's apples:
+\[ \text{Bob's Apples} = 14 + 6 = 20 \]
+
+### Final Answer
+Here are the final lines in FOL format, organized according to the required structure.
+
+#### LABEL: FACT-1 :: AdamHasMoreThanJackieApples(4)
+#### LABEL: FACT-2 :: AdamAndJackieHave14Apples()
+#### LABEL: INF-1 :: AdamHasMoreThanJackieApples(4)
+#### LABEL: INF-2 :: AdamHasMoreThanJackieApples(9)
+#### LABEL: INF-3 :: AdamAndJackieHave14Apples()
+#### LABEL: INF-4 :: BobHasMoreThanAdamAndJackieApples(6)
+
+By following these steps, we've logically deduced the number of apples each person has, ensuring all intermediate steps are clearly represented in FOL form.

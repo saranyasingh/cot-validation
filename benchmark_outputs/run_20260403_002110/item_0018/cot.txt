@@ -1,0 +1,43 @@
+To solve this problem logically:
+
+1. **Initial number of cards**: Nell starts with 309 baseball cards and 356 Ace cards.
+2. **Given information**: After giving away some cards, she ends up with 415 baseball cards and 356 Ace cards (since Ace cards remain unchanged).
+3. **Calculation of given-away cards**:
+   - Baseball cards given away = Initial baseball cards - Final baseball cards
+     \[
+     \text{Baseball cards given away} = 309 - 415 = -106
+     \]
+   - This negative value indicates that Nell actually received cards instead of giving them away. Let's correct our approach.
+   
+4. **Correct calculation of given-away cards**:
+   - Since she ended up with 415 baseball cards after receiving cards, we need to find out how many cards she received.
+   - Cards received = Final baseball cards + Given-away cards (which should be positive)
+     \[
+     \text{Cards received} = 415 + x = 356
+     \]
+     Solving for \(x\):
+     \[
+     x = 356 - 415 = -59
+     \]
+
+5. **Re-evaluate the total card count**:
+   - Total initial cards = 309 baseball + 356 Ace = 665 cards
+   - Total final cards = 415 baseball + 356 Ace = 771 cards
+
+6. **Determine the net change in cards**:
+   - Net change in cards = Total initial cards - Total final cards
+     \[
+     \text{Net change} = 665 - 771 = -106
+     \]
+
+7. **Interpret the result**:
+   - Since Nell received cards instead of giving any away, the negative value (-106) represents the net increase in total cards.
+   - However, we need to calculate how many more baseball cards than Ace cards Nell has.
+
+8. **Calculate difference between baseball and Ace cards**:
+   - Difference = Final baseball cards - Final Ace cards
+     \[
+     \text{Difference} = 415 - 356 = 59
+     \]
+
+Therefore, the answer is: The number of additional baseball cards compared to Ace cards that Nell has is 59.

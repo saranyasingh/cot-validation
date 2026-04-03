@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost_per_dvd_pack(26)).
+fof(fact_2, axiom, total_money_available(104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Total, Cost] : (number_of_packs(Total, Cost) * Cost = Total)).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Division
+fof(inf_1, axiom, number_of_packs(104, 26) = 4).

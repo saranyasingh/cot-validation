@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, (dad_strawberries(t_dad) & weight(11_pounds))).
+fof(fact_2, axiom, (together(strawberries, t_together) & weight(30_pounds))).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, weight(marcos_strawberries) = 19_pounds).

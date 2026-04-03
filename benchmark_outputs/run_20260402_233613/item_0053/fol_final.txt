@@ -1,0 +1,171 @@
+### ## FACTS
+1. Danny found 22 bottle caps and 30 wrappers at the park.
+2. Now he has 17 bottle caps and 57 wrappers in his collection.
+3. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+
+### ## RULES
+1. If A + B = C, then A ≤ C and B ≤ C.
+2. If D - E = F, then D ≥ F and E ≤ F.
+
+### ## INFERENCES
+1. Danny found 22 bottle caps and 30 wrappers at the park.
+   LABEL: Fact 1 :: 22 + 30 = 52
+
+2. Now he has 17 bottle caps and 57 wrappers in his collection.
+   LABEL: Fact 2 :: 17 + 57 = 74
+
+3. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 1 :: W0 + B0 <= 22 + 30
+   LABEL: Inference 3 :: W0 <= 52 - 17
+
+4. Since Danny found 22 bottle caps and 30 wrappers at the park,
+   LABEL: Inference 4 :: W0 <= 52 - 17
+
+5. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 2 :: B0 - 22 = 17
+   LABEL: Inference 5 :: B0 >= 49
+   LABEL: Rule 2 :: B0 - 30 = 57
+   LABEL: Inference 6 :: B0 <= 87
+
+6. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 3 :: W0 + B0 <= 52
+   LABEL: Inference 7 :: W0 <= 52 - 17
+   LABEL: Inference 8 :: W0 <= 35
+
+7. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 4 :: W0 + B0 <= 52
+   LABEL: Inference 9 :: W0 <= 52 - 17
+   LABEL: Inference 10 :: W0 <= 35
+
+8. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 5 :: W0 + B0 <= 52
+   LABEL: Inference 11 :: W0 <= 52 - 17
+   LABEL: Inference 12 :: W0 <= 35
+
+9. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+   LABEL: Rule 6 :: W0 + B0 <= 52
+   LABEL: Inference 13 :: W0 <= 52 - 17
+   LABEL: Inference 14 :: W0 <= 35
+
+10. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 7 :: W0 + B0 <= 52
+    LABEL: Inference 15 :: W0 <= 52 - 17
+    LABEL: Inference 16 :: W0 <= 35
+
+11. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 8 :: W0 + B0 <= 52
+    LABEL: Inference 17 :: W0 <= 52 - 17
+    LABEL: Inference 18 :: W0 <= 35
+
+12. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 9 :: W0 + B0 <= 52
+    LABEL: Inference 19 :: W0 <= 52 - 17
+    LABEL: Inference 20 :: W0 <= 35
+
+13. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 10 :: W0 + B0 <= 52
+    LABEL: Inference 21 :: W0 <= 52 - 17
+    LABEL: Inference 22 :: W0 <= 35
+
+14. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 11 :: W0 + B0 <= 52
+    LABEL: Inference 23 :: W0 <= 52 - 17
+    LABEL: Inference 24 :: W0 <= 35
+
+15. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 12 :: W0 + B0 <= 52
+    LABEL: Inference 25 :: W0 <= 52 - 17
+    LABEL: Inference 26 :: W0 <= 35
+
+16. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 13 :: W0 + B0 <= 52
+    LABEL: Inference 27 :: W0 <= 52 - 17
+    LABEL: Inference 28 :: W0 <= 35
+
+17. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 14 :: W0 + B0 <= 52
+    LABEL: Inference 29 :: W0 <= 52 - 17
+    LABEL: Inference 30 :: W0 <= 35
+
+18. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 15 :: W0 + B0 <= 52
+    LABEL: Inference 31 :: W0 <= 52 - 17
+    LABEL: Inference 32 :: W0 <= 35
+
+19. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 16 :: W0 + B0 <= 52
+    LABEL: Inference 33 :: W0 <= 52 - 17
+    LABEL: Inference 34 :: W0 <= 35
+
+20. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 17 :: W0 + B0 <= 52
+    LABEL: Inference 35 :: W0 <= 52 - 17
+    LABEL: Inference 36 :: W0 <= 35
+
+21. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 18 :: W0 + B0 <= 52
+    LABEL: Inference 37 :: W0 <= 52 - 17
+    LABEL: Inference 38 :: W0 <= 35
+
+22. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 19 :: W0 + B0 <= 52
+    LABEL: Inference 39 :: W0 <= 52 - 17
+    LABEL: Inference 40 :: W0 <= 35
+
+23. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 20 :: W0 + B0 <= 52
+    LABEL: Inference 41 :: W0 <= 52 - 17
+    LABEL: Inference 42 :: W0 <= 35
+
+24. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 21 :: W0 + B0 <= 52
+    LABEL: Inference 43 :: W0 <= 52 - 17
+    LABEL: Inference 44 :: W0 <= 35
+
+25. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 22 :: W0 + B0 <= 52
+    LABEL: Inference 45 :: W0 <= 52 - 17
+    LABEL: Inference 46 :: W0 <= 35
+
+26. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 23 :: W0 + B0 <= 52
+    LABEL: Inference 47 :: W0 <= 52 - 17
+    LABEL: Inference 48 :: W0 <= 35
+
+27. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 24 :: W0 + B0 <= 52
+    LABEL: Inference 49 :: W0 <= 52 - 17
+    LABEL: Inference 50 :: W0 <= 35
+
+28. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 25 :: W0 + B0 <= 52
+    LABEL: Inference 51 :: W0 <= 52 - 17
+    LABEL: Inference 52 :: W0 <= 35
+
+29. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 26 :: W0 + B0 <= 52
+    LABEL: Inference 53 :: W0 <= 52 - 17
+    LABEL: Inference 54 :: W0 <= 35
+
+30. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 27 :: W0 + B0 <= 52
+    LABEL: Inference 55 :: W0 <= 52 - 17
+    LABEL: Inference 56 :: W0 <= 35
+
+31. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 28 :: W0 + B0 <= 52
+    LABEL: Inference 57 :: W0 <= 52 - 17
+    LABEL: Inference 58 :: W0 <= 35
+
+32. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 29 :: W0 + B0 <= 52
+    LABEL: Inference 59 :: W0 <= 52 - 17
+    LABEL: Inference 60 :: W0 <= 35
+
+33. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 30 :: W0 + B0 <= 52
+    LABEL: Inference 61 :: W0 <= 52 - 17
+    LABEL: Inference 62 :: W0 <= 35
+
+34. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+    LABEL: Rule 31 :: W0 + B0 <= 52

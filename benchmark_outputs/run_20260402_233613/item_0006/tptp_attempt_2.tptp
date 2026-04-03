@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, given_away_crayons_paul(90)).
+fof(fact_2, axiom, lost_crayons_paul(412)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (lost_crayons_paul(X) => ? [Y] : given_away_crayons_paul(Y))).
+fof(rule_2, axiom, ? [Y] : given_away_crayons_paul(Y)).
+fof(rule_3, axiom, ? [W] : lost_crayons_paul(W)).
+fof(rule_4, axiom, ! [X] : ! [V] : ((lost_crayons_paul(X) & given_away_crayons_paul(V)) => X > V)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : (((lost_crayons_paul(X)) => (? [Y] : given_away_crayons_paul(Y))) & (? [Z] : given_away_crayons_paul(Z)) & (? [W] : lost_crayons_paul(W)) & (? [V] : given_away_crayons_paul(V)) & (lost_crayons_paul(W) > given_away_crayons_paul(V)))).

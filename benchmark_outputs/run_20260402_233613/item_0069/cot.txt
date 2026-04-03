@@ -1,0 +1,40 @@
+Let's break down the problem using a logical syllogism:
+
+1. **Premise 1:** Frank reads 22 pages per day.
+   - This establishes the rate at which Frank consumes information from the book.
+
+2. **Premise 2:** It took Frank 569 days to finish the book.
+   - This tells us how long the entire book takes to be completed.
+
+3. **Conclusion:** We need to determine the total number of pages in the book.
+   - To find this, we multiply the daily reading rate (pages per day) by the total number of days it took to complete the book.
+
+4. **Calculation:** 
+   \[
+   \text{Total Pages} = \text{Pages per Day} \times \text{Number of Days}
+   \]
+   Substituting the values:
+   \[
+   \text{Total Pages} = 22 \times 569
+   \]
+
+5. **Performing the multiplication:**
+   \[
+   22 \times 569 = 22 \times (500 + 60 + 9)
+   \]
+   Breaking it down further:
+   \[
+   22 \times 500 = 11000
+   \]
+   \[
+   22 \times 60 = 1320
+   \]
+   \[
+   22 \times 9 = 198
+   \]
+   Adding these results together:
+   \[
+   11000 + 1320 + 198 = 12518
+   \]
+
+Therefore, the answer is: The book has 12,518 pages.

@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : ( red_peaches_in_basket(X) <=> X = 19 ) ).
+
+fof(fact_2, axiom, ! [Y] : ( green_peaches_in_basket(Y) <=> Y = 4 ) ).
+
+fof(fact_3, axiom, ! [Z] : ( number_of_baskets(Z) <=> Z = 15 ) ).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [U,V,W] : ( red_and_green_peaches_in_basket(U) <=> ( U = red_peaches_in_basket(V) + green_peaches_in_basket(W) ) ) ).
+
+fof(rule_2, axiom, ! [P,U,V] : ( total_peaches_in_all_baskets(P) <=> P = red_and_green_peaches_in_basket(U) * number_of_baskets(V) ) ).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1, rule_2 by Definition
+fof(inf_1, axiom, total_peaches_in_all_baskets(p) = 345).

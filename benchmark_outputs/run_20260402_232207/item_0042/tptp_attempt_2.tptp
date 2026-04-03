@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_english(7)). 
+fof(fact_2, axiom, learning_spanish(4)). 
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,D] : (((A & B) => (C & D)) => (A - B = C - D))). 
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, (learning_english(7) - learning_spanish(4)) = 3).

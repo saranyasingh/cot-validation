@@ -1,0 +1,7 @@
+LABEL: Total sacks of oranges :: TotalOranges(54)
+LABEL: Rate of harvesting :: HarvestRate(18)
+LABEL: Time = Quantity / Rate :: Time(TotalQuantity, HarvestRate)
+
+LABEL: Time = 54 / 18 :: Time(54, 18)
+
+LABEL: It took 3 days to harvest the oranges :: Time(54, 18) :: Days(3)

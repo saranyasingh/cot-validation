@@ -1,0 +1,7 @@
+FACT-1: You have 104 dollars :: TotalMoney(104)
+
+FACT-2: Each pack of DVDs costs 26 dollars :: DVDCost(26)
+
+RULE-1: To find out how many packs we can buy, we perform the division \( \frac{TotalMoney}{DVDCost} \) :: Division(Packs)
+
+INF-1: From FACT-1 and RULE-1 by Division: NumberOfPacks = \( \frac{104}{26} \) :: Packs = 4

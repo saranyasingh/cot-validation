@@ -1,0 +1,30 @@
+Let's break down this problem into a series of logical steps:
+
+**Premise 1:** Dave initially had 15 apps on his phone.
+- This sets our starting point and establishes how many apps were present before any changes occurred.
+
+**Premise 2:** Dave then added 71 new apps to his existing collection.
+- This introduces an increase in the number of apps through addition.
+
+**Premise 3:** After adding these new apps, Dave had a total of 86 apps (15 initial + 71 added).
+- We combine the initial count with the newly added ones to get the current total.
+
+**Premise 4:** After deleting some apps, Dave was left with only 14 apps on his phone.
+- This represents the state after some deletions have been made.
+
+**Premise 5:** To find out how many apps were deleted, we subtract the remaining number of apps (14) from the total number of apps at that moment (86).
+- This gives us the number of apps removed.
+
+To calculate the exact difference between the number of apps deleted and added:
+- Subtracting the final number of apps from the total after additions gives us: 
+  \[ 86 - 14 = 72 \]
+  
+This means Dave deleted 72 apps overall.
+
+Now, let's determine how many more apps he deleted compared to those he originally added:
+- Adding up the numbers of apps added and deleted:
+  \[ 71 \text{ (added)} + 72 \text{ (deleted)} = 143 \]
+
+Therefore, Dave deleted **143 more apps** than he added.
+
+The answer is: 143

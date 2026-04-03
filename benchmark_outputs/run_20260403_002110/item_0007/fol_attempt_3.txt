@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: Randy used 20 blocks to build the house :: BuildingHouse(blocks=20)
+FACT-2: Randy used 50 blocks to build the tower :: BuildingTower(blocks=50)
+
+### RULES
+RULE-1: If Randy builds something, then he uses some blocks :: ∀b (BuildingSomething(b) → UsingBlocks(b))
+
+### INFERENCES
+INF-1: From RULE-1 and FACT-1, we can infer that Randy used 20 blocks for the house :: UsingBlocks(BuildingHouse) = 20
+INF-2: From RULE-1 and FACT-2, we can infer that Randy used 50 blocks for the tower :: UsingBlocks(BuildingTower) = 50
+INF-3: To find the difference, we need to calculate the absolute value of the difference between the blocks used for the tower and the blocks used for the house :: |UsingBlocks(BuildingTower) - UsingBlocks(BuildingHouse)| = |50 - 20|
+INF-4: Simplifying the expression gives us the result :: |50 - 20| = 30

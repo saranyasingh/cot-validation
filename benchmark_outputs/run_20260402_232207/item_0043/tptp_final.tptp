@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, received_emails(jack, t_10, morning)).
+
+fof(fact_2, axiom, received_emails(jack, t_15, afternoon)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( ! [Y] : ( ! [Z] : ((X > Y) => (Z = X - Y)) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, 7 = 10 - 3).

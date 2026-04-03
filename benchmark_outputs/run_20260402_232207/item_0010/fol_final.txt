@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: TotalBooks(34) :: TotalBooks = 34
+FACT-2: NumberOfBookShelves(2) :: NumberOfBookShelves = 2
+
+## RULES
+RULE-1: EqualDistribution(TotalBooks, NumberOfBookShelves) :: ∀n (TotalBooks / NumberOfBookShelves = n)
+
+## INFERENCES
+INF-1: BooksPerShelf(2, 34) :: 34 / 2 = 17

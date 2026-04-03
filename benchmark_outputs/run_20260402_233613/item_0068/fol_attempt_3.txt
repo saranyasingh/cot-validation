@@ -1,0 +1,20 @@
+### ## FACTS
+FACT-1: TotalNumberOfStudents = Girls + Boys :: 
+\[
+\text{TotalNumberOfStudents} = 697 + B
+\]
+
+### ## RULES
+RULE-1: If total number of students equals sum of girls and boys, then number of boys is given :: 
+\[
+\text{TotalNumberOfStudents} = 697 + B
+\]
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1, derive the number of boys :: 
+\[
+B = 697 - 228
+\]
+\[
+B = 469
+\]

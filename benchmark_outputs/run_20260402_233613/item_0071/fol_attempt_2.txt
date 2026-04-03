@@ -1,0 +1,8 @@
+### LABEL: NUM_ORANGES_PER_GROUP :: ∀g (g ∈ Groups → Oranges(g) -> Number(OrangesInGroup(g)))
+### LABEL: TOTAL_FRUITS :: Total(fruits)
+### LABEL: ORANGE_GROUPS :: 178
+### LABEL: NUMBER_OF_BANANAS :: 142
+### LABEL: CALCULATE_TOTAL_FRUITS :: Total(fruits) := Total(bananas) + Total(oranges)
+### LABEL: DIVIDE_BY_ORANGE_GROUPS :: Number(OrangesInGroup(g)) := Total(fruits) / Number(orange_groups)
+### LABEL: RESULT :: Number(OrangesInGroup(g)) = (Total(fruits) / Number(orange_groups))
+### LABEL: NUM_ORANGES_PER_GROUP :: ∀g (g ∈ Groups → Oranges(g) -> Number(OrangesInGroup(g))) :: ((Total(fruits) / 178) -> Number(OrangesInGroup(g)))

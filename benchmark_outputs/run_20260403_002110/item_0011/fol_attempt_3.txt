@@ -1,0 +1,66 @@
+### ## FACTS
+**Fact-1:** Dave initially had 15 apps.
+\[
+\text{Apps}_{\text{initial}}(Dave) ::= Apps(Dave) = 15
+\]
+
+**Fact-2:** Dave added 71 new apps.
+\[
+\text{AddedApps}(Dave) ::= AddedApps(Dave) = 71
+\]
+
+### ## RULES
+**Rule-1:** Adding and then deleting apps maintains the total count.
+\[
+\forall x (\text{Apps}(Dave) + \text{AddedApps}(Dave) = \text{DeletedApps}(Dave))
+\]
+
+**Rule-2:** Deletion alone results in fewer apps than initial plus added.
+\[
+\forall x (\text{Apps}(Dave) + \text{AddedApps}(Dave) > \text{DeletedApps}(Dave))
+\]
+
+### ## INFERENCES
+**Inference-1:** Total number of apps after adding minus added equals current total apps.
+\[
+\begin{align*}
+&\text{TotalAppsAfterAdding} := \text{Apps}(Dave) + \text{AddedApps}(Dave) \\
+&\text{CurrentTotalApps} := \text{Apps}(Dave) + \text{DeletedApps}(Dave)
+\end{align*}
+\]
+
+**Inference-2:** Given total apps after adding equals current total apps.
+\[
+\begin{align*}
+&\text{TotalAppsAfterAdding} = \text{CurrentTotalApps} \\
+&\Rightarrow \text{Apps}(Dave) + \text{AddedApps}(Dave) = \text{Apps}(Dave) + \text{DeletedApps}(Dave)
+\end{align*}
+\]
+
+**Inference-3:** Given current total apps is greater than initial plus added.
+\[
+\begin{align*}
+&\text{CurrentTotalApps} > \text{Apps}(Dave) + \text{AddedApps}(Dave) \\
+&\Rightarrow \text{Apps}(Dave) + \text{DeletedApps}(Dave) > \text{Apps}(Dave) + \text{AddedApps}(Dave)
+\end{align*}
+\]
+
+**Inference-4:** Current total apps less initial plus added equals deleted minus added.
+\[
+\begin{align*}
+&\text{CurrentTotalApps} - \text{Apps}(Dave) = \text{DeletedApps}(Dave) - \text{AddedApps}(Dave)
+\end{align*}
+\]
+
+**Inference-5:** Difference between deleted and added apps.
+\[
+\begin{align*}
+&(\text{CurrentTotalApps} - \text{Apps}(Dave)) - (\text{Apps}(Dave) + \text{AddedApps}(Dave)) = (\text{DeletedApps}(Dave) - \text{AddedApps}(Dave)) \\
+&\Rightarrow \text{DeletedApps}(Dave) - \text{AddedApps}(Dave) = \text{DeletedApps}(Dave) - \text{AddedApps}(Dave)
+\end{align*}
+\]
+
+**Inference-6:** Since both sides cancel out, we conclude:
+\[
+\boxed{0}
+\]

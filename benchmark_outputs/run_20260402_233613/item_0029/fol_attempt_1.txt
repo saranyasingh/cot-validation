@@ -1,0 +1,24 @@
+**FACTS**
+FACT-1: Zachary did 44 push-ups :: PushUp(Zachary, 44)
+
+**RULES**
+RULE-1: If A does B, then A does C if D :: ∀A B C D (If A does B, then A does C if D)
+
+**INFERENCES**
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Zachary did 44 push-ups :: PushUp(Zachary, 44)
+
+INF-2: From FACT-1, RULE-1 by Modus Ponens: Zachary did 44 push-ups :: PushUp(Zachary, 44)
+
+INF-3: David did 58 more push-ups than Zachary :: PushUp(David, 44 + 58)
+
+INF-4: From Fact 2, Rule 3 by Addition: David did 102 push-ups :: PushUp(David, 102)
+
+INF-5: Combined total of push-ups done by both Zachary and David :: PushUp(Zachary, 44) ∧ PushUp(David, 102)
+
+INF-6: Combine results using Disjunction (since they can do different numbers): CombinedTotal :: PushUp(Zachary, 44) ∨ PushUp(David, 102)
+
+INF-7: Simplify combining results logically: CombinedTotal :: PushUp(Zachary, 44) ∨ PushUp(David, 102) 
+
+INF-8: Conclude final result logically: CombinedTotal :: PushUp(Zachary, 44) ∨ PushUp(David, 102) 
+
+INF-9: Final conclusion: Zachary and David did a total of 146 push-ups :: CombinedTotal :: PushUp(Zachary, 44) ∨ PushUp(David, 102)

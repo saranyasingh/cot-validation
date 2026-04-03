@@ -1,0 +1,25 @@
+To find out how many peaches are in all the baskets together, we need to calculate the total number of red peaches and green peaches separately, then add them up.
+
+First, let's calculate the total number of red peaches:
+- Each basket contains 19 red peaches.
+- There are 15 baskets.
+
+Total red peaches = Number of red peaches per basket × Number of baskets
+= 19 × 15
+= 285
+
+Next, let's calculate the total number of green peaches:
+- Each basket contains 4 green peaches.
+- There are 15 baskets.
+
+Total green peaches = Number of green peaches per basket × Number of baskets
+= 4 × 15
+= 60
+
+Now, we add the total number of red and green peaches to get the overall count:
+
+Total peaches = Total red peaches + Total green peaches
+= 285 + 60
+= 345
+
+Therefore, the total number of peaches in the baskets altogether is **345**.

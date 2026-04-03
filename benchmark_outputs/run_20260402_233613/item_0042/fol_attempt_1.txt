@@ -1,0 +1,5 @@
+FACT-1: Time spent on learning English = 7 hours per day :: LearningTime(English) = 7
+FACT-2: Time spent on learning Spanish = 4 hours per day :: LearningTime(Spanish) = 4
+
+## INFERENCES
+INF-1: Difference in study time :: LearningTime(English) - LearningTime(Spanish)

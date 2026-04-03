@@ -1,0 +1,28 @@
+Here is the conversion of your chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: RingTossGameEarningsDay1To44($382)
+```
+
+### Rules
+No rules provided in your premise; hence no rules needed.
+
+### Inferences
+```plaintext
+INF-1: TotalEarnings = RingTossGameEarningsDay1To44 + RingTossGameEarningsRemainingDays
+```
+Where `RingTossGameEarningsRemainingDays` represents the earnings from the remaining 10 days after the first 44 days.
+
+Now, substituting the given values:
+```plaintext
+INF-1: TotalEarnings = $382 + $374
+```
+
+Performing the addition:
+```plaintext
+INF-1: TotalEarnings = $756
+```
+
+### Final Answer
+The ring toss game made $756 in all.

@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: DannyInitialBottleCaps(71)
+LABEL: FACT-2 :: DannyInitialWrappers(24)
+LABEL: NO_RULES_FOUND :: None
+LABEL: DIFFERENTIATE_BOTTLECAPS_AND_WRAPERS :: DIFFERENTIATE(BottleCaps, Wrappers) ::= BottleCaps - Wrappers

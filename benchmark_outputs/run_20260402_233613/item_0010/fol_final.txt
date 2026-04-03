@@ -1,0 +1,27 @@
+### LABEL: FACTS :: 
+```plaintext
+FACT-1: Total number of books Bryan has :: 34
+```
+
+### LABEL: RULES ::
+```plaintext
+RULE-1: Books distributed evenly across shelves :: \(\frac{\text{Total number of books}}{\text{Number of shelves}}\) equals the number of books per shelf
+```
+
+### LABEL: INFERENCES ::
+```plaintext
+INF-1: Each bookshelf contains 17 books :: \(\frac{34}{2}\)
+```
+
+### FIXED OUTPUT ###
+#### FACTS ::  
+```plaintext
+FACT-1: Total number of books Bryan has :: 34
+```
+#### RULES ::  
+```plaintext
+RULE-1: Books distributed evenly across shelves :: \(\frac{\text{Total number of books}}{\text{Number of shelves}}\) equals the number of books per shelf
+```
+#### INFERENCES ::  
+```plaintext
+INF-1: Each bookshelf contains 17 books :: \(\frac{34}{2}\)

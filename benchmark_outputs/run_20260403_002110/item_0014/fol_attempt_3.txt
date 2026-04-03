@@ -1,0 +1,10 @@
+### ## FACTS
+FACT-1: Jerry had 7 books initially :: Books(Jerry) := 7
+FACT-2: Jerry had 3 action figures initially :: ActionFigures(Jerry) := 3
+FACT-3: Jerry added 2 more action figures :: ActionFigures(Jerry) := ActionFigures(Jerry) + 2
+
+### ## RULES
+RULE-1: If someone has \( x \) books and \( y \) action figures, they have \( x - y \) more books than action figures :: ∀x∀y (Books(x) ∧ ActionFigures(y) → Books(x) - ActionFigures(y))
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1, Jerry has 2 more books than action figures :: Books(Jerry) - ActionFigures(Jerry) = 2

@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, red_peaches(5)).
+
+fof(fact_2, axiom, yellow_peaches(14)).
+
+fof(fact_3, axiom, green_peaches(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P1, P2, P3] : (sum(P1, P2, P3) = t(total_peaches))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, sum(red_peaches(5), yellow_peaches(14), green_peaches(6)) = t(total_peaches)).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_2, axiom, sum(red_peaches(5), yellow_peaches(14), green_peaches(6)) = t(19)).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_3, axiom, green_peaches(6) = t(19) - sum(red_peaches(5), yellow_peaches(14))).
+
+% From fact_3, rule_1 by Substitution
+fof(inf_4, axiom, green_peaches(5)).

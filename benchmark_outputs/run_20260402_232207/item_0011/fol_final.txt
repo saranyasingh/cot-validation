@@ -1,0 +1,13 @@
+LABEL: ## FACTS
+FACT-1: Dave had 15 apps initially :: Apps(15)
+FACT-2: Dave added 71 new apps :: AddedApps(71)
+FACT-3: Dave had 86 apps after adding :: TotalAppsAfterAddition(86)
+
+LABEL: ## RULES
+RULE-1: TotalAppsAfterAddition equals InitialApps plus AddedApps :: TotalAppsAfterAddition(X1) ↔ Apps(Y1) ∧ AddedApps(Z1) → X1 = Y1 + Z1
+RULE-2: RemainingApps equals TotalAppsAfterAddition minus DeletedApps :: RemainingApps(X2) ↔ TotalAppsAfterAddition(Y2) ∧ DeletedApps(Z2) → X2 = TotalAppsAfterAddition(Y2) - DeletedApps(Z2)
+
+LABEL: ## INFERENCES
+INF-1: DeletedApps equals TotalAppsAfterAddition minus RemainingApps :: DeletedApps(X3) ↔ TotalAppsAfterAddition(Y3) ∧ RemainingApps(Z3) → X3 = TotalAppsAfterAddition(Y3) - RemainingApps(Z3)
+INF-2: Number of apps deleted compared to added is: (DeletedApps - AddedApps) :: NumAppsDeleted(X4) ↔ DeletedApps(Y4) - AddedApps(Z4)
+INF-3: Difference between deleted and added apps: NumAppsDeleted - AddedApps :: DiffAppsDeletedAdded(143)

@@ -1,0 +1,13 @@
+## FACTS
+LABEL: FACT-1 :: Packs = 35
+LABEL: FACT-2 :: Pencils = 4
+LABEL: FACT-3 :: RowPerPack = 2
+
+## RULES
+LABEL: RULE-1 :: TotalPencils = Packs * Pencils
+LABEL: RULE-2 :: Rows = TotalPencils / RowPerPack
+
+## INFERENCES
+LABEL: INFERENCE-1 :: TotalPencils = Packs * Pencils
+LABEL: INFERENCE-2 :: Rows = TotalPencils / RowPerPack
+LABEL: INFERENCE-3 :: NumberOfRows = Rows // Calculate using the derived rules and facts.

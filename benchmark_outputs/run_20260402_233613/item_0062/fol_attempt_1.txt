@@ -1,0 +1,92 @@
+Let's convert the given chain of thought into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: GrasshopperJumped(25) :: GrasshopperJump(x) = 25
+```
+
+### Rules
+```plaintext
+RULE-1: FrogJumped(ExtraDistance) :: FrogJump(x) = GrasshopperJump(x) + ExtraDistance
+```
+
+### Inferences
+```plaintext
+INF-1: MouseJumped(FrogJump) :: MouseJump(x) = FrogJump(x) + ExtraDistance
+```
+
+Now let's break down each part:
+
+#### **Premise 1:**
+The grasshopper jumped 25 inches.
+This can be represented as:
+```plaintext
+FACT-1: GrasshopperJumped(25) :: GrasshopperJump(x) = 25
+```
+Where `GrasshopperJump` is the function representing the jump distance of the grasshopper.
+
+#### **Premise 2:**
+The frog jumped 18 inches farther than the grasshopper.
+This translates to:
+```plaintext
+FACT-2: FrogJumped(18) :: FrogJump(x) = GrasshopperJump(x) + 18
+```
+Where `GrasshopperJump` represents the distance jumped by the grasshopper, and `FrogJump` represents the distance jumped by the frog.
+
+#### **Premise 3:**
+The mouse jumped 2 inches farther than the frog.
+This results in:
+```plaintext
+FACT-3: MouseJumped(2) :: MouseJump(x) = FrogJump(x) + 2
+```
+Where `FrogJump` represents the distance jumped by the frog.
+
+#### **Calculation for Premise 2 Result:**
+Adding 18 inches to the grasshopper’s jump gives us:
+```plaintext
+FACTOR-2: FrogJumped(18) :: FrogJump(x) = GrasshopperJump(x) + 18
+```
+Thus,
+```plaintext
+FACTOR-2 RESULT: FrogJump(x) = 25 + 18 = 43
+```
+
+#### **Calculation for Premise 3 Result:**
+Adding 2 inches to the frog's jump gives us:
+```plaintext
+FACTOR-3: MouseJumped(2) :: MouseJump(x) = FrogJump(x) + 2
+```
+Thus,
+```plaintext
+FACTOR-3 RESULT: MouseJump(x) = 43 + 2 = 45
+```
+
+#### **Conclusion:**
+The mouse jumped 45 inches.
+This can be represented as:
+```plaintext
+INF-1: MouseJumped(45) :: MouseJump(x) = FrogJump(x) + 2
+```
+
+Putting everything together, we get:
+
+---
+
+## FACTS
+```plaintext
+FACT-1: GrasshopperJumped(25) :: GrasshopperJump(x) = 25
+FACT-2: FrogJumped(18) :: FrogJump(x) = GrasshopperJump(x) + 18
+FACT-3: MouseJumped(2) :: MouseJump(x) = FrogJump(x) + 2
+```
+
+## RULES
+```plaintext
+RULE-1: FrogJumped(ExtraDistance) :: FrogJump(x) = GrasshopperJump(x) + ExtraDistance
+```
+
+## INFERENCES
+```plaintext
+INF-1: MouseJumped(45) :: MouseJump(x) = FrogJump(x) + 2
+```
+
+---

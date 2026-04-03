@@ -1,0 +1,15 @@
+### ## FACTS
+LABEL: FACT-1 :: D_{\text{trees}}(t_1) \rightarrow T_{\text{typhoon}, t_1}
+LABEL: FACT-2 :: G_{\text{trees}}(t_2) \rightarrow T_{\text{initial}, t_2}
+
+### ## RULES
+RULE-1 :: IF N > M THEN N - M > 0
+RULE-2 :: IF N = M THEN N - M = 0
+RULE-3 :: IF N + M = P THEN M = P - N
+
+### ## INFERENCES
+INF-1 :: T_{\text{total}} > S_{\text{survived}}
+INF-2 :: T_{\text{died}} = T_{\text{total}} - S_{\text{survived}}
+INF-3 :: T_{\text{died}} > T_{\text{survived}} 
+INF-4 :: T_{\text{died}} - T_{\text{survived}} > 0
+INF-5 :: T_{\text{died}} - S_{\text{survived}} > 0

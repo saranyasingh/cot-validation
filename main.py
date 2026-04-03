@@ -114,11 +114,28 @@ Output ONLY the three sections (## FACTS, ## RULES, ## INFERENCES) with labeled 
 # ─── Utilities ────────────────────────────────────────────────────────────────
 
 def extract_answer(text: str) -> str:
-    """Extract the value from 'The answer is: X' in model output."""
+    """Extract the value from 'The answer is: X' in model output.
+
+    Strips trailing prose so that "15 bananas" → "15" and
+    "yes, it does" → "yes".  Pure-text answers (e.g. names, colours)
+    are returned as-is after stripping punctuation.
+    """
     match = re.search(r'[Tt]he answer is[:\s]+(.+)', text)
-    if match:
-        return match.group(1).strip().rstrip('.')
-    return ""
+    if not match:
+        return ""
+    raw = match.group(1).strip().rstrip('.')
+
+    # If the answer starts with an optional currency symbol then digits,
+    # grab just that numeric token (e.g. "145 groups" → "145", "$30 per item" → "$30").
+    num_match = re.match(r'^([$€£]?\d[\d,]*\.?\d*)', raw)
+    if num_match:
+        return num_match.group(1)
+
+    # Otherwise return the first "word" (handles "yes, …" → "yes", "blue shirt" → "blue shirt")
+    # but keep short answers whole; only truncate if there is trailing explanatory text
+    # separated by a comma, semicolon, or " — ".
+    short = re.split(r'[,;]| — ', raw)[0].strip()
+    return short
 
 
 def _write(path: str, content: str):

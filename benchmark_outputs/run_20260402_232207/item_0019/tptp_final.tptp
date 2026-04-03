@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, t(school, students)).
+fof(fact_2, axiom, p(grade, students)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (number_of_grades = total_students / students_per_grade)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_grades = 270 / 5).
+% From inf_1 by Inference
+fof(inf_2, axiom, result = number_of_grades).

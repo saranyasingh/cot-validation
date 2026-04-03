@@ -1,0 +1,10 @@
+## FACTS
+INF-1: NumberOfEmailsInMorning :: 10
+INF-2: NumberOfEmailsInAfternoon :: 5
+INF-3: NumberOfEmailsInEvening :: 4
+
+## RULES
+None required for this problem since it involves simple arithmetic.
+
+## INFERENCES
+INF-4: Difference :: NumberOfEmailsInAfternoon - NumberOfEmailsInEvening

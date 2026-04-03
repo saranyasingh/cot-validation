@@ -1,0 +1,19 @@
+Let's break down this problem into a logical syllogism:
+
+Premise 1: Dave started with some tickets.
+Premise 2: Dave spent 12 tickets on toys.
+Premise 3: After buying the toys, Dave had 14 tickets left.
+
+To determine how many tickets Dave originally won, we need to consider the total number of tickets before and after his purchases.
+
+Step-by-step logical reasoning:
+1. Let \( T \) represent the initial number of tickets Dave had.
+2. According to Premise 1, \( T > 0 \).
+3. According to Premise 2, after spending 12 tickets, Dave had 14 tickets remaining. This means that before buying the toys, he must have had more than 12 tickets because he didn't spend all his tickets. Therefore, \( T - 12 > 14 \).
+4. Simplifying this inequality gives us \( T > 26 \).
+
+Since \( T \) represents the initial number of tickets Dave had, and it must be greater than 26, the smallest possible value for \( T \) is 27.
+
+The answer is: 27
+
+Dave won 27 tickets at the arcade.

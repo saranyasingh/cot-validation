@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, emails_received(morning, jack, 5)).
+
+fof(fact_2, axiom, letters_received(morning, jack, 6)).
+
+fof(fact_3, axiom, emails_received(afternoon, jack, 9)).
+
+fof(fact_4, axiom, letters_received(afternoon, jack, 7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : ((emails_received(_, _, X) & letters_received(_, _, Y)) => total_items(_, _, Z))).
+
+fof(rule_2, axiom, ! [A, B, C] : ((A + B = C) => ! [A1, B1] : (A1 + B1 = C))).
+
+% --- INFERENCES ---
+% From fact_1 by Assumption
+fof(inf_1, axiom, total_letters(morning, jack)).
+
+% From fact_3 by Assumption
+fof(inf_2, axiom, total_letters(afternoon, jack)).
+
+% From inf_1, inf_2 by Definition
+fof(inf_3, axiom, total_letters(total, jack)).
+
+% From inf_3, inf_1, inf_2 by Rule-2
+fof(inf_4, axiom, total_letters(total, jack) = total_letters(morning, jack) + total_letters(afternoon, jack)).

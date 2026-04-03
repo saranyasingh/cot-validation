@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states she had 309 baseball cards.
+FACT-2: SUPPORTED — The story states she had 356 Ace cards.
+RULE-1: IMPLAUSIBLE — The rule asserts initial sum equals final sum minus transferred items, which is incorrect; the correct relation is final sum = initial sum − transferred items (or initial sum = final sum + transferred).
+RULE-2: PLAUSIBLE — Subtracting the transferred items from the initial counts to obtain the final counts is a sound general principle.

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, earns(two_dollars_per_week)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : (earns(two_dollars_per_week) => earned(178, W))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, earned(178, 89)).

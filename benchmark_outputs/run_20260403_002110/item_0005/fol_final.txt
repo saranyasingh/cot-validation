@@ -1,0 +1,8 @@
+### ## FACTS
+- **Label**: INITIAL_BALANCE :: 78
+
+### ## RULES
+- **Label**: SUBTRACTION_RULE :: A - B = C -> D - E = F if A = D and B = E
+
+### ## INFERENCES
+- **Label**: BALANCE_AFTER_SALE :: 78 - 15 = 63

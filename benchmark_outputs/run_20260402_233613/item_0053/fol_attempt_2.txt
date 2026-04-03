@@ -1,0 +1,15 @@
+## FACTS
+
+1. Danny found 22 bottle caps and 30 wrappers at the park.
+2. Now he has 17 bottle caps and 57 wrappers in his collection.
+3. The number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park.
+
+## RULES
+
+1. If A + B = C, then A ≤ C and B ≤ C.
+2. If D - E = F, then D ≥ F and E ≤ F.
+
+## INFERENCES
+
+1. Since Danny found 22 bottle caps and 30 wrappers at the park, we can infer that the number of initial bottle caps plus the number of initial wrappers is less than or equal to the total number of items found, which is 52.
+2. From the above inference, we can deduce that the number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park, which is 82. However, since the number of initial wrappers is less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park, the number of initial wrappers must be less than or equal to the number of initial bottle caps plus the number of wrappers he found at the park minus the number of initial bottle caps, which is 52. Therefore, the number of initial wrappers must be less than or equal to 52 - 17 = 35.

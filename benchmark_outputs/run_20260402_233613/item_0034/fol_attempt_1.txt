@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: Initial bottle caps = 71
+FACT-2: Initial wrappers = 24
+
+### RULES
+RULE-1: More bottle caps > Wrappers :: ∀w ((BottleCaps(w) > Wrappers(w)))
+
+### INFERENCES
+INF-1: BottleCaps(28) > Wrappers(16) :: More bottle caps > Wrappers
+
+### LABELS
+- FACT-1: Initial bottle caps = 71 :: BottleCaps(initial_bottle_caps) = 71
+- FACT-2: Initial wrappers = 24 :: Wrappers(initial_wrappers) = 24
+- RULE-1: More bottle caps > Wrappers :: ∀w ((BottleCaps(w) > Wrappers(w)))
+- INF-1: BottleCaps(28) > Wrappers(16) :: More bottle caps > Wrappers

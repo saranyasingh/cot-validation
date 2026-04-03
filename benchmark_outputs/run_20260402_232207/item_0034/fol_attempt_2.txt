@@ -1,0 +1,11 @@
+```plaintext
+## FACTS
+FACT-1: DannyInitialBottleCaps(71)
+FACT-2: DannyInitialWrappers(24)
+
+## RULES
+NO_RULES_FOUND
+
+## INFERENCES
+INF-1: Difference(BottleCaps, Wrappers) ::= BottleCaps - Wrappers
+```

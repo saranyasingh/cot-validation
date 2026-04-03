@@ -1,0 +1,13 @@
+### FIXED VERSION
+
+#### ## FACTS
+FACT-1: RazorbackTshirtShopMakes78OffEachTShirt :: RazorbackTshirtShopMakes(78)
+FACT-2: TotalTShirtsSold = ArkansasGame + TexasTechGame :: TotalTShirtsSold = 186
+FACT-3: RazorbackTshirtShopMakes78OffEachTShirt * NumberOfTShirtsSoldDuringTexasTechGame :: RazorbackTshirtShopMakes(78) * 14
+
+#### ## RULES
+RULE-1: TotalTShirtsSold = ArkansasGame + TexasTechGame :: ArkansasGame + TexasTechGame = 186
+RULE-2: RazorbackTshirtShopMakes78OffEachTShirt * NumberOfTShirtsSoldDuringTexasTechGame :: RazorbackTshirtShopMakes(78) * 14
+
+#### ## INFERENCES
+INF-1: RazorbackTshirtShopMakes(78) * 14 :: RazorbackTshirtShopMakes(1092)

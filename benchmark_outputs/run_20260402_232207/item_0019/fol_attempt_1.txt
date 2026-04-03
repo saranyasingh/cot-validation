@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: TotalStudentsInSchool = 270 :: T(School, Students)
+
+FACT-2: StudentsPerGrade = 5 :: P(Grade, Students)
+
+### RULES
+RULE-1: NumberOfGrades = TotalStudents / StudentsPerGrade :: ∀T(TotalStudents, StudentsPerGrade, NumberOfGrades)
+
+### INFERENCES
+INF-1: NumberOfGrades = 270 / 5 :: Rule-1 with facts FACT-1 and FACT-2
+
+INF-2: Result = NumberOfGrades :: INF-1 with inferred value
+
+RESULT: Number of Grades :: 54

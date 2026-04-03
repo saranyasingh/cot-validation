@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, kids_from_lawrence_county_going_to_camp_610769).
+
+fof(fact_2, axiom, kids_from_lawrence_county_staying_at_home_590796).
+
+fof(fact_3, axiom, additional_kids_outside_lawrence_county_attending_camp_22).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by addition
+fof(inf_1, axiom, total_kids_in_lawrence_county_610769_590796_22).

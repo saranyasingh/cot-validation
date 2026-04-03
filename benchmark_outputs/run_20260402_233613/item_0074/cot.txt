@@ -1,0 +1,28 @@
+Let's break down this problem into a series of logical steps:
+
+1. **Premise 1**: There are 20 houses in a block.
+   - This establishes the number of individual addresses or households that need to receive the mail.
+
+2. **Premise 2**: Each house receives 32 pieces of junk mail.
+   - This specifies how much mail is delivered per household.
+
+3. **Conclusion**:
+   - To find out how many pieces of junk mail should be given to each block (which consists of all 20 houses), we multiply the number of houses by the amount of mail delivered per house.
+
+4. **Calculation**:
+   \[
+   \text{Total pieces of junk mail} = (\text{Number of houses}) \times (\text{Mail per house})
+   \]
+   Substituting the values:
+   \[
+   \text{Total pieces of junk mail} = 20 \times 32
+   \]
+
+5. **Performing the multiplication**:
+   \[
+   20 \times 32 = 640
+   \]
+
+Therefore, the total number of pieces of junk mail that the mailman should give to each block is 640.
+
+The answer is: 640.

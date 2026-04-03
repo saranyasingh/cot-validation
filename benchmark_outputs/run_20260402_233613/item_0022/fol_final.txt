@@ -1,0 +1,12 @@
+### ## FACTS
+LABEL: FACT-1 :: PushUp(zachary, 46)
+
+LABEL: FACT-2 :: PushUp(david, 84)
+
+### ## RULES
+LABEL: RULE-1 :: ∀p (PushUp(p) → Crunches(p))
+
+### ## INFERENCES
+LABEL: INF-1 :: Crunches(zachary)
+LABEL: INF-2 :: Crunches(david)
+LABEL: INF-3 :: Difference(58, 46) = 12

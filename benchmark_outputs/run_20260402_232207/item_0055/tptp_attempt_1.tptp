@@ -1,0 +1,8 @@
+% --- FACTS ---
+fof(fact_1, axiom, collected(danny, bottle_caps) & collected(danny, wrappers)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1
+fof(inf_1, axiom, difference_lt_zero(init_bottle_caps_11, init_wrappers_28, total_bottle_caps_68, total_wrappers_51)).

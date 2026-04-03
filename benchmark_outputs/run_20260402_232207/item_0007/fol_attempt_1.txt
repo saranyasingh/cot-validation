@@ -1,0 +1,14 @@
+**FACTS**
+FACT-1: Randy has 95 blocks :: Blocks(Randy, 95)
+
+**RULES**
+RULE-1: If Randy has a certain number of blocks, he can use those blocks to construct structures. :: ∀x (Blocks(x, n) → (BuildsHouse(x, h) ∨ BuildsTower(x, t)))
+
+**INFERENCES**
+INF-1: Given that Randy has 95 blocks, he can either build a house or a tower. :: Build(House, x) ∨ Build(Tower, x)
+
+INF-2: Randy builds a house using 20 blocks. :: BuildsHouse(Randy, 20)
+
+INF-3: Randy builds a tower using 50 blocks. :: BuildsTower(Randy, 50)
+
+INF-4: The difference in blocks used between the tower and the house is calculated. :: Difference(BuildsTower(Randy, 50), BuildsHouse(Randy, 20))

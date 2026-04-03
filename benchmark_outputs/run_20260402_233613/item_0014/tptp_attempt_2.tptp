@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, book_count(jerry) = 7).
+fof(fact_2, axiom, action_figure_count(jerry) = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Total] : (total_items(Total) = book_count(jerry) + action_figure_count(jerry))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by arithmetic
+fof(inf_1, axiom, total_items(Total) = book_count(jerry) + action_figure_count(jerry) + 2).
+% From fact_1, fact_2 by arithmetic
+fof(inf_2, axiom, book_count(jerry) - action_figure_count(jerry) = 2).
+% From fact_1, fact_2 by arithmetic
+fof(inf_3, axiom, book_count(jerry) - action_figure_count(jerry) = 2).

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Jack received 10 emails in the morning :: ReceivedEmails(morning, 10)
+FACT-2: Jack received 5 emails in the afternoon :: ReceivedEmails(afternoon, 5)
+FACT-3: Jack received 4 emails in the evening :: ReceivedEmails(evening, 4)
+
+## RULES
+RULE-1: Total emails received = ReceivedEmails(morning, x) + ReceivedEmails(afternoon, y) + ReceivedEmails(evening, z) :: TotalReceived(x, y, z)
+
+## INFERENCES
+INF-1: Number of emails in the afternoon minus the number of emails in the evening :: (ReceivedEmails(afternoon, 5) - ReceivedEmails(evening, 4))

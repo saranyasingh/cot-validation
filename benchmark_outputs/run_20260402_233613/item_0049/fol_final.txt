@@ -1,0 +1,24 @@
+## FACTS
+LABEL: FACT-1 :: ∀d (Learning(English, d))
+LABEL: FACT-2 :: ∀d (Learning(Cheinese, d))
+LABEL: FACT-3 :: ∀d ∈ {1, 2, 3, 4, 5} (Study(d))
+
+## RULES
+LABEL: RULE-1 :: ∀d (Learning(English, d) → Study(d))
+LABEL: RULE-2 :: ∀d (Learning(Cheinese, d) → Study(d))
+
+## INFERENCES
+LABEL: INF-18 :: Learning(English, 1) → Study(1)
+LABEL: INF-19 :: Learning(Cheinese, 1) → Study(1)
+LABEL: INF-20 :: Learning(English, 2) → Study(2)
+LABEL: INF-21 :: Learning(Cheinese, 2) → Study(2)
+LABEL: INF-38 :: Learning(English, 5) → Study(5)
+LABEL: INF-39 :: Learning(Cheinese, 5) → Study(5)
+LABEL: INF-40 :: (∀d ∈ {1, 2, 3, 4, 5}) ((Learning(English, d) → Study(d)) ∧ (Learning(Cheinese, d) → Study(d)))
+LABEL: INF-41 :: (∀d ∈ {1, 2, 3, 4, 5}) (Study(d))
+LABEL: INF-42 :: ∀d (Study(d))
+LABEL: INF-43 :: (∀d ∈ {1, 2, 3, 4, 5}) ((Learning(English, d) → Study(d)) ∧ (Learning(Cheinese, d) → Study(d)))
+LABEL: INF-44 :: (∀d ∈ {1, 2, 3, 4, 5}) (Study(d))
+LABEL: INF-45 :: Total study hours for English = ∑_{d=1}^{5} Study(d) = 6 × 5 = 30 hours
+LABEL: INF-46 :: Total study hours for Chinese = ∑_{d=1}^{5} Study(d) = 7 × 5 = 35 hours
+LABEL: INF-47 :: Combined total study hours = 30 + 35 = 65 hours

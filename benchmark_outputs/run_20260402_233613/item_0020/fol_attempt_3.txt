@@ -1,0 +1,15 @@
+LABEL: ## FACTS ::
+```plaintext
+FACT-1: Number_of_Girls = 34
+```
+```plaintext
+FACT-2: Number_of_Boys = 841
+```
+LABEL: ## RULES ::
+```plaintext
+RULE-1: If the number of girls is G and the number of boys is B, then the difference D is calculated as D = B - G.
+```
+LABEL: ## INFERENCES ::
+```plaintext
+INF-1: From FACT-1 and FACT-2, by Rule-1, Calculating DIFFERENCE = B - G :: DIFFERENCE = 841 - 34
+```

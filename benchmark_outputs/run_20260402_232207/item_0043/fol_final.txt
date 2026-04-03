@@ -1,0 +1,10 @@
+## FACTS
+LABEL: MorningEmails :: 10
+LABEL: AfternoonEmails :: 3
+LABEL: Difference :: 7
+
+## RULES
+LABEL: DifferenceOfIntegers :: (M + A) - B = M - B if M > A
+
+## INFERENCES
+LABEL: DifferenceOfIntegers(Morning, Afternoon, 7) :: DifferenceOfIntegers(10, 3, 7) :: 7 :: Rule-1

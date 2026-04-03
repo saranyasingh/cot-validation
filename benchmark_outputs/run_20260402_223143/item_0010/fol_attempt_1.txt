@@ -1,0 +1,19 @@
+This problem involves applying simple arithmetic operations based on the given premises. Here’s the conversion to FOL:
+
+### FACTS
+FACT-1: Bryan has 34 books :: Books(bryan, 34)
+FACT-2: There are 2 bookshelves :: BookShelves(bookshelf1, bookshelf2)
+
+### RULES
+RULE-1: If a person has n items and distributes them evenly among m containers, then each container contains k items where k = n / m :: ∀n m (Books(p, n) ∧ BookShelves(shelf1, m) ∧ BookShelves(shelf2, m) → ∃k (Books(k, shelf1) ∧ Books(k, shelf2)))
+
+### INFERENCES
+INF-1: From FACT-1 and BOOKSHUFFLES, we can derive the distribution of books across the shelves using Rule-1. However, since no specific numbers were provided for the shelves themselves, we don't have direct access to the number of books per shelf without additional information. Thus, the conclusion about the number of books per shelf remains implicit within the context but cannot be definitively inferred from the given premises alone. 
+
+Since the premise does not provide enough detail to calculate the number of books per shelf explicitly, we do not derive any new facts or rules from the given premises. Instead, the solution is derived through basic arithmetic rather than formal logical deduction.
+
+However, if we consider the problem purely from an arithmetic standpoint:
+\[ \text{Number of books per bookshelf} = \frac{34}{2} = 17 \]
+
+Therefore, the final answer is:
+X 17

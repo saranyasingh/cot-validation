@@ -1,0 +1,48 @@
+Let's convert the provided chain of thought into structured First-Order Logic (FOL):
+
+### Facts
+These are the direct statements from the problem statement without any quantification.
+
+```plaintext
+FACT-1: TotalNumberOfStudents = 270
+```
+
+### Rules
+These are universally quantified implications derived from logical relationships.
+
+```plaintext
+RULE-1: If the total number of students is T, then each grade has S students. 
+        Hence, the number of grades can be calculated using the formula: 
+        NumberOfGrades = T / S.
+```
+
+### Inferences
+These are the results obtained from applying rules and facts logically.
+
+```plaintext
+INF-1: Calculate the number of grades based on the total number of students and the number of students per grade.
+INF-2: Number of Grades = 270 / 5
+INF-3: Number of Grades = 54
+```
+
+### Combined Format
+Now let’s combine these parts into a formatted output according to the required structure:
+
+#### FACTS
+```plaintext
+FACT-1: TotalNumberOfStudents = 270
+```
+
+#### RULES
+```plaintext
+RULE-1: For all T (TotalNumberOfStudents(T)), for all S (StudentsPerGrade(S)), the number of Grades(Grades) = T / S.
+```
+
+#### INFERENCES
+```plaintext
+INF-1: Calculate the number of grades based on the total number of students and the number of students per grade.
+INF-2: Number of Grades = 270 / 5
+INF-3: Number of Grades = 54
+```
+
+This format adheres to the constraints specified, ensuring clarity and precision in representing the logical steps involved in converting the chain of thought into FOL.

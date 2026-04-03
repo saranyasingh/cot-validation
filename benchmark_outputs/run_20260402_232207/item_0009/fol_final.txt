@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: Dave started with some tickets :: \( T \)
+
+### RULES
+RULE-1: If Dave starts with \( T \) tickets, then he has \( T - 12 \) tickets after buying toys :: \( T - 12 \)
+
+### INFERENCES
+INF-1: Dave ended up with 14 tickets after buying toys :: \( T - 12 = 14 \)
+INF-2: Adding 12 to both sides gives us \( T = 14 + 12 = 26 \)
+INF-3: Since \( T \) represents the initial number of tickets, the original number of tickets Dave had is 26 :: 26

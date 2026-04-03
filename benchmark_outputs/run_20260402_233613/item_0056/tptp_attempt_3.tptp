@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, emails_received(morning, jack, 5)).
+fof(fact_2, axiom, letters_received(morning, jack, 6)).
+fof(fact_3, axiom, emails_received(afternoon, jack, 9)).
+fof(fact_4, axiom, letters_received(afternoon, jack, 7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, P, X, Y, Z] : ((emails_received(T, P, X) & letters_received(T, P, Y)) => total_items(T, P, Z))).
+
+% --- INFERENCES ---
+% From fact_1
+fof(inf_1, axiom, emails_received(morning, jack, 5)).
+% From fact_2
+fof(inf_2, axiom, letters_received(morning, jack, 6)).
+% From fact_3
+fof(inf_3, axiom, emails_received(afternoon, jack, 9)).
+% From fact_4
+fof(inf_4, axiom, letters_received(afternoon, jack, 7)).
+% From fact_1, fact_2 by Rule-1
+fof(inf_5, axiom, total_letters(total, jack)).
+% Applying Rule-1 to morning
+fof(inf_6, axiom, total_letters(morning, jack) = 5 + 6).
+% Applying Rule-1 to afternoon
+fof(inf_7, axiom, total_letters(afternoon, jack) = 9 + 7).
+% Summing total letters from morning and afternoon
+fof(inf_8, axiom, total_letters(total, jack) = (5 + 6) + (9 + 7)).
+% Simplifying the expression for total letters
+fof(inf_9, axiom, total_letters(total, jack) = 11 + 16).
+% Final calculation
+fof(inf_10, axiom, total_letters(total, jack) = 27).

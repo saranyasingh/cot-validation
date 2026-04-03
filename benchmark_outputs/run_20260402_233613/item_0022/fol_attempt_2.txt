@@ -1,0 +1,7 @@
+LABEL: FACT-1 :: PushUp(zachary, 46)
+
+LABEL: RULE-1 :: ∀p (PushUp(p) → Crunches(p)) 
+
+LABEL: INF-1 :: Crunches(zachary)
+
+LABEL: INF-2 :: Difference(58, 46) = 12

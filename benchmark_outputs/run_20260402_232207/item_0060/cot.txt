@@ -1,0 +1,47 @@
+Let's break down this problem into a logical syllogism:
+
+**Premise 1:** There were originally 21 children on the bus.
+- This sets up our initial condition and provides us with the starting point.
+
+**Premise 2:** At the bus stop, 10 children got off the bus.
+- This introduces an event that occurred before the current state, indicating movement outwards from the original number.
+
+**Premise 3:** After some additional children got on the bus (let’s call this number Y), there were 16 children on the bus.
+- This introduces another event that occurred after the first one but before reaching the final count.
+
+We need to find the value of Y, which represents how many children got on the bus at the bus stop.
+
+**Step-by-step Logical Reasoning:**
+
+1. **Initial Condition:** We start with 21 children on the bus.
+   - \( \text{Total Children} = 21 \)
+
+2. **Event 1:** Some children get off the bus at the bus stop.
+   - Let the number of children who got off be denoted as 10.
+   - Therefore, the new total after 10 children leave would be:
+     \[
+     21 - 10 = 11
+     \]
+
+3. **Event 2:** After these 10 children have left, some more children get on the bus.
+   - Let the number of children who get on the bus be denoted as Y.
+   - So, we add these children to the remaining 11 children:
+     \[
+     11 + Y = 16
+     \]
+
+4. **Solving for Y:** To find the number of children who got on the bus, we solve the equation:
+   \[
+   11 + Y = 16
+   \]
+   Subtract 11 from both sides:
+   \[
+   Y = 16 - 11
+   \]
+   \[
+   Y = 5
+   \]
+
+Therefore, the answer is: 5
+
+The final answer is: 5 children got on the bus at the bus stop.

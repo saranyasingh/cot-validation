@@ -1,0 +1,5 @@
+LABEL: NumberOfEmailsInMorning :: 10
+LABEL: NumberOfEmailsInAfternoon :: 5
+LABEL: NumberOfEmailsInEvening :: 4
+
+LABEL: Difference :: NumberOfEmailsInAfternoon - NumberOfEmailsInEvening

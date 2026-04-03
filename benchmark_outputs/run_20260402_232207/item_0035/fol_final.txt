@@ -1,0 +1,10 @@
+### ## FACTS
+LABEL: ManyBooksInSeries :: ManyBooksInSeries
+LABEL: Read(books, 13) :: Read(books, 13)
+LABEL: YetToRead(books, 8) :: YetToRead(books, 8)
+
+### ## RULES
+# Not applicable for this specific problem.
+
+### ## INFERENCES
+LABEL: TotalBooks :: (Read(books, 13) ∧ YetToRead(books, 8)) -> ManyBooksInSeries

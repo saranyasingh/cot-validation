@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: John uses 8 large planks of wood :: 8_PlainsUsed
+FACT-2: Each plank of wood needs 74 pieces of nails :: 74_NailsPerPlank
+
+## RULES
+RULE-1: To secure 592 nails, John needs \( \frac{\text{Total Nails}}{\text{Nails per Plank}} \) planks :: RuleForPlanksNeeded
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1: John needs 8 planks to secure 592 nails :: JohnNeedsPlanks(8, 592)

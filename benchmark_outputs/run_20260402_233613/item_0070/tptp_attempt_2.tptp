@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, money(dan, t_initial) & amount(4, t_initial)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z, t_start, t_end] : ( (money(X, t_start) & spend(Y, t_start)) => money(Z, t_end))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, (money(4, t_initial) & spend(-3, t_initial)) => money(1, t_after_spending)).

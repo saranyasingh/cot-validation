@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: John will use 8 large planks of wood :: NumberOfPlanks := 8
+
+### RULES
+RULE-1: Each plank of wood requires 74 pieces of nails to be secured :: NailsPerPlank := 74
+
+### INFERENCES
+INF-1: The total number of nails required is calculated based on the number of planks :: TotalNails := NumberOfPlanks * NailsPerPlank
+INF-2: Calculating the total nails using the known quantities :: TotalNails := 8 * 74
+
+### FINAL ANSWER
+The number of planks John needs for the house wall is 608.

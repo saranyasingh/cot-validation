@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED — The story explicitly states Jack received 10 emails in the morning.
+FACT-2: SUPPORTED — The story explicitly states Jack received 3 emails in the afternoon.
+RULE-1: PLAUSIBLE — DifferenceOfIntegers(x, y, z) is a standard arithmetic relation; with x=10 and y=3, z=7, which aligns with the question.

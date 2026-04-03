@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Directly stated in the story.
+FACT-2: SUPPORTED — Directly stated in the story ('had 39 apples left').
+RULE-1: IMPLAUSIBLE — The rule is logically flawed; if there are n apples, you have exactly n, not fewer, at that moment.
+RULE-2: PLAUSIBLE — Starting with 40 and ending with 39 logically implies that some apples were used.

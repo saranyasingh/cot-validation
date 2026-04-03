@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: HouseReceivesJunkMail(house)
+LABEL: FACT-2 :: TotalJunkMail(total_junks)
+LABEL: RULE-1 :: ∀house (HouseReceivesJunkMail(house) → TotalJunkMail ≥ 2*HouseReceivesJunkMail(house))
+LABEL: RULE-2 :: ∀total_junks (TotalJunkMail(total_junks) ↔ (∀house (HouseReceivesJunkMail(house)) ∧ Sum(HouseReceivesJunkMail(house))) = total_junks)

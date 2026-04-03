@@ -1,0 +1,33 @@
+1. **Premise**: There are 270 students in the school.
+   - This establishes the total student population.
+
+2. **Premise**: Each grade has 5 students.
+   - This provides information about the number of students per grade.
+
+3. **Premise**: All students belong to exactly one grade.
+   - This ensures that no student is counted multiple times across different grades.
+
+4. **Logical Conclusion**:
+   - To find the number of grades, we divide the total number of students by the number of students per grade.
+   
+   \[
+   \text{Number of Grades} = \frac{\text{Total Number of Students}}{\text{Students Per Grade}}
+   \]
+   
+   Substituting the given values:
+
+   \[
+   \text{Number of Grades} = \frac{270}{5}
+   \]
+
+5. **Calculation**:
+   - Perform the division:
+
+   \[
+   \frac{270}{5} = 54
+   \]
+
+6. **Final Answer**:
+   - Therefore, there are 54 grades in total.
+
+The answer is: 54 grades.

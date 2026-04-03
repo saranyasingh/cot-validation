@@ -1,0 +1,45 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These represent the initial conditions and facts provided in the premise.
+
+```plaintext
+FACT-1: Dan had $4 initially :: Money(Dan, t_initial) ∧ Amount(4, t_initial)
+```
+
+This fact states that Dan had $4 initially, where `t_initial` represents some point in time.
+
+### Rules
+These rules summarize external or linguistic knowledge that helps derive logical conclusions from the facts.
+
+```plaintext
+RULE-1: Starting with X dollars, spending Y dollars leaves Z dollars :: Money(X, t_start) ∧ Spend(Y, t_start) → Money(Z, t_end)
+```
+
+This rule explains how starting with X dollars, spending Y dollars results in having Z dollars left.
+
+### Inferences
+These are derived conclusions based on combining facts and applying rules.
+
+```plaintext
+INF-1: Spending $3 resulted in $1 left :: Money(4, t_initial) ∧ Spend(-3, t_initial) → Money(1, t_after_spending)
+```
+
+This inference shows that if Dan started with $4 and spent $3, then he would have $1 left after the transaction.
+
+So, summarizing the output with labeled lines:
+
+#### FACTS
+```plaintext
+FACT-1: Dan had $4 initially :: Money(Dan, t_initial) ∧ Amount(4, t_initial)
+```
+
+#### RULES
+```plaintext
+RULE-1: Starting with X dollars, spending Y dollars leaves Z dollars :: Money(X, t_start) ∧ Spend(Y, t_start) → Money(Z, t_end)
+```
+
+#### INFERENCES
+```plaintext
+INF-1: Spending $3 resulted in $1 left :: Money(4, t_initial) ∧ Spend(-3, t_initial) → Money(1, t_after_spending)
+```

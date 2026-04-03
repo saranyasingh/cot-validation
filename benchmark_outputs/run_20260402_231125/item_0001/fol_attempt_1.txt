@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: There are 87 oranges :: NumberOfOranges(87)
+FACT-2: There are 290 bananas :: NumberOfBans(290)
+FACT-3: Bananas are organized into 2 groups :: OrganizedIntoGroups(bananas, 2)
+FACT-4: Oranges are organized into 93 groups :: OrganizedIntoGroups(oranges, 93)
+
+## RULES
+RULE-1: Divide the total number of bananas by the number of groups to get the size of each group :: Divisor(Divide, bananas, groups)
+
+## INFERENCES
+INF-1: Each group of bananas contains 145 bananas :: Forall(x)(Divisor(bananas, x, 2) → SizeOfGroup(x, 145))

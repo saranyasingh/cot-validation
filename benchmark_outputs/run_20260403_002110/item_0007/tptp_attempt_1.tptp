@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, building_house(20)).
+fof(fact_2, axiom, building_tower(50)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : (building_something(B) => using_blocks(B))).
+fof(rule_2, axiom, ! [Block] : (building_house(Block) = using_blocks(building_house))).
+fof(rule_3, axiom, ! [Block] : (building_tower(Block) = using_blocks(building_tower))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, using_blocks(building_house) = 20).
+
+% From rule_2, using_blocks(building_house) by Modus Ponens
+fof(inf_2, axiom, using_blocks(building_house) = 20).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, using_blocks(building_tower) = 50).
+
+% From rule_3, using_blocks(building_tower) by Modus Ponens
+fof(inf_4, axiom, using_blocks(building_tower) = 50).
+
+% From inf_3 and inf_4 to compute the absolute difference
+% INF-5
+fof(inf_5, axiom, abs(using_blocks(building_tower) - using_blocks(building_house)) = abs(50 - 20)).
+
+% Simplifying the expression gives the result
+% INF-6
+fof(inf_6, axiom, abs(50 - 20) = 30).

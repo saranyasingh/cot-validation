@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_t_shirts_sold_during_texas_tech_game = total_number_of_t_shirts_sold - number_of_t_shirts_sold_during_arkansas_game).
+
+% --- RULES ---
+fof(rule_1, axiom, revenue_from_t_shirts_during_texas_tech_game = number_of_t_shirts_sold_during_texas_tech_game * profit_per_t_shirt).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, revenue_from_t_shirts_during_texas_tech_game = 1092).

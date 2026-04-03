@@ -1,0 +1,12 @@
+### ## FACTS
+#### LABEL: FACT-1 :: AdamHasMoreThanJackieApples(4)
+#### LABEL: FACT-2 :: AdamAndJackieHave14Apples()
+
+### ## RULES
+#### LABEL: RULE-1 :: RuleForRainAndWetGround()  # Not used in this context
+
+### ## INFERENCES
+#### LABEL: INF-1 :: AdamHasMoreThanJackieApples(4)
+#### LABEL: INF-2 :: AdamHasMoreThanJackieApples(9)
+#### LABEL: INF-3 :: AdamAndJackieHave14Apples()
+#### LABEL: INF-4 :: BobHasMoreThanAdamAndJackieApples(6)

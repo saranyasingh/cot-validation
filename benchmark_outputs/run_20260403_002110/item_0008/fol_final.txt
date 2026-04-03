@@ -1,0 +1,15 @@
+## FACTS
+
+FACT-1: After Jessie started jogging daily, she lost 126 kilograms. :: LosingWeight(126, AfterJogging)
+FACT-2: Her current weight is 66 kilograms. :: CurrentWeight(66)
+
+## RULES
+
+RULE-1: If someone loses weight, their current weight is less than their original weight. :: LadderOfWeighing(LosingWeight, LessThan, CurrentWeight)
+
+## INFERENCES
+
+INF-1: From FACT-1, RULE-1 by Transitivity: Jessie's original weight was more than 66 kilograms. :: OriginalWeightGreaterThanCurrentWeight
+INF-2: Subtracting the weight lost from the current weight gives her original weight. :: SubtractionToFindOriginalWeight(INF-1, OriginalWeight)
+INF-3: Calculate the original weight by subtracting the weight lost from the current weight. :: CalculationForOriginalWeight(INF-1, 66, 126)
+INF-4: The result of the calculation is 192 kilograms. :: ResultIs192(kg)

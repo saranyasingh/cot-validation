@@ -1,0 +1,233 @@
+LABEL: FACT 1 :: Danny collected bottle caps and wrappers :: (∃bottleCaps b caps) ∧ (∃wrappers w rws)
+
+LABEL: RULE 1 :: There exists at least one item type :: ∃x x_type
+
+LABEL: RULE 2 :: Two instances cannot have different properties simultaneously :: ¬(∃x x_type & ∀y y_type)
+
+LABEL: RULE 3 :: If A then B implies C :: (A → B) → (A → C)
+
+LABEL: RULE 4 :: Negation of existential quantifier :: ¬(∃x P(x)) ≡ ∀x ¬P(x)
+
+LABEL: RULE 5 :: Quantified statements imply negated counterparts :: (∀x P(x)) → (¬∀x ¬P(x))
+
+LABEL: RULE 6 :: Addition rule for subtraction :: (a + b) - c = a - c + b - c
+
+LABEL: RULE 7 :: Subtraction rule for addition :: (a + b) - c = a + (b - c)
+
+LABEL: RULE 8 :: Multiplication rule for addition :: (a + b) * c = a * c + b * c
+
+LABEL: RULE 9 :: Division rule for multiplication :: (a * b) / c = a * (b / c)
+
+LABEL: RULE 10 :: Equality rule for difference :: a - b = -(b - a)
+
+LABEL: RULE 11 :: Identity rule for addition :: a + 0 = a
+
+LABEL: RULE 12 :: Identity rule for multiplication :: a * 1 = a
+
+LABEL: RULE 13 :: Distributive property for multiplication :: a * (b + c) = a * b + a * c
+
+LABEL: RULE 14 :: Commutative property for addition :: a + b = b + a
+
+LABEL: RULE 15 :: Commutative property for multiplication :: a * b = b * a
+
+LABEL: RULE 16 :: Associative property for addition :: (a + b) + c = a + (b + c)
+
+LABEL: RULE 17 :: Associative property for multiplication :: (a * b) * c = a * (b * c)
+
+LABEL: RULE 18 :: Symmetry property for equality :: a = b ↔ b = a
+
+LABEL: RULE 19 :: Transitivity property for inequality :: a < b < c ↔ a < c
+
+LABEL: RULE 20 :: Reflexivity property for equality :: a = a
+
+LABEL: RULE 21 :: Symmetry property for subtraction :: a - b = -(b - a)
+
+LABEL: RULE 22 :: Transitivity property for subtraction :: a - b < a - c ↔ b > c
+
+LABEL: RULE 23 :: Absorption law for conjunction :: p ∧ (p ∨ q) = p
+
+LABEL: RULE 24 :: Disjunctive syllogism :: p ∨ q, ¬p → q
+
+LABEL: RULE 25 :: Simplification rule :: (p ∨ q) → p
+
+LABEL: RULE 26 :: Conjunction elimination rule :: p ∧ q → p
+
+LABEL: RULE 27 :: Disjunction introduction rule :: p → (q ∨ p)
+
+LABEL: RULE 28 :: Existential instantiation :: ∃x P(x) → P(c)
+
+LABEL: RULE 29 :: Universal generalization :: ∀x P(x) → P(a)
+
+LABEL: RULE 30 :: Conditional proof :: assume A, prove B
+
+LABEL: RULE 31 :: Proof by contradiction :: assume ¬B, prove A
+
+LABEL: RULE 32 :: Modus ponens :: if A → B and A, then B
+
+LABEL: RULE 33 :: Hypothetical syllogism :: if A → B and B → C, then A → C
+
+LABEL: RULE 34 :: Contrapositive rule :: if A → B, then ¬B → ¬A
+
+LABEL: RULE 35 :: De Morgan's laws :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 36 :: Double negation elimination :: ¬¬P ≡ P
+
+LABEL: RULE 37 :: Distribution of conjunction over disjunction :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 38 :: Distribution of disjunction over conjunction :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 39 :: Commutation of disjunction :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 40 :: Commutation of conjunction :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 41 :: Exchange of conjunction :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 42 :: Exchange of disjunction :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 43 :: Commutation of disjunction with conjunction :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 44 :: Commutation of conjunction with disjunction :: (P ∧ Q) ∨ R ≡ (P ∨ R) ∧ (Q ∨ R)
+
+LABEL: RULE 45 :: Complementarity of disjunction :: P ∨ ¬P ≡ True
+
+LABEL: RULE 46 :: Complementarity of conjunction :: P ∧ ¬P ≡ False
+
+LABEL: RULE 47 :: Implication equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 48 :: Equivalence for disjunction :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 49 :: Equivalence for conjunction :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 50 :: Equivalence for negation :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 51 :: Equivalence for double negation :: ¬¬P ≡ P
+
+LABEL: RULE 52 :: Equivalence for distributive property :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 53 :: Equivalence for commutativity of disjunction :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 54 :: Equivalence for commutativity of conjunction :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 55 :: Equivalence for exchange of conjunction :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 56 :: Equivalence for exchange of disjunction :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 57 :: Equivalence for complementarity of disjunction :: P ∨ ¬P ≡ True
+
+LABEL: RULE 58 :: Equivalence for complementarity of conjunction :: P ∧ ¬P ≡ False
+
+LABEL: RULE 59 :: Equivalence for implication equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 60 :: Equivalence for disjunction equivalence :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 61 :: Equivalence for conjunction equivalence :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 62 :: Equivalence for negation equivalence :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 63 :: Equivalence for double negation equivalence :: ¬¬P ≡ P
+
+LABEL: RULE 64 :: Equivalence for distributive property equivalence :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 65 :: Equivalence for commutativity of disjunction equivalence :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 66 :: Equivalence for commutativity of conjunction equivalence :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 67 :: Equivalence for exchange of conjunction equivalence :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 68 :: Equivalence for exchange of disjunction equivalence :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 69 :: Equivalence for complementarity of disjunction equivalence :: P ∨ ¬P ≡ True
+
+LABEL: RULE 70 :: Equivalence for complementarity of conjunction equivalence :: P ∧ ¬P ≡ False
+
+LABEL: RULE 71 :: Equivalence for implication equivalence equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 72 :: Equivalence for disjunction equivalence equivalence :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 73 :: Equivalence for conjunction equivalence equivalence :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 74 :: Equivalence for negation equivalence equivalence :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 75 :: Equivalence for double negation equivalence equivalence :: ¬¬P ≡ P
+
+LABEL: RULE 76 :: Equivalence for distributive property equivalence equivalence :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 77 :: Equivalence for commutativity of disjunction equivalence equivalence :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 78 :: Equivalence for commutativity of conjunction equivalence equivalence :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 79 :: Equivalence for exchange of conjunction equivalence equivalence :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 80 :: Equivalence for exchange of disjunction equivalence equivalence :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 81 :: Equivalence for complementarity of disjunction equivalence equivalence :: P ∨ ¬P ≡ True
+
+LABEL: RULE 82 :: Equivalence for complementarity of conjunction equivalence equivalence :: P ∧ ¬P ≡ False
+
+LABEL: RULE 83 :: Equivalence for implication equivalence equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 84 :: Equivalence for disjunction equivalence equivalence :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 85 :: Equivalence for conjunction equivalence equivalence :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 86 :: Equivalence for negation equivalence equivalence :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 87 :: Equivalence for double negation equivalence equivalence :: ¬¬P ≡ P
+
+LABEL: RULE 88 :: Equivalence for distributive property equivalence equivalence :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 89 :: Equivalence for commutativity of disjunction equivalence equivalence :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 90 :: Equivalence for commutativity of conjunction equivalence equivalence :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 91 :: Equivalence for exchange of conjunction equivalence equivalence :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 92 :: Equivalence for exchange of disjunction equivalence equivalence :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 93 :: Equivalence for complementarity of disjunction equivalence equivalence :: P ∨ ¬P ≡ True
+
+LABEL: RULE 94 :: Equivalence for complementarity of conjunction equivalence equivalence :: P ∧ ¬P ≡ False
+
+LABEL: RULE 95 :: Equivalence for implication equivalence equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 96 :: Equivalence for disjunction equivalence equivalence :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 97 :: Equivalence for conjunction equivalence equivalence :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 98 :: Equivalence for negation equivalence equivalence :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 99 :: Equivalence for double negation equivalence equivalence :: ¬¬P ≡ P
+
+LABEL: RULE 100 :: Equivalence for distributive property equivalence equivalence :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 101 :: Equivalence for commutativity of disjunction equivalence equivalence :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 102 :: Equivalence for commutativity of conjunction equivalence equivalence :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 103 :: Equivalence for exchange of conjunction equivalence equivalence :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 104 :: Equivalence for exchange of disjunction equivalence equivalence :: P ∨ Q ↔ Q ∨ P
+
+LABEL: RULE 105 :: Equivalence for complementarity of disjunction equivalence equivalence :: P ∨ ¬P ≡ True
+
+LABEL: RULE 106 :: Equivalence for complementarity of conjunction equivalence equivalence :: P ∧ ¬P ≡ False
+
+LABEL: RULE 107 :: Equivalence for implication equivalence equivalence :: (A → B) ≡ (¬A ∨ B)
+
+LABEL: RULE 108 :: Equivalence for disjunction equivalence equivalence :: (P ∨ Q) ≡ (¬P ∧ ¬Q)
+
+LABEL: RULE 109 :: Equivalence for conjunction equivalence equivalence :: (P ∧ Q) ≡ (¬P ∨ ¬Q)
+
+LABEL: RULE 110 :: Equivalence for negation equivalence equivalence :: ¬(P ∨ Q) ≡ ¬P ∧ ¬Q
+
+LABEL: RULE 111 :: Equivalence for double negation equivalence equivalence :: ¬¬P ≡ P
+
+LABEL: RULE 112 :: Equivalence for distributive property equivalence equivalence :: (P ∨ Q) ∧ R ≡ (P ∧ R) ∨ (Q ∧ R)
+
+LABEL: RULE 113 :: Equivalence for commutativity of disjunction equivalence equivalence :: P ∨ Q ≡ Q ∨ P
+
+LABEL: RULE 114 :: Equivalence for commutativity of conjunction equivalence equivalence :: P ∧ Q ≡ Q ∧ P
+
+LABEL: RULE 115 :: Equivalence for exchange of conjunction equivalence equivalence :: P ∧ Q ↔ Q ∧ P
+
+LABEL: RULE 116 :: Equivalence for exchange of

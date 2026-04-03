@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, apples(40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (makes_pies(P) => used_apples(P, 1))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, used_apples(pie, 1)).

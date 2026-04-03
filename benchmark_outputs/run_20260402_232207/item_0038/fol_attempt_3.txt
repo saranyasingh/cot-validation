@@ -1,0 +1,3 @@
+LABEL: Fact-1 :: JessieWeighted(71 kg, initial_time) :: InitialWeight(jessie, 71 kg)
+LABEL: Fact-2 :: JessieWeightLost(20 kg, jogging_start_time) :: LostWeight(jessie, 20 kg)
+LABEL: Rule-1 :: FinalWeight(current_weight, initial_weight, loss) ::= current_weight := initial_weight - loss :: WeightCalculation(jessie, 71 kg, 20 kg)

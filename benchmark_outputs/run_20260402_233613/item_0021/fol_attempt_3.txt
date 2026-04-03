@@ -1,0 +1,7 @@
+LABEL: FACT-1 :: n_sacks = 54 :: n_sacks = 54
+LABEL: FACT-2 :: s_sacks = 18 :: s_sacks = 18
+LABEL: FACT-3 :: d_days = \frac{n_sacks}{s_sacks} :: d_days = \frac{54}{18}
+
+LABEL: RULE-1 :: \forall t (n_sacks = 54) :: n_sacks = 54
+LABEL: RULE-2 :: \forall t (s_sacks = 18) :: s_sacks = 18
+LABEL: RULE-3 :: \forall t (d_days = \frac{n_sacks}{s_sacks}) :: d_days = \frac{54}{18}

@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, lost_weight(jessie, 126)).
+
+fof(fact_2, axiom, current_weight(jessie, 66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, Loss, Change] : (lost_weight(P, Loss) => decreases_weight(Loss, Change))).
+
+fof(rule_2, axiom, ! [Init, Loss, Final] : (calculate_initial_weight(Init, Loss, Final))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, final_weight_after_loss(current_weight, weight_loss)).
+
+% Using RULE-2 to calculate Jessie’s original weight before jogging.
+fof(inf_2, axiom, original_weight(lost_weight, current_weight, final_weight)).
+
+% Apply the calculation using the known values
+fof(inf_3, axiom, original_weight_calculation(original_weight, 126, 66)).

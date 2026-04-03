@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_people(18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (seat_capacity(9))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_seats(2)).

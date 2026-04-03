@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, losing_weight(126, after_jogging)).
+
+fof(fact_2, axiom, current_weight(66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (ladder_of_weighing(losing_weight, less_than, current_weight))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Transitivity
+fof(inf_1, axiom, original_weight_greater_than_current_weight).
+
+% From inf_1 by SubtractionToFindOriginalWeight
+fof(inf_2, axiom, subtraction_to_find_original_weight(inf_1, original_weight)).
+
+% From inf_1 by CalculationForOriginalWeight
+fof(inf_3, axiom, calculation_for_original_weight(inf_1, 66, 126)).
+
+% From inf_3 by ResultIs192
+fof(inf_4, axiom, result_is_192_kg(kg)).

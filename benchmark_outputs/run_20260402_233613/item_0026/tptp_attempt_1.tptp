@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, earnings_per_week(2)).
+fof(fact_2, axiom, total_earnings(178)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Rate, Time] : (earnings(Rate, Time) <=> Rate * Time)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by EarningsPerWeek
+fof(inf_1, axiom, earnings_per_week_lewis(2)).
+
+% From fact_2, rule_1 by TotalEarningsTotal
+fof(inf_2, axiom, ! [Earnings, Weeks] : (total_earnings_total(Earnings, Weeks))).
+
+% From fact_2, rule_1 by SolveForWeeks
+fof(inf_3, axiom, ? [NumberOfWeeks] : (solve_for_weeks(NumberOfWeeks))).
+
+% From inf_2 by EquationForEarnings
+fof(inf_4, axiom, equation_for_earnings(TotalEarnings, Earnings)).
+
+% From inf_4 by EquationSubstitution
+fof(inf_5, axiom, equation_substitution(equation_for_earnings(TotalEarnings, Earnings), Earnings)).
+
+% From inf_5 by SolveEquation
+fof(inf_6, axiom, solve_equation(solve_for_weeks(NumberOfWeeks))).
+
+% From inf_6 by CalculateNumberOfWeeks
+fof(inf_7, axiom, calculate_number_of_weeks(NumberOfWeeks)).
+
+% From inf_7 by HarvestDuration
+fof(inf_8, axiom, harvest_duration(89)).

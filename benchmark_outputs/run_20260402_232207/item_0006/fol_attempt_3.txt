@@ -1,0 +1,15 @@
+### ## FACTS
+FACT-1: Paul initially had 110 crayons :: InitialCrayons(paul, 110)
+FACT-2: Paul gave away 90 crayons during the school year :: GivenAway(paul, 90)
+FACT-3: Paul lost 412 crayons during the school year :: LostCrayons(paul, 412)
+
+### ## RULES
+RULE-1: If someone has crayons, they must have given some away if there are any remaining. :: ∀x (HasCrayons(x) → HasGivenAway(x))
+RULE-2: If someone has lost crayons, they have given them away. :: ∀x (LostCrayons(x) → HasGivenAway(x))
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1: Paul has given away some crayons :: HasGivenAway(paul)
+INF-2: From FACT-2 and RULE-2: Paul has given away 90 crayons :: HasGivenAway(paul, 90)
+INF-3: From FACT-3 and RULE-2: Paul has lost 412 crayons :: LostCrayons(paul)
+INF-4: Difference between crayons lost and given away :: CrayonsLost(paul) - CrayonsGivenAway(paul) :: CrayonsLost(paul) - CrayonsGivenAway(paul)
+INF-5: Substitute known values into the difference calculation :: CrayonsLost(paul) - CrayonsGivenAway(paul) = 412 - 90 :: 322

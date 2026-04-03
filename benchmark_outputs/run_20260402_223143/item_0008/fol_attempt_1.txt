@@ -1,0 +1,23 @@
+### FACTS
+FACT-1: Jessie started jogging daily and lost 126 kilograms. :: LostWeight(jessie, 126)
+FACT-2: Jessie’s current weight is 66 kilograms. :: CurrentWeight(jessie, 66)
+
+### RULES
+RULE-1: If someone loses weight, their weight decreases accordingly. :: DecreasesWeight(weight_loss, weight_change)
+RULE-2: Weight change can be calculated by subtracting the weight loss from the initial weight. :: CalculateInitialWeight(initial_weight, weight_loss, final_weight)
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1, we infer that Jessie’s current weight of 66 kg is after losing 126 kg. :: FinalWeightAfterLoss(current_weight, weight_loss)
+INF-2: Using RULE-2 to calculate Jessie’s original weight before jogging. :: OriginalWeight(lost_weight, current_weight, final_weight)
+INF-3: Apply the calculation using the known values. :: OriginalWeightCalculation(original_weight, 126, 66) :: 192
+
+### LABELS
+- FACT-1: Jessie started jogging daily and lost 126 kilograms. :: FINALWEIGHTJESSIELOST :: LostWeight(jessie, 126)
+- FACT-2: Jessie’s current weight is 66 kilograms. :: CURRENTWEIGHTJESSIECURRENT :: CurrentWeight(jessie, 66)
+- RULE-1: If someone loses weight, their weight decreases accordingly. :: DECREASESWEIGHTWEIGHTCHANGE :: DecreasesWeight(weight_loss, weight_change)
+- RULE-2: Weight change can be calculated by subtracting the weight loss from the initial weight. :: CALCULATEINITIALWEIGHTINITIALWEIGHTWEIGHTLOSS :: CalculateInitialWeight(initial_weight, weight_loss, final_weight)
+- INF-1: From FACT-1 and RULE-1, we infer that Jessie’s current weight of 66 kg is after losing 126 kg. :: FINALWEIGHTJESSIELOST :: FinalWeightAfterLoss(current_weight, weight_loss)
+- INF-2: Using RULE-2 to calculate Jessie’s original weight before jogging. :: ORIGINALWEIGHTORIGINALWEIGHTWEIGHTLOSS :: OriginalWeight(lost_weight, current_weight, final_weight)
+- INF-3: Apply the calculation using the known values. :: ORIGINALWEIGHTCALCULATION :: OriginalWeightCalculation(original_weight, 126, 66) :: 192
+
+Therefore, the answer is: 192

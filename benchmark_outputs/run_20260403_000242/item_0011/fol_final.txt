@@ -1,0 +1,39 @@
+LABEL: ## FACTS
+FACT-1: Dave started with 15 apps :: AppsDaveHad = 15
+
+FACT-2: Dave added 71 new apps :: NewAppsAdded = 71
+
+FACT-3: After adding, Dave had 14 apps left :: RemainingApps = 14
+
+LABEL: ## RULES
+RULE-1: If Dave starts with x apps and adds n new apps, then the total becomes x + n :: TotalAfterAddition = AppsDaveHad + NewAppsAdded
+
+RULE-2: If Dave ends up with m apps after deleting k apps, then the original number of apps before deletion must have been m + k :: OriginalAppsBeforeDeletion = RemainingApps + DeletedApps
+
+LABEL: ## INFERENCES
+INF-1: Using Rule-1, we can calculate the total number of apps Dave had after adding the new ones:
+\[ \text{TotalAfterAddition} = \text{AppsDaveHad} + \text{NewAppsAdded} \]
+
+INF-2: Substituting the values given in the facts:
+\[ \text{TotalAfterAddition} = 15 + 71 \]
+
+INF-3: Calculating the result:
+\[ \text{TotalAfterAddition} = 86 \]
+
+INF-4: Now, using Rule-2 to find out how many apps were deleted:
+\[ \text{DeletedApps} = \text{TotalAfterAddition} - \text{RemainingApps} \]
+
+INF-5: Substituting the values:
+\[ \text{DeletedApps} = 86 - 14 \]
+
+INF-6: Simplifying:
+\[ \text{DeletedApps} = 72 \]
+
+INF-7: Finally, to find out how many more apps he deleted than he added:
+\[ \text{Difference} = \text{DeletedApps} - \text{NewAppsAdded} \]
+
+INF-8: Substituting the values:
+\[ \text{Difference} = 72 - 71 \]
+
+INF-9: Simplifying:
+\[ \text{Difference} = 1 \]

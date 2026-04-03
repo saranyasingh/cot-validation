@@ -1,0 +1,10 @@
+## FACTS
+- LABEL: NumberOfEmailsInMorning :: 10
+- LABEL: NumberOfEmailsInAfternoon :: 5
+- LABEL: NumberOfEmailsInEvening :: 4
+
+## RULES
+- LABEL: DIFFERENT_COUNT :: COUNT(X) > COUNT(Y) -> X != Y
+
+## INFERENCES
+- LABEL: Difference :: DIFFERENT_COUNT(NumberOfEmailsInAfternoon, NumberOfEmailsInEvening) -> NumberOfEmailsInAfternoon - NumberOfEmailsInEvening = 1

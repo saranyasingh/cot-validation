@@ -1,0 +1,14 @@
+**FACTS**
+FACT-1: Faye has 35 packs of pencils :: PacksOfPencils(Faye, 35)
+FACT-2: Each pack contains 4 pencils :: PencilsPerPack(4)
+FACT-3: Faye places her pencils into rows with 2 pencils per row :: RowsWith2Pencils(2)
+
+**RULES**
+RULE-1: If a person has x items, they have n groups of m items if they distribute them evenly :: Groups(x, n, m)
+RULE-2: Given an amount of pencils and a distribution pattern, calculate the number of complete rows :: CompleteRows(Amount, Pattern, Count)
+RULE-3: A group of items forms a complete row if there are no leftover items :: FormCompleteRow(m, Amount, Count)
+
+**INFERENCES**
+INF-1: From FACT-1 and FACT-2, calculate the total number of pencils :: CalculateTotalPencils(TotalPencils)
+INF-2: Using the total number of pencils, calculate the number of rows formed with 2 pencils per row :: DetermineRowsWithPattern(Rows, 2)
+INF-3: From the calculated number of rows, conclude the final result :: Conclusion(Result)

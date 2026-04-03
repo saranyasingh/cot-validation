@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_pencils(faye, packs(35))).
+
+fof(fact_2, axiom, pencils_per_pack(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalPencils, Packs, PerPack] : (TotalPencils = Packs * PerPack)).
+
+fof(rule_2, axiom, ! [Rows, TotalPencils, RowPerPack] : (Rows = TotalPencils / RowPerPack)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, rows = 70).

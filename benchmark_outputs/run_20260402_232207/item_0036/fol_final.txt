@@ -1,0 +1,10 @@
+LABEL: ## FACTS
+**FACT-1:** SpendingMoney(Edward, $17, $7) :: If Edward spends $17, then he will end up with $7.
+
+**FACT-2:** SpendingMoney(Edward, $17, _) :: If Edward spends $17, then he will end up with an unspecified amount of money.
+
+LABEL: ## RULES
+**RULE-1:** SpendingMoney(x, m, y) implies Money(y) :: If someone spends money, then they must have had money beforehand.
+
+LABEL: ## INFERENCES
+INF-1: From Fact-1 and Rule-1, we can infer that before receiving $10, Edward had $17 :: SpendingMoney(Edward, $17, $7).

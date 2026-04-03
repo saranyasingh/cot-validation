@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_flour(14)).
+fof(fact_2, axiom, already_added_flour(4)).
+fof(fact_3, axiom, more_flour_required).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (amount_needs_flour(X) => flour_needed_gt_flour_added(X))).
+fof(rule_2, axiom, ! [F, S] : (adds_more_flour_than_sugar(F, S) => flour_needed_gt_sugar(F, S))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, flour_needed_gt_flour_added(14)).
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_2, axiom, flour_needed_gt_flour_added(4)).

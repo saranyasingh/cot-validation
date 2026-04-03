@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Each basket contains 19 red peaches and 4 green peaches :: (RedPeachesPerBasket(x) := 19; GreenPeachesPerBasket(x) := 4)
+FACT-2: There are 15 baskets :: BasketsCount(y) := 15
+
+## RULES
+RULE-1: TotalPeaches = RedPeachesPerBasket + GreenPeachesPerBasket :: TotalPeaches(z) := RedPeachesPerBasket(z) + GreenPeachesPerBasket(z)
+
+## INFERENCES
+INF-1: TotalPeaches = 19 + 4 :: TotalPeaches(1) := 19 + 4
+INF-2: TotalPeaches = 23 :: TotalPeaches(15) := (BasketsCount(1) * RedPeachesPerBasket(1)) + (BasketsCount(1) * GreenPeachesPerBasket(1))

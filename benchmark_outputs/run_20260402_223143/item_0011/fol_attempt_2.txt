@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Dave had 15 apps initially :: AppsDaveHad(15)
+FACT-2: Dave added 71 new apps :: AddedApps(71)
+FACT-3: After adding, Dave had 86 apps :: TotalAppsAfterAdding(86)
+FACT-4: Dave ended up with 14 apps remaining :: RemainingApps(14)
+
+## RULES
+RULE-1: If Dave had x apps initially and added y apps, then his total after adding them would be x + y :: ∀x y (InitialApps(x) ∧ AddedApps(y) → TotalAppsAfterAdding(x+y))
+RULE-2: Subtracting k apps from a total results in a new total of total - k :: ∀total k (TotalApps(total) ∧ DeletedApps(k) → NewTotal(total-k))
+
+## INFERENCES
+INF-1: Dave's initial apps minus added apps equals 15 - 71 = -56
+INF-2: Adding back the 71 apps means subtracting negative 71, so we get -(-56 + 71) = 56 - 71 = -15
+INF-3: Since Dave ended up with 14 apps, the net change must have been -15 apps, meaning he deleted 15 apps plus the original 15 apps, totaling 30 apps.
+
+Therefore,
+\[ \text{Number of apps deleted} - \text{Number of apps added} = 30 - 71 = -41 \]
+This indicates a discrepancy due to an incorrect interpretation; let's reframe the correct calculation based on the given facts.
+
+Correctly,
+\[ \text{Number of apps deleted} - \text{Number of apps added} = 72 - 71 = 1 \]

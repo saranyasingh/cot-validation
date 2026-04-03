@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Kelly has 106 Nintendo games :: Games(Kelly, 106)
+
+### RULES
+RULE-1: Subtracting the number of games given away from the initial total gives the remaining games :: ∀g1 g2 (Games(g1, n1) ∧ Games(g2, n2) → RemainingGames(g1, n1 - n2))
+
+### INFERENCES
+INF-1: By applying Rule-1 with initial games = 106 and games given away = 64, we get the remaining games :: RemainingGames(Kelly, 106 - 64)

@@ -1,0 +1,4 @@
+LABEL: Fact-1 :: \text{Apps}_{\text{initial}}(Dave) ::= Apps(Dave) = 15
+LABEL: Fact-2 :: \text{AddedApps}(Dave) ::= AddedApps(Dave) = 71
+LABEL: Rule-1 :: \forall x (\text{Apps}(Dave) + \text{AddedApps}(Dave) = \text{DeletedApps}(Dave))
+LABEL: Rule-2 :: \forall x (\text{Apps}(Dave) + \text{AddedApps}(Dave) > \text{DeletedApps}(Dave))

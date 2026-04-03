@@ -1,0 +1,21 @@
+This reasoning can be converted into FOL as follows:
+
+```plaintext
+FACT-1: Paul gave away 90 crayons :: GivenAwayCrayonsPaul(90)
+
+FACT-2: Paul lost 412 crayons :: LostCrayonsPaul(412)
+
+INF-1: Difference in crayons lost and given away :: ∀x ((LostCrayonsPaul(x)) → (∃y (GivenAwayCrayonsPaul(y))) ∧ (∃z (GivenAwayCrayonsPaul(z)))) ∧ (∃w (LostCrayonsPaul(w))) ∧ (∃v (GivenAwayCrayonsPaul(v))) ∧ (LostCrayonsPaul(w) > GivenAwayCrayonsPaul(v))
+```
+
+### Explanation:
+
+**FACT-1:** Paul gave away 90 crayons.
+
+**FACT-2:** Paul lost 412 crayons.
+
+**INF-1:** For all \( x \):
+- \( \text{If } x \text{ is the crayon loss, then there exists some crayon given away by Paul.} \)
+- There exists a crayon given away by Paul.
+- There exists a crayon lost by Paul.
+- The crayon lost by Paul (\( x \)) is greater than the crayon given away by Paul (\( v \)).

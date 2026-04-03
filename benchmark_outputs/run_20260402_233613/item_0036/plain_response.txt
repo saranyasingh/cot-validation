@@ -1,0 +1,20 @@
+To find out how much Edward had before spending his money, we need to reverse the operations that occurred:
+
+1. Edward's current amount after receiving money from his friend is $7.
+2. He received $10 from his friend, so before receiving this money, he must have had:
+   \[
+   7 - 10 = -3
+   \]
+This result indicates an error in our initial interpretation because it would mean Edward owed $3 instead of having $7. 
+
+Let's correct our approach:
+
+1. After receiving $10 from his friend and then spending $17, Edward ended up with $7.
+2. This means before spending, he had:
+   \[
+   7 + 17 = 24
+   \]
+
+Therefore, Edward had $24 before he spent his money.
+
+The answer is: 24

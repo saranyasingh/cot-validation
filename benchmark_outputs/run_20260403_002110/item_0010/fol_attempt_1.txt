@@ -1,0 +1,25 @@
+Let's convert the given chain of thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+- There are 34 books distributed equally in 2 bookshelves.
+  
+### Rules
+- Dividing the total number of books by the number of bookshelves gives the number of books per shelf.
+
+### Inferences
+- Each bookshelf contains 17 books.
+
+---
+
+Here are the converted FOL statements:
+
+#### FACTS
+FACT-1: NumberOfBooks(34) :: NumberOfBooks(34)
+
+FACT-2: NumberOfShelves(2) :: NumberOfShelves(2)
+
+#### RULES
+RULE-1: Divide(NumberOfBooks, NumberOfShelves) :: ∀s (NumberOfBooks(s) / NumberOfShelves(s)) = BooksPerShelf
+
+#### INFERENCES
+INF-1: EachBookshelfContains(17) :: BooksPerShelf = 17

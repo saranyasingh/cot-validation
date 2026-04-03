@@ -1,0 +1,7 @@
+% --- FACTS ---
+fof(fact_1, axiom, page_count(chapter_1) = 31).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ( (page_count(chapter_2) = 36) => (total_pages - page_count(chapter_2) = page_count(chapter_1)) )).
+
+% --- INFERENCES ---

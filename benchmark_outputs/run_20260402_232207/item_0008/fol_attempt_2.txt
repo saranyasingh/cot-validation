@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Jessie lost 126 kilograms after starting to jog daily :: LostWeight(126)
+FACT-2: Jessie's current weight is 66 kilograms :: CurrentWeight(66)
+
+## RULES
+RULE-1: Weight loss is represented by a numerical value :: ∀w (LostWeight(w) → Number(w))
+RULE-2: A person's current weight represents their initial weight plus weight loss :: ∀p (CurrentWeight(p) → InitialWeight(p) + LostWeight(l)) where l = p - CurrentWeight(p)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1: Initially, Jessie had 126 kg of weight loss :: InitialWeight(Jessie) = LostWeight(126)
+INF-2: Using RULE-2 and InitialWeight(Jessie): Jessie’s initial weight was 66 kg + 126 kg :: InitialWeight(Jessie) = 66 + 126
+INF-3: Calculate Jessie's initial weight using the derived sum :: InitialWeight(Jessie) = 192 kg
+
+INF-4: Conclude Jessie's initial weight is 192 kg :: InitialWeight(Jessie) = 192

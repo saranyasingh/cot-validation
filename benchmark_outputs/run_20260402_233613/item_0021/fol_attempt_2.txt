@@ -1,0 +1,16 @@
+```plaintext
+## FACTS
+FACT-1: n_sacks = 54 :: n_sacks = 54
+FACT-2: s_sacks = 18 :: s_sacks = 18
+FACT-3: d_days = \frac{n_sacks}{s_sacks} :: d_days = \frac{54}{18}
+
+## RULES
+RULE-1: \forall t (n_sacks = 54) :: n_sacks = 54
+RULE-2: \forall t (s_sacks = 18) :: s_sacks = 18
+RULE-3: \forall t (d_days = \frac{n_sacks}{s_sacks}) :: d_days = \frac{54}{18}
+
+## INFERENCES
+INF-1: From Fact-1, Rule-1 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+INF-2: From Fact-2, Rule-2 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+INF-3: From Fact-3, Rule-3 by Modus Ponens: d_days = \frac{54}{18} :: d_days = 3
+```

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_money(104)).
+fof(fact_2, axiom, dvd_cost(26)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (division(104, 26, P))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Division
+fof(inf_1, axiom, packs(4)).

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_amount(78)).
+fof(fact_2, axiom, amount_spent(15)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1 by arithmetic_subtraction
+fof(inf_1, axiom, remaining_amount(63)).

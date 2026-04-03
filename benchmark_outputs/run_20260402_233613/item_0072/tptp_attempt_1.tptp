@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, chocolate_chip_cookies_baked_yesterday(197)).
+fof(fact_2, axiom, raisin_cookies_baked_yesterday(46)).
+fof(fact_3, axiom, raisin_cookies_baked_today(75)).
+fof(fact_4, axiom, chocolate_chip_cookies_baked_today(66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ( chocolate_chip_cookies_baked_yesterday(X) & chocolate_chip_cookies_baked_today(Y) => difference_between_baked_cookies(X, Y))). 
+
+% --- INFERENCES ---
+% From fact_1, fact_4, rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_between_baked_cookies(197, 66)).

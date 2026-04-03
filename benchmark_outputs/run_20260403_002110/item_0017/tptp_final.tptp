@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : (red_peaches_in_basket(X) & green_peaches_in_basket(X))).
+
+fof(fact_2, axiom, baskets_counted(15)).
+
+fof(fact_3, axiom, ! [X] : (red_peaches_in_basket(X) | green_peaches_in_basket(X))).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (contains_both_types_of_peaches(X) => has_23_peaches(X))).
+
+fof(rule_2, axiom, ! [X] : (has_23_peaches(X) => total_number_of_peaches(X) = 23)).
+
+% --- INFERENCES ---
+% From Fact-1, Rule-1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : (contains_both_types_of_peaches(X) => has_23_peaches(X))).
+
+% From fact_2, inf_1 by Modus Ponens
+fof(inf_2, axiom, ! [X] : (baskets_counted(15) => ? [Y] : (contains_both_types_of_peaches(Y) & total_number_of_peaches(Y) = 23))).
+
+% From fact_3, inf_2 by Arithmetic
+fof(inf_3, axiom, ! [X] : (baskets_counted(15) => ? [Y] : (contains_both_types_of_peaches(Y) & total_number_of_peaches(Y) = 345))).

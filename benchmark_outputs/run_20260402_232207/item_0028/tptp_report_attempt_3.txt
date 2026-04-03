@@ -1,0 +1,2 @@
+TPTP syntax error:
+eprover: cte_typebanks.c:882: TypeChangeReturnType: Assertion `TypeIsArrow(type) || type->f_code == STIndividuals' failed.

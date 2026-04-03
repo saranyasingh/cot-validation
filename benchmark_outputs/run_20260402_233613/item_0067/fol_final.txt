@@ -1,0 +1,10 @@
+### ## FACTS
+FACT-1: Rachel completed 5 pages of math homework :: MathPages(5)
+FACT-2: Rachel completed 10 pages of reading homework :: ReadingPages(10)
+FACT-3: Rachel completed 6 more pages of biology homework :: BiologyPages(6)
+
+### ## RULES
+RULE-1: TotalPages = MathPages + ReadingPages + BiologyPages :: ∀p (TotalPages(p) = MathPages(p) + ReadingPages(p) + BiologyPages(p))
+
+### ## INFERENCES
+INF-1: TotalPages(MathPages, ReadingPages, BiologyPages) :: ∀p (TotalPages(p) = MathPages(p) + ReadingPages(p) + BiologyPages(p))

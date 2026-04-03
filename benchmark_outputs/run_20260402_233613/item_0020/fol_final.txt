@@ -1,0 +1,15 @@
+LABEL: ## FACTS ::
+```plaintext
+FACT-1: Number_of_Girls = 34
+FACT-2: Number_of_Boys = 841
+```
+
+LABEL: ## RULES ::
+```plaintext
+RULE-1: Difference(D) = Boys(B) - Girls(G) if B > G
+```
+
+LABEL: ## INFERENCES ::
+```plaintext
+INF-1: FROM Fact-1 and Fact-2 BY rule-1 CALCULATING DIFFERENCE = B - G :: DIFFERENCE = 841 - 34
+```

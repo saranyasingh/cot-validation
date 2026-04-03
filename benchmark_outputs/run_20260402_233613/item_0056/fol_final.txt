@@ -1,0 +1,20 @@
+### ## FACTS
+FACT-1: Jack received 5 emails in the morning :: EmailsReceived(morning, Jack, 5)
+FACT-2: Jack received 6 letters in the morning :: LettersReceived(morning, Jack, 6)
+FACT-3: Jack received 9 emails in the afternoon :: EmailsReceived(afternoon, Jack, 9)
+FACT-4: Jack received 7 letters in the afternoon :: LettersReceived(afternoon, Jack, 7)
+
+### ## RULES
+RULE-1: If someone receives x emails and y letters, then they have z total items :: ∀(x, y, z) ((EmailsReceived(_, _, x) ∧ LettersReceived(_, _, y)) → TotalItems(_, _, z))
+
+### ## INFERENCES
+INF-1: Total emails received in the morning :: EmailsReceived(morning, Jack, 5)
+INF-2: Total letters received in the morning :: LettersReceived(morning, Jack, 6)
+INF-3: Total emails received in the afternoon :: EmailsReceived(afternoon, Jack, 9)
+INF-4: Total letters received in the afternoon :: LettersReceived(afternoon, Jack, 7)
+INF-5: Total letters received in the entire day :: TotalLetters(total, Jack)
+INF-6: Applying Rule-1 to morning :: TotalLetters(morning, Jack) = 5 + 6
+INF-7: Applying Rule-1 to afternoon :: TotalLetters(afternoon, Jack) = 9 + 7
+INF-8: Summing total letters from morning and afternoon :: TotalLetters(total, Jack) = (5 + 6) + (9 + 7)
+INF-9: Simplifying the expression for total letters :: TotalLetters(total, Jack) = 11 + 16
+INF-10: Final calculation :: TotalLetters(total, Jack) = 27

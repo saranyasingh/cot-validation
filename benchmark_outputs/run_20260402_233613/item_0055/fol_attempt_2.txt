@@ -1,0 +1,17 @@
+## FACTS
+- Danny collected bottle caps and wrappers.
+  \[ \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+- At the park, Danny found 11 bottle caps and 28 wrappers.
+  \[ \text{AtPark}(p, d, \text{bottle\_caps}, x) \land \text{AtPark}(p, d, \text{wrappers}, x) \land \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+
+## RULES
+- If someone collects bottle caps and wrappers, then after collecting, the number of each item remains unchanged.
+  \[ \forall x (\text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \rightarrow \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x)) \]
+
+## INFERENCES
+- Given Fact-1 and Rule-1, if Danny collects bottle caps and wrappers, then after collecting, the number of each item remains unchanged.
+  \[ \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \rightarrow \text{DannyCollected}(d, \text{bottle\_caps}, x) \land \text{DannyCollected}(d, \text{wrappers}, x) \]
+- Using the above inference, we can calculate the difference in the number of wrappers and bottle caps Danny found at the park.
+  \[ \text{Number of wrappers after collection} = 51 \]
+  \[ \text{Number of bottle caps after collection} = 68 \]
+  \[ \text{Difference in number of wrappers and bottle caps} = 51 - 68 \]

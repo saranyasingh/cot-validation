@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: RedPeaches = 5 :: RedPeaches(5)
+FACT-2: YellowPeaches = 14 :: YellowPeaches(14)
+FACT-3: GreenPeaches = 6 :: GreenPeaches(6)
+
+### RULES
+RULE-1: TotalPeaches(RedPeaches, YellowPeaches, GreenPeaches) :: (∀p (RedPeaches(p) ∨ YellowPeaches(p) ∨ GreenPeaches(p)))
+RULE-2: SumOfGreenAndYellow(Peaches) :: (∃g (GreenPeaches(g)) ∧ ∃y (YellowPeaches(y)) ∧ g + y = TotalPeaches)
+
+### INFERENCES
+INF-1: TotalPeaches(RedPeaches, YellowPeaches, GreenPeaches) :: TotalPeaches(5, 14, 6)
+INF-2: SumOfGreenAndYellow(GreenPeaches, YellowPeaches) :: SumOfGreenAndYellow(6, 14)
+INF-3: NumberOfGreenAndYellowPeachesCombined(SumOfGreenAndYellow) :: NumberOfGreenAndYellowPeachesCombined(20)

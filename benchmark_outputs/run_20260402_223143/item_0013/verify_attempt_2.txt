@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states there is a cost per DVD pack (26 dollars per pack).
+
+FACT-2: SUPPORTED — The story states you have 104 dollars.
+
+RULE-1: PLAUSIBLE — It encodes the straightforward arithmetic principle: number of packs = floor(total money / cost per pack) given those facts.

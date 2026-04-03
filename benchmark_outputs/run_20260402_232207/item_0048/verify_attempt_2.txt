@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story states Ron stands at 14 feet, i.e., Ron's height is 14.
+
+FACT-2: SUPPORTED — The story says Dean is 8 feet shorter than Ron, which matches Height(Dean) = StandingAt(Ron, t_14) - 8.
+
+RULE-1: IMPLAUSIBLE — It is just a basic predicate name, not a defensible general rule or inference principle.
+
+RULE-2: IMPLAUSIBLE — It asserts Dean is taller than Ron, which contradicts the given relation in the story.

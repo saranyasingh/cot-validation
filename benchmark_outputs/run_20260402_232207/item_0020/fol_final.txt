@@ -1,0 +1,10 @@
+## FACTS :: 
+FACT-1: NumberOfGirlsInSchool = 34
+FACT-2: NumberOfBoysInSchool = 841
+
+## RULES :: 
+Rule-1: DifferenceBetweenBoysAndGirls = NumberOfBoys - NumberOfGirls
+
+## INFERENCES :: 
+INF-1: DifferenceBetweenBoysAndGirls = 841 - 34
+INF-2: Conclusion: SchoolHasMoreBoysThanGirls = DifferenceBetweenBoysAndGirls

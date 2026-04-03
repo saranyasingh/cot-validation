@@ -1,0 +1,15 @@
+LABEL: ## FACTS
+FACT-1: Zachary did 58 crunches :: Crunches(zachary) = 58
+FACT-2: Zachary did 46 push-ups :: PushUps(zachary) = 46
+
+LABEL: ## RULES
+RULE-1: If someone does x push-ups, they do y crunches :: ∀p u (PushUp(p) → Crunches(u))
+RULE-2: Given two numbers, their difference can be calculated using subtraction :: ∀a b (a - b) [PLAUSIBLE]
+
+LABEL: ## INFERENCES
+INF-1: From FACT-1 and RULE-1, we derive the number of crunches Zachary did :: Crunches(zachary) = 58
+INF-2: From FACT-2 and RULE-1, we derive the number of push-ups Zachary did :: PushUps(zachary) = 46
+INF-3: To find the difference in crunches and push-ups, apply subtraction :: CrunchesDifference := 58 - 46
+
+Therefore,
+INF-4: The number of more crunches Zachary did than push-ups :: CrunchesDifference = 12

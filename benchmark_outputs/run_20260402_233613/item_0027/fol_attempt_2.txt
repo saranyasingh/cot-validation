@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: TotalWaxNeeded(17 g) :: WaxRequired(17 g)
+FACT-2: WaxAvailable(557 g) :: WaxAlreadyAvailable(557 g)
+FACT-3: WaxRequired(WaxAvailable) :: WaxRequired(557 g)
+
+## RULES
+RULE-1: WaxRequired(TotalWaxNeeded) :: WaxRequired(TotalWaxNeeded - WaxAvailable)
+RULE-2: WaxRequired(WaxAvailable) :: WaxRequired(WaxAvailable - WaxRequired)
+
+## INFERENCES
+INF-1: WaxRequired(TotalWaxNeeded) :: WaxRequired(17 g)
+INF-2: WaxRequired(WaxAvailable) :: WaxRequired(557 g)
+INF-3: WaxRequired(WaxRequired) :: WaxRequired - WaxRequired
+INF-4: WaxRequired(WaxAvailable) :: WaxRequired(WaxAvailable - WaxRequired)
+INF-5: WaxRequired(WaxRequired) :: WaxRequired - WaxRequired
+INF-6: WaxRequired(WaxAvailable) :: WaxRequired(WaxAvailable - WaxRequired)
+INF-7: WaxRequired(WaxRequired) :: WaxRequired - WaxRequired
+INF-8: WaxRequired(WaxAvailable) :: WaxRequired(WaxAvailable - WaxRequired)
+INF-9: WaxRequired(WaxRequired) :: WaxRequired - WaxRequired
+INF-10: WaxRequired(WaxAvailable) :: WaxRequired(WaxAvailable - WaxRequired)
+INF-11: WaxRequired(WaxRequired) :: WaxRequired - WaxRequired
+INF-12: WaxRequired

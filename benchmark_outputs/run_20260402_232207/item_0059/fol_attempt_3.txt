@@ -1,0 +1,5 @@
+LABEL: Fact 1 :: NumberOfTShirtsSoldDuringTexasTechGame = TotalNumberOfTShirtsSold - NumberOfTShirtsSoldDuringArkansasGame :: 186 - 172 = 14
+
+LABEL: Rule 1 :: RevenueFromTShirtsDuringTexasTechGame = NumberOfTShirtsSoldDuringTexasTechGame * ProfitPerT-Shirt :: 14 * 78
+
+LABEL: Inference 1 :: RevenueFromTShirtsDuringTexasTechGame = $1092 :: 14 * 78 = 1092

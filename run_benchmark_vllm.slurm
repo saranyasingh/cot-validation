@@ -21,6 +21,7 @@
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
 DATASET="${DATASET:-dataset.json}"
 MAX_RETRIES="${MAX_RETRIES:-3}"
+NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
@@ -98,12 +99,17 @@ OUTPUT_ARG=""
 if [ -n "$OUTPUT_DIR" ]; then
     OUTPUT_ARG="--output-dir $OUTPUT_DIR"
 fi
+NUM_PROBLEMS_ARG=""
+if [ -n "$NUM_PROBLEMS" ]; then
+    NUM_PROBLEMS_ARG="--num-problems $NUM_PROBLEMS"
+fi
 
 "$PYTHON" benchmark.py \
     --dataset "$DATASET" \
     --client vllm \
     --max-retries "$MAX_RETRIES" \
-    $OUTPUT_ARG
+    $OUTPUT_ARG \
+    $NUM_PROBLEMS_ARG
 
 echo "──────────────────────────────────────────"
 echo "End time : $(date)"

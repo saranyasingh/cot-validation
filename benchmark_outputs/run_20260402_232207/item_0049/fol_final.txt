@@ -1,0 +1,11 @@
+### ## FACTS
+LABEL: FACT-1 :: ∀x (LearningEnglish(x) → ∃y (TimeSpentOnLearningEnglish(y, x)))
+LABEL: FACT-2 :: ∀x (LearningChinese(x) → ∃y (TimeSpentOnLearningChinese(y, x)))
+
+### ## RULES
+LABEL: RULE-1 :: ∀d (LearningEnglish(d) → LearningEnglishSum(d)) ∧ ∀d (LearningChinese(d) → LearningChineseSum(d))
+
+### ## INFERENCES
+LABEL: INF-1 :: LearningEnglishSum(1) :: TimeSpentOnLearningEnglish(6, 1)
+LABEL: INF-2 :: LearningChineseSum(1) :: TimeSpentOnLearningChinese(7, 1)
+LABEL: INF-3 :: LearningEnglishSum(1) + LearningChineseSum(1) :: TimeSpentOnLearningEnglish(6, 1) + TimeSpentOnLearningChinese(7, 1)

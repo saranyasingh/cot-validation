@@ -1,0 +1,18 @@
+### ## FACTS
+```plaintext
+FACT-1: TotalNumberOfStudents = 270
+```
+
+### ## RULES
+```plaintext
+RULE-1: If the total number of students is T, then each grade has S students. 
+        Hence, the number of grades can be calculated using the formula: 
+        NumberOfGrades = T / S.
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: Calculate the number of grades based on the total number of students and the number of students per grade.
+INF-2: Number of Grades = 270 / 5
+INF-3: Number of Grades = 54
+```

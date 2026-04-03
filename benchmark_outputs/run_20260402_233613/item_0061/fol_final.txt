@@ -1,0 +1,11 @@
+### ## FACTS ::
+1. ∀x (LearningChinese(x) → TimeSpentOnLearningChinese(x) = 5)
+2. LearningEnglish(x) → TimeSpentOnLearningEnglish(x) = TimeSpentOnLearningChinese(x) + 2
+
+### ## RULES ::
+3. ∃x (LearningChinese(x) ∧ TimeSpentOnLearningChinese(x) = 5)
+
+4. ∃x (LearningEnglish(x) ∧ TimeSpentOnLearningEnglish(x) = TimeSpentOnLearningChinese(x) + 2)
+
+### ## INFERENCES ::
+∀x (LearningEnglish(x) → TimeSpentOnLearningEnglish(x) = 7)

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Faye has 35 packs of pencils :: Pencils(packs=35)
+FACT-2: Each pack contains 4 pencils :: Pencils(perPack=4)
+
+## RULES
+RULE-1: Total number of pencils = Number of packs × Pencils per pack :: TotalPencils = Packs * PerPack
+RULE-2: Number of rows = Total number of pencils ÷ Pencils per row :: Rows = TotalPencils / RowPerPack
+
+## INFERENCES
+INF-1: Number of rows = (35 * 4) ÷ 2 :: Rows = 70

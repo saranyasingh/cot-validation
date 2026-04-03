@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states he gave away 90 crayons
+FACT-2: SUPPORTED — The story states he lost 412 crayons
+RULE-1: PLAUSIBLE — It asserts there exists a given-away crayon in a context where there is a loss
+RULE-2: PLAUSIBLE — There exists a crayon given away by Paul (matches FACT-1)
+RULE-3: PLAUSIBLE — There exists a crayon lost by Paul (matches FACT-2)
+RULE-4: PLAUSIBLE — In the story, 412 > 90, so the loss exceeds the gifts

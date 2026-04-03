@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, winter_almost_here()).
+fof(fact_2, axiom, migrate_to_warm_countries_when_winter_approaches()).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : ( migrates_to_warm_country(A) => winter_almost_here() ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, migrate_to_warm_countries_when_winter_approaches()).
+
+% From INF-2 by Assumption
+fof(inf_2, axiom, africa_flew_bird_families(10) & asia_flew_bird_families(22)).
+
+% From INF-3 by Assumption
+fof(inf_3, axiom, africa_flew_bird_families(42) & asia_flew_bird_families(31)).
+
+% From INF-4 by Assumption
+fof(inf_4, axiom, diff(42,31,11)).
+
+% From INF-5 by Assumption
+fof(inf_5, axiom, final_difference(11)).
+
+% From INF-6 by Assumption
+fof(inf_6, axiom, sub(42,31,11)).

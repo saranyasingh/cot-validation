@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, dad_strawberries(t_dad) & weight(eleven_pounds)).
+
+fof(fact_2, axiom, together(strawberries, t_together) & weight(thirty_pounds)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From facts 1 and 2 by some inference
+fof(inf_1, axiom, weight(marcos_strawberries) = nineteen_pounds).

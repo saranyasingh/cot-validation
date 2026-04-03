@@ -1,0 +1,11 @@
+## FACTS
+- An individual can have at most 104 dollars.
+- Each DVD pack costs at least 26 dollars.
+
+## RULES
+- If a person has less than or equal to 104 dollars and each DVD pack costs more than or equal to 26 dollars, then the person can buy 0 or more DVD packs.
+- If a person buys 0 or more DVD packs and each DVD pack costs more than or equal to 26 dollars, then the person will have exactly 104 dollars remaining after purchasing the DVD packs.
+
+## INFERENCES
+- Premise 1: Given that an individual has 104 dollars and each DVD pack costs 26 dollars, the individual can determine how many packs they can afford.
+- Conclusion: The person can purchase 4 packs of DVDs.

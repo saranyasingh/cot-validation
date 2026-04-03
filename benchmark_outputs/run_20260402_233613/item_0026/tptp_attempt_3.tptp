@@ -1,0 +1,33 @@
+% --- FACTS ---
+fof(fact_1, axiom, earnings_per_week(2)).
+fof(fact_2, axiom, total_earnings(178)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Rate, Time] : (earnings(Rate, Time) <=> Rate * Time)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by EarningsPerWeek
+fof(inf_1, axiom, earnings_per_week_lewis(2)).
+
+% From FACT-2, RULE-1 by TotalEarningsTotal
+fof(inf_2, axiom, total_earnings_total(2, 89)).
+
+% Solve for weeks using TotalEarningsTotal
+% From FACT-2, RULE-1 by SolveForWeeks
+fof(inf_3, axiom, solve_for_weeks(89)).
+
+% Set up the equation for total earnings
+% From INF-3 by EquationForEarnings
+fof(inf_4, axiom, equation_for_earnings(178, 2)).
+
+% Substitute known values into the equation
+% From INF-4 by EquationSubstitution
+fof(inf_5, axiom, equation_substitution(equation_for_earnings(178, 2))).
+
+% Solve the equation
+% From INF-5 by SolveEquation
+fof(inf_6, axiom, solve_equation(solve_for_weeks(89))).
+
+% Harvest duration conclusion
+% From INF-6 by HarvestDuration
+fof(inf_7, axiom, harvest_duration(89)).

@@ -1,0 +1,3 @@
+LABEL: You have $104 :: AmountAvailable(104) :: AmountAvailable(104)
+LABEL: Divide the total money by the cost of one DVD to find the number of DVDs :: ∀n (AmountAvailable(a) → NumberOfDVDs(n, a)) :: ∃a (AmountAvailable(a))
+LABEL: You can buy 4 DVDs :: NumberOfDVDs(4, 104) :: ∃n (NumberOfDVDs(n, 104))

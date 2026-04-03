@@ -1,0 +1,8 @@
+LABEL: Fact 1 :: ReceivedEmails(morning, 10)
+LABEL: Fact 2 :: ReceivedEmails(afternoon, 3)
+LABEL: Rule 1 :: ForAllx(Rule 1) :: ((ReceivedEmails(morning, x) -> ReceivedEmails(afternoon, x)))
+LABEL: Rule 2 :: ForAllx(SubtractionDifference) :: ((SubtractionDifference(x, y, z)) :: (x - y = z))
+
+LABEL: Inference 1 :: Fact 1 :: (ReceivedEmails(morning, 10))
+LABEL: Inference 2 :: Fact 2 :: (ReceivedEmails(afternoon, 3))
+LABEL: Inference 3 :: Inference 1 :: Inference 2 :: SubtractionDifference(ReceivedEmails(morning, 10), ReceivedEmails(afternoon, 3), MoreEmailsInMorningThanAfternoon) :: MoreEmailsInMorningThanAfternoon = 10 - 3 = 7

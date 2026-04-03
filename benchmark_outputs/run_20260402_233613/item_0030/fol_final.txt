@@ -1,0 +1,14 @@
+LABEL: ## FACTS :: 
+FACT-1: SugarNeeded = 9
+FACT-2: FlourNeeded = 14
+FACT-3: FlourAdded = 4
+FACT-4: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+FACT-5: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded
+
+LABEL: ## RULES ::
+RULE-1: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+RULE-2: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded
+
+LABEL: ## INFERENCES ::
+INFER-1: FlourLeftToAdd ::= FlourNeeded - FlourAdded
+INFER-2: DifferenceBetweenFlourAndSugar ::= FlourLeftToAdd - SugarNeeded

@@ -1,0 +1,39 @@
+**Logical Syllogism**
+
+1. **Premise 1:** Adam has 4 more apples than Jackie.
+   - This tells us that if we know how many apples Jackie has, we can find out how many apples Adam has.
+
+2. **Premise 2:** Together Adam and Jackie have 14 apples.
+   - If we add up all the apples they have together, it equals 14.
+
+3. **Conclusion:** Let's denote the number of apples Jackie has as \( J \) and the number of apples Adam has as \( A \).
+   - From Premise 1, \( A = J + 4 \).
+
+4. **Substitution:** Since \( A = J + 4 \), substitute this into the total equation:
+   - \( J + (J + 4) = 14 \)
+
+5. **Simplify Equation:** Combine like terms on the left side:
+   - \( 2J + 4 = 14 \)
+
+6. **Isolate Variable:** Subtract 4 from both sides to isolate the term with \( J \):
+   - \( 2J = 10 \)
+
+7. **Solve for \( J \):**
+   - Divide both sides by 2:
+     \[
+     J = 5
+     \]
+
+8. **Find \( A \):**
+   - Substitute \( J = 5 \) back into the expression for \( A \):
+     \[
+     A = J + 4 = 5 + 4 = 9
+     \]
+
+9. **Determine Bob’s Apples:**
+   - Bob has 6 apples more than Adam and Jackie together:
+     \[
+     B = A + J + 6 = 9 + 5 + 6 = 20
+     \]
+
+Therefore, the answer is: Bob has 20 apples.

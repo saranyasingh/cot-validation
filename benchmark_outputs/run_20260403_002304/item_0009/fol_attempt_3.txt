@@ -1,0 +1,30 @@
+```plaintext
+### FACTS
+FACT-1: Dave had won some tickets :: HasTickets(Dave)
+
+FACT-2: He used 12 tickets to buy some toys :: UsedTickets(12, Toys)
+
+FACT-3: If he still has 14 tickets left, then he must have won 26 tickets initially :: HasTickets(Dave, 26)
+```
+
+```plaintext
+### RULES
+RULE-1: If someone has won some tickets, they must have won more than 0 tickets :: ∀x (HasTickets(x) → x > 0)
+
+RULE-2: If someone uses tickets to buy something, they will end up with fewer tickets :: ∀t (UsedTickets(t, _) → LessThanTickets(t, HasTickets()))
+```
+
+```plaintext
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Dave has won more than 0 tickets :: HasTickets(Dave)
+
+INF-2: From FACT-2, RULE-2 by Universal Instantiation: After buying toys, Dave will have fewer tickets than he originally had :: LessThanTickets(t_12, HasTickets(Dave))
+
+INF-3: Dave’s remaining tickets can be calculated by adding initial tickets to remaining tickets :: RemainingTickets(Dave) = InitialTickets(Dave) + RemainingTicketsAfterPurchase()
+
+INF-4: Using the given values, we can calculate the initial number of tickets :: InitialTickets(Dave) = RemainingTicketsAfterPurchase() + 12
+
+INF-5: Substitute the known values to get the final result :: InitialTickets(Dave) = 14 + 12 = 26
+
+INF-6: From INF-4, we know the initial tickets must match the conclusion :: InitialTickets(Dave) = 26
+```

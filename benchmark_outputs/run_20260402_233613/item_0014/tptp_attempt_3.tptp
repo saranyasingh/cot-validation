@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, BookCount(jerry) = 7).
+fof(fact_2, axiom, ActionFigureCount(jerry) = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Total] : (TotalItems(Total) = BookCount(jerry) + ActionFigureCount(jerry))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, TotalItems(total) = BookCount(jerry) + ActionFigureCount(jerry) + 2).
+
+% From fact_2 by Arithmetic
+fof(inf_2, axiom, BookCount(jerry) - ActionFigureCount(jerry) = 2).
+
+% From inf_2 by Arithmetic
+fof(inf_3, axiom, BookCount(jerry) - ActionFigureCount(jerry) = 2).

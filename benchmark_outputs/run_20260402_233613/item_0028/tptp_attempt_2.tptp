@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_planks = 8).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (plank(P) => nails_per_plank = 74)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_nails = number_of_planks * nails_per_plank).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_nails = 8 * 74).

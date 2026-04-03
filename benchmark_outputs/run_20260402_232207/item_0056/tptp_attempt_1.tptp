@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, emails(morning) = 5).
+fof(fact_2, axiom, letters(morning) = 6).
+fof(fact_3, axiom, emails(afternoon) = 9).
+fof(fact_4, axiom, letters(afternoon) = 7).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (emails(T) = emails(morning) + emails(afternoon))).
+fof(rule_2, axiom, ! [T] : (letters(T) = letters(morning) + letters(afternoon))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, emails(morning)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, letters(morning)).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, emails(afternoon) = 9).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, letters(afternoon) = 7).
+% From rule_1 by Modus Ponens
+fof(inf_5, axiom, emails(total_day) = emails(morning) + emails(afternoon)).
+% From rule_2 by Modus Ponens
+fof(inf_6, axiom, letters(total_day) = letters(morning) + letters(afternoon)).
+% From fact_2, fact_4, rule_2 by Modus Ponens
+fof(inf_7, axiom, letters(total_day) = 6 + 7).

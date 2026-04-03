@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: ∀h (Houses(h) → JunkMails(h) = 2)
+LABEL: FACT-2 :: ∀j (JunkMails(j) = 14)
+LABEL: Rule-1 :: ∀h (Houses(h) → (∀j (JunkMails(j) = 2) → JunkMails(h) = 14))

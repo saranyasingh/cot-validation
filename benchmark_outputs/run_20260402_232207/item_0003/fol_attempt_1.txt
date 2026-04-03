@@ -1,0 +1,9 @@
+Label: FACT-1 :: TotalMoneySpent(Edward) :: Spending(Edward, $6, Books)
+
+Label: FACT-2 :: MoneyRemainingAfterPurchase(Edward) :: RemainingMoney(Edward) :: $12
+
+Label: RULE-1 :: TotalCostOfBooks(Books) :: Spending(Books, $6) & RemainingMoney(Books) :: $12
+
+Label: INF-1 :: CostPerBook(Books) :: Dividing(TotalCostOfBooks(Books), NumberofBooksPurchased(Books)) :: $9
+
+Label: INF-2 :: EachBookCost($9) :: Applying(INF-1) :: EachBookCost(Books) :: $9

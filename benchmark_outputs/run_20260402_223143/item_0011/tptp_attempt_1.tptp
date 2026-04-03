@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, apps_dave_had(15)).
+
+fof(fact_2, axiom, added_apps(71)).
+
+fof(fact_3, axiom, total_apps_after_adding(86)).
+
+fof(fact_4, axiom, remaining_apps(14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (initial_apps(X) & added_apps(Y) => total_apps_after_adding(X+Y))).
+
+fof(rule_2, axiom, ! [Total, K] : (total_apps(Total) & deleted_apps(K) => new_total(Total - K))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic
+fof(inf_1, axiom, 15 - 71 = -56).
+
+% From fact_2, fact_3 by Arithmetic
+fof(inf_2, axiom, 56 - 71 = -15).
+
+% From fact_3, fact_4 by Arithmetic
+fof(inf_3, axiom, 14 - 15 = -1).

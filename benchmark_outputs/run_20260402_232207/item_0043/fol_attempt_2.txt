@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: JackReceivedEmails(10, Morning) :: ReceivedEmails(Jack, t_10, Morning)
+FACT-2: JackReceivedEmails(3, Afternoon) :: ReceivedEmails(Jack, t_15, Afternoon)
+
+## RULES
+RULE-1: DifferenceOfIntegers(x, y, z) :: x - y :: z :: ∀x∀y∀z ((x > y) -> (z = x - y)) :: DifferenceOfIntegers(10, 3, 7)
+
+## INFERENCES
+INF-1: DifferenceOfIntegers(Morning, Afternoon, 7) :: DifferenceOfIntegers(DifferenceOfIntegers(10, 3, 7)) :: 7 :: Rule-1

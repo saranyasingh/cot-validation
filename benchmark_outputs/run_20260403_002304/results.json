@@ -1,0 +1,162 @@
+[
+  {
+    "id": "item_0001",
+    "question": "There are 87 oranges and 290 bananas in Philip's collection. If the bananas are organized into 2 groups and oranges are organized into 93 groups How big is each group of bananas?",
+    "expected": "145",
+    "plain": {
+      "answer": "145",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Each group of bananas contains 145 bananas",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0002",
+    "question": "Marco and his dad went strawberry picking. Marco's dad's strawberries weighed 11 pounds. If together their strawberries weighed 30 pounds. How much did Marco's strawberries weigh?",
+    "expected": "19",
+    "plain": {
+      "answer": "19",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "19",
+      "correct": true,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0003",
+    "question": "Edward spent $ 6 to buy 2 books each book costing him the same amount of money. Now he has $ 12. How much did each book cost?",
+    "expected": "3",
+    "plain": {
+      "answer": "$9",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "The answer is: 3",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0004",
+    "question": "Frank was reading through his favorite book. The book had 3 chapters, each with the same number of pages. It has a total of 594 pages. It took Frank 607 days to finish the book. How many pages are in each chapter?",
+    "expected": "198",
+    "plain": {
+      "answer": "198",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "198",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0005",
+    "question": "There were 78 dollars in Olivia's wallet. She spent 15 dollars at a supermarket. How much money does she have left?",
+    "expected": "63",
+    "plain": {
+      "answer": "$63",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Olivia has $63 left",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0006",
+    "question": "Paul got a box of 110 crayons for his birthday. During the school year he gave 90 crayons to his friends while he lost 412 crayons. How many more crayons did he lose than those he gave to his friends?",
+    "expected": "322",
+    "plain": {
+      "answer": "The answer is: 392",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "322",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0007",
+    "question": "Randy has 95 blocks. He uses 20 blocks to build a house and 50 blocks to build a tower. How many more blocks did he use to build the tower than he did to build the house?",
+    "expected": "30",
+    "plain": {
+      "answer": "30",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "30.",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0008",
+    "question": "After Jessie started to go jogging everyday she lost 126 kilograms. She currently weighs 66 kilograms. How much did she weigh before starting to jog?",
+    "expected": "192",
+    "plain": {
+      "answer": "",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "The answer is: 192",
+      "correct": false,
+      "attempts": 2,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0009",
+    "question": "At the arcade Dave had won some tickets. He used 12 tickets to buy some toys. If he still has 14 tickets left How many tickets did Dave win at the arcade?",
+    "expected": "26",
+    "plain": {
+      "answer": "26",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "26",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0010",
+    "question": "Bryan took a look at his books as well. If he has 34 books distributed equally in 2 bookshelves How many books are there in each bookshelf?",
+    "expected": "17",
+    "plain": {
+      "answer": "17",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "17",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  }
+]

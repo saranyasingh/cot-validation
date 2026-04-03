@@ -1,0 +1,15 @@
+### ## FACTS
+```plaintext
+FACT-1: Money(Dan, t_initial) :: Money(Dan, t_initial)
+FACT-2: Amount(4, t_initial) :: Amount(4, t_initial)
+```
+
+### ## RULES
+```plaintext
+RULE-1: Money(X, t_start) ∧ Spend(Y, t_start) → Money(Z, t_end) :: Money(X, t_start) ∧ Spend(Y, t_start) → Money(Z, t_end)
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: Money(4, t_initial) ∧ Money(3, t_after_buying_candy_bar) ∧ Money(1, t_after_spendings) :: Money(4, t_initial) ∧ Money(3, t_after_buying_candy_bar) ∧ Money(1, t_after_spendings)
+```

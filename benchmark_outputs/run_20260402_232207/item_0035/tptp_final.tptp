@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, many_books_in_series).
+
+% --- RULES ---
+fof(rule_1, axiom, read(books, 13)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, read(books, 13)).
+
+% From fact_1, rule_1 by Modus Ponens
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, yet_to_read(books, 8)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, total_books = read(books, 13) + yet_to_read(books, 8)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, total_books = 21).

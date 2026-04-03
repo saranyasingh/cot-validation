@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, birds_near_mountain(8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Family, Location] : ( flying_away(Family, Location) => flies_to(Family, Location) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by arithmetic
+fof(inf_1, axiom, total_fly_away = add(add(birds_near_mountain(8), birds_near_mountain(14)), birds_near_mountain(31))).
+
+% From fact_1, rule_1 by arithmetic
+fof(inf_2, axiom, more_to_africa = subtract(birds_near_mountain(42), birds_near_mountain(31))).

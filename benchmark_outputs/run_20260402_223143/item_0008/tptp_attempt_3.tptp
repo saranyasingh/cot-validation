@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, lost_weight(jessie, 126)).
+
+fof(fact_2, axiom, current_weight(jessie, 66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [WD, WC] : (decreases_weight(WD, WC))). 
+
+fof(rule_2, axiom, ! [IW, WL, FW] : (calculate_initial_weight(IW, WL, FW))). 
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, final_weight_after_loss(66, 126)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, original_weight(126, 66, 192)).
+
+% From fact_2, rule_2 by Calculation
+fof(inf_3, axiom, original_weight_calculation(126, 66, 192)).

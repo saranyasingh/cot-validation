@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Marco's dad's strawberries weighed 11 pounds :: DadStrawberriesWeighted(11)
+FACT-2: Together their strawberries weighed 30 pounds :: CombinedStrawberriesWeight(30)
+
+### RULES
+Rule-1: If x and y together weigh 30 pounds, then x weighs 19 pounds :: Rule1(x, y, CombinedStrawberriesWeight(30))
+
+### INFERENCES
+INF-1: Marco's strawberries weigh 19 pounds :: Inf1(MarcoStrawberriesWeight(19))

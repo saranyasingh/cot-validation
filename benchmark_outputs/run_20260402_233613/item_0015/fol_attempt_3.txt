@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: TotalPointsMelissa = 91 :: TotalPoints = 91
+FACT-2: NumberOfGames = 13 :: NumberOfGames = 13
+
+## RULES
+RULE-1: PointsPerGame = TotalPoints / NumberOfGames :: ∀g (PointsPerGame(g) = (TotalPoints / NumberOfGames))
+RULE-2: PointsPerGame ≈ 7 :: PointsPerGame ≈ 7
+
+## INFERENCES
+INF-1: MelissaScored7PointsPerGame :: (∀g (PointsPerGame(g) = 7))

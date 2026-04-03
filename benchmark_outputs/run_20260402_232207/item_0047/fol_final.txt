@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: \( J = 2 \) :: \( J \) is the number of peaches Jake has.
+FACT-2: \( S = 5 \) :: \( S \) is the number of peaches Steven has.
+FACT-3: \( G = -3 \) :: \( G \) is the number of peaches Jill has.
+
+### RULES
+RULE-1: If \( x > y \), then \( x - y > 0 \) :: \( x > y \rightarrow x - y > 0 \).
+RULE-2: For any integer \( n \), if \( n \geq 0 \), then \( n + m \geq m \) :: \( n \geq 0 \rightarrow n + m \geq m \).
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: \( J = 2 \) :: \( J > 0 \).
+INF-2: From FACT-2, RULE-1 by Modus Ponens: \( S = 5 \) :: \( S > 0 \).
+INF-3: From FACT-3, RULE-1 by Modus Ponens: \( G = -3 \) :: \( G < 0 \).
+INF-4: From RULE-2, \( G = -3 \geq 0 \). Rule-2 does not apply here since \( G < 0 \).
+INF-5: From INF-1, INF-2, and INF-3, RULE-2 by Modus Ponens: \( S + G > J \).

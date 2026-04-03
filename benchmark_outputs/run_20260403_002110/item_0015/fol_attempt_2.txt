@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Melissa scored 91 points in 13 games :: 91 = 13 * x
+
+### RULES
+RULE-1: If she scores 91 points in 13 games, then she scores \( x \) points in each game :: ∀x (91 = 13 * x)
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Generalization: Melissa scored \( x \) points in each game :: x = 91 / 13

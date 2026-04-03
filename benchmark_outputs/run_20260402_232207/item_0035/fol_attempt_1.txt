@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: There are many books in the 'crazy silly school' series :: ManyBooksInSeries
+
+## RULES
+RULE-1: You have read 13 of these books :: Read(books, 13)
+
+RULE-2: You are yet to read 8 more books :: YetToRead(books, 8)
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: There are 13 books in the series :: TotalBooks = Read(books, 13)
+
+INF-2: From FACT-1, RULE-2 by Modus Ponens: There are 8 books remaining to be read :: TotalBooks = YetToRead(books, 8)
+
+INF-3: Summing the books read and remaining to be read gives us the total number of books :: TotalBooks = Read(books, 13) + YetToRead(books, 8)
+
+INF-4: Combining all parts yields the final count of books in the series :: TotalBooks = 21
+
+Therefore, the total number of books in the 'crazy silly school' series is 21.

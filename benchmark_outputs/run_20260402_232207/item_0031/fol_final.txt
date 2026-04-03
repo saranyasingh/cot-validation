@@ -1,0 +1,25 @@
+### ## FACTS
+
+```plaintext
+## FACTS
+FACT-1: Paco had 8 sweet cookies initially :: SweetCookiesPaco(8)
+FACT-2: Paco had 6 salty cookies initially :: SaltyCookiesPaco(6)
+```
+
+### ## RULES
+
+```plaintext
+## RULES
+RULE-1: Eating decreases cookie counts :: ∀c (InitialCookieCount(c) → FinalCookieCount(c))
+```
+
+### ## INFERENCES
+
+```plaintext
+## INFERENCES
+INF-1: Paco ate all his initial sweet cookies :: SweetCookiesPaco(0)
+INF-2: Paco did not eat any salty cookies :: SaltyCookiesPaco(6)
+INF-3: Paco ate exactly 8 sweet cookies :: ∀s (SweetCookiesPaco(s) = 8)
+INF-4: Paco ate 34 salty cookies :: ∀s (SaltyCookiesPaco(s) = 34)
+INF-5: Number of salty cookies eaten exceeds sweet cookies eaten :: ∀s (SaltierCookiesEaten(s) > SweeterCookiesEaten(s))
+```

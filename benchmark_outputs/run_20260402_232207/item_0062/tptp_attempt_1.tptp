@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, jumped(grasshopper, 25)).
+fof(fact_2, axiom, X > jumped(greenhouse_guy, 25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Y] : ( frogjumped(frog, Y) => ((Y > jumped(greenhouse_guy, 25)) & (Y > 43)) )).
+fof(rule_2, axiom, ! [Z, Y] : ( mousejumped(mouse, Z) => ((Z > frogjumped(frog, Y)) & (Z > 45)) )).
+
+% --- INFERENCES ---
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_1, axiom, mousejumped(mouse, 45)).

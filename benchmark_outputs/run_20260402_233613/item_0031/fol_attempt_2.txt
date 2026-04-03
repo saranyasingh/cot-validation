@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Paco started with 8 sweet cookies :: SweetCookiesPaco(8)
+FACT-2: Paco finished eating 20 sweet cookies :: SweetCookiesPaco(20)
+
+## RULES
+RULE-1: If Paco has x sweet cookies left after eating y sweet cookies, then the total number of sweet cookies eaten is y :: ∀x,y((x >= y) → SweetCookiesEaten(Paco, y))
+RULE-2: Paco ate 34 salted cookies :: SaltedCookiesPaco(34)
+
+## INFERENCES
+INF-1: Paco ate 0 sweet cookies :: SweetCookiesPaco(0)
+INF-2: From RULE-1 and FACT-1, calculate the total number of sweet cookies eaten: TotalSweetCookiesEaten(Paco, 20) :: TotalSweetCookiesEaten(Paco, 20)
+INF-3: Paco ate 34 salted cookies :: SaltedCookiesPaco(34)
+INF-4: From RULE-2, calculate the difference between salted and sweet cookies eaten: DifferenceSaltedSweetCookies(Paco, 34, 0) :: DifferenceSaltedSweetCookies(Paco, 34, 0)

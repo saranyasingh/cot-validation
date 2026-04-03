@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, received_crayons(paul, 110)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (received_gift(X) => has_more_crayons(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, gave_away_crayons(90)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, lost_crayons(412)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, more_than_lost(crystals)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, initial_final_relation(paul)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, difference_between_loss_and_giving_away(322)).

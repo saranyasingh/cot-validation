@@ -1,0 +1,14 @@
+## FACTS
+- FACT-1 :: Number of kids from Lawrence County who went to camp :: 610769
+- FACT-2 :: Number of kids from Lawrence County who stayed home :: 590796
+- FACT-3 :: Number of kids from outside the county attending the camp :: 22
+
+## RULES
+- RULE-1 :: If x kids from Lawrence County go to camp, then the total number of kids in Lawrence County = x + Number of kids from Lawrence County who stayed home :: 610769 + 590796
+- RULE-2 :: If x kids from Lawrence County stay home, then the total number of kids in Lawrence County = x + Number of kids from Lawrence County who went to camp :: 590796 + 610769
+- RULE-3 :: If x kids from outside the county attend the camp, then the total number of kids in Lawrence County = x + Number of kids from Lawrence County who stayed home + Number of kids from Lawrence County who went to camp :: 22 + 590796 + 610769
+
+## INFERENCES
+- Total population of Lawrence County = x + y + z :: 610769 + 590796 + 22
+- Total population of Lawrence County = (x + y) + z :: 610769 + 590796 + 22
+- Total population of Lawrence County = x + (y + z) :: 610769 + 590796

@@ -1,0 +1,8 @@
+## FACTS
+LABEL: FACT-1 :: Fact-1: Initially, there were 21 children on the bus :: InitialNumberOfChildrenOnBus == 21
+
+## RULES
+LABEL: RULE-1 :: Rule-1: If there were 21 children initially and then \( x \) more got on, the total becomes 16 children :: TotalNumberOfChildrenAfterBoarding(x) :: InitialNumberOfChildrenOnBus + x == 16
+
+## INFERENCES
+LABEL: INF-1 :: INF-1: From RULE-1, applying InitialNumberOfChildrenOnBus:: 21 and 16: The total number of children after \( x \) got on equals 16 :: TotalNumberOfChildrenAfterBoarding(x) :: 21 + x == 16

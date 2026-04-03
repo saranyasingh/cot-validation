@@ -1,0 +1,37 @@
+% --- FACTS ---
+fof(fact_1, axiom, baseball_cards_original = 309).
+
+fof(fact_2, axiom, ace_cards_original = 356).
+
+% --- RULES ---
+fof(rule_1, axiom, baseball_cards_left = 415).
+
+fof(rule_2, axiom, ! [A] : (ace_cards_left = A)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, baseball_cards_gave_away = 665 - (415 + A)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, baseball_cards_left = 415).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_3, axiom, ace_cards_left = 356 - baseball_cards_gave_away).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, baseball_cards_gave_away = 309).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, total_remaining_cards = 415 + A).
+
+% From fact_1, rule_2 by Modus Ponens
+fof(inf_6, axiom, A = 665 - 415).
+
+% From inf_6 by Modus Ponens
+fof(inf_7, axiom, ace_cards_left = 106).
+
+% From inf_7 by Modus Ponens
+fof(inf_8, axiom, more_baseball_cards_than_ace_cards = 415 - 106).
+
+% From inf_8 by Modus Ponens
+fof(inf_9, axiom, more_baseball_cards_than_ace_cards = 309).

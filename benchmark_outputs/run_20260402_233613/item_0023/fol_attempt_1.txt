@@ -1,0 +1,20 @@
+### Facts
+FACT-1: Haley originally planted 3 trees in her backyard.
+FACT-2: After the typhoon, 13 trees died.
+
+### Rules
+Rule-1: If Haley plants a tree, then she has 1 tree.
+Rule-2: Trees die during the typhoon.
+
+### Inferences
+INF-1: From Rule-1, if Haley plants a tree, then she has 1 tree.
+INF-2: From Rule-2, if Haley plants a tree, then the tree dies during the typhoon.
+INF-3: Since Haley originally planted 3 trees, the total number of trees before the typhoon is 3.
+INF-4: After the typhoon, 13 trees died, which includes both the ones that died during the typhoon and the newly planted trees that also died.
+INF-5: Since the problem does not specify any new trees being planted post-typhoon, all 13 deaths are accounted for by the existing trees.
+INF-6: The difference between the number of trees that died and survived is calculated as follows:
+\[ \text{Number of trees that died} - \text{Number of trees that survived} = 13 - 16 = -3 \]
+
+Since the result is negative, it indicates that fewer trees died than survived. Thus, the final answer is:
+
+**The answer is: -3**

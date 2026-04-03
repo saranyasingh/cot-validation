@@ -1,0 +1,10 @@
+LABEL: ## FACTS
+**FACT-1:** Edward ends up with $7 after spending $17 :: SpendingMoney(Edward, $17, $7)
+
+**FACT-2:** Before receiving $10 from his friend, Edward had $17 :: SpendingMoney(Edward, $17, _)
+
+LABEL: ## RULES
+**RULE-1:** If someone spends money, they must have had more money beforehand :: ∀m (SpendingMoney(x, m, _) → Money(m - x))
+
+LABEL: ## INFERENCES
+INF-1: From Fact-1 and Rule-1, we can infer that before receiving $10, Edward had $17 :: Money($17)

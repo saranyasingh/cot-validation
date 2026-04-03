@@ -1,0 +1,10 @@
+### ## FACTS
+LABEL: Fact 1 :: ReceivedEmails(morning, 10)
+LABEL: Fact 2 :: ReceivedEmails(afternoon, 3)
+
+### ## RULES
+LABEL: Rule 1 :: ForAllx(Rule 1) :: ((ReceivedEmails(morning, x) -> ReceivedEmails(afternoon, x)))
+
+### ## INFERENCES
+LABEL: Inference 1 :: Fact 1 :: (ReceivedEmails(morning, 10))
+LABEL: Inference 2 :: Fact 2 :: (ReceivedEmails(afternoon, 3))

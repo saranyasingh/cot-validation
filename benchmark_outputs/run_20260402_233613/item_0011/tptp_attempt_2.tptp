@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, app_count(dave, t_0) = 15).
+fof(fact_2, axiom, new_apps_added(dave) = 71).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : (delete_apps(X, Y, Z) <=> X - Y = Z)).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Rule-1
+fof(inf_1, axiom, delete_apps(15, 71, 86)).
+% From fact_1 by deduction of final app count
+fof(inf_2, axiom, final_app_count(dave) = 14).
+% From INF-1, INF-2 by definition of difference in apps
+fof(inf_3, axiom, ! [InitialApps, FinalApps] : (difference_in_apps(InitialApps, FinalApps) = InitialApps - FinalApps)).
+% From INF-3 by computation of number deleted
+fof(inf_4, axiom, number_deleted_apps = difference_in_apps(86, 14)).
+% From INF-4 by verification step
+fof(inf_5, axiom, check_if_correctly_calculated_delete_apps(86, 14)).

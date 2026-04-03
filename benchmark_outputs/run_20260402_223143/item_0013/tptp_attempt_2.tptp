@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost_per_dvd_pack = 26).
+fof(fact_2, axiom, total_money_available = 104).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (number_of_packs(T) <=> (total_money_available / cost_per_dvd_pack) = T)).
+
+% --- INFERENCES ---
+% From fact_2, fact_1 by Modus Ponens
+fof(inf_1, axiom, number_of_packs(104, 26)).

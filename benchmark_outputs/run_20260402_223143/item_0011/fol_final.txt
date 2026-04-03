@@ -1,0 +1,20 @@
+### ## FACTS
+```
+LABEL: FACT-1 :: AppsDaveHad(15)
+LABEL: FACT-2 :: AddedApps(71)
+LABEL: FACT-3 :: TotalAppsAfterAdding(86)
+LABEL: FACT-4 :: RemainingApps(14)
+```
+
+### ## RULES
+```
+LABEL: RULE-1 :: ∀x y (InitialApps(x) ∧ AddedApps(y) → TotalAppsAfterAdding(x+y))
+LABEL: RULE-2 :: ∀total k (TotalApps(total) ∧ DeletedApps(k) → NewTotal(total-k))
+```
+
+### ## INFERENCES
+```
+LABEL: INF-1 :: AppsDaveHad(15) ∧ AddedApps(71) → TotalAppsAfterAdding(86)
+LABEL: INF-2 :: TotalAppsAfterAdding(86) ∧ RemainingApps(14) → ∃k (DeletedApps(k) ∧ TotalApps(NewTotal(86-k)))
+LABEL: INF-3 :: TotalAppsAfterAdding(86) ∧ RemainingApps(14) → NumberOfAppsDeleted - NumberOfAppsAdded = 1
+```

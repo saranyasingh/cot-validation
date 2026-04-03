@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: Total pages in the book :: 555
+FACT-2: Number of chapters :: 5
+
+### RULES
+RULE-1: Equal distribution of pages across chapters :: ∀c (Pages(c) = \(\frac{Total\_pages}{Number\_of\_chapters}\))
+
+### INFERENCES
+INF-1: Pages per chapter :: \(\frac{555}{5} = 111\)
+
+**Labeling:**
+- **FACT-1**: Total pages in the book :: 555
+- **FACT-2**: Number of chapters :: 5
+- **RULE-1**: Equal distribution of pages across chapters :: ∀c (Pages(c) = \(\frac{Total\_pages}{Number\_of\_chapters}\))
+- **INF-1**: Pages per chapter :: 111

@@ -1,0 +1,14 @@
+```plaintext
+## FACTS
+Fact-1: There are 7 ripe apples initially on the tree :: AppleCount(7)
+
+## RULES
+Rule-1: If Rachel picks 7 ripe apples, then the total number of ripe apples decreases by 7 :: ∀x (Pick(x, 7) → RipeApplesDecreaseBy(7))
+
+## INFERENCES
+INF-1: There are 5 apples remaining on the tree after Rachel picked 7 :: RemainingApples(5)
+
+INF-2: Of the 5 remaining apples, 3 are ripe :: RipeApplesAmongRemaining(AppleCount(3))
+
+INF-3: Thus, the number of unripe apples is 5 - 3 = 2 :: UnripeApples(2)
+```

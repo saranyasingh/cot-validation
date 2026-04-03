@@ -1,0 +1,12 @@
+LABEL: FACT-1 :: Adam has 4 more apples than Jackie :: 
+LABEL: FACT-2 :: Together, Adam and Jackie have 14 apples :: 
+
+LABEL: RULE-1 :: If Adam and Jackie together have 14 apples, then each person has fewer than 7 apples :: 
+LABEL: RULE-2 :: If Adam has 4 more apples than Jackie, then Adam has 9 apples :: 
+
+LABEL: INF-1 :: Adam has fewer than 7 apples :: 
+LABEL: INF-2 :: Adam has 9 apples :: 
+LABEL: INF-3 :: Jackie has 5 apples :: 
+LABEL: INF-4 :: Together, Adam and Jackie have 14 apples :: 
+LABEL: INF-5 :: Bob has 6 apples more than Adam and Jackie together :: 
+LABEL: INF-6 :: Bob has 20 apples ::

@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, pen(p_106) & in_pens(p_106)).
+
+fof(fact_2, axiom, pen(p_14a) & in_pens(p_14a) & ~pen(p_not_14b) & in_pens(p_not_14b)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Z] : (pen(Z) => owns(Z, Z))).
+
+fof(rule_2, axiom, ! [Y] : (sold(Y) => ~pen(Y))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1, rule_2 by combination of rules
+fof(inf_1, axiom, ! [X] : ((pen(X) & sold(X)) => (owns(X, X) & ~pen(X)))).

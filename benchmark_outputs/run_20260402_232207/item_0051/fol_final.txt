@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Total_pages = 555 :: 555
+FACT-2: Chapters = 5 :: 5
+
+## RULES
+RULE-1: Pages_per_chapter = Total_pages / Chapters :: ∀(total_pages, chapters) → (∀pages_per_chapter(total_pages, chapters))
+
+## INFERENCES
+INF-1: Pages_per_chapter = 111 :: Pages_per_chapter = DivideIntoParts(total_pages, chapters)
+INF-2: There_are_x_pages_in_each_chapter = x_pages_per_chapter = 111 :: There_are_x_pages_in_each_chapter = DivideIntoParts(total_pages, chapters)

@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Jerry originally had 7 books :: BookCount(Jerry) = 7
+FACT-2: Jerry originally had 3 action figures :: ActionFigureCount(Jerry) = 3
+
+### RULES
+RULE-1: Initial book count plus action figure count equals total count :: TotalItems(Total) = BookCount(Jerry) + ActionFigureCount(Jerry)
+
+### INFERENCES
+INF-1: Total items on the shelf after adding 2 action figures :: TotalItems(Total) = BookCount(Jerry) + ActionFigureCount(Jerry) + 2
+INF-2: Difference between books and action figures :: BookCount(Jerry) - ActionFigureCount(Jerry) = 2
+
+### FINAL ANSWER
+INF-3: There are 2 more books than action figures on Jerry's shelf :: BookCount(Jerry) - ActionFigureCount(Jerry) = 2

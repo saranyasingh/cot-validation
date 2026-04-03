@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, apps(15)).
+
+fof(fact_2, axiom, added_apps(71)).
+
+fof(fact_3, axiom, total_apps_after_addition(86)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [Z] : ( total_apps_after_addition(X) <=> ((apps(Y) & added_apps(Z)) => ( X = apps(Y) + added_apps(Z) )) ) ).
+
+fof(rule_2, axiom, ! [X] : ! [Y] : ! [Z] : ( remaining_apps(X) <=> ( ( total_apps_after_addition(Y) & deleted_apps(Z) ) => ( X = total_apps_after_addition(Y) - deleted_apps(Z) ) ) ) ).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : ! [Y] : ! [Z] : ( deleted_apps(X) <=> ( ( total_apps_after_addition(Y) & remaining_apps(Z) ) => ( X = total_apps_after_addition(Y) - remaining_apps(Z) ) ) ) ).
+
+% From FACT-2, RULE-2 by Modus Ponens
+fof(inf_2, axiom, ! [X] : ! [Y] : ! [Z] : ( num_apps_deleted(X) <=> ( X = deleted_apps(Y) - added_apps(Z) ) ) ).
+
+% From INF-3
+fof(inf_3, axiom, diff_apps_deleted_added(143)).

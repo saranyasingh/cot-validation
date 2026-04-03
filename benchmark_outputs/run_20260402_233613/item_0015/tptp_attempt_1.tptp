@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_points = 91).
+
+fof(fact_2, axiom, number_of_games = 13).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [G] : (points_per_game(G) = (total_points / number_of_games))).
+
+fof(rule_2, axiom, approx_eq(points_per_game, 7)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, ! [G] : (points_per_game(G) = 7)).

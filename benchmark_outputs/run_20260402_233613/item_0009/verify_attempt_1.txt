@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — The rule mislabels the relationship; the usual relation is Remaining = TicketsWon - UsedTickets or TicketsWon = Remaining + UsedTickets.
+RULE-2: IMPLAUSIBLE — FinalTickets = InitialTickets + RemainingTickets does not reflect a valid relation among these quantities in this story; it would double-count.

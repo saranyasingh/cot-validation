@@ -1,0 +1,6 @@
+FACT-1: Jerry had 4 action figures initially :: ActionFigures(Jerry, t_initial) ∧ InitialNumber(4)
+FACT-2: Jerry added 6 more action figures later :: AddedActionFigures(later_time, 6)
+INF-1: Total action figures on the shelf :: (∀t (ActionFigures(Jerry, t)) ∧ (∃t (AddedActionFigures(t, x)))) → TotalActionFigures(x)
+
+Final Answer:
+INF-1: Total action figures on the shelf :: (∀t (ActionFigures(Jerry, t)) ∧ (∃t (AddedActionFigures(t, x)))) → TotalActionFigures(10)

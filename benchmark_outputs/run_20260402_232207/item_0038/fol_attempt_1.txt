@@ -1,0 +1,37 @@
+Let's convert the given chain of thought reasoning into structured First-Order Logic (FOL). We'll follow the guidelines provided and ensure each section adheres to the correct formatting and structure.
+
+### FACTS
+- Premise 1: Jessie initially weighed 71 kilograms.
+  Fact-1: JessieWeighted(71 kg, initial_time)
+
+- Premise 2: Jessie lost 20 kilograms after starting to jog daily.
+  Fact-2: JessieWeightLost(20 kg, jogging_start_time)
+
+### RULES
+- Rule to calculate final weight based on initial weight and loss.
+  Rule-1: FinalWeight(current_weight, initial_weight, loss) ::= current_weight := initial_weight - loss
+    where current_weight is the variable representing Jessie's current weight,
+          initial_weight is 71 kg,
+          loss is 20 kg.
+
+### INFERENCES
+- Calculate Jessie's current weight using Rule-1.
+  Infer-1: JessieCurrentWeight(current_weight) ::= current_weight := 71 kg - 20 kg
+  Infer-2: JessieCurrentWeight(current_weight) ::= current_weight := 51 kg
+  Conclusion: Jessie's current weight is 51 kilograms.
+  Inferection: JessieCurrentWeight(current_weight) ::= current_weight := 51 kg
+
+### OUTPUT FORMAT
+```
+## FACTS
+Fact-1: JessieWeighted(71 kg, initial_time) :: InitialWeight(jessie, 71 kg)
+Fact-2: JessieWeightLost(20 kg, jogging_start_time) :: LostWeight(jessie, 20 kg)
+
+## RULES
+Rule-1: FinalWeight(current_weight, initial_weight, loss) ::= current_weight := initial_weight - loss :: WeightCalculation(jessie, 71 kg, 20 kg)
+
+## INFERENCES
+Infer-1: JessieCurrentWeight(current_weight) ::= current_weight := 71 kg - 20 kg :: CurrentWeightCalculation(jessie)
+Infer-2: JessieCurrentWeight(current_weight) ::= current_weight := 51 kg :: CurrentWeightCalculation(jessie)
+Inferection: JessieCurrentWeight(current_weight) ::= current_weight := 51 kg :: CalculationResult(jessie, 51 kg)
+```

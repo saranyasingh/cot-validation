@@ -1,0 +1,33 @@
+Here is the conversion of your chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+Fact-1: There are 7 ripe apples initially on the tree :: AppleCount(7)
+```
+
+### Rules
+```plaintext
+Rule-1: If Rachel picks 7 ripe apples, then the total number of ripe apples decreases by 7 :: ∀x (Pick(x, 7) → RipeApplesDecreaseBy(7))
+```
+
+### Inferences
+```plaintext
+INF-1: There are 5 apples remaining on the tree after Rachel picked 7 :: RemainingApples(5)
+INF-2: Of the 5 remaining apples, 3 are ripe :: RipeApplesAmongRemaining(AppleCount(3))
+INF-3: Thus, the number of unripe apples is 5 - 3 = 2 :: UnripeApples(2)
+```
+
+### Output Format
+```plaintext
+Fact-1: There are 7 ripe apples initially on the tree :: AppleCount(7)
+
+Rule-1: If Rachel picks 7 ripe apples, then the total number of ripe apples decreases by 7 :: ∀x (Pick(x, 7) → RipeApplesDecreaseBy(7))
+
+INF-1: There are 5 apples remaining on the tree after Rachel picked 7 :: RemainingApples(5)
+
+INF-2: Of the 5 remaining apples, 3 are ripe :: RipeApplesAmongRemaining(AppleCount(3))
+
+INF-3: Thus, the number of unripe apples is 5 - 3 = 2 :: UnripeApples(2)
+```
+
+This output structure clearly delineates each component of the reasoning process using natural language glosses followed by their corresponding FOL formulas.

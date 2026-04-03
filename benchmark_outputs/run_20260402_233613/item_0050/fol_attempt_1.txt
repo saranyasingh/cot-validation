@@ -1,0 +1,4 @@
+INF-1: NumberOfEmailsInMorning :: 10
+INF-2: NumberOfEmailsInAfternoon :: 5
+INF-3: NumberOfEmailsInEvening :: 4
+INF-4: Difference :: NumberOfEmailsInAfternoon - NumberOfEmailsInEvening

@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_number_of_students = 697 + B).
+fof(fact_2, axiom, 697 > B + 228).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : ((total_number_of_students = 697 + B) => (total_number_of_students = 697 + B))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, B = 697 - 228).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, B = 469).

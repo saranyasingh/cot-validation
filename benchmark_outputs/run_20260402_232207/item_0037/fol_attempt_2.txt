@@ -1,0 +1,10 @@
+## FACTS
+**Fact-1:** Width of Jesse's room is 7 feet :: W(x) ≡ x = 7
+**Fact-2:** Area required for the carpet is 14 square feet :: A(x) ≡ x = 14
+**Fact-3:** Length of a rectangle is given by width multiplied by height :: L(x) ≡ x = width * length
+
+## RULES
+**Rule-1:** Calculate the length of a room using the area formula :: ∀x (A(x) → L(x) = W(x) * Length(x))
+
+## INFERENCES
+**Inference-1:** Length of Jesse's room is 2 feet :: L(jesse_room) = W(jesse_room) * Length(jesse_room)

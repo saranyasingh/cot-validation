@@ -1,0 +1,7 @@
+**FACTS**
+FACT-1: KidsFromLawrenceCountyGoingToCamp :: 610769
+FACT-2: KidsFromLawrenceCountyStayingAtHome :: 590796
+FACT-3: AdditionalKidsOutsideLawrenceCountyAttendingCamp :: 22
+
+**INFERENCES**
+INF-1: TotalKidsInLawrenceCounty :: (KidsFromLawrenceCountyGoingToCamp + KidsFromLawrenceCountyStayingAtHome + AdditionalKidsOutsideLawrenceCountyAttendingCamp)

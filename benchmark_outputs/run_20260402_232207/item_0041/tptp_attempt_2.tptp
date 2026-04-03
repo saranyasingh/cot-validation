@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, red_peaches(5)).
+fof(fact_2, axiom, yellow_peaches(14)).
+fof(fact_3, axiom, green_peaches(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ( red_peaches(P) | yellow_peaches(P) | green_peaches(P) )).
+fof(rule_2, axiom, ? [G] : ( green_peaches(G) & ? [Y] : ( yellow_peaches(Y) & ( G + Y = total_peaches ) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_peaches(5, 14, 6)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, sum_of_green_and_yellow(6, 14)).
+
+% From inf_2 by Modus Ponens
+fof(inf_3, axiom, number_of_green_and_yellow_peaches_combined(20)).

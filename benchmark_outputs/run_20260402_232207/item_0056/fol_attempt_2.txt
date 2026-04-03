@@ -1,0 +1,18 @@
+### FACTS
+FACT-1: Jack received 5 emails in the morning :: Emails(morning)
+FACT-2: Jack received 6 letters in the morning :: Letters(morning)
+FACT-3: Jack received 9 emails in the afternoon :: Emails(afternoon)
+FACT-4: Jack received 7 letters in the afternoon :: Letters(afternoon)
+
+### RULES
+Rule-1: For every period, the total number of emails equals the sum of morning and afternoon emails :: ∀t (Emails(t) = Emails(morning) + Emails(afternoon))
+Rule-2: For every period, the total number of letters equals the sum of morning and afternoon letters :: ∀t (Letters(t) = Letters(morning) + Letters(afternoon))
+
+### INFERENCES
+INF-1: Jack received 5 emails in the morning :: Emails(morning)
+INF-2: Jack received 6 letters in the morning :: Letters(morning)
+INF-3: Jack received 9 emails in the afternoon :: Emails(afternoon)
+INF-4: Jack received 7 letters in the afternoon :: Letters(afternoon)
+INF-5: Total number of emails Jack received in the day :: Emails(total_day) = Emails(morning) + Emails(afternoon)
+INF-6: Total number of letters Jack received in the day :: Letters(total_day) = Letters(morning) + Letters(afternoon)
+INF-7: Total number of letters Jack received in the day = 13 :: Letters(total_day) = 6 + 7

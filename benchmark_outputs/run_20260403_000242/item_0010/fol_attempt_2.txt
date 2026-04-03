@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: TotalBooks = 34 :: TotalBooks(books)
+
+## RULES
+RULE-1: EqualDistribution(TotalBooks, NumberOfShelves) :: ∀s (TotalBooks / NumberOfShelves = BooksOnEachShelf(s))
+
+## INFERENCES
+INF-1: BooksOnEachShelf(1) :: Rule-1(FACT-1)

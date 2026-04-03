@@ -1,0 +1,8 @@
+**FACTS**
+FACT-1: Jerry originally had 4 action figures :: ActionFigures(Jerry) ≡ 4
+
+**RULES**
+RULE-1: Adding a certain quantity to another gives the sum :: ∀x y (x + y = y + x)
+
+**INFERENCES**
+INF-1: Total action figures after adding 6 :: ActionFigures(Jerry) + 6 = 4 + 6

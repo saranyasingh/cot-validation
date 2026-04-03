@@ -1,0 +1,18 @@
+```plaintext
+## FACTS
+FACT-1: Helen baked 197 chocolate chip cookies yesterday :: ChocolateChipCookiesBakedYesterday(197)
+FACT-2: Helen baked 46 raisin cookies yesterday :: RaisinCookiesBakedYesterday(46)
+FACT-3: Helen baked 75 raisin cookies today :: RaisinCookiesBakedToday(75)
+FACT-4: Helen baked 66 chocolate chip cookies today :: ChocolateChipCookiesBakedToday(66)
+
+## RULES
+RULE-1: If a person bakes x chocolate chip cookies and y raisin cookies on different days, then the difference between the number of chocolate chip cookies and raisin cookies baked on those days is |x - y| :: DifferenceBetweenBakedCookies(x, y)
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2, we know that Helen baked 197 chocolate chip cookies yesterday and 75 raisin cookies today. To find out how many more chocolate chip cookies she baked yesterday, we need to calculate the absolute difference between the number of chocolate chip cookies baked yesterday and today.
+\[ \text{Difference} = |\text{ChocolateChipCookiesBakedYesterday} - \text{ChocolateChipCookiesBakedToday}| \]
+\[ \text{Difference} = |197 - 66| \]
+\[ \text{Difference} = 131 \]
+
+Therefore, Helen baked 131 more chocolate chip cookies yesterday compared to today.
+```

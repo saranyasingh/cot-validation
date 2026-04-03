@@ -1,0 +1,8 @@
+```plaintext
+### FACTS
+FACT-1: Dave had won some tickets :: HasTickets(Dave)
+
+FACT-2: He used 12 tickets to buy some toys :: UsedTickets(12, Toys)
+
+FACT-3: If he still has 14 tickets left, then he must have won 26 tickets initially :: HasTickets(Dave, 26)
+```

@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Frank puts 11 pieces of candy in each bag :: PutsCandyInBag(x, 11)
+FACT-2: He has 22 pieces of candy :: HasCandy(y, 22)
+
+### RULES
+RULE-1: Given a quantity \( x \) and a divisor \( d \), there exists a quotient \( q \) such that \( x = dq \) :: Divides(x, d, q)
+RULE-2: A non-negative integer result implies division can be made without remainder :: IntegerResult(q)
+
+### INFERENCES
+INF-1: There exist integers \( q \) and \( r \) such that \( q \cdot 11 + r = 22 \) and \( 0 \leq r < 11 \) :: InfersDivisibility(22, 11, q, r)
+INF-2: Since \( 22 \div 11 = 2 \), the division results in no remainder :: IntegerResult(q, 22, 2)
+INF-3: Thus, Frank can create 2 bags containing 11 pieces of candy each :: BagsCreated(2, 11)
+
+Therefore, the answer is: 2 bags.

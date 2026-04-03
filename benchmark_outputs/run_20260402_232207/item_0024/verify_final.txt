@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states there are two chapters.
+FACT-2: SUPPORTED — The story states the second chapter is 36 pages long.
+FACT-3: SUPPORTED — The story states the book has a total of 67 pages.
+RULE-1: PLAUSIBLE — The total pages equal the sum of the pages in all chapters.
+RULE-2: PLAUSIBLE — The number of chapters should be compatible with a total page count (nonnegative pages per chapter).

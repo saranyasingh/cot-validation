@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, j = 2).
+fof(fact_2, axiom, s = 5).
+fof(fact_3, axiom, g = -3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ((X > Y) => (X - Y > 0))).
+fof(rule_2, axiom, ! [N, M] : ((N >= 0) => (N + M >= M))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, j > 0).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, s > 0).
+
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, g < 0).

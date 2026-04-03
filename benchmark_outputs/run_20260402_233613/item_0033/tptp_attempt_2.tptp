@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, house_receives_junk_mail(house)).
+fof(fact_2, axiom, total_junk_mail(14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [House] : (house_receives_junk_mail(House) => total_junk_mail_ge_2_times_house(House))).
+fof(rule_2, axiom, ! [Total] : (total_junk_mail(Total) <=> ((! [House] : house_receives_junk_mail(House)) & (sum_of_house_junk_mail() = Total))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_junk_mail_ge_2_times_house(house)).
+% From fact_2
+fof(inf_2, axiom, total_junk_mail(14)).
+% Combined inference from inf_1 and inf_2
+fof(inf_3, axiom, total_junk_mail_ge_2_times_house(house)).

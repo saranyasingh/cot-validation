@@ -1,0 +1,10 @@
+## FACTS
+LABEL: Fact 1 :: ReceivedEmails(morning, 10)
+LABEL: Fact 2 :: ReceivedEmails(afternoon, 5)
+LABEL: Fact 3 :: ReceivedEmails(evening, 4)
+
+## RULES
+LABEL: Rule 1 :: ReceivedEmails(morning, x) + ReceivedEmails(afternoon, y) + ReceivedEmails(evening, z) :: TotalReceived(10, 5, 4)
+
+## INFERENCES
+LABEL: Inference 1 :: Number of emails in the afternoon minus the number of emails in the evening :: (ReceivedEmails(afternoon, 5) - ReceivedEmails(evening, 4))

@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: Packs = 35
+LABEL: FACT-2 :: Pencils = 4
+LABEL: RULE-1 :: TotalPencils = Packs * Pencils
+LABEL: RULE-2 :: Rows = TotalPencils / RowPerPack

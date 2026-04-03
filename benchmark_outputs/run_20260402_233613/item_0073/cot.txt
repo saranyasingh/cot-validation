@@ -1,0 +1,44 @@
+To determine how many pens Paul sold in the garage sale, we need to follow these steps:
+
+1. **Identify the initial quantities**:
+   - Books: 51
+   - Pens: 106
+
+2. **Identify the remaining quantities after the garage sale**:
+   - Books: 82
+   - Pens: 14
+
+3. **Calculate the number of books sold**:
+   \[
+   \text{Books sold} = \text{Initial books} - \text{Remaining books}
+   \]
+   \[
+   \text{Books sold} = 51 - 82
+   \]
+
+   However, this calculation results in a negative value (-31), which indicates an error because the number of books cannot be negative. This suggests there might have been a misunderstanding or a mistake in the problem statement since it's not possible to sell more books than were initially available. Let's re-evaluate if there could be any other context or misinterpretation.
+
+4. **Re-examine the problem**: Given that the numbers do not align logically (books sold being less than the initial quantity), let’s assume there was an oversight in interpreting the data or the garage sale details. We should consider if the total number of items sold matches the difference between the initial and remaining quantities.
+
+5. **Assuming the correct interpretation**:
+   - If Paul sold all his books first and then some pens, the total number of items sold would equal the sum of books and pens sold.
+   
+   Let \( B_s \) represent the number of books sold and \( P_s \) represent the number of pens sold.
+
+   From the problem, we know:
+   \[
+   B_s + P_s = 51 + 106 - 82 - 14
+   \]
+   Simplifying:
+   \[
+   B_s + P_s = 79 - 96 = -17
+   \]
+
+   Since this still doesn't make sense given the constraints, let’s reconsider the scenario:
+   - Suppose Paul started with 51 books and 106 pens, and ended up with 82 books and 14 pens. 
+   - The only way to reconcile this is if the problem meant he sold fewer books and more pens, but the current setup leads to an impossible situation.
+
+6. **Final conclusion**:
+   - Given the impossibility of having a negative number of books sold, and assuming the original problem intended to convey something else (like a different set of sales figures), we must conclude that either the numbers provided are incorrect or there's additional information missing about the specific items sold during the garage sale.
+
+The answer is: There seems to be an inconsistency in the provided data. Please verify the details of the garage sale transactions or contact the seller for clarification.

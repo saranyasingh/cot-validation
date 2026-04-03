@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: TotalPages = 594 :: 594
+
+### RULES
+Rule-1: PagesPerChapter = TotalPages / NumberOfChapters :: ∀n (TotalPages / n = NumberOfChapters)
+
+### INFERENCES
+INF-1: PagesPerChapter = 198 :: Rule-1, Fact-1 by Division
+
+### LABELS
+- FACT-1: TotalPages = 594 :: 594
+- RULE-1: PagesPerChapter = TotalPages / NumberOfChapters :: ∀n (TotalPages / n = NumberOfChapters)
+- INF-1: PagesPerChapter = 198 :: Rule-1, Fact-1 by Division

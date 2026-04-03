@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: CostPerDVDPack :: 26
+FACT-2: TotalMoneyAvailable :: 104
+
+## RULES
+RULE-1: NumberOfPacks :: TotalMoneyAvailable ÷ CostPerDVDPack
+
+## INFERENCES
+INF-1: NumberOfPacks(104, 26) :: 104 ÷ 26 = 4

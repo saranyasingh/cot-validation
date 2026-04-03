@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_time(english) = 7).
+
+fof(fact_2, axiom, learning_time(spanish) = 4).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Definition of difference
+fof(inf_1, axiom, difference_in_study_time(english, spanish, 3)).

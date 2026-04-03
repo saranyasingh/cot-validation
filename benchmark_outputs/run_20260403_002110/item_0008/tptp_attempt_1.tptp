@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, losing_weight(126, after_jogging)).
+fof(fact_2, axiom, current_weight(66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (losing_weight(P) => less_than(current_weight(P), original_weight(P)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Transitivity
+fof(inf_1, axiom, greater_than(original_weight(jessie), current_weight(jessie))).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_2, axiom, original_weight(jessie) = plus(66, 126)).
+
+% The result of the calculation
+fof(inf_3, axiom, original_weight(jessie) = 192).
+
+% The result of the calculation is 192 kilograms
+fof(inf_4, axiom, original_weight(jessie) = 192).

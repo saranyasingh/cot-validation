@@ -1,0 +1,8 @@
+  % From fact_1, rule_1 by Transitivity
+  inf_1: UNKNOWN (GaveUp)
+  % From inf_1 by SubtractionToFindOriginalWeight
+  inf_2: UNKNOWN (GaveUp)
+  % From inf_1 by CalculationForOriginalWeight
+  inf_3: UNKNOWN (GaveUp)
+  % From inf_3 by ResultIs192
+  inf_4: UNKNOWN (GaveUp)

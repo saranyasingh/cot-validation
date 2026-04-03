@@ -1,0 +1,29 @@
+### ## FACTS
+```plaintext
+Fact-1: Children_on_bus = 21
+```
+
+### ## RULES
+```plaintext
+Rule-1: If the number of children on the bus decreases, then the number of children who got off must decrease or stay the same.
+Rule-2: The number of children on the bus can only increase if more children get on the bus.
+```
+
+### ## INFERENCES
+```plaintext
+Inf-1: Children_got_off = 10
+Inf-2: Remaining_children_after_getting_off = 11
+Inf-3: Adding more children gets on the bus results in the final number of children being 16.
+Inf-4: Children_got_on = Final_children_on_bus - Remaining_children_after_getting_off
+Inf-5: Solve for Children_got_on using the final number of children and the number who got off.
+```
+
+### ## SOLUTION
+#### LABEL: Fact-1 :: Children_on_bus = 21
+#### LABEL: Inf-1 :: Children_got_off = 10
+#### LABEL: Inf-2 :: Remaining_children_after_getting_off = 11
+#### LABEL: Inf-3 :: Children_got_on = Final_children_on_bus - Remaining_children_after_getting_off
+#### LABEL: Inf-4 :: Children_got_on = 16 - 11
+#### LABEL: Inf-5 :: Children_got_on = 5
+
+Therefore, the answer is: 5

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, books(bryan, 34)).
+fof(fact_2, axiom, book_shelves(bookshelf1, bookshelf2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, N, M, S1, S2, K] : ((books(P, N) & book_shelves(S1, M) & book_shelves(S2, M)) => (books(K, S1) & books(K, S2)))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_1, axiom, books(17, bookshelf1) & books(17, bookshelf2)).

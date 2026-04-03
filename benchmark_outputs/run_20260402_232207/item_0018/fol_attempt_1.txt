@@ -1,0 +1,20 @@
+**FACTS**
+FACT-1: BaseballCardsOriginal = 309 :: BaseballCardsOriginal
+FACT-2: AceCardsOriginal = 356 :: AceCardsOriginal
+
+**RULES**
+RULE-1: BaseballCardsLeft = 415 :: BaseballCardsLeft
+RULE-2: AceCardsLeft = A :: AceCardsLeft
+
+**INFERENCES**
+INF-1: TotalOriginalCards - BaseballCardsGaveAway = TotalRemainingCards :: BaseballCardsGaveAway = 665 - (415 + A)
+INF-2: BaseballCardsLeft = TotalOriginalCards - BaseballCardsGaveAway :: BaseballCardsLeft = 415
+INF-3: AceCardsLeft = AceCardsOriginal - BaseballCardsGaveAway :: AceCardsLeft = 356 - BaseballCardsGaveAway
+INF-4: BaseballCardsGaveAway = BaseballCardsOriginal - BaseballCardsLeft :: BaseballCardsGaveAway = 309
+INF-5: TotalRemainingCards = BaseballCardsLeft + AceCardsLeft :: TotalRemainingCards = 415 + A
+INF-6: A = TotalOriginalCards - BaseballCardsGaveAway :: A = 665 - 415
+INF-7: AceCardsLeft = 356 - (665 - 415) :: AceCardsLeft = 106
+INF-8: MoreBaseballCardsThanAceCards = BaseballCardsLeft - AceCardsLeft :: MoreBaseballCardsThanAceCards = 415 - 106
+INF-9: MoreBaseballCardsThanAceCards = 309 :: MoreBaseballCardsThanAceCards
+
+Therefore, the final answer is: **MoreBaseballCardsThanAceCards :: MoreBaseballCardsThanAceCards = 309**

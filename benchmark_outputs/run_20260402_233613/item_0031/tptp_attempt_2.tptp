@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, sweet_cookies_paco(8)).
+fof(fact_2, axiom, sweet_cookies_paco(20)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y] : (geq(X,Y) => sweet_cookies_eaten(paco, Y))).
+
+% --- INFERENCES ---
+% From nothing
+fof(inf_1, axiom, sweet_cookies_paco(0)).
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_2, axiom, total_sweet_cookies_eaten(paco, 20)).
+% From RULE-2 by Modus Ponens
+fof(inf_3, axiom, salted_cookies_paco(34)).
+% From RULE-2 by Modus Ponens
+fof(inf_4, axiom, difference_salted_sweet_cookies(paco, 34, 0)).

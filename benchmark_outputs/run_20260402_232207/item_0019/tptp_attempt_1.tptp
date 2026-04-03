@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, t(school, students)).
+
+fof(fact_2, axiom, p(grade, students)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalStudents, StudentsPerGrade, NumberOfGrades] : (NumberOfGrades = TotalStudents / StudentsPerGrade)).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Rule-1
+fof(inf_1, axiom, NumberOfGrades = 270 / 5).
+
+% From inf_1 by Inference
+fof(inf_2, axiom, Result = NumberOfGrades).

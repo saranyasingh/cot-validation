@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: Dave won some tickets at the arcade :: WinningTickets(W)
+
+## RULES
+RULE-1: Subtracting an amount from the initial quantity gives the remaining quantity :: ∀t (AmountUsedAtTime(t) → RemainingQuantityAtTime(t))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Subtraction: Dave won 26 tickets initially :: WinningTickets(26)

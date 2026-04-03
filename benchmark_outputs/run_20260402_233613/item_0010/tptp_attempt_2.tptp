@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_books_of(bryan) = 34).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (books_per_shelf(S) = div(total_books_of(bryan), S))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, books_per_shelf(2) = div(34, 2)).

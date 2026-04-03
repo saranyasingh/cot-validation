@@ -64,6 +64,7 @@ def run_benchmark(
     dataset_path: str,
     output_dir: str,
     max_retries: int = 3,
+    num_problems: int = None,
     reasoning_client=None,
     verifier_client=None,
 ) -> dict:
@@ -71,6 +72,8 @@ def run_benchmark(
         dataset = json.load(f)
 
     items = dataset["items"]
+    if num_problems is not None:
+        items = items[:num_problems]
     total = len(items)
 
     plain_correct = 0
@@ -199,6 +202,10 @@ def run_benchmark(
     delta = pipeline_acc - plain_acc
     direction = "better" if delta > 0 else "worse" if delta < 0 else "same"
 
+    # Collect incorrect items per approach
+    plain_incorrect = [r for r in results if not r["plain"]["correct"]]
+    pipeline_incorrect = [r for r in results if not r["pipeline"]["correct"]]
+
     print("\n" + "=" * 72)
     print(f"{'RESULTS SUMMARY':^72}")
     print("=" * 72)
@@ -212,6 +219,19 @@ def run_benchmark(
     print(f"  Errors caught       : {plain_wrong_pipeline_right}/{plain_errors}  ({error_catch_rate:.1%} of plain errors fixed by pipeline)")
     print(f"  Regressions         : {plain_right_pipeline_wrong}/{plain_correct}  ({regression_rate:.1%} of plain-correct broken by pipeline)")
     print()
+
+    if plain_incorrect:
+        print(f"  -- Plain Prompt Incorrect Items --")
+        for r in plain_incorrect:
+            print(f"    {r['id']:<12} expected={r['expected']!r:<14} got={r['plain']['answer']!r}")
+        print()
+
+    if pipeline_incorrect:
+        print(f"  -- Pipeline Incorrect Items --")
+        for r in pipeline_incorrect:
+            print(f"    {r['id']:<12} expected={r['expected']!r:<14} got={r['pipeline']['answer']!r}")
+        print()
+
     print(f"  -- Pipeline Internals --")
     print(f"  Passed verify       : {pipeline_passed_verify}/{total} ({verify_rate:.1%})")
     print(f"  Passed TPTP         : {pipeline_passed_tptp}/{total} ({tptp_rate:.1%})")
@@ -259,6 +279,12 @@ if __name__ == "__main__":
         help="Max verify/tptp repair attempts per pipeline run (default: 3).",
     )
     parser.add_argument(
+        "--num-problems", "-n",
+        type=int,
+        default=None,
+        help="Number of problems to test (default: all).",
+    )
+    parser.add_argument(
         "--client", "-c",
         choices=["openai", "kimi", "deepseek", "vllm"],
         default="openai",
@@ -278,6 +304,7 @@ if __name__ == "__main__":
         dataset_path=args.dataset,
         output_dir=output_dir,
         max_retries=args.max_retries,
+        num_problems=args.num_problems,
         reasoning_client=reasoning_client,
         verifier_client=verifier_client,
     )

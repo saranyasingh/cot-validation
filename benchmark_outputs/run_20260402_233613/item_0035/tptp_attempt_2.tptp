@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, many_books_exist).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TOTAL, READS, REMAINING] : ( total_books(TOTAL, READS, REMAINING) <=> ( ! [B] : ( books_exist(B) => ( books_read(B) & remaining_books(B) ) ) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_books(21, 13, 8)).

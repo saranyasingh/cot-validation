@@ -1,0 +1,37 @@
+This breakdown shows how each piece of information leads logically to the conclusion about Danny's collection activity. Let's convert this reasoning into FOL:
+
+### Facts:
+```plaintext
+FACT-1: Danny collected bottle caps and wrappers :: (∃bottleCaps b caps) ∧ (∃wrappers w rws)
+```
+
+### Rules:
+There are no specific rules provided in the original text; hence, there will be no rules added here.
+
+### Inferences:
+We need to derive the final inference based on the given facts and our step-by-step logical analysis.
+
+#### Step-by-Step Derivation:
+1. **Initial Counts:**
+   - \( \text{Initial Bottle Caps} = 11 \)
+   - \( \text{Initial Wrappers} = 28 \)
+
+2. **Current Counts:**
+   - \( \text{Total Bottle Caps} = 68 \)
+   - \( \text{Total Wrappers} = 51 \)
+
+3. **Additional Items Collected:**
+   - Additional Bottle Caps = \( 68 - 11 = 57 \)
+   - Additional Wrappers = \( 51 - 28 = 23 \)
+
+4. **Comparison:**
+   - Difference = Additional Wrappers - Additional Bottle Caps
+   - Difference = 23 - 57
+
+Since \( 23 - 57 < 0 \):
+- Danny found fewer wrappers than bottle caps at the park.
+
+### Final Inference:
+Danny found fewer wrappers than bottle caps at the park :: (Difference < 0) :: (23 - 57 < 0) :: ((51 - 28) - (68 - 11)) < 0 :: False
+
+This concludes the logical conversion process, showing how the initial conditions lead to the final deduction about Danny’s collection behavior.

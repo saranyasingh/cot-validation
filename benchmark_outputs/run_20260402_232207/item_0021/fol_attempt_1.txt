@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Total sacks of oranges = 54 :: TotalOranges(54)
+FACT-2: Rate of harvesting = 18 sacks per day :: HarvestRate(18)
+
+## RULES
+RULE-1: Time = Quantity / Rate :: Time(TotalQuantity, HarvestRate)
+
+## INFERENCES
+INF-1: Time = 54 / 18 :: Time(54, 18)
+
+INF-2: From INF-1, Rule-1 by Division: It took 3 days to harvest the oranges :: Time(54, 18) :: Days(3)

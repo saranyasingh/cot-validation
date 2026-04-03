@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED — The story explicitly states 34 books (TotalBooks).
+FACT-2: SUPPORTED — The story explicitly mentions 2 bookshelves (NumberOfBookShelves).
+RULE-1: PLAUSIBLE — EqualDistribution is a sensible general principle for distributing TotalBooks across NumberOfBookShelves in this context.

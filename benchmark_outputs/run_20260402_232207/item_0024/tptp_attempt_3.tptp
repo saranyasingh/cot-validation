@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, book_has(2, chapters)).
+
+fof(fact_2, axiom, length(36, pages)).
+
+fof(fact_3, axiom, total(pages, 67)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P1, P2] : ((P1 + P2) = total) => (book_has(P1) & book_has(P2))). 
+
+fof(rule_2, axiom, ! [N] : (book_has(N, chapters) => total(pages, N))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-3, RULE-1, RULE-2 by Arithmetic
+fof(inf_1, axiom, number(31, pages)).

@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, push_up(zachary, 44)).
+
+fof(fact_2, axiom, ! [T] : (push_up(david, T) => (push_up(zachary, T) => push_up(david, T+58)))).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (push_up(david, T))).
+
+fof(rule_2, axiom, push_up(zachary, 44)).
+
+fof(rule_3, axiom, ( ! [T] : (push_up(david, T) => push_up(zachary, T)) => ( push_up(zachary, 44) => ? [T] : (push_up(david, T) & push_up(zachary, T)) ) ).
+
+% --- INFERENCES ---
+% From rule_1
+fof(inf_1, axiom, ! [T] : (push_up(david, T))).
+
+% From fact_2, rule_2
+fof(inf_2, axiom, push_up(zachary, 44)).
+
+% From rule_3
+fof(inf_3, axiom, ( ! [T] : (push_up(david, T) => push_up(zachary, T)) => ( push_up(zachary, 44) => ? [T] : (push_up(david, T) & push_up(zachary, T)) ) ).

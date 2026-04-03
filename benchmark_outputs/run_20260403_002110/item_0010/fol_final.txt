@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: NumberOfBooks(34) :: numberOfBooks(34)
+FACT-2: NumberOfShelves(2) :: numberOfShelves(2)
+
+### ## RULES
+RULE-1: Divide(numberOfBooks, numberOfShelves) :: forall s (numberOfBooks(s) div numberOfShelves(s)) = booksPerShelf
+
+### ## INFERENCES
+INF-1: EachBookshelfContains(17) :: booksPerShelf = 17

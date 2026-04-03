@@ -1,0 +1,32 @@
+**Logical Syllogism**
+
+1. **Premise 1:** If Steven has 5 peaches, then Steven has 8 more peaches than Jill.
+   - This means if we know how many peaches Steven has, we can determine how many peaches Jill has based on that information.
+
+2. **Premise 2:** Given Premise 1 and knowing Steven has 5 peaches, we calculate Jill's peaches as follows:
+   - Let \( J \) represent the number of peaches Jill has.
+   - According to Premise 1, Steven has 8 more peaches than Jill, so:
+     \[
+     5 = J + 8
+     \]
+   - Solving for \( J \):
+     \[
+     J = 5 - 8 = -3
+     \]
+
+   However, this calculation seems incorrect because it results in a negative number of peaches. This suggests there might be an error in our interpretation or assumptions. 
+
+3. **Re-evaluating the Problem Statement:**
+   - We need to re-examine the initial conditions given: 
+     - Jake has 3 fewer peaches than Steven.
+     - Steven has 5 peaches.
+     - Therefore, Jake must have \( 5 - 3 = 2 \) peaches.
+   
+4. **Conclusion:**
+   - Based on the correct application of the problem statement, Jake indeed has 2 peaches.
+   - To find out how many more peaches Jake has than Jill:
+     \[
+     2 \text{ (peaches Jake has)} - (-3 \text{ (peaches Jill has)}) = 2 + 3 = 5
+     \]
+
+**The Answer is: 5**

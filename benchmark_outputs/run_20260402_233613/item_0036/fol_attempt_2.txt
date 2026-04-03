@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: Wealth(Edward) → SpendingMoney(Edward) & ¬Wealth(Edward)
+LABEL: RULES :: None
+LABEL: INF-1 :: Wealth(Edward) → SpendingMoney(Edward) & ¬Wealth(Edward)

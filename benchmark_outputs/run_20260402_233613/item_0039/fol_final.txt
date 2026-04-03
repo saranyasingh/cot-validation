@@ -1,0 +1,9 @@
+### ## FACTS
+Fact-1: TotalCandy(22) :: 22
+Fact-2: CandyPerBag(11) :: 11
+
+### ## RULES
+Rule-1: DivisionOfNaturalNumbers :: Dividend / Divisor :: Quotient
+
+### ## INFERENCES
+INF-1: NumberOfBags :: Fact-1 / Fact-2 :: 22 / 11 :: 2

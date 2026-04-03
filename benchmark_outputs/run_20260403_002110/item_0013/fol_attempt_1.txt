@@ -1,0 +1,5 @@
+FACT-1: You have $104 :: AmountAvailable(104)
+
+RULE-1: Divide the total money by the cost of one DVD to find the number of DVDs :: ∀n (AmountAvailable(a) → NumberOfDVDs(n, a))
+
+INF-1: From FACT-1 and RULE-1 by Division: You can buy 4 DVDs :: NumberOfDVDs(4, 104)
