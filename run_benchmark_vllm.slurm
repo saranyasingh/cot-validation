@@ -90,6 +90,9 @@ until curl -sf "http://localhost:${VLLM_PORT}/health" > /dev/null 2>&1; do
 done
 echo "vLLM is ready after ${ELAPSED}s."
 
+# ── Theorem prover ────────────────────────────────────────────────────────────
+export PATH="$SLURM_SUBMIT_DIR/bin:$PATH"
+
 # ── Run benchmark ──────────────────────────────────────────────────────────────
 OUTPUT_ARG=""
 if [ -n "$OUTPUT_DIR" ]; then

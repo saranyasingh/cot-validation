@@ -51,6 +51,9 @@ echo "Max retries : $MAX_RETRIES"
 echo "Start time  : $(date)"
 echo "──────────────────────────────────────────"
 
+# ── Theorem prover ────────────────────────────────────────────────────────────
+export PATH="$SLURM_SUBMIT_DIR/bin:$PATH"
+
 # Build optional --output-dir flag
 OUTPUT_ARG=""
 if [ -n "$OUTPUT_DIR" ]; then
