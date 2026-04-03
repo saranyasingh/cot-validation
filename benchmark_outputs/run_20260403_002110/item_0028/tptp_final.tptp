@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, john_uses(planks, 8)).
+fof(fact_2, axiom, nails_per_plank(74)).
+fof(fact_3, axiom, house_project_planks_needed).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Ppln] : (john_uses(planks, Ppln) => nails(Ppln, 592))).
+fof(rule_2, axiom, ! [TotalNails, NailsPerPlink] : ( total_nails(TotalNails, NailsPerplnk) => house_project_planks_needed(div(TotalNails, NailsPerplnk))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, nails(8, 592)).
+% From rule_2, with total nails 592 and nails per plank 74
+fof(inf_2, axiom, house_project_planks_needed(div(592, 74))).

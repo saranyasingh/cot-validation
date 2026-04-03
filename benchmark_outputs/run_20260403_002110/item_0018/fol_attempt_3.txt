@@ -1,0 +1,8 @@
+LABEL: INITIAL NUMBER OF CARDS :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356)
+LABEL: GIVE AWAY CARD :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356) → BaseballCards(Nell, 309 - BaseballCards_given_away) ∧ AceCards(Nell, 356)
+LABEL: CALCULATE GIVENAWAY CARD :: BaseballCards_given_away = BaseballCards(Nell, 309) - Final_Baseball_Cards :: BaseballCards_given_away = 309 - 415 :: BaseballCards_given_away = -106
+LABEL: RECALCULATE RECEIVED CARD :: Cards_received = Final_Baseball_Cards + BaseballCards_given_away :: Cards_received = 415 + (-106) :: Cards_received = 309
+LABEL: TOTAL CARDS AFTER GIVING AWAY :: Total_cards_after_giving_away = Initial_cards - Cards_given_away :: Total_cards_after_giving_away = 309 - 106 :: Total_cards_after_giving_away = 103
+LABEL: TOTAL CARDS AFTER RECEIVING :: Total_cards_after_receiving = Total_cards_after_giving_away + Cards_received :: Total_cards_after_receiving = 103 + 309 :: Total_cards_after_receiving = 412
+LABEL: NET CHANGE IN CARDS :: Net_change_in_cards = Initial_total_cards - Final_total_cards :: Net_change_in_cards = 309 + 356 - 415 - 356 :: Net_change_in_cards = 0
+LABEL: DIFFERENCE BETWEEN BASEBALL AND ACE CARDS :: Difference_between_baseball_and_ace_cards = Final_Baseball_Cards - Final_Ace_Cards :: Difference_between_baseball_and_ace_cards = 415 - 356 :: Difference_between_baseball_and_ace_cards = 59

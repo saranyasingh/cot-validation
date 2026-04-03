@@ -1,0 +1,11 @@
+## FACTS
+LABEL: Died(13) :: Died(13)
+LABEL: Initial :: Survived + Died = Initial
+
+## RULES
+LABEL: Survived + Died = Initial :: Given in the premise.
+
+## INFERENCES
+LABEL: Survived = 3 - 13 :: From Premise 2.
+LABEL: Died > Survived :: From the previous inference and the premise.
+LABEL: Died = Survived + 13 :: Adding 13 to both sides of the inequality.

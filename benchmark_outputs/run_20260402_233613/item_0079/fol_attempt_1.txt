@@ -1,0 +1,11 @@
+This reasoning can be converted into FOL as follows:
+
+## FACTS
+FACT-1: ReadingHomeworkPages = 2 :: ReadingHomework(x) = 2
+FACT-2: MathHomeworkPages = 4 :: MathHomework(y) = 4
+
+## RULES
+No rules needed for this problem since all facts are already given and no new logical deductions are required.
+
+## INFERENCES
+INF-1: MathHomeworkPages > ReadingHomeworkPages :: MathHomework(y) > ReadingHomework(x)

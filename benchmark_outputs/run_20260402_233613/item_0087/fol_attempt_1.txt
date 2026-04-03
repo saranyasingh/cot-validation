@@ -1,0 +1,21 @@
+Let's convert the given chain of thought reasoning into structured First-Order Logic (FOL). 
+
+### Facts
+1. The grasshopper jumped 36 inches.
+   - Let \( G_h \) represent the distance the grasshopper jumped.
+   - Fact: \( G_h = 36 \)
+
+2. The frog jumped 17 inches farther than the grasshopper.
+   - Let \( F_f \) represent the distance the frog jumped.
+   - Fact: \( F_f = G_h + 17 \)
+
+### Rules
+There are no additional rules provided beyond what is needed to derive the conclusion.
+
+### Inferences
+From the facts derived, we can calculate the distance the frog jumped:
+\[ F_f = 36 + 17 \]
+\[ F_f = 53 \]
+
+### Final Answer
+Therefore, the frog jumped 53 inches.

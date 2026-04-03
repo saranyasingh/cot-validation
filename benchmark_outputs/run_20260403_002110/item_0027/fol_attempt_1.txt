@@ -1,0 +1,9 @@
+**FACTS**
+FACT-1: TotalWaxAvailable(557) :: WaxTotal(557)
+FACT-2: WaxNeededRightNow(17) :: WaxCurrentRequirement(17)
+
+**RULES**
+RULE-1: WaxRequiredForFeathers(WaxTotal, WaxCurrentRequirement) :: ∀w WaxTotal(w) → WaxCurrentRequirement(w) → WaxRequired(w)
+
+**INFERENCES**
+INF-1: WaxRequiredForFeathers(557, 17) :: WaxTotal(557) ∧ WaxCurrentRequirement(17) → WaxRequired(557, 17)

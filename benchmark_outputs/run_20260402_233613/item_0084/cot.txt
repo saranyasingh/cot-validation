@@ -1,0 +1,34 @@
+To determine how many students are in each class, we need to follow these steps:
+
+**Premise 1:** The school has 24 classrooms.
+- This tells us there's a specific number of classrooms available for the field trip.
+
+**Premise 2:** There are 120 students in the school.
+- We know the total student count across all classes and classrooms combined.
+
+**Premise 3:** Each classroom has the same number of students.
+- This implies that if we divide the total number of students by the number of classrooms, we'll get the number of students per classroom.
+
+Let's apply this information:
+
+**Step-by-step Logical Reasoning:**
+
+1. **Total Number of Students:** Given as 120.
+2. **Number of Classrooms:** Given as 24.
+3. **Students Per Classroom:** To find this, we use division:
+   \[
+   \text{Students per classroom} = \frac{\text{Total number of students}}{\text{Number of classrooms}}
+   \]
+   Substituting the given values:
+   \[
+   \text{Students per classroom} = \frac{120}{24}
+   \]
+
+4. **Perform the Division:**
+   \[
+   \frac{120}{24} = 5
+   \]
+
+Thus, each classroom has 5 students.
+
+Therefore, the answer is: **Each class has 5 students.**

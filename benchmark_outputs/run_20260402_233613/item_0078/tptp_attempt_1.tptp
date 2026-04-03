@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, red_peaches(7)).
+
+fof(fact_2, axiom, yellow_peaches(71)).
+
+fof(fact_3, axiom, green_peaches(8)).
+
+% --- RULES ---
+fof(rule_1, axiom, rule1(red_peaches(7), yellow_peaches(71))).
+
+fof(rule_2, axiom, rule2(green_peaches(8), red_peaches(7))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Rule1
+fof(inf_1, axiom, more_yellow_than_red(yellow_peaches(71), red_peaches(7))).
+
+% From fact_3, rule_2 by Rule2
+fof(inf_2, axiom, difference_green_red(green_peaches(8), red_peaches(7), 1)).

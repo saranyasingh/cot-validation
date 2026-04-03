@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states Randy has 97 blocks.
+FACT-2: SUPPORTED — The story states there are 72 blocks left after building.
+RULE-1: PLAUSIBLE — It is a reasonable general statement that building uses some blocks (x).
+RULE-2: PLAUSIBLE — With 97 initial blocks, using x blocks leaves 97 − x blocks.

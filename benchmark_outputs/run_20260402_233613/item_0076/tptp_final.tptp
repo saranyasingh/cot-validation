@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_packages_of_gum(robin, 28)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (number(N) => pieces_of_gum(N) = N * pieces_per_package)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, pieces_of_gum(robin, 168)).

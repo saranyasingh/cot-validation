@@ -1,0 +1,17 @@
+### ## FACTS
+
+**FACT-1:** He harvested 54 sacks of oranges :: **Fact-1**: **∀x (Harvested(x) → x = 54)**
+
+**FACT-2:** They harvested 18 sacks of oranges per day :: **Fact-2**: **∀y (Harvested(y) → y = 18 * d) for some integer d**
+
+### ## RULES
+
+**RULE-1:** If he harvested a certain number of sacks, then the total number of sacks is equal to that number :: **Rule-1**: **∀a (Harvested(a) → ∃b (TotalSacks(b) ∧ b = a))**
+
+**RULE-2:** If he harvested at a rate per day, the total number of sacks can be calculated by dividing the total number of sacks by the daily rate :: **Rule-2**: **∀c (TotalSacks(c) → ∃d (DailyHarvestRate(d) ∧ c = d * 18))**
+
+### ## INFERENCES
+
+**INF-1:** From FACT-1 and RULE-1, if he harvested 54 sacks, then the total number of sacks is 54 :: **INF-1**: **∀x (Harvested(x) → x = 54)**
+
+**INF-2:** From FACT-2 and RULE-2, the number of days required to harvest 54 sacks can be found by dividing 54 by 18 :: **INF-2**: **∀c (TotalSacks(c) → ∃d (DailyHarvestRate(d) ∧ c = 54 / d))**

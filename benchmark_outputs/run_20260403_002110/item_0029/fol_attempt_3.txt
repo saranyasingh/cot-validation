@@ -1,0 +1,10 @@
+### ## FACTS
+1. Fact-1: Zachary did 44 push-ups :: PushUp(Zachary, 44)
+2. Fact-2: David did 58 more push-ups than Zachary :: PushUp(David, x) ∧ x > 44
+
+### ## RULES
+1. Rule-1: If someone does \( n \) push-ups, then they do \( n + 58 \) push-ups if they did more than 44 push-ups :: ∀n (PushUp(n) → PushUp(x) ∧ x > n)
+
+### ## INFERENCES
+1. Infer-1: From Fact-1 and Rule-1 by Universal Instantiation: David did 102 push-ups :: ∀x (PushUp(44) ∧ x > 44 → PushUp(x))
+2. Infer-2: From Fact-2 and Infer-1 by Modus Ponens: Total push-ups = 44 + 102 = 146 :: ∀x (PushUp(44) ∧ x > 44 → Total(x))

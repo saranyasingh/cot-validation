@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states John uses 8 large planks of wood
+FACT-2: SUPPORTED — The story states each plank of wood requires 74 nails
+FACT-3: SUPPORTED — The story indicates John needs to know how many planks are required for his house project
+RULE-1: PLAUSIBLE — It correctly computes total nails as 8 * 74
+RULE-2: PLAUSIBLE — It describes solving for planks by dividing total nails by nails per plank, which is mathematically valid

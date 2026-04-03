@@ -1,0 +1,12 @@
+```plaintext
+## FACTS
+FACT-1: Nell initially had 309 baseball cards and 356 Ace cards. :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356)
+
+## RULES
+RULE-1: If someone receives cards, their total number increases. :: ∀N (ReceivedCards(N, t) → TotalCards(N, t+received_cards))
+
+## INFERENCES
+INF-1: Nell started with 309 baseball cards and 356 Ace cards. :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356)
+INF-2: After receiving cards, Nell’s total number of cards increased by 59. :: ReceivedCards(Nell, t) → TotalCards(Nell, t+59)
+INF-3: The difference between baseball and Ace cards remains constant throughout the process. :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356) → BaseballCards(Nell, 309) - AceCards(Nell, 356) = 59
+```

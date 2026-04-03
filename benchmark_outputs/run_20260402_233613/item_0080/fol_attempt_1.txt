@@ -1,0 +1,17 @@
+### Facts
+FACT-1: CakesSold(x) ::= CakeSold(x) :: 158
+FACT-2: PastriesSold(y) ::= PastriesSold(y) ::= -22
+FACT-3: InitialCakesMade(z) ::= InitialCakesMade(z) ::= 157
+FACT-4: InitialPastriesMade(w) ::= InitialPastriesMade(w) ::= 169
+
+### Rules
+RULE-1: CakeSold(x) → CakeSold(x) ::= 158
+RULE-2: PastriesSold(y) → PastriesSold(y) ::= 147
+
+### Inferences
+INF-1: From FACT-1, RULE-1 by Modus Ponens: CakesSold(158)
+INF-2: From FACT-2, RULE-2 by Modus Ponens: PastriesSold(-22)
+INF-3: There are no additional pastries sold beyond those explicitly mentioned.
+
+### Final Answer
+The answer is: 0.

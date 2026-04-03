@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, flour_needed(14)).
+fof(fact_2, axiom, added_flour(4)).
+fof(fact_3, axiom, sugar_needed(9)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : subtract(flour_needed(X), added_flour(Y))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Subtract
+fof(inf_1, axiom, remaining_flour(subtract(flour_needed(14), added_flour(4)))).
+% From fact_3, inf_1 by gt
+fof(inf_2, axiom, gt(sugar_needed(9), remaining_flour(subtract(flour_needed(14), added_flour(4))))).
+% From fact_1, fact_3 by Difference
+fof(inf_3, axiom, difference(flour_needed(14), sugar_needed(9))).
+% FinalDifference = Difference(FlourNeeded, SugarNeeded)
+fof(inf_4, axiom, final_difference = difference(flour_needed(14), sugar_needed(9))).

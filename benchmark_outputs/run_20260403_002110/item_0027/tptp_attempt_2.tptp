@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, wax_total(557)).
+fof(fact_2, axiom, wax_current_requirement(17)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : ( wax_total(W) => wax_current_requirement(W) => wax_required(W) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, (wax_total(557) & wax_current_requirement(17)) => wax_required(557, 17)).

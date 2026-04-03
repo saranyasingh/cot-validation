@@ -1,0 +1,27 @@
+{
+  "dataset": "SVAMP",
+  "run_id": "run_20260403_002110",
+  "total": 30,
+  "plain": {
+    "correct": 21,
+    "accuracy": 0.7
+  },
+  "pipeline": {
+    "correct": 10,
+    "accuracy": 0.3333,
+    "passed_verify": 6,
+    "verify_rate": 0.2,
+    "passed_tptp": 6,
+    "tptp_rate": 0.2,
+    "needed_retry": 26,
+    "retry_rate": 0.8667,
+    "avg_attempts": 2.73
+  },
+  "error_analysis": {
+    "plain_errors": 9,
+    "errors_caught_by_pipeline": 2,
+    "error_catch_rate": 0.2222,
+    "regressions": 13,
+    "regression_rate": 0.619
+  }
+}

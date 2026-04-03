@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: School has 24 classrooms :: 24(Classroom)
+FACT-2: Total number of students in the school is 120 :: 120(Students)
+
+### RULES
+RULE-1: Equal distribution among equal groups :: ∀n (If n * x = N, then x = N/n)
+
+### INFERENCES
+INF-1: Number of students per classroom :: Rule-1(24(Classroom), 120(Students))
+INF-2: Each classroom has 5 students :: Fact-1(24(Classroom), INF-1(Student-per-classroom))

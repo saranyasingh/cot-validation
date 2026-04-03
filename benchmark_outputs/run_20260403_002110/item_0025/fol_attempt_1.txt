@@ -1,0 +1,23 @@
+### FACTS
+FACT-1: LawrenceCountyKidsGoingCamp = 610769
+FACT-2: LawrenceCountyKidsStayingHome = 590796
+FACT-3: LawrenceCountyOutsideAttending = 22
+
+### RULES
+Rule-1: TotalLawrenceCountyPopulation = LawrenceCountyKidsGoingCamp + LawrenceCountyKidsStayingHome + LawrenceCountyOutsideAttending
+       Rule-1 is derived from the sum of individual groups.
+
+### INFERENCES
+INF-1: TotalLawrenceCountyPopulation :: TotalLawrenceCountyPopulation = 610769 + 590796 + 22
+
+Performing the addition:
+
+   610769
++ 590796
+_________
+   1201565
+    + 22
+_________
+   1201587
+
+Therefore, the total number of kids in Lawrence County is 1201,587.

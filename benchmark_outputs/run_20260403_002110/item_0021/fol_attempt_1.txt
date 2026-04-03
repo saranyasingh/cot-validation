@@ -1,0 +1,11 @@
+**FACTS**
+FACT-1: He harvested 54 sacks of oranges :: Harvested(54)
+FACT-2: They harvested 18 sacks of oranges per day :: DailyHarvestRate(18)
+
+**RULES**
+RULE-1: If he harvested a certain number of sacks, then the total number of sacks is equal to that number :: ∀n (Harvested(n) → TotalSacks(n))
+RULE-2: If he harvested at a rate per day, the total number of sacks can be calculated by dividing the total number of sacks by the daily rate :: ∀total_sacks (∀daily_rate (TotalSacks(total_sacks / daily_rate)))
+
+**INFERENCES**
+INF-1: From FACT-1 and RULE-1, if he harvested 54 sacks, then the total number of sacks is 54 :: TotalSacks(54)
+INF-2: From FACT-2 and RULE-2, the number of days required to harvest 54 sacks can be found by dividing 54 by 18 :: NumberOfDays(54 / 18)

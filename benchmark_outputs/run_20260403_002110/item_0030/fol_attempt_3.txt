@@ -1,0 +1,17 @@
+## FACTS
+
+LABEL: Fact 1 :: FlourNeeded(14)
+LABEL: Fact 2 :: AddedFlour(4)
+LABEL: Fact 3 :: SugarNeeded(9)
+
+## RULES
+
+LABEL: Rule 1 :: Subtract(FlourNeeded(x), AddedFlour(y)) :: Calculate the remaining amount after adding the given quantity of flour.
+LABEL: Rule 2 :: SugarNeeded > RemainingFlour :: If there is no sugar needed, then it implies that no flour was added to sugar.
+LABEL: Rule 3 :: Difference(FlourNeeded, SugarNeeded) :: Calculate the difference between the required flour and the available sugar.
+
+## INFERENCES
+
+LABEL: Inference 1 :: RemainingFlower = FlourNeeded - AddedFlour
+LABEL: Inference 2 :: SugarNeeded > RemainingFlower
+LABEL: Inference 3 :: Difference(FlourNeeded, SugarNeeded) :: Calculate the difference between the required flour and the available sugar.

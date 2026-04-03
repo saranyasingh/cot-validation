@@ -1,0 +1,36 @@
+To convert the given chain-of-thought reasoning into structured first-order logic (FOL), I'll follow the guidelines provided. Here's how each part can be represented:
+
+### Facts
+1. **Fact-1**: Rachel has to complete 2 pages of math homework.
+   - FOL: MathHomework(2, rachel)
+
+2. **Fact-2**: Rachel has to complete 3 pages of reading homework.
+   - FOL: ReadingHomework(3, rachel)
+
+3. **Fact-3**: Rachel has to complete an extra 10 pages of biology homework.
+   - FOL: BiologyHomework(10, rachel)
+
+### Rules
+4. **Rule-1**: For any number of pages, if a student completes them, they have completed that many pages.
+   - FOL: ∀n (Completed(n, x) → n ∈ Pages(x))
+     - Where `Pages(rachel)` represents the set of pages Rachel has completed.
+     - `Completed(n, x)` means student x has completed n pages.
+
+### Inferences
+5. **Inference-1**: Total pages Rachel has to complete = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel).
+   - FOL: TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel)
+     - Using Rule-1, we can express the sum of the individual components as their union over the set of completed pages.
+
+6. **Inference-2**: Since Rachel has already completed the math and reading homework, she will complete all 15 pages.
+   - FOL: TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel)
+     - Combining the facts, we get a specific value for the total pages Rachel needs to complete.
+
+7. **Inference-3**: Therefore, the total number of pages Rachel has to complete is 15.
+   - FOL: TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel)
+     - Concluding the final result based on the previous inferential steps.
+
+### Final Answer
+Since the problem statement asks for the conclusion without further elaboration, the output should be simply the final inference:
+
+**Final Answer**
+INF-3: The total number of pages Rachel has to complete is 15 :: TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel).

@@ -1,0 +1,9 @@
+LABEL: ## FACTS :: 
+FACT-1: Julia played with 5 kids on Monday.
+FACT-2: Julia played with 15 kids on Wednesday.
+
+LABEL: ## RULES :: 
+RULE-1: If A plays tag with B kids, then the number of kids A plays with B is equal to the number of kids B.
+
+LABEL: ## INFERENCES :: 
+INF-1: Total kids on Monday and Wednesday :: 5 + 15 = 20

@@ -1,0 +1,9 @@
+LABEL: Fact 1 :: FlourNeeded(14)
+LABEL: Fact 2 :: AddedFlour(4)
+LABEL: Fact 3 :: SugarNeeded(9)
+
+LABEL: Rule 1 :: Subtract(FlowerNeeded(x), AddedFlower(y))
+LABEL: Inference 1 :: RemainingFlower = FlowerNeeded - AddedFlower
+LABEL: Inference 2 :: SugarNeeded > RemainingFlower
+LABEL: Inference 3 :: Difference(FlowerNeeded, SugarNeeded) :: Calculate the difference between the required flour and the available flour.
+LABEL: Inference 4 :: FinalDifference = Difference(FlowerNeeded, SugarNeeded) :: Substitute the values to get the final difference.

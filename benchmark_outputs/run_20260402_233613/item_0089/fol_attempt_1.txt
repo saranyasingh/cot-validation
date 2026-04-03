@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Josh had some marbles in his collection initially :: M
+
+## RULES
+RULE-1: Losing marbles decreases the total count :: ∀M (Loss(M, 21) → RemainingMarbles(M) < M)
+
+## INFERENCES
+INF-1: Josh lost 21 marbles :: Loss(M, 21)
+INF-2: After losing 21 marbles, Josh has 12 marbles remaining :: RemainingMarbles(M) = 12
+INF-3: Therefore, Josh originally had 33 marbles :: M = 33

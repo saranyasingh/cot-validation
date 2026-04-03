@@ -1,0 +1,14 @@
+## FACTS
+LABEL: FACT-1 :: CakeSold(158) ::= 158
+LABEL: FACT-2 :: PastriesSold(-22) ::= 147
+LABEL: FACT-3 :: InitialCakesMade(157) ::= 157
+LABEL: FACT-4 :: InitialPastriesMade(169) ::= 169
+
+## RULES
+LABEL: RULE-1 :: CakeSold(x) → CakeSold(x) ::= 158
+LABEL: RULE-2 :: PastriesSold(y) → PastriesSold(y) ::= 147
+
+## INFERENCES
+LABEL: INF-1 :: From FACT-1, RULE-1 by Modus Ponens: CakeSold(158)
+LABEL: INF-2 :: From FACT-2, RULE-2 by Modus Ponens: PastriesSold(-22)
+LABEL: INF-3 :: There are no additional pastries sold beyond those explicitly mentioned.

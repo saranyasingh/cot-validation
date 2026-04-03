@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Lewis earns $2 every week :: EarningsPerWeek(w) := 2
+FACT-2: Total earnings of $178 :: TotalEarnings := 178
+
+### RULES
+RULE-1: If Lewis earns $2 per week, then he has earned a total of $178 after \( w \) weeks :: ∀w (EarningsPerWeek(w) → TotalEarnings = 178 * w)
+
+### INFERENCES
+INF-1: From RULE-1, since Lewis's total earnings are $178, there must have been 89 weeks of harvesting :: WeeksOfHarvest := 178 / 2 = 89

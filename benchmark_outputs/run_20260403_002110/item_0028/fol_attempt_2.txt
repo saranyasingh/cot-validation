@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: John uses 8 large planks of wood :: 8
+FACT-2: Each plank of wood requires 74 pieces of nails :: 74
+FACT-3: To secure the planks, John needs to know how many planks are required for his project (the house) :: HouseProjectPlanksNeeded
+
+### RULES
+RULE-1: If John uses 8 large planks of wood, each requiring 74 pieces of nails, then the total number of nails needed is 8 * 74 :: ∀ppln(JohnUses(planks, ppln) → Nails(ppln, 8 * 74))
+RULE-2: To find out the total number of planks needed for the house project, he must determine the total nails required and divide by the number of nails per plank :: ∀totalNails(totalNails, nailsPerPlink) (∀HouseProjectPlanksNeeded(HouseProjectPlanksNeeded, totalNails / nailsPerPlink))
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1, if John uses 8 large planks of wood, the total nails needed are 592 :: 592 = JohnUses(8, 74)
+INF-2: From RULE-2, if the total nails required is 592 and each plank requires 74 nails, then the number of planks needed is 592 / 74 :: HouseProjectPlanksNeeded = 592 / 74
+
+Therefore, the answer is: X = 592.

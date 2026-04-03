@@ -1,0 +1,10 @@
+LABEL: ## FACTS :: 
+INF-1: Total number of bananas = 203 :: TotalBananas = 203
+INF-2: Number of groups of bananas = 7 :: NumGroups = 7
+
+LABEL: ## RULES :: None needed for this problem.
+
+LABEL: ## INFERENCES :: 
+INF-3: Bananas per group = Total number of bananas / Number of groups of bananas :: BananasPerGroup = TotalBananas / NumGroups
+INF-4: Calculate Bananas per group using INF-3 :: InfResult = 29
+INF-5: Each group of bananas has 29 bananas :: EachGroupHas = 29

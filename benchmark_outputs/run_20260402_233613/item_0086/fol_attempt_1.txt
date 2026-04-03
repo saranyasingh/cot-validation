@@ -1,0 +1,11 @@
+INF-1: Total number of bananas = 203 :: TotalBananas = 203
+
+INF-2: Number of groups of bananas = 7 :: NumGroups = 7
+
+INF-3: Bananas per group = Total number of bananas / Number of groups of bananas :: BananasPerGroup = TotalBananas / NumGroups
+
+INF-4: Calculate Bananas per group using INF-3 :: BananasPerGroup = 203 / 7
+
+INF-5: Result of calculation :: InfResult = 29
+
+INF-6: Each group of bananas has 29 bananas :: EachGroupHas = 29

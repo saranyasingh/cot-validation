@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Randy starts with 97 blocks :: BlocksRandyStartsWith(97)
+FACT-2: After building the tower, Randy has 72 blocks left :: BlocksAfterTowerBuild(72)
+
+## RULES
+RULE-1: If Randy builds a tower, he uses \( x \) blocks :: ∀x (BlocksUsed(x))
+RULE-2: After using \( x \) blocks, Randy has \( 97 - x \) blocks left :: BlocksLeftAfterUsing(x)
+
+## INFERENCES
+INF-1: From RULE-1, RULE-2 by Modus Ponens: Randy uses \( x \) blocks to build the tower :: BlocksUsed(x)
+INF-2: Using \( x \) blocks leaves \( 97 - x \) blocks :: BlocksLeftAfterUsing(x)
+INF-3: Given \( 97 - x = 72 \), solving for \( x \): x = 25 :: SolveFor(x) by Fact-1 and Rule-1

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "item_0001",
+    "question": "There are 87 oranges and 290 bananas in Philip's collection. If the bananas are organized into 2 groups and oranges are organized into 93 groups How big is each group of bananas?",
+    "expected": "145",
+    "plain": {
+      "answer": "145",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Each group of bananas contains 145 bananas",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0002",
+    "question": "Marco and his dad went strawberry picking. Marco's dad's strawberries weighed 11 pounds. If together their strawberries weighed 30 pounds. How much did Marco's strawberries weigh?",
+    "expected": "19",
+    "plain": {
+      "answer": "19",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "The answer is: 19 pounds",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0003",
+    "question": "Edward spent $ 6 to buy 2 books each book costing him the same amount of money. Now he has $ 12. How much did each book cost?",
+    "expected": "3",
+    "plain": {
+      "answer": "Each book cost $3",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0004",
+    "question": "Frank was reading through his favorite book. The book had 3 chapters, each with the same number of pages. It has a total of 594 pages. It took Frank 607 days to finish the book. How many pages are in each chapter?",
+    "expected": "198",
+    "plain": {
+      "answer": "2.943",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "198",
+      "correct": true,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0005",
+    "question": "There were 78 dollars in Olivia's wallet. She spent 15 dollars at a supermarket. How much money does she have left?",
+    "expected": "63",
+    "plain": {
+      "answer": "63",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "63",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0006",
+    "question": "Paul got a box of 110 crayons for his birthday. During the school year he gave 90 crayons to his friends while he lost 412 crayons. How many more crayons did he lose than those he gave to his friends?",
+    "expected": "322",
+    "plain": {
+      "answer": "\\[",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "The answer is: 322",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0007",
+    "question": "Randy has 95 blocks. He uses 20 blocks to build a house and 50 blocks to build a tower. How many more blocks did he use to build the tower than he did to build the house?",
+    "expected": "30",
+    "plain": {
+      "answer": "30",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "30",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0008",
+    "question": "After Jessie started to go jogging everyday she lost 126 kilograms. She currently weighs 66 kilograms. How much did she weigh before starting to jog?",
+    "expected": "192",
+    "plain": {
+      "answer": "192",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "192",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0009",
+    "question": "At the arcade Dave had won some tickets. He used 12 tickets to buy some toys. If he still has 14 tickets left How many tickets did Dave win at the arcade?",
+    "expected": "26",
+    "plain": {
+      "answer": "26",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Dave won 26 tickets at the arcade",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0010",
+    "question": "Bryan took a look at his books as well. If he has 34 books distributed equally in 2 bookshelves How many books are there in each bookshelf?",
+    "expected": "17",
+    "plain": {
+      "answer": "17",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "17",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0011",
+    "question": "Dave had 15 apps on his phone. He added 71 new apps. After deleting some he had 14 left. How many more apps did he delete than he added?",
+    "expected": "1",
+    "plain": {
+      "answer": "1",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Dave deleted 1 more app than he added",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0012",
+    "question": "Adam has 4 more apples than Jackie. Together Adam and Jackie have 14 apples. Bob has 6 apples more than Adam and Jackie together do. How many apples does Bob have?",
+    "expected": "20",
+    "plain": {
+      "answer": "20",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "\\( B = 20 \\)",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0013",
+    "question": "You have 104 dollars. How many packs of dvds can you buy if each pack costs 26 dollars?",
+    "expected": "4",
+    "plain": {
+      "answer": "4",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "4",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0014",
+    "question": "Jerry had 7 books and 3 action figures on a shelf in his room. Later he added 2 more action figures to the shelf. How many more books than action figures were on his shelf?",
+    "expected": "2",
+    "plain": {
+      "answer": "2",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "2",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0015",
+    "question": "Melissa scored a total of 91 points in 13 games scoring the same for each game. How many points did she score in each game?",
+    "expected": "7",
+    "plain": {
+      "answer": "The answer is: 7",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "The answer is: 7",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0016",
+    "question": "Faye had 35 packs of pencils each one having 4 pencils. She was placing her pencils into rows with 2 pencils in each row. How many rows could she make?",
+    "expected": "70",
+    "plain": {
+      "answer": "70",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "70",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0017",
+    "question": "Each basket of peaches has 19 red peaches and 4 green peaches. If there are 15 such baskets How many peaches are in the baskets altogether?",
+    "expected": "345",
+    "plain": {
+      "answer": "345",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "The total number of peaches in the baskets is 15 * 23 = 345 peaches",
+      "correct": false,
+      "attempts": 1,
+      "passed_verify": true,
+      "passed_tptp": true
+    }
+  },
+  {
+    "id": "item_0018",
+    "question": "Nell collects cards. She had 309 baseball cards and 356 Ace cards. She gave some of her cards to Jeff and now has 415 baseball cards and Ace cards left. How many more baseball cards than Ace cards does Nell have?",
+    "expected": "266",
+    "plain": {
+      "answer": "309",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "The number of additional baseball cards compared to Ace cards that Nell has is 59",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0019",
+    "question": "There are 270 students in a school. If the school has 5 students in each grades and each grade has the same number of students How many grades are there in total?",
+    "expected": "54",
+    "plain": {
+      "answer": "54",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "There are 54 grades in total",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0020",
+    "question": "In a school there are 34 girls and 841 boys. How many more boys than girls does the school have?",
+    "expected": "807",
+    "plain": {
+      "answer": "The school has 807 more boys than girls",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "807",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0021",
+    "question": "He then went to see the oranges being harvested. He found out that they harvested 54 sacks of oranges. How many days did it take to harvest them if they harvested 18 sacks of oranges per day?",
+    "expected": "3",
+    "plain": {
+      "answer": "3",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "It took 3 days to harvest the oranges",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0022",
+    "question": "Zachary did 46 push-ups and 58 crunches in gym class today. David did 38 more push-ups but 62 less crunches than zachary. How many more crunches than push-ups did Zachary do?",
+    "expected": "12",
+    "plain": {
+      "answer": "12",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "Zachary did 74 more crunches than push-ups",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0023",
+    "question": "After a typhoon, 13 trees in Haley's backyard died. If she had grown 3 trees initially How many more trees died in the typhoon than those that survived?",
+    "expected": "23",
+    "plain": {
+      "answer": "The answer is: 3",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "**13**",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0024",
+    "question": "A book has 2 chapters. The second chapter is 36 pages long. If there are a total of 67 pages in the book How many pages are in the first chapter?",
+    "expected": "31",
+    "plain": {
+      "answer": "31",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "**31** pages are in the first chapter",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0025",
+    "question": "During summer break 610769 kids from Lawrence county go to camp and the other 590796 kids stay home. An additional 22 kids from outside the county attended the camp. About how many kids are in Lawrence county?",
+    "expected": "1201565",
+    "plain": {
+      "answer": "",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "1201587.",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0026",
+    "question": "Lewis earns $ 2 every week during the harvest. If he earns a total of $ 178 How many weeks did the harvest last?",
+    "expected": "89",
+    "plain": {
+      "answer": "89",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "89",
+      "correct": true,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0027",
+    "question": "Next on his checklist is wax to stick the feathers together. If he has 557 g of wax and right now he just needs 17 g Total how many grams of wax do the feathers require?",
+    "expected": "574",
+    "plain": {
+      "answer": "",
+      "correct": false
+    },
+    "pipeline": {
+      "answer": "",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0028",
+    "question": "For the walls of the house he would use 8 large planks of wood. If each plank of wood needs 74 pieces of nails to be secured How many planks does John need for the house wall?",
+    "expected": "8",
+    "plain": {
+      "answer": "8",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "X = 592",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0029",
+    "question": "Zachary did 44 push-ups in gym class today. David did 58 more push-ups than zachary. How many push-ups did Zachary and David do altogether?",
+    "expected": "146",
+    "plain": {
+      "answer": "146",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  },
+  {
+    "id": "item_0030",
+    "question": "Mary is baking a cake. The recipe calls for 9 cups of sugar 14 cups of flour and 40 cups of salt. She already put in 4 cups of flour. How many more cups of flour than cups of sugar does she need to add now?",
+    "expected": "1",
+    "plain": {
+      "answer": "1",
+      "correct": true
+    },
+    "pipeline": {
+      "answer": "**10** cups of flour",
+      "correct": false,
+      "attempts": 3,
+      "passed_verify": false,
+      "passed_tptp": false
+    }
+  }
+]

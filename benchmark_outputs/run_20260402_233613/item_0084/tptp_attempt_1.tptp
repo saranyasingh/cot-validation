@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, num_classrooms(24)).
+fof(fact_2, axiom, num_students(120)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, n, x] : ((n * x = N) => (x = N / n))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, students_per_classroom(5)).
+% From fact_1, inf_1 by And-Elimination
+fof(inf_2, axiom, classrooms_have_5_students).

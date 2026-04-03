@@ -1,0 +1,13 @@
+## FACTS
+- Fact 1: Total revenue = $98 per t-shirt * 163 t-shirts sold.
+- Fact 2: Number of t-shirts sold during the Arkansas game = 89.
+
+## RULES
+- Rule 1: If \( N(t) = 163 \), then the total revenue is \( 98 \times 163 \).
+- Rule 2: If \( N(t) = 89 \), then the revenue from the Arkansas game is \( 98 \times 89 \).
+
+## INFERENCES
+- From Fact 2: For any \( t \), if \( N(t) = 163 \), then \( R \) holds true.
+- From Fact 1 and Rule 1: Combining Fact 2 and Rule 1 gives us the total revenue calculation.
+- From Fact 2: For any \( t \), if \( N(t) = 89 \), then \( P(t) = 98 \) and \( R \) holds true.
+- By Rule 2, combining Fact 2 and Rule 2 gives us the revenue from the Arkansas game calculation.

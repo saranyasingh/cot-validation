@@ -1,0 +1,20 @@
+```plaintext
+## FACTS
+```plaintext
+FACT-1: GroceryStoreInitialDietSoda(4) :: DietSodaBottles(grocery_store, 4)
+```
+
+## RULES
+```plaintext
+RULE-1: RegularSodaMoreThanDietSoda(R, D) :: R = D + 79
+```
+
+## INFERENCES
+```plaintext
+INF-1: RegularSodaBottles(grocery_store) :: RegularSodaBottles(grocery_store, 83)
+```
+LABEL: 83 :: RegularSodaBottles(grocery_store)
+
+```plaintext
+# Corrected Syntax Error Report
+eprover: /n/home06/ssingh/cot-validation/output.tptp:5:(Column 38): Expected closing bracket ')' after '+' operator, found instead. This issue was resolved by ensuring proper use of parentheses around the expression `R = D + 79` within the rule definition.

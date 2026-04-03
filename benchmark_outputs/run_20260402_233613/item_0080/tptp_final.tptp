@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, cake_sold(158)).
+
+fof(fact_2, axiom, pastries_sold(-22)).
+
+fof(fact_3, axiom, initial_cakes_made(157)).
+
+fof(fact_4, axiom, initial_pastries_made(169)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( cake_sold(X) => cake_sold(158) )).
+
+fof(rule_2, axiom, ! [Y] : ( pastries_sold(Y) => pastries_sold(147) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, cake_sold(158)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, pastries_sold(-22)).
+
+% INF-3: There are no additional pastries sold beyond those explicitly mentioned
+fof(inf_3, axiom, ! [P] : ( pastries_sold(P) => P = -22 )).

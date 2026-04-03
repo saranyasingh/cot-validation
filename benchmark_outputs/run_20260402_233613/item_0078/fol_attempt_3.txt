@@ -1,0 +1,18 @@
+```plaintext
+### ## FACTS
+FACT-1: There are 7 red peaches in the basket :: RedPeaches(7)
+FACT-2: There are 71 yellow peaches in the basket :: YellowPeaches(71)
+FACT-3: There are 8 green peaches in the basket :: GreenPeaches(8)
+
+### ## RULES
+RULE-1: If one predicate is true for a given set, then it cannot be false for another set that includes only elements of that type :: Rule1(PredicateSet(PeachRed), PredicateSet(PeakGreen))
+RULE-2: Subtract the quantity of the lesser quantity from the greater quantity :: Rule2(SubtractQuantity(GreenPeaches, RedPeaches))
+
+### ## INFERENCES
+INF-1: Since there are 71 yellow peaches and 7 red peaches, there are more yellow peaches than red peaches. :: Fact-2 implies RedPeaches(7) is not True.
+INF-2: Using Rule2, we determine the difference by subtracting the number of red peaches from the number of green peaches:
+   \[
+   GreenPeaches(8) - RedPeaches(7) = 8 - 7 = 1
+   \]
+   Thus, there is 1 more green peach than red peaches in the basket. :: Rule2 applies to the quantities derived from Facts-1 and -3.
+```

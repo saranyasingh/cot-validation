@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, reading_homework(x) = 2).
+
+fof(fact_2, axiom, math_homework(y) = 4).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by GreaterThan
+fof(inf_1, axiom, math_homework(y) > reading_homework(x)).

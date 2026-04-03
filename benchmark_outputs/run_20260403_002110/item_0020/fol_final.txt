@@ -1,0 +1,19 @@
+LABEL: #FACTS :: 
+1. Number of Girls: \( G = 34 \)
+2. Number of Boys: \( B = 841 \)
+
+LABEL: #RULES :: 
+1. Subtraction rule for natural numbers.
+2. Arithmetic operations on natural numbers.
+
+LABEL: #INFERENCES :: 
+1. Difference = \( B - G \)
+   - Substitute \( B = 841 \) and \( G = 34 \):
+     \[
+     \text{Difference} = 841 - 34
+     \]
+2. Perform the subtraction:
+   \[
+   841 - 34 = 807
+   \]
+   Therefore, the school has 807 more boys than girls.

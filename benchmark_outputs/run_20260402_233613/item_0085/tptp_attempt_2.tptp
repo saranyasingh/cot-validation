@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, diet_soda_bottles(grocery_store, 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R, D] : (R = D + 79)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, regular_soda_bottles(grocery_store, 83)).

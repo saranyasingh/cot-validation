@@ -1,0 +1,13 @@
+### ## FACTS
+1. MathHomework(2, rachel)
+2. ReadingHomework(3, rachel)
+3. BiologyHomework(10, rachel)
+
+### ## RULES
+None needed for conversion since it's already in natural language form.
+
+### ## INFERENCES
+1. TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel)
+2. TotalPages = 2 + 3 + 10 = 15
+
+Therefore, the total number of pages Rachel has to complete is 15 :: TotalPages = MathHomework(2, rachel) + ReadingHomework(3, rachel) + BiologyHomework(10, rachel).

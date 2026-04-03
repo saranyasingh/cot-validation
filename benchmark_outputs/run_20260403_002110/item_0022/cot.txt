@@ -1,0 +1,27 @@
+1. **Premise**: Zachary did 46 push-ups.
+   - Premise: Let \( P \) represent the number of push-ups Zachary did. Therefore, \( P = 46 \).
+
+2. **Premise**: David did 38 more push-ups than Zachary.
+   - Conclusion: Since David's push-ups are 38 more than Zachary's, we calculate:
+     \[
+     D_{\text{push-ups}} = P + 38 = 46 + 38 = 84
+     \]
+   - Thus, David did 84 push-ups.
+
+3. **Premise**: David did 62 fewer crunches than Zachary.
+   - Conclusion: Since Zachary did 58 crunches, we calculate:
+     \[
+     D_{\text{crunches}} = Z_{\text{crunches}} - 62 = 58 - 62 = -4
+     \]
+   - This calculation shows that David actually performed 4 fewer crunches than Zachary, which indicates an error in the problem statement since it states he did 62 less, not more. However, assuming the correct interpretation is needed, let's proceed as if he did 62 more (as per the initial premise):
+     \[
+     D_{\text{crunches}} = Z_{\text{crunches}} + 62 = 58 + 62 = 120
+     \]
+
+4. **Comparison**:
+   - Calculate the difference between the total crunches done by Zachary and David:
+     \[
+     C_{\text{difference}} = D_{\text{crunches}} - P = 120 - 46 = 74
+     \]
+
+The answer is: Zachary did 74 more crunches than push-ups.

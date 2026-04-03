@@ -1,0 +1,7 @@
+LABEL: FACT-1 :: Died(13)
+LABEL: FACT-2 :: None
+LABEL: RULE-1 :: Survived + Died = Initial
+
+LABEL: INF-1 :: Survived = 3 - 13
+LABEL: INF-2 :: Died > Survived
+LABEL: INF-3 :: Died = Survived + 13

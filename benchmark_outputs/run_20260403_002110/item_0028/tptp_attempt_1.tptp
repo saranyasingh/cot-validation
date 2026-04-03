@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, 8).
+
+fof(fact_2, axiom, 74).
+
+fof(fact_3, axiom, house_project_planks_needed).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [PPLN] : (john_uses(planks, PPLN) => nails(PPLN, 8 * 74))).
+
+fof(rule_2, axiom, ! [TOTALNAILS, NAILSPERPLINK] : ( house_project_planks_needed(house_project_planks_needed, TOTALNAILS / NAILSPERPLINK) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, 592 = john_uses(8, 74)).
+
+% From rule_2
+fof(inf_2, axiom, house_project_planks_needed = 592 / 74).

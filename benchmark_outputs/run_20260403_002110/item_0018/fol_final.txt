@@ -1,0 +1,20 @@
+### ## FACTS
+```
+LABEL: INITIAL NUMBER OF CARDS :: BaseballCards(Nell, 309) ∧ AceCards(Nell, 356)
+```
+
+### ## RULES
+```
+RULE: BaseballCards(Nell, x) ∧ BaseballCards(Nell, y) → BaseballCards(Nell, z) :: BaseballCards(Nell, z) = x - y
+```
+
+### ## INFERENCES
+```
+INFER: BaseballCards(Nell, 309) ∧ BaseballCards(Nell, 356) → BaseballCards(Nell, 309 - 356) ∧ AceCards(Nell, 356)
+INFER: BaseballCards(Nell, 309) - 415 = 309 - 415
+INFER: Cards_received = 415 + (-106)
+INFER: Total_cards_after_giving_away = 309 - 106
+INFER: Total_cards_after_receiving = 412
+INFER: Net_change_in_cards = 309 + 356 - 415 - 356
+INFER: Difference_between_baseball_and_ace_cards = 415 - 356
+```

@@ -1,0 +1,10 @@
+### ## FACTS ::
+FACT-1: LawrenceCountyKidsGoingCamp = 610769
+FACT-2: LawrenceCountyKidsStayingHome = 590796
+FACT-3: LawrenceCountyOutsideAttending = 22
+
+### ## RULES ::
+Rule-1: TotalLawrenceCountyPopulation = LawrenceCountyKidsGoingCamp + LawrenceCountyKidsStayingHome + LawrenceCountyOutsideAttending
+
+### ## INFERENCES ::
+INF-1: TotalLawrenceCountyPopulation :: TotalLawrenceCountyPopulation = 610769 + 590796 + 22

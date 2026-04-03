@@ -1,0 +1,11 @@
+LABEL: No new facts or rules were added. :: 
+# Inference 1
+Pages in the first chapter = 67 - 36
+
+LABEL: No new facts or rules were added. :: 
+# Rule 1
+Subtraction of numbers yields an integer result. 
+
+LABEL: No new facts or rules were added. :: 
+# Inference 2
+Since subtraction operation on integers always results in another integer, it's valid for calculation purposes here.

@@ -1,0 +1,48 @@
+This problem involves deductive reasoning where we use logical steps to derive a conclusion based on given premises. Let's convert the provided chain of thought into structured First-Order Logic (FOL):
+
+### FACTS
+These are the initial facts stated without any quantifiers:
+
+- Fact-1: Book has two chapters :: ChapterCount(book) = 2
+- Fact-2: Second chapter is 36 pages long :: PageCount(chapter2) = 36
+- Fact-3: Total pages in the book :: TotalPages(book) = 67
+
+### RULES
+These rules provide additional constraints or universal statements about the structure of the book:
+
+- Rule-1: Two chapters implies the existence of a book :: Book -> ChapterCount(book) = 2
+- Rule-2: Specific page count for a chapter implies the existence of a chapter :: Chapter(x) -> PageCount(chapter(x)) = ? (unknown value)
+
+### INFERENCES
+We infer the missing details using these rules and the available facts:
+
+- Inferencing Rule-1 helps establish the book's composition.
+- Using Rule-2, we know each chapter exists, but we don't have the specific page count yet.
+- Combining these facts, we can calculate the pages in the first chapter using the sum of all chapters minus the known second chapter.
+
+Here’s the FOL conversion of the logical syllogism:
+
+#### Facts
+```
+Fact-1: Book has two chapters :: ChapterCount(book) = 2
+Fact-2: Second chapter is 36 pages long :: PageCount(chapter2) = 36
+Fact-3: Total pages in the book :: TotalPages(book) = 67
+```
+
+#### Rules
+```
+Rule-1: Two chapters implies the existence of a book :: Book -> ChapterCount(book) = 2
+Rule-2: Specific page count for a chapter implies the existence of a chapter :: Chapter(x) -> PageCount(chapter(x)) = ? (unknown value)
+```
+
+#### Inferences
+```
+INF-1: Total pages in the book equals the sum of all chapters :: TotalPages(book) = Sum(PageCount(chapter(x)), x)
+INF-2: Subtracting the pages in the second chapter from the total pages yields the pages in the first chapter :: PagesInFirstChapter = TotalPages(book) - PageCount(chapter2)
+INF-3: Calculate the pages in the first chapter :: PagesInFirstChapter = 67 - 36 = 31
+```
+
+### Final Answer
+Based on the above conversions, the final answer derived through logical deduction is:
+
+**31 pages are in the first chapter.**

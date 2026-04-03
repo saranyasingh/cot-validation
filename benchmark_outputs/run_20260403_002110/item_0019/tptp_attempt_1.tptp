@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, students_in_school(270)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (students_in_school(N) => grades_count(54))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, grading_calculation(grades_count(54))).

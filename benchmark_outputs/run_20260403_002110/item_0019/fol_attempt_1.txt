@@ -1,0 +1,10 @@
+Here is the chain of thought converted into structured First-Order Logic (FOL):
+
+### FACTS
+FACT-1: There are 270 students in the school :: StudentsInSchool(270)
+
+### RULES
+Rule-1: If a number of students equals 270, then the number of grades is 54 :: ∀n (StudentsInSchool(n) → GradesCount(54))
+
+### INFERENCES
+INF-1: Given that there are 270 students, the number of grades can be calculated by dividing by 5 :: GradingCalculation(GradesCount(54))

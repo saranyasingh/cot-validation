@@ -1,0 +1,13 @@
+FACT-1: 13 trees died after the typhoon :: Died(13)
+
+FACT-2: 3 trees were initially expected to grow :: Grew(3)
+
+RULE-1: Number of trees that survived + Number of trees that died = Total initial trees :: Survived + Died = Initial
+
+INF-1: Number of trees that survived = 3 - 13 :: Survived = 3 - 13
+
+INF-2: Number of trees that died > Number of trees that survived :: Died > Survived
+
+INF-3: Number of trees that died = Number of trees that survived + 13 :: Died = Survived + 13
+
+Therefore, the final answer is: 13

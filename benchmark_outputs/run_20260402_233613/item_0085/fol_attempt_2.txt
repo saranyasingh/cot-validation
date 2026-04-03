@@ -1,0 +1,16 @@
+```plaintext
+## FACTS
+```plaintext
+FACT-1: GroceryStoreInitialDietSoda(4) :: DietSodaBottles(grocery_store, 4)
+```
+
+## RULES
+```plaintext
+RULE-1: RegularSodaMoreThanDietSoda(R, D) :: R = D + 79
+```
+
+## INFERENCES
+```plaintext
+INF-1: RegularSodaBottles(grocery_store) :: RegularSodaBottles(grocery_store, 83)
+```
+LABEL: 83 :: RegularSodaBottles(grocery_store)

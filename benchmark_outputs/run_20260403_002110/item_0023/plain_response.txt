@@ -1,0 +1,32 @@
+To solve this problem, we need to follow these steps:
+
+1. Determine how many trees survived after the typhoon.
+2. Compare the number of dead trees to the number of surviving trees.
+
+Step 1: Calculate the number of trees that survived.
+- Initially, Haley grew 3 trees.
+- After the typhoon, 13 trees died.
+- Therefore, the number of surviving trees = Total trees grown - Trees that died
+
+\[ \text{Surviving trees} = 3 - 13 = -10 \]
+
+Since it's not possible for Haley to have fewer than zero trees survive (assuming she didn't grow any new ones), this indicates there might be an error in the initial conditions or assumptions. However, if we proceed hypothetically and assume the problem meant to say "after growing 3 trees, 13 trees were lost," then we would calculate as follows:
+
+\[ \text{Surviving trees} = 3 + 13 = 16 \]
+
+So, let's correct our approach based on the assumption that Haley grew 3 trees and 13 trees died, making the surviving trees 16.
+
+Step 2: Compare the number of dead trees to the number of surviving trees.
+- Dead trees = 13
+- Surviving trees = 16
+
+Now, we find the difference between the number of dead trees and surviving trees:
+
+\[ \text{Difference} = 13 - 16 = -3 \]
+
+However, since we're asked how many more trees died than survived, and negative numbers don't make sense in this context, we interpret this as:
+
+\[ \text{More trees died than survived} = |13 - 16| = 3 \]
+
+Therefore, the answer is:
+The answer is: 3

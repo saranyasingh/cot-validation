@@ -1,0 +1,20 @@
+This problem does not require conversion to FOL since it's already presented in a clear, logical structure. However, if you still want to convert the given information into FOL, here’s how you might represent it:
+
+### Facts
+- Let \( R \) be the fact that the price per t-shirt is $98.
+- Let \( S \) be the fact that 163 t-shirts were sold in total.
+- Let \( ARG \) be the fact that 89 t-shirts were sold during the Arkansas game.
+- Let \( TTG \) be the fact that 74 t-shirts were sold during the Texas Tech game.
+
+### Rules
+- Rule 1: If the number of t-shirts sold is 163, then the total revenue is calculated as \( 98 \times 163 \).
+- Rule 2: If the number of t-shirts sold during the Arkansas game is 89, then the revenue from the Arkansas game is calculated as \( 98 \times 89 \).
+
+### Inferences
+- By applying Rule 1 to Fact \( S \):
+  - \( \forall t \ (R \land S \rightarrow (\text{TotalRevenue}(t) = 98 \times 163)) \)
+  
+- By applying Rule 2 to Fact \( ARG \):
+  - \( \forall t \ (R \land ARG \rightarrow (\text{RevenueFromARG}(t) = 98 \times 89)) \)
+
+In summary, the facts and rules provided give us the necessary pieces to calculate the revenue from each game based on the given conditions.

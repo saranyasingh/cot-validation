@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: ReadingHomeworkPages = 2 :: ReadingHomework(x) = 2
+FACT-2: MathHomeworkPages = 4 :: MathHomework(y) = 4
+
+### ## RULES
+NO RULES NEEDED
+
+### ## INFERENCES
+INF-1: MathHomeworkPages > ReadingHomeworkPages :: MathHomework(y) > ReadingHomework(x)

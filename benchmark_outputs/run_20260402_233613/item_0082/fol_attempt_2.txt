@@ -1,0 +1,9 @@
+LABEL: ## FACTS :: 
+FACT-1: Julia played with 5 kids on Monday.
+FACT-2: Julia played with 15 kids on Wednesday.
+
+LABEL: ## RULES :: 
+No rules apply here.
+
+LABEL: ## INFERENCES :: 
+INF-1: Total kids on Monday and Wednesday :: 5 + 15 = 20

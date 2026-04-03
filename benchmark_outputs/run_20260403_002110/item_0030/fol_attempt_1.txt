@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: FlourNeeded(14) :: There are 14 cups of flour required.
+FACT-2: AddedFlour(4) :: Mary has added 4 cups of flour.
+FACT-3: SugarNeeded(9) :: There are 9 cups of sugar required.
+
+### RULES
+RULE-1: Subtract(FlourNeeded(x), AddedFlour(y)) :: For x cups needed and y cups added, subtracting gives the remaining amount.
+
+### INFERENCES
+INF-1: RemainingFlour = FlourNeeded - AddedFlour :: Adding 4 cups of flour leaves 10 cups of flour needed.
+INF-2: SugarNeeded > RemainingFlour :: Since sugar is not involved in the calculation here, it remains unchanged.
+
+INF-3: Difference(FlourNeeded, SugarNeeded) :: Calculating the difference between the required flour and the available flour.
+INF-4: FinalDifference = Difference(FlourNeeded, SugarNeeded) :: Substituting the values to get the final difference.

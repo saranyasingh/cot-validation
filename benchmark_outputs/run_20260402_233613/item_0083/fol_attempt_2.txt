@@ -1,0 +1,17 @@
+## FACTS
+- Let \( P(t) \) denote the price per t-shirt for some \( t \).
+- Let \( N(t) \) denote the number of t-shirts sold for some \( t \).
+- Let \( R \) denote the fact that the price per t-shirt is $98.
+- Let \( S \) denote the fact that 163 t-shirts were sold in total.
+- Let \( ARG \) denote the fact that 89 t-shirts were sold during the Arkansas game.
+- Let \( TTG \) denote the fact that 74 t-shirts were sold during the Texas Tech game.
+
+## RULES
+- Rule 1: If \( N(t) = 163 \), then the total revenue is \( 98 \times 163 \).
+- Rule 2: If \( N(t) = 89 \), then the revenue from the Arkansas game is \( 98 \times 89 \).
+
+## INFERENCES
+- From Fact \( S \): For any \( t \), if \( N(t) = 163 \), then \( R \) holds true.
+- From Fact \( ARG \): For any \( t \), if \( N(t) = 89 \), then \( P(t) = 98 \) and \( R \) holds true.
+- By Rule 1, combining Fact \( S \) and Rule 1 gives us the total revenue calculation.
+- By Rule 2, combining Fact \( ARG \) and Rule 2 gives us the revenue from the Arkansas game calculation.

@@ -1,0 +1,8 @@
+### ## FACTS
+FACT-1: Robin has 28 packages of gum :: 28PackagesOfGum
+
+### ## RULES
+RULE-1: Number of pieces of gum = Number of packages × Pieces per package :: ∀n (Number(n) → n * PiecesPerPackage(n))
+
+### ## INFERENCES
+INF-1: Robin has 168 pieces of gum :: 168PiecesOfGum
