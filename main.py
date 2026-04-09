@@ -35,6 +35,8 @@ Here is the question:
 STRUCTURED_FOL_TEMPLATE = '''\
 Convert the following chain-of-thought reasoning into structured first-order logic (FOL).
 
+IMPORTANT: You must faithfully represent the EXACT reasoning steps in the chain of thought below — do not add new inferences, skip steps, or alter the logic. Every inference must correspond directly to a step in the original reasoning.
+
 === SYNTAX ===
 - Quantifiers: ∀ (universal), ∃ (existential)
 - Connectives: ∧ (and), ∨ (or), → (implies), ¬ (not)
@@ -94,6 +96,8 @@ INF-1: From FACT-1, RULE-1 by Modus Ponens: The ground was wet at noon :: Ground
 FOL_REPAIR_TEMPLATE = '''\
 The following structured first-order logic (FOL) extraction has errors.
 Your job is to fix all the reported errors and produce a corrected version.
+
+IMPORTANT: Your repairs must stay faithful to the EXACT reasoning steps in the original chain of thought — do not add new inferences, skip steps, or alter the logic. Only fix what the error report identifies.
 
 === ORIGINAL CHAIN OF THOUGHT REASONING ===
 {cot_text}
@@ -197,7 +201,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
     # ── Stage 2: Initial FOL Extraction ───────────────────────────────────────
     print("\n=== Stage 2: Initial FOL Extraction ===")
-    structured_fol = reasoning_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
+    structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
     print(structured_fol)
 
     verify_reports = []
@@ -231,7 +235,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
         if verify_errors:
             print(f"\n[verify] Errors found. Asking LLM to repair...")
-            structured_fol = reasoning_client.complete(FOL_REPAIR_TEMPLATE.format(
+            structured_fol = verifier_client.complete(FOL_REPAIR_TEMPLATE.format(
                 cot_text=cot_text,
                 structured_fol=structured_fol,
                 error_report=verify_report,
@@ -263,7 +267,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
         if tptp_errors:
             print(f"\n[tptp] Errors found. Asking LLM to repair...")
-            structured_fol = reasoning_client.complete(FOL_REPAIR_TEMPLATE.format(
+            structured_fol = verifier_client.complete(FOL_REPAIR_TEMPLATE.format(
                 cot_text=cot_text,
                 structured_fol=structured_fol,
                 error_report=f"TPTP/Prover errors:\n{tptp_report}",
