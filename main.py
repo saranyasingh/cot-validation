@@ -20,7 +20,14 @@ How big is each group of bananas?
 # ─── Prompt Templates ─────────────────────────────────────────────────────────
 
 COT_PROMPT = '''\
-I will give you a question. Provide a logical argument for the answer. Explain every step of your logical reasoning in the format of a logical syllogism where each premise follows from the previous one, with enough context where I can understand your logic even without the full story. End your answer with The answer is: X where X is your final answer.
+I will give you a question. Provide a logical argument for the answer. Explain every step of your logical reasoning in the format of a logical syllogism where each premise follows from the previous one, with enough context where I can understand your logic even without the full story. 
+
+End your response with The answer is: X where X is your final answer. X should just be a number, with no units, no formatting, and no trailing explanation. So your formatting 
+should be:
+EXPLANATION
+The answer is: X
+
+Here is the question:
 
 {question}
 '''
