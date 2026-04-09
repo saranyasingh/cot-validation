@@ -1,0 +1,9 @@
+## FACTS
+LABEL: Chocolate :: 7
+
+LABEL: Candy_bar :: 2
+
+## RULES
+LABEL: Chocolate :: 7 >= Candy_bar
+
+LABEL: Chocolate :: 7 > Candy_bar

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_visitors(today)).
+
+fof(fact_2, axiom, total_visitors(yesterday)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (difference_between_two_numbers(X, Y) = X - Y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, difference_between_total_visitors_today_and_yesterday = total_visitors_that_day - total_visitors_previous_day).

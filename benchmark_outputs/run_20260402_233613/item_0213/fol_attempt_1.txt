@@ -1,0 +1,39 @@
+Here is the conversion of the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+```plaintext
+## FACTS
+FACT-1: Adam has 21 apples :: AppleCount(A, 21)
+
+## RULES
+RULE-1: Adam has 8 more apples than Jackie :: ∀A (AppleCount(A, x) → JackieHas(x, x + 8))
+RULE-2: Adam has 9 apples more than Adam and Jackie together :: ∀A (AppleCount(A, x) → (JackieAndMe(0, 9) → AppleCount(A, x + 9)))
+
+## INFERENCES
+INF-1: Jackie has 13 apples :: JackieHas(J, 13)
+```
+
+### Explanation:
+
+1. **FACT-1**: 
+   ```plaintext
+   Fact-1: Adam has 21 apples :: AppleCount(A, 21)
+   ```
+   Here, `AppleCount` represents the number of apples Adam has.
+
+2. **RULE-1**:
+   ```plaintext
+   Rule-1: Adam has 8 more apples than Jackie :: ∀A (AppleCount(A, x) → JackieHas(x, x + 8))
+   ```
+   This rule states that if Adam has `x` apples, then Jackie must have `x + 8` apples.
+
+3. **RULE-2**:
+   ```plaintext
+   Rule-2: Adam has 9 apples more than Adam and Jackie together :: ∀A (AppleCount(A, x) → (JackieAndMe(0, 9) → AppleCount(A, x + 9)))
+   ```
+   This rule implies that if Adam has `x` apples, and he has 9 more apples than both him and Jackie together, then Adam must have `x + 9` apples.
+
+4. **INF-1**:
+   ```plaintext
+   Inf-1: Jackie has 13 apples :: JackieHas(J, 13)
+   ```
+   This inference concludes that Jackie has 13 apples based on the previous rules.

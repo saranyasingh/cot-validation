@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, rate_of_machine_making_shirts(6)).
+fof(fact_2, axiom, time_machine_was_operational(12)).
+
+% --- RULES ---
+fof(rule_1, axiom, (rate_of_machine_making_shirts(6) & time_machine_was_operational(12)) => number_of_shirts_made_today(72)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, number_of_shirts_made_today(72)).

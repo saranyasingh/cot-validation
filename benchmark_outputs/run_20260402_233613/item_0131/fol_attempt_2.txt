@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Fred had 60 dollars last week :: FredMoneyLastWeek(60)
+FACT-2: Jason had 19 dollars last week :: JasonMoneyLastWeek(19)
+
+## RULES
+RULE-1: If Fred has \( x \) dollars, then Fred's money increases by \( x \) dollars if he washes cars :: ∀x (FredMoney(x) → FredMoney(x + 1))
+RULE-2: If Jason has \( y \) dollars, then Jason's money increases by \( y \) dollars if he washes cars :: ∀y (JasonMoney(y) → JasonMoney(y + 1))
+
+## INFERENCES
+INF-1: From Fact-1 and Rule-1: Fred's money increased by 60 dollars last week :: FredMoneyLastWeek(60) → FredMoneyLastWeek(70)
+INF-2: From Fact-2 and Rule-2: Jason's money increased by 19 dollars last week :: JasonMoneyLastWeek(19) → JasonMoneyLastWeek(38)
+INF-3: Jason's money increased by 14 dollars this week :: JasonMoneyLastWeek(38) → JasonMoneyNow(52)
+INF-4: Jason made 14 dollars washing cars this week :: JasonMoneyNow(52) → JasonMade(14)

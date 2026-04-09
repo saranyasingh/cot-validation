@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Julia played tag with 18 kids on Monday :: PlayingTag(Julia, Monday, 18)
+FACT-2: Julia played tag with 10 kids on Tuesday :: PlayingTag(Julia, Tuesday, 10)
+
+### RULES
+RULE-1: If two events occur, they have distinct participants :: ∀a b (Event(a) ∧ Event(b) → DistinctParticipants(a, b))
+RULE-2: Difference between numbers is subtraction :: ∀n m (n - m = Difference(n, m))
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1, Julia played with 18 kids on Monday and 10 kids on Tuesday implies there were distinct participants :: DistinctParticipants(PlayingTag(Julia, Monday, 18), PlayingTag(Julia, Tuesday, 10))
+INF-2: By applying Rule-2 to the differences, the number of additional kids Julia played with on Monday compared to Tuesday can be calculated :: Difference(DistinctParticipants(PlayingTag(Julia, Monday, 18), PlayingTag(Julia, Tuesday, 10)), 10) = Difference(18, 10) = 8
+
+Therefore,
+INF-3: Julia played with 8 more kids on Monday than on Tuesday :: 8

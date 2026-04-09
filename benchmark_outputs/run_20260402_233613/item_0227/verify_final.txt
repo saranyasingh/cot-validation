@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Story states 61 parents.
+FACT-2: SUPPORTED — Story states 177 pupils.
+FACT-3: SUPPORTED — Total equals sum of parents and pupils (61 + 177).
+
+RULE-1: PLAUSIBLE — The program’s seating capacity is given as 44.
+RULE-2: PLAUSIBLE — If attendance exceeds capacity, then actual attendance > capacity; in this story attendance (238) exceeds capacity (44).

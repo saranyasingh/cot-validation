@@ -1,0 +1,4 @@
+LABEL: Fact-1 :: InitialAmount ::= P = \$128
+LABEL: Rule-1 :: RemainingMoney ::= ∀x ((Purchased)(x) → RemainingMoney(x))
+LABEL: Inf-1 :: RemainingMoney ::= RemainingMoney(groceries)
+LABEL: Inf-2 :: RemainingMoney ::= RemainingMoney(\$128 - \$38)

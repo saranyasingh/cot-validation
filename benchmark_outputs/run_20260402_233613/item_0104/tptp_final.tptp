@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [D] : ((budget(D) & bought(D, 2)) => D = 28)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (budget(D) => total_cost(D) = D)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [DVD_Pack] : (cost_of_dvd_pack(DVD_Pack) = 14)).

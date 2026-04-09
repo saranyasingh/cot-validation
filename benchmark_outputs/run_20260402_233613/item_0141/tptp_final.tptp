@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_goldfish_count(paige) = 8).
+fof(fact_2, axiom, remaining_goldfish_after_strays(paige) = 6).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (number_of_disappeared_goldfish(P) = initial_goldfish_count(P) - remaining_goldfish_after_strays(P))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Subtraction
+fof(inf_1, axiom, number_of_disappeared_goldfish(paige) = 8 - 6).

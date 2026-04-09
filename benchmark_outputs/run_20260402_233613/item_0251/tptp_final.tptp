@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_number_of_cakes = 149).
+fof(fact_2, axiom, number_of_cakes_sold = 10).
+
+% --- RULES ---
+fof(rule_1, axiom, remaining_cakes = subtract(initial_number_of_cakes, number_of_cakes_sold)).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by evaluation
+fof(inf_1, axiom, remaining_cakes_after_sale = rule_apply(initial_number_of_cakes, number_of_cakes_sold)).

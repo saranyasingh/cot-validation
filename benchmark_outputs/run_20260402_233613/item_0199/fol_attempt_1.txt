@@ -1,0 +1,9 @@
+**FACTS**
+FACT-1: 25 cases of trefoils were sold :: NumberOfCases(25)
+FACT-2: Each case contains 14 boxes :: NumberOfBoxesPerCase(14)
+
+**RULES**
+RULE-1: Total number of boxes delivered = Number of Cases × Number of Boxes per Case :: RuleForTotalBoxes(NumberOfCases(25), NumberOfBoxesPerCase(14))
+
+**INFERENCES**
+INF-1: Total number of boxes delivered = 350 :: RuleForTotalBoxes(NumberOfCases(25), NumberOfBoxesPerCase(14))

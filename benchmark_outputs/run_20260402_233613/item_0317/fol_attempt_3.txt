@@ -1,0 +1,8 @@
+## FACTS
+Fact-1: BoughtInvitations(3)
+
+## RULES
+Rule-1: ForAll(n, InvitationsPerPack(x) -> BoughtInvitations(n * x))
+
+## INFERENCES
+Inf-1: ForAll(x, InvitationsPerPack(x) -> BoughtInvitations(3 * x))

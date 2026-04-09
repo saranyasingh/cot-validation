@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, R(rose, t_initial) = 15).
+fof(fact_2, axiom, O(orchid, t_initial) = 62).
+fof(fact_3, axiom, R(rose, t_final) = 17).
+fof(fact_4, axiom, O(orchid, t_final) = 96).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (flower(X) => ? [Y] : (time(Y) & flower(Y) & time(Y) <= Y))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, R(rose, t_final) - R(rose, t_initial)).
+% From fact_1, rule_1 by Subtraction
+fof(inf_2, axiom, -2).

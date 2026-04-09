@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, beads_per_necklace(5)).
+fof(fact_2, axiom, made_necklaces(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,B] : ((made_necklaces(N) & beads_per_necklace(B)) => total_beads(N,B))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_beads(4,5)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_beads(4,5)).

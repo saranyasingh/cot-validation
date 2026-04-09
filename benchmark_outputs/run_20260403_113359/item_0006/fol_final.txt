@@ -1,0 +1,24 @@
+```plaintext
+## FACTS
+FACT-1: Each glass costs $5 unless it’s the second glass :: ∀g (GlassPrice(g) ↔ (g ≠ 2))
+
+## RULES
+RULE-1: If it’s not the second glass, each glass costs $5 :: ∀g (Not(g == 2)) → GlassPrice(g) = 5
+
+RULE-2: Every second glass costs 60% of the price :: ∀g (g == 2) → GlassPrice(g) = 5 * 0.6
+
+## INFERENCES
+INF-1: Kylar pays $5 for each normal glass :: ∀g (GlassPrice(g) = 5)
+
+INF-2: For every second glass, he pays 60% of the price :: ∀g (g == 2) → GlassPrice(g) = 5 * 0.6
+
+INF-3: Total cost for 8 discounted glasses :: 8 * (5 - 5 * 0.4)
+
+INF-4: Total cost for 8 non-discounted glasses :: 8 * 5
+
+INF-5: Summing up both parts :: TotalCost = 8 * (5 - 5 * 0.4) + 8 * 5
+
+INF-6: Calculate the final total :: TotalCost = 8 * 3 + 8 * 5 = 24 + 40 = 64
+
+INF-7: Kylar needs to pay $64 for all 16 glasses :: TotalCost = 64
+```

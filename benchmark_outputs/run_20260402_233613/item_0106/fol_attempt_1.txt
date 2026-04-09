@@ -1,0 +1,13 @@
+INF-1: Given the total number of drums filled (90) and the total time period (6 days),
+the daily average can be calculated using Division Rule.
+Division Rule states that if \( A / B = C \), then \( A = B * C \).
+In our case,
+\[
+\text{Drums per day} = \frac{90}{6}
+\] 
+Performing the division gives us:
+\[
+\text{Drums per day} = 15
+\]
+
+Thus, the answer is: 15 drums of grapes would be filled per day.

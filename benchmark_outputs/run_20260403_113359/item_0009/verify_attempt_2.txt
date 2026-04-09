@@ -1,0 +1,25 @@
+FACT-1: UNSUPPORTED — Not stated in the story; StartPoint is not referenced.
+
+FACT-2: SUPPORTED — EndPoint is implied as the endpoint of the travel after 4 hours.
+
+FACT-3: SUPPORTED — The story states 3 hours as the InitialSegment.
+
+FACT-4: SUPPORTED — The story indicates 2 hours of standstill before turning around (FirstTurnAround).
+
+FACT-5: SUPPORTED — The story states 0.5 hours at 30 mph as SecondSegment.
+
+FACT-6: SUPPORTED — The story states 1.5 hours as FinalSegment at 80 mph.
+
+FACT-7: SUPPORTED — The 1.5 hours correspond to the FinalSegment.
+
+RULE-1: PLAUSIBLE — Distance = Speed × Time.
+
+RULE-2: IMPLAUSIBLE — Not always true; longer travel time does not guarantee arrival at destination.
+
+RULE-3: PLAUSIBLE — Standing still yields zero distance; duration condition is irrelevant.
+
+RULE-4: IMPLAUSIBLE — 60 mph does not equal 30 miles per hour of travel time.
+
+RULE-5: IMPLAUSIBLE — At 30 mph the distance is not half the distance implied; the rule is incorrect.
+
+RULE-6: IMPLAUSIBLE — 80 mph does not cover twice the distance of 30 mph for the same time.

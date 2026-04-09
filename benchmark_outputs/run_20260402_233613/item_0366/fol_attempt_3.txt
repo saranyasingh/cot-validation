@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: BalloonsAllanBrought(5)
+
+### RULES
+RULE-1: If someone brings x balloons, then another person brings x+6 balloons :: ∀x (Bringing(x) → Bringing(x+6))
+
+### INFERENCES
+INF-1: BalloonsJakeBrought(11) :: BalloonsAllanBrought(5) ∧ Rule(RULE-1)

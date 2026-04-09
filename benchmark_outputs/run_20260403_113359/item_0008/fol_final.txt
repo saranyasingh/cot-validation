@@ -1,0 +1,65 @@
+LABEL: ### FACTS
+#### Fact-1: Carla's initial download speed is 2 GB per minute.
+Fact-1: InitialDownloadSpeed(Carla, 2 GB/min)
+
+#### Fact-2: The first half of the file (100 GB) takes 50 minutes to download at 2 GB per minute.
+Fact-2: FirstHalfDownloadTime(100 GB, 2 GB/min, 50 min)
+
+#### Fact-3: During the restart, Carla’s download speed drops to 1 GB per minute.
+Fact-3: SpeedDuringRestart(1 GB/min)
+
+#### Fact-4: It takes 20 minutes to complete the second half of the file during the restart period.
+Fact-4: SecondHalfDownloadTime(20 min)
+
+#### Fact-5: Total time before the restart = Initial download + First half download during restart.
+Fact-5: TotalTimeBeforeRestart(70 min)
+
+#### Fact-6: Carla resumes at her normal speed of 2 GB per minute after the restart.
+Fact-6: ResumeDownloadSpeed(Carla, 2 GB/min)
+
+#### Fact-7: The remaining file size after the restart = 200 GB - 100 GB = 100 GB.
+Fact-7: RemainingFileSizeAfterRestart(100 GB)
+
+#### Fact-8: Time required to download remaining 100 GB at 2 GB per minute.
+Fact-8: TimeRequiredForRemainingFile(50 min)
+
+#### Fact-9: Total time including restart = Time before restart + Time to resume + Time to finish remaining file.
+Fact-9: TotalTimeIncludingRestart(120 min)
+
+LABEL: ### RULES
+#### Rule-1: If Carla downloads a certain amount of data at a certain rate, then she will have downloaded that much by some time.
+Rule-1: RateAndTime(Rate, Time, Data)
+
+#### Rule-2: If Carla resumes downloading at a different rate, she will continue downloading until she finishes the rest of the file.
+Rule-2: ResumeAndFinish(FinishRate, FinishTime, RestOfFile)
+
+#### Rule-3: Carla's initial download speed is 2 GB per minute.
+Rule-3: InitialDownloadSpeed(Carla, 2 GB/min)
+
+LABEL: ### INFERENCES
+#### Inference-1: Carla’s initial download speed is 2 GB per minute.
+Inference-1: InitialDownloadSpeed(Carla, 2 GB/min)
+
+#### Inference-2: It takes 50 minutes to download the first half of the file at 2 GB per minute.
+Inference-2: FirstHalfDownloadTime(100 GB, 2 GB/min, 50 min)
+
+#### Inference-3: During the restart, Carla’s download speed drops to 1 GB per minute.
+Inference-3: SpeedDuringRestart(1 GB/min)
+
+#### Inference-4: It takes 20 minutes to complete the second half of the file during the restart period.
+Inference-4: SecondHalfDownloadTime(20 min)
+
+#### Inference-5: Total time before the restart = 50 minutes + 20 minutes = 70 minutes.
+Inference-5: TotalTimeBeforeRestart(70 min)
+
+#### Inference-6: Carla resumes at her normal speed of 2 GB per minute after the restart.
+Inference-6: ResumeDownloadSpeed(Carla, 2 GB/min)
+
+#### Inference-7: The remaining file size after the restart = 200 GB - 100 GB = 100 GB.
+Inference-7: RemainingFileSizeAfterRestart(100 GB)
+
+#### Inference-8: Time required to download remaining 100 GB at 2 GB per minute = 50 minutes.
+Inference-8: TimeRequiredForRemainingFile(50 min)
+
+#### Inference-9: Total time including restart = 70 minutes + 50 minutes = 120 minutes.
+Inference-9: TotalTimeIncludingRestart(120 min)

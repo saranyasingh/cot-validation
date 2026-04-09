@@ -1,0 +1,25 @@
+### Facts
+FACT-1: Baker made 14 cakes :: MadeCake(14)
+FACT-2: Baker made 153 pastries :: MadePastry(153)
+
+### Rules
+RULE-1: If a cake is made, then it is sold :: ∀c (MadeCake(c) → SoldCake(c))
+RULE-2: If a pastry is made, then it is sold :: ∀p (MadePastry(p) → SoldPastry(p))
+
+### Inferences
+INF-1: From Fact-1, Rule-1 by Universal Instantiation: Baker sold 14 cakes :: SoldCake(14)
+INF-2: From Fact-2, Rule-2 by Universal Instantiation: Baker sold 153 pastries :: SoldPastry(153)
+
+INF-3: Difference between cakes and pastries sold :: (SoldCake(14) ∧ SoldPastry(153)) → (SoldCake(14) - SoldPastry(153))
+INF-4: By applying Rule-1 again to each individual sale: 
+  - SoldCake(14) → SoldCake(14)
+  - SoldPastry(153) → SoldPastry(153)
+
+INF-5: From INF-3 and INF-4, we get: 
+  - (SoldCake(14) ∧ SoldPastry(153)) → ((SoldCake(14) - SoldPastry(153)))
+
+INF-6: Finally, apply Rule-2 to both sides of INF-5:
+  - (SoldCake(14) - SoldPastry(153)) → (∀c (SoldCake(c) ∧ SoldPastry(p) → c ≠ p))
+
+So, the final answer is: 
+INF-6: (SoldCake(14) - SoldPastry(153)) :: (∀c (SoldCake(c) ∧ SoldPastry(p) → c ≠ p)

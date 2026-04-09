@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, room_width(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [L, W] : (area(L, W) => times(L, W))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, area(2, room_height)).

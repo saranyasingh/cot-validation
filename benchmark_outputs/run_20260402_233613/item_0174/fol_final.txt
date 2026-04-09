@@ -1,0 +1,16 @@
+### ## FACTS
+FACT-1: Sofia asked the students to suggest specific types of food :: AskForFood()
+FACT-2: 144 students suggested adding mashed potatoes :: Suggestions(MashedPotatoes, 144)
+FACT-3: 467 students suggested adding bacon to the menu :: Suggestions(Bacon, 467)
+FACT-4: 79 students suggested adding tomatoes :: Suggestions(Tomatoes, 79)
+
+### ## RULES
+RULE-1: If someone suggests something, then they are interested in that topic :: InterestedIn(Suggests(x))
+RULE-2: If someone suggests something, then they have interest in food :: HasInterestIn(Food(x))
+RULE-3: If someone has interest in food, then they are asking them about food :: AskingAboutFood(AskForFood())
+RULE-4: If someone asks about food, then they might be interested in food topics :: MightBeInterestedInFood(AskedForFood())
+
+### ## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Generalization: Someone who asks about food is interested in food :: InterestedIn(AskForFood())
+INF-2: From RULE-1 and INF-1, RULE-2 by Universal Generalization: Someone who asks about food is interested in food topics :: InterestedIn(Food())
+INF-3: From RULE-2 and RULE-3, RULE-4 by Universal Generalization: Someone who asks about food might be interested in food topics :: MightBeInterestedInFood(AskedForFood())

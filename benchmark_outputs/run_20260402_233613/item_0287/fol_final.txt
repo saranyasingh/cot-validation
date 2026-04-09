@@ -1,0 +1,11 @@
+### ## FACTS
+
+LABEL: FACT-1 :: Eggs(18)
+
+### ## RULES
+
+LABEL: RULE-1 :: ∀n,k (Eggs(n) → GroupsOf6(n, k))
+
+### ## INFERENCES
+
+LABEL: INF-1 :: GroupsOf6(Eggs(18), 3)

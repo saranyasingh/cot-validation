@@ -1,0 +1,9 @@
+FACT-1: Each bag contains 3 cookies :: BagContains(3, x)
+
+FACT-2: Total number of cookies is 21 :: NumberOfCookies(21, x)
+
+RULE-1: Number of bags = Total number of cookies / Number of cookies per bag :: NumberOfBags(x, y)
+
+INF-1: Number of bags = 21 / 3 :: NumberOfBags(x, y) where x represents total cookies and y represents cookies per bag
+
+LABEL: INF-1 :: NumberOfBags(t_21, t_3)

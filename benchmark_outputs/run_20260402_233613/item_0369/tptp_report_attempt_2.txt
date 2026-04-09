@@ -1,0 +1,13 @@
+  % From fact_1, rule_1 by Universal Instantiation
+  inf_1: PROVED
+  % From fact_2, rule_1 by Universal Instantiation
+  inf_2: PROVED
+  % From fact_3, rule_1 by Universal Instantiation
+  inf_3: PROVED
+  % From fact_2, fact_3 by Calculation
+  inf_4: NOT PROVED
+  % From inf_4 by Calculation
+  inf_5: UNKNOWN
+
+Prover errors:
+inf_4: NOT PROVED — inference does not follow from axioms

@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Directly stated: Dave had 17 apps.
+FACT-2: SUPPORTED — Directly stated: Dave had 21 files.
+FACT-3: SUPPORTED — Directly stated: 3 apps left.
+FACT-4: SUPPORTED — Directly stated: 7 files left.
+RULE-1: IMPLAUSIBLE — Subtraction can count deletions for any item, not just files.
+RULE-2: PLAUSIBLE — It is a sound principle: deletions equal initial count minus final count.

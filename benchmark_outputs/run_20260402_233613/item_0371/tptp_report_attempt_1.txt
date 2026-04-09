@@ -1,0 +1,12 @@
+  % From fact_1
+  inf_1: UNKNOWN
+  % From fact_2
+  inf_2: UNKNOWN
+  % From fact_3
+  inf_3: UNKNOWN
+  % From rule_1
+  inf_4: UNKNOWN
+  % From fact_2, fact_3 by SubtractLengthFromFirst
+  inf_5: UNKNOWN
+  % From inf_5 by arithmetic
+  inf_6: UNKNOWN

@@ -1,0 +1,16 @@
+### ## FACTS
+LABEL: Fact 1 :: Total cakes = 54 :: TotalCakes(54)
+LABEL: Fact 2 :: Total pastries = 143 :: TotalPastries(143)
+LABEL: Fact 3 :: Cakes sold = 68 :: CakesSold(68)
+LABEL: Fact 4 :: Pastries sold = 92 :: PastriesSold(92)
+
+### ## RULES
+LABEL: Rule 1 :: If a total quantity equals a sum of sold items, then the remaining quantity is zero :: ∀q (Total(q) = Sum(qs_sold) → Remaining(q) = 0)
+
+### ## INFERENCES
+LABEL: Inference 1 :: From Fact 1 and Rule 1, Remaining(cakes) = 0 :: Remaining(TotalCakes) = 0
+LABEL: Inference 2 :: From Fact 2 and Rule 1, Remaining(pastries) = 0 :: Remaining(TotalPastries) = 0
+LABEL: Inference 3 :: Remaining(pastries) > Remaining(cakes) :: Remaining(Pastries) > Remaining(Cakes)
+LABEL: Inference 4 :: Remaining(pastries) - Remaining(cakes) = Difference :: Remaining(Pastries) - Remaining(Cakes) = Difference
+LABEL: Inference 5 :: Difference = Remaining(pastries) - Remaining(cakes) :: Difference = Remaining(Pastries) - Remaining(Cakes)
+LABEL: Inference 6 :: Difference = 51 :: Difference = 51

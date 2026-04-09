@@ -1,0 +1,47 @@
+Let's convert the chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+- There are 17 bottles in total.
+- There are 9 regular soda bottles.
+- Let \( D \) be the number of diet soda bottles.
+
+**Fact-1:** There are 17 bottles in total.
+\[
+Bottles(17)
+\]
+
+**Fact-2:** There are 9 regular soda bottles.
+\[
+RegularSodaBottles(9)
+\]
+
+**Fact-3:** Diet soda bottles make up the rest of the bottles.
+\[
+DietSodaBottles(D)
+\]
+
+### RULES
+No rules needed here since all facts are basic statements about the quantities of bottles.
+
+### INFERENCES
+We need to solve for \( D \) using the given facts.
+
+**Inference-1:** Diet soda bottles make up the remaining bottles after accounting for regular soda bottles.
+\[
+D = Bottles - RegularSodaBottles
+\]
+
+Since there are no other conditions provided that would modify \( D \), we can conclude:
+\[
+D = 17 - 9
+\]
+
+Performing the subtraction:
+\[
+D = 8
+\]
+
+Therefore, the number of diet soda bottles is:
+\[
+\boxed{8}
+\]

@@ -1,0 +1,12 @@
+### ## FACTS
+- ```210``` :: ```JerseyPrice(jersey)```
+- ```240``` :: ```TShirtPrice(tshirt)```
+
+### ## RULES
+- None required for this problem.
+
+### ## INFERENCES
+- ```TotalRevenueFromJerseys() :: Sum(210 * 23)```
+- ```TotalRevenueFromTShirts() :: Sum(240 * 177)```
+- ```PriceDifference() :: Abs(TotalRevenueFromTShirts() - TotalRevenueFromJerseys())```
+- ```MoreCostThanJerseyDifference() :: PriceDifference()```

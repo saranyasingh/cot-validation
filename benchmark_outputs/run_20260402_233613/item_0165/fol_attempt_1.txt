@@ -1,0 +1,4 @@
+FACT-1: Length of the room is 5 feet :: Length(room) = 5
+FACT-2: Area required is 10 square feet :: Area_required = 10
+RULE-1: Width of the room = Area / Length :: Width(room) = Area_required / Length(room)
+INF-1: Width of the room :: Width(room) = 10 / 5 = 2

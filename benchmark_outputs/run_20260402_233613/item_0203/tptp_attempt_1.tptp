@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, F = 628).
+fof(fact_2, axiom, W = W).
+fof(fact_3, axiom, F + W = 159).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [F, W] : (F + W = 628)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, W = -469).
+% From INF-1 by Logical inconsistency reasoning
+fof(inf_2, axiom, logical_error_or_inconsistency(inf_1)).

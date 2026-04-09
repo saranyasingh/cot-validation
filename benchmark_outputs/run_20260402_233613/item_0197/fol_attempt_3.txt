@@ -1,0 +1,9 @@
+LABEL: Fact-1 :: 10 :: ReceivedEmails(morning, 10)
+LABEL: Fact-2 :: 7 :: ReceivedEmails(afternoon, 7)
+
+LABEL: Rule-1 :: DifferenceBetweenMorningAndAfternoon(emails_in_morning, emails_in_afternoon) :: emails_in_morning - emails_in_afternoon = Difference
+
+LABEL: Inference-1 :: Difference = 3 :: Difference = 10 - 7
+LABEL: Inference-2 :: Difference > 0 :: Difference = 3
+LABEL: Inference-3 :: NumberOfMoreEmailsInMorningThanAfternoon(emails_in_morning, emails_in_afternoon) :: Difference > 0
+LABEL: Inference-4 :: NumberOfMoreEmailsInMorningThanAfternoon(10, 7) :: NumberOfMoreEmailsInMorningThanAfternoon(10, 7) :: Difference > 0

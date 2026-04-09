@@ -1,0 +1,13 @@
+```plaintext
+## FACTS
+FACT-1: WaxNeeded(F, 628) :: F = 628
+FACT-2: WaxPresent(W) :: W = W
+FACT-3: AdditionalWax(159) :: F + W = 159
+
+## RULES
+RULE-1: TotalWaxRequired(F, W, 628) :: F + W = 628
+
+## INFERENCES
+INF-1: WaxAlreadyPresent(W) :: W = -469
+INF-2: NegativeResult(INF-1) :: LogicalErrorOrInconsistency :: Thepersonalreadyhasnegativeamountofwaxesisimpossibleinpracticalterms
+```

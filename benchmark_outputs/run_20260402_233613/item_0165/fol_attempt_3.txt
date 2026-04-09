@@ -1,0 +1,9 @@
+## FACTS
+LABEL: Fact-1 :: LENGTH(room) = 5
+LABEL: Fact-2 :: AREA_REQUIRED = 10
+
+## RULES
+LABEL: Rule-1 :: WIDTH(room) = AREA_REQUIRED / LENGTH(room)
+
+## INFERENCES
+LABEL: Inference-1 :: WIDTH(room) = 10 / 5 = 2

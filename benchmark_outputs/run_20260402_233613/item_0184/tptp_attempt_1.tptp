@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, cookies_paco_had(12)).
+fof(fact_2, axiom, cookies_eaten(paco, 16)).
+fof(fact_3, axiom, cookies_gave(paco, friend, 21)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : (eat(X, Y) => decrease_total_cookies(X, Y))).
+fof(rule_2, axiom, ! [X] : ! [Y] : ! [Z] : (give(X, Y, Z) => decrease_total_cookies(Y, Z))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Universal Instantiation
+fof(inf_1, axiom, cookies_paco_had(12)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, decrease_total_cookies(paco, 16)).
+% From fact_3, rule_2 by Universal Instantiation
+fof(inf_3, axiom, decrease_total_cookies(friend, 21)).
+% From inf_1, inf_2 by Substitution
+fof(inf_4, axiom, remaining_cookies(paco) = cookies_paco_had(12) - cookies_eaten(paco, 16)).
+% From inf_4 by Addition
+fof(inf_5, axiom, total_remaining_cookies = remaining_cookies(paco) + cookies_gave(paco, friend, 21)).
+% From inf_5 by Subtraction
+fof(inf_6, axiom, difference = total_remaining_cookies - cookies_eaten(paco, 16)).
+% From inf_6 by Algebra
+fof(inf_7, axiom, difference = cookies_paco_had(12) + cookies_gave(paco, friend, 21) - cookies_eaten(paco, 16)).
+% From inf_7 by Algebra
+fof(inf_8, axiom, difference = 5).

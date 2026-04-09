@@ -1,0 +1,17 @@
+### FACTS
+FACT-1: Gwen received $14 for her birthday :: BirthdayGift(gwen, 14)
+
+### RULES
+RULE-1: If someone receives X as a gift, they initially have X dollars :: ∀X (Received(X) → InitialAmount(gwen, X))
+
+### INFERENCES
+INF-1: Since Gwen received $14, she must have had more than $0 before receiving the gift :: InitialAmount(gwen, 14)
+
+INF-2: And since she ended up with $6 after spending $8, we can determine how much she had before spending :: Spending(gwen, 8, 6)
+
+INF-3: Combining these two pieces of information allows us to find out the total amount she had before spending :: TotalAmountBeforeSpending(gwen)
+
+INF-4: This calculation should show that before spending, she had more than $8 but less than or equal to $14 :: ProofOfInference(INF-3, RULE-1)
+
+Therefore,
+- Proof of Inference: Gwen received $14 for her birthday :: ProofOfInference(INF-3, RULE-1)

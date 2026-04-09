@@ -1,0 +1,14 @@
+### ## FACTS
+FACT-1: InitialAppsDaveHad = 17 :: AppsDaveHad(t_0) = 17
+FACT-2: InitialFilesDaveHad = 21 :: FilesDaveHad(t_0) = 21
+FACT-3: RemainingAppsAfterDeletion = 3 :: AppsLeftAfterDeletions(t_d) = 3
+FACT-4: RemainingFilesAfterDeletion = 7 :: FilesLeftAfterDeletions(t_d) = 7
+
+### ## RULES
+RULE-1: Deletions represent removals from an initial set :: ∀t (RemainingAppsAfterDeletion(t) - AppsDaveHad(t) = RemainingFilesAfterDeletion(t) - FilesDaveHad(t))
+
+### ## INFERENCES
+INF-1: From RULE-1 and RULE-2 by Substitution: (21 - 7) = (17 - 3)
+INF-2: Simplifying both sides yields: 14 = 14
+
+Therefore, Dave deleted **14 files** from his phone.

@@ -1,0 +1,25 @@
+To determine how many nails John needs for the house wall, we'll break down the problem into two parts:
+
+**Premise 1:** John uses 13 large planks of wood.
+- This tells us that there are 13 large planks available for securing with nails.
+
+**Premise 2:** Each large plank requires 17 pieces of nails.
+- This means for all the large planks combined:
+\[ \text{Total nails for large planks} = 13 \times 17 \]
+
+Calculating this gives:
+\[ 13 \times 17 = 221 \]
+So, John needs 221 nails for the large planks.
+
+**Premise 3:** In addition, John needs 8 nails for some smaller planks.
+- This indicates an extra requirement specific to smaller planks, which do not affect the calculation for large planks but add to the total number of nails required.
+
+**Conclusion:** Adding the nails for both types of planks together:
+\[ \text{Total nails needed} = 221 + 8 \]
+
+Performing the addition:
+\[ 221 + 8 = 229 \]
+
+Therefore, John needs **229 nails** for the house wall.
+
+The answer is: 229

@@ -1,0 +1,13 @@
+## FACTS
+LABEL: FACT-1 :: ReceivedEmails(morning, 6)
+LABEL: FACT-2 :: ReceivedEmails(afternoon, 3)
+LABEL: FACT-3 :: TotalReceived(10)
+
+## RULES
+LABEL: RULE-1 :: ∀x (ReceivedEmails(morning, x) → ReceivedEmails(afternoon, x))
+LABEL: RULE-2 :: ∀y (ReceivedEmails(evening, y) → TotalReceived(y))
+
+## INFERENCES
+LABEL: INF-1 :: ReceivedEmails(morning, 6) ∧ ReceivedEmails(afternoon, 3) ∨ ReceivedEmails(evening, 1) -> TotalReceived(10)
+LABEL: INF-2 :: (∀x (ReceivedEmails(morning, x) ∧ ReceivedEmails(afternoon, x)) → ReceivedEmails(evening, x)) 
+LABEL: INF-3 :: (∃x (ReceivedEmails(evening, x))) → TotalReceived(x)

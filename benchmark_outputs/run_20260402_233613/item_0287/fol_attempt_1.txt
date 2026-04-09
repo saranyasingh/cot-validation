@@ -1,0 +1,33 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+These are the facts stated directly from the story without any quantifiers.
+
+```plaintext
+FACT-1: Rebecca has 18 eggs :: Eggs(18)
+```
+
+### RULES
+These are universally quantified implications based on external knowledge.
+
+```plaintext
+RULE-1: If Rebecca has n eggs, then she can make k groups of 6 eggs each :: ∀n,k (Eggs(n) → GroupsOf6(n, k))
+```
+
+### INFERENCES
+These are derived conclusions based on the given information and rules.
+
+```plaintext
+INF-1: From FACT-1 and RULE-1, we conclude: Rebecca can make 3 groups of 6 eggs each :: GroupsOf6(Eggs(18), 3)
+```
+
+### Output Format
+We will produce the output in the required format, ensuring each line adheres to the specified structure.
+
+```plaintext
+FACT-1: Rebecca has 18 eggs :: Eggs(18)
+RULE-1: If Rebecca has n eggs, then she can make k groups of 6 eggs each :: ∀n,k (Eggs(n) → GroupsOf6(n, k))
+INF-1: From FACT-1 and RULE-1, we conclude: Rebecca can make 3 groups of 6 eggs each :: GroupsOf6(Eggs(18), 3)
+```
+
+This conversion ensures all necessary components are included according to the constraints provided.

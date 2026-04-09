@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, morning_emails(6)).
+fof(fact_2, axiom, afternoon_emails(3)).
+fof(fact_3, axiom, evening_emails(5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Time] : ((morning_emails(Time) & afternoon_emails(Time)) | evening_emails(Time))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Addition
+fof(inf_1, axiom, total_emails(14)).

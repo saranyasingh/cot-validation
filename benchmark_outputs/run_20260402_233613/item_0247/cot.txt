@@ -1,0 +1,38 @@
+To solve this problem, let's break it down into clear steps using a logical syllogism:
+
+1. **Initial Condition**: There were 28 children initially on the bus.
+   - Premise (P1): Initially, \( \text{number of children} = 28 \).
+
+2. **Event at Bus Stop**: Some number of children got on the bus and others got off.
+   - Let’s denote the number of children who got on as \( x \) and the number who got off as \( y \).
+   - Therefore, after these events, the total number of children on the bus becomes \( 28 + x - y \).
+
+3. **Final Condition**: After all these changes, there were 30 children on the bus.
+   - Premise (P2): Final condition, \( 28 + x - y = 30 \).
+
+4. **Solving for \( x \)**:
+   - From P2, we can rearrange to find \( x \):
+     \[
+     28 + x - y = 30 \\
+     x - y = 30 - 28 \\
+     x - y = 2
+     \]
+   - So, \( x = y + 2 \).
+
+5. **Understanding \( x \) and \( y \)**:
+   - We know \( x \) represents the number of children who got on the bus, which means they must be positive integers.
+   - Since \( x = y + 2 \), \( y \) must be an integer such that \( x \) remains a positive integer.
+
+6. **Total Children Calculation**:
+   - The total number of children on the bus before any got on or off was 28.
+   - Adding the number of children who got on (\( x \)) minus those who got off (\( y \)), gives us 30 children.
+   - This implies \( x - y = 2 \).
+
+7. **Conclusion**:
+   - To determine how many more children got on compared to those who got off, we need to consider the possible values for \( x \) and \( y \). Given \( x - y = 2 \), if \( y = 0 \), then \( x = 2 \). However, since \( y \) cannot be zero because it represents people getting off the bus, \( y \) must be greater than zero.
+   - If \( y = 1 \), then \( x = 3 \). In this case, \( x - y = 3 - 1 = 2 \), so 3 children got on and 1 child got off.
+   - If \( y = 2 \), then \( x = 4 \). Here, \( x - y = 4 - 2 = 2 \), meaning 4 children got on and 2 got off.
+   - Generally, for any positive value of \( y \), \( x \) would always be two more than \( y \).
+
+Therefore, the conclusion is:
+The answer is: 2.

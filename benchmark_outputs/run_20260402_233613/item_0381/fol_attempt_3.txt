@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Each book has 66 pages :: PagesPerBook = 66
+
+### RULES
+RULE-1: A book with exactly 66 pages is considered a valid book :: IsValidBook(66)
+
+### INFERENCES
+INF-1: A book with 66 pages is a valid book :: IsValidBook(PagesPerBook)
+INF-2: Total days to finish all books is 492 days :: TotalDays = 492
+INF-3: Number of books equals total days divided by days per book :: NumberOfBooks = TotalDays / DaysPerBook
+INF-4: Replace DaysPerBook with 66 :: NumberOfBooks = 492 / 66
+INF-5: Perform the division to obtain the number of books :: NumberOfBooks = 7.5
+
+Therefore, the number of books Frank read is \(7.5\).

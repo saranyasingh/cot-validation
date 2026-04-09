@@ -1,0 +1,22 @@
+This conversion process translates the logical reasoning into formal FOL while adhering to the specified output format. Here’s the breakdown:
+
+### FACTS
+These are the given facts without any quantifiers:
+```
+FACT-1: Initially there were 5 storks :: Storks(5)
+FACT-2: Initially there were 3 birds :: Birds(3)
+```
+
+### RULES
+These are universal quantified rules based on the given information:
+```
+RULE-1: After some new arrivals, the number of birds increases by the number of newly arrived birds :: ∀n (Arrived(n) → Birds(Birds(3) + n))
+```
+
+### INFERENCES
+Here are the derived conclusions citing their respective facts and rules:
+```
+INF-1: When 4 more birds arrive, the difference between the number of birds and storks is 2 :: ∀d (Birds(Birds(3) + d) ∧ Storks(5) → d = 2)
+```
+
+In summary, the final structure matches the required format with all components clearly delineated.

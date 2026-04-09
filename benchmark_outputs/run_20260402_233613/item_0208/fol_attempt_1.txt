@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: RazorbackShop sells t-shirts for $215 each :: SellingTShirtsFor(215, t_shirt)
+
+## RULES
+RULE-1: SellingTShirtsFor(p, t_shirt) implies TotalRevenue(TotalRevenueFromSellingTShirts(p)) :: SellingTShirtsFor(p, t_shirt) → TotalRevenueFromSellingTShirts(p)
+
+## INFERENCES
+INF-1: TotalRevenueFromSellingTShirts(215) :: TotalRevenue(TotalRevenueFromSellingTShirts(215))
+INF-2: From INF-1, Rule-1: TotalRevenueFromSellingTShirts(215) :: SellingTShirtsFor(215, t_shirt) → TotalRevenue(TotalRevenueFromSellingTShirts(215))
+INF-3: From INF-2, Rule-1 again: $4300 :: TotalRevenue(TotalRevenueFromSellingTShirts(215))

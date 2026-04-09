@@ -1,0 +1,16 @@
+### Facts
+FACT-1: Eliza earns \$10 per hour during the first 40 hours :: Earned(\$10, 40, t_24)
+FACT-2: Eliza earns \$12 per hour for overtime :: Earned(\$12, 5, t_24)
+
+### Rules
+RULE-1: If someone earns \$10 per hour for n hours, their total earnings are \(n \times \$10\) :: TotalEarnings(n, \$10, t)
+RULE-2: If someone earns \$12 per hour for m hours, their total earnings are \(m \times \$12\) :: TotalEarnings(m, \$12, t)
+
+### Inferences
+INF-1: Eliza's total earnings from the first 40 hours :: TotalEarnings(40, \$10, t_24)
+INF-2: Eliza's total earnings from the additional 5 hours of overtime :: TotalEarnings(5, \$12, t_24)
+
+INF-3: Eliza's total earnings for the week :: INF-1 + INF-2
+INF-4: Eliza's total earnings = \(40 \times \$10 + 5 \times \$12\) :: TotalEarnings(40, \$10, t_24) + TotalEarnings(5, \$12, t_24)
+
+Final Answer: Eliza's earnings for this week are \(40 \times \$10 + 5 \times \$12 = \$460\).

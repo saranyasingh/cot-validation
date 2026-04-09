@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Jerry originally had 7 action figures on the shelf :: ActionFiguresOnShelf(jerry, t_initial)
+FACT-2: Jerry later added some new action figures to the shelf :: ActionFiguresAddedToShelf(jerry, t_addition)
+FACT-3: Jerry then removed 10 of the old action figures :: RemovedOldActionFigures(jerry, t_removal)
+FACT-4: After these actions, there are 8 action figures left on the shelf :: ActionFiguresLeftOnShelf(jerry, t_final)
+
+### RULES
+RULE-1: Initial count plus additions minus removal equals final count :: RuleForCountChange(7, x, 8, t_addition, t_removal, t_final)
+Rule-2: Adding and removing action figures maintains the total count :: AddAndRemoveMaintainTotal(ActionFiguresOnShelf, ActionFiguresAddedToShelf, ActionFiguresRemovedFromShelf, t_addition, t_removal)
+
+### INFERENCES
+INF-1: From RULE-1, applying initial count, addition, and subtraction conditions :: InfersCountChangeAfterActions(7, x, 8, t_addition, t_removal, t_final)
+INF-2: From RULE-2, maintaining the same action figure count implies no change :: MaintainsCountInvariance(InfersCountChangeAfterActions, 7, x, 8, t_addition, t_removal, t_final)
+INF-3: Since there are 8 action figures left, Jerry must have added 11 action figures :: InfersNumberAddedToShelf(11, t_addition)

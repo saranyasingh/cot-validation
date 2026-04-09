@@ -1,0 +1,5 @@
+LABEL: Fact 1 :: ShirleySold(Shirley, 10) :: Sold(Shirley, 10)
+
+LABEL: Rule :: None
+
+LABEL: Inference :: EachCaseContains(2) :: EachCaseContains(10 / 5) :: EachCaseContains(2)

@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, received(3, afternoon)).
+
+fof(fact_2, axiom, received(6, morning)).
+
+fof(fact_3, axiom, received(X, evening)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Time] : ( received(Time, slot) => received(Time, slot) )). 
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_1, axiom, (received(3, afternoon) & received(6, morning)) => received(X, evening)).
+
+% From fact_1, fact_2 by arithmetic
+fof(inf_2, axiom, total_emails(T) = received(3, afternoon) + received(6, morning) + received(X, evening)).
+
+% Solving for x
+fof(inf_3_1, axiom, 10 = 3 + 6 + X).
+fof(inf_3_2, axiom, X = 10 - 9).
+fof(inf_3_3, axiom, X = 1).

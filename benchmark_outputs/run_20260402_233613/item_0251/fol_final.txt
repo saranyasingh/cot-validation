@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: InitialNumberOfCakes :: 149
+FACT-2: NumberOfCakesSold :: 10
+
+### ## RULES
+RULE-1: RemainingCakes :: InitialNumberOfCakes - NumberOfCakesSold
+
+### ## INFERENCES
+INF-1: RemainingCakesAfterSale :: Rule-1(InitialNumberOfCakes, NumberOfCakesSold)

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : (harvested_oranges_per_day(X) = X * sacks_harvested / oranges_in_sack)).
+
+fof(fact_2, axiom, oranges_in_sack = 35).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (harvested_oranges_per_day(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, daily_harvest => total_oranges_harvested).
+
+% From inf_1 by Modus Ponens
+fof(inf_2, axiom, total_oranges_harvested = n * harvested_oranges_per_day).
+
+% From inf_2 by Modus Ponens
+fof(inf_3, axiom, total_oranges_harvested = n * 35).

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Fred had 111 dollars last week :: FwdLastWeek(111)
+FACT-2: Fred now has 115 dollars after washing cars :: FwdNow(115)
+
+## RULES
+RULE-1: If someone had an amount of money, they can have more if they earn money :: ∀x (HadMoney(x) → Earned(x))
+RULE-2: If someone earns money, their total amount increases accordingly :: ∀x (Earned(x) → NewAmount(x))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Fred had 111 dollars :: HadMoney(Fred)
+INF-2: From FACT-2, RULE-2 by Universal Instantiation: Fred now has 115 dollars :: NewAmount(Fred)
+INF-3: By Subtraction Rule: Fred earned \(115 - 111 = 4\) dollars :: Earned(Fred) & NewAmount(Fred) & HadMoney(Fred) & (NewAmount(Fred) - HadMoney(Fred)) = 4

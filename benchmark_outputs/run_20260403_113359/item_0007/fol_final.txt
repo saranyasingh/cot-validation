@@ -1,0 +1,12 @@
+### ## FACTS
+LABEL: FACT-1 :: SheepIn(Seattle) = 20
+LABEL: FACT-2 :: SheepIn(Charleston) = 4 * SheepIn(Seattle)
+LABEL: FACT-3 :: SheepIn(Toulouse) = 2 * SheepIn(Charleston)
+
+### ## RULES
+LABEL: RULE-1 :: None, since no rule was provided for this scenario.
+
+### ## INFERENCES
+LABEL: INFERENCE-1 :: SheepIn(Charleston) = 4 * SheepIn(Seattle) = 4 * 20 = 80
+LABEL: INFERENCE-2 :: SheepIn(Toulouse) = 2 * SheepIn(Charleston) = 2 * 80 = 160
+LABEL: INFERENCE-3 :: Total_Sheep = SheepIn(Toulouse) + SheepIn(Charleston) + SheepIn(Seattle) = 160 + 80 + 20 = 260

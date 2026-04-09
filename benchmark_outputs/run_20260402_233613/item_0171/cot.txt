@@ -1,0 +1,27 @@
+To solve this problem logically:
+
+Premise 1: Nell initially had 528 cards.
+Premise 2: Jeff had 11 cards initially.
+Premise 3: After giving away some cards, Nell ends up with 252 cards.
+
+We need to find out how many cards Nell gave to Jeff.
+
+Let's denote:
+- \( x \) as the number of cards Nell gave to Jeff.
+- \( y \) as the number of cards Jeff received after receiving from Nell.
+
+From Premise 3, we know that after giving away \( x \) cards, Nell ends up with 252 cards. This means before she gave away any cards, she must have had more than 252 cards (since she ended up with fewer).
+
+Therefore, we can set up the following equation based on the initial total number of cards:
+
+\[ 528 - x = 252 \]
+
+Now, let's solve for \( x \):
+
+1. Subtract 252 from both sides of the equation to isolate \( x \):
+   \[ 528 - 252 = x \]
+   \[ 276 = x \]
+
+So, Nell gave Jeff 276 cards.
+
+The answer is: Nell gave 276 cards to Jeff.

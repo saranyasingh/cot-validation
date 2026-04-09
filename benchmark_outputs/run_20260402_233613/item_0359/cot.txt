@@ -1,0 +1,45 @@
+To solve this problem logically, we need to follow these steps:
+
+**Premise 1:** Initially, there were 12 customers.
+- Premise (P1): There were 12 customers at the start.
+
+**Premise 2:** After some customers left, the waiter had 14 customers remaining.
+- Premise (P2): After some customers left, the number of customers was 14.
+
+**Premise 3:** Then, the waiter received 10 new customers.
+- Premise (P3): New customers arrived after the initial state and before the current count.
+
+**Step-by-step Reasoning:**
+
+1. **Initial Count**: We start with 12 customers.
+   - This is our starting point, denoted as S = 12.
+
+2. **Customers Left**: Some customers left, leaving 14 customers.
+   - Let's denote the number of customers who left as L.
+   - Therefore, \( S - L = 14 \).
+
+3. **New Customers Arrived**: The waiter then received 10 new customers.
+   - Let's denote the number of new customers added as N.
+   - So, the total number of customers after receiving the new ones is \( S + N \).
+
+4. **Final Count Calculation**:
+   - From Premises P1 and P2, we know that initially there were 12 customers, and after some left, only 14 remained.
+   - Therefore, \( 12 - L = 14 \).
+   - Solving for L gives us \( L = 12 - 14 = -2 \), which indicates an error because it’s not possible to have negative customers.
+
+5. **Correct Interpretation**:
+   - Since the number of customers cannot be negative, let's re-evaluate the scenario correctly.
+   - If there were originally 12 customers, and after some left, only 14 remained, it means someone must have joined or been added later.
+
+6. **Revised Scenario**:
+   - Given that the number of customers decreased from 14 back to 12 due to some people leaving, the correct interpretation should be that someone came back or new people joined.
+
+7. **Total Customers Now**:
+   - To find out how many customers there are now, we add the 10 new customers to the original 14 remaining.
+   - Total customers now = Initial 14 + New 10 = 14 + 10 = 24.
+
+**Conclusion:**
+The waiter has 24 customers now.
+
+**Answer:**
+The answer is: 24

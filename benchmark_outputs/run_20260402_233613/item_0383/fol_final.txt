@@ -1,0 +1,12 @@
+This chain-of-thought reasoning can be converted into structured First-Order Logic (FOL) as follows:
+
+### FACTS
+FACT-1: Initial number of tomatoes = 160 :: InitialNumberOfTomatoes(160)
+
+### RULES
+RULE-1: Remaining tomatoes = Initial number of tomatoes - Tomatoes picked yesterday :: Rule1(160, 56)
+
+### INFERENCES
+INF-1: After yesterday's picking, the farmer has 104 tomatoes left :: Rule1(160, 56) by SubtractionRule
+
+Thus, the final answer is: INF-1: 104

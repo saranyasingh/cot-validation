@@ -1,0 +1,15 @@
+LABEL: Fact 1 :: Total cakes = 54 :: TotalCakes(54)
+LABEL: Fact 2 :: Total pastries = 143 :: TotalPastries(143)
+LABEL: Fact 3 :: Cakes sold = 68 :: CakesSold(68)
+LABEL: Fact 4 :: Pastries sold = 92 :: PastriesSold(92)
+
+LABEL: Rule 1 :: If a total quantity equals a sum of sold items, then the remaining quantity is zero :: ∀q (Total(q) = Sum(qs_sold) → Remaining(q) = 0)
+
+LABEL: Inference 1 :: From Fact 1 and Rule 1, Remaining(Cakes) = 0 :: Remaining(TotalCakes) = 0
+LABEL: Inference 2 :: From Fact 2 and Rule 1, Remaining(Pastries) = 0 :: Remaining(TotalPastries) = 0
+LABEL: Inference 3 :: Remaining(Pastries) > Remaining(Cakes) :: Remaining(Pastries) > Remaining(Cakes)
+LABEL: Inference 4 :: Remaining(Pastries) - Remaining(Cakes) = Difference :: Remaining(Pastries) - Remaining(Cakes) = Difference
+LABEL: Inference 5 :: Difference = Remaining(Pastries) - Remaining(Cakes) :: Difference = Remaining(Pastries) - Remaining(Cakes)
+LABEL: Inference 6 :: Difference = 51 :: Difference = 51
+
+Therefore, the baker sold 51 more pastries than cakes.

@@ -1,0 +1,15 @@
+## FACTS
+1. Books: 15
+2. Movies: 14
+3. Books read: 11
+4. Movies watched: 40
+
+## RULES
+No rules provided.
+
+## INFERENCES
+1. Remaining books: \( \text{Total books} - \text{Books read} = 15 - 11 = 4 \)
+2. Remaining movies: \( \text{Total movies} - \text{Movies watched} = 14 - 40 \) (This results in a negative value, indicating all movies have been watched.)
+   - Since all 14 movies have been watched, there are no movies left to be counted as "remaining."
+   
+3. Difference: \( \text{Remaining books} - \text{Remaining movies} = 4 - 0 = 4 \)

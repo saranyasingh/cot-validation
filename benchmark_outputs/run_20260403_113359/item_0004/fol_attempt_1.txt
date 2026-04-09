@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: James decides to run 3 sprints 3 times a week :: DecisionToRun(3, 3)
+FACT-2: Each sprint consists of 60 meters :: SprintLength(60)
+
+### RULES
+RULE-1: Multiply the number of sprints by the length of each sprint :: MultiplicationRule(N, L, M) where N=number_of_sprints, L=sprint_length, M=total_distance
+
+### INFERENCES
+INF-1: Total meters per session = 3 * 60 :: MultiplicationRule(3, 60, TotalMetersPerSession)
+INF-2: Total meters per week = TotalMetersPerSession * 3 :: MultiplicationRule(TotalMetersPerSession, 3, TotalMetersPerWeek)

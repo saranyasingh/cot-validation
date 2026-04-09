@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Each basket contains 2 green peaches :: GreenPeachesPerBasket(2)
+
+### RULES
+RULE-1: TotalGreenPeaches = GreenPeachesPerBasket * NumberOfBaskets :: TotalGreenPeaches(2, 7)
+
+### INFERENCES
+INF-1: TotalGreenPeaches(14) :: Fact-1 & Rule-1

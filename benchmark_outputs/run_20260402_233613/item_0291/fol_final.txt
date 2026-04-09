@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: TotalSnakes(95) :: TotalSnakes = 95
+FACT-2: HidingSnakes(64) :: HidingSnakes = 64
+
+### RULES
+RULE-1: NotHidingCount(TotalSnakes, HidingSnakes) :: ∀s (IsSnake(s) → (∀h IsHiding(h) → ¬IsHiding(s)))
+
+### INFERENCES
+INF-1: NumberOfNonHidingSnakes(95, 64) :: NotHidingCount(95, 64)

@@ -1,0 +1,11 @@
+## FACTS
+
+FACT-1: Josh lost 11 marbles :: LostMarbles(11)
+
+## RULES
+
+Rule-1: Loss of marbles decreases the current count :: ∀m (Lost(m) → CurrentCount(CurrentCount() - m))
+
+## INFERENCES
+
+INF-1: After losing 11 marbles, Josh has 8 marbles left :: CurrentCount(CurrentCount() - 11)

@@ -1,0 +1,18 @@
+## FACTS
+- Fact-1: Number of packages of gum Robin has :: 43.
+- Fact-2: Number of pieces of gum per package :: 23.
+- Fact-3: Additional pieces of gum Robin has :: 8.
+
+## RULES
+- Rule-1: If there are \(n\) packages and each package contains \(m\) pieces, then the total number of pieces is \(n \times m\).
+  \[
+  \forall n, m (NumberOfPackages(n) \land PiecesPerPackage(m) \rightarrow NumberOfPieces(n, m))
+  \]
+- Rule-2: Adding \(a\) pieces to \(b\) pieces gives \(a + b\) pieces.
+  \[
+  \forall a, b (NumberOfPieces(a) \land NumberOfPieces(b) \rightarrow NumberOfPieces(a + b))
+  \]
+
+## INFERENCES
+- Inf-1: Total number of pieces of gum :: \(\text{NumberOfPieces}(43, 23)\).
+- Inf-2: Adding 8 more pieces to 43 pieces :: \(\text{NumberOfPieces}(43 + 8, 23)\).

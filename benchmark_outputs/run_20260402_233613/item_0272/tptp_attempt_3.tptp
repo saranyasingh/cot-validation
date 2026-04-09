@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, razorback_tshirt_shop_total_revenue = 60).
+fof(fact_2, axiom, razorback_tshirt_price_per_tshirt = 10).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TOTAL_REVENUE, PRICE_PER_TSHIRT] : (number_of_tshirts_sold(TOTAL_REVENUE, PRICE_PER_TSHIRT) = TOTAL_REVENUE / PRICE_PER_TSHIRT)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_tshirts_sold(razorback_tshirt_shop_revenue(60), razorback_tshirt_price_per_tshirt(10)) = razorback_tshirt_shop_revenue(60) / razorback_tshirt_price_per_tshirt(10)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, number_of_tshirts_sold(60, 10) = 60 / 10).

@@ -1,0 +1,12 @@
+```plaintext
+## FACTS
+Fact-1: InitialApplesTrees(Rachel, 4)
+
+Fact-2: ApplesPerTree(7, 4)
+
+## RULES
+Rule-1: PickedApplesFromTree(Rachel, 7, x, y) :: ∀z ((InitialApplesTrees(x) ∧ ApplesPerTree(y, z)) → PickedApplesFromTree(Rachel, 7, z))
+
+## INFERENCES
+Inference-1: TotalPickedApples(Rachel) :: (∀t (PickedApplesFromTree(Rachel, 7, t) → ∃y ((InitialApplesTrees(y) ∧ ApplesPerTree(7, y)) ∧ PickedApplesFromTree(Rachel, 7, t))))
+```

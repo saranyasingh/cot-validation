@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: There are 84 classrooms in the school :: NumberOfClassrooms(84)
+
+## RULES
+RULE-1: Total students = Number of Buses × Seats per Bus :: StudentsInSchool(NumberOfBuses * SeatsPerBus)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, the number of students in the school :: StudentsInSchool(NumberOfBuses * SeatsPerBus)

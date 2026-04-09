@@ -1,0 +1,56 @@
+Let's convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL). We will follow the guidelines provided, including syntax rules, temporal representation, and output formats.
+
+### Facts
+These are the factual statements derived directly from the problem statement without any quantifiers.
+
+#### Fact-1
+Some bird families living near the mountain have flown away for winter.  
+This can be represented as:  
+∃X (NearMountain(X) ∧ MigratedAwayForWinter(X))
+
+#### Fact-2
+14 bird families stayed behind.  
+This can be represented as:  
+∀Y (NearMountain(Y) → StayedBehind(Y))  
+And since there are 14 bird families staying, we can simplify it further if needed, but let's keep it as:  
+∀Y (NearMountain(Y) → StayedBehind(Y))
+
+### Rules
+These are universally quantified implications that encode external or linguistic knowledge. They are formulated using FOL connectives and predicates.
+
+#### Rule-1
+If some bird family stays behind, then no bird family flies away for winter.  
+This can be expressed as:  
+∀Z ((StayedBehind(Z) → ¬MigratedAwayForWinter(Z)))
+
+### Inferences
+These are derived conclusions that combine facts and rules to form new propositions.
+
+#### Inf-1
+There are 34 bird families living near the mountain at the start.  
+This conclusion combines the two facts to show the total count of bird families remaining after migration.  
+Fact-1 combined with Rule-1 would give us:  
+∀X (∀Y (NearMountain(Y) → StayedBehind(Y)) ∧ NearMountain(X) → MigratedAwayForWinter(X))  
+But we know there are 14 that stayed, so combining them directly gives us the final count:  
+∃X (NearMountain(X) ∧ MigratedAwayForWinter(X)) → 34
+
+### Final Output Format
+We'll structure our output according to the specified format.
+
+#### OUTPUT SECTION 1: FACTS
+```plaintext
+FACT-1: ∃X (NearMountain(X) ∧ MigratedAwayForWinter(X))
+```
+
+#### OUTPUT SECTION 2: RULES
+```plaintext
+RULE-1: ∀Z ((StayedBehind(Z) → ¬MigratedAwayForWinter(Z)))
+```
+
+#### OUTPUT SECTION 3: INFERENCES
+```plaintext
+INF-1: ∃X (NearMountain(X) ∧ MigratedAwayForWinter(X)) → 34
+```
+
+### Explanation
+In the final output, each line follows the required format where `LABEL` is the natural language gloss followed by the corresponding FOL formula. This ensures clarity and adherence to the specified constraints and formatting rules.

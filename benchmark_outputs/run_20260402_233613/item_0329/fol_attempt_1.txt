@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: InitialTomatoes = GreenTomatoes + RedTomatoes :: 105 + 71
+FACT-2: TomatoesPicked = 137
+
+## RULES
+No rules needed for this problem.
+
+## INFERENCES
+INF-1: RemainingTomatoes = InitialTomatoes - TomatoesPicked :: 105 + 71 - 137

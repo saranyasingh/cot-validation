@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: 34,044 kids from Lawrence County went to camp :: CampKidsFromLawrenceCounty(34044)
+FACT-2: An extra 424,944 kids from outside the county attended the camp :: CampKidsOutsideLawrenceCounty(424944)
+
+## RULES
+RULE-1: Summing quantities :: ∀a b (a + b = b + a) :: Add(a, b, c)
+
+## INFERENCES
+INF-1: Total attendance = CampKidsFromLawrenceCounty + CampKidsOutsideLawrenceCounty :: TotalAttendance(CampKidsFromLawrenceCounty, CampKidsOutsideLawrenceCounty)

@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — The story does not state or obviously entail HasNotAddedFlour.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — HasNotAddedFlour() does not logically imply Present(Flour); it would be a contradiction.

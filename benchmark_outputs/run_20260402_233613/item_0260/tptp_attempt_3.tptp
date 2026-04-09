@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, books_spent(edward, 16)).
+fof(fact_2, axiom, pens_spent(edward, 8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (expenditure(X) = books_spent(X) + pens_spent(X))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic identity
+fof(inf_1, axiom, books_spent(edward) - pens_spent(edward) = books_spent(edward) - pens_spent(edward)).
+% From rule_1 by substitution
+fof(inf_2, axiom, expenditure(edward) - pens_spent(edward) = books_spent(edward)).
+% From inf_2 by substitution
+fof(inf_3, axiom, books_spent(edward) = expenditure(edward) - pens_spent(edward)).
+% Using this final equation
+fof(derived_final, axiom, books_spent(edward) - pens_spent(edward) = expenditure(edward) - pens_spent(edward)).
+% Simplification
+fof(derived_simplify, axiom, books_spent(edward) - pens_spent(edward) = 16 - 8).
+% Final difference
+fof(final_difference, axiom, books_spent(edward) - pens_spent(edward) = 8).

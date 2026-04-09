@@ -1,0 +1,4 @@
+LABEL: Fact-1 :: P(parents, 61)
+LABEL: Fact-2 :: P(pupils, 177)
+LABEL: Rule-1 :: S(capacity, 44)
+LABEL: Inference-1 :: A(people, total_people) ∧ S(capacity, 44) → Not(S(sitting, capacity))

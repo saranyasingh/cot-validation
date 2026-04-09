@@ -1,0 +1,8 @@
+## FACTS
+Fact-1: 288_students_surveyed :: 288_students_surveyed
+
+## RULES
+Rule-1: If_suggests_bacon_then_no_suggests_mashed_potatoes :: ∀x (Suggests_Bacon(x) → (∀y (Suggests_Mashed_Potatoes(y) → y > x)))
+
+## INFERENCES
+Inf-1: 24_students_suggested_mashed_potatoes :: Rule-1 with Premises Fact-1 and Rule-1

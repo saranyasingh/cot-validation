@@ -1,0 +1,15 @@
+FACT-1: There are 2 small seats available :: SmallSeats(2)
+
+FACT-2: Each small seat can hold 14 people :: SeatCapacity(14, SmallSeat)
+
+INF-1: From FACT-1, apply Universal Instantiation to get SmallSeats(2): There are 2 small seats available :: SmallSeats(2)
+
+INF-2: From FACT-2, apply Universal Instantiation to get SeatCapacity(14, SmallSeat): Each small seat can hold 14 people :: SeatCapacity(14, SmallSeat)
+
+INF-3: Total capacity for all small seats :: TotalCapacity(SmallSeats, SeatCapacity)
+
+INF-4: Substitute the values for SmallSeats and SeatCapacity :: TotalCapacity(2, 14)
+
+INF-5: Calculate the total capacity :: TotalCapacity = 2 * 14 = 28
+
+Final answer: **28**

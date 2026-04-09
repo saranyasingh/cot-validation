@@ -1,0 +1,14 @@
+```fola
+## FACTS
+FACT-1: Some animal migrates back to cooler countries during summer :: MigratesBackToCoolerCountriesDuringSummer()
+
+## RULES
+RULE-1: MigratesBackToCoolerCountriesDuringSummer implies livesNearMountain :: ∀x(MigratesBackToCoolerCountriesDuringSummer(x) → LivesNearMountain(x))
+
+## INFERENCES
+INF-1: There are 87 bird families living near a mountain :: ∃x(LivesNearMountain(x) ∧ x ∈ BirdFamily)
+
+INF-2: New bird families join the existing population :: ∃y(y ∈ NewBirdFamily & y ≠ 0)
+
+INF-3: Total bird families after joining :: 87 + 18 = 105 :: ∃z(z ∈ BirdFamily & z > 0)
+```

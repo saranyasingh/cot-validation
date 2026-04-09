@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, small_seats(2)).
+fof(fact_2, axiom, seat_capacity(14, small_seat)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From FACT-1, universal_instantiation
+fof(inf_1, axiom, small_seats(2)).
+% From FACT-2, universal_instantiation
+fof(inf_2, axiom, seat_capacity(14, small_seat)).
+% From inf_1, inf_2 by substitution
+fof(inf_3, axiom, total_capacity(small_seats, seat_capacity)).
+% From inf_3 by substitution
+fof(inf_4, axiom, total_capacity(2, 14)).
+% From inf_4 by calculation
+fof(inf_5, axiom, total_capacity(2, 14) = 28).

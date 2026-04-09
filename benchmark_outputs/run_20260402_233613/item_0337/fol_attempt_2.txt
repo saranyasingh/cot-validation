@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: InitialNumberOfFiles(59) :: FileCount(59)
+FACT-2: InitialNumberOfApps(15) :: AppCount(15)
+FACT-3: FinalNumberOfFiles(30) :: FileCount(30)
+FACT-4: FinalNumberOfApps(12) :: AppCount(12)
+
+## RULES
+RULE-1: If NumberOfFiles(x), then x is greater than 0 :: ∀x(NumberOfFiles(x) → x > 0)
+RULE-2: If NumberOfApps(y), then y is greater than 0 :: ∀y(NumberOfApps(y) → y > 0)
+
+## INFERENCES
+INF-1: From Fact-1 and Rule-1: FileCount(59) :: FileCount(greaterThan(0))
+INF-2: From Fact-2 and Rule-2: AppCount(15) :: AppCount(greaterThan(0))
+INF-3: From Fact-3 and Rule-1: FileCount(30) :: FileCount(greaterThan(0))
+INF-4: From Fact-4 and Rule-2: AppCount(12) :: AppCount(greaterThan(0))
+INF-5: From INF-1 and INF-2: InitialNumberOfFiles(59) ∧ InitialNumberOfApps(15) :: (∀x(NumberOfFiles(x) ∧ NumberOfApps(y))) → ((x > 0) ∧ (y > 0))
+INF-6: From INF-3

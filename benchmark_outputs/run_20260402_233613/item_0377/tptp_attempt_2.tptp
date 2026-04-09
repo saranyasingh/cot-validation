@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, emails(morning) = 5).
+
+fof(fact_2, axiom, emails(afternoon) = 8).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Total] : (Total = emails(morning) + emails(afternoon))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, Total = 5 + 8).

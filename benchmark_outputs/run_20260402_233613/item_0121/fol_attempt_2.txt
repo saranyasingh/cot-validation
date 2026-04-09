@@ -1,0 +1,11 @@
+## FACTS
+- Initially there were 4 birds.
+- Initially there were 3 storks.
+
+## RULES
+- Rule-1: Adding 6 more storks increases the count of storks by 6.
+
+## INFERENCES
+- After adding 6 more storks, there are now 9 storks.
+- Subtracting the initial number of birds from the current total number of storks gives the difference.
+- Applying INF-2 results in \(9 - 4 = 5\).

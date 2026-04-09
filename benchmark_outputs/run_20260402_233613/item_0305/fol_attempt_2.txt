@@ -1,0 +1,10 @@
+### FACTS
+- **Fact-1:** NumberOfRedPeaches(2)
+- **Fact-2:** NumberOfYellowPeaches(6)
+- **Fact-3:** NumberOfGreenPeaches(14)
+
+### RULES
+- **Rule-1:** DifferenceBetweenQuantities(x, y, z) :: x - y = z
+
+### INFERENCES
+- **INF-1:** MoreGreenThanYellowPeaches :: NumberOfGreenPeaches - NumberOfYellowPeaches = 8

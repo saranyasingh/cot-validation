@@ -1,0 +1,3 @@
+LABEL: #FACTS :: Haley initially had 20 trees.
+LABEL: #RULES :: Rule for Subtraction
+LABEL: #INFERENCES :: Let \(H\) represent Haley’s initial state with 20 trees. Let \(T\) represent the state after the typhoon with 4 trees. According to the rule for subtraction, \(D = H - T\). Since \(H = 20\) and \(T = 4\), \(D = 20 - 4\). Therefore, the number of trees that died in the typhoon is \(16\).

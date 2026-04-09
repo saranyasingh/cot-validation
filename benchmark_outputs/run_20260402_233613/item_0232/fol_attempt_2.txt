@@ -1,0 +1,16 @@
+```plaintext
+## FACTS
+```
+FACT-1: Matthew had 24 crackers initially :: CrackerCount(Matt, 24)
+```
+
+## RULES
+```
+RULE-1: If Matthew gives \(x\) crackers to each of his 3 friends, then he will have \(17\) crackers left :: ∀x (CrackersToFriends(x, Matt, 3) → CrackerCount(Matt, 17))
+```
+
+## INFERENCES
+```
+INF-1: Matthew gave 6 crackers to each of his 3 friends :: CrackersToFriends(6, Matt, 3)
+```
+```

@@ -1,0 +1,19 @@
+**FACTS**
+
+FACT-1: Josh bought the house for $80,000 :: BoughtHouseFor(80000, josh)
+
+**RULES**
+
+RULE-1: TotalCost = InitialPrice + RepairCost :: TotalCost = InitialPrice + RepairCost
+
+**INFERENCES**
+
+INF-1: NewValueAfterRepairs = OriginalValue + IncreaseInValue :: NewValueAfterRepairs = OriginalValue + IncreaseInValue
+
+INF-2: IncreaseInValue = PercentageIncrease * OriginalValue :: IncreaseInValue = PercentageIncrease * OriginalValue
+
+INF-3: SellingPrice = NewValueAfterRepairs + TotalCost :: SellingPrice = NewValueAfterRepairs + TotalCost
+
+INF-4: Profit = SellingPrice - TotalCost :: Profit = SellingPrice - TotalCost
+
+INF-5: Profit = 20,000 :: Profit = 20000

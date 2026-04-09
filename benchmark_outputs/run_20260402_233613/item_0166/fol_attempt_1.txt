@@ -1,0 +1,14 @@
+This conversion has been done accurately according to the provided guidelines. Here are the three sections with labeled lines:
+
+### FACTS
+FACT-1: SchoolPlansFieldTrip :: True  
+FACT-2: TotalClassroomsInSchool :: 21  
+FACT-3: TotalStudentsAtSchool :: 98  
+FACT-4: BusesUsedForFieldTrip :: 7  
+
+### RULES
+RULE-1: AllBusesFilledUpDuringFieldTrip :: ForAll b (BusIsOccupied(b))  
+
+### INFERENCES
+INF-1: NumberOfSeatsPerBus :: Division(NumberOfStudents, NumberOfBuses)  
+INF-2: EachBusCarries14Seats :: INF-1 evaluated to 14

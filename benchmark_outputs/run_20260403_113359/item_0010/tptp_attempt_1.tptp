@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, earned(money_10, 40, t_24)).
+fof(fact_2, axiom, earned(money_12, 5, t_24)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (earned(money_10, N, t) => total_earnings(N, money_10, t))).
+fof(rule_2, axiom, ! [M] : (earned(money_12, M, t) => total_earnings(M, money_12, t))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_earnings(40, money_10, t_24)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_earnings(5, money_12, t_24)).
+% From inf_1, inf_2 by Addition
+fof(inf_3, axiom, weekly_earnings(eliza, t_24) = plus(total_earnings(40, money_10, t_24), total_earnings(5, money_12, t_24))).
+% From inf_1, inf_2 by Arithmetic
+fof(inf_4, axiom, weekly_earnings(eliza, t_24) = add(mul(40, 10), mul(5, 12))).

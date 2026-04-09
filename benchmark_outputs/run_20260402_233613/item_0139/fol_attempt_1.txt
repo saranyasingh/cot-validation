@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Adam could fit 10 action figures on each shelf :: ActionFiguresOnShelf(Adam, shelf, 10)
+FACT-2: His room could hold 8 action figures :: TotalActionFiguresInRoom(Adam, 8)
+
+## RULES
+RULE-1: If Adam can fit \( n \) action figures on a shelf, then the room has \( \frac{n}{10} \) shelves :: ShelfCount(room, n) ↔ ActionFiguresOnShelf(Adam, shelf, n)
+
+## INFERENCES
+INF-1: The room has 0 shelves :: ShelfCount(TotalActionFiguresInRoom(Adam, 8), 0)

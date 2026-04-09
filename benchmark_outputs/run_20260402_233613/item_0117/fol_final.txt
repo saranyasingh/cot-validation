@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Julia played tag with 5 kids on Tuesday :: T(2, 5)
+FACT-2: Julia played tag with 6 kids on Monday :: M(1, 6)
+
+## RULES
+RULE-1: Subtracting quantities :: ∀a b c d e f g h i j k l m n o p q r s t u v w x y z (a ≠ b) → ((c = d) → ((e + f) = (g + h)))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Subtraction: The number of kids Julia played with on Monday minus the number of kids she played with on Tuesday :: (M(1, 6) - T(2, 5))

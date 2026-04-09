@@ -1,0 +1,41 @@
+**Logical Syllogism**
+
+1. **Premise 1**: Baker made 19 cakes.
+   - This establishes the initial quantity of cakes available.
+
+2. **Premise 2**: Baker made 131 pastries.
+   - This establishes the initial quantity of pastries available.
+
+3. **Premise 3**: Baker sold 70 cakes.
+   - This provides information about what happened to the cakes after they were made.
+
+4. **Premise 4**: Baker sold 88 pastries.
+   - This provides information about what happened to the pastries after they were made.
+
+5. **Conclusion 1**: Calculate the remaining number of cakes:
+   \[
+   \text{Remaining cakes} = \text{Initial cakes} - \text{Sold cakes}
+   \]
+   \[
+   \text{Remaining cakes} = 19 - 70 = -51
+   \]
+
+6. **Conclusion 2**: Calculate the remaining number of pastries:
+   \[
+   \text{Remaining pastries} = \text{Initial pastries} - \text{Sold pastries}
+   \]
+   \[
+   \text{Remaining pastries} = 131 - 88 = 43
+   \]
+
+7. **Comparison**: Determine how many more pastries than cakes were made.
+   \[
+   \text{Difference} = \text{Remaining pastries} - \text{Remaining cakes}
+   \]
+   \[
+   \text{Difference} = 43 - (-51) = 43 + 51 = 94
+   \]
+
+**The answer is: 94**
+
+This conclusion shows that despite selling some cakes, the baker still managed to produce significantly more pastries than cakes before any sales occurred.

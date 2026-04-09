@@ -1,0 +1,11 @@
+### FACTS
+FACT-1: 49 bottles of regular soda :: RegularSoda(49)
+FACT-2: 40 bottles of diet soda :: DietSoda(40)
+
+### RULES
+RULE-1: TotalBottles(RegularSoda(x)) :: RegularSoda(x)
+RULE-2: TotalBottles(DietSoda(y)) :: DietSoda(y)
+
+### INFERENCES
+INF-1: TotalBottles(RegularSoda(49)) :: TotalBottles(DietSoda(40))
+INF-2: TotalBottles(RegularSoda(49) + DietSoda(40)) :: TotalBottles(ReducedTotal)

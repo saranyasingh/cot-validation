@@ -1,0 +1,25 @@
+This is already presented in a logical form but without explicitly stating the facts and rules. Let's convert it to FOL structure:
+
+### Facts
+FACT-1: BuildingHouseBlocks(89)
+FACT-2: BuildingTowerBlocks(63)
+
+### Rules
+Rule-1: DifferenceBetweenBuildings(blocks_used_for_house, blocks_used_for_tower) 
+      -> blocks_used_for_house - blocks_used_for_tower
+
+### Inferences
+INF-1: DifferenceBetweenBuildings(BuildingHouseBlocks(89), BuildingTowerBlocks(63)) :: DifferenceBetweenBuildings(89, 63)
+
+Therefore, the final output would be:
+
+## FACTS
+FACT-1: BuildingHouseBlocks(89)
+FACT-2: BuildingTowerBlocks(63)
+
+## RULES
+Rule-1: DifferenceBetweenBuildings(blocks_used_for_house, blocks_used_for_tower) 
+      -> blocks_used_for_house - blocks_used_for_tower
+
+## INFERENCES
+INF-1: DifferenceBetweenBuildings(BuildingHouseBlocks(89), BuildingTowerBlocks(63)) :: DifferenceBetweenBuildings(89, 63)

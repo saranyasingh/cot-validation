@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: AllThreeBalloonsWereBringedToPark :: (∀b (Balloon(b)))
+FACT-2: AllanBroughtTwoBalloons :: (∃b1 (Balloon(b1) ∧ b1 = 'Allan'))
+
+## RULES
+RULE-1: If x brings a balloon, then there is at least one other person who also brought a balloon :: ∀x (∃y (x ≠ y ∧ Balloon(y)))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: If Allan brings a balloon, then there is at least one other person who also brought a balloon :: (∃y (Allan ≠ y ∧ Balloon(y)))

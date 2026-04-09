@@ -1,0 +1,14 @@
+## FACTS
+InitialCards(Nell) = 528 :: Nell_initial_cards = 528
+InitialCards(John) = 11 :: John_initial_cards = 11
+FinalCards(Nell) = 252 :: Nell_final_cards = 252
+
+## RULES
+None required for this problem.
+
+## INFERENCES
+1. FinalCards(Nell) = InitialCards(Nell) - x :: Final_Nell_Cards = Initial_Nell_Cards - x
+2. 252 = 528 - x :: Equation_1
+3. x = 528 - 252 :: Solve_Equation_1
+4. x = 276 :: Calculate_x
+5. Nell gave 276 cards to Jeff :: Nell_Gave_Cards_to_Jeff = 276

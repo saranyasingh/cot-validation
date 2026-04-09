@@ -1,0 +1,26 @@
+## FACTS
+FACT-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+## RULES
+RULE-1: If someone has x Nintendo games, then they want to end up with y Nintendo games :: ∀x∀y(NintendoGames(person) → DesireToEndUpWith(y))
+
+RULE-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12)
+
+## INFERENCES
+INF-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+INF-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12) :: DesireToEndUpWith(12)
+
+INF-3: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-4: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-5: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-6: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-7: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-8: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-9: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(1

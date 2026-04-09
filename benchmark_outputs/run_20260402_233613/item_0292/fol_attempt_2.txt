@@ -1,0 +1,14 @@
+### ## FACTS
+FACT-1: John uses 13 large planks of wood :: LargePlanks(13)
+FACT-2: Each large plank requires 17 pieces of nails :: NailsPerLargePlank(17)
+FACT-3: In addition, John needs 8 nails for some smaller planks :: SmallerPlanks(8)
+
+### ## RULES
+RULE-1: Total nails for large planks :: ∀Lplnks(LargePlanks(L)) -> (∀Nlgs(NailsPerLargePlank(N))) → (∃T(T=large))*NailsNeeded(L)
+RULE-2: Total nails including smaller planks :: ∃Smplk(SmallerPlanks(S)) → (∃Lplnks(LargePlanks(L))) → (∃Nlgs(NailsPerLargePlank(N))) → (∃T(T=small))*NailsNeeded(S)
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1, John needs \(13 \times 17\) nails for large planks :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=large) * NailsNeeded(L)
+INF-2: From FACT-2 and RULE-1, each large plank requires 17 nails :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N))
+INF-3: From FACT-3 and RULE-1, John needs 8 nails for smaller planks :: ∃Smplk(SmallerPlanks(S)) * ∃Nlgs(NailsPerLargePlank(N))
+INF-4: From INF-1, INF-2, and INF-3, John needs \(13 \times 17 + 8\) nails in total :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=large) * ∃Smplk(SmallerPlanks(S)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=small) * NailsNeeded(L) + NailsNeeded(S)

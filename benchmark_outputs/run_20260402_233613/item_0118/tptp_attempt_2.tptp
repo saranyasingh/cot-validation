@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_english(6)).
+fof(fact_2, axiom, learning_chinese(7)).
+fof(fact_3, axiom, learning_spanish(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (learning_total(T) <=> (T = 16))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Definition
+fof(inf_1, axiom, learning_total(16)).
+% From addition: 6 + 7 + 3 = 16
+fof(inf_2, axiom, 6 + 7 + 3 = 16).

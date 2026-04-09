@@ -1,0 +1,3 @@
+FACT-1: TotalPeachesInBasket(16) :: TotalPeachesInBasket(x)
+FACT-2: RedPeachesInBasket(13) :: RedPeachesInBasket(y)
+INF-1: GreenPeachesCount(3) :: TotalPeachesInBasket(16) ∧ RedPeachesInBasket(13) -> GreenPeachesCount(green_peaches)

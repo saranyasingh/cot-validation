@@ -1,0 +1,15 @@
+### SOLUTION
+#### Facts
+- Fact-1: Some campers went rowing in the morning :: Exists(x)(RowingInMorning(x))
+- Fact-2: 7 campers went rowing in the afternoon :: RowingInAfternoon(7)
+- Fact-3: Total campers who went rowing = 60 :: TotalCampersWhoRowed(60)
+
+#### Rules
+- Rule-1: If some campers went rowing in the morning, then the total number of campers who went rowing equals the sum of those who went in the morning and those who went in the afternoon :: IfExists(x)(RowingInMorning(x)) → (TotalCampersWhoRowed = RowingInMorning(x) + RowingInAfternoon(7))
+
+#### Inferences
+- Infer-1: Since the total number of campers who went rowing is 60 and 7 went in the afternoon, the remaining must have gone in the morning :: Infer-1: TotalCampersWhoRowed = RowingInMorning(x) + RowingInAfternoon(7) → RowingInMorning(x) = TotalCampersWhoRowed - RowingInAfternoon(7)
+- Infer-2: Substituting the given values, RowingInMorning(x) = 60 - 7 :: RowingInMorning(x) = 53
+
+#### Final Answer
+The number of campers who went rowing in the morning is 53.

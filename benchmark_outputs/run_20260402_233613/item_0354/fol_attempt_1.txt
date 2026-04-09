@@ -1,0 +1,9 @@
+**FACT-1:** InitialRipeApples(tree) = 4 :: InitialRipeApples(tree) = 4
+
+**RULE-1:** RemainingApplesAfterPicking(remaining_apples, picked_apples) :: RemainingApplesAfterPicking(7 - 2, 2) :: RemainingApplesAfterPicking(5, 2)
+
+**INFERENCES**
+INF-1: From FACT-1, Rule-1 by Modus Ponens: NumberOfRipeApplesAfterPicking(remaining_apples, picked_apples) :: NumberOfRipeApplesAfterPicking(5, 2) :: 4
+
+Therefore,
+**Number of ripe apples the tree had initially:** 4

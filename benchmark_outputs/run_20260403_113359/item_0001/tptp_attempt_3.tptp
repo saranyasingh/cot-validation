@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, eggs_laid_per_day(16)).
+fof(fact_2, axiom, eggs_eaten_for_breakfast(3)).
+fof(fact_3, axiom, eggs_used_for_muffins(4)).
+fof(fact_4, axiom, eggs_remaining_after_baking(eggs_laid_per_day(16) - eggs_eaten_for_breakfast(3) - eggs_used_for_muffins(4))).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (eggs_laid_per_day(D) & eggs_eaten_for_breakfast(D) & eggs_used_for_muffins(D))).
+fof(rule_2, axiom, ! [D] : (eggs_remaining_after_baking(D) => revenue_per_egg(2))).
+
+% --- INFERENCES ---
+% From rule_1, rule_2 by Modus Ponens
+fof(inf_1, axiom, revenue_per_egg(2)).
+% From inf_1, daily revenue
+fof(inf_2, axiom, daily_revenue(revenue_per_egg(2))).
+% From inf_2, final revenue
+fof(inf_3, axiom, final_revenue(daily_revenue(revenue_per_egg(2)), 18)).

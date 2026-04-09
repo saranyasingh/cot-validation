@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: 62 campers went rowing in the morning :: MorningRowing(62)
+FACT-2: 39 campers went rowing in the afternoon :: AfternoonRowing(39)
+
+### ## RULES
+RULE-1: DifferenceBetweenMorningAndAfternoon := MorningRowing(n) - AfternoonRowing(m) :: n - m
+
+### ## INFERENCES
+INF-1: There were 23 more campers who went rowing in the morning than in the afternoon :: DIFFERENCE_BETWEEN_MORNING_AND_AFTERNOON(MorningRowing(62), AfternoonRowing(39)) = 23

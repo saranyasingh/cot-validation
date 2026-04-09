@@ -1,0 +1,34 @@
+To determine how far John is from home after his trip, we need to calculate the total distance traveled and subtract it from the initial distance he would have been if he had driven straight back.
+
+1. **Initial Distance Calculation:**
+   - John initially drove for 3 hours at 60 mph.
+     \[
+     \text{Distance} = \text{Speed} \times \text{Time} = 60 \text{ mph} \times 3 \text{ hours} = 180 \text{ miles}
+     \]
+   - So, he was originally 180 miles away from home.
+
+2. **Travel During the Trip Back Home:**
+   - The trip took him 4 hours in total.
+   - He spent the first 2 hours in standstill traffic (0 mph).
+   - Then, he drove for half an hour at 30 mph:
+     \[
+     \text{Distance} = \text{Speed} \times \text{Time} = 30 \text{ mph} \times 0.5 \text{ hours} = 15 \text{ miles}
+     \]
+   - After that, he drove for the remaining 2 hours at 80 mph:
+     \[
+     \text{Distance} = \text{Speed} \times \text{Time} = 80 \text{ mph} \times 2 \text{ hours} = 160 \text{ miles}
+     \]
+
+3. **Total Distance Traveled During the Trip:**
+   - Summing up all the distances covered during the trip:
+     \[
+     \text{Total Distance} = 15 \text{ miles} + 160 \text{ miles} = 175 \text{ miles}
+     \]
+
+4. **Final Position Relative to Home:**
+   - Subtracting this total distance from the original distance:
+     \[
+     \text{Remaining Distance} = 180 \text{ miles} - 175 \text{ miles} = 5 \text{ miles}
+     \]
+
+Therefore, John is 5 miles from home at the end of those 4 hours.

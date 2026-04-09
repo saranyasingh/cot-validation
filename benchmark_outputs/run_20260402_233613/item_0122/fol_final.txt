@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: ∀x (BalloonBroughtByAllan(x) → BallonBelongsToAllan(x))
+LABEL: FACT-2 :: ∀y (BalloonBroughtByJake(y) → BallonBelongsToJake(y))
+LABEL: FACT-3 :: ∀x (BalloonBroughtByAllan(x) → BallonBelongsToAllan(x))
+LABEL: FACT-4 :: ∀y (BalloonBroughtByJake(y) → BallonBelongsToJake(y))

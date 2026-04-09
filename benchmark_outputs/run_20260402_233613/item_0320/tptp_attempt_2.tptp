@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_sugar_for_cake(mary)).
+fof(fact_2, axiom, requires_sugar(5, sugar)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : ( needs_sugar(S) => ? [SP] : ( requires_sugar(SP, S) ) ).
+fof(rule_2, axiom, flour_required(flour)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [M] : ( mary_needs_sugar(M) => ? [Mprime] : ( needs_sugar(Mprime, mary) ) ) ).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, ! [F] : ( flour_required(F) => ? [Fprime] : ( needs_sugar(Fprime, flour) ) ) ).
+
+% From Facts-1 and Facts-2
+fof(inf_3, axiom, ? [M] : ( mary_needs_sugar(M) & flour_required(f) ) ).
+
+% From INF-1 and INF-2
+fof(inf_4, axiom, ( ! [M] : ( mary_needs_sugar(M) => ? [Mprime] : ( needs_sugar(Mprime, mary) ) ) ) & ( ! [F] : ( flour_required(F) => ? [Fprime] : ( needs_sugar(Fprime, flour) ) ) ) ).
+
+% INF-5
+fof(inf_5, axiom, needs_sugar_for_cake(mary) & flour_required(f)).
+
+% INF-6
+fof(inf_6, axiom, negative_difference(5,11,-6)).
+
+% INF-7
+fof(inf_7, axiom, sugar_less_than_flour(6)).

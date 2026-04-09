@@ -1,0 +1,35 @@
+```plaintext
+## FACTS
+1. Paco initially had 40 sweet cookies.
+   - FOL: \( \text{SweetCookies}_Paco = 40 \)
+   
+2. Paco initially had 25 salty cookies.
+   - FOL: \( \text{SaltyCookies}_Paco = 25 \)
+   
+3. Paco ate 15 sweet cookies.
+   - FOL: \( \text{EatenSweetCookies}_Paco = 15 \)
+   
+4. Paco ate 28 salty cookies.
+   - FOL: \( \text{EatenSaltyCookies}_Paco = 28 \)
+
+## RULES
+No additional rules were provided other than basic arithmetic operations which can be expressed in FOL without additional context.
+
+## INFERENCES
+1. Calculate the remaining sweet cookies after eating some.
+   - Paco initially had 40 sweet cookies.
+   - He ate 15 sweet cookies.
+   - Remaining sweet cookies: \( 40 - 15 = 25 \)
+   
+2. Calculate the remaining salty cookies after eating some.
+   - Paco initially had 25 salty cookies.
+   - He ate 28 salty cookies.
+   - Since he can't eat more salty cookies than he has, the remaining salty cookies are 0.
+   
+Therefore, Paco did not eat any salty cookies, so the difference between the number of sweet cookies and salty cookies he ate is 0.
+
+### FINAL RESULT
+**INF-1:** Paco ate 0 more salty cookies than sweet cookies.
+
+So, the final answer is: **0**
+```

@@ -1,0 +1,21 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. Books: 15
+2. Movies: 14
+3. Books read: 11
+4. Movies watched: 40
+
+### Rules
+No rules provided in the text; hence, none will be included here.
+
+### Inferences
+1. Remaining books: \( \text{Total books} - \text{Books read} = 15 - 11 = 4 \)
+2. Remaining movies: \( \text{Total movies} - \text{Movies watched} = 14 - 40 \) (This results in a negative value, indicating all movies have been watched.)
+
+Since all 14 movies have been watched, there are no movies left to be counted as "remaining" after watching them all.
+
+3. Difference: \( \text{Remaining books} - \text{Remaining movies} = 4 - 0 = 4 \)
+
+### Final Answer
+The answer is: 4

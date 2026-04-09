@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, M = 8).
+
+fof(fact_2, axiom, R = M + 6).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (T = M + R)).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by arithmetic
+fof(inf_1, axiom, T = 22).

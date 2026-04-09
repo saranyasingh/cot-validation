@@ -1,0 +1,28 @@
+Here is the conversion of the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: InitialNumberOfTrees :: 9
+```
+
+### RULES
+```plaintext
+RULE-1: TreesAfterTyphoon :: ∀t (DeathInTree(t) → RemainingTrees(t))
+RULE-2: TotalTreesAfterPlanting :: 10
+```
+
+### INFERENCES
+```plaintext
+INF-1: FinalNumberOfTrees :: TotalTreesAfterPlanting
+```
+
+### LABELS
+```plaintext
+FinalNumberOfTrees :: INF-1
+TotalTreesAfterPlanting :: RULE-2
+RemainingTrees :: Rule-1
+InitialNumberOfTrees :: FACT-1
+DeathInTree :: Death(t)
+```
+
+This structure captures all the information logically derived from the original chain of thought using FOL.

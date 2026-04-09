@@ -1,0 +1,31 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These represent the information explicitly stated in the premise.
+
+#### Fact-1: Initial Amount of Money
+\[ \text{InitialMoney} ::= P = \$128 \]
+
+### Rules
+These represent logical deductions based on the facts provided.
+
+#### Rule-1: Remaining Money After Purchase
+\[ \text{RemainingMoney} ::= \forall x (\text{Purchased}(x) \rightarrow \text{RemainingMoney}(x)) \]
+Where:
+- \(\text{Purchased}(x)\) denotes that an item \(x\) was purchased.
+- \(\text{RemainingMoney}(x)\) denotes the remaining money after purchasing item \(x\).
+
+Using the above rules, we derive the conclusion step-by-step.
+
+### Inferences
+These represent the logical conclusions derived from the facts using appropriate inference rules.
+
+#### Inf-1: Remaining Money After Spending $38
+\[ \text{RemainingMoney} ::= \text{RemainingMoney} \left( \text{Purchased}(groceries) \right) \]
+This infers that since groceries were purchased, the remaining money is calculated by subtracting the amount spent ($38) from the initial amount ($128). 
+
+Substituting the values:
+\[ \text{RemainingMoney} = \$128 - \$38 = \$90 \]
+
+Thus, the final remaining amount of money Olivia has is:
+\[ \boxed{\$90} \]

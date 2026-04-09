@@ -1,0 +1,5 @@
+LABEL: Facts :: BuildingHouseBlocks(89); BuildingTowerBlocks(63)
+
+LABEL: Rule :: DifferenceBetweenBuildings(blocks_used_for_house, blocks_used_for_tower) -> blocks_used_for_house - blocks_used_for_tower
+
+LABEL: Inferences :: DifferenceBetweenBuildings(BuildingHouseBlocks(89), BuildingTowerBlocks(63)) :: DifferenceBetweenBuildings(89, 63)

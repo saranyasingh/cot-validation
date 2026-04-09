@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, spent(edward, 16, 92)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, P, M] : (spent(N, P, M) => N * P = M)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, price_per_book(edward) = 16/92).
+
+% From inf_1 by Simplification
+fof(inf_2, axiom, price_per_book(edward) = 0.1765).
+
+% From inf_3 by Definition
+fof(inf_3, axiom, initial_amount = total_expenditure + remaining_money).
+
+% From inf_4 by Given information
+fof(inf_4, axiom, remaining_money = 6).
+
+% From inf_5 by Calculation
+fof(inf_5, axiom, initial_amount = 22).

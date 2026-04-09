@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: Total sacks harvested daily is 76 :: SacksHarvestedDaily = 76
+FACT-2: Number of sacks discarded daily is 64 :: SacksDiscardedDaily = 64
+
+### ## RULES
+RULE-1: If sacks harvested daily equals total harvested, then sacks remaining after discarding are total minus discarded :: SacksRemainingAfterDiscard(total_sacks_harvested, scks_discarded) = total_sacks_harvested - scks_discarded
+
+### ## INFERENCES
+INF-1: Given SacksHarvestedDaily = 76 and SacksDiscardedDaily = 64,
+From RULE-1, SacksRemainingAfterDiscard(76, 64) = 76 - 64 = 12 sacks remaining.
+INF-2: Given SacksHarvestedDaily = 76 and each sack has 50 oranges,
+Then total oranges harvested daily = SacksHarvestedDaily * OrangesPerSack :: TotalOrangesHarvestedDaily = SacksHarvestedDaily * 50

@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, wallet_amount(olivia, t_initial) = 3).
+fof(fact_2, axiom, wallet_amount(olivia, t_atm) = 49).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Person, StartingTime, SpendingTime, Y] : ( wallet_amount(Person, SpendingTime) = wallet_amount(Person, StartingTime) - spending(Y) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, wallet_amount(olivia, t_atm) = wallet_amount(olivia, t_initial) - spending(49)).
+
+% From fact_2
+fof(inf_2, axiom, wallet_amount(olivia, t_atm) = 49).
+
+% From INF-3 (multi-part equality)
+fof(inf_3, axiom, (wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) - spending(49)) & (wallet_amount(olivia, t_initial) - spending(49) = 49)).
+
+% From INF-4 (multi-part equality)
+fof(inf_4, axiom, (final_wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) - spending(49)) & (final_wallet_amount(olivia, t_final) = 3)).
+
+% From INF-5 (multi-part equality)
+fof(inf_5, axiom, (wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial)) & (wallet_amount(olivia, t_initial) = 3)).
+
+% From INF-6 (multi-part equality)
+fof(inf_6, axiom, (final_wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial)) & (wallet_amount(olivia, t_initial) = 3)).
+
+% From INF-7
+fof(inf_7, axiom, 49 - 49 = 0).

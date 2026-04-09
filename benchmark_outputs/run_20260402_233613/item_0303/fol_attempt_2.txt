@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Paco initially had 39 sweet cookies :: SweetCookiesPaco(39)
+FACT-2: Paco initially had 6 salty cookies :: SaltyCookiesPaco(6)
+FACT-3: Paco ate 23 salty cookies :: SaltedCookiesEatenPaco(23)
+FACT-4: Paco ate 32 sweet cookies :: SweetCookiesEatenPaco(32)
+
+### RULES
+RULE-1: Initial amount minus eaten equals remaining :: ∀x P(x) → ~P(x - x_eaten)
+RULE-2: Difference between amounts equals total consumed :: ∀x P(x) + P(x_eaten) - P(x_total)
+
+### INFERENCES
+INF-1: Paco initially had 39 sweet cookies and 6 salty cookies :: FACT-1, FACT-2
+INF-2: Paco ate 23 salty cookies and 32 sweet cookies :: RULE-3, RULE-4, FACT-3, FACT-4
+INF-3: Paco ate 9 more sweet cookies than salty cookies :: Rule-1, Rule-2, INF-2 by Modus Ponens

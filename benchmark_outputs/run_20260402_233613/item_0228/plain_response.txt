@@ -1,0 +1,20 @@
+To determine how many necklaces Emily can make, we need to follow these steps:
+
+1. **Calculate the total number of beads needed per necklace**: Each necklace requires 3 beads.
+   
+   \[
+   \text{Total beads per necklace} = 3
+   \]
+
+2. **Determine the total number of beads Emily has**: Emily has 6 beads in total.
+
+3. **Calculate the maximum number of necklaces she can make**:
+   - We divide the total number of beads by the number of beads required per necklace.
+
+   \[
+   \text{Number of necklaces} = \frac{\text{Total beads}}{\text{Beads per necklace}} = \frac{6}{3} = 2
+   \]
+
+Therefore, Emily can make 2 necklaces. 
+
+The answer is: 2

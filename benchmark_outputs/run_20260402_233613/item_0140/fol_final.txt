@@ -1,0 +1,18 @@
+### ## FACTS
+```plaintext
+FACT-1: CostOfCandyBar :: 6
+FACT-2: CostOfChocolate :: 3
+```
+
+### ## RULES
+```plaintext
+RULE-1: TotalCost(CandyBar) :: CostOfCandyBar
+RULE-2: TotalCost(Chocolate) :: CostOfChocolate
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: DifferenceInSpending :: TotalCost(CandyBar) - TotalCost(Chocolate)
+INF-2: DifferenceInSpending :: 6 - 3
+INF-3: DifferenceInSpending :: 3
+```

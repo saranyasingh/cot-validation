@@ -1,0 +1,17 @@
+## FACTS
+
+```plaintext
+FACT-1: RoomWidth :: 2 feet
+```
+
+## RULES
+
+```plaintext
+RULE-1: AreaFromWidthAndLength :: ∀l (Area(l, w) := l * w)
+```
+
+## INFERENCES
+
+```plaintext
+INF-1: AreaOfRoom :: Area(RoomWidth, RoomHeight)
+```

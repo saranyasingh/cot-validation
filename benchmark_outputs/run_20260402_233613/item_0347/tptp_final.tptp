@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, harvested_sacks_per_day(66)).
+fof(fact_2, axiom, oranges_in_sack(28)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by multiplication
+fof(inf_1, axiom, inf_harvest_oranges_per_day(inf_fact1, inf_fact2)).
+% From inf_1, fact_1, fact_2 by CalcTotalHarvest
+fof(inf_2, axiom, calc_total_harvest(inf_harvest_oranges_per_day, fact1, fact2)).

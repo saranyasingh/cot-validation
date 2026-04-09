@@ -1,0 +1,17 @@
+LABEL: ## FACTS
+FACT-1: Marco and his dad together have strawberries that weigh 35 pounds :: StrawberriesMarco weighs 35 pounds AND StrawberriesDadWeighs35pounds
+FACT-2: Marco’s strawberries weigh 13 pounds :: StrawberriesMarco weighs 13 pounds
+
+LABEL: ## RULES
+RULE-1: If someone has strawberries, then they also have other fruits :: ∀x (HasStrawberries(x) → HasOtherFruits(x))
+RULE-2: Having strawberries does not affect having other fruits :: ∀x (HasStrawberries(x) → DoesNotAffectHavingOtherFruits(x))
+
+LABEL: ## INFERENCES
+INF-1: From FACT-1 and RULE-1, we can infer that Marco has other fruits :: HasOtherFruits(Marco)
+INF-2: From FACT-2 and RULE-2, we can infer that Marco still has other fruits even though he has strawberries :: DoesNotAffectHavingOtherFruits(Marco)
+INF-3: Since Marco has strawberries and other fruits, we know the total weight of all fruits :: TotalWeight = StrawberriesMarco + OtherFruitsMarco
+INF-4: Using the given total weight of 35 pounds, we can calculate the weight of other fruits :: OtherFruitsMarco = TotalWeight - StrawberriesMarco
+INF-5: Calculate the difference in weight between Marco's strawberries and his dad's strawberries :: Difference = StrawberriesMarco - Dad'sStrawberries
+INF-6: Substitute the values to find the difference :: Difference = 13 pounds - 22 pounds
+INF-7: Final calculation shows that Marco's strawberries weigh 9 pounds less than his dad's :: Difference = -9 pounds
+INF-8: Interpretation: Marco's strawberries weigh 9 pounds less than his dad's :: Difference = -9 pounds

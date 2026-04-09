@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, played_with(julia, 2, t_monday)).
+fof(fact_2, axiom, played_with(julia, 14, t_tuesday)).
+fof(fact_3, axiom, played_with(julia, 16, t_wednesday)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, T] : (played_with(X, Y, T) => played_with(X, plus(Y, 1), T))).
+fof(rule_2, axiom, ! [Y, Z, T] : (played_with(Y, Z, T) => played_with(Y, plus(Z, 1), T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, played_with(julia, 2, t_monday)).
+% From fact_2, rule_2 by Universal Instantiation
+fof(inf_2, axiom, played_with(julia, 14, t_tuesday)).
+% From fact_3, rule_2 by Universal Instantiation
+fof(inf_3, axiom, played_with(julia, 16, t_wednesday)).
+% From inf_4 by Arithmetic
+fof(inf_4, axiom, total_kids = plus(plus(2, 14), 16)).
+% From inf_4 by Arithmetic
+fof(inf_5, axiom, total_kids = 32).

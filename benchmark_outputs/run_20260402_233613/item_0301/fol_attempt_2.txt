@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: R_{\text{initial}} = 15 :: R(rose, t_initial)
+FACT-2: O_{\text{initial}} = 62 :: O(orchid, t_initial)
+FACT-3: R_{\text{final}} = 17 :: R(rose, t_final)
+FACT-4: O_{\text{final}} = 96 :: O(orchid, t_final)
+
+### ## RULES
+RULE-1: For all types of flowers, if they exist at a certain time, they existed at an earlier time :: ∀x(Flower(x) → ∃y(Time(y) ∧ Flower(y) ∧ Time(y) ≤ y))
+
+### ## INFERENCES
+INF-1: Number of roses cut :: (R(rose, t_final) - R(rose, t_initial))
+INF-2: Jessica cut 2 roses :: (-2)

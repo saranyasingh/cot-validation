@@ -1,0 +1,62 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+The facts are derived directly from the given premises without any quantification over variables.
+
+#### Fact-1: Price of a Jersey
+```fola: ```210``` :: ```JerseyPrice(jersey)```
+
+#### Fact-2: Price of a T-Shirt
+```fola: ```240``` :: ```TShirtPrice(tshirt)```
+
+### Rules
+These rules encapsulate external or linguistic knowledge that does not depend on specific instances but apply universally across all scenarios involving prices and sales quantities.
+
+#### Rule-1: Total Revenue Calculation
+```fola: ```TotalRevenue(items) :: ```Sum(items * Price(item))```
+Where `items` can be either `jerseys` or `tshirts`, and `Price(item)` is the price associated with that item type.
+
+### Inferences
+Inferences derive logical consequences based on the facts and rules presented.
+
+#### Inference-1: Calculate Total Revenue from Jerseys
+```fola: ```TotalRevenueFromJerseys() :: ```Sum(210 * 23)```
+This calculates the total revenue from selling 23 jerseys at $210 each.
+
+#### Inference-2: Calculate Total Revenue from T-Shirts
+```fola: ```TotalRevenueFromTShirts() :: ```Sum(240 * 177)```
+This calculates the total revenue from selling 177 t-shirts at $240 each.
+
+#### Inference-3: Find the Difference in Prices
+```fola: ```PriceDifference() :: ```Abs(TotalRevenueFromTShirts() - TotalRevenueFromJerseys())```
+This finds the absolute value of the difference between the total revenues calculated in the previous steps.
+
+#### Inference-4: Final Conclusion
+```fola: ```MoreCostThanJerseyDifference() :: ```PriceDifference()```
+This concludes the final result showing how much more a t-shirt costs than a jersey.
+
+### Output Format
+We structure our output according to the specified format using natural language glosses followed by their corresponding FOL formulas.
+
+#### LABEL: **Fact-1**: Price of a Jersey :: ```JerseyPrice(jersey)```
+```fola: ```210``` :: ```JerseyPrice(jersey)```
+
+#### LABEL: **Fact-2**: Price of a T-Shirt :: ```TShirtPrice(tshirt)```
+```fola: ```240``` :: ```TShirtPrice(tshirt)```
+
+#### LABEL: **Rule-1**: Total Revenue Calculation :: ```TotalRevenue(items) :: Sum(items * Price(item))```
+Where `items` can be either `jerseys` or `tshirts`, and `Price(item)` is the price associated with that item type.
+
+#### LABEL: **Inference-1**: Calculate Total Revenue from Jerseys :: ```TotalRevenueFromJerseys() :: Sum(210 * 23)```
+This calculates the total revenue from selling 23 jerseys at $210 each.
+
+#### LABEL: **Inference-2**: Calculate Total Revenue from T-Shirts :: ```TotalRevenueFromTShirts() :: Sum(240 * 177)```
+This calculates the total revenue from selling 177 t-shirts at $240 each.
+
+#### LABEL: **Inference-3**: Find the Difference in Prices :: ```PriceDifference() :: Abs(TotalRevenueFromTShirts() - TotalRevenueFromJerseys())```
+This finds the absolute value of the difference between the total revenues calculated in the previous steps.
+
+#### LABEL: **Inference-4**: More Cost Than Jersey Difference :: ```MoreCostThanJerseyDifference() :: PriceDifference()```
+This concludes the final result showing how much more a t-shirt costs than a jersey.
+
+By structuring the output in this way, we ensure clarity and adherence to the constraints outlined in the problem description.

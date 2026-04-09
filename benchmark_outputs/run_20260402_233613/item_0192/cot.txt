@@ -1,0 +1,20 @@
+1. **Premise 1:** Sofia requested that students suggest specific types of food.
+   - This is our starting point as it sets up the scenario where students are being asked to contribute suggestions.
+
+2. **Premise 2:** Out of 450 students, 38 suggested adding bacon to the menu.
+   - We know this because the problem directly states this fact.
+
+3. **Premise 3:** Of the remaining students (after accounting for those who added bacon), the rest did not participate in suggesting any new foods.
+   - This means we need to subtract the number of students who added bacon from the total number of students to find out how many didn't add anything.
+
+4. **Calculation Step:** 
+   - Total students = 450
+   - Students who added bacon = 38
+   - Students who did not add anything = Total students - Students who added bacon
+     \[
+     450 - 38 = 412
+     \]
+
+5. **Conclusion:** Therefore, 412 students participated in the suggestion of new food items.
+
+The answer is: The answer is: 412

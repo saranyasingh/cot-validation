@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, fwd_last_week(111)).
+fof(fact_2, axiom, fwd_now(115)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (had_money(X) => earned(X))).
+fof(rule_2, axiom, ! [X] : (earned(X) => new_amount(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, had_money(fred)).
+% From fact_2, rule_2 by Universal Instantiation
+fof(inf_2, axiom, new_amount(fred)).
+% From fact_1, fact_2 by Subtraction
+fof(inf_3, axiom, (earned(fred) & new_amount(fred) & had_money(fred) & (new_amount(fred) - had_money(fred)) = 4)).

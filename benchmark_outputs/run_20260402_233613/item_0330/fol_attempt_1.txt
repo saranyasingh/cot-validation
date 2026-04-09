@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: Initially in the vase: 7 roses :: InitialVaseCount(7)
+FACT-2: Total in garden: 59 roses :: GardenTotal(59)
+
+### RULES
+RULE-1: Total in vase equals initial vase count plus additional roses :: TotalInVase(TotalInitial, AdditionalRoses) :: ∀T1, T2 (InitialVaseCount(T1) + AdditionalRoses(T1) = TotalInVase(T1))
+RULE-2: Given total in garden minus initial vase count gives additional roses :: AdditionalRoses(GardenTotal, InitialVaseCount) :: ∀G, I (GardenTotal(G) - InitialVaseCount(I) = AdditionalRoses(G))
+
+### INFERENCES
+INF-1: Jessica cut 13 roses from her garden :: JessicaCut(Rules::[AdditionalRoses(GardenTotal, InitialVaseCount)] :: ∀G, I (GardenTotal(G) - InitialVaseCount(I) = 13))

@@ -1,0 +1,18 @@
+## FACTS
+- FACT-1: ∀c (Feeds(c, t_24, c) ∧ Feeds(c, t_12, c) ∧ Feeds(c, t_08, c)) :: For every chicken \( c \), it receives 3 cups of feed at \( t_{24} \), \( t_{12} \), and \( t_{08} \).
+- FACT-2: ∃m (Feeds(c, m, c) → ∃n (m = n + 1)) :: If a chicken \( c \) receives feed on some meal \( m \), then there exists a subsequent meal \( n+1 \) where \( m \) occurs.
+- FACT-3: ∀c (Feeds(c, t_24, c) ∧ Feeds(c, t_12, c)) → (∃n (N_chickens * N_meals = N_feed)) :: Given that a chicken \( c \) received feed on both mornings and afternoons, there exists a number of meals \( n \) such that the total feed equals \( N_chickens \times N_meals \).
+- FACT-4: N_chickens = 20 :: There are 20 chickens.
+- FACT-5: Feeds(chicken_x, t_24, chicken_x) = 15 :: Chicken \( x \) received 15 cups of feed in the morning.
+- FACT-6: Feeds(chicken_x, t_12, chicken_x) = 25 :: Chicken \( x \) received 25 cups of feed in the afternoon.
+
+## RULES
+- RULE-1: Universal Instantiation (UI) :: From a universally quantified statement, instantiate it to apply to a particular individual.
+
+## INFERENCES
+- FROM FACT-1 AND RULE-1: FOR ANY CHICKEN c, IT RECEIVES 3 CUPS OF FEED AT EACH MEAL.
+- FROM FACT-2 AND RULE-1: IF FEEDS(c, m, c), THEN THERE EXISTS SOME MEAL m SUCH THAT m IS AN ADDITIONAL MEAL.
+- FROM FACT-3 AND RULE-1: GIVEN FEEDS(c, t_24, c) AND FEEDS(c, t_12, c), THERE EXISTS A NUMBER OF MEALS N SUCH THAT N_CHICKENS * N_MEALS = N_FEED.
+- FROM FACT-4 AND RULE-1: THERE ARE 20 CHICKENS.
+- FROM FACT-5 AND RULE-1: FOR CHICKEN x, THE FEED GIVEN IN MORNING SESSION IS 15.
+- FROM FACT-6 AND RULE-1: FOR CHICKEN x, THE FEED GIVEN IN AFTERNOON SESSION IS 25.

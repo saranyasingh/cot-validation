@@ -1,0 +1,12 @@
+```plaintext
+# LABEL: FACTS :: 
+FACT-1: Jessica cut \( c \) roses.
+FACT-2: There are 19 roses in the vase after Jessica cut \( c \) roses.
+FACT-3: There were 3 roses initially in the vase.
+
+# LABEL: RULES :: 
+Rule-1: If Jessica cuts \( c \) roses, then \( 19 - c \) roses remain in the vase.
+
+# LABEL: INFERENCES :: 
+INF-1: Jessica cut 16 roses.
+```

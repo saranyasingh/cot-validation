@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, tag_played_with_kids(5, monday)).
+
+fof(fact_2, axiom, tag_played_with_kids(x, tuesday)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, M] : ( tag_played_with_kids(N, monday) => tag_played_with_kids( +(N, M), tuesday) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Generalization
+fof(inf_1, axiom, ! [Y, X] : ( tag_played_with_kids(Y, monday) => tag_played_with_kids( +(Y, X), tuesday) ) ).
+
+% From fact_2 and rule_1 by Universal Generalization
+fof(inf_2, axiom, ! [Z] : ( tag_played_with_kids(Z, tuesday) => tag_played_with_kids( +(Z, 5), monday) ) ).
+
+% From fact_1 and fact_2 and rule_2 by Universal Generalization
+fof(inf_3, axiom, ! [W] : ( total_tag_players(W) = 15 ) ).
+
+% From INF-1 and INF-2 by Universal Instantiation
+fof(inf_4, axiom, ! [X] : ( tag_played_with_kids(5, monday) => tag_played_with_kids( +(5, X), tuesday) ) ).

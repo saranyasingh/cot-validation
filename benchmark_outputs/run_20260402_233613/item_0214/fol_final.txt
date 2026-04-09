@@ -1,0 +1,29 @@
+### FACTS
+```plaintext
+FACT-1: HarvestedOrangesPerDay(x) :: x * SacksHarvested / OrangesInSack
+```
+```plaintext
+FACT-2: OrangesInSack :: 35
+```
+
+### RULES
+```plaintext
+Rule-1: OrangesHarvestedPerDay :: Forall x (HarvestedOrangesPerDay(x))
+```
+
+### INFERENCES
+```plaintext
+INF-1: DailyHarvest :: TotalOrangesHarvested
+```
+
+```plaintext
+INF-2: TotalOrangesHarvested :: n * HarvestedOrangesPerDay
+```
+
+```plaintext
+INF-3: TotalOrangesHarvested :: n * 35
+```
+
+Thus, the answer is:
+
+**Final Inference:** TotalOrangesHarvested :: n * 35

@@ -1,0 +1,13 @@
+Here is the conversion of your chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+FACT-1: With 28 dollars, two packs of DVDs can be bought :: (∀d (Budget(d) ∧ Bought(d, 2) → d = 28))
+
+### Rules
+Rule-1: If there is a budget, then the total amount equals the budget value :: ∀Budget(Budget(d)) (This rule encapsulates the given premise.)
+
+### Inferences
+INF-1: From Fact-1 and Rule-1, we derive the cost of each DVD-pack :: ∀DVD-Pack(Cost(DVD-Pack) := Budget(28) / 2)
+
+### Final Answer
+INF-1: The cost of each DVD-pack :: Cost(DVD-Pack) := 14

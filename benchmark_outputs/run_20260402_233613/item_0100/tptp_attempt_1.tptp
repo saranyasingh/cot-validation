@@ -1,0 +1,8 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_number_of_trees = 11).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, survived(11) - dead(2) = 11 - 2).

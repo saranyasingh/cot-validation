@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_girls(732)).
+fof(fact_2, axiom, number_of_boys(761)).
+fof(fact_3, axiom, number_of_students(732 + 761)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B] : ( sum(A,B) = sum(number_of_girls_initially, number_of_boys_initially) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Sum
+fof(inf_1, axiom, number_of_students(number_of_students_initially + number_of_new_students)).
+
+% From fact_2, rule_1 by Sum
+fof(inf_2, axiom, number_of_new_students(682_girls + 8_boys)).
+
+% From fact_3, rule_1 by Sum
+fof(inf_3, axiom, number_of_students(number_of_students_initially + number_of_new_students)).

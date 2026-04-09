@@ -1,0 +1,11 @@
+## FACTS
+- **I**: Haley initially had 20 trees.
+- **S**: After the typhoon, 4 trees remained.
+
+## RULES
+- **Rule for Subtraction**: If A and B are sets, then the difference between A and B gives the elements present only in A but not in B.
+
+## INFERENCES
+- **Inference 1**: Let \( I \) represent the initial state where Haley has 20 trees.
+- **Inference 2**: Let \( S \) represent the state where 4 trees remain after the typhoon.
+- **Inference 3**: By definition, the number of trees that died (\( D \)) is given by \( D = I - S \). Since \( I = 20 \) and \( S = 4 \), it follows that \( D = 20 - 4 \). Therefore, \( D = 16 \).

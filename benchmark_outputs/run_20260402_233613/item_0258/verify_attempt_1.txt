@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — Directly stated: there were 666 visitors on that day.
+
+FACT-2: SUPPORTED — Directly stated: 100 visitors on the previous day.
+
+RULE-1: PLAUSIBLE — It uses the standard difference operation to compute how many more visitors (666 − 100).

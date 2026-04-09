@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker_count(matt, 24)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (crackers_to_friends(X, matt, 3) => cracker_count(matt, 17))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, crackers_to_friends(6, matt, 3)).

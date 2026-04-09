@@ -1,0 +1,36 @@
+This problem involves translating a simple arithmetic operation into first-order logic (FOL). Here's the conversion process broken down step-by-step:
+
+### Facts
+These are the given facts about the situation.
+
+**Fact-1:**
+Mary needs 9 cups of flour to make the cake.
+
+**Fact-2:**
+Mary has already added 3 cups of flour to the mixture.
+
+### Rules
+These are derived rules based on the given information.
+
+**Rule-1:**
+If someone adds x cups of flour, then they need to add y cups to reach the total.
+
+Since we don't know what 'y' represents, let's assume it's the unknown amount of flour left to be added after adding 3 cups. We can express this as:
+
+**Rule-2:**
+Adding 3 cups leaves 6 cups to be added.
+
+### Inferences
+Using these rules, we derive the conclusion.
+
+**Inference-1:**
+From Fact-1 and Rule-1, if Mary adds 3 cups, she needs 6 more cups to reach the total.
+
+So, the final result is:
+
+**Inference-1:**
+6
+
+### Final Answer
+**Inference-1:**
+6 :: 9 - 3 = 6

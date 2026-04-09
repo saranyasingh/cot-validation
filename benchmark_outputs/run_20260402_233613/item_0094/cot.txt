@@ -1,0 +1,28 @@
+**Logical Syllogism**
+
+Premise 1: Jack received 3 emails in the afternoon.
+Premise 2: Jack received 6 emails in the morning.
+Premise 3: Let x be the number of emails Jack received in the evening.
+Premise 4: The total number of emails Jack received in the day is 10.
+
+**Conclusion:** Therefore, Jack must have received \(x\) emails in the evening such that:
+
+\[ \text{Total emails} = \text{Emails in the afternoon} + \text{Emails in the morning} + \text{Emails in the evening} \]
+
+Given:
+- Total emails (T) = 10
+- Emails in the afternoon (A) = 3
+- Emails in the morning (M) = 6
+
+We substitute these values into our equation:
+
+\[ T = A + M + x \]
+\[ 10 = 3 + 6 + x \]
+
+Solving for \(x\):
+
+\[ 10 = 9 + x \]
+\[ x = 10 - 9 \]
+\[ x = 1 \]
+
+**Answer:** The number of emails Jack received in the evening is **1**.

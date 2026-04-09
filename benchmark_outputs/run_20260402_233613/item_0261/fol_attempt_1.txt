@@ -1,0 +1,51 @@
+Let's break down the problem step-by-step and convert each part into FOL syntax.
+
+### Step 1: Identify Initial Quantities
+- Total pastries initially: 61
+- Total cakes initially: 167
+
+### Step 2: Calculate Remaining Pastries After Sale
+- Number of pastries sold: 44
+- Remaining pastries = Initial pastries - Sold pastries
+\[
+61 - 44 = 17
+\]
+
+### Step 3: Determine Remaining Cakes After Sale
+- Number of cakes sold: 108
+- Since there were only 167 cakes available initially, it's impossible to sell all 167 cakes if only 108 were actually sold.
+- Therefore, no cakes remain after selling 108 out of the initial 167.
+
+### Conclusion
+The baker does not have any cakes left because he couldn't sell more than what was available initially.
+
+Now let's write the FOL formulas based on the above reasoning.
+
+#### Facts
+```plaintext
+FACT-1: TotalPastries(61)
+FACT-2: TotalCakes(167)
+```
+
+#### Rules
+No rules needed since everything can be derived directly from facts without needing external information.
+
+#### Inferences
+Since the number of cakes sold exceeds the total number of cakes available, the remaining cakes will be zero. This can be represented as:
+```plaintext
+INF-1: RemainingCakesAfterSale() = 0
+```
+This represents that after selling 108 cakes out of 167, no cakes remain.
+
+### Final Output
+```plaintext
+## FACTS
+FACT-1: TotalPastries(61)
+FACT-2: TotalCakes(167)
+
+## RULES
+RULE-1: None
+
+## INFERENCES
+INF-1: RemainingCakesAfterSale() = 0
+```

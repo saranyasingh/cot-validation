@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, roses_in_vase(13)).
+fof(fact_2, axiom, roses_in_vase(21)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : (adding(R) => roses_in_vase(roses_added(R)))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, adding(8)).
+
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_2, axiom, roses_in_vase(21)).
+
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_3, axiom, roses_in_vase(13)).
+
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_4, axiom, roses_left_after_addition(8)).

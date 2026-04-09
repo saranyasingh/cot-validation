@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story states the baker made 149 cakes ( InitialNumberOfCakes ).
+
+FACT-2: SUPPORTED — The story provides the scenario "sold 10 cakes" ( NumberOfCakesSold = 10 ) in the question.
+
+FACT-1: SUPPORTED — Duplicate of initial number being 149 as stated.
+
+FACT-2: SUPPORTED — Duplicate of cakes sold being 10 in the scenario.
+
+RULE-1: PLAUSIBLE — It encodes the sensible principle: RemainingCakes = InitialNumberOfCakes − NumberOfCakesSold.
+
+RULE-1: PLAUSIBLE — Reiteration of the same plausible arithmetic rule.

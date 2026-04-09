@@ -1,0 +1,22 @@
+This reasoning can be converted into FOL as follows:
+
+### Facts
+FACT-1: Paul had 589 crayons initially :: Crayons(Paul, initial)
+
+FACT-2: Paul gave away 571 crayons to his friends :: CrayonsGiven(Paul, friends, 571)
+
+FACT-3: Paul lost 161 crayons :: CrayonsLost(Paul, 161)
+
+### Rules
+RULE-1: Given a person and an action, they have a certain quantity of something :: Crayons(Person, Action, Quantity)
+
+RULE-2: If someone has a quantity of something, giving some of it results in fewer crayons :: CrayonsMinus(CrystallineObject, Person, Amount, Result)
+
+RULE-3: Subtracting the same amount from both sides maintains equality :: EqualSubtraction(Amount1, Amount2, NewAmount)
+
+### Inferences
+INF-1: Paul gave away 410 more crayons than he lost :: CrayonsGiven(Paul, friends, 410)
+
+INF-2: From RULE-2, using Rule-3, applying Rule-2 again, and then Rule-3, we get the difference in quantities :: DifferenceInCrayons(589, 571, 161, 410)
+
+INF-3: From Fact-2 and Fact-3, using RULE-1 and Rule-3, we infer the result of the subtraction :: CrayonsMinus(Crayons(Paul, initial), Paul, 410, Crayons(Paul, final))

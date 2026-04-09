@@ -1,0 +1,10 @@
+## FACTS
+LABEL: Fact 1 :: ∀(planks_used, nails_per_plank) -> (TotalNails(planks_used, nails_per_plank))
+LABEL: Fact 2 :: ∀(planks_used, nails_per_plank) -> (TotalNails(planks_used, nails_per_plank))
+LABEL: Fact 3 :: TotalNails(16, 2)
+
+## RULES
+LABEL: Rule 1 :: ∃(planks_used, nails_per_plank) -> (∀(planks_used, nails_per_plank) -> (TotalNails(planks_used, nails_per_plank)))
+
+## INFERENCES
+LABEL: Inference 1 :: (TotalNails(16, 2))

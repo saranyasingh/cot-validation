@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepIn(Seattle) = 20
+FACT-2: Charleston has 4 times as many sheep as Seattle :: SheepIn(Charleston) = 4 * SheepIn(Seattle)
+
+## RULES
+RULE-1: Toulouse has twice as many sheep as Charleston :: SheepIn(Toulouse) = 2 * SheepIn(Charleston)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Multiplication: Toulouse has 80 sheep :: SheepIn(Toulouse) = 80
+INF-2: From FACT-2 and RULE-1 by Addition: Total Sheep = SheepIn(Toulouse) + SheepIn(Charleston) + SheepIn(Seattle) :: Total_Sheep = 80 + 80 + 20 = 260

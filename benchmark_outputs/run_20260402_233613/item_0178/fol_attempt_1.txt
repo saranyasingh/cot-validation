@@ -1,0 +1,80 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. **Premise 1:** Mary needs a total of 14 cups of flour for the cake.
+   - Fact-1: TotalFlourNeeded(x) = 14 where x represents the total flour needed for the cake.
+
+2. **Premise 2:** Mary has already added 7 cups of flour.
+   - Fact-2: FlourAdded(y) = 7 where y represents the amount of flour already added.
+
+3. **Premise 3:** Subtracting the amount of flour Mary has already added from the total required gives us how much more flour Mary needs to add.
+   - Fact-3: RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z) where z represents the remaining flour needed.
+
+### Rules
+These rules represent logical steps based on the premises provided.
+
+4. **Rule-1:** Adding the amount of flour already added to the total required gives the total amount of flour needed.
+   - Rule-1: TotalFlourNeeded(z) = FlourAdded(z) + RemainingFlour(z)
+
+5. **Rule-2:** Subtraction operation ensures we get the correct amount of flour needed beyond what has been added.
+   - Rule-2: RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+
+6. **Rule-3:** Subtracting the amount of flour already added from the total required results in the remaining amount of flour needed.
+   - Rule-3: RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+
+### Inferences
+From these facts and rules, we derive the conclusion.
+
+7. **Inference-1:** Mary needs to add \(14 - 7 = 7\) more cups of flour to the mixture.
+   - Inference-1: RemainingFlour(7) = TotalFlourNeeded(7) - FlourAdded(7)
+
+Now let’s express this step-by-step in FOL:
+
+#### Step-by-Step Conversion:
+
+**Fact-1:** TotalFlourNeeded(x) = 14
+```plaintext
+TotalFlourNeeded(x) = 14
+```
+
+**Fact-2:** FlourAdded(y) = 7
+```plaintext
+FlourAdded(y) = 7
+```
+
+**Fact-3:** RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```plaintext
+RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```
+
+**Rule-1:** TotalFlourNeeded(z) = FlourAdded(z) + RemainingFlour(z)
+```plaintext
+TotalFlourNeeded(z) = FlourAdded(z) + RemainingFlour(z)
+```
+
+**Rule-2:** RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```plaintext
+RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```
+
+**Rule-3:** RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```plaintext
+RemainingFlour(z) = TotalFlourNeeded(z) - FlourAdded(z)
+```
+
+**Inference-1:** RemainingFlour(7) = TotalFlourNeeded(7) - FlourAdded(7)
+```plaintext
+RemainingFlour(7) = TotalFlourNeeded(7) - FlourAdded(7)
+```
+
+Substituting the values:
+```plaintext
+RemainingFlour(7) = 14 - 7
+```
+
+Thus,
+```plaintext
+RemainingFlour(7) = 7
+```
+
+Therefore, Mary needs to add \( \boxed{7} \) more cups of flour to the mixture.

@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, earned(usd_10, 40, t_24)).
+fof(fact_2, axiom, earned(usd_12, 5, t_24)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (earned(usd_10, N, t) => total_earnings(N, usd_10, t))).
+fof(rule_2, axiom, ! [M] : (earned(usd_12, M, t) => total_earnings(M, usd_12, t))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_earnings(40, usd_10, t_24)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_earnings(5, usd_12, t_24)).
+% From inf_1, inf_2 by addition
+% INF-3
+% From inf_1, inf_2 by addition
+fof(inf_3, axiom, total_earnings(40, usd_10, t_24) + total_earnings(5, usd_12, t_24)).
+% INF-4
+% From inf_1, inf_2 by addition
+fof(inf_4, axiom, total_earnings(40, usd_10, t_24) + total_earnings(5, usd_12, t_24)).

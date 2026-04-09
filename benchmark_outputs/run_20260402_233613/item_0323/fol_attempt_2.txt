@@ -1,0 +1,16 @@
+## FACTS
+```plaintext
+FACT-1: Chapter1Pages = 60
+```
+
+## RULES
+```plaintext
+RULE-1: TotalBookPages = 93
+```
+
+## INFERENCES
+```plaintext
+INF-1: Chapter2Pages = TotalBookPages - Chapter1Pages
+INF-2: Chapter2Pages = 93 - 60
+INF-3: Chapter2Pages = 33
+```

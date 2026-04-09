@@ -1,0 +1,25 @@
+This conversion is straightforward because the original reasoning is quite simple and doesn't require any complex logical structures beyond basic arithmetic operations. Here’s the corresponding FOL formulation based on the provided information:
+
+### Facts
+```plaintext
+Fact-1: Kelly has 22 Nintendo games :: HasGames(Kelly, 22)
+```
+
+### Rules
+There are no specific rules needed for this simple calculation.
+
+### Inferences
+```plaintext
+INF-1: Kelly will need to buy 118 more games to have 140 games :: HasGames(Kelly, 140)
+```
+
+So, the final output would look like this:
+
+## FACTS
+Fact-1: Kelly has 22 Nintendo games :: HasGames(Kelly, 22)
+
+## RULES
+---
+
+## INFERENCES
+INF-1: Kelly will need to buy 118 more games to have 140 games :: HasGames(Kelly, 140)

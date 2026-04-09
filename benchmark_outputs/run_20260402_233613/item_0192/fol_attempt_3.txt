@@ -1,0 +1,15 @@
+## FACTS
+```plaintext
+FACT-1: Number_of_students = 450
+FACT-2: Suggested_bacon = 38
+```
+
+## RULES
+```plaintext
+RULE-1: If student suggests bacon, then they participate -> SuggestingBacon(x) → ParticipateIn(SuggestingBacon(x))
+```
+
+## INFERENCES
+```plaintext
+INF-1: Number_of_participants = Number_of_students - Suggested_bacon
+```

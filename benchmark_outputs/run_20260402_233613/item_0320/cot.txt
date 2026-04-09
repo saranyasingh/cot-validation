@@ -1,0 +1,26 @@
+**Logical Syllogism**
+
+1. **Premise 1:** Mary needs to add sugar to her cake.
+   - Premise 2 (from the recipe): The recipe requires 5 cups of sugar.
+   - Conclusion (derived from both premises): To bake the cake, Mary must add at least 5 cups of sugar.
+
+2. **Premise 3:** Mary has already added 11 cups of flour to her cake.
+   - Premise 4 (from the recipe): The recipe requires 14 cups of flour.
+   - Conclusion (derived from both premises): To bake the cake, Mary must add at least 14 cups of flour.
+
+3. **Conclusion:** Now, we need to determine how many more cups of sugar than cups of flour Mary needs to add.
+   - From Premise 1 and Premise 2, we know:
+     - Mary needs at least 5 cups of sugar.
+     - Mary has already added 11 cups of flour.
+   - Therefore, to compare the amount of sugar needed versus the amount of flour already added:
+     - Sugar needed = 5 cups
+     - Flour already added = 11 cups
+
+4. **Calculation:** Subtract the amount of flour from the amount of sugar:
+   \[
+   \text{Sugar needed} - \text{Flour already added} = 5 - 11 = -6
+   \]
+   - Since this result is negative, it indicates that Mary actually needs less sugar than flour. Specifically, she needs to subtract 6 cups of sugar from what she has already added.
+
+**The answer is:**
+- The answer is: 6 cups of sugar less than cups of flour.

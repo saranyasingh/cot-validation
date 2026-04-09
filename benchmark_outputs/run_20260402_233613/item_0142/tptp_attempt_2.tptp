@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, Number_of_apps_deleted = 12).
+fof(fact_2, axiom, Number_of_files_deleted = 4).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (more_apps_than_files(X, Y) => X > Y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [X, Y] : (more_apps_than_files(X, Y) & X > Y)).
+% From inf_1, 12 > 5 by Modus Ponens
+fof(inf_2, axiom, more_apps_than_files(12, 5) & 12 > 5).

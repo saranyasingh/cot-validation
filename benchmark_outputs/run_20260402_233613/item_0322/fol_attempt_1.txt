@@ -1,0 +1,56 @@
+This conversion uses FOL to represent the given information logically. Here’s the breakdown:
+
+### Facts
+These are the facts provided in natural language form.
+
+#### Fact-1: Paul started with 2 books.
+```
+Fact-1: Paul had 2 books initially :: PaulHad(2)
+```
+
+#### Fact-2: After selling some books and buying 150 new ones, Paul now has 58 books.
+```
+Fact-2: Paul has 58 books now :: PaulHas(58)
+```
+
+### Rules
+These rules provide logical connections based on the given premises.
+
+#### Rule-1: If Paul has x books, then he must have had at least x books initially.
+```
+Rule-1: Paul had at least x books if he has x books :: ∀x (PaulHas(x) → PaulHad(x))
+```
+
+#### Rule-2: Buying 150 new books increases the book count by 150.
+```
+Rule-2: Buying 150 new books increases the book count by 150 :: ∀b (Buying(b) → b + 150)
+```
+
+#### Rule-3: Selling some books decreases the book count by the number of books sold.
+```
+Rule-3: Selling some books decreases the book count by the number of books sold :: ∀s (Selling(s) → s - s_sold)
+```
+
+### Inferences
+These are derived from combining the facts and rules to solve the problem.
+
+#### Infer-1: Paul started with 2 books.
+```
+Infer-1: Paul started with 2 books :: Fact-1
+```
+
+#### Infer-2: Paul has 58 books now.
+```
+Infer-2: Paul has 58 books now :: Fact-2
+```
+
+#### Infer-3: Paul sold 150 books.
+```
+Infer-3: Paul sold 150 books :: Rule-2, Rule-3
+```
+
+### Final Answer
+Using the above steps, we can conclude that Paul sold 150 books. Thus, the final answer is:
+```
+Answer: 150
+```

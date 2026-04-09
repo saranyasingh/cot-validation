@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, balloons_allan = 5).
+fof(fact_2, axiom, balloons_jake = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (((X = 5) & (Y = 3)) => (X + Y = 8))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Addition
+fof(inf_1, axiom, (balloons_allan - balloons_jake) = 2).

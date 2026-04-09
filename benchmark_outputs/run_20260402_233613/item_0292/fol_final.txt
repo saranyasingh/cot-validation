@@ -1,0 +1,14 @@
+### ## FACTS
+LABEL: FACT-1 :: LargePlanks(13)
+LABEL: FACT-2 :: NailsPerLargePlank(17)
+LABEL: FACT-3 :: SmallerPlanks(8)
+
+### ## RULES
+LABEL: RULE-1 :: ∀Lplnks(LargePlanks(L)) → (∀Nlgs(NailsPerLargePlank(N))) → (∃T(T=large))*NailsNeeded(L)
+LABEL: RULE-2 :: ∃Smplk(SmallerPlanks(S)) → (∃Lplnks(LargePlanks(L))) → (∃Nlgs(NailsPerLargePlank(N))) → (∃T(T=small))*NailsNeeded(S)
+
+### ## INFERENCES
+LABEL: INF-1 :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=large) * NailsNeeded(L)
+LABEL: INF-2 :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N))
+LABEL: INF-3 :: ∃Smplk(SmallerPlanks(S)) * ∃Nlgs(NailsPerLargePlank(N))
+LABEL: INF-4 :: ∃Lplnks(LargePlanks(L)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=large) * ∃Smplk(SmallerPlanks(S)) * ∃Nlgs(NailsPerLargePlank(N)) * ∃T(T=small) * NailsNeeded(L) + NailsNeeded(S)

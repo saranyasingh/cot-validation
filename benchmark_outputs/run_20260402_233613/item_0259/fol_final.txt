@@ -1,0 +1,17 @@
+### ## FACTS
+
+LABEL: FLUID_FLAVOR :: FlourRequired(6)
+LABEL: FLUID_FLAVOR :: FlourAdded(x)
+LABEL: NEED_MORE_FLAVOR :: NeedMoreFlour(sugar)
+
+### ## RULES
+
+LABEL: NO_NEED_MORE_FLAVOR :: NotNeedMoreFlour(FlourAdded(x)) 
+LABEL: TOTAL_FLAVOR :: TotalFlavor(FlourAdded(x), SugarAmount) = 6
+LABEL: FLUID_FLAVOR :: FlavourRequired(Friction, FlourAdded(x))
+
+### ## INFERENCES
+
+LABEL: NO_NEED_MORE_FLAVOR :: NotNeedMoreFlour(FlourAdded(0))
+LABEL: TOTAL_FLAVOR :: TotalFlavor(FlourAdded(0), SugarAmount) = 6
+LABEL: FLUID_FLAVOR :: FlavourRequired(FlourAdded(0), SugarAmount)

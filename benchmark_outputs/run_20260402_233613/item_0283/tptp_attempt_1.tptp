@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, books(jerry) = 3).
+fof(fact_2, axiom, action_figures(jerry) = 4).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by simple subtraction
+fof(inf_1, axiom, action_figures(jerry) > books(jerry)).

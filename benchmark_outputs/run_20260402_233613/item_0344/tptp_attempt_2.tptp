@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, crayons(paul, initial)).
+
+fof(fact_2, axiom, crayons_given(paul, friends, 571)).
+
+fof(fact_3, axiom, crayons_lost(paul, 161)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ! [A] : ! [Q] : crayons(P, A, Q)).
+
+fof(rule_2, axiom, ! [CO] : ! [P] : ! [Amt] : ! [Res] : crayons_minus(CO, P, Amt, Res)).
+
+fof(rule_3, axiom, ! [A1] : ! [A2] : ! [New] : equal_subtraction(A1, A2, New)).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Subtraction
+fof(inf_1, axiom, crayons_given(paul, friends, 410)).
+
+% From rule_2, rule_3 by Subtraction
+fof(inf_2, axiom, difference_in_crayons(589, 571, 161, 410)).
+
+% From fact_2, fact_3, rule_1, rule_3 by Substitution
+fof(inf_3, axiom, crayons_minus(crayons(paul, initial), paul, 410, crayons(paul, final))).

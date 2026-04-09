@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: FACT-1 :: HasBeads(Emily, 6)
+LABEL: FACT-2 :: NecklaceRequiredPerNecklace(3)
+
+### ## RULES
+LABEL: Rule-1 :: ∀x (HasBeads(x, n) ∧ NecklaceRequiredPerNecklace(y)) → NumberOfNecklacesCanBeMade(x, y) := Quotient(n, y)
+
+### ## INFERENCES
+LABEL: INF-1 :: From FACT-1 and FACT-2, Rule-1: Emily can make 2 necklaces :: NumberOfNecklacesCanBeMade(Emily, 2)

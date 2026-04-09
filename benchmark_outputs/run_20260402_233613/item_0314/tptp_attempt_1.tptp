@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_emails(9)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, M] : ((total_emails(T) & morning_emails(M)) => email_in_afternoon(T - M))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, email_in_afternoon(total_emails(9) - morning_emails(7))).

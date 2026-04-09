@@ -1,0 +1,23 @@
+### FACTS
+FACT-1: Matthew gave out an equal number of crackers to all of his 18 friends :: ∀(f) (CrackersGivenTo(f) ∧ ∀g (Friend(g) → CrackerGivenTo(g, f)))
+
+FACT-2: Matthew started with 36 crackers :: CrakersInitialAmount(36)
+
+### RULES
+RULE-1: Equal distribution results in equal sharing :: ∀(a, b, c) ((a = b) → (∀d (d = c) → (a + d = b + d))) :: EqualSharing(a, b, c)
+
+RULE-2: If someone gives crackers to others, they have fewer crackers :: ∀(p, q) (Giving(p, q) → Crakers(p) > Crakers(q)) :: GivingAndDecreaseInCrackers(p, q)
+
+### INFERENCES
+INF-1: Since Matthew distributed crackers equally among his 18 friends, he must have had enough crackers initially to distribute them equally without any leftovers. Thus,
+\[ 
+\text{CrackersGivenTo(x)} = \frac{\text{CrakersInitialAmount}}{18}
+\]
+where \( x \) represents each friend's share.
+
+INF-2: Given that there were no leftover crackers after distribution, we can conclude that each friend received exactly the same number of crackers as calculated above.
+\[ 
+\forall x (\text{CrackersGivenTo}(x) = 2)
+\]
+
+Therefore, each friend ate 2 crackers.

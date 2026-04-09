@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: ChocolateChipCookiesBakedYesterday(19) :: ChocolateChipCookiesBaked(yesterday) = 19
+FACT-2: RaisinCookiesBakedToday(231) :: RaisinCookiesBaked(today) = 231
+
+## RULES
+RULE-1: SUM :: X + Y = Z -> X + Y = Z
+RULE-2: DIFFERENCE :: X - Y = Z -> X - Y = Z
+
+## INFERENCES
+INF-1: TotalChocolateChipCookiesToday(256) :: ChocolateChipCookiesBaked(yesterday) + ChocolateChipCookiesBakedToday() = 256
+INF-2: TotalRaisinCookiesToday(231) :: RaisinCookiesBaked(today) = 231
+INF-3: DifferenceBetweenCookies(25) :: TotalChocolateChipCookiesToday() - TotalRaisinCookiesToday() = 25

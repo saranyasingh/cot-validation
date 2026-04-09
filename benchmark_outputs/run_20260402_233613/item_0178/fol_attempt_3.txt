@@ -1,0 +1,15 @@
+### ## FACTS
+1. **TotalFlourNeeded(Mary)** :: TotalFlourNeeded(Mary) = 14
+2. **FlourAdded(Mary)** :: FlourAdded(Mary) = 7
+3. **RemainingFlour(Mary)** :: RemainingFlour(Mary) = TotalFlourNeeded(Mary) - FlourAdded(Mary)
+
+### ## RULES
+1. **Addition** :: Add(FlourAdded(Mary), TotalFlourNeeded(Mary)) = TotalFlourNeeded(Mary)
+2. **Subtraction** :: Subtract(FlourAdded(Mary), RemainingFlour(Mary)) = RemainingFlour(Mary)
+3. **Subtract** :: Subtract(TotalFlourNeeded(Mary), FlourAdded(Mary)) = RemainingFlour(Mary)
+
+### ## INFERENCES
+1. **Result** :: Result = Subtract(TotalFlourNeeded(Mary), FlourAdded(Mary))
+2. **MaryNeedsMoreFlour** :: MaryNeedsMoreFlour = Subtract(14, 7)
+3. **FinalAnswer** :: FinalAnswer = MaryNeedsMoreFlour
+4. **CorrectedConclusion** :: CorrectedConclusion = 7

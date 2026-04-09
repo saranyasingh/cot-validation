@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost_of_candy_bar = 6).
+fof(fact_2, axiom, cost_of_chocolate = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, total_cost_of_candy_bar = cost_of_candy_bar).
+fof(rule_2, axiom, total_cost_of_chocolate = cost_of_chocolate).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_cost_of_candy_bar = cost_of_candy_bar).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, difference_in_spending(total_cost_of_candy_bar, total_cost_of_chocolate)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_3, axiom, difference_in_spending(6, 3)).

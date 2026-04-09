@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Ryan spends 7 hours on learning English every day :: LearningEnglish(7)
+FACT-2: Ryan spends 2 hours more on learning English than on learning Chinese :: LearningEnglish(7) = LearningChinese(x) + 2
+
+## RULES
+RULE-1: If Ryan spends 7 hours on learning English, he spends x hours on learning Chinese :: LearningEnglish(7) → LearningChinese(x)
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Ryan spends 5 hours on learning Chinese :: LearningChinese(5)

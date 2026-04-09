@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Directly stated: GrasshopperJumped(25)
+FACT-2: SUPPORTED — Direct consequence of the relation (grasshopper 25, frog 32 more → 57)
+FACT-3: SUPPORTED — Direct consequence (frog 57 minus 26 → 31)
+RULE-1: PLAUSIBLE — Encodes the given mouse = frog − 26 relationship
+RULE-2: IMPLAUSIBLE — Inconsistent: would imply mouse jump equals two different values for the same event
+RULE-3: PLAUSIBLE — Direct restatement: frog jumped 32 inches more than grasshopper

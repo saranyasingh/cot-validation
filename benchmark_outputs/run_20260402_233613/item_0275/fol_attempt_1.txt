@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Zachary did 51 push-ups :: PushUp(Zachary, 51)
+FACT-2: David did 22 more push-ups than Zachary :: PushUp(David, 51 + 22)
+FACT-3: John did 4 push-ups less than David :: PushUp(John, 73 - 4)
+
+### RULES
+RULE-1: If someone does \( n \) push-ups, then they do \( n \) push-ups :: ∀n (PushUp(x, n) → PushUp(x, n))
+RULE-2: If person A does \( n \) more push-ups than person B, then person A does \( n \) push-ups :: ∀n (PushUp(A, n) → PushUp(B, n + n))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Zachary did 51 push-ups :: PushUp(Zachary, 51)
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: David did 73 push-ups :: PushUp(David, 73)
+INF-3: From FACT-3, RULE-2 by Universal Instantiation: John did 69 push-ups :: PushUp(John, 69)

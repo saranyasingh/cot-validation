@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_marbles(M)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [M] : (loss(M, 21) => lt(remaining_marbles(M), M))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, loss(M, 21)).
+
+% From inf_1 by Modus Ponens
+fof(inf_2, axiom, remaining_marbles(M) = 12).
+
+% From inf_2 by arithmetic
+fof(inf_3, axiom, M = 33).

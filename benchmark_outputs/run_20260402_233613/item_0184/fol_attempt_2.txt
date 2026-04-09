@@ -1,0 +1,20 @@
+### FACTS
+FACT-1: Paco had 12 cookies initially :: CookiesPacoHad(12)
+FACT-2: Paco ate 16 cookies :: CookiesEaten(Paco, 16)
+FACT-3: Paco gave 21 cookies to his friend :: CookiesGave(Paco, Friend, 21)
+
+### RULES
+RULE-1: If someone eats a certain number of cookies, the total number of cookies decreases by that amount :: ∀x ∀y (Eat(x, y) → DecreaseTotalCookies(x, y))
+RULE-2: If someone gives a certain number of cookies to another person, the total number of cookies decreases by that amount :: ∀x ∀y ∀z (Give(x, y, z) → DecreaseTotalCookies(y, z))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Paco had 12 cookies initially :: CookiesPacoHad(12)
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: Paco ate 16 cookies :: DecreaseTotalCookies(Paco, 16)
+INF-3: From FACT-3, RULE-2 by Universal Instantiation: Paco gave 21 cookies to his friend :: DecreaseTotalCookies(Friend, 21)
+INF-4: Subtracting the decrease due to eating from the initial number of cookies: Paco's remaining cookies = InitialCookies - EatenCookies :: RemainingCookies(Paco) = CookiesPacoHad(12) - CookiesEaten(Paco, 16)
+INF-5: Adding the decrease due to giving cookies to his friend to the remaining cookies after eating: TotalRemainingCookies = RemainingCookies(Paco) + GiveCookiesToFriend :: TotalRemainingCookies = (CookiesPacoHad(12) - CookiesEaten(Paco, 16)) + CookiesGave(Paco, Friend, 21)
+INF-6: Simplifying the expression to find the difference: Difference = TotalRemainingCookies - EatenCookies :: Difference = ((CookiesPacoHad(12) - CookiesEaten(Paco, 16)) + CookiesGave(Paco, Friend, 21)) - CookiesEaten(Paco, 16)
+INF-7: Simplifying further to isolate the difference: Difference = TotalRemainingCookies - EatenCookies :: Difference = CookiesPacoHad(12) + CookiesGave(Paco, Friend, 21) - CookiesEaten(Paco, 16)
+INF-8: Evaluating the final result: Difference = 21 - 16 :: Difference = 5
+
+Therefore, the answer is: 5.

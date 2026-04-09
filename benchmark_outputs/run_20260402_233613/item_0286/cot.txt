@@ -1,0 +1,35 @@
+To solve this problem logically, we need to break it down into smaller parts and use basic arithmetic operations:
+
+1. **Identify the daily production rate:** 
+   - Ripe oranges: 28 sacks/day
+   - Unripe oranges: 52 sacks/day
+
+2. **Calculate total sacks produced per day:**
+   \[
+   \text{Total sacks per day} = 28 + 52 = 80 \text{sacks}
+   \]
+
+3. **Determine the number of days for harvesting:**
+   - Days of harvest: 26 days
+
+4. **Calculate total sacks produced over 26 days:**
+   \[
+   \text{Total sacks after 26 days} = 80 \times 26
+   \]
+
+5. **Perform the multiplication:**
+   \[
+   80 \times 26 = 80 \times (20 + 6) = (80 \times 20) + (80 \times 6)
+   \]
+   \[
+   80 \times 20 = 1600
+   \]
+   \[
+   80 \times 6 = 480
+   \]
+   \[
+   1600 + 480 = 2080
+   \]
+
+Therefore, after 26 days of harvest, they will have:
+The answer is: 2080 sacks of oranges.

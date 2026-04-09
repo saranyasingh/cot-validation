@@ -1,0 +1,83 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. **BooksRead**: For each book in the 'Crazy Silly School' series, if it has been read, then BooksRead holds true for that book.
+   ```plaintext
+   BooksRead(book_i) :: BookInSeries(book_i) ∧ Read(book_i)
+   ```
+
+2. **MoviesWatched**: For each movie in the 'Crazy Silly School' series, if it has been watched, then MoviesWatched holds true for that movie.
+   ```plaintext
+   MoviesWatched(movie_j) :: MovieInSeries(movie_j) ∧ Watched(movie_j)
+   ```
+
+3. **TotalBooks**: The total number of books in the 'Crazy Silly School' series.
+   ```plaintext
+   TotalBooks :: 22
+   ```
+
+4. **TotalReadBooks**: The number of books read from the 'Crazy Silly School' series.
+   ```plaintext
+   TotalReadBooks :: 12
+   ```
+
+5. **TotalMovies**: The total number of movies in the 'Crazy Silly School' series.
+   ```plaintext
+   TotalMovies :: 10
+   ```
+
+6. **NumberWatchedMovies**: The number of movies watched from the 'Crazy Silly School' series.
+   ```plaintext
+   NumberWatchedMovies :: 56
+   ```
+
+7. **NotReadBooks**: The set of books that have not been read.
+   ```plaintext
+   NotReadBooks :: {book | ~BooksRead(book)}
+   ```
+
+8. **NotWatchedMovies**: The set of movies that have not been watched.
+   ```plaintext
+   NotWatchedMovies :: {movie | ~MoviesWatched(movie)}
+   ```
+
+### Rules
+1. **AllBooksAreInSeries**: All books are part of the 'Crazy Silly School' series.
+   ```plaintext
+   AllBooksAreInSeries :: ∀book (BookInSeries(book))
+   ```
+
+2. **AllMoviesAreInSeries**: All movies are part of the 'Crazy Silly School' series.
+   ```plaintext
+   AllMoviesAreInSeries :: ∀movie (MovieInSeries(movie))
+   ```
+
+### Inferences
+1. **BooksLeftToRead**: Calculate the number of books left to read.
+   ```plaintext
+   BooksLeftToRead :: ∀book (BooksRead(book) → NotReadBooks(book)) ∧ (∀book (NotReadBooks(book) → !BookInSeries(book)))
+   ```
+
+   This rule uses universal instantiation and modus ponens to derive the result.
+
+### Summary of Lines
+
+#### Facts
+```plaintext
+BooksRead(book_i) :: BookInSeries(book_i) ∧ Read(book_i)
+MoviesWatched(movie_j) :: MovieInSeries(movie_j) ∧ Watched(movie_j)
+TotalBooks :: 22
+TotalReadBooks :: 12
+TotalMovies :: 10
+NumberWatchedMovies :: 56
+```
+
+#### Rules
+No rules provided in the given text, but they would typically include logical statements about relationships between books, movies, and their status (read/watched/unread).
+
+#### Inferences
+```plaintext
+BooksLeftToRead :: ∀book (BooksRead(book) → NotReadBooks(book)) ∧ (∀book (NotReadBooks(book) → !BookInSeries(book)))
+```
+
+This concludes the conversion of the chain-of-thought reasoning into FOL.

@@ -1,0 +1,35 @@
+Let's break down the problem using a logical syllogism:
+
+1. **Premise 1:** Some campers went rowing in the morning.
+   - This means there exists at least one camper who went rowing in the morning.
+
+2. **Premise 2:** 7 campers went rowing in the afternoon.
+   - This confirms that there were 7 specific campers who went rowing after noon.
+
+3. **Premise 3:** A total of 60 campers went rowing that day.
+   - This gives us the total number of campers involved in rowing activities on that particular day.
+
+4. **Premise 4:** Let \( M \) be the number of campers who went rowing in the morning.
+   - We need to find the value of \( M \).
+
+5. **Premise 5:** Therefore, the number of campers who went rowing in the morning plus the number of campers who went rowing in the afternoon equals the total number of campers who went rowing:
+   \[
+   M + 7 = 60
+   \]
+
+6. **Step-by-step Reasoning:**
+   - From Premise 5, we know that the sum of the morning and afternoon participants equals 60.
+   - To isolate \( M \), we subtract 7 (the number of campers who went rowing in the afternoon) from both sides of the equation:
+     \[
+     M = 60 - 7
+     \]
+   - Simplifying this, we get:
+     \[
+     M = 53
+     \]
+
+**Conclusion:**
+The number of campers who went rowing in the morning is 53.
+
+**Answer:**
+The answer is: 53.

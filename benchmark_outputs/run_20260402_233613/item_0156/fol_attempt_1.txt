@@ -1,0 +1,13 @@
+**CHAIN OF THOUGHT REASONING TO CONVERT**
+
+1. **Initial State:** Let \( I \) represent the initial state where Haley has 20 trees.
+2. **State After Typhoon:** Let \( S \) represent the state where 4 trees remain after the typhoon.
+3. **Deduction Process:** We need to find the number of trees that died (\( D \)) which can be calculated as \( D = I - S \).
+4. **Calculation Steps:**
+   - \( I = 20 \)
+   - \( S = 4 \)
+   - Therefore, \( D = 20 - 4 \)
+5. **Result:** 
+   - \( D = 16 \)
+   
+The final answer is: 16

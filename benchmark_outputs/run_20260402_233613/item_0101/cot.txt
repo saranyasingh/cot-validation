@@ -1,0 +1,48 @@
+To determine how many more pastries than cakes the baker sold, we need to follow these steps:
+
+**Premise 1:** Baker made a total of 54 cakes and 143 pastries.
+- This establishes the initial quantities available.
+
+**Premise 2:** Baker sold 68 cakes and 92 pastries.
+- This gives us the quantities that were actually sold.
+
+**Step-by-step Logical Reasoning:**
+
+1. **Calculate the number of cakes remaining after sales:**
+   - Initial number of cakes = 54
+   - Number of cakes sold = 68
+   - Remaining cakes = Initial cakes - Sold cakes
+   - Remaining cakes = 54 - 68
+
+2. Since selling 68 cakes exceeds the initial quantity of 54 cakes:
+   - We need to re-evaluate our assumption about cake sales not exceeding availability.
+   
+   Instead, let's consider if there might be an error or misunderstanding. 
+
+3. Correct Calculation based on given data (assuming no error):
+   - Remaining cakes should logically be calculated as:
+     \[
+     \text{Remaining cakes} = 54 - 68 + 0 \quad (\text{since all sold})
+     \]
+   - Simplifying this, since all 68 were sold:
+     \[
+     \text{Remaining cakes} = 54 - 68 = -14 \quad (\text{which indicates overage but implies none left})
+     \]
+
+4. Calculate the number of pastries remaining after sales:
+   - Initial number of pastries = 143
+   - Number of pastries sold = 92
+   - Remaining pastries = Initial pastries - Sold pastries
+   - Remaining pastries = 143 - 92
+
+5. Compare remaining pastries and cakes:
+   - Remaining pastries = 143 - 92 = 51
+   - Remaining cakes = 0 (as all were sold)
+
+6. Determine how many more pastries were sold compared to cakes:
+   - Difference = Remaining pastries - Remaining cakes
+   - Difference = 51 - 0 = 51
+   
+Therefore, the baker sold 51 more pastries than cakes.
+
+The answer is: 51

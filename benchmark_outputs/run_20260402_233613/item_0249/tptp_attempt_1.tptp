@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_cakes(121)).
+
+fof(fact_2, axiom, sold_cakes(105)).
+
+fof(fact_3, axiom, remaining_cakes(121 - 105)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (cakes_left(X) => remaining_cakes(X))).
+
+fof(rule_2, axiom, ! [NEW_CAKES] : ? [CAKES_LEFT] : (cakes_left(CAKES_LEFT) & bought_new_cakes(NEW_CAKES))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_cakes(121 - 105)).
+
+% From fact_2
+fof(inf_2, axiom, bought_new_cakes(170)).
+
+% From fact_3 and rule_2
+fof(inf_3, axiom, total_cakes = remaining_cakes(121 - 105) + bought_new_cakes(170)).

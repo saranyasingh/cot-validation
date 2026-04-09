@@ -1,0 +1,9 @@
+## FACTS
+LABEL: FACT-1 :: AppleCount(A, 21)
+
+## RULES
+LABEL: RULE-1 :: ∀A (AppleCount(A, x) → JackieHas(x, x + 8))
+LABEL: RULE-2 :: ∀A (AppleCount(A, x) → (JackieAndMe(0, 9) → AppleCount(A, x + 9)))
+
+## INFERENCES
+LABEL: INFERENCE-1 :: AppleCount(J, 13)

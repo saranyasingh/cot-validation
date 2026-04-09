@@ -1,0 +1,23 @@
+### ## FACTS
+
+```plaintext
+FACT-1: NUMBER_OF_GIRLS_INITIALLY :: NumberOfGirls(732)
+FACT-2: NUMBER_OF_BOYS_INITIALLY :: NumberOfBoys(761)
+FACT-3: NUMBER_OF_STUDENTS_INITIALLY :: NumberOfStudents(732 + 761)
+```
+
+### ## RULES
+
+```plaintext
+RULE-1: SUM_RULE {a, b} :: Sum(a, b) :: NumberOfStudents(NumberOfStudentsInitially + NumberOfNewStudents)
+```
+
+### ## INFERENCES
+
+```plaintext
+INF-1: NUMBER_OF_STUDENTS_CURRENTLY :: NumberOfStudents(NUMBER_OF_STUDENTS_INITIALLY + NUMBER_OF_NEW_STUDENTS)
+INF-2: NUMBER_OF_NEW_STUDENTS :: NumberOfNewStudents(682 Girls + 8 Boys)
+INF-3: NUMBER_OF_STUDENTS_CURRENTLY :: NumberOfStudents(NUMBER_OF_STUDENTS_INITIALLY + NUMBER_OF_NEW_STUDENTS)
+```
+
+This corrected chain of reasoning should resolve the syntactic issue and ensure that each fact, rule, and inference logically follows from the others.

@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, S_Jake = S_Scientist - 9).
+fof(fact_2, axiom, S_Jake = J_Jill + 18).
+fof(fact_3, axiom, S_Scientist = 16).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (JakeHas(X) => StevenHas(X))).
+fof(rule_2, axiom, ! [Y] : (JakeHas(Y) => JillHas(Y))).
+
+% --- INFERENCES ---
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_1, axiom, (JakeHas(16) => StevenHas(16))).
+
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_2, axiom, (JakeHas(18) => JillHas(18))).
+
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_3, axiom, (JakeHas(16) => JillHas(18))).
+
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_4, axiom, (JillHas(18) => JakeHas(18))).
+
+% From Fact-3, Rule-1 by Modus Ponens
+fof(inf_5, axiom, (JillHas(18) => StevenHas(16))).
+
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_6, axiom, (JillHas(18) => JillHas(18))).
+
+% From Rule-1, Rule-2 by Modus Ponens
+fof(inf_7, axiom, (JillHas(18) => JillHas(7))).

@@ -1,0 +1,11 @@
+## FACTS
+
+### FACT-1: Mary has added 0 cups of flour :: FlourAdded(0)
+
+## RULES
+
+### RULE-1: If Mary adds no flour, then she does not have to add more :: ∀f (FlourAdded(f) → NotNeedMoreFlour(f))
+
+## INFERENCES
+
+### INF-1: From RULE-1 and Fact-1, Rule-1 applies to the current situation: She does not need to add more flour :: NeedMoreFlour(0)

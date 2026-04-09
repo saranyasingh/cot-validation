@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : (initial_number(X) = 3)).
+
+fof(fact_2, axiom, ! [Y] : (add_action(Y) => (Y = Y + 4))).
+
+fof(fact_3, axiom, ! [Z] : (current_number(Z) = 6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W, X, Y] : (total_after_addition(W) = X + Y)).
+
+fof(rule_2, axiom, ! [X] : (remove_action(X) => (X = X - 1))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, total_after_addition(3) = 7).
+
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, final_number(W) = 6).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, removed_count(V) = 1).
+
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_4, axiom, removed_count(1) = 1).

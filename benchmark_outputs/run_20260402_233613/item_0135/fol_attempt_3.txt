@@ -1,0 +1,14 @@
+### ## FACTS
+## FACT-1: GrasshopperJumped(25) :: JumpedGrasshopper(25)
+## FACT-2: FrogJumped(57) :: JumpedFrog(57)
+## FACT-3: MouseJumped(31) :: JumpedMouse(31)
+
+### ## RULES
+## RULE-1: If the frog jumped x inches, then the mouse jumped x - 26 inches :: ∀x (FrogJumped(x) → MouseJumped(x - 26))
+## RULE-2: If the mouse jumped y inches, then the mouse jumped y + 26 inches :: ∀y (MouseJumped(y) → MouseJumped(y + 26))
+## RULE-3: If the frog jumped x inches, then the frog jumped 32 inches more than the grasshopper :: ∀x (FrogJumped(x) → FrogJumped(x - 25))
+
+### ## INFERENCES
+## INF-1: From FACT-1, RULE-1 by Modus Ponens: The mouse jumped 31 inches :: MouseJumped(31)
+## INF-2: From FACT-2, RULE-2 by Modus Ponens: The mouse jumped 31 inches :: MouseJumped(31)
+## INF-3: From RULE-3, RULE-2 by Modus Ponens: The mouse jumped 31 inches :: MouseJumped(31)

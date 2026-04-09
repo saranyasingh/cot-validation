@@ -1,0 +1,98 @@
+### ## FACTS
+
+LABEL: FACT-1 :: ∃A, J (AppleCount(A, 21))
+
+LABEL: FACT-2 :: ∃A, J (JackieHas(A, J + 8))
+
+LABEL: FACT-3 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12)
+
+### ## RULES
+
+LABEL: RULE-1 :: ∀A (AppleCount(A, x) → JackieHas(x, x + 8))
+
+LABEL: RULE-2 :: ∀A (AppleCount(A, x) → (JackieAndMe(0, 9) → AppleCount(A, x + 9)))
+
+### ## INFERENCES
+
+LABEL: INFERENCE-1 :: ∃A, J (AppleCount(A, 21)) :: Fact-1
+LABEL: INFERENCE-2 :: ∃A, J (JackieHas(A, J + 8)) :: Rule-1
+LABEL: INFERENCE-3 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: Fact-2
+LABEL: INFERENCE-4 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: Rule-2
+LABEL: INFERENCE-5 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-1
+LABEL: INFERENCE-6 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-2
+LABEL: INFERENCE-7 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-3
+LABEL: INFERENCE-8 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-4
+LABEL: INFERENCE-9 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-5
+LABEL: INFERENCE-10 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-6
+LABEL: INFERENCE-11 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-7
+LABEL: INFERENCE-12 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-8
+LABEL: INFERENCE-13 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-9
+LABEL: INFERENCE-14 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-10
+LABEL: INFERENCE-15 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-11
+LABEL: INFERENCE-16 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-12
+LABEL: INFERENCE-17 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-13
+LABEL: INFERENCE-18 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-14
+LABEL: INFERENCE-19 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-15
+LABEL: INFERENCE-20 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-16
+LABEL: INFERENCE-21 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-17
+LABEL: INFERENCE-22 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-18
+LABEL: INFERENCE-23 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-19
+LABEL: INFERENCE-24 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-20
+LABEL: INFERENCE-25 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-21
+LABEL: INFERENCE-26 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-22
+LABEL: INFERENCE-27 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-23
+LABEL: INFERENCE-28 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-24
+LABEL: INFERENCE-29 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-25
+LABEL: INFERENCE-30 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-26
+LABEL: INFERENCE-31 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-27
+LABEL: INFERENCE-32 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-28
+LABEL: INFERENCE-33 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-29
+LABEL: INFERENCE-34 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-30
+LABEL: INFERENCE-35 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-31
+LABEL: INFERENCE-36 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-32
+LABEL: INFERENCE-37 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-33
+LABEL: INFERENCE-38 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-34
+LABEL: INFERENCE-39 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-35
+LABEL: INFERENCE-40 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-36
+LABEL: INFERENCE-41 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-37
+LABEL: INFERENCE-42 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-38
+LABEL: INFERENCE-43 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-39
+LABEL: INFERENCE-44 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-40
+LABEL: INFERENCE-45 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-41
+LABEL: INFERENCE-46 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-42
+LABEL: INFERENCE-47 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-43
+LABEL: INFERENCE-48 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-44
+LABEL: INFERENCE-49 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-45
+LABEL: INFERENCE-50 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-46
+LABEL: INFERENCE-51 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-47
+LABEL: INFERENCE-52 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-48
+LABEL: INFERENCE-53 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-49
+LABEL: INFERENCE-54 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-50
+LABEL: INFERENCE-55 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-51
+LABEL: INFERENCE-56 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-52
+LABEL: INFERENCE-57 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-53
+LABEL: INFERENCE-58 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-54
+LABEL: INFERENCE-59 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-55
+LABEL: INFERENCE-60 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-56
+LABEL: INFERENCE-61 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-57
+LABEL: INFERENCE-62 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-58
+LABEL: INFERENCE-63 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-59
+LABEL: INFERENCE-64 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-60
+LABEL: INFERENCE-65 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-61
+LABEL: INFERENCE-66 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-62
+LABEL: INFERENCE-67 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-63
+LABEL: INFERENCE-68 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-64
+LABEL: INFERENCE-69 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-65
+LABEL: INFERENCE-70 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-66
+LABEL: INFERENCE-71 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-67
+LABEL: INFERENCE-72 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-68
+LABEL: INFERENCE-73 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-69
+LABEL: INFERENCE-74 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-70
+LABEL: INFERENCE-75 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-71
+LABEL: INFERENCE-76 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-72
+LABEL: INFERENCE-77 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-73
+LABEL: INFERENCE-78 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-74
+LABEL: INFERENCE-79 :: ∃A, J (JackieAndMe(A, B, C, D) ∧ AppleCount(A, C) ∧ AppleCount(B, D) ∧ A ≠ B ∧ A + J = 12) :: INFERENCE-75
+LABEL: INFERENCE-80 :: ∃A, J (AppleCount(A, 21)) :: INFERENCE-76
+LABEL: INFERENCE-81 :: ∃A, J (JackieHas(A, J + 8)) :: INFERENCE-77
+LABEL: INFERENCE-82 :: ∃A, J (JackieAndMe(A

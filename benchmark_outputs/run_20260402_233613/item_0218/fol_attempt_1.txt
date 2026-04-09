@@ -1,0 +1,32 @@
+To convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL), we follow these steps:
+
+### Facts
+These represent the initial conditions or statements given in the problem without any quantification.
+
+```plaintext
+FACT-1: Marco's strawberries = 15 pounds.
+```
+
+### Rules
+These represent general principles or rules derived from the facts, which can include logical deductions based on those facts.
+
+```plaintext
+RULE-1: If x weighs y pounds, then y + z = TotalWeight -> z = TotalWeight - y.
+```
+
+### Inferences
+These represent the final conclusions or derived statements from applying the rules to the facts.
+
+```plaintext
+INF-1: His dad's strawberries = TotalWeight - Marco's strawberries.
+```
+
+Putting everything together, the FOL representation would look like:
+
+```plaintext
+FACT-1: Marco's strawberries = 15 pounds.
+RULE-1: If x weighs y pounds, then y + z = TotalWeight -> z = TotalWeight - y.
+INF-1: His dad's strawberries = TotalWeight - Marco's strawberries.
+```
+
+This structure captures all the necessary elements—initial facts, derived rules, and inferred conclusions—from the original reasoning process.

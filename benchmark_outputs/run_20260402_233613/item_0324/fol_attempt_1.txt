@@ -1,0 +1,33 @@
+### SOLUTION
+
+#### FACTS
+- InitialNumberOnBus: 23
+- ChildrenGotOn: 24
+- FinalNumberLeft: 8
+
+#### RULES
+- TotalChildrenAfterEvent: ∀(t)(ChildrenOnBus(t) → FinalNumber(t))  
+  This rule states that if the number of children on the bus at time \(t\) is positive, then the number of children left at that time will also be positive.
+
+#### INFERENCES
+- NumberOfChildrenWhoGotOff: ∀(t)(ChildrenOnBus(t) ∧ ChildrenGotOn(t) → NumberOfChildrenWhoGotOff(t))
+  This rule captures the idea that if someone gets on the bus, they did not get off before reaching the current time.
+
+- DifferenceInNumber: ∀(t)(ChildrenOnBus(t) ∧ NumberOfChildrenWhoGotOn(t) ∧ NumberOfChildrenWhoGotOff(t) → NumberOfChildrenWhoGotOff(t) - NumberOfChildrenWhoGotOn(t) = -FinalNumber(t))
+  This rule helps us find the difference between the number of children who got on and off based on their respective times.
+
+- CalculateNumberOfChildrenWhoGotOff: 
+  Using the rules above, we can derive the actual value of \(y\) (number of children who got off):
+
+  By applying the rules, we get:
+  \[
+  23 + 24 - 8 = 39
+  \]
+
+  Thus,
+  \[
+  NumberOfChildrenWhoGotOff = 39
+  \]
+
+### CONCLUSION
+The number of children who got off the bus is 39.

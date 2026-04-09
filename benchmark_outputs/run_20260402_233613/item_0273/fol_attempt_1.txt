@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: Dean's height :: 17 feet
+FACT-2: Ron's height :: 13 feet
+FACT-3: Depth of the water :: 15 × Dean's height
+
+### RULES
+Rule-1: Depth of the water = 15 × Dean's height :: ∀d (DepthOfWater(d) ↔ 15 * d)
+
+### INFERENCES
+INF-1: Depth of the water :: 15 × 17 feet :: DepthOfWater(255)

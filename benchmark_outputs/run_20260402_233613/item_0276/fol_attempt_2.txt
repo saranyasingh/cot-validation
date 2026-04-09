@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Each necklace requires 5 beads :: BeadsPerNecklace(5)
+FACT-2: Emily made 4 necklaces :: MadeNecklaces(4)
+
+## RULES
+RULE-1: Total Beads = Number of Necklaces × Beads Per Necklace :: TotalBeads(NumberOfNecklaces, BeadsPerNecklace)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1: Total Beads = 4 × 5 :: TotalBeads(4, 5)
+INF-2: From FACT-2 and RULE-1: Total Beads = 4 × 5 :: TotalBeads(4, 5)

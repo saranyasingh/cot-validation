@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: There are 11 boys in Haley's class who love to play marbles :: ∃x(BoysInClass(x) ∧ LovesMarbles(x)) :: ∃x(BoysInClass(x) → LovesMarbles(x))
+
+### ## RULES
+RULE-1: If a class contains n boys who love marbles, then the total number of marbles given is 9n :: ∀x(∃y(BoysInClass(y) ∧ LovesMarbles(y)) → TotalMarbles(9n))
+
+### ## INFERENCES
+INF-1: Given there are 11 boys in class, we can infer the number of boys loves marbles :: ∃x(BoysInClass(x) ∧ LovesMarbles(x)) :: ∃x(BoysInClass(x) → LovesMarbles(x))
+
+INF-2: Given each boy gets 9 marbles, the total number of marbles given would be 9 * 11 :: TotalMarbles(9*11)
+
+INF-3: Therefore, the initial number of marbles Haley had must equal the total marbles given :: InitialNumberOfMarbles(TotalMarbles(9*11))

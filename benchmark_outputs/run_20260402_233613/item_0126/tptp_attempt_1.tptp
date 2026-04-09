@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, books_total(books_38)).
+fof(fact_2, axiom, books_per_shelf(books_2)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Division
+fof(inf_1, axiom, calculation(division(books_total(books_38), books_per_shelf(books_2)))).
+% From fact_1, fact_2 by Calculation
+fof(inf_2, axiom, calculation(division(books_total(books_38), books_per_shelf(books_2)))).

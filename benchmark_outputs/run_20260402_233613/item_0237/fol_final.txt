@@ -1,0 +1,11 @@
+### ## FACTS
+- LABEL: InitialAceCards(Nell) ::= 38 :: 38
+- LABEL: FinalAceCards(Nell) ::= 376 :: 376
+- LABEL: BaseballCards(Nell) ::= 111 :: 111
+
+### ## RULES
+- LABEL: Rule-1 :: \(\forall x (\text{InitialAceCards}(Nell) = x \rightarrow \text{FinalAceCards}(Nell) = x + n)\) :: \((\text{InitialAceCards}(Nell) = 38 \land n = 0) \rightarrow \text{FinalAceCards}(Nell) = 38 + 0\) :: True
+- LABEL: Rule-2 :: \(\forall y (y = \text{BaseballCards}(Nell))\) :: \((\text{BaseballCards}(Nell) = 111) \rightarrow \text{BaseballCards}(Nell) = 111\) :: True
+
+### ## INFERENCES
+- DIFFERENCE(AceCards, BaseballCards) ::= 265 :: \((\text{FinalAceCards}(Nell) = 376 \land \text{InitialAceCards}(Nell) = 38) \lor (\text{FinalAceCards}(Nell) = 376 \land \text{InitialAceCards}(Nell) = 39) \lor ... \lor (\text{FinalAceCards}(Nell) = 376 \land \text{InitialAceCards}(Nell) = 40)\) :: False

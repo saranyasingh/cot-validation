@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states there are 19 rows for pencils (and crayons).
+
+FACT-2: SUPPORTED — The story states each row contains 4 pencils.
+
+RULE-1: PLAUSIBLE — It is the standard arithmetic relation TotalPencils = RowCount * PencilPerRow given FACT-1.

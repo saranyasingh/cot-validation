@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Melissa scores 12 points per game :: ScoredPerGame(12)
+FACT-2: Melissa's total score is 36 points :: TotalScore(36)
+
+### RULES
+RULE-1: If someone plays n games with each game yielding 12 points, their total score will be 12n :: TotalScore(n * ScoredPerGame)
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1, if Melissa scored 36 points, she must have played \( \frac{36}{12} = 3 \) games :: PlayedGames(INFER-MathCalculation(36 / 12))

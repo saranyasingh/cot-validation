@@ -1,0 +1,25 @@
+Let's break down this problem into a series of logical steps:
+
+1. **Premise 1**: The school plans to take a field trip.
+   - This is an assumption that logically leads us to consider how transportation might be managed.
+
+2. **Premise 2**: There are 21 classrooms in the school.
+   - This establishes the number of possible locations for students on the field trip.
+
+3. **Premise 3**: There are 98 students in total at the school.
+   - We know the total number of students attending the field trip needs to be accounted for.
+
+4. **Premise 4**: The school uses 7 buses for the field trip.
+   - This directly states the number of buses available for transporting students.
+
+5. **Premise 5**: All buses are filled up during the field trip.
+   - This condition must hold true because if any bus were not fully occupied, it would reduce the total capacity used.
+
+6. **Conclusion**:
+   - To find out how many seats are in each bus, we need to divide the total number of students (98) by the number of buses (7).
+   
+Therefore, based on these premises, the logical conclusion is:
+
+- Each bus carries \(\frac{98}{7} = 14\) students.
+
+So, the answer is: Each bus carries 14 seats.

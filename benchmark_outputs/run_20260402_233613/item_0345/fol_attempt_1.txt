@@ -1,0 +1,42 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. Initial amount of candy: \( B_{\text{initial}} = 32 \).
+2. Remaining amount of candy: \( B_{\text{remaining}} = 20 \).
+
+### Rules
+1. Rule for calculating the amount of candy eaten: 
+   \[
+   E(x) := x_{\text{eaten}} = B_{\text{initial}} - B_{\text{remaining}}
+   \]
+
+### Inferences
+1. Calculate the amount of candy eaten using the rules:
+   \[
+   \text{Candy eaten} = E(32) - E(20)
+   \]
+
+Now let's translate these into FOL:
+
+#### Facts
+1. \( B_{\text{initial}} ::= 32 \)
+2. \( B_{\text{remaining}} ::= 20 \)
+
+#### Rules
+1. \( E(x) ::= x_{\text{eaten}} = B_{\text{initial}} - B_{\text{remaining}} \)
+
+#### Inference
+1. \( \text{Candy eaten} ::= E(32) - E(20) \)
+
+So the final conversion would be:
+
+```plaintext
+FACT-1: B_{\text{initial}} ::= 32 :: 32
+FACT-2: B_{\text{remaining}} ::= 20 :: 20
+
+RULE-1: E(x) ::= x_{\text{eaten}} = B_{\text{initial}} - B_{\text{remaining}} :: E(32) - E(20)
+
+INF-1: Candy eaten ::= E(32) - E(20) :: E(32) - E(20)
+```
+
+This translates the original reasoning into formal FOL statements.

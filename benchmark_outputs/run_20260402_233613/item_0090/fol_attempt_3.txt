@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: InitialNumber(x) = 3 :: InitialNumber(x) = 3
+FACT-2: AddAction(y) :: y += 4
+FACT-3: CurrentNumber(z) = 6 :: CurrentNumber(z) = 6
+
+## RULES
+RULE-1: TotalAfterAddition(w) = x + y :: TotalAfterAddition(w) = x + y
+RULE-2: RemoveAction(x) :: x -= 1
+
+## INFERENCES
+INF-1: FinalNumber(w) = 6 :: FinalNumber(w) = 6
+INF-2: RemovedCount(v) = 1 :: RemovedCount(v) = 1
+INF-3: RuleApply(Rule-1, Fact-1) :: TotalAfterAddition(3) = 7
+INF-4: RuleApply(Rule-2, INF-1) :: RemovedCount(1) = 1

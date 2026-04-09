@@ -1,0 +1,17 @@
+### ## FACTS
+```plaintext
+FACT-1: TotalPastries(61)
+FACT-2: TotalCakes(167)
+```
+
+### ## RULES
+```plaintext
+RULE-1: If TotalPastries(Pastries), then RemainingPastries(Pastries).
+RULE-2: If TotalCakes(Cakes), then RemainingCakes(Cakes).
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: RemainingCakesAfterSale() = 0
+INF-2: RemainingPastriesAfterSale() = 0
+```

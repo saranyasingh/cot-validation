@@ -1,0 +1,8 @@
+### ## FACTS
+LABEL: ShirleySold(Shirley, 10) :: Sold(Shirley, 10)
+
+### ## RULES
+LABEL: None
+
+### ## INFERENCES
+LABEL: EachCaseContains(2) :: EachCaseContains(10 / 5) :: EachCaseContains(2)

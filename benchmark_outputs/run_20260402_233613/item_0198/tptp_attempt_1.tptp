@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, alligators_at_zoo(97)).
+fof(fact_2, axiom, hiding_alligators(40)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Subtraction
+fof(inf_1, axiom, alligators_not_hiding(57)).

@@ -1,0 +1,20 @@
+### ## FACTS
+FACT-1: Edward spent $16 on 92 books :: Spent(Edward, 16, 92)
+
+### ## RULES
+RULE-1: Total Expenditure = Number of Items × Price per Item :: ∀n p (Spent(n, p, m) → n * p = m)
+
+### ## INFERENCES
+INF-1: From Fact-1, Rule-1 by Modus Ponens: The price per book is calculated as follows: 
+\[ \text{Price per book} = \frac{16}{92} \]
+
+INF-2: Simplifying the fraction,
+\[ \frac{16}{92} = \frac{2}{11.5} \approx 0.1765 \text{ dollars per book} \]
+
+INF-3: Initial Amount = Total Expenditure + Remaining Money :: InitialAmount = TotalExpenditure + RemainingMoney
+
+INF-4: Given Information,
+\[ \text{Remaining Money} = 6 \]
+
+INF-5: Therefore,
+\[ \text{Initial Amount} = 16 + 6 = 22 \]

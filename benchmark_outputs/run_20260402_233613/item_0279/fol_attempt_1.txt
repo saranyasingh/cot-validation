@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: There were 71 paintings in the Buckingham Palace :: PaintingCount(Buckingham Palace, 71)
+FACT-2: There were 557 visitors to the Buckingham Palace on the current day :: VisitorCount(Buckingham Palace, t_current_day, 557)
+FACT-3: There were 188 visitors to the Buckingham Palace on the previous day :: VisitorCount(Buckingham Palace, t_previous_day, 188)
+
+### RULES
+RULE-1: If there are paintings in a place, then the place has some artworks :: ∀P (Paintings(P) → HasArtworks(P))
+RULE-2: If there were visitors today, then there will be visitors tomorrow :: ∀d (VisitorCount(_, t_current_day, v_today) → VisitorCount(_, t_next_day, v_tomorrow))
+
+### INFERENCES
+INF-1: Given the facts, we can infer that there were indeed visitors yesterday :: VisitorCount(Buckingham Palace, t_previous_day, 557)
+INF-2: The number of visitors increased by an average of 6.54 per day :: AverageDailyIncrease(6.54)
+INF-3: Total visitors over the next 57 days can be calculated :: TotalVisitorsOver57Days(10, 736.7)
+
+INF-4: The final number of visitors is rounded down to the nearest whole number :: RoundedDown(10, 736.7, 10, 736)

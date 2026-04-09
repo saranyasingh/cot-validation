@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, length_of_room(room, 20)).
+
+fof(fact_2, axiom, width_of_room(room, 19)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : ! [X] : ! [Y] : ((length_of_room(R, X) & width_of_room(R, Y)) => DifferenceBetweenDimensions(X, Y))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by subtraction
+fof(inf_1, axiom, DifferenceBetweenDimensions(20, 19)).

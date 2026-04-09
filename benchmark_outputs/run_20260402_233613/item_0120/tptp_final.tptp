@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_peaches_in_basket(16)).
+fof(fact_2, axiom, red_peaches_in_basket(13)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Conjunction
+fof(inf_1, axiom, (total_peaches_in_basket(16) & red_peaches_in_basket(13)) => green_peaches_count(green_peaches)).

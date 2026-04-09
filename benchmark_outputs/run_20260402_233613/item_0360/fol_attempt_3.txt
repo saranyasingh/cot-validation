@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Jerry initially had 8 action figures :: ActionFigures(jerry, 8)
+FACT-2: Jerry also had 9 books :: Books(jerry, 9)
+FACT-3: Jerry then added 10 more books to the shelf :: AddedBooks(jerry, 10)
+
+## RULES
+Rule-1: Adding any quantity to a set does not change the size of the set :: AddQuantity(books_set, n) → SizeOfSet(books_set) = SizeOfSet(books_set) + n
+
+## INFERENCES
+INF-1: From Fact-1, Rule-1 by Modus Ponens: Jerry has 8 action figures :: ActionFigures(jerry, 8)
+INF-2: From Fact-2, Rule-1 by Modus Ponens: Jerry has 9 books :: Books(jerry, 9)
+INF-3: From Fact-3, Rule-1 by Modus Ponens: After adding 10 books, Jerry has 19 books :: Books(jerry, 19)

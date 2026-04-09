@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Total number of cookies = 38 :: TotalCookies(38)
+FACT-2: Cookies per guest = 19 :: CookiesPerGuest(19)
+
+### RULES
+RULE-1: Number of guests = \(\frac{\text{Total number of cookies}}{\text{Cookies per guest}}\) :: Guests(number_of_guests, TotalCookies(38), CookiesPerGuest(19))
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1: The number of guests is calculated correctly :: Guests(number_of_guests, 38, 19)

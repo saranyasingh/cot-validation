@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: NeedsPlanks(John, 2) :: John needs 2 planks
+FACT-2: PlankRequiredNails(2) :: Each plank requires 2 nails
+
+### RULES
+RULE-1: CannotSecureWallWithNails(NailsAvailable, NailsNeeded) :: There are not enough nails available to secure all planks
+
+### INFERENCES
+INF-1: CannotSecureWallWithNails(4, 2) :: With 4 nails, John cannot secure all planks needed
+INF-2: CanSecureWallWithNails(NailsAvailable, NailsNeeded) :: If John has more than enough nails, he can secure the planks
+
+INF-3: John needs 2 planks :: 2 planks can be secured with 4 nails available

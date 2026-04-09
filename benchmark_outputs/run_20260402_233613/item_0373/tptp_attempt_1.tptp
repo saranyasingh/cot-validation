@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, ordered_pizzas(17) & (17 = 17)).
+
+fof(fact_2, axiom, slices_per_pizza(4) & (4 = 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalPizzas, TotalSlicesPerPizza, P] : ( (ordered_pizzas(P) & slices_per_pizza(P)) => total_slices(TotalPizzas, TotalSlicesPerPizza) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, calculated_total_slices(ordered_pizzas(17), slices_per_pizza(4), 68)).

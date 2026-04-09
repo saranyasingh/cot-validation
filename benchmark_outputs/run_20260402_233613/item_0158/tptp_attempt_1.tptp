@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(2, cookies)).
+fof(fact_2, axiom, bought(12, cakes)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, I] : ( bought(X, I) => has(X, I) ) ).
+fof(rule_2, axiom, ! [T] : ( initial_amount(T) = total_spent(T) + change(T) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, has(lucy, 2, cookies)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, has(lucy, 12, cakes)).
+% INF-3
+fof(inf_3, axiom, has(lucy, 2, cookies) & has(lucy, 12, cakes)).
+% INF-4
+fof(inf_4, axiom, change(total_spent(lucy)) = 56).
+% INF-5
+fof(inf_5, axiom, initial_amount(total_spent(lucy)) = total_spent(total_spent(lucy)) + 56).
+% INF-6
+fof(inf_6, axiom, ! [T] : initial_amount(T) = total_spent(total_spent(T)) + 56).
+% INF-7
+fof(inf_7, axiom, total_spent(total_spent(lucy)) = 2 + 12).
+% INF-8
+fof(inf_8, axiom, total_spent(total_spent(lucy)) = 14).
+% INF-9
+fof(inf_9, axiom, initial_amount(lucy) = 14 + 56).
+% INF-10
+fof(inf_10, axiom, number_of_packs(lucy) = 14).
+% INF-11
+fof(inf_11, axiom, number_of_packs(lucy) = 14).

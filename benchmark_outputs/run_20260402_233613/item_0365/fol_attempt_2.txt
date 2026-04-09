@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Steven has 15 peaches :: Peaches(Steven) = 15
+
+### RULES
+RULE-1: If A has B, then C has B if D, then C has D :: Peaches(A) = Peaches(C) -> (Peaches(A) = Peaches(B) -> Peaches(D) = Peaches(C))
+
+### INFERENCES
+INF-1: From Fact-1, subtract 14 from Steven's peaches count :: Peaches(Jill) = Peaches(Steven) - 14
+
+INF-2: Calculate Jake's peaches based on Steven's information :: Peaches(Jake) = Peaches(Steven) - 7
+
+INF-3: From INF-2, add 7 to Steven's peaches count to find Jake's peaches :: Peaches(Jake) = (Peaches(Steven) - 7) + 7
+
+INF-4: Simplify the expression in INF-3 :: Peaches(Jake) = Peaches(Steven)

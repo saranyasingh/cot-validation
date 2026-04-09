@@ -1,0 +1,13 @@
+**FACTS**
+FACT-1: InitialApps = 15 :: Apps(Initial)
+FACT-2: InitialFiles = 24 :: Files(Initial)
+FACT-3: FinalApps = 21 :: Apps(Final)
+FACT-4: FinalFiles = 4 :: Files(Final)
+
+**RULES**
+RULE-1: If you have more apps than files, subtract the number of files from the number of apps :: Apps(Original) > Files(Original) -> Apps(Original) - Files(Original)
+
+**INFERENCES**
+INF-1: From FACT-1 and RULE-1: Dave initially had more apps than files :: Apps(Initial) > Files(Initial)
+INF-2: From RULE-1: Dave ended up having fewer apps than files :: Apps(Final) < Files(Final)
+INF-3: From INF-1 and INF-2: Dave ends up with 17 more apps than files :: Apps(Original) - Files(Original) = 17

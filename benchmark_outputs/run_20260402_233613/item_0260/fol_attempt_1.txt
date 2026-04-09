@@ -1,0 +1,48 @@
+Here is the conversion of the chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Edward spent $16 on books :: BooksSpent(Edward, 16)
+```
+
+```plaintext
+FACT-2: Edward spent $8 on pens :: PensSpent(Edward, 8)
+```
+
+### RULES
+```plaintext
+RULE-1: Total expenditure equals amount spent on books plus amount spent on pens :: Expenditure(Edward) = BooksSpent(Edward) + PensSpent(Edward)
+```
+
+### INFERENCES
+```plaintext
+INF-1: Difference between the amount spent on books and pens :: BooksSpent(Edward) - PensSpent(Edward) = BooksSpent(Edward) - PensSpent(Edward)
+```
+
+Now, let's derive the conclusion step-by-step using these facts and rules:
+
+1. **Total expenditure calculation:**
+   According to Rule-1, the total amount spent by Edward can be expressed as the sum of the amounts spent on books and pens.
+   
+   ```plaintext
+   Expenditure(Edward) = BooksSpent(Edward) + PensSpent(Edward)
+   ```
+
+2. **Difference between book and pen expenditures:**
+   We need to find the difference between the amount spent on books (\$16) and the amount spent on pens (\$8).
+   
+   ```plaintext
+   BooksSpent(Edward) - PensSpent(Edward) = 16 - 8
+   ```
+
+3. **Final result:**
+   Simplifying the above expression gives us the difference.
+   
+   ```plaintext
+   BooksSpent(Edward) - PensSpent(Edward) = 8
+   ```
+
+Thus, Edward spent $8 more on books than on pens.
+
+### Answer:
+The answer is: 8

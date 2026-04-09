@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Jack received 5 emails in the morning :: Emails(morning) = 5
+FACT-2: Jack received 8 emails in the afternoon :: Emails(afternoon) = 8
+
+## RULES
+RULE-1: Total = Emails(morning) + Emails(afternoon) :: Total = Emails(morning) + Emails(afternoon)
+
+## INFERENCES
+INF-1: Total emails received by Jack in the morning and afternoon :: Total = 5 + 8

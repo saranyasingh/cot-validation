@@ -1,0 +1,22 @@
+Based on your detailed step-by-step reasoning, I will now convert each part of your process into structured First-Order Logic (FOL):
+
+```plaintext
+## FACTS
+FACT-1: DistanceGrasshopperJumped = 14 inches :: DistanceGrasshopperJumped = 14
+FACT-2: DistanceMouseJumped = DistanceGrasshopperJumped - 16 inches :: DistanceMouseJumped = DistanceGrasshopperJumped - 16
+
+## RULES
+RULE-1: JumpDifference_Frog_Grasshopper :: DistanceFrogJumped = DistanceGrasshopperJumped + 37 inches :: DistanceFrogJumped = DistanceGrasshopperJumped + 37
+RULE-2: JumpDifference_Mouse_Frog :: DistanceMouseJumped = DistanceFrogJumped - 16 inches :: DistanceMouseJumped = DistanceFrogJumped - 16
+
+## INFERENCES
+INF-1: DistanceFrogJumped = 51 inches :: DistanceFrogJumped = 14 + 37
+INF-2: DistanceMouseJumped = 35 inches :: DistanceMouseJumped = 51 - 16
+INF-3: DifferenceMouseFromGrasshopper = 0 inches :: DifferenceMouseFromGrasshopper = DistanceMouseJumped - DistanceGrasshopperJumped :: DifferenceMouseFromGrasshopper = 35 - 14 :: DifferenceMouseFromGrasshopper = 0
+
+```
+
+In this conversion:
+- **FACTS**: Contains the initial facts derived from the story.
+- **RULES**: Include universally quantified implications based on logical relationships described in the story.
+- **INFERENCES**: Are the final conclusions derived from applying the rules to the facts, ensuring all conditions and comparisons are accurately represented in FOL.

@@ -1,0 +1,23 @@
+LABEL: ## FACTS
+1. Total blocks used for the tower: \( T_t = 33 \)
+2. Total blocks used for the house: \( H_h = 13 \)
+
+LABEL: ## RULES
+(No rules were added as there was no mention of any specific rules in the original problem.)
+
+LABEL: ## INFERENCES
+\[
+\begin{align*}
+T_t &= 33 \\
+H_h &= 13 \\
+\text{Difference} &= T_t - H_h \\
+\end{align*}
+\]
+Substitute the known values:
+\[
+\text{Difference} = 33 - 13
+\]
+Perform the subtraction:
+\[
+33 - 13 = 20
+\]

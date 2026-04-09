@@ -1,0 +1,16 @@
+## FACTS
+LABEL: TotalFlourNeeded :: 12
+LABEL: FlourAlreadyAdded :: 2
+LABEL: FlourNeeded :: 12 - 2
+LABEL: SaltRequired :: 7
+LABEL: RemainingFlour :: RemainingFlour(TotalFlourNeeded() - FlourAlreadyAdded())
+LABEL: RemainingSalt :: RemainingSalt(SaltRequired())
+
+## RULES
+RULE: DIFFERENT :: x != y
+RULE: SUBTRACTION :: x - y = z
+RULE: SUMMATION :: x + y = z
+
+## INFERENCES
+LABEL: Difference :: Difference(FlourNeeded(), SaltRequired()) 
+LABEL: Difference(RemainingFlour(), RemainingSalt()) :: Difference(RemainingFlour(), RemainingSalt())

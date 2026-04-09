@@ -1,0 +1,13 @@
+## FACTS
+- FACT-1: Wendi feeds each chicken 3 cups of mixed chicken feed per day :: ∀c (Feeds(c, t_24, c) ∧ Feeds(c, t_12, c) ∧ Feeds(c, t_08, c))
+- FACT-2: She divides this feed into three separate meals throughout the day :: ∀m (Feeds(c, m, c) → ∃n (m = n + 1))
+- FACT-3: The total feed given to all chickens over two days equals the number of chickens multiplied by the total feed provided in those sessions :: ∀c (Feeds(c, t_24, c) ∧ Feeds(c, t_12, c)) → (∃n (N_chickens * N_meals = N_feed))
+- FACT-4: Wendi has 20 chickens :: N_chickens = 20
+- FACT-5: In the morning, she gives her flock of chickens 15 cups of feed :: Feeds(chicken_x, t_24, chicken_x) = 15
+- FACT-6: In the afternoon, she gives her chickens another 25 cups of feed :: Feeds(chicken_x, t_12, chicken_x) = 25
+
+## RULES
+- RULE-1: Universal instantiation (UI): For any specific instance of an existential quantifier, infer the universal statement. 
+
+## INFERENCES
+- FROM FACT-1 AND RULE-1: FOR ANY CHICKEN c, IT RECEIVES 3

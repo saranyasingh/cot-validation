@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, peaches(steven) = 15).
+fof(fact_2, axiom, peaches(jill) + 14 = peaches(steven)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_2 by algebraic rearrangement
+fof(inf_1, axiom, peaches(jill) = peaches(steven) - 14).
+% From fact_2 by substitution
+fof(inf_2, axiom, peaches(jake) = peaches(steven) - 7).
+% From inf_2 by arithmetic rearrangement
+fof(inf_3, axiom, peaches(jake) = (peaches(steven) - 7) + 7).
+% From inf_3 by simplification
+fof(inf_4, axiom, peaches(jake) = peaches(steven)).

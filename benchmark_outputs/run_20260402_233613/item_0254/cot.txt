@@ -1,0 +1,22 @@
+To determine how many roses Jessica cut from her flower garden, we need to follow these steps:
+
+1. **Initial Condition**: There were initially 2 roses in the vase.
+2. **Action Taken**: Jessica threw away 4 roses from the vase.
+   - After throwing away 4 roses, the number of roses left in the vase would be:
+     \[
+     2 - 4 = -2
+     \]
+   However, this result doesn't make sense because it implies there are negative roses, which isn't possible. This suggests that Jessica didn’t actually throw any roses away but instead started with an initial count of zero roses (since 0 - 4 = -4). So let's correct our approach considering the initial state as zero.
+
+3. **New Initial Count**: Let’s reframe the problem starting with 0 roses (initially empty vase).
+4. **Roses Added**: Jessica then added some new roses to the vase. We know after adding these roses, there are 23 roses in total.
+5. **Determine Roses Added**: To find out how many roses Jessica added, subtract the initial count of roses (which was 0) from the final count (23):
+   \[
+   23 - 0 = 23
+   \]
+
+6. **Conclusion**: Jessica added 23 new roses to the vase. 
+
+Therefore, the number of roses Jessica cut from her flower garden is not applicable since no roses were cut; they were simply added. 
+
+The answer is: No cuts were made.

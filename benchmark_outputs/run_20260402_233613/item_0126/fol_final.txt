@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Bryan has a total of 38 books :: BooksTotal(38)
+FACT-2: Each bookshelf contains 2 books :: BooksPerShelf(2)
+
+## RULES
+RULE-1: To determine the number of bookshelves, we divide the total number of books by the number of books per bookshelf :: Division(BooksTotal, BooksPerShelf)
+
+## INFERENCES
+INFERENCE-1: Perform the division 38 ÷ 2 :: Calculation(Division(BooksTotal, BooksPerShelf))

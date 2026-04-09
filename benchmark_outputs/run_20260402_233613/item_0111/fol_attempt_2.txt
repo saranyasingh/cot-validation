@@ -1,0 +1,9 @@
+## FACTS
+Fact-1: CrackerTotal(x, 4) :: x * 4
+Fact-2: CakeTotal(y, 4) :: y * 4
+
+## RULES
+Rule-1: EqualDistributionOfCrackersAndCakes :: x = y
+
+## INFERENCES
+Infer-1: NumberCrackersPerFriend :: 8

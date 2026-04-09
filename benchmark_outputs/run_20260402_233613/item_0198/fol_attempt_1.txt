@@ -1,0 +1,25 @@
+This problem involves basic arithmetic rather than formal logic, so we can convert it into a simple arithmetic statement without needing FOL syntax. However, I'll provide a structure similar to the given examples.
+
+### INPUT:
+**Premises:**
+1. There are 97 alligators at the zoo.
+2. 40 alligators are hiding.
+
+**Conclusion:**
+There must be \(97 - 40 = 57\) alligators that are not hiding.
+
+### OUTPUT FORMAT:
+```plaintext
+FACT-1: There are 97 alligators at the zoo :: AlligatorsAtZoo(97)
+
+FACT-2: 40 alligators are hiding :: HidingAlligators(40)
+
+INF-1: Conclusion: There must be 57 alligators that are not hiding :: AlligatorsNotHiding(57)
+```
+
+### Explanation:
+- **FACT-1**: States the total number of alligators at the zoo.
+- **FACT-2**: States the number of alligators that are hiding.
+- **INF-1**: Derives the conclusion based on the two facts using subtraction.
+
+This approach adheres to the constraints provided, such as avoiding merging facts and rules, using specific constants, and ensuring each inference cites its premises.

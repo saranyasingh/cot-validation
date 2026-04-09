@@ -1,0 +1,53 @@
+This task involves converting logical statements based on given premises and rules into formal First-Order Logic (FOL). Here's how I would structure each part according to the provided guidelines:
+
+### Facts
+These represent direct information extracted from the premise without any quantification.
+
+```plaintext
+FACT-1: Total sacks harvested daily is 76 :: SacksHarvestedDaily = 76
+FACT-2: Number of sacks discarded daily is 64 :: SacksDiscardedDaily = 64
+```
+
+### Rules
+These represent universally quantified implications that provide additional context or external knowledge about the problem domain.
+
+```plaintext
+RULE-1: If sacks harvested daily equals total harvested, then sacks remaining after discarding are total minus discarded :: SacksRemainingAfterDiscard(total_sacks_harvested, scks_discarded) = total_sacks_harvested - scks_discarded
+```
+
+### Inferences
+These are derived conclusions from combining facts and rules using appropriate inference rules such as Modus Ponens.
+
+```plaintext
+INF-1: Given SacksHarvestedDaily = 76 and SacksDiscardedDaily = 64,
+From RULE-1, SacksRemainingAfterDiscard(76, 64) = 76 - 64 = 12 sacks remaining.
+INF-2: Given SacksHarvestedDaily = 76 and each sack has 50 oranges,
+Then total oranges harvested daily = SacksHarvestedDaily * OrangesPerSack :: TotalOrangesHarvestedDaily = SacksHarvestedDaily * 50
+```
+
+### Final Structure
+Combining all these parts into the required output format:
+
+```plaintext
+## FACTS
+FACT-1: Total sacks harvested daily is 76 :: SacksHarvestedDaily = 76
+FACT-2: Number of sacks discarded daily is 64 :: SacksDiscardedDaily = 64
+
+## RULES
+RULE-1: If sacks harvested daily equals total harvested, then sacks remaining after discarding are total minus discarded :: SacksRemainingAfterDiscard(total_sacks_harvested, scks_discarded) = total_sacks_harvested - scks_discarded
+
+## INFERENCES
+INF-1: Given SacksHarvestedDaily = 76 and SacksDiscardedDaily = 64,
+From RULE-1, SacksRemainingAfterDiscard(76, 64) = 76 - 64 = 12 sacks remaining.
+INF-2: Given SacksHarvestedDaily = 76 and each sack has 50 oranges,
+Then total oranges harvested daily = SacksHarvestedDaily * OrangesPerSack :: TotalOrangesHarvestedDaily = SacksHarvestedDaily * 50
+```
+
+### Explanation
+1. **Fact-1** states that the total number of sacks harvested daily is 76.
+2. **Fact-2** indicates that the number of sacks discarded daily is 64.
+3. **Rule-1** provides the relationship between sacks harvested, discarded, and remaining, which helps derive the number of sacks remaining after discarding.
+4. **Inference-1** calculates the number of sacks remaining after discarding using Rule-1.
+5. **Inference-2** applies another rule to calculate the total number of oranges harvested, assuming each sack contains 50 oranges.
+
+This structured approach ensures clarity and adherence to FOL syntax while maintaining readability and accuracy in representing the logical flow of the problem statement.

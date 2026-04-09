@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, bacon_count = 394).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (mashed_potatoes_count = 457)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Substitution
+fof(inf_1, axiom, mashed_potatoes_count = +(bacon_count, 63)).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_2, axiom, bacon_count = -(mashed_potatoes_count, 63)).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_3, axiom, bacon_count = -(457, 63)).
+
+% From fact_1, rule_1 by Substitution
+fof(inf_4, axiom, bacon_count = 394).

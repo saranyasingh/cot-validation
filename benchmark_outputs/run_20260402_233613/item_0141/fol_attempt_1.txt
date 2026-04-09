@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Initial_goldfish_count(Paige) :: 8
+FACT-2: Remaining_goldfish_after_strays(Paige) :: 6
+
+## RULES
+RULE-1: Number_of_disappeared_goldfish(Paige) :: Initial_goldfish_count(Paige) - Remaining_goldfish_after_strays(Paige)
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Subtraction: Number_of_disappeared_goldfish(Paige) = 8 - 6

@@ -1,0 +1,14 @@
+## FACTS
+```plaintext
+FACT-1: Adam and Jackie have 7 apples between them :: A + J = 7
+```
+
+## RULES
+```plaintext
+RULE-1: If He has \(A + J + 9\) apples, then he has 16 apples :: ∀(A, J)(A + J + 9 → 16)
+```
+
+## INFERENCES
+```plaintext
+INF-1: The total number of apples He has is 16 :: 16
+```

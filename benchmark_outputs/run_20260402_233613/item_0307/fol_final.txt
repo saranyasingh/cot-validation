@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Gwen received 2 dollars from her mom :: MoneyGwenHas(2)
+FACT-2: Gwen's dad gave her 4 more dollars :: MoneyGwenHas(4)
+
+## RULES
+RULE-1: Adding amounts increases money :: ∀M1 M2 (MoneyGwenHas(M1) ∧ MoneyGwenHas(M2) → MoneyGwenHas(M1 + M2))
+RULE-2: Subtracting amount decreases money :: ∀M1 M2 (MoneyGwenHas(M1) ∧ MoneyGwenHas(M2) → MoneyGwenHas(M1 - M2))
+
+## INFERENCES
+INF-1: After receiving money from her mom, Gwen has 2 dollars :: MoneyGwenHas(2)
+INF-2: After receiving money from her dad, Gwen has 4 dollars :: MoneyGwenHas(4)
+INF-3: Gwen spends 3 dollars :: MoneyGwenHas(-3)
+INF-4: The remaining money after spending is calculated :: MoneyGwenHas(2 + 4 - 3) = \$3

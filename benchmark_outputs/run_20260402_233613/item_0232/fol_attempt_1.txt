@@ -1,0 +1,40 @@
+Let's translate the provided chain of thought into structured First-Order Logic (FOL):
+
+### FACTS
+These represent the initial conditions stated in the premise.
+
+```
+FACT-1: Matthew had 24 crackers initially :: CrackerCount(Matt, 24)
+```
+
+### RULES
+These represent the steps derived from the premises.
+
+```
+RULE-1: If Matthew gives \(x\) crackers to each of his 3 friends, then he will have \(17\) crackers left :: ∀x (CrackersToFriends(x, Matt, 3) → CrackerCount(Matt, 17))
+```
+
+### INFERENCES
+These represent the conclusion drawn from applying the rules to the facts.
+
+```
+INF-1: Matthew gave 6 crackers to each of his 3 friends :: CrackersToFriends(6, Matt, 3)
+```
+
+### LABELS
+We'll assign natural language glosses followed by their corresponding FOL formulas.
+
+#### FACTS
+```
+FACT-1: Matthew had 24 crackers initially :: CrackerCount(Matt, 24)
+```
+
+#### RULES
+```
+RULE-1: If Matthew gives \(x\) crackers to each of his 3 friends, then he will have \(17\) crackers left :: ∀x (CrackersToFriends(x, Matt, 3) → CrackerCount(Matt, 17))
+```
+
+#### INFERENCES
+```
+INF-1: Matthew gave 6 crackers to each of his 3 friends :: CrackersToFriends(6, Matt, 3)
+```

@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: TotalVisitorsThatDay = 666 :: TotalVisitors(today)
+FACT-2: TotalVisitorsPreviousDay = 100 :: TotalVisitors(yesterday)
+
+### ## RULES
+RULE-1: DifferenceBetweenTwoNumbers :: x - y :: x - y
+
+### ## INFERENCES
+INF-1: DifferenceBetweenTotalVisitorsTodayAndYesterday :: TotalVisitorsThatDay - TotalVisitorsPreviousDay

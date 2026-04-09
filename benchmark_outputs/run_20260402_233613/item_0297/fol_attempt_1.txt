@@ -1,0 +1,21 @@
+### FACTS
+FACT-1: InitialBirdsAndStorks = 3 + 6 = 9
+FACT-2: AdditionalBirdsAndStorks = 5
+FACT-3: StorksDifferenceFromBirds = 8 - 5 = 3
+
+### RULES
+No rules needed for this straightforward arithmetic problem.
+
+### INFERENCES
+INF-1: BirdsAndStorksTotal = InitialBirdsAndStorks + AdditionalBirdsAndStorks = 9 + 5 = 14
+INF-2: StorksDifferenceFromBirds = StorksDifferenceFromBirds = 8 - 5 = 3
+
+### LABELS
+- **FACT-1**: InitialBirdsAndStorks :: 3 + 6 = 9
+- **FACT-2**: AdditionalBirdsAndStorks :: 3 + 2 = 5
+- **FACT-3**: StorksDifferenceFromBirds :: 6 + 2 = 8
+- **INF-1**: BirdsAndStorksTotal :: 9 + 5 = 14
+- **INF-2**: StorksDifferenceFromBirds :: 8 - 5 = 3
+
+### FINAL ANSWER
+This conversion has been done using the specified output format and constraints.

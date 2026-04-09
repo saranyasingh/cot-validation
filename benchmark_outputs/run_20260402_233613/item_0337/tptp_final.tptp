@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, file_count(59)).
+fof(fact_2, axiom, app_count(15)).
+fof(fact_3, axiom, file_count(30)).
+fof(fact_4, axiom, app_count(12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (number_of_files(X) => X > 0)).
+fof(rule_2, axiom, ! [Y] : (number_of_apps(Y) => Y > 0)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, file_count(greater_than(0))).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, app_count(greater_than(0))).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, file_count(greater_than(0))).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, app_count(greater_than(0))).
+% From inf_1, inf_2 by Modus Ponens
+fof(inf_5, axiom, ! [X] : ! [Y] : ((initial_number_of_files(X) & initial_number_of_apps(Y)) => ((X > 0) & (Y > 0)))).
+% From inf_3, inf_4 by Modus Ponens
+fof(inf_6, axiom, ! [X] : ! [Y] : ((final_number_of_files(X) & final_number_of_apps(Y)) => ((file_count(X) > 0) & (app_count(Y) > 0)))).

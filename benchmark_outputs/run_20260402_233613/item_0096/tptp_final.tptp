@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, party_in_backyard).
+fof(fact_2, axiom, number_of_tables(10)).
+fof(fact_3, axiom, chairs_per_set(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, decide_to_hold_party => party_if_backyard(party_in_backyard)).
+fof(rule_2, axiom, ! [N, C] : ((number_of_sets(N) & chairs_per_set(C)) => number_of_chairs(N, C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, party_if_backyard(party_in_backyard)).
+% From fact_2 and rule_2 by Modus Ponens
+fof(inf_2, axiom, number_of_chairs(10, 6)).
+% From fact_3 and rule_2 by Modus Ponens
+fof(inf_3, axiom, number_of_chairs(10, 6)).

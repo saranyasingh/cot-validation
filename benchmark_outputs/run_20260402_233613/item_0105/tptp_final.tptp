@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_english(4, t_day)).
+fof(fact_2, axiom, learning_chinese(6, t_day)).
+fof(fact_3, axiom, number_of_days_learning(86, learning_english, 4)).
+fof(fact_4, axiom, number_of_days_learning(86, learning_chinese, 6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (learning_english(hours_on_english, T))).
+fof(rule_2, axiom, ! [T] : (learning_chinese(hours_on_chinese, T))).
+fof(rule_3, axiom, ! [LL, LH, NOD] : ( total_hours_spent(LL, LH, NOD) = LH * NOD )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_hours_spent(learning_english, 4, number_of_days_learning(86))).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_hours_spent(learning_chinese, 6, number_of_days_learning(86))).
+% From inf_1, inf_2, rule_3 by Addition
+fof(inf_3, axiom, total_hours_spent_combined(total_hours_spent(learning_english, 4, number_of_days_learning(86)), total_hours_spent(learning_chinese, 6, number_of_days_learning(86))) = total_hours_spent(learning_english, 4, number_of_days_learning(86)) + total_hours_spent(learning_chinese, 6, number_of_days_learning(86))).

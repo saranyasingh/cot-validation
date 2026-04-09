@@ -1,0 +1,13 @@
+1. **Premise**: The total number of sacks harvested daily is 76.
+2. **Premise**: The number of sacks discarded daily is 64.
+3. **Conclusion**: To find the number of sacks remaining after discarding, we subtract the discarded sacks from the total sacks:
+   \[
+   76 - 64 = 12 \text{ sacks}
+   \]
+4. **Premise**: Each sack contains 50 oranges.
+5. **Conclusion**: To find the total number of oranges harvested daily, we multiply the number of sacks remaining by the number of oranges per sack:
+   \[
+   12 \times 50 = 600 \text{ oranges}
+   \]
+
+**The answer is:** 600 oranges per day.

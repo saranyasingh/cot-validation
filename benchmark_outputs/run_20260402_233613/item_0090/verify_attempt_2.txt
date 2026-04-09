@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states Jerry had 3 action figures initially.
+FACT-2: SUPPORTED — The story describes an addition of 4 action figures (addAction).
+FACT-3: SUPPORTED — The story says there are 6 action figures on the shelf now.
+RULE-1: PLAUSIBLE — It encodes the standard arithmetic of total after addition as initial plus added.
+RULE-2: PLAUSIBLE — There is a removal event described; the rule captures a removal action without distorting the facts.

@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, sacks_harvested_daily = 76).
+fof(fact_2, axiom, sacks_discarded_daily = 64).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalSacksHarvested, SacksDiscarded] : ((sacks_harvested_daily = TotalSacksHarvested) => (sacks_remaining_after_discard(TotalSacksHarvested, SacksDiscarded) = subtract(TotalSacksHarvested, SacksDiscarded)))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, sacks_remaining_after_discard(76, 64) = 12).
+
+% From fact_1, by multiplication
+fof(inf_2, axiom, total_oranges_harvested_daily = 76 * 50).

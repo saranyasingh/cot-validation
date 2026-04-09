@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: Olivia started with 54 dollars :: WalletInitialAmount(olivia, 54)
+FACT-2: Olivia had 29 dollars left after shopping :: WalletFinalAmount(olivia, 29)
+
+### ## RULES
+RULE-1: Total amount spent can be calculated using the formula: AmountSpent = WalletInitialAmount - WalletFinalAmount :: AmountSpent(amount_spent, WalletInitialAmount(olivia, 54) - WalletFinalAmount(olivia, 29))
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Subtraction: Olivia spent 25 dollars at the supermarket :: AmountSpent(amount_spent, 25)

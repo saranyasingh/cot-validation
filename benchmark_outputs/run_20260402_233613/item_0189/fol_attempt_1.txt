@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Five twenty campers went rowing in the morning :: MorningCampers(52)
+FACT-2: Sixty-one campers went rowing in the afternoon :: AfternoonCampers(61)
+
+### RULES
+RULE-1: Subtract MorningCampers from AfternoonCampers to get the difference :: (∀x)(MorningCampers(x) → AfternoonCampers(x) - MorningCampers(x)) :: SubtractionRule
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Substitution: The number of campers who went rowing in the afternoon but not in the morning is 9 :: AfternoonCampers(61) - MorningCampers(52) = 9

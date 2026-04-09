@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, played_tag(18)).
+fof(fact_2, axiom, played_with_kids(monday, 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (played_tag(N) => all_kids_played(N))).
+fof(rule_2, axiom, ! [D] : ! [N] : ( played_with_kids(D, N) => sum_played(N, D) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, all_kids_played(18)).
+
+% From fact_2, rule_2 by SumPlayed
+fof(inf_2, axiom, total_played = 238).
+
+% From inf_2, rule_2 by SumPlayed
+fof(inf_3, axiom, played_with_kids(tuesday, 14)).

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: He saw the oranges being harvested :: SawHarvesting(orange_sellers)
+FACT-2: They harvest 67 sacks per day :: HarvestRate(sacks_per_day, 67)
+FACT-3: Each sack contains 12 oranges :: OrangesPerSack(oranges_per_sack, 12)
+
+## RULES
+INF-1: Total Oranges = HarvestRate * Number of Sacks :: TotalOranges(harvest_rate, number_of_sacks)
+
+## INFERENCES
+INF-2: Substitute the known values :: TotalOranges(67, 35)
+INF-3: Calculate the result :: TotalOranges = 67 * 35
+INF-4: Simplify the multiplication :: TotalOranges = 2345

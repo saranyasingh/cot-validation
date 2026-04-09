@@ -1,0 +1,17 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — All balloons belong to Allan is not supported; the story includes balloons belonging to Jake as well.
+FACT-4: UNSUPPORTED — All balloons belong to Jake is not supported; the story includes Allan's balloons as well.
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — Jake has fewer balloons (Jake 6 vs Allan 7).
+FACT-7: SUPPORTED
+FACT-8: SUPPORTED
+FACT-9: UNSUPPORTED — All balls belong to Allan is not true; Jake also has balls.
+FACT-10: UNSUPPORTED — All balls belong to Jake is not true; Allan has balls.
+FACT-11: SUPPORTED
+FACT-12: UNSUPPORTED — Jake does not have more balls; Allan has 5 vs 4.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE

@@ -1,0 +1,13 @@
+**FACTS**
+FACT-1: GwenReceivedMoneyFromDad :: 5
+FACT-2: GwenReceivedMoneyFromMom :: 2
+
+**RULES**
+RULE-1: TotalAmount = DadMoney + MomMoney :: ∀m (Total(m) = DadMoney(m) + MomMoney(m))
+RULE-2: MoneySpent :: 6
+
+**INFERENCES**
+INF-1: TotalGwenReceived :: 5 + 2 :: 7
+INF-2: MoneyRemaining :: TotalGwenReceived - MoneySpent :: 7 - 6 :: 1
+INF-3: GwenReceivedMoreFromDad :: DadMoney > MomMoney :: ∀d (DadMoney(d) > MomMoney(d)) :: 5 > 2 :: True
+INF-4: Difference :: DadMoney - MomMoney :: 5 - 2 :: 3

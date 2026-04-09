@@ -1,0 +1,16 @@
+### FACTS
+FACT-1: InitialAmountOlivia :: $100
+FACT-2: AmountCollectedATM :: $148
+FACT-3: FinalAmountAfterSupermarket :: $159
+
+### RULES
+Rule-1: SpendingCalculation :: ∀ x (InitialAmountOlivia(x) ∧ AmountCollectedATM(x) → FinalAmountAfterSupermarket(x))
+
+### INFERENCES
+INF-1: From FACT-1, Rule-1 by Modus Ponens: InitialAmountOlivia(100) :: SpendingCalculation(100)
+INF-2: From FACT-2, Rule-1 by Modus Ponens: AmountCollectedATM(148) :: SpendingCalculation(148)
+INF-3: From INF-1 and INF-2, Apply Addition Law: SpendingCalculation(100) + SpendingCalculation(148) :: SpendingCalculation(248)
+INF-4: From INF-3, Rule-1 by Modus Ponens: FinalAmountAfterSupermarket(248) :: SpendingCalculation(248)
+INF-5: From INF-4, Rule-1 by Modus Tollens: SpendingCalculation(248) ≠ SpendingCalculation(159) :: FinalAmountAfterSupermarket(159) ≠ FinalAmountAfterSupermarket(248)
+INF-6: From INF-5, Rule-1 by Modus Ponens: SpendingCalculation(159) ≠ FinalAmountAfterSupermarket(159) :: FinalAmountSpent(159) ≠ FinalAmountSpent(248)
+INF-7: From INF-6, Rule-1 by Modus Ponens: FinalAmountSpent(159) ≠ FinalAmountSpent(100) :: FinalAmountSpent(89)

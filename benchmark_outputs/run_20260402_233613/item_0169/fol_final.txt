@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Gwen received $8 from her mom :: MoneyReceived(gwen, mom, 8)
+FACT-2: Gwen received $5 from her dad :: MoneyReceived(gwen, dad, 5)
+
+## RULES
+Rule-1: Given an amount received from a parent, calculate the difference from another parent :: DifferenceCalc(money_received_from_parent1, money_received_from_parent2) := money_received_from_parent1 - money_received_from_parent2
+
+## INFERENCES
+INF-1: Difference between money received from mom and dad :: DifferenceCalc(MoneyReceived(gwen, mom, 8), MoneyReceived(gwen, dad, 5))

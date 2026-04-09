@@ -1,0 +1,7 @@
+LABEL: FACT-1 :: 4 birds initially on the fence
+
+LABEL: FACT-2 :: 46 storks initially on the fence
+
+LABEL: RULE-1 :: If there are 4 birds on the fence, then there are 46 storks on the fence
+
+LABEL: INF-1 :: After 6 more birds join, the number of birds on the fence is 10

@@ -1,0 +1,20 @@
+Here's the converted chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+FACT-1: Rachel picked 7 apples from her tree :: Picked(7, x)
+
+FACT-2: After picking, 2 more apples grew on the tree :: Added(ApplesGrewOnTree(), 2)
+
+### RULES
+RULE-1: If an apple is picked, then no apples remain :: ∀p (Picked(p, x) → !Picked(x, x))
+
+### INFERENCES
+INF-1: Initial number of apples on the tree :: InitialCount(7, x)
+
+INF-2: Current number of apples on the tree :: FinalCount(11, x)
+
+INF-3: Initial number of apples minus the ones picked plus the newly grown apples equals the final count :: Equation(11, 7, 2)
+
+INF-4: Given the equations derived from facts and rules, solve for the initial number of apples :: SolveEquation(INITIAL_COUNT, FINAL_COUNT)
+
+This concludes our conversion of the reasoning into FOL.

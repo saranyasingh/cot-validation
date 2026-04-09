@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, height(dean, 17)).
+fof(fact_2, axiom, height(ron, 13)).
+fof(fact_3, axiom, depth_of_water(255)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : ( depth_of_water(D) <=> (15 * D) )).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, depth_of_water(255)).

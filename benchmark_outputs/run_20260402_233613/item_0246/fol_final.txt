@@ -1,0 +1,10 @@
+### ## FACTS
+LABEL: Fact 1 :: M(H) = 20
+LABEL: Fact 2 :: ∃B (B ∈ B_boys ∧ Loves_Marbles(B))
+
+### ## RULES
+LABEL: Rule 1 :: ∀x (D(x) → (∃y y = x/2))
+LABEL: Rule 2 :: ∃x (x = 10)
+
+### ## INFERENCES
+LABEL: Inference 1 :: x(B_1) = 10 ∧ x(B_2) = 10

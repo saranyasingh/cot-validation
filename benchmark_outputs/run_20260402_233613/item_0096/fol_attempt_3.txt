@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: They decided to hold the party in their backyard :: PartyInBackyard
+FACT-2: They have 10 sets of tables :: NumberOfTables(10)
+FACT-3: Each set has 6 chairs :: ChairsPerSet(6)
+
+## RULES
+RULE-1: If they decide to hold a party, then the party is held in their backyard :: PartyIfBackyard(PartyInBackyard)
+RULE-2: If there are n sets of tables, then each set has c chairs :: NumberOfChairs(n, c)(NumberOfSets(n))(ChairsPerSet(c))
+RULE-3: If there are p people sitting on chairs, then there are p chairs occupied :: ChairsOccupied(p, p)(PeopleOnChairs(p))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, they decided to hold the party in their backyard :: PartyIfBackyard(PartyInBackyard)
+INF-2: From FACT-2 and RULE-2, they have 10 sets of tables :: NumberOfSets(10)(NumberOfTables(10))
+INF-3: From FACT-3 and RULE-2, each set has 6 chairs :: ChairsPerSet(6)(NumberOfSets(10))(NumberOfChairs(10, 6))

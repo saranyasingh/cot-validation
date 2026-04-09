@@ -1,0 +1,42 @@
+To convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL), I will follow these steps:
+
+### Facts
+These are the initial facts or statements derived from the premise.
+
+1. **A robe requires 2 bolts of blue fiber.**
+   - Fact-1: RobeRequiresBlueFiber(2)
+
+2. **A robe needs half as much white fiber as there is blue fiber.**
+   - Fact-2: RobeNeedsHalfWhiteFiberFromBlueFiber(RobeRequiresBlueFiber(2))
+
+### Rules
+These rules represent external or linguistic knowledge that can be universally applied without needing specific premises.
+
+3. **If a robe uses a certain amount of blue fiber, it must use half that amount of white fiber.**
+   - Rule-1: IfRobeUsesBlueFiberThenRobeNeedsWhiteFiber(RobeRequiresBlueFiber(x), RobeNeedsHalfWhiteFiberFromBlueFiber(x))
+     - Formula: ∀x ((RobeRequiresBlueFiber(x)) → (RobeNeedsHalfWhiteFiberFromBlueFiber(x)))
+
+### Inferences
+These are the conclusions drawn based on the above facts and rules.
+
+4. **To determine the total number of bolts required for a robe, calculate the sum of blue and white fibers.**
+   - Inference-1: SumOfBoltsForRobe(RobeRequiresBlueFiber(y), RobeNeedsHalfWhiteFiberFromBlueFiber(y))
+     - Formula: (∀y (RobeRequiresBlueFiber(y) ∧ RobeNeedsHalfWhiteFiberFromBlueFiber(y))) → (∃z ((RobeRequiresBlueFiber(z) ∧ RobeNeedsWhiteFiber(z)) ∧ z = y + 1))
+
+### Final Conversion
+Combining all parts into a coherent FOL structure:
+
+```plaintext
+FACT-1: RobeRequiresBlueFiber(2)
+Fact-2: RobeNeedsHalfWhiteFiberFromBlueFiber(RobeRequiresBlueFiber(2))
+
+Rule-1: IfRobeUsesBlueFiberThenRobeNeedsWhiteFiber(RobeRequiresBlueFiber(x), RobeNeedsHalfWhiteFiberFromBlueFiber(x))
+
+Inference-1: SumOfBoltsForRobe(RobeRequiresBlueFiber(y), RobeNeedsHalfWhiteFiberFromBlueFiber(y))
+```
+
+### Explanation
+- **Fact-1**: Establishes the baseline requirement for blue fiber needed to make a robe.
+- **Fact-2**: Specifies the relationship between the amount of blue fiber and the amount of white fiber required.
+- **Rule-1**: Defines the conversion from blue fiber to white fiber based on the ratio given.
+- **Inference-1**: Combines the two pieces of information to deduce the total bolts needed for a robe, which involves adding the base amount of blue fiber to the doubled amount of white fiber (since each bolt of blue fiber equals half a bolt of white fiber).

@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: Initially there were 13 roses in the vase :: RosesInVase(13)
+FACT-2: After Jessica added 8 roses, there were 21 roses in the vase :: RosesInVase(21)
+
+### RULES
+Rule-1: Adding roses increases the total count :: ∀r (Adding(r) → RosesInVase(RosesAdded(r)))
+
+### INFERENCES
+INF-1: Jessica added 8 roses :: Adding(8)
+INF-2: After adding 8 roses, the vase had 21 roses :: RosesInVase(21)
+INF-3: The original number of roses in the vase was 13 :: RosesInVase(13)
+INF-4: Subtracting 8 from the initial number gives the remaining roses :: RosesLeftAfterAddition(8)

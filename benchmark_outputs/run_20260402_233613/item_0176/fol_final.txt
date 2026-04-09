@@ -1,0 +1,4 @@
+LABEL: FACTS :: AppsOnPhone(dave, t_initial) :: 19
+LABEL: FACTS :: DeletedApps(dave, t_deletion) :: 5
+LABEL: RULES :: None provided.
+LABEL: INFERENCES :: RemainingApps(dave, t_final) :: AppsOnPhone(dave, t_initial) - DeletedApps(dave, t_deletion) :: RemainingApps(dave, t_final) :: 19 - 5 :: RemainingApps(dave, t_final) :: 14

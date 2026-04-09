@@ -1,0 +1,6 @@
+FACT-1: Frank started with 33 pieces of candy :: CandyInitial(33)
+FACT-2: Frank lost 24 pieces of candy :: CandyLost(24)
+RULE-1: After losing candy, the remaining candies are calculated :: RemainingCandies(CandyInitial(x) ∧ CandyLost(y))
+INF-1: After losing 24 pieces, Frank has 9 pieces left :: RemainingCandies(33 ∧ 24)
+INF-2: Each bag contains exactly 9 pieces :: BagCapacity(9)
+INF-3: Number of bags needed to hold 9 pieces each :: NumberOfBags(BagCapacity(z) ∧ RemainingCandies(w))

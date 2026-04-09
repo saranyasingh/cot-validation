@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, price(tshirt, 51)).
+fof(fact_2, axiom, discount(8)).
+fof(fact_3, axiom, sold(tshirt, 130)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, D] : (price(tshirt, P) & discount(D) => discounted_price(tshirt, P - D))).
+fof(rule_2, axiom, ! [N, P, D] : ((sold(tshirt, N) & price(tshirt, P) & discount(D)) => total_revenue(total_revenue, P - D, N))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_revenue(total_revenue, 43, 130)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, discounted_price(tshirt, 43)).

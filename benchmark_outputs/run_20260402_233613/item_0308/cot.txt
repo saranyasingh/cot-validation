@@ -1,0 +1,21 @@
+Let's break down this problem into a logical syllogism:
+
+**Premise 1:** Dave initially had 17 apps and 21 files on his phone.
+- This establishes the initial state before any deletions occur.
+
+**Premise 2:** After deleting some apps and files, Dave has 3 apps and 7 files remaining.
+- This shows us what the situation looks like after the deletions have been made.
+
+**Premise 3:** To find out how many files were deleted, we need to subtract the number of files left from the initial number of files.
+- This directly leads to our calculation needed to determine the amount of deletion.
+
+**Conclusion:** Let \( F \) be the number of files that Dave deleted.
+- Therefore, \( F = (Initial\ Files - Remaining\ Files) \)
+- Substituting the known values:
+  \( F = (21 - 7) \)
+- Calculating the difference:
+  \( F = 14 \)
+
+**The answer is: 14**
+
+So, Dave deleted 14 files from his phone.

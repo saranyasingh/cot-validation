@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: ACTIONFiguresOnShelf(Adam, shelf, 10) :: {ACTIONFiguresOnShelf(Adam, shelf, 10)}
+LABEL: TotalActionFiguresInRoom(Adam, 8) :: {TotalActionFiguresInRoom(Adam, 8)}
+
+### ## RULES
+LABEL: ShelfCount(room, n) ↔ (TotalActionFiguresInRoom(Adam, 8) / ActionFiguresOnShelf(Adam, shelf, n)) :: {ShelfCount(room, n)}
+
+### ## INFERENCES
+LABEL: ShelfCount(room, 0) :: {ACTIONFiguresOnShelf(Adam, shelf, 10), TotalActionFiguresInRoom(Adam, 8)}

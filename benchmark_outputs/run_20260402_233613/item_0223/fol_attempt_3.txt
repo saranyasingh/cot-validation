@@ -1,0 +1,17 @@
+### ## FACTS
+```plaintext
+FACT-1: 257 students suggested adding mashed potatoes.
+```
+
+### ## RULES
+```plaintext
+Rule-1: If x suggests mashed potatoes, then x suggested mashed potatoes. (∀x(MashedPotatoes(x) → SuggestedMashedPotatoes(x)))
+Rule-2: If x suggests bacon, then x suggested bacon. (∀x(Bacon(x) → SuggestedBacon(x)))
+Rule-3: If x suggests tomatoes, then x suggested tomatoes. (∀x(Tomato(x) → SuggestedTomato(x)))
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: Number of students suggesting mashed potatoes minus number of students suggesting bacon. (∀x((MashedPotatoes(x) ∧ Not(Bacon(x))) → MashedPotatoes_SuggestedMinusBacon))
+INF-2: Difference between the number of students suggesting mashed potatoes and bacon. (∀x((Not(MashedPotatoes(x)) ∧ Bacon(x)) → BaconMinusMashedPotatoes))
+```

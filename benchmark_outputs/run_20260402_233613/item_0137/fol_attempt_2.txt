@@ -1,0 +1,9 @@
+## FACTS
+CandyTotal(Frank, 42)
+
+## RULES
+DistributeCandies(Equally, x, y)
+∀x∀y((CandyTotal(x) + CandyTotal(y)) = 2 * Distributes(CandiesInBag(x, y)))
+
+## INFERENCES
+CandiesInBag(21, 21)

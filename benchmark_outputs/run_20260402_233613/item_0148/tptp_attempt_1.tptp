@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, divide(36, 4) = 9).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1 by Division
+fof(inf_1, axiom, cookies_per_bag(9)).

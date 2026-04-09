@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_visitors(today)).
+
+fof(fact_2, axiom, total_visitors(yesterday)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ((X - Y) = (X - Y))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, ((total_visitors(today) - total_visitors(yesterday)) = (total_visitors(today) - total_visitors(yesterday)))).

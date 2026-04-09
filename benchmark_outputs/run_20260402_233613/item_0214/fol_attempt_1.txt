@@ -1,0 +1,62 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). We'll break down each step and represent them using FOL symbols and syntax rules.
+
+### Facts
+These are the facts provided in the premise without any quantification or logical operators.
+
+```plaintext
+FACT-1: HarvestedOrangesPerDay(x) :: x * SacksHarvested / OrangesInSack
+```
+
+Where `x` represents days, `SacksHarvested` represents the number of sacks harvested, and `OrangesInSack` represents the number of oranges per sack.
+
+### Rules
+Rules are universally quantified implications based on the given information. Here we have two rules derived from the premises.
+
+#### Rule 1: Number of Oranges Per Day
+This rule states how many oranges are harvested per day.
+
+```plaintext
+Rule-1: OrangesHarvestedPerDay :: Forall x (HarvestedOrangesPerDay(x))
+```
+
+This means that there exists some quantity of oranges harvested per day (`x`), which can be calculated as the product of the number of sacks harvested (`x`) and the number of oranges per sack (`OrangesInSack`).
+
+#### Rule 2: Total Oranges Harvested
+We need to calculate the total number of oranges harvested over several days. Let's assume they harvest for multiple days, say `n` days.
+
+```plaintext
+Rule-2: TotalOrangesHarvested :: n * HarvestedOrangesPerDay(n)
+```
+
+Here, `TotalOrangesHarvested` is equal to the number of days (`n`) multiplied by the number of oranges harvested per day (`HarvestedOrangesPerDay(n)`).
+
+### Inferences
+Now, let's derive the conclusion based on the rules and facts.
+
+#### Inference 1: Calculate Daily Harvest
+First, we calculate the daily harvest using the rule.
+
+```plaintext
+INF-1: DailyHarvest :: TotalOrangesHarvested
+```
+
+Using the rule `Rule-2`, if they harvest for `n` days, then the total number of oranges harvested would be `n * HarvestedOrangesPerDay`.
+
+However, since we don't know the exact number of days (`n`), we cannot directly compute the total number of oranges. But we can express the relationship mathematically.
+
+```plaintext
+INF-2: TotalOrangesHarvested :: n * HarvestedOrangesPerDay
+```
+
+Since the problem doesn't specify the number of days, we leave it as an expression involving `n`.
+
+### Final Answer
+Combining all parts together, we get the final inferred statement:
+
+```plaintext
+Final Inference: TotalOrangesHarvested :: n * HarvestedOrangesPerDay
+```
+
+Thus, the answer is:
+
+**Final Inference:** TotalOrangesHarvested :: n * HarvestedOrangesPerDay

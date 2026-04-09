@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states 23 books per shelf.
+FACT-2: SUPPORTED — The story states 61 magazines per shelf.
+FACT-3: SUPPORTED — The story mentions 29 bookshelves.
+RULE-1: PLAUSIBLE — It uses per-shelf counts times the number of shelves to get totals.
+RULE-2: PLAUSIBLE — Same per-shelf count times shelves for magazines.

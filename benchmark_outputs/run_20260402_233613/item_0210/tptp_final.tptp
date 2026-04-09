@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, apples_jake > apples_steven + 13).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B] : ((A > B) => (A >= B))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, apples_jake >= 12).

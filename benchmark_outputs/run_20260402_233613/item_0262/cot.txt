@@ -1,0 +1,53 @@
+Let's break down the problem into clear steps using a logical syllogism:
+
+**Premise 1:** Danny initially had 15 bottle caps.
+- This tells us the starting number of bottle caps.
+
+**Premise 2:** Danny initially had 18 wrappers.
+- This tells us the starting number of wrappers.
+
+**Premise 3:** After finding additional items:
+   - He now has 67 wrappers.
+   - He now has 35 bottle caps.
+- These are the current numbers we know after collecting more items.
+
+**Step-by-step Logical Reasoning:**
+
+1. **Determine Initial Collection:**
+   - Let \( B \) represent the initial number of bottle caps.
+   - Let \( W \) represent the initial number of wrappers.
+   
+   Given:
+   \[
+   B = 15
+   \]
+   \[
+   W = 18
+   \]
+
+2. **Current Collection:**
+   - Current number of wrappers (\( C_W \)) = 67
+   - Current number of bottle caps (\( C_B \)) = 35
+
+3. **Calculate Total Items Collected:**
+   - Total wrappers collected = \( C_W - W \)
+   \[
+   \text{Total wrappers collected} = 67 - 18 = 49
+   \]
+
+4. **Calculate Total Bottle Caps Collected:**
+   - Total bottle caps collected = \( C_B - B \)
+   \[
+   \text{Total bottle caps collected} = 35 - 15 = 20
+   \]
+
+5. **Compare Wrappers to Bottle Caps:**
+   - Difference between total wrappers and total bottle caps = 
+   \[
+   49 - 20 = 29
+   \]
+
+**Conclusion:**
+Danny now has 29 more wrappers than bottle caps in his collection.
+
+The answer is: Danny has 29 more wrappers than bottle caps.

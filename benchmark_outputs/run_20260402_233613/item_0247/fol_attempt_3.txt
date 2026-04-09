@@ -1,0 +1,11 @@
+### ## FACTS
+FACT-1: InitialNumberChildren = 28 :: NumberOfChildrenInitially = 28
+
+### ## RULES
+RULE-1: FinalNumberChildren = InitialNumberChildren + NumberChildrenOnBus - NumberChildrenOffBus :: ∀t (NumberChildrenOnBus(t) -> FinalNumberChildren(t) = NumberChildrenInitially + NumberChildrenOnBus(t) - NumberChildrenOffBus(t))
+
+### ## INFERENCES
+INF-1: NumberChildrenOnBus - NumberChildrenOffBus = 2 :: ∀t (NumberChildrenOnBus(t) - NumberChildrenOffBus(t) = 2)
+INF-2: NumberChildrenOnBus > 0 :: ∀t (NumberChildrenOnBus(t) > 0)
+INF-3: NumberChildrenOffBus > 0 :: ∀t (NumberChildrenOffBus(t) > 0)
+INF-4: Conclusion: More children got on than off :: ∃y (y > 0 ∧ NumberChildrenOnBus(y) - NumberChildrenOffBus(y) = 2)

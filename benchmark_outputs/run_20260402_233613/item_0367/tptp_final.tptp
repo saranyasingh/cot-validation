@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, strawberries_marco_and_dad_total(20)).
+
+fof(fact_2, axiom, strawberries_father_weight(17)).
+
+% --- RULES ---
+fof(rule_1, axiom, (strawberries_marco_and_dad_total(20) & strawberries_father_weight(17)) => strawberries_marco_weight(strawberries_marco_and_dad_total(20) - strawberries_father_weight(17))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, strawberries_marco_weight(strawberries_marco_and_dad_total(20) - strawberries_father_weight(17))).

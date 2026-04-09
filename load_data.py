@@ -115,11 +115,46 @@ def load_proofwriter(split: str = "test", limit: int = 50, output: str = "proofw
     print(f"Saved {len(items)} items to {output}")
 
 
-if __name__ == "__main__" and "--proofwriter" in __import__("sys").argv:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--proofwriter", action="store_true")
-    parser.add_argument("--split", default="test")
-    parser.add_argument("--limit", "-n", type=int, default=50)
-    parser.add_argument("--output", "-o", default="proofwriter.json")
-    args = parser.parse_args()
-    load_proofwriter(split=args.split, limit=args.limit, output=args.output)
+def load_gsm8k(split: str = "test", limit: int = None, output: str = "dataset.json"):
+    """Load GSM8K from HuggingFace and save to a JSON file."""
+    print(f"Loading openai/gsm8k ({split} split)...")
+    ds = load_dataset("openai/gsm8k", "main", split=split)
+
+    items = []
+    for i, row in enumerate(ds):
+        if limit is not None and len(items) >= limit:
+            break
+        raw_answer = row.get("answer", "")
+        # Extract final numeric answer after ####
+        match = re.search(r'####\s*(.+)', raw_answer)
+        final_answer = match.group(1).strip() if match else raw_answer.strip()
+        items.append({
+            "id": f"item_{i+1:04d}",
+            "question": row["question"].strip(),
+            "answer": final_answer,
+        })
+
+    out = {"name": "GSM8K", "items": items}
+    with open(output, "w") as f:
+        json.dump(out, f, indent=2)
+    print(f"Saved {len(items)} items to {output}")
+
+
+if __name__ == "__main__":
+    import sys
+    if "--proofwriter" in sys.argv:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--proofwriter", action="store_true")
+        parser.add_argument("--split", default="test")
+        parser.add_argument("--limit", "-n", type=int, default=50)
+        parser.add_argument("--output", "-o", default="proofwriter.json")
+        args = parser.parse_args()
+        load_proofwriter(split=args.split, limit=args.limit, output=args.output)
+    elif "--gsm8k" in sys.argv:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--gsm8k", action="store_true")
+        parser.add_argument("--split", default="test")
+        parser.add_argument("--limit", "-n", type=int, default=None)
+        parser.add_argument("--output", "-o", default="dataset.json")
+        args = parser.parse_args()
+        load_gsm8k(split=args.split, limit=args.limit, output=args.output)

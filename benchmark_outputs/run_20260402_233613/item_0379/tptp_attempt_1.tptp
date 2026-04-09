@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, initially_on_fence(x)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : ((initial_number(Z) & joining_birds(Y)) => new_total(Z))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Universal Instantiation
+fof(inf_1, axiom, initially_on_fence(1)).

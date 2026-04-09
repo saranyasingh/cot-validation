@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, machine_made_shirt(yesterday, 9)).
+
+fof(fact_2, axiom, machine_made_shirt(today, 8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [SY, ST, TS] : ((machine_made_shirt_yesterday(SY) & machine_made_shirt_today(ST)) => total_shirts_today(TS))).
+
+fof(rule_2, axiom, rate_of_shirts_per_minute(2)).
+
+fof(rule_3, axiom, ! [Time, TOT, Rate] : (time_for_shirts(Time) => total_shirts_div_rate(TOT, Rate))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_shirts_today(17)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, time_for_shirts(8.5)).

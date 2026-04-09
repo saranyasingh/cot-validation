@@ -1,0 +1,1 @@
+LABEL: MoreFlourNeeded(9) :: MoreFlourNeeded(FlourType) := TotalFlourNeeded(14) - AlreadyAddedFlour(5) :: eprover: /n/home06/ssingh/cot-validation/output.tptp:2:(Column 20): Formula has free variables (check parentheses and quantifier precedence)

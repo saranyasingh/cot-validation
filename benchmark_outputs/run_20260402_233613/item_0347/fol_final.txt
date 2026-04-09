@@ -1,0 +1,17 @@
+This conversion process involves translating a simple arithmetic problem into FOL without any additional context or premises. Here's how the output would look based on your instructions:
+
+```plaintext
+FACT-1: They harvest 66 sacks per day :: HarvestedSacksPerDay(66)
+
+FACT-2: Each sack contains 28 oranges :: OrangesInSack(28)
+
+INF-1: Therefore, they harvest \(66 \times 28\) oranges per day :: InfHarvestOrangesPerDay(InfFact1, InfFact2)
+
+INF-2: Calculating the total harvest per day: \(66 \times 28 = 1848\) oranges :: CalcTotalHarvest(InfHarvestOrangesPerDay, Fact1, Fact2)
+```
+
+### Explanation:
+- `FACT-1` represents the premise that they harvest 66 sacks per day.
+- `FACT-2` represents the premise that each sack contains 28 oranges.
+- `INF-1` uses these facts to derive the conclusion about the total number of oranges harvested per day.
+- `INF-2` calculates the total number of oranges harvested using the derived result from `INF-1`.

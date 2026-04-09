@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states Edward spent $6 on books, so MoneySpentOnBooks(x) is entailed.
+FACT-2: SUPPORTED — The story states Edward spent $16 on pens, so MoneySpentOnPens(y) is entailed.
+FACT-1: SUPPORTED — The story states Edward spent $6 on books, so MoneySpentOnBooks(x) is entailed.
+RULE-1: IMPLAUSIBLE — The rule "TotalExpenditure(z)" is underspecified and does not link to the expenditures on books and pens.
+RULE-1: IMPLAUSIBLE — Repeats the same underspecified rule; not a constructive general principle.

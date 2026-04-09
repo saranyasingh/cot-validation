@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: Rachel picked 7 apples from her tree :: Picked(7, x)
+FACT-2: After picking, 2 more apples grew on the tree :: Added(ApplesGrewOnTree(), 2)
+
+### ## RULES
+RULE-1: If an apple is picked, then no apples remain :: ∀p (Picked(p, x) → !Picked(x, x))
+RULE-2: Number of apples does not change if new apples grow :: ∀n (Added(n, ApplesGrewOnTree()) → SameCount(ApplesGrewOnTree(), n))
+
+### ## INFERENCES
+INF-1: Initial number of apples on the tree :: InitialCount(7, x)
+INF-2: Current number of apples on the tree :: FinalCount(11, x)
+INF-3: Initial number of apples minus the ones picked plus the newly grown apples equals the final count :: Equation(11, 7, 2)

@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: 13 campers went rowing in the morning :: \( R_m = 13 \)
+FACT-2: 21 campers went rowing in the afternoon :: \( R_a = 21 \)
+
+### RULES
+RULE-1: Total campers who went rowing = Morning rowers + Afternoon rowers :: \( T = R_m + R_a \)
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1 by Addition: Total number of campers who went rowing :: \( T = 13 + 21 \)
+INF-2: Simplify INF-1 to get the final result: Total number of campers who went rowing :: \( T = 34 \)

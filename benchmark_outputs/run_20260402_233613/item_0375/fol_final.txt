@@ -1,0 +1,13 @@
+LABEL: ### ## FACTS
+FACT-1: GwenReceivedMoneyFromMom(7) :: ReceivedMoney(Gwen, Mom, 7)
+FACT-2: GwenReceivedMoneyFromDad(5) :: ReceivedMoney(Gwen, Dad, 5)
+
+LABEL: ### ## RULES
+RULE-1: TotalAmount(Gwen, Parents) = DadMoney + MomMoney :: ∀Gw(Gwen) ∧ ∀P(Parents) (TotalAmount(Gwen, Parents) = DadMoney + MomMoney)
+RULE-2: RemainingMoneyAfterSpending = TotalMoney - AmountSpent :: ∀Gw(Gwen) ∧ ∀P(Parents) ∧ ∀A(AmountSpent) (RemainingMoneyAfterSpending(Gwen, Parents, AmountSpent) = TotalMoney(Gwen, Parents) - AmountSpent)
+
+LABEL: ### ## INFERENCES
+INF-1: TotalAmount(Gwen, Parents) = 5 + 7 :: TotalAmount(Gwen, Parents) = DadMoney + MomMoney
+INF-2: RemainingMoneyAfterSpending(Gwen, Parents, 4) = 12 - 4 :: RemainingMoneyAfterSpending(Gwen, Parents, 4) = TotalAmount(Gwen, Parents) - AmountSpent
+INF-3: DifferenceBetweenMomAndDadMoney = RemainingMoneyAfterSpending(Gwen, Parents, 0) - RemainingMoneyAfterSpending(Gwen, Parents, 4) :: DifferenceBetweenMomAndDadMoney = (TotalAmount(Gwen, Parents) - AmountSpent) - (TotalAmount(Gwen, Parents) - AmountSpent)
+INF-4: DifferenceBetweenMomAndDadMoney = 8 :: DifferenceBetweenMomAndDadMoney = 8

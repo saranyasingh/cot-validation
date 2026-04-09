@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, customers_at(3)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1 by arithmetic
+fof(inf_1, axiom, customers_at(0)).

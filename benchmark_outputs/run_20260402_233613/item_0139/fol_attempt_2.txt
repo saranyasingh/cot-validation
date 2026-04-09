@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: ACTIONFiguresOnShelf(Adam, shelf, 10)
+LABEL: FACT-2 :: TotalActionFiguresInRoom(Adam, 8)
+LABEL: RULE-1 :: ShelfCount(room, n) ↔ (TotalActionFiguresInRoom(Adam, 8) / ActionFiguresOnShelf(Adam, shelf, n))

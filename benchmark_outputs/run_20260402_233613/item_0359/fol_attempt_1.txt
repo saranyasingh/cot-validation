@@ -1,0 +1,33 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These are the direct statements from the premise without any quantifiers.
+
+```plaintext
+FACT-1: There were 12 customers at the start :: CustomerCount(S) = 12
+```
+
+### Rules
+These are universally quantified implications that represent external knowledge about customer behavior.
+
+```plaintext
+RULE-1: If the number of customers decreases, they will eventually reach zero :: ∀t (CustomerCount(t) > 0 → (∀y (CustomerCount(y) = 0)))
+```
+
+### Inferences
+These are derived conclusions based on the facts and rules provided.
+
+```plaintext
+INF-1: The number of customers reaches zero :: CustomerCount(t_final) = 0
+```
+
+### Summary
+Now, let's summarize the FOL representation:
+
+```plaintext
+FACT-1: There were 12 customers at the start :: CustomerCount(S) = 12
+RULE-1: If the number of customers decreases, they will eventually reach zero :: ∀t (CustomerCount(t) > 0 → (∀y (CustomerCount(y) = 0)))
+INF-1: The number of customers reaches zero :: CustomerCount(t_final) = 0
+```
+
+This conversion ensures that each step logically follows from the previous ones using logical connectives and quantifiers.

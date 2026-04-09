@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Allan brought 7 balloons :: BalloonBroughtByAllan(x)
+FACT-2: Jake brought 6 balloons :: BalloonBroughtByJake(y)
+FACT-3: All balloons belong to Allan :: ∀x (BalloonBroughtByAllan(x) → BallonBelongsToAllan(x))
+FACT-4: All balloons belong to Jake :: ∀y (BalloonBroughtByJake(y) → BallonBelongsToJake(y))
+
+## RULES
+RULE-1: If someone brings more balloons than another person, then the other person does not have those balloons. :: (∀x (BalloonBroughtByAllan(x) ∧ x > 6) → ¬BallonBelongsToJake(x)) ∧ (∀y (BalloonBroughtByJake(y) ∧ y > 6) → ¬BallonBelongsToAllan(y))
+
+## INFERENCES
+INFERENCE-1: Since Allan brought 7 balloons and Jake brought 6 balloons, Allan must have 1 balloon left after giving some to Jake. :: ∃x (BallonBroughtByAllan(x) ∧ BallonBroughtByJake(y) ∧ x > 7 ∧ y > 6)
+
+INFERENCE-2: Jake cannot have any more balloons than Allan because he only brought 6 balloons. :: ∀y (BallonBroughtByJake(y) → y ≤ 6)
+
+INFERENCE-3: The total number of balloons and balls is 13. :: (∃x (BallonBroughtByAllan(x) ∧ x ≠ 7) ∧ ∃y (BallonBroughtByJake(y) ∧ y ≠ 6))

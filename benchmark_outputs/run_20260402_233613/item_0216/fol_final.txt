@@ -1,0 +1,16 @@
+To convert this chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Initially, there were 3 customers :: CustomersAt(3)
+```
+
+### RULES
+No rules are needed for this particular statement since it’s straightforward arithmetic.
+
+### INFERENCES
+```plaintext
+INF-1: There are no customers left :: CustomersAt(0)
+```
+
+In this FOL conversion, we represent the facts and inferencing without using quantifiers or connectives beyond basic arithmetic operations.

@@ -1,0 +1,12 @@
+### FIXED VERSION
+
+#### ## FACTS
+FACT-1: InitialCondition: Roses(5) & Orchids(3) :: (Roses(5) ∧ Orchids(3))
+
+#### ## RULES
+RULE-1: ActionTaken: AddedFlowers(rose, orchid) :: (∀f (Added(f) → (IsRose(f) ∨ IsOrchid(f))))
+
+#### ## INFERENCES
+INF-1: FinalCondition: Roses(12) & Orchids(2) :: (Roses(12) ∧ Orchids(2))
+INF-2: CalculationDifference: Difference(Roses, Orchids) :: ((Roses - Orchids) = 0)
+INF-3: Result: DifferenceCalculation:: (12 - 8 = 2) :: (2)

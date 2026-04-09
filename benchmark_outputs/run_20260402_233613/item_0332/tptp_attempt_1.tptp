@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, children_on_bus(22)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (children_off_bus(X) => children_on_bus(subtract(22, X)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, children_off_bus(60)).

@@ -1,0 +1,13 @@
+### ## FACTS
+LABEL: Fact-1 :: T(13, t_initial)
+
+### ## RULES
+LABEL: Rule-1 :: ∀T (Buying(toys, t) → T(Tickets_spent_on_toys, t))
+LABEL: Rule-2 :: ∀T (Remaining_tickets_after_toys, t) -> T(Remaining_tickets_after_toys, t)
+LABEL: Rule-3 :: ∀T (Buying(clothes, t) → T(Clothes_tickets_used, t))
+
+### ## INFERENCES
+LABEL: Infer-1 :: T(Clothes_tickets_used, 26)
+LABEL: Infer-2 :: T(Tickets_spent_on_toys, 8)
+LABEL: Infer-3 :: T(Remaining_tickets_after_toys, 5)
+LABEL: Infer-4 :: T(Difference, 18)

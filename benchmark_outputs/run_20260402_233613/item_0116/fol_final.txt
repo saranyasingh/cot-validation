@@ -1,0 +1,9 @@
+### ## FACTS
+- FACT-1: TotalEarnings(t) :: TotalEarnings(t)
+- FACT-2: WeeklyEarnings(t) :: WeeklyEarnings(t)
+
+### ## RULES
+- RULE-1: ∀t (TotalEarnings(t) → WeeklyEarnings(t)) :: (∀t (TotalEarnings(t)) → (∀t (WeeklyEarnings(t))))
+
+### ## INFERENCES
+- INF-1: (TotalEarnings(t) → WeeklyEarnings(t)) :: (∀t (TotalEarnings(t)) → (∀t (WeeklyEarnings(t))))

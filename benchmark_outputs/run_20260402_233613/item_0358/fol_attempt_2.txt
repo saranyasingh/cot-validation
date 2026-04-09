@@ -1,0 +1,12 @@
+```plaintext
+## FACTS
+- Fact-1: Number of tables = 2 :: NumberOfTables = 2
+- Fact-2: Number of chairs per table = 6 :: NumberOfChairsPerTable = 6
+
+## RULES
+- Rule-1: None required here as the solution is straightforward.
+
+## INFERENCES
+- Inference-1: Number of chairs per table = 6 :: (∀t (NumberOfTables = 2 → NumberOfChairsPerTable = 6))
+- Inference-2: Conclusion: Each table has 6 chairs :: NumberOfChairsPerTable = 6
+```

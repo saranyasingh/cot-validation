@@ -1,0 +1,41 @@
+## FACTS
+```plaintext
+FACT-1: Edward spent $16 on books :: BooksSpent(Edward, 16)
+```
+```plaintext
+FACT-2: Edward spent $8 on pens :: PensSpent(Edward, 8)
+```
+
+## RULES
+```plaintext
+RULE-1: Total expenditure equals amount spent on books plus amount spent on pens :: Expenditure(Edward) = BooksSpent(Edward) + PensSpent(Edward)
+```
+
+## INFERENCES
+```plaintext
+INF-1: Difference between the amount spent on books and pens :: BooksSpent(Edward) - PensSpent(Edward) = BooksSpent(Edward) - PensSpent(Edward)
+```
+
+```plaintext
+INF-2: Expenditure minus PensSpent results in BooksSpent :: Expenditure(Edward) - PensSpent(Edward) = BooksSpent(Edward)
+```
+
+Finally, applying INF-2:
+```plaintext
+INF-3: BooksSpent is equal to Expenditure minus PensSpent :: BooksSpent(Edward) = Expenditure(Edward) - PensSpent(Edward)
+```
+
+Using this final equation:
+```plaintext
+BooksSpent(Edward) - PensSpent(Edward) = Expenditure(Edward) - PensSpent(Edward)
+```
+Simplifying:
+```plaintext
+BooksSpent(Edward) - PensSpent(Edward) = 16 - 8
+```
+Hence, the difference is:
+```plaintext
+BooksSpent(Edward) - PensSpent(Edward) = 8
+```
+
+Thus, Edward spent $8 more on books than on pens.

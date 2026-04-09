@@ -1,0 +1,13 @@
+### ## FACTS
+- **Fact 1**: Haley initially had 20 trees.
+- **Fact 2**: After the typhoon, 4 trees remained.
+
+### ## RULES
+- **Rule for Subtraction**: If two sets \(A\) and \(B\) exist such that \(A\) contains more elements than \(B\), then the set difference \(A - B\) contains exactly those elements that are in \(A\) but not in \(B\).
+
+### ## INFERENCES
+- **Inference 1**: Let \(H\) be the set representing Haley’s initial state, containing 20 trees.
+- **Inference 2**: Let \(T\) be the set representing the state after the typhoon, containing 4 trees.
+- **Inference 3**: According to the rule for subtraction, the number of trees that died (\(D\)) can be calculated as \(D = H - T\).
+- **Inference 4**: Since \(H = 20\) and \(T = 4\), it follows that \(D = 20 - 4\).
+- **Inference 5**: Therefore, the number of trees that died in the typhoon is \(16\).

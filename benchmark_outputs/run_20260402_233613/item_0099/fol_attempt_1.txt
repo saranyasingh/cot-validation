@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Julia played tag with 17 kids on Monday :: PlayingTag(17, t_monday)
+FACT-2: Julia played tag with 15 kids on Tuesday :: PlayingTag(15, t_tuesday)
+FACT-3: Julia played tag with 2 kids on Wednesday :: PlayingTag(2, t_wednesday)
+
+## RULES
+No rules needed here since no new logical relationships were introduced beyond simple addition.
+
+## INFERENCES
+INF-1: Total kids played with Julia :: (PlayingTag(17, t_monday) ∧ PlayingTag(15, t_tuesday) ∧ PlayingTag(2, t_wednesday))
+INF-2: Summing up the total :: SUM_{i=1}^{3}(KidsPlayed(i)) = 17 + 15 + 2 = 34
+
+INF-3: Therefore, the total number of kids Julia played with altogether :: TotalKidsPlayed = 34

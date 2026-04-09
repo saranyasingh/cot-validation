@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: InitiallyInVase(x) :: x = 10
+FACT-2: AddedRoses(y) :: y = 8
+
+### RULES
+RULE-1: TotalRoses(z) :: InitialInVase(z) ∧ AddedRoses(z)
+
+### INFERENCES
+INF-1: TotalRoses(18) :: TotalRoses(10) ∧ TotalRoses(8)

@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Paco had 34 sweet cookies initially :: SweetCookiesPaco(t_0) ∧ Initial(t_0) = 34
+
+### RULES
+RULE-1: Subtract eaten quantity from initial quantity :: ∀t (EatenAt(t) → Remaining(t) := Initial(t) - EatenAt(t))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Subtraction: Paco has 19 sweet cookies left :: Remaining(SweetCookiesPaco)(t_0) := 34 - 15

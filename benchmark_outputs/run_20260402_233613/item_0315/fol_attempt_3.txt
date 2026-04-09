@@ -1,0 +1,29 @@
+LABEL: Initial number of wrappers :: Wrappers(46)
+:: Wrappers(46)
+
+LABEL: Initial number of bottle caps :: BottleCaps(50)
+:: BottleCaps(50)
+
+LABEL: Final number of wrappers :: Wrappers(52)
+:: Wrappers(46) ∨ Wrappers(52)
+
+LABEL: Final number of bottle caps :: BottleCaps(21)
+:: BottleCaps(50) ∨ BottleCaps(21)
+
+LABEL: Difference between final and initial quantities :: ∀ x (Initial(x) → Final(x))
+:: ∀ x ((Wrappers(x) ∧ Wrappers(46)) → Wrappers(52))
+
+LABEL: Number of wrappers changed :: Wrappers(46) → Wrappers(52)
+:: Wrappers(46)
+
+LABEL: Number of bottle caps changed :: BottleCaps(50) → BottleCaps(21)
+:: BottleCaps(50)
+
+LABEL: Final number of bottle caps minus final number of wrappers :: BottleCaps(21) - Wrappers(52)
+:: BottleCaps(21)
+
+LABEL: Negative difference indicates fewer bottle caps :: -(BottleCaps(21) - Wrappers(52)) > 0
+:: -(BottleCaps(21) - Wrappers(52))
+
+LABEL: Danny found 35 fewer bottle caps than he originally had :: -(BottleCaps(21) - Wrappers(52)) = -35
+:: -(BottleCaps(21) - Wrappers(52)) = -35

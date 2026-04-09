@@ -1,0 +1,5 @@
+FACT-1: Jake has 13 more apples than Steven :: ApplesJake > ApplesSteven + 13
+
+RULE-1: If Jake has more apples than Steven, then Jake has at least as many apples as Steven :: ∀ApplesJake > ApplesSteven → ApplesJake ≥ ApplesSteven
+
+INF-1: From Fact-1 and Rule-1 by Modus Ponens: Jake has at least 12 apples :: ApplesJake ≥ 12

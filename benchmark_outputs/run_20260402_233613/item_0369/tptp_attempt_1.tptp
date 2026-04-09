@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, delivered_newspapers(jason)).
+
+fof(fact_2, axiom, has_money(jason, 57)).
+
+fof(fact_3, axiom, had_money(jason, 31)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [J] : (delivered_newspapers(J) => earns_money(J))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, earns_money(jason)).
+
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_2, axiom, earns_money(jason)).
+
+% From fact_3, rule_1 by Universal Instantiation
+fof(inf_3, axiom, earns_money(jason)).
+
+% From calculation: earnings = current - original
+fof(inf_4, axiom, earnings = (57 - 31)).
+
+% From calculation: earnings = 26
+fof(inf_5, axiom, earnings = 26).

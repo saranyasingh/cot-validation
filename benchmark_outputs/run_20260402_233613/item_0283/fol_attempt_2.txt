@@ -1,0 +1,3 @@
+LABEL: Fact 1 :: Book_count(jerry) = 3
+LABEL: Fact 2 :: Figure_count(jerry) = 4
+LABEL: Inference 1 :: Figure_count(jerry) > Book_count(jerry)

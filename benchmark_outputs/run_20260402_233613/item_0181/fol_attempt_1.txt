@@ -1,0 +1,13 @@
+Here is the conversion of the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+- FACT-1: Rachel had to complete 3 pages of math homework :: MathHomeworkPages(rachel, 3)
+- FACT-2: Rachel had to complete 4 pages of reading homework :: ReadingHomeworkPages(rachel, 4)
+
+### RULES
+- RULE-1: Subtracting two numbers results in the difference :: ∀a b c (Addition(a, b, c) → Subtraction(c, a, b))
+  
+### INFERENCES
+- INF-1: From FACT-1 and RULE-1, Rachel had 1 more page of reading homework than math homework :: ReadingHomeworkPages(rachel, MathHomeworkPages(rachel, 3)) - MathHomeworkPages(rachel, 3) = 1
+
+Thus, the final answer is: 1

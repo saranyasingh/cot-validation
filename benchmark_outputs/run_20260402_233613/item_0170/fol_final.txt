@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: Initial number of cookies Paco had :: NumberOfCookiesPaco(40)
+
+### ## RULES
+RULE-1: Eating cookies reduces the total :: ∀c (NumberOfCookiesPaco(c) > 0 → NumberOfCookiesPaco(c) - 5)
+
+### ## INFERENCES
+INF-1: After eating 5 cookies: NumberOfCookiesPaco(35) :: NumberOfCookiesPaco(40) - 5
+INF-2: After giving away 13 cookies: NumberOfCookiesPaco(22) :: NumberOfCookiesPaco(35) - 13

@@ -1,0 +1,13 @@
+### ## FACTS
+- ```210``` :: ```JerseyPrice(jersey)```
+- ```240``` :: ```TShirtPrice(tshirt)```
+
+### ## RULES
+- ```Abs(x - y) :: Max(|x|, |y|)```
+- ```Sum(a * b) :: a * b```
+
+### ## INFERENCES
+- ```TotalRevenueFromJerseys() :: Sum(JerseyPrice(jersey) * 23)```
+- ```TotalRevenueFromTShirts() :: Sum(TShirtPrice(tshirt) * 177)```
+- ```PriceDifference() :: Abs(TotalRevenueFromTShirts() - TotalRevenueFromJerseys())```
+- ```MoreCostThanJerseyDifference() :: PriceDifference()::Max(30, 30)::30```

@@ -1,0 +1,1 @@
+INF-1: Number_of_red_peaches > Number_of_yellow_peaches :: ∀(red_peaches, yellow_peaches) (RedPeaches(red_peaches) ∧ YellowPeaches(yellow_peaches)) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x))) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))) -> (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))))

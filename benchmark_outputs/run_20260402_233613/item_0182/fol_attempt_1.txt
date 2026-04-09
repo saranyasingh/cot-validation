@@ -1,0 +1,5 @@
+FACT-1: He also had 56 aquariums for saltwater animals :: AquariumsTylerHas(56)
+
+FACT-2: Each aquarium has 39 animals in it :: AnimalsPerAquarium(39)
+
+INF-1: Total Saltwater Animals = AquariumsTylerHas(56) × AnimalsPerAquarium(39) :: TotalSaltwaterAnimals(56 * 39)

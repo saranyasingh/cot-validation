@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, apps(19)).
+fof(fact_2, axiom, files(18)).
+fof(fact_3, axiom, apps(6)).
+fof(fact_4, axiom, files(15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Difference] : (difference_apps_and_files(Difference) <=> (remaining_apps(Difference) & ~ remaining_files(Difference)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_apps_and_files(9)).

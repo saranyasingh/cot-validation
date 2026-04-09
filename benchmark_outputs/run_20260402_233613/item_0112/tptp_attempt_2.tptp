@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_planks(john, 2)).
+fof(fact_2, axiom, plank_required_nails(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [NailsAvailable, NailsNeeded] : (cannot_secure_wall_with_nails(NailsAvailable, NailsNeeded))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, cannot_secure_wall_with_nails(4, 2)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, greater_than(4, 2) => can_secure_wall_with_nails(4, 2)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, can_secure_wall_with_nails(4, 2)).

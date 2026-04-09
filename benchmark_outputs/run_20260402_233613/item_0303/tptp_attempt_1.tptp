@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, sweet_cookies_paco(39)).
+fof(fact_2, axiom, salty_cookies_paco(6)).
+fof(fact_3, axiom, salted_cookies_eaten_paco(23)).
+fof(fact_4, axiom, sweet_cookies_eaten_paco(32)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( p(X) => ~ p(minus(X, x_eaten)) )).
+fof(rule_2, axiom, ! [X] : ( (p(X) & p(x_eaten)) => p(x_total) )).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2
+fof(inf_1, axiom, sweet_cookies_paco(39) & salty_cookies_paco(6)).
+
+% From RULE-3, RULE-4, FACT-3, FACT-4
+fof(inf_2, axiom, salted_cookies_eaten_paco(23) & sweet_cookies_eaten_paco(32)).
+
+% From RULE-1, RULE-2, INF-2 by Modus Ponens
+fof(inf_3, axiom, (sweet_cookies_eaten_paco(32) - salted_cookies_eaten_paco(23)) = 9).

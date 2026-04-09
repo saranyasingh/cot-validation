@@ -1,0 +1,53 @@
+Let's convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+These are direct statements from the problem without any quantifiers.
+
+1. Fact-1: Baker's friend bought 137 cakes from Baker. This can be represented as:
+   FriendBoughtCakes(BakerFriend, 137)
+
+2. Fact-2: Baker initially had 169 cakes. This can be represented as:
+   InitialCakes(Baker, 169)
+
+### RULES
+These represent universally quantified implications based on external or linguistic knowledge.
+
+1. Rule-1: If someone buys cakes from another person, they will have fewer cakes than before. This can be expressed as:
+   ∀p ∀q ((Buy(p, q)) → LessThan(q, p))
+
+### INFERENCES
+These are derived conclusions based on the facts and rules.
+
+1. Infer-1: Using Rule-1 and Fact-1, we can infer that after selling 137 cakes, Baker should have less cakes than he did originally. This is a logical consequence of the transaction:
+   Infer-1: LessThan(InitialCakes(Baker, 169), 169 - 137)
+
+This inference uses the universal instantiation to apply the rule to the specific case of Baker and his transactions. 
+
+2. Infer-2: Finally, since we know Baker still has 32 cakes, we can conclude that the number of cakes Baker still has equals the initial number of cakes minus the number of cakes he sold:
+   Infer-2: LessThan(LessThan(InitialCakes(Baker, 169), 169 - 137), 169 - 137)
+
+This conclusion combines the results of the previous steps to reach our final answer.
+
+### Final Answer
+Here is the formatted output according to the specified guidelines:
+
+**FACTS**
+1. **Fact-1:** FriendBoughtCakes(BakerFriend, 137)
+2. **Fact-2:** InitialCakes(Baker, 169)
+
+**RULES**
+1. **Rule-1:** ∀p ∀q ((Buy(p, q)) → LessThan(q, p))
+
+**INFERENCES**
+1. **Infer-1:** LessThan(InitialCakes(Baker, 169), 169 - 137)
+2. **Infer-2:** LessThan(LessThan(InitialCakes(Baker, 169), 169 - 137), 169 - 137)
+
+**OUTPUT FORMAT**
+
+FACT-1: FriendBoughtCakes(BakerFriend, 137) :: FriendBoughtCakes(BakerFriend, 137)
+
+RULE-1: ∀p ∀q ((Buy(p, q)) → LessThan(q, p)) :: (∀p ∀q ((Buy(p, q)) → LessThan(q, p)))
+
+INFER-1: LessThan(InitialCakes(Baker, 169), 169 - 137) :: LessThan(InitialCakes(Baker, 169), 32)
+
+INFER-2: LessThan(LessThan(InitialCakes(Baker, 169), 169 - 137), 169 - 137) :: LessThan(32, 32)

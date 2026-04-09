@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: Eggs(18)
+LABEL: RULE-1 :: ∀n,k (Eggs(n) → GroupsOf6(n, k))
+LABEL: INF-1 :: GroupsOf6(Eggs(18), 3)

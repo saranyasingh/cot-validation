@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, frog_jumped_distance(frog_jump_distance) & frog_jump_distance = 39).
+
+fof(fact_2, axiom, grass_hopper_jumped_distance(grass_hopper_jump_distance) & grass_hopper_jump_distance = 17).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (distance_difference(X) => X = x - y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Instantiation
+fof(inf_1, axiom, distance_difference(22)).

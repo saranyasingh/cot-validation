@@ -1,0 +1,35 @@
+### FACTS
+FACT-1: There were originally 12 roses and 2 orchids in the vase. :: 
+(Rose(12), Orchid(2))
+
+FACT-2: Jessica cut some more roses and orchids from her flower garden. :: 
+(CutRoses, CutOrchids)
+
+FACT-3: After cutting, there are now 10 roses and 21 orchids in the vase. :: 
+(Rose(10), Orchid(21))
+
+### RULES
+RULE-1: If there are \( R \) roses and \( O \) orchids in the vase, then \( R + O \) represents the total number of flowers. :: 
+(Rose(x), Orchid(y)) -> RoseTotal(x, y)
+
+RULE-2: Subtracting \( R \) roses from the original number leaves \( R' \) roses remaining. :: 
+(Rose(x), RoseTotal(y, x)) -> RoseRemaining(y, x)
+
+RULE-3: Subtracting \( O \) orchids from the original number results in \( O' \) orchids remaining. :: 
+(Orchid(x), RoseTotal(y, x)) -> OrchidRemaining(y, x)
+
+### INFERENCES
+INF-1: Since Jessica cut orchids, she also cut roses. :: 
+(CutRoses, CutOrchids)
+
+INF-2: The number of orchids cut is equal to the difference between the final number of orchids and the initial number of orchids. :: 
+(OrchidCut(O))
+
+INF-3: By subtracting the final number of roses from the initial number of roses, we get the number of orchids cut. :: 
+(RoseCut(R), RoseTotal(R, 12)) -> RoseCut(R)
+
+INF-4: Substituting the values given: \( 21 - 10 = 11 \). Thus, Jessica cut 11 orchids. :: 
+(OrchidCut(11))
+
+INF-5: Jessica cut a total of 2 orchids. :: 
+(OrchidCut(2))

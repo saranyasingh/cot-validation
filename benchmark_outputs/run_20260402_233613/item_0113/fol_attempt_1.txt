@@ -1,0 +1,9 @@
+FACT-1: Math homework pages \( M = 8 \) :: M = 8
+
+FACT-2: Reading homework pages \( R = M + 6 \) :: R = M + 6
+
+RULE-1: Total pages \( T = Math pages + Reading pages \) :: T = M + R
+
+INF-1: From FACT-1 and FACT-2, T = 8 + 14 :: T = 22
+
+Therefore, the final answer is: 22

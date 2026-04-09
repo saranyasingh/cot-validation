@@ -1,0 +1,23 @@
+### ## FACTS
+```plaintext
+## FACTS
+FACT-1: Fred initially had $86 :: InitialAmountFred(86)
+FACT-2: Fred washed cars and earned $9 :: EarnedFred(9)
+FACT-3: Jason initially had $5 :: InitialAmountJason(5)
+FACT-4: Jason did not work over the weekend :: DidNotWorkJason()
+```
+
+### ## RULES
+```plaintext
+## RULES
+RULE-1: After earning money, Fred's current amount is his initial amount plus earnings :: AmountAfterEarningFred(AmountFred, EarningsFred)
+RULE-2: If someone does not work, they keep their original amount :: AmountAfterNoWork(AmountJason, DidNotWorkJason())
+```
+
+### ## INFERENCES
+```plaintext
+## INFERENCES
+INF-1: Fred's current amount is $9 :: AmountAfterEarningFred(9, 0)
+INF-2: Jason's current amount is $5 :: AmountAfterNoWork(5, 0)
+INF-3: Their combined total amount is $14 :: CombinedTotalAmount(FredAmount, JasonAmount)
+```

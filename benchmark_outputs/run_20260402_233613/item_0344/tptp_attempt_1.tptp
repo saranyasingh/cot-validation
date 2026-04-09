@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, crayons(paul, initial)).
+
+fof(fact_2, axiom, crayons_given(paul, friends, 571)).
+
+fof(fact_3, axiom, crayons_lost(paul, 161)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, Action, Quantity] : (crayons(P, Action, Quantity))).
+
+fof(rule_2, axiom, ! [CrystallineObject, Person, Amount, Result] : (crayons_minus(CrystallineObject, Person, Amount, Result))).
+
+fof(rule_3, axiom, ! [Amount1, Amount2, NewAmount] : (equal_subtraction(Amount1, Amount2, NewAmount))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, crayons_given(paul, friends, 410)).
+
+% From rule_2, rule_3 by chaining
+fof(inf_2, axiom, difference_in_crayons(589, 571, 161, 410)).
+
+% From fact_2, fact_3 by RULE-1 and Rule-3
+fof(inf_3, axiom, crayons_minus(crayons_paul_initial, paul, 410, crayons_paul_final)).

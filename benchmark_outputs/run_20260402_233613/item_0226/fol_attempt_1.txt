@@ -1,0 +1,5 @@
+FACT-1: ChocolateChipCookiesBakedYesterday(19) :: ChocolateChipCookiesBaked(yesterday) = 19
+FACT-2: RaisinCookiesBakedToday(231) :: RaisinCookiesBaked(today) = 231
+INF-1: TotalChocolateChipCookiesToday(256) :: ChocolateChipCookiesBaked(yesterday) + ChocolateChipCookiesBakedToday() = 256
+INF-2: TotalRaisinCookiesToday(231) :: RaisinCookiesBaked(today) = 231
+INF-3: DifferenceBetweenCookies(25) :: TotalChocolateChipCookiesToday() - TotalRaisinCookiesToday() = 25

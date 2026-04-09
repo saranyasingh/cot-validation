@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, learning_english(6)).
+
+fof(fact_2, axiom, learning_chinese(7)).
+
+fof(fact_3, axiom, learning_spanish(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [E1, E2, E3] : (learning_total = learning_english(E1) + learning_chinese(E2) + learning_spanish(E3))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, learning_total).

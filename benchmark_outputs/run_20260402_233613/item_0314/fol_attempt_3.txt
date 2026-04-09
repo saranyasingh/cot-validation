@@ -1,0 +1,12 @@
+```plaintext
+## FACTS
+LABEL: TotalEmails(9) :: TotalEmails = 9
+LABEL: MorningEmails(7) :: MorningEmails = 7
+
+## RULES
+LABEL: None :: None
+
+## INFERENCES
+LABEL: EmailInAfternoon(TotalEmails(9) - MorningEmails(7)) :: 
+  TotalEmails(9) - MorningEmails(7) = EmailInAfternoon
+```

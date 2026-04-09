@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, made_cakes(19)).
+fof(fact_2, axiom, made_pastries(131)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C] : (sold_cakes(C) => remaining_cakes(C))).
+fof(rule_2, axiom, ! [P] : (sold_pastries(P) => remaining_pastries(P))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_cakes(19)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, remaining_pastries(131)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, difference(rem_p, rem_c)).

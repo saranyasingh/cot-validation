@@ -1,0 +1,10 @@
+### ## FACTS
+FACT-1: Two birds were initially sitting on the fence :: BirdsOnFence(x, 2)
+  
+FACT-2: Some birds came to join them.
+
+### ## RULES
+RULE-1: Adding birds increases the total count :: ∀x (BirdsOnFence(x, n) → BirdsOnFence(x, n+1))
+
+### ## INFERENCES
+INF-1: Four birds came to join the initial two :: BirdsOnFence(x, 4)

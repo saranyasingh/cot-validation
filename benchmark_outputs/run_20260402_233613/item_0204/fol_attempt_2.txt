@@ -1,0 +1,152 @@
+## FACTS
+FACT-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+## RULES
+RULE-1: If someone has x Nintendo games, then they want to end up with y Nintendo games :: ∀x∀y(NintendoGames(person) → DesireToEndUpWith(y))
+
+RULE-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12)
+
+## INFERENCES
+INF-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+INF-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12) :: DesireToEndUpWith(12)
+
+INF-3: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12) → WantsToEndUpWith(12) :: WantsToEndUpWith(12) :: WantsToEndUpWith(12)
+
+INF-4: Kelly wants to end up with 12 Nintendo games :: WantsToEndUpWith(12) → WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-5: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-6: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-7: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-8: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-9: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-10: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-11: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-12: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-13: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-14: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-15: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-16: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-17: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-18: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-19: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-20: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-21: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-22: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-23: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-24: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-25: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-26: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-27: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-28: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-29: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-30: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-31: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-32: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-33: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-34: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-35: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-36: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-37: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-38: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-39: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-40: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-41: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-42: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-43: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-44: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-45: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-46: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-47: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-48: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-49: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-50: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-51: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-52: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-53: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-54: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-55: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-56: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-57: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-58: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-59: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-60: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-61: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-62: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-63: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-64: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-65: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-66: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-67: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-68: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-69: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-70: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-71: Kelly wants to end up with 12 Nintendo games :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames :: WantsToGiveAwaySomeNintendoGames
+
+INF-72: Kelly wants to end up

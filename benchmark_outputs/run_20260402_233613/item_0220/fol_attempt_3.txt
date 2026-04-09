@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Zachary did 44 push-ups :: PushUps(zachary, 44)
+FACT-2: Zachary did 17 crunches :: Crunches(zachary, 17)
+FACT-3: David did 29 more push-ups than Zachary :: PushUps(david, 44 + 29)
+FACT-4: David did 13 fewer crunches than Zachary :: Crunches(david, 17 - 13)
+
+## RULES
+RULE-1: If someone does x push-ups, then they do y crunches :: ∀x∀y(xPushUps(a, b) → yCrunches(a, c))
+RULE-2: If someone does y crunches, then they do x push-ups :: ∀x∀y(xCrunches(b, c) → yPushUps(c, d))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Zachary did 44 push-ups :: xPushUps(zachary, 44)
+INF-2: From FACT-2, RULE-2 by Modus Ponens: Zachary did 17 crunches :: yCrunches(zachary, 17)
+INF-3: From FACT-3, RULE-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29
+INF-4: From FACT-4, RULE-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)

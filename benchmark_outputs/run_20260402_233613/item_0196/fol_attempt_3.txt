@@ -1,0 +1,15 @@
+### FACTS
+FACT-1: Katie has 57 new games :: NewGames(katie)
+FACT-2: Katie has 39 old games :: OldGames(katie)
+FACT-3: Katie's friends have 34 new games :: NewGames(friends)
+
+### RULES
+Rule-1: If someone has new games, they have total games equal to new games plus old games :: ∀g (HasNew(g) → HasTotal(g))
+Rule-2: If someone has total games, then their total games include both new and old games :: ∀g (HasTotal(g) → (HasNew(g) ∧ HasOld(g)))
+Rule-3: Katie's friends do not have any old games :: ¬HasOld(friends)
+
+### INFERENCES
+INF-1: Katie has 96 games in total :: HasTotal(katie)
+INF-2: Katie's friends have 34 new games but no old games :: HasNew(friends) ∧ ¬HasOld(friends)
+INF-3: From Rule-1 and Rule-2, Katie's total games include both new and old games :: (∀g (HasNew(g) → HasTotal(g)) ∧ (∀g (HasTotal(g) → (HasNew(g) ∧ HasOld(g)))))
+INF-4: Katie has 62 more games than her friends :: 96 - 34 = 62

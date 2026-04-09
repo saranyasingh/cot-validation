@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, pots(466)).
+fof(fact_2, axiom, flowers_per_pot(53)).
+fof(fact_3, axiom, sticks_per_pot(181)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (total_flowers(P) <=> P * flowers_per_pot(P))).
+fof(rule_2, axiom, ! [P] : (total_sticks(P) <=> P * sticks_per_pot(P))).
+fof(rule_3, axiom, ! [P] : ( total(flowers_and_sticks(P)) <=> total_flowers(P) + total_sticks(P) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Arithmetic
+fof(inf_1, axiom, total_flowers(466) = 466 * 53).
+
+% From fact_1, fact_3, rule_2 by Arithmetic
+fof(inf_2, axiom, total_sticks(466) = 466 * 181).
+
+% From fact_1, fact_2, fact_3, rule_3 by Arithmetic
+fof(inf_3, axiom, total(flowers_and_sticks(466)) = total_flowers(466) + total_sticks(466)).

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, action_figures_on_shelf(jerry, t_initial)).
+fof(fact_2, axiom, action_figures_added_to_shelf(jerry, t_addition)).
+fof(fact_3, axiom, removed_old_action_figures(jerry, t_removal)).
+fof(fact_4, axiom, action_figures_left_on_shelf(jerry, t_final)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (rule_for_count_change(7, X, 8, t_addition, t_removal, t_final))).
+fof(rule_2, axiom, ! [X] : (add_and_remove_maintain_total(action_figures_on_shelf, action_figures_added_to_shelf, action_figures_removed_from_shelf, t_addition, t_removal))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : (infers_count_change_after_actions(7, X, 8, t_addition, t_removal, t_final))).
+% From rule_2 by Modus Ponens
+fof(inf_2, axiom, ! [X] : (maintains_count_invariance(infers_count_change_after_actions, 7, X, 8, t_addition, t_removal, t_final))).
+% From inference of numbers by arithmetic reasoning
+fof(inf_3, axiom, infers_number_added_to_shelf(11, t_addition)).

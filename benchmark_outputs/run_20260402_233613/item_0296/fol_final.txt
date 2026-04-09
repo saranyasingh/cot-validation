@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: Total number of sacks harvested :: TotalHarvested(56, 4)
+LABEL: Number of days :: 4
+
+### ## RULES
+No rules were applied in this case since no existing rules could be used to derive the solution.
+
+### ## INFERENCES
+LABEL: Number of sacks harvested per day :: SacksPerDay(TotalHarvested(56, 4), 4)

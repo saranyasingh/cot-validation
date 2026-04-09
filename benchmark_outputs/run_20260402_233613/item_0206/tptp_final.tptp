@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, reading_rate(8, pages_per_day)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1 by calculation
+fof(inf_1, axiom, number_of_days(576, 8) = 72).

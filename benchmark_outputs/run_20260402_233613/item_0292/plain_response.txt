@@ -1,0 +1,26 @@
+To determine the total number of nails John needs for the house wall, we can break down the problem into two parts:
+
+1. Calculate the number of nails needed for the large planks.
+2. Calculate the number of nails needed for the small planks.
+3. Sum up both quantities to get the total number of nails.
+
+**Step 1: Number of nails for large planks**
+- Each large plank requires 17 nails.
+- He uses 13 large planks.
+- Therefore, the total number of nails for large planks is:
+  \[
+  13 \text{ planks} \times 17 \text{ nails/plank} = 221 \text{ nails}
+  \]
+
+**Step 2: Number of nails for small planks**
+- We know that an additional 8 nails are needed for some small planks.
+- This information is given directly but doesn't affect the calculation since it's not specified how many small planks there are or what their size is compared to the large planks.
+
+**Step 3: Total number of nails**
+- The total number of nails required is the sum of the nails needed for the large planks and the small planks (which we assume here as 0 because no specific number of small planks was mentioned).
+- So, the total number of nails is:
+  \[
+  221 \text{ nails (for large planks)} + 8 \text{ nails (for small planks)} = 229 \text{ nails}
+  \]
+
+Therefore, John needs **229 nails** for the house wall.

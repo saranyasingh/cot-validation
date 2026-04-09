@@ -1,0 +1,10 @@
+## FACTS
+LABEL: InitialAmount ::= P = \$128
+LABEL: AmountSpent ::= S = \$38
+
+## RULES
+LABEL: RemainingMoney ::= InitialAmount - AmountSpent
+
+## INFERENCES
+LABEL: RemainingMoney ::= RemainingMoney(groceries)
+LABEL: RemainingMoney ::= RemainingMoney(\$128 - \$38)

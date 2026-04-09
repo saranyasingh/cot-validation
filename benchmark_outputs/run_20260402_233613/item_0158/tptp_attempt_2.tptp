@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(2, cookies)).
+fof(fact_2, axiom, bought(12, cakes)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Q, I] : (bought(Q, I) => has(X, Q, I))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, has(lucy, 2, cookies)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, has(lucy, 12, cakes)).
+% INF-3
+fof(inf_3, axiom, has(lucy, 2, cookies) & has(lucy, 12, cakes)).
+% From the conclusion, Lucy had 56 cents left as change
+fof(inf_4, axiom, change(total_spent(t_0)) = 56).
+% Using Rule-2: InitialAmount(TotalSpent(T)) = TotalSpent(TotalSpent(T)) + 56
+fof(inf_5, axiom, initial_amount(total_spent(t_0)) = total_spent(total_spent(t_0)) + 56).
+% Let T be the initial amount of money Lucy started with
+fof(inf_6, axiom, ! [T] : (initial_amount(total_spent(T)) = total_spent(total_spent(T)) + 56)).
+% Since TotalSpent(TotalSpent(T)) includes all packs bought, including cookies and cakes
+fof(inf_7, axiom, total_spent(total_spent(t_0)) = bought(2, cookies) + bought(12, cakes)).
+% Substituting the values
+fof(inf_8, axiom, total_spent(total_spent(t_0)) = 14).
+% Therefore, InitialAmount(T) = 14 packs + 56 cents
+fof(inf_9, axiom, initial_amount(total_spent(t_0)) = 70).
+% The total number of packs of groceries Lucy bought is 14
+fof(inf_10, axiom, total_packs(lucy) = 14).
+% The total number of packs of groceries Lucy bought is 14
+fof(inf_11, axiom, total_packs(lucy) = 14).

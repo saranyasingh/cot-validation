@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, package_count(robin, 28)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (package_owner(P) => ! [C, Q] : in_quantity(C, quantity(C)))). 
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, package_quantity(4, package_owner(robin))).

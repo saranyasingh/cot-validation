@@ -1,0 +1,26 @@
+Let's break down this problem into a logical syllogism:
+
+**Premise 1:** Each glass costs $5 unless it's the second glass.
+- **Explanation:** This means that if we're not on an odd-numbered position (like the first or third), we pay the standard price of $5 per glass.
+
+**Premise 2:** Every second glass costs 60% of the price.
+- **Explanation:** This means that starting from the second glass, we apply a discount of 40% off the original price ($5).
+
+Now, let's consider how many times we get the discounted price:
+- We have 16 glasses in total.
+- Since every second glass gets the discount, there will be 8 glasses with the discount applied.
+
+For these 8 glasses, we calculate the cost:
+\[ \text{Cost of each discounted glass} = \$5 - (\$5 \times 0.4) = \$5 - \$2 = \$3 \]
+
+Then, multiply the cost of one discounted glass by the number of such glasses:
+\[ \text{Total cost for 8 discounted glasses} = 8 \times \$3 = \$24 \]
+
+Next, for the remaining 8 glasses (which would normally cost $5 each):
+\[ \text{Cost of each non-discounted glass} = \$5 \]
+\[ \text{Total cost for 8 non-discounted glasses} = 8 \times \$5 = \$40 \]
+
+Finally, add the two totals together to find the overall amount Kylar needs to pay:
+\[ \text{Total cost} = \$24 + \$40 = \$64 \]
+
+Therefore, Kylar needs to pay $\boxed{64}$ dollars for all 16 glasses.

@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Number of snakes hiding = 24 :: S = 24
+FACT-2: Number of alligators hiding = 51 :: A = 51
+FACT-3: Total number of animals = 79 :: S + A = 79
+
+### RULES
+Rule-1: Number of snakes not hiding = Total number of animals - Number of snakes hiding :: S' = 79 - 24
+Rule-2: Number of alligators not hiding = Total number of animals - Number of alligators hiding :: A' = 79 - 51
+
+### INFERENCES
+INF-1: The number of snakes not hiding is 55 :: S' = 79 - 24
+INF-2: The number of alligators not hiding is 28 :: A' = 79 - 51
+INF-3: The total number of animals not hiding is 83 :: S' + A' = 55 + 28 = 83 ≠ 79. However, since the problem specifies the total number of animals, it implies that only 4 animals are not hiding, making INF-3 incorrect under the given conditions.

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: HoursSpentOnEnglishDaily = 6
+FACT-2: HoursSpentOnChineseDaily = 7
+
+## RULES
+RULE-1: DIFFERENCE := TIMES(SecondsPerHour, HoursSpentOnChineseDaily) - TIMES(SecondsPerHour, HoursSpentOnEnglishDaily)
+
+## INFERENCES
+INF-1: DifferenceInLearningTime := DIFFERENCE(HoursSpentOnChineseDaily, HoursSpentOnEnglishDaily)
+INF-2: Conclusion: DifferenceInLearningTime = 1

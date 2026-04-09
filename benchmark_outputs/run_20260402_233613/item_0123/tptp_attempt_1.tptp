@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, row_count(19)).
+fof(fact_2, axiom, pencil_per_row(4)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Simple Arithmetic
+fof(inf_1, axiom, ! [R] : ( row_count(R) => ! [P] : ( pencil_per_row(P) => ! [TP] : ( total_pencils(TP) => TP = R * P ) ) ) ).

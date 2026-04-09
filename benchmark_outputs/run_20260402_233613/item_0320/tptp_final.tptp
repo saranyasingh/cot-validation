@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_sugar_for_cake(mary)).
+fof(fact_2, axiom, requires_sugar(5, sugar)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : ( needs_sugar(S) => ? [S1] : ( requires_sugar(S1, S) ) )).
+fof(rule_2, axiom, flour_required(flour)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [M] : ( mary_needs_sugar(M) => ? [M1] : ( needs_sugar(M1, mary) ) ) ).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, ! [F] : ( flour_required(F) => ? [F1] : ( needs_sugar(F1, flour) ) ) ).
+
+% From fact_1, fact_2 by Conjunction
+fof(inf_3, axiom, ? [M] : ( mary_needs_sugar(M) & ? [F] : flour_required(F) ) ).
+
+% From inf_1, inf_2 by Conjunction
+fof(inf_4, axiom, ( ! [M] : ( mary_needs_sugar(M) => ? [M1] : ( needs_sugar(M1, mary) ) ) ) & ( ! [F] : ( flour_required(F) => ? [F1] : ( needs_sugar(F1, flour) ) ) ) ).
+
+% From inf_4 deduce
+fof(inf_5, axiom, (needs_sugar_for_cake(mary) & flour_required(flour))).
+
+fof(inf_6, axiom, negative_difference(5, 11, -6)).
+
+% From inf_6 by Interpretation
+fof(inf_7, axiom, interpret_sugar_difference(mary, 5, 11, -6)).

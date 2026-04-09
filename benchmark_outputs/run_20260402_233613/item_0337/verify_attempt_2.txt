@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — It asserts that the number of files is always positive, but 0 files is possible in general.
+RULE-2: IMPLAUSIBLE — It asserts that the number of apps is always positive, but 0 apps is possible in general.

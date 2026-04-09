@@ -1,0 +1,7 @@
+FACT-1: Nell gave away 301 cards to Jeff :: GivingAwayCards(Nell, Jeff, 301)
+
+FACT-2: After giving away these 301 cards, Nell was left with 154 cards :: RemainingCards(Nell, 154)
+
+RULE-1: If someone gives away \(a\) items, then they must have had \(a + b\) items initially :: InitialCounting(GivenAway, Received)
+
+INF-1: Nell had \(301 + 154 = 455\) cards initially :: InitialNumber(InitialCounting, GivenAway, Received)

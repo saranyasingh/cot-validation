@@ -1,0 +1,14 @@
+LABEL: No new information required :: None
+
+## FACTS
+- `InitialSweetCookies(Paco) :: 37`
+- `InitialSaltyCookies(Paco) :: 11`
+- `SweetCookiesEaten(Paco) :: 5`
+- `SaltedCookiesEaten(Paco) :: 2`
+
+## RULES
+None
+
+## INFERENCES
+- `Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 5 - 2`
+- `Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 3`

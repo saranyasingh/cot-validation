@@ -1,0 +1,15 @@
+```plaintext
+## FACTS
+FACT-1: Matthew had 23 crackers initially :: CrackerCount(Matt, 23)
+FACT-2: Matthew had 11 crackers left after sharing :: CrackerCount(Matt, 11)
+FACT-3: Matthew shared crackers equally among his two friends :: SharingCrackers(2, Matt)
+
+## RULES
+RULE-1: If someone shares \( n \) items among \( k \) people, then each person gets \( \frac{n}{k} \) items :: ∀n k (SharingItems(n, k) → CrackerCount(Person, n/k))
+RULE-2: Total crackers given away = Initial crackers - Remaining crackers :: GivenAwayCrackers(GivenAway, CrackerCount(GiveToFriends, Initial-Crackers-Remaining))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1: Each friend got \( \frac{23}{2} = 11.5 \) crackers :: CrackerCount(Friend, 11.5)
+INF-2: From FACT-2 and RULE-1: Each friend got \( \frac{11}{2} = 5.5 \) crackers :: CrackerCount(Friend, 5.5)
+INF-3: Conclusion: Each friend ate 5.5 crackers :: CrackerCount(EachFriend, 5.5)
+```

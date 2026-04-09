@@ -1,0 +1,13 @@
+### ## FACTS
+```plaintext
+Fact-1: NumberOfRipeOrangesProducedPerDay :: OrangesProduced(28, 'sack')
+Fact-2: NumberOfUnripeOrangesProducedPerDay :: OrangesProduced(52, 'sack')
+```
+
+### ## RULES
+No rules needed since no conditional statements or temporal information is involved.
+
+### ## INFERENCES
+```plaintext
+INF-1: TotalNumberOfOrangesProducedAfter26Days :: NumberOfRipeOrangesProducedPerDay + NumberOfUnripeOrangesProducedPerDay * 26
+```

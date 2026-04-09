@@ -1,0 +1,33 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Katie has 81 game(s). :: Game(Katie, 81)
+```
+
+### RULES
+There are no specific rules provided in the original text; however, if there were any, they would be listed here.
+
+### INFERENCES
+We can infer that Katie has 22 more games than her friends based on the information given.
+
+```plaintext
+INF-1: Katie has 22 more games than her friends :: Game(Katie, 81) ∧ Game(Friends, 59) → Game(Katie, 22)
+```
+
+So, the final output will include the facts, rules, and inference formatted according to the specified structure:
+
+#### Facts:
+```plaintext
+FACT-1: Katie has 81 game(s). :: Game(Katie, 81)
+```
+
+#### Rules:
+No rules are needed since there weren't any provided in the original text.
+
+#### Inferences:
+```plaintext
+INF-1: Katie has 22 more games than her friends :: Game(Katie, 81) ∧ Game(Friends, 59) → Game(Katie, 22)
+```
+
+This conversion ensures all parts of the original reasoning are accurately represented in FOL format.

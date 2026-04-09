@@ -1,0 +1,20 @@
+Premise 1: There are 22 different books in the 'Crazy Silly School' series.
+Premise 2: There are 10 different movies in the 'Crazy Silly School' series.
+Premise 3: Out of these 22 books, 12 were read.
+Premise 4: Out of these 10 movies, 56 were watched.
+
+Given Information:
+- Total number of books = 22
+- Number of books read = 12
+
+Question: How many more books do you still have to read?
+
+To solve this problem logically:
+
+Step 1: Determine how many books are left unread after reading some.
+Since there are 22 books in total and 12 were read, we subtract the number of books read from the total number of books:
+22 - 12 = 10 books remaining unread.
+
+Therefore, based on the given information and premises, there are 10 more books that need to be read from the total collection of 22 books in the 'Crazy Silly School' series.
+
+The answer is: 10.

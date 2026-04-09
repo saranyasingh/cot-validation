@@ -1,0 +1,32 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+These are facts stated in natural language but grounded in FOL.
+
+#### Fact-1: Rachel initially had 4 apple trees.
+```
+Fact-1: InitialApplesTrees(Rachel, 4)
+```
+
+#### Fact-2: From each tree, she picked 7 apples.
+```
+Fact-2: ApplesPerTree(7, 4)
+```
+
+### RULES
+These rules encapsulate logical deductions based on the information provided.
+
+#### Rule-1: If Rachel has an initial number of apple trees, then she will pick 7 apples from each tree.
+```
+Rule-1: PickedApplesFromTree(Rachel, 7, x, y) :: ∀z ((InitialApplesTrees(x) ∧ ApplesPerTree(y, z)) → PickedApplesFromTree(Rachel, 7, z))
+```
+
+### INFERENCES
+These are derived conclusions that follow logically from the given facts and rules.
+
+#### Inference-1: Rachel picked a total of 28 apples.
+```
+Inference-1: TotalPickedApples(Rachel) :: (∀t (PickedApplesFromTree(Rachel, 7, t) → ∃y ((InitialApplesTrees(y) ∧ ApplesPerTree(7, y)) ∧ PickedApplesFromTree(Rachel, 7, t))))
+```
+
+By applying the above structure, we can represent the conversion of the chain-of-thought reasoning into FOL.

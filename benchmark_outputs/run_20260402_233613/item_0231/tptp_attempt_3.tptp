@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, wallet_amount(olivia, t_initial) = 3).
+fof(fact_2, axiom, wallet_amount(olivia, t_atm) = 49).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Person, StartingTime, SpendingTime, Y] : ( wallet_amount(Person, SpendingTime) = wallet_amount(Person, StartingTime) - spending(Y) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, wallet_amount(olivia, t_atm) = wallet_amount(olivia, t_initial) - spending(49)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, wallet_amount(olivia, t_atm) = 49).
+% From fact_1, fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, (wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) - spending(49)) & (wallet_amount(olivia, t_initial) - spending(49) = 49)).
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_4, axiom, final_wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) - spending(49) & wallet_amount(olivia, t_initial) - spending(49) = 3).
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_5, axiom, wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) & wallet_amount(olivia, t_initial) = 3).
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_6, axiom, final_wallet_amount(olivia, t_final) = wallet_amount(olivia, t_initial) & wallet_amount(olivia, t_initial) = 3).
+% From arithmetic sanity check
+fof(inf_7, axiom, 49 - 49 = 0).

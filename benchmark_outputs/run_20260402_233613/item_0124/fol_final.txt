@@ -1,0 +1,11 @@
+### FACTS
+LABEL: There are 2 small seats available :: SmallSeats(2)
+LABEL: Each small seat can hold 14 people :: SeatCapacity(14, SmallSeat)
+
+### RULES
+None needed as there are no rules provided.
+
+### INFERENCES
+LABEL: Total capacity for all small seats :: TotalCapacity(SmallSeats, SeatCapacity)
+LABEL: Substitute the values for SmallSeats and SeatCapacity :: TotalCapacity(2, 14)
+LABEL: Calculate the total capacity :: TotalCapacity = 2 * 14 = 28

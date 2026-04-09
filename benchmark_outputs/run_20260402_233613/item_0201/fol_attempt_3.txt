@@ -1,0 +1,22 @@
+### ## FACTS
+```plaintext
+Fact-1: Olivia had $53 initially :: ∀t (HasMoney(Olivia, t_0) ∧ MoneyInPocket(Olivia, t_0) = 53)
+Fact-2: She collected $91 from an ATM :: ∀t (HasMoney(Olivia, t_ATM) ∧ MoneyCollectedFromATM(Olivia, t_ATM) = 91)
+Fact-3: After visiting the supermarket, she had $14 left :: ∀t (HasMoney(Olivia, t_Supermarket) ∧ MoneyLeftAfterSupermarketVisit(Olivia, t_Supermarket) = 14)
+```
+
+### ## RULES
+```plaintext
+Rule-1: If someone has money at a certain time, they have money in their pocket at that time :: ∀t (HasMoney(x, t) → Pocketed(x, t))
+Rule-2: Someone can collect money from an ATM :: ∀t (HasMoney(y, t) → CollectedFromATM(y, t))
+Rule-3: After visiting the supermarket, someone will be left with less money :: ∀t (HasMoney(z, t) → LessMoneyThan(z, t_Supermarket))
+```
+
+### ## INFERENCES
+```plaintext
+Inf-1: From Fact-1 and Rule-1: Olivia had $53 initially :: ∀t (HasMoney(Olivia, t_0) ∧ MoneyInPocket(Olivia, t_0) = 53)
+Inf-2: From Fact-2 and Rule-2: Olivia collected $91 from an ATM :: ∀t (HasMoney(Olivia, t_ATM) ∧ MoneyCollectedFromATM(Olivia, t_ATM) = 91)
+Inf-3: From Fact-3 and Rule-3: After visiting the supermarket, Olivia had $14 left :: ∀t (HasMoney(Olivia, t_Supermarket) ∧ MoneyLeftAfterSupermarketVisit(Olivia, t_Supermarket) = 14)
+Inf-4: From Inf-1, Inf-2, and Inf-3: The initial amount minus the ATM collection equals the remaining amount :: ∀t (HasMoney(Olivia, t_0) ∧ HasMoney(Olivia, t_ATM) ∧ LessMoneyThan(Olivia, t_Supermarket)) = MoneyInPocket(Olivia, t_0) + MoneyCollectedFromATM(Olivia, t_ATM) - MoneyLeftAfterSupermarketVisit(Olivia, t_Supermarket) = 53 + 91 - 14 = 130
+Inf-5: From Inf-4 and Rule-1: The difference between what Olivia spent at the supermarket and what she collected from the ATM :: ∀t (HasMoney(Olivia, t_Supermarket) ∧ HasMoney(Olivia, t_ATM) ∧ LessMoneyThan(Olivia, t_Supermarket)) = DifferenceSpentAtSupermarketAndCollectedFromATM(Olivia) = MoneyInPocket(Olivia, t_0) + MoneyCollectedFromATM(Olivia, t_ATM) - MoneyLeftAfterSupermarketVisit(Olivia, t_Supermarket) - MoneyCollectedFromATM(Olivia, t_ATM) = 130 - 91 = 39
+```

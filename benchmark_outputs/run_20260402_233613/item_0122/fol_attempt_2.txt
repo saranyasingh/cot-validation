@@ -1,0 +1,11 @@
+### FACTS
+FACT-1: Allan brought 7 balloons :: BalloonBroughtByAllan(x)
+FACT-2: Jake brought 6 balloons :: BalloonBroughtByJake(y)
+FACT-3: All balloons belong to Allan :: ∀x (BalloonBroughtByAllan(x) → BallonBelongsToAllan(x))
+FACT-4: All balloons belong to Jake :: ∀y (BalloonBroughtByJake(y) → BallonBelongsToJake(y))
+FACT-5: Allans' balloons do not belong to Jake's collection :: ∀x (BallonBelongsToAllan(x) → ~BallonBelongsToJake(x))
+FACT-6: Jake has more balloons than Allan :: ∀x (BallonBelongsToAllan(x) → x > 7)
+FACT-7: Allan brought 5 balls :: BallonBroughtByAllan(z)
+FACT-8: Jake brought 4 balls :: BallonBroughtByJake(w)
+FACT-9: All balls belong to Allan :: ∀z (BallonBroughtByAllan(z) → BallonBelongsToAllan(z))
+FACT-10: All balls belong

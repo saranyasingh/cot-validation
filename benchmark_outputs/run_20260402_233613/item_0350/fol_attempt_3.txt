@@ -1,0 +1,18 @@
+### ## FACTS
+```plaintext
+BooksRead(book_i) :: BookInSeries(book_i) ∧ Read(book_i)
+MoviesWatched(movie_j) :: MovieInSeries(movie_j) ∧ Watched(movie_j)
+TotalBooks :: 22
+TotalReadBooks :: 12
+TotalMovies :: 10
+NumberWatchedMovies :: 56
+BooksLeftToRead :: ∀book (BooksRead(book) → NotReadBooks(book)) ∧ (∀book (NotReadBooks(book) → !BookInSeries(book)))
+```
+
+### ## RULES
+No rules provided in the given text, but they would typically include logical statements about relationships between books, movies, and their status (read/watched/unread).
+
+### ## INFERENCES
+```plaintext
+BooksLeftToRead :: ∀book (BooksRead(book) → NotReadBooks(book)) ∧ (∀book (NotReadBooks(book) → !BookInSeries(book)))
+```

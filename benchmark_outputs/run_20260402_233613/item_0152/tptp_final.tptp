@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, morning_participants(44)).
+fof(fact_2, axiom, afternoon_participants(39)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B] : (subtract(A,B) = difference(A,B))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Subtraction
+fof(inf_1, axiom, difference(44, 39) = 5).

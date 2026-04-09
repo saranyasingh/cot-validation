@@ -1,0 +1,24 @@
+This reasoning can be converted into FOL as follows:
+
+### FACTS
+FACT-1: InitialNumberOfCakes :: 149
+FACT-2: NumberOfCakesSold :: 10
+
+### RULES
+RULE-1: RemainingCakes :: InitialNumberOfCakes - NumberOfCakesSold
+Rule-1 states that the number of remaining cakes equals the initial number of cakes minus the number of cakes sold.
+
+### INFERENCES
+INF-1: RemainingCakesAfterSale :: Rule-1(InitialNumberOfCakes, NumberOfCakesSold)
+
+Putting it all together:
+
+## FACTS
+FACT-1: InitialNumberOfCakes :: 149
+FACT-2: NumberOfCakesSold :: 10
+
+## RULES
+RULE-1: RemainingCakes :: InitialNumberOfCakes - NumberOfCakesSold
+
+## INFERENCES
+INF-1: RemainingCakesAfterSale :: Rule-1(InitialNumberOfCakes, NumberOfCakesSold)

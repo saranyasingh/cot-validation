@@ -1,0 +1,16 @@
+```plaintext
+## FACTS
+1. **Fact-1:** FriendBoughtCakes(BakerFriend, 137)
+2. **Fact-2:** InitialCakes(Baker, 169)
+
+## RULES
+1. **Rule-1:** ∀p ∀q ((Buy(p, q)) → LessThan(q, p))
+
+## INFERENCES
+1. **Infer-1:** LessThan(InitialCakes(Baker, 169), 169 - 137) :: LessThan(InitialCakes(Baker, 169), 32)
+   :: ∃x ∃y ((Buy(x, y)) ∧ (LessThan(y, x)))
+   :: ∃x ∃y ((FriendBoughtCakes(x, y)) ∧ (InitialCakes(x, 169)) ∧ (Buy(x, y)) ∧ (LessThan(y, x))) :: LessThan(InitialCakes(Baker, 169), 32)
+2. **Infer-2:** LessThan(LessThan(InitialCakes(Baker, 169), 169 - 137), 169 - 137) :: LessThan(32, 32)
+   :: ∃x ∃y ((Buy(x, y)) ∧ (LessThan(y, x)))
+   :: ∃x ∃y ((FriendBoughtCakes(x, y)) ∧ (InitialCakes(x, 169)) ∧ (Buy(x, y)) ∧ (LessThan(y, x))) :: LessThan(32, 32)
+```

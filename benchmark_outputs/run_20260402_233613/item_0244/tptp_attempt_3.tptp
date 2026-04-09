@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_classrooms(84)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (students_in_school(number_of_buses * seats_per_bus))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, students_in_school(number_of_buses * seats_per_bus)).

@@ -1,0 +1,26 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Rebecca has 8 eggs.
+```
+
+### RULES
+No rules provided in the original statement, so no rules can be formulated here.
+
+### INFERENCES
+```plaintext
+INF-1: Each group will have 2 eggs :: ∀g (Rebecca has g eggs -> EachGroupHas(2, g))
+```
+Inference Rule: Universal Instantiation (since there is only one variable `g` in the premise).
+
+### LABELS
+- **FACT-1**: Rebecca has 8 eggs :: 8 Eggs
+- **INF-1**: Each group will have 2 eggs :: Each Group Has 2 Eggs
+
+Thus, the final formatted output is:
+```plaintext
+FACT-1: Rebecca has 8 eggs :: 8 Eggs
+
+INF-1: Each group will have 2 eggs :: Each Group Has 2 Eggs
+```

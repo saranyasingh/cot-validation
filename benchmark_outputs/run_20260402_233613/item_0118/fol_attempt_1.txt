@@ -1,0 +1,11 @@
+FACT-1: Ryan spends 6 hours on English every day :: LearningEnglish(6)
+FACT-2: Ryan spends 7 hours on Chinese every day :: LearningChinese(7)
+FACT-3: Ryan spends 3 hours on Spanish every day :: LearningSpanish(3)
+
+RULE-1: Summing the time spent on different subjects adds them together :: LearningTotal := LearningEnglish + LearningChinese + LearningSpanish
+
+INF-1: Total hours Ryan spends studying English, Chinese, and Spanish :: LearningTotal
+
+INF-2: By adding all individual times: 6 + 7 + 3 = 16
+
+Therefore, Ryan spends a total of 16 hours per day studying English, Chinese, and Spanish combined.

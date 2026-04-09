@@ -1,0 +1,10 @@
+Nell initially had 528 cards :: InitialCards(Nell) = 528
+Jeff had 11 cards initially :: InitialCards(John) = 11
+After giving away some cards, Nell ends up with 252 cards :: FinalCards(Nell) = 252
+
+FinalCards(Nell) = InitialCards(Nell) - x
+252 = 528 - x
+x = 528 - 252
+x = 276
+
+Nell gave 276 cards to Jeff :: CardsGiven(Nell) = 276

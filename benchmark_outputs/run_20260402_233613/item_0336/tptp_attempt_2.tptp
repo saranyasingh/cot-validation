@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, played(two_rounds)).
+fof(fact_2, axiom, scored(84, two_rounds)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalPoints, Rounds] : ( averagescore(TotalPoints, Rounds) = TotalPoints / Rounds )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, points_per_round(total_points, rounds) = total_points / rounds).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, points_per_round(84, two_rounds) = 84 / 2).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, points_per_round(84, 2) = 84 / 2).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_4, axiom, 84 / 2 = 42).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_5, axiom, points_per_round(84, 2) = 42).

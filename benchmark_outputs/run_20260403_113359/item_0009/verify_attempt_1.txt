@@ -1,0 +1,13 @@
+FACT-1: SUPPORTED — The story starts at Home, making Home the start point.
+FACT-2: SUPPORTED — The story describes an endpoint after the 4-hour journey.
+FACT-3: SUPPORTED — The initial outward segment lasts 3 hours.
+FACT-4: SUPPORTED — After turning around, the first 2 hours are spent in standstill traffic.
+FACT-5: SUPPORTED — The next half-hour is spent at 30 mph.
+FACT-6: SUPPORTED — The remaining time is spent at 80 mph.
+FACT-7: SUPPORTED — The final segment lasts 1.5 hours.
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — Traveling more than 3 hours does not guarantee reaching a destination.
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE
+RULE-5: IMPLAUSIBLE
+RULE-6: IMPLAUSIBLE

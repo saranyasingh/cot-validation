@@ -1,0 +1,5 @@
+LABEL: FACT-1 :: ApplesJake > ApplesSteven + 13
+
+LABEL: RULE-1 :: ∀ApplesJake > ApplesSteven → ApplesJake ≥ ApplesSteven
+
+LABEL: INF-1 :: ApplesJake ≥ 12

@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, new_games(katie)).
+fof(fact_2, axiom, old_games(katie)).
+fof(fact_3, axiom, new_games(friends)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [G] : (has_new(G) => has_total(G))).
+fof(rule_2, axiom, ! [G] : (has_total(G) => (has_new(G) & has_old(G)))).
+fof(rule_3, axiom, ~ has_old(friends)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, has_total(katie)).
+
+% From fact_3, by combination of facts
+fof(inf_2, axiom, has_new(friends) & ~ has_old(friends)).
+
+% From rule_1 and rule_2 by Modus Ponens
+fof(inf_3, axiom, (! [G] : (has_new(G) => has_total(G)) ) & (! [G] : (has_total(G) => (has_new(G) & has_old(G))))) .
+
+% From arithmetic relation
+fof(inf_4, axiom, 96 - 34 = 62).

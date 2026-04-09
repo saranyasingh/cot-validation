@@ -1,0 +1,17 @@
+Let's break down the information given in the problem:
+
+1. Rachel picked 7 apples.
+2. Then, 2 new apples grew on the tree.
+3. After these events, there were 6 apples left on the tree.
+
+To find out how many apples the tree had initially, we need to reverse the actions that happened after Rachel picked the apples.
+
+First, let's add back the 2 apples that grew on the tree:
+\[ 6 \text{ (apples remaining)} + 2 \text{ (new apples)} = 8 \text{ (total apples before Rachel picked)} \]
+
+Next, since Rachel picked 7 apples, we subtract those from the total number of apples before she picked them:
+\[ 8 \text{ (total apples before Rachel picked)} - 7 \text{ (apples picked by Rachel)} = 1 \text{ (initial apples on the tree)} \]
+
+So, the tree had 1 apple to begin with.
+
+Therefore, the answer is: 1

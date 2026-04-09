@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+RULE-1: IMPLAUSIBLE — incorrect formula; remaining bottles after d days should be x − y*d
+RULE-2: IMPLAUSIBLE — ignores initial amount; remaining should be x − y*d, not y*d

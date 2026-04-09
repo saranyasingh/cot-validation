@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, playing_tag(17, t_monday)).
+fof(fact_2, axiom, playing_tag(15, t_tuesday)).
+fof(fact_3, axiom, playing_tag(2, t_wednesday)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by And-Introduction
+fof(inf_1, axiom, (playing_tag(17, t_monday) & playing_tag(15, t_tuesday) & playing_tag(2, t_wednesday))).
+% From fact_1, fact_2, fact_3 by Summation
+fof(inf_2, axiom, total_kids_played = 34).
+% From fact_1, fact_2, fact_3 by Summation
+fof(inf_3, axiom, total_kids_played = 34).

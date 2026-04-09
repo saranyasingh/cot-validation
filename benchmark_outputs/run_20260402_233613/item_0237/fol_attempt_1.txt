@@ -1,0 +1,22 @@
+### Facts
+- Fact-1: InitialAceCards(Nell) ::= 38
+- Fact-2: FinalAceCards(Nell) ::= 376
+- Fact-3: BaseballCards(Nell) ::= 111
+
+### Rules
+- Rule-1: If Nell has \( x \) Ace cards initially, then she will have \( x + n \) Ace cards after receiving \( n \) Ace cards from Jeff. 
+  \[
+  \forall x (\text{InitialAceCards}(Nell) = x \rightarrow \text{FinalAceCards}(Nell) = x + n)
+  \]
+
+- Rule-2: If Nell has \( y \) baseball cards, then she still has \( y \) baseball cards regardless of what happens to her Ace cards.
+  \[
+  \forall y (y = \text{BaseballCards}(Nell))
+  \]
+
+### Inferences
+- Inf-1: Difference(AceCards, BaseballCards) ::= 265
+  - Since Nell has 376 Ace cards and 111 baseball cards, the difference is:
+    \[
+    \text{Difference}(376, 111) = 376 - 111 = 265
+    \]

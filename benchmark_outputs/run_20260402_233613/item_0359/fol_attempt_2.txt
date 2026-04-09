@@ -1,0 +1,15 @@
+## FACTS
+```plaintext
+FACT-1: There were 12 customers at the start :: CustomerCount(S) = 12
+```
+
+## RULES
+```plaintext
+RULE-1: A decrease in the number of customers leads to either reaching zero or no change :: ∀t (CustomerCount(t) > 0 → (CustomerCount(t+1) = 0 ∨ CustomerCount(t+1) > 0))
+```
+
+## INFERENCES
+```plaintext
+INF-1: The number of customers can either remain unchanged or increase upon arrival of new customers :: ∀t (CustomerCount(t) > 0 → (CustomerCount(t+1) = CustomerCount(t) ∨ CustomerCount(t+1) > CustomerCount(t)))
+INF-2: When the number of customers increases, it implies that more customers joined or new customers arrived :: ∀t (CustomerCount(t+1) > CustomerCount(t) → (CustomerCount(t+1) > 0 ∧ ∃u (CustomerCount(u) > 0)))
+```

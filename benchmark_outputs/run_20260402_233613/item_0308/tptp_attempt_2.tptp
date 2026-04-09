@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, apps_dave_had(t_0) = 17).
+fof(fact_2, axiom, files_dave_had(t_0) = 21).
+fof(fact_3, axiom, apps_left_after_deletions(t_d) = 3).
+fof(fact_4, axiom, files_left_after_deletions(t_d) = 7).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ((apps_left_after_deletions(T) - apps_dave_had(T)) = (files_left_after_deletions(T) - files_dave_had(T)))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, fact_4, rule_1 by Substitution
+fof(inf_1, axiom, (21 - 7) = (17 - 3)).
+% From inf_1 by Simplification
+fof(inf_2, axiom, 14 = 14).

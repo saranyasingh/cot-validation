@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, true).
+
+fof(fact_2, axiom, total_classrooms_in_school = 21).
+fof(fact_3, axiom, total_students_at_school = 98).
+fof(fact_4, axiom, buses_used_for_field_trip = 7).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : (bus_is_occupied(B))).
+
+% --- INFERENCES ---
+% From fact_3, fact_4, rule_1 by Division
+fof(inf_1, axiom, number_of_seats_per_bus = division(98, 7)).
+
+% From inf_1 by Evaluation
+fof(inf_2, axiom, number_of_seats_per_bus = 14).

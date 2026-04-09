@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_books(27, 23)).
+fof(fact_2, axiom, number_of_shelves(23)).
+fof(fact_3, axiom, books_on_shelf(27, 23)).
+fof(fact_4, axiom, magazines_per_shelf(80, 23)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (books(X, Y) => total_books(X, Y))).
+fof(rule_2, axiom, ! [Z, N] : (magazines(Z, N) => total_magazines(Z, N))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_books(27, 23)).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_magazines(80, 23)).
+% From inf_1, inf_2 by constructing total items
+fof(inf_3, axiom, total_items(total_books(27, 23), total_magazines(80, 23))).

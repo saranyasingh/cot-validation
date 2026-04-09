@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, green_peaches_per_basket(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [GPB, NB] : (total_green_peaches(GPB, NB) = GPB * NB)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_green_peaches(14)).

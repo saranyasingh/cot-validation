@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_eggs(rebecca, 8)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1 by assumption
+fof(inf_1, axiom, ! [G] : (group(G) => has_eggs(G, 2))).

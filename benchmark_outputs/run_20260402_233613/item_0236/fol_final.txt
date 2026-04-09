@@ -1,0 +1,22 @@
+### ## FACTS
+FACT-1: Fred started last week with $19 :: Starting(Fred, t_last_week) ∧ Amount(19)
+FACT-2: Fred ended last week with $40 :: Ending(Fred, t_last_week) ∧ Amount(40)
+FACT-3: Jason started last week with $16 :: Starting(Jason, t_last_week) ∧ Amount(16)
+FACT-4: Jason ended last week with $69 :: Ending(Jason, t_last_week) ∧ Amount(69)
+
+### ## RULES
+RULE-1: If someone starts with an amount, they have an initial balance :: ∀ x (Starting(x, t_last_week) → InitialBalance(x))
+RULE-2: If someone ends with an amount, they have a final balance :: ∀ x (Ending(x, t_last_week) → FinalBalance(x))
+RULE-3: The difference between the initial and final balances equals the net change :: ∀ x (InitialBalance(x) = FinalBalance(x) + NetChange(x))
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1, Fred had an initial balance of $19 :: InitialBalance(Fred) = 19
+INF-2: From FACT-2 and RULE-2, Fred had a final balance of $40 :: FinalBalance(Fred) = 40
+INF-3: From FACT-3 and RULE-1, Jason had an initial balance of $16 :: InitialBalance(Jason) = 16
+INF-4: From FACT-4 and RULE-2, Jason had a final balance of $69 :: FinalBalance(Jason) = 69
+INF-5: The total earnings of both Fred and Jason over the weekend equals their combined earnings at the end minus their combined starting amounts :: ∀ t (FinalBalance(Fred, t) + FinalBalance(Jason, t) = FinalBalance(Fred, t_last_week) + FinalBalance(Jason, t_last_week) - (InitialBalance(Fred) + InitialBalance(Jason)))
+INF-6: Since Fred and Jason's combined earnings over the weekend equal their combined earnings at the end minus their combined starting amounts, we can simplify this to find Fred's specific earnings :: ∀ t (FinalBalance(Fred, t) + FinalBalance(Jason, t) = FinalBalance(Fred, t_last_week) + FinalBalance(Jason, t_last_week) - (InitialBalance(Fred) + InitialBalance(Jason))) -> FinalBalance(Fred, t) = (FinalBalance(Fred, t_last_week) + FinalBalance(Jason, t_last_week) - (InitialBalance(Fred) + InitialBalance(Jason))) / 2
+INF-7: Using the simplified equation from INF-6, we substitute the known values :: FinalBalance(Fred, t) = (40 + 69 - (19 + 16)) / 2
+INF-8: Simplifying the right side :: FinalBalance(Fred, t) = (119 - 35) / 2
+INF-9: Further simplification :: FinalBalance(Fred, t) = 84 / 2
+INF-10: Finally, solving for Fred's specific earnings :: FinalBalance(Fred, t) = 42

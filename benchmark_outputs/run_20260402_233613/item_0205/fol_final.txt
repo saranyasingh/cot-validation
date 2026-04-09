@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: His favorite has been saving checking on the grapevines after 57 stops :: FavoriteCheckingOnGrapevinesAfter(57)
+LABEL: RULE-1 :: If someone checks on the grapevines after a certain number of stops, they will continue to do so regardless of their favorites :: ContinueCheckingOnGrapevinesAfterStops(FavoriteCheckingOnGrapevinesAfter(n)) :: CONTINUECHECKING
+LABEL: RULE-2 :: If the same person continues to check on the grapevines after another set of stops, they will fill a specified number of drums per day :: FillDrumsPerDayContinuously(ContinueCheckingOnGrapevinesAfterStops(continuesStoppingAfter(n)), DrumsPerDay(108)) :: DRUMSPERDAY

@@ -1,0 +1,11 @@
+### ## FACTS
+#### FACT-1: Matthew has some crackers. :: Cracker(x)
+#### FACT-2: Matthew gives 2 crackers to each friend. :: Friend(friend_number)
+#### FACT-3: Matthew has 11 friends. :: FriendCount(11)
+
+### ## RULES
+#### RULE-1: If Matthew gives crackers to a friend, then he gives 2 crackers to that friend. :: ∀f (Friend(f) → Cracker(x))
+#### RULE-2: Matthew cannot have more crackers than what he gave away. :: ∀m (Cracker(m) → ∃g (Friend(g) ∧ Cracker(g)))
+
+### ## INFERENCES
+#### INF-1: Matthew originally had 22 crackers. :: ∀m (Cracker(m) → Cracker(original_crackers))

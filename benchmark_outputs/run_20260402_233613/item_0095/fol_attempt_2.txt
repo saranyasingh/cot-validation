@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Jack received 6 emails in the morning :: ReceivedEmails(morning, 6)
+FACT-2: Jack received 3 emails in the afternoon :: ReceivedEmails(afternoon, 3)
+FACT-3: Total emails received in the day = 10 :: TotalReceived(10)
+
+## RULES
+RULE-1: If someone receives emails in the morning, they receive emails in the afternoon too :: ∀x (ReceivedEmails(morning, x) → ReceivedEmails(afternoon, x))
+RULE-2: If someone receives emails in the evening, their total emails count remains unchanged :: ∀y (ReceivedEmails(evening, y) → TotalReceived(y))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, Jack received 3 emails in the afternoon :: ReceivedEmails(afternoon, 3)
+INF-2: From facts above, the total emails received in the day must be consistent :: TotalReceived(TotalReceived) :: ∀z (TotalReceived(z) → TotalReceived(z))
+INF-3: Combining all pieces of information, solve for the number of emails Jack received in the evening :: ReceivedEmails(evening, 1)

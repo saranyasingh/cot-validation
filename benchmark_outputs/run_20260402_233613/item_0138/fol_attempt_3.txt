@@ -1,0 +1,9 @@
+LABEL: FACT-1 :: MachineMadeShirtYesterday(9) :: MachineMadeShirt(yesterday, 9)
+LABEL: FACT-2 :: MachineMadeShirtToday(8) :: MachineMadeShirt(today, 8)
+
+LABEL: RULE-1 :: TotalShirtsToday(TotalShirts) :: MachineMadeShirtYesterday(SheetsYesterday) ∧ MachineMadeShirtToday(SheetsToday)
+LABEL: RULE-2 :: RateOfShirtsPerMinute(Rate) :: 2 shirts per minute
+LABEL: RULE-3 :: TimeForShirts(Time) :: TotalShirts / Rate
+
+LABEL: INF-1 :: TotalShirtsToday(17) :: TotalShirts(TotalShirts)
+LABEL: INF-2 :: TimeForShirts(8.5) :: Time(TimeForShirts)

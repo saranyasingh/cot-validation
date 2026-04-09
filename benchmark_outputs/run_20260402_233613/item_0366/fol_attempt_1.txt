@@ -1,0 +1,13 @@
+Here is the chain of thought converted into structured First-Order Logic (FOL):
+
+### FACTS
+FACT-1: Allan brought 5 balloons to the park :: BalloonsAllanBrought(5)
+FACT-2: Jake brought 6 more balloons than the number of balloons that Allan brought :: BalloonsJakeBrought(JakeBalloonsAllanBrought)
+
+### RULES
+RULE-1: If someone brings x balloons, then another person brings x+6 balloons :: ∀x (Bringing(x) → Bringing(x+6))
+
+### INFERENCES
+INF-1: Jake brought 11 balloons to the park :: JakeBalloons(11)
+
+This concludes the conversion of the chain of thought into FOL.

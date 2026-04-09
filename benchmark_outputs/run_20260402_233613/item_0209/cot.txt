@@ -1,0 +1,30 @@
+**Logical Syllogism**
+
+1. **Premise**: He saw the oranges being harvested.
+   - Context: This establishes the scenario where we need to calculate the number of oranges harvested.
+
+2. **Premise**: They harvest 67 sacks per day.
+   - Context: This provides the rate at which oranges are harvested daily.
+
+3. **Premise**: Each sack contains 12 oranges.
+   - Context: This gives us the number of oranges contained within each sack.
+
+4. **Conclusion (The Final Step)**:
+   - To find the total number of oranges harvested when they harvest a total of 35 sacks of oranges,
+     - We multiply the number of sacks by the number of oranges per sack.
+
+5. **Calculation**:
+   \[
+   \text{Total Oranges} = (\text{Number of Sacks}) \times (\text{Oranges Per Sack})
+   \]
+   Substituting the given values:
+   \[
+   \text{Total Oranges} = 35 \times 12
+   \]
+
+6. **Final Calculation**:
+   \[
+   \text{Total Oranges} = 35 \times 12 = 420
+   \]
+
+**Answer**: The answer is: 420 oranges.

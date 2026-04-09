@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, scored_per_game(12)).
+
+fof(fact_2, axiom, total_score(36)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ( total_score(mul(N, 12)) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, played_games(infer_math_calculation(36 / 12))).

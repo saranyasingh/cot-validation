@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [F] : (crackers_given_to(F) & ! [G] : (friend(G) => cracker_given_to(G, F)))).
+fof(fact_2, axiom, crakers_initial_amount(36)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C] : ((A = B) => ! [D] : ((D = C) => ((A + D) = (B + D))))) .
+fof(rule_2, axiom, ! [P,Q] : (giving(P, Q) => crakers(P) > crakers(Q))) .
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [X] : (crackers_given_to(X) = crakers_initial_amount / 18)).
+% From fact_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, ! [X] : (crackers_given_to(X) = 2)).

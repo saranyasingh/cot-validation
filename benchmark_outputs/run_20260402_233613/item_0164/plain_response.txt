@@ -1,0 +1,21 @@
+To determine how many bottle caps Danny had initially, we need to consider the total number of each item he collected after finding some new ones and now has a certain number left over.
+
+Here's the breakdown:
+
+- Danny found an additional 53 items (82 wrappers + 29 bottle caps).
+- After collecting these new items, he has a total of 42 bottle caps.
+- We also know that after finding these new items, he has 61 wrappers.
+
+Let \( x \) represent the initial number of bottle caps Danny had before finding any new ones.
+
+We can set up the equation based on the information given:
+\[ x + 53 = 42 + 61 \]
+
+Solving for \( x \):
+\[ x + 53 = 103 \]
+\[ x = 103 - 53 \]
+\[ x = 50 \]
+
+So, Danny initially had 50 bottle caps.
+
+The answer is: 50

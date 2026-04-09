@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states Matthew had 23 crackers initially
+FACT-2: SUPPORTED — The story states he had 11 crackers left after sharing
+FACT-3: SUPPORTED — The story states he shared crackers equally among his two friends
+RULE-1: PLAUSIBLE — It is a standard principle that distributing n items evenly among k recipients gives n/k to each
+RULE-2: PLAUSIBLE — It is a valid arithmetic relation that total given away equals initial minus remaining

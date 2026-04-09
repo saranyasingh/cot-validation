@@ -1,0 +1,13 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The 2 hours correspond to standstill traffic, not a "FirstTurnaround" event.
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — More than 3 hours does not guarantee reaching the destination.
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — 60 mph yields 60 miles per hour of travel time, not 30.
+RULE-5: IMPLAUSIBLE — The statement is ill-phrased; at 30 mph distance equals 30 × time, not "half the distance" for the same travel time.
+RULE-6: IMPLAUSIBLE — 80 mph would cover 80 × time, not twice the distance of 30 mph (which would be 60 × time).

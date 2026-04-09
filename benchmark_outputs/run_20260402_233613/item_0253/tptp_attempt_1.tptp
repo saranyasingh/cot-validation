@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, TotalFlour(Nodes, FlourType) = 14).
+fof(fact_2, axiom, AlreadyAdded(FlourType) = 5).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Definition
+fof(inf_1, axiom, MoreFlourNeeded(FlourType) = TotalFlourNeeded(14) - AlreadyAddedFlour(5)).

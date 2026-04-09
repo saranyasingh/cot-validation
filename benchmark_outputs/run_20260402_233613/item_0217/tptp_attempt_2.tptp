@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, birds_on_fence(x, 2)).
+fof(fact_2, axiom, birds_on_fence(some_birds, 3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, N] : (birds_on_fence(X, N) => birds_on_fence(X, succ(N)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, birds_on_fence(x, 4)).

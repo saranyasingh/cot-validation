@@ -1,0 +1,15 @@
+### Facts
+FACT-1: Baker made 170 cakes :: Maker(170)
+FACT-2: Baker sold 78 cakes :: Seller(78)
+FACT-3: Baker bought 31 new cakes :: Buyer(31)
+
+### Rules
+RULE-1: If a person makes a certain number of cakes, then the maker counts them :: ∀x (Maker(x) → MakerCount(x))
+RULE-2: A person sells a certain number of cakes, so the seller decreases their count :: ∀y (Seller(y) → SellerCount(y))
+RULE-3: A person buys a certain number of cakes, so the buyer increases their count :: ∀z (Buyer(z) → BuyerCount(z))
+
+### Inferences
+INF-1: From Fact-1, Rule-1 by Universal Instantiation: Maker(170) implies MakerCount(170)
+INF-2: From Fact-2, Rule-2 by Universal Instantiation: Seller(78) implies SellerCount(78)
+INF-3: From Fact-3, Rule-3 by Universal Instantiation: Buyer(31) implies BuyerCount(31)
+INF-4: Since both SellerCount(78) and BuyerCount(31) are defined, we can infer that the difference between the number of cakes sold and bought exists :: ∀w (SellerCount(w) ≠ BuyerCount(w))

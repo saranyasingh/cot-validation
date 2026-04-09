@@ -1,0 +1,11 @@
+### FACTS
+FACT-1: InitialBirdsAndStorks :: 3 + 6 = 9
+FACT-2: AdditionalBirdsAndStorks :: 3 + 2 = 5
+FACT-3: StorksDifferenceFromBirds :: 6 + 2 = 8
+
+### RULES
+RULE-1: If there are `n` birds and `m` storks, then the total number of birds and storks is `n + m`.
+
+### INFERENCES
+INF-1: BirdsAndStorksTotal :: 9 + 5 = 14
+INF-2: StorksDifferenceFromBirds :: 8 - 5 = 3

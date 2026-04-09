@@ -1,0 +1,11 @@
+To determine how many boxes are in each case given that Shirley sold 10 boxes and needs to deliver 5 cases, we need to consider the following steps:
+
+**Premise 1:** If Shirley delivered 5 cases, then the total number of boxes must be divisible by 5.
+- Reasoning: This is because each case contains an equal number of boxes, and delivering 5 cases means the total number of boxes divided by 5 gives the number of boxes per case.
+
+**Premise 2:** If Shirley sold 10 boxes, then the total number of boxes is 10.
+- Reasoning: This directly states the quantity of boxes available for delivery.
+
+**Conclusion:** Since the total number of boxes (10) must be divisible by the number of cases (5), each case must contain \( \frac{10}{5} = 2 \) boxes.
+
+Therefore, the answer is: Each case contains 2 boxes.

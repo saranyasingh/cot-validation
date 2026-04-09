@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Robin originally had 17 inches of hair :: HairLengthRobin(17)
+FACT-2: After cutting some inches, Robin has 13 inches left :: HairLengthAfterCut(HairLengthRobin(17), 13)
+
+## RULES
+RULE-1: If someone originally had x inches of hair and then had y inches removed, they now have z inches of hair :: HairLengthAfterCut(x, y, z)
+
+## INFERENCES
+INF-1: Cut hair = Original hair length - Hair remaining :: CutHair(Robin, HairLengthRobin(17), HairLengthAfterCut(HairLengthRobin(17), 13))

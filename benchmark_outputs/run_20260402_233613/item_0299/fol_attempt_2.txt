@@ -1,0 +1,11 @@
+```plaintext
+## FACTS
+FACT-1: Initially there were 5 storks :: Storks(5)
+FACT-2: Initially there were 3 birds :: Birds(3)
+
+## RULES
+RULE-1: After some new arrivals, the number of birds increases by the number of newly arrived birds :: ∀n (Arrived(n) → Birds(Birds(3) + n))
+
+## INFERENCES
+INF-1: When 4 more birds arrive, the difference between the number of birds and storks is 2 :: ∀d (Birds(Birds(3) + d) ∧ Storks(5) → d = 2)
+```

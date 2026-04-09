@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: They decided to hold the party in their backyard :: PartyInBackyard(they)
+FACT-2: They have 4 sets of tables, and each set contains 3 chairs :: NumberOfTables(4, 3)
+FACT-3: A total of 14 people will attend the party :: NumberOfAttendees(14)
+
+## RULES
+RULE-1: If a party is held in the backyard, then there are no indoor restrictions :: OutdoorParty(they)
+RULE-2: There must be enough chairs if there is an outdoor party :: ChairsNeededForOutdoorParty(OutdoorParty)
+
+## INFERENCES
+INF-1: Since they are holding the party outdoors, there are no indoor restrictions :: OutdoorParty -> NoIndoorRestrictions()
+INF-2: Therefore, they do not need any additional rules about seating arrangements :: ChairsNeededForOutdoorParty -> NoAdditionalChairs()
+
+INF-3: Calculate the total number of chairs required for the party :: TotalChairsRequired(NumberOfAttendees)
+INF-4: Subtract the current number of chairs from the total required :: AdditionalChairsNeeded(TotalChairsRequired, NumberOfTables * NumberOfChairsPerSet)
+
+INF-5: The result should give us the number of additional chairs needed :: AdditionalChairsNeeded -> NumberOfAdditionalChairs()

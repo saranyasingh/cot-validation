@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: FACT-1 :: TotalTShirts = 70
+LABEL: FACT-2 :: Packages = 14
+
+### ## RULES
+LABEL: RULE-1 :: DividedQuantity(q, g) ≡ (∀i (0 ≤ i < g → q / g = TShirts[i]))
+
+### ## INFERENCES
+LABEL: INFERENCE-1 :: DividedQuantity(TotalTShirts, Packages) ≡ (∀i (0 ≤ i < Packages → TotalTShirts / Packages = TShirts[i]))

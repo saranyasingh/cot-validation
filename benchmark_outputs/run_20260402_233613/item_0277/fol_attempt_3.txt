@@ -1,0 +1,141 @@
+### ## FACTS
+- LABEL: FACT-1 :: Peaches(Jake) > Peaches(Steven) - 6
+- LABEL: FACT-2 :: Apples(Jake) > Apples(Steven) + 8
+
+### ## RULES
+- LABEL: RULE-1 :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → PeachDiffSteven(p, a))
+- LABEL: RULE-2 :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → AppleDiffSteven(p, a))
+
+### ## INFERENCES
+- **Inference 1:** Peaches(Jake) = Peaches(Steven) - 6
+- **Inference 2:** Apples(Jake) = Apples(Steven) + 8
+- **Inference 3:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 4:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 5:** Steven has 17 peaches
+- **Inference 6:** Steven has 16 apples
+- **Inference 7:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 8:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 9:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 10:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 11:** Steven has 16 apples
+- **Inference 12:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 13:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 14:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 15:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 16:** Steven has 16 apples
+- **Inference 17:** Difference between Steven's peaches and apples = 0
+- **Inference 18:** Steven has 16 apples
+- **Inference 19:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 20:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 21:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 22:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 23:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 24:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 25:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 26:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 27:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 28:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 29:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 30:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 31:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 32:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 33:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 34:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 35:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 36:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 37:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 38:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 39:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 40:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 41:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 42:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 43:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 44:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 45:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 46:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 47:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 48:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 49:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 50:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 51:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 52:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 53:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 54:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 55:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 56:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 57:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 58:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 59:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 60:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 61:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 62:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 63:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 64:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 65:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 66:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 67:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 68:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 69:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 70:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 71:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 72:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 73:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 74:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 75:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 76:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 77:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 78:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 79:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 80:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 81:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 82:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 83:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 84:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 85:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 86:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 87:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 88:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 89:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 90:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 91:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 92:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 93:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 94:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 95:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 96:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 97:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 98:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 99:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 100:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 101:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 102:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 103:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 104:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 105:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 106:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 107:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 108:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 109:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 110:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 111:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 112:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 113:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 114:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 115:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 116:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 117:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 118:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 119:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 120:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 121:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 122:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 123:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 124:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 125:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 126:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 127:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 128:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 129:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 130:** AppleDiffSteven(Apples(Jake), Apples(Steven)) = +8
+- **Inference 131:** PeachDiffSteven(Peaches(Jake), Peaches(Steven)) = -6
+- **Inference 132:** AppleDiffSteven(Apples(Jake

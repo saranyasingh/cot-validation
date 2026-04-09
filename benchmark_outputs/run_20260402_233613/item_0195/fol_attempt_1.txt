@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Frank's favorite book has 612 pages :: Pages(favorite_book)
+FACT-2: These pages are equally distributed over 24 chapters :: Chapters(24)
+FACT-3: Frank finished the entire book in 6 days :: Finished_in(6_days)
+
+### RULES
+RULE-1: If a book has n pages and m chapters, then each chapter has p pages where p = n/m :: ∀n, m, p (Pages(book) ∧ Chapters(chapters) → Chapter(pages_per_chapter))
+RULE-2: A person can read x pages in y days if they read p pages per day :: ∀x, y, p (Pages(pages_read) ∧ Days(days_read) → Reading(x_pages, y_days))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by General Principle: Each chapter has 612/24 pages :: Pages(page_per_chapter)
+INF-2: From FACT-2, RULE-1 by General Principle: Each chapter has 25.5 pages :: Pages(page_per_chapter)
+INF-3: From FACT-3, RULE-2 by General Principle: Frank reads 4.25 pages per day :: Reading(4.25_pages, 6_days)

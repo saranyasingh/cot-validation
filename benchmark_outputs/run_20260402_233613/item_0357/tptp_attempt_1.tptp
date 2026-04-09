@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, grocery_store_type(soda)).
+fof(fact_2, axiom, quantity(regular_soda, 57)).
+fof(fact_3, axiom, quantity(diet_soda, 26)).
+fof(fact_4, axiom, quantity(lite_soda, 27)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, fact_4 by arithmetic sum
+fof(inf_1, axiom, total_bottles = plus(quantity(regular_soda, 57), plus(quantity(diet_soda, 26), quantity(lite_soda, 27)))).

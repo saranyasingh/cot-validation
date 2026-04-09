@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: Marco's strawberries = 15 pounds.
+LABEL: RULE-1 :: If x weighs y pounds, then y + z = TotalWeight -> z = TotalWeight - y.
+LABEL: INF-1 :: His dad's strawberries = TotalWeight - Marco's strawberries.

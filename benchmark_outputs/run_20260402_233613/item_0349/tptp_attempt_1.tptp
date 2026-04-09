@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker_count(matt, 23)).
+
+fof(fact_2, axiom, cracker_count(matt, 11)).
+
+fof(fact_3, axiom, sharing_crackers(2, matt)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Person, N, K] : (sharing_items(N, K) => cracker_count(Person, div(N, K)))).
+
+fof(rule_2, axiom, ! [GivenAway, GiveToFriends, InitialCrackersRemaining] : (given_away_crackers(GivenAway, cracker_count(GiveToFriends, InitialCrackersRemaining)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, cracker_count(friend, 11.5)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, cracker_count(friend, 5.5)).
+
+% From inf_2 by reasoning
+fof(inf_3, axiom, cracker_count(each_friend, 5.5)).

@@ -1,0 +1,17 @@
+### FACTS
+FACT-1: Jack received 3 emails in the afternoon :: Received(3, 'afternoon')
+FACT-2: Jack received 6 emails in the morning :: Received(6, 'morning')
+FACT-3: Jack received \(x\) emails in the evening :: Received(x, 'evening')
+
+### RULES
+RULE-1: If a person receives emails in a specific time slot, then they receive those emails at that time :: ∀time (Received(time, slot) → Received(time, slot))
+
+### INFERENCES
+INF-1: Since Jack received emails in both the morning and the afternoon, he must have also received them in the evening :: Received(3, 'afternoon') ∧ Received(6, 'morning') → Received(x, 'evening')
+
+INF-2: Given the total number of emails received throughout the day is 10, we can set up an equation to find \(x\) :: TotalEmails(T) = Received(3, 'afternoon') + Received(6, 'morning') + Received(x, 'evening')
+
+INF-3: Solving for \(x\):
+\[ 10 = 3 + 6 + x \]
+\[ x = 10 - 9 \]
+\[ x = 1 \]

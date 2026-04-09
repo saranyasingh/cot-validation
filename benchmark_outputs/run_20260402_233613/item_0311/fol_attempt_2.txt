@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Steven has 19 peaches :: Peaches(Steven, 19)
+
+### RULES
+RULE-1: If someone has x peaches, another person has x - 12 peaches if they have 12 fewer than the first :: ∀x (Peaches(Steven, x) → Peaches(Jake, x - 12))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Jake has 12 fewer peaches than Steven :: Peaches(Jake, 19 - 12)

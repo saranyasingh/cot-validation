@@ -1,0 +1,11 @@
+### ## FACTS
+FACT-1: Jack received 6 emails in the morning :: MorningEmails(6)
+FACT-2: Jack received 3 emails in the afternoon :: AfternoonEmails(3)
+FACT-3: Jack received 5 emails in the evening :: EveningEmails(5)
+
+### ## RULES
+RULE-1: TotalEmails(Total) :: ∀time(time). ((MorningEmails(time) ∧ AfternoonEmails(time)) ∨ EveningEmails(time))
+
+### ## INFERENCES
+INF-1: TotalEmails(14) :: Rule-1 with facts {MorningEmails(6), AfternoonEmails(3), EveningEmails(5)} using Rule-2 for addition:
+\[ 6 + 3 + 5 = 14 \]

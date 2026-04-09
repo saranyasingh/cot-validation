@@ -1,0 +1,7 @@
+### ## FACTS
+LABEL: FACT-1 :: BottleCapsAtStart(B)  
+LABEL: FACT-2 :: BottleCapsAtEnd(E)  
+LABEL: FACT-3 :: BottleCapsThrown(T) ∨ BottleCapsFound(F)
+
+### ## RULES
+LABEL: RULE-1 :: BottleCapsAtStart

@@ -1,0 +1,26 @@
+To determine how many tomatoes the farmer has left after yesterday's picking, we need to follow these steps:
+
+**Premise 1:** The initial number of tomatoes in the garden is 160.
+- **Reasoning:** This sets the starting point for our calculation.
+
+**Premise 2:** The farmer picked 56 tomatoes yesterday.
+- **Reasoning:** This tells us what happened before yesterday.
+
+**Premise 3:** After picking 56 tomatoes yesterday, the remaining number of tomatoes is calculated as:
+\[ \text{Remaining tomatoes} = \text{Initial number of tomatoes} - \text{Tomatoes picked yesterday} \]
+- **Reasoning:** We subtract the number of tomatoes picked from the total to find out how many are left.
+
+Now let's apply this logic step-by-step:
+
+**Step 1:** Start with the initial number of tomatoes.
+\[ \text{Initial number of tomatoes} = 160 \]
+
+**Step 2:** Subtract the number of tomatoes picked yesterday.
+\[ \text{Remaining tomatoes after yesterday} = 160 - 56 \]
+
+Let's do the subtraction:
+\[ 160 - 56 = 104 \]
+
+So, after yesterday's picking, the farmer has 104 tomatoes left.
+
+The answer is: 104

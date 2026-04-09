@@ -1,0 +1,32 @@
+**Logical Syllogism**
+
+1. **Premise 1:** There were initially 7 roses in the vase.
+   - This establishes the starting point and number of roses present before any additional cutting occurs.
+
+2. **Premise 2:** Jessica cut some more roses from her garden.
+   - This introduces an action (cutting) that occurred after the initial state was established.
+
+3. **Premise 3:** Jessica's garden has a total of 59 roses.
+   - This provides the information about the total number of roses available in her garden, including those that were cut.
+
+4. **Premise 4:** After cutting, there are now 20 roses in the vase.
+   - This states the current state of the vase, showing how many roses have been added to it since the initial count.
+
+**Conclusion:**
+To find out how many roses Jessica cut from her garden, we need to determine the difference between the new total number of roses in the vase (20) and the initial number of roses in the vase (7).
+
+- Let \( x \) be the number of roses Jessica cut.
+- According to Premise 3, the total number of roses in her garden is 59.
+- From Premise 4, the number of roses in the vase after cutting is 20.
+
+The equation representing this situation is:
+\[ 7 + x = 20 \]
+
+Solving for \( x \):
+\[ x = 20 - 7 \]
+\[ x = 13 \]
+
+Therefore, Jessica cut 13 roses from her garden.
+
+**Answer:**
+The answer is: 13 roses.

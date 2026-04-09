@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: DistanceGrasshopperJumped = 14 :: DistanceGrasshopperJumped = 14
+LABEL: FACT-2 :: DistanceMouseJumped = DistanceGrasshopperJumped - 16 :: DistanceMouseJumped = DistanceGrasshopperJumped - 16
+LABEL: RULE-1 :: JumpDifference_Frog_Grasshopper :: DistanceFrogJumped = DistanceGrasshopperJumped + 37 :: DistanceFrogJumped = DistanceGrasshopperJumped + 37
+LABEL: RULE-2 :: JumpDifference_Mouse_Frog :: DistanceMouseJumped = DistanceFrogJumped - 16 :: DistanceMouseJumped = DistanceFrogJumped - 16

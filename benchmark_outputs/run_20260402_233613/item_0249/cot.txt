@@ -1,0 +1,38 @@
+To determine how many cakes the baker has left after selling some and buying more, we need to follow these steps:
+
+### Step-by-Step Logical Reasoning
+
+#### Premise 1:
+The baker initially had 121 cakes.
+- This is our starting point and is clearly stated.
+
+#### Premise 2:
+The baker sold 105 cakes.
+- We know this because it's explicitly mentioned that he sold 105 cakes.
+
+#### Premise 3:
+After selling 105 cakes, the number of remaining cakes is calculated as:
+\[ \text{Remaining cakes} = \text{Initial cakes} - \text{Cakes sold} \]
+\[ \text{Remaining cakes} = 121 - 105 \]
+
+Let's perform the subtraction:
+\[ 121 - 105 = 16 \]
+
+So, after selling 105 cakes, the baker still has 16 cakes.
+
+#### Premise 4:
+Then, the baker bought 170 new cakes.
+- This information directly follows from the previous action since he was given that he "bought 170 new cakes."
+
+#### Conclusion:
+To find out how many cakes the baker now has, we add the 170 new cakes to the 16 remaining cakes:
+\[ \text{Total cakes now} = \text{Remaining cakes} + \text{New cakes bought} \]
+\[ \text{Total cakes now} = 16 + 170 \]
+
+Perform the addition:
+\[ 16 + 170 = 186 \]
+
+Therefore, the baker currently has 186 cakes.
+
+**Final Answer:** 
+The baker still has **186 cakes**.

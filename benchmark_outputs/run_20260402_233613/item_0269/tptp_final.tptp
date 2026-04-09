@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, bag_contains(3, x)).
+fof(fact_2, axiom, number_of_cookies(21, x)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (number_of_bags(X, Y))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_bags(t_21, t_3)).

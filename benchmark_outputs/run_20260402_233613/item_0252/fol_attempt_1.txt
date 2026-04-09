@@ -1,0 +1,46 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These represent direct information provided in the problem statement.
+
+#### Fact-1: Number of pages of math homework :: 9
+\[
+\text{Fact-1: } \mathsf{PagesMathHomework} ::= 9
+\]
+
+#### Fact-2: Number of pages of reading homework :: 2
+\[
+\text{Fact-2: } \mathsf{PagesReadingHomework} ::= 2
+\]
+
+#### Fact-3: Number of pages of biology homework :: 96
+\[
+\text{Fact-3: } \mathsf{PagesBiologyHomework} ::= 96
+\]
+
+### Rules
+These are universal quantification rules based on the facts provided.
+
+#### Rule-1: Total Pages Homework :: sum(\mathsf{PagesMathHomework}, \mathsf{PagesReadingHomework}, \mathsf{PagesBiologyHomework})
+\[
+\text{Rule-1: } \mathsf{TotalPagesHomework} ::= (\mathsf{PagesMathHomework} + \mathsf{PagesReadingHomework} + \mathsf{PagesBiologyHomework}) ::= 9 + 2 + 96
+\]
+
+### Inferences
+These are derived conclusions using the facts and rules provided.
+
+#### Infer-1: Difference in pages of math and reading homework :: \mathsf{PagesMathHomework} - \mathsf{PagesReadingHomework}
+\[
+\text{Infer-1: } \mathsf{DifferenceMathReadingHomework} ::= \mathsf{PagesMathHomework} - \mathsf{PagesReadingHomework} ::= 9 - 2
+\]
+
+#### Infer-2: Final Difference :: \mathsf{DifferenceMathReadingHomework}
+\[
+\text{Infer-2: } \mathsf{FinalDifference} ::= \mathsf{DifferenceMathReadingHomework} ::= 9 - 2
+\]
+
+### Final Answer
+The final answer is:
+\[
+\boxed{\text{She had 7 more pages of math homework than reading homework.}}
+\]

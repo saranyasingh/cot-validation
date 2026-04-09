@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: FirstChapterLength(10) :: PageCount(chapter1) = 10
+
+### RULES
+RULE-1: ChapterLength(chapter) :: LengthOf(chapter) = n where n is the number of pages in the chapter
+
+### INFERENCES
+INF-1: PagesInFirstChapter(Fact-1) :: FirstChapterLength(10) :: Fact-1
+
+INF-2: PagesInFirstChapter(Rule-1) :: Rule-1
+
+INF-3: PagesInFirstChapter(INF-1, INF-2) :: INF-1, INF-2

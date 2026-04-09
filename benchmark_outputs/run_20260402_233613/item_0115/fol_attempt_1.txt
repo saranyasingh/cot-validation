@@ -1,0 +1,35 @@
+Let's convert the chain-of-thought reasoning into structured first-order logic (FOL):
+
+### Facts
+1. **Total blocks used for the tower**: 
+   - Let \( T_t \) be the constant representing the total number of blocks used for the tower.
+   - Therefore, \( T_t = 33 \).
+
+2. **Total blocks used for the house**:
+   - Let \( H_h \) be the constant representing the total number of blocks used for the house.
+   - Therefore, \( H_h = 13 \).
+
+### Rules
+These rules represent external or linguistic knowledge about block usage without specifying times or locations.
+
+### Inferences
+We derive the final conclusion using logical operations based on the facts provided.
+
+#### Step-by-step Inference Process
+1. Calculate the difference in blocks used between the tower and the house:
+   \[
+   \text{Difference} = T_t - H_h
+   \]
+
+2. Substitute the known values:
+   \[
+   \text{Difference} = 33 - 13
+   \]
+
+3. Perform the subtraction:
+   \[
+   33 - 13 = 20
+   \]
+
+### Final Answer
+Therefore, the answer is: The answer is: 20

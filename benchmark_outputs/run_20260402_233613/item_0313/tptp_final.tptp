@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_necklaces = 6).
+fof(fact_2, axiom, total_beads = 18).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Definition
+fof(inf_1, axiom, beads_per_necklace = total_beads / number_of_necklaces).
+
+% From fact_2 by Division
+fof(inf_2, axiom, beads_per_necklace = 18 / 6).
+
+% From inf_2 by Simplification
+fof(inf_3, axiom, beads_per_necklace = 3).

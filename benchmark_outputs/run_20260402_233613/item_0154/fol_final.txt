@@ -1,0 +1,11 @@
+### ## FACTS
+1. **Fact-1:** Frank started with 33 pieces of candy :: CandyInitial(33)
+2. **Fact-2:** Frank lost 24 pieces of candy :: CandyLost(24)
+
+### ## RULES
+1. **Rule-1:** If someone starts with \( x \) pieces of candy and loses \( y \) pieces, then they have \( x - y \) pieces remaining. :: RemainingCandies(CandyInitial(x) ∧ CandyLost(y))
+
+### ## INFERENCES
+1. **Inf-1:** After losing 24 pieces, Frank has 9 pieces left :: RemainingCandies(33 ∧ 24)
+2. **Inf-2:** Each bag contains exactly 9 pieces :: BagCapacity(9)
+3. **Inf-3:** Number of bags needed to hold 9 pieces each :: NumberOfBags(BagCapacity(9))

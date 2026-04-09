@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, wallet_initial_amount(olivia, 54)).
+fof(fact_2, axiom, wallet_final_amount(olivia, 29)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( amount_spent(X, wallet_initial_amount(olivia, 54) - wallet_final_amount(olivia, 29)) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, amount_spent(25, wallet_initial_amount(olivia, 54) - wallet_final_amount(olivia, 29))).

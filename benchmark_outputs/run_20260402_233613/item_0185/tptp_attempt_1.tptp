@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, points_per_round(3)).
+fof(fact_2, axiom, total_score(78)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TotalPoints, Rounds, PointsPerRound] : (TotalPoints = Rounds * PointsPerRound)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by INFER
+fof(inf_1, axiom, Rounds = TotalScore / PointsPerRound).

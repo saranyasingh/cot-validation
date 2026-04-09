@@ -1,0 +1,32 @@
+### FACTS
+FACT-1: Home -> StartPoint :: StartPoint
+FACT-2: Travelled -> EndPoint :: EndPoint
+FACT-3: 3 Hours -> InitialSegment :: InitialSegment(3)
+FACT-4: 2 Hours -> FirstTurnaround :: StandStillTraffic(2)
+FACT-5: 0.5 Hours -> SecondSegment :: SecondSegment(0.5)
+FACT-6: 80 mph -> ThirdSegment :: ThirdSegment(80)
+FACT-7: 1.5 Hours -> FinalSegment :: FinalSegment(1.5)
+
+### RULES
+RULE-1: Distance = Speed × Time :: ∀s (Distance(s) = Speed(s) × Time(s))
+RULE-2: If a car travels for more than 3 hours, then it reaches its destination :: ∀d (Travelled(d) → d ≥ 3)
+RULE-3: If a car stands still for less than 2 hours, it does not cover any distance :: ∀d (StandStillTraffic(d) → d < 2)
+RULE-4: A car traveling at 60 mph covers 30 miles per hour of travel time :: ∀t (60 mph → t / 30 = Distance(t))
+RULE-5: A car traveling at 30 mph covers half the distance of 30 mph travel time :: ∀t (30 mph → t / 15 = Distance(t))
+RULE-6: A car traveling at 80 mph covers twice the distance of 30 mph travel time :: ∀t (80 mph → t / 15 = Distance(t))
+
+### INFERENCES
+INF-1: From Fact-1 and Rule-1: InitialSegment -> Home :: InitialSegment(Home)
+INF-2: From Fact-2 and Rule-2: EndPoint -> Home :: EndPoint(Home)
+INF-3: From Fact-3 and Rule-3: InitialSegment(3) -> Travelled :: Travelled(InitialSegment(3))
+INF-4: From Fact-4 and Rule-4: StandStillTraffic(2) -> NotCovered :: NotCovered(StandStillTraffic(2))
+INF-5: From Fact-5 and Rule-5: StandStillTraffic(0.5) -> NotCovered :: NotCovered(StandStillTraffic(0.5))
+INF-6: From Fact-6 and Rule-6: ThirdSegment(80) -> NotCovered :: NotCovered(ThirdSegment(80))
+INF-7: From Fact-7 and Rule-5: FinalSegment(1.5) -> NotCovered :: NotCovered(FinalSegment(1.5))
+INF-8: From INF-1 and INF-2: Travelled(InitialSegment(3)) -> Home :: Home(Travelled(InitialSegment(3)))
+INF-9: From INF-3 and INF-4: NotCovered(StandStillTraffic(2)) -> Travelled(InitialSegment(3)) :: InitialSegment(3)(Travelled(InitialSegment(3)))
+INF-10: From INF-5 and INF-6: NotCovered(StandStillTraffic(0.5)) -> Travelled(InitialSegment(3)) :: InitialSegment(3)(Travelled(InitialSegment(3)))
+INF-11: From INF-7 and INF-8: Travelled(InitialSegment(3)) -> EndPoint :: EndPoint(Travelled(InitialSegment(3)))
+INF-12: From Fact-1 and Fact-2: EndPoint(EndPoint) :: EndPoint(EndPoint)
+INF-13: From INF-9 and INF-10: Travelled(InitialSegment(3)) -> EndPoint :: EndPoint(Travelled(InitialSegment(3)))
+INF-14: From INF-11 and INF-12: Travelled(InitialSegment(3)) -> EndPoint :: EndPoint(Travelled(InitialSegment(3)))

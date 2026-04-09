@@ -1,0 +1,9 @@
+## FACTS
+LABEL: Book_count(jerry) :: 3
+LABEL: Figure_count(jerry) :: 4
+
+## RULES
+RULE: None required for this problem as it involves simple arithmetic deduction.
+
+## INFERENCES
+INFERENCE 1 :: Figure_count(jerry) = Book_count(jerry) + 1

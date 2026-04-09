@@ -1,0 +1,8 @@
+## FACTS
+LABEL: FACT-1 :: Cracker(x) ∧ Cake(y) ∧ x=10 ∧ y=8
+
+## RULES
+LABEL: RULE-1 :: ∀(crackers, cakes, n) (Crackers(crackers) ∧ Cakes(cakes) ∧ n > 0 → (∀i (i <= n → Cracker(crackers[i]) ∧ Cake(cakes[i]))))
+
+## INFERENCES
+LABEL: INF-1 :: Infinecakes(x) ↔ Cake(cakes[4*x])

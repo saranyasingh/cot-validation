@@ -1,0 +1,32 @@
+### FACTS
+FACT-1: Luke played 2 rounds of a trivia game :: Played(2 rounds)
+FACT-2: Luke scored 84 points after playing 2 rounds of a trivia game :: Scored(84, 2 rounds)
+
+### RULES
+RULE-1: Total score divided by number of rounds gives average score :: AverageScore(total_points, rounds) = total_points / rounds
+
+### INFERENCES
+INF-1: To find points per round, divide total points by number of rounds :: PointsPerRound(total_points, rounds) = total_points / rounds
+
+INF-2: Apply RULE-1 to Luke's data :: PointsPerRound(Luke's total points, 2 rounds) = Luke's total points / 2
+
+INF-3: Calculate the final result :: PointsPerRound(84, 2) = 84 / 2
+
+INF-4: Simplify the division :: 84 / 2 = 42
+
+INF-5: Final points per round :: PointsPerRound(84, 2) = 42
+
+### OUTPUT FORMAT
+```
+FACT-1: Luke played 2 rounds of a trivia game :: Played(2 rounds)
+FACT-2: Luke scored 84 points after playing 2 rounds of a trivia game :: Scored(84, 2 rounds)
+
+RULE-1: Total score divided by number of rounds gives average score :: AverageScore(total_points, rounds) = total_points / rounds
+
+INFERENCES
+INF-1: To find points per round, divide total points by number of rounds :: PointsPerRound(total_points, rounds) = total_points / rounds
+INF-2: Apply RULE-1 to Luke's data :: PointsPerRound(Luke's total points, 2 rounds) = Luke's total points / 2
+INF-3: Calculate the final result :: PointsPerRound(84, 2) = 84 / 2
+INF-4: Simplify the division :: 84 / 2 = 42
+INF-5: Final points per round :: PointsPerRound(84, 2) = 42
+```

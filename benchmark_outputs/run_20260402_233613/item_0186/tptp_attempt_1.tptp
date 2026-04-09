@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, peaches(10)).
+
+fof(fact_2, axiom, red_peaches_in_basket(4)).
+
+fof(fact_3, axiom, green_peaches_in_basket(6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : (peaches_in_basket(B) = 10)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Direct Deduction
+fof(inf_1, axiom, ? [B] : (basket(B) & peaches_in_basket(B) = 10)).
+
+% From fact_1, rule_1 by Direct Deduction
+fof(inf_2, axiom, ? [B] : basket(B)).

@@ -1,0 +1,5 @@
+LABEL: FACT-1 :: PointsPerRound(3)
+LABEL: FACT-2 :: TotalScore(78)
+LABEL: RULE-1 :: Rule1(TotalPoints, Rounds, PointsPerRound)
+
+LABEL: INF-1 :: Rounds = TotalScore / PointsPerRound

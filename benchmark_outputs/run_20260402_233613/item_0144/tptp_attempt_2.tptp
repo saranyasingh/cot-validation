@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, s = 24).
+fof(fact_2, axiom, a = 51).
+fof(fact_3, axiom, s + a = 79).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (s_prime = 79 - s)).
+fof(rule_2, axiom, ! [A] : (a_prime = 79 - a)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, s_prime = 55).
+
+% From inf_1 by arithmetic
+fof(inf_2, axiom, s_prime + a_prime = 4).
+
+% From inf_2 by arithmetic
+fof(inf_3, axiom, s_prime + a_prime = 83).

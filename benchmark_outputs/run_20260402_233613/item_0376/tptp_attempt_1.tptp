@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, cake(7)).
+fof(fact_2, axiom, pastries(148)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : (cake(A) => cake(A))).
+fof(rule_2, axiom, ! [A, B, C] : ((cake(A) & cake(B)) => (cake(C) & (cake(C) = cake(A) + cake(B))))..
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, cake(7)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, pastries(148)).

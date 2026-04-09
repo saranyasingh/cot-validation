@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, razorback_shop_sells(jerseys, 76)).
+
+fof(fact_2, axiom, razorback_shop_sells(2, jeris)).
+
+fof(fact_3, axiom, total_revenue(number_of_jerseys_sold, price_per_jersey)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, P] : (N * P = total_revenue(N, P))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Multiplication Law
+fof(inf_1, axiom, total_revenue(number_of_jerseys_sold, price_per_jersey)).
+
+% From FACT-2, RULE-1 by Multiplication Law
+fof(inf_2, axiom, total_revenue(number_of_jerseys_sold, price_per_jersey)).
+
+% From FACT-3, RULE-1 by Substitution
+fof(inf_3, axiom, total_revenue(number_of_jerseys_sold, price_per_jersey)).
+
+% From INF-1, RULE-1 by Modus Ponens
+fof(inf_4, axiom, total_revenue(number_of_jerseys_sold, price_per_jersey)).

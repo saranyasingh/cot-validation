@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, chapter_count(41)).
+fof(fact_2, axiom, equal_pages_per_chapter).
+fof(fact_3, axiom, total_pages(450)).
+fof(fact_4, axiom, days_taken(30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, P] : ((chapter_count(N) & equal_pages_per_chapter) => total_pages(mul(N, P)))).
+fof(rule_2, axiom, ! [P, D] : ((total_pages(P) & days_taken(D)) => average_pages_per_day(div(P, D)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, chapter_count(41)).
+% From fact_3
+fof(inf_2, axiom, total_pages(450)).
+% From fact_4
+fof(inf_3, axiom, days_taken(30)).
+% From fact_3, fact_4, rule_2
+fof(inf_4, axiom, average_pages_per_day(15)).

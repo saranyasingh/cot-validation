@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: FlourAdded(0)
+LABEL: RULE-1 :: ∀f (FlourAdded(f) → NotNeedMoreFlour(f))
+LABEL: INF-1 :: NeedMoreFlour(0)

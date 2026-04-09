@@ -1,0 +1,24 @@
+Let's break down Lucy's shopping trip into logical steps:
+
+1. **Premise**: Lucy bought 2 packs of cookies.
+   - This establishes that she made one purchase involving cookies.
+
+2. **Premise**: Lucy bought 12 packs of cakes.
+   - This indicates another separate purchase, this time involving cakes.
+
+3. **Conclusion**:
+   - Since these two purchases were distinct (one involving cookies and the other involving cakes), we need to determine if there was any overlap between them or additional items purchased beyond what was explicitly stated.
+
+4. **Additional Information**:
+   - We know that after making these purchases, Lucy had 56 cents left as change.
+
+5. **Logical Deduction**:
+   - If no additional items were purchased besides the ones listed, then the total cost of her purchases must equal the amount of money spent before she received her change back.
+   - Therefore, if she had 56 cents left as change, it means she initially had more than 56 cents but less than $1 (since the smallest coin value is 1 cent).
+
+6. **Final Calculation**:
+   - Let \( T \) be the total amount of money Lucy started with. Then, \( T > 56 \) cents because she ended up with only 56 cents as change.
+   - The total number of packs of groceries she bought would include both packs of cookies and packs of cakes.
+   - Thus, the total number of packs is \( 2 + 12 = 14 \).
+
+Therefore, the answer is: 14.

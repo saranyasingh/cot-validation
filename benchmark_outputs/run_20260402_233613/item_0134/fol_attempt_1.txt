@@ -1,0 +1,20 @@
+### FACTS
+FACT-1: Jake has 9 fewer peaches than Steven :: S_Jake = S_Scientist - 9
+FACT-2: Jake has 18 more peaches than Jill :: S_Jake = J_Jill + 18
+FACT-3: Steven has 16 peaches :: S_Scientist = 16
+
+### RULES
+Rule-1: If Jake has X peaches, then Steven has Y peaches :: ∀X (JakeHas(X) → StevenHas(X))
+Rule-2: If Jake has X peaches, then Jill has Y peaches :: ∀Y (JakeHas(Y) → JillHas(Y))
+
+### INFERENCES
+INF-1: From Rule-1, Rule-2 by Modus Ponens: JakeHas(S_Scientist) → StevenHas(S_Scientist) :: JakeHas(16) → StevenHas(16)
+INF-2: From Rule-1, Rule-2 by Modus Ponens: JakeHas(J_Jill) → JillHas(J_Jill) :: JakeHas(18) → JillHas(18)
+INF-3: From Rule-1, Rule-2 by Modus Ponens: JakeHas(S_Scientist) → JillHas(J_Scientist) :: JakeHas(16) → JillHas(18)
+INF-4: From Rule-1, Rule-2 by Modus Ponens: JillHas(J_Scientist) → JakeHas(J_Scientist) :: JillHas(18) → JakeHas(18)
+INF-5: From Fact-3, Rule-1 by Modus Ponens: JillHas(18) → StevenHas(18) :: JillHas(18) → StevenHas(16)
+INF-6: From Rule-1, Rule-2 by Modus Ponens: JillHas(18) → JillHas(16) :: JillHas(18) → JillHas(18)
+INF-7: From Rule-1, Rule-2 by Modus Ponens: JillHas(18) → JillHas(10) :: JillHas(18) → JillHas(7)
+
+Final Answer:
+Steven has 7 more peaches than Jill :: StevenHas(16) → JillHas(7)

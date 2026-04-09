@@ -1,0 +1,9 @@
+### ## FACTS
+Fact-1: Kelly has 22 Nintendo games :: HasGames(Kelly, 22)
+
+### ## RULES
+Rule-1: If someone has X Nintendo games, they can acquire Y more games to reach Z total games :: Acquire(Games, X, Y, Z)
+Rule-2: If someone starts with A items and buys B new items, they now have C total items :: TotalItems(A, B, C)
+
+### ## INFERENCES
+INF-1: Kelly will need to buy 118 more games to have 140 games :: Acquire(Games, 22, 118, 140)

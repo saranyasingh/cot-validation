@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_snakes = 95).
+
+fof(fact_2, axiom, hiding_snakes = 64).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (is_snake(S) => ! [H] : (is_hiding(H) => ~ is_hiding(S)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, not_hiding_count(95, 64)).

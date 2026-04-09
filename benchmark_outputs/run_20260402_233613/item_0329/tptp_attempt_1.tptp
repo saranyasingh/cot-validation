@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_tomatoes = plus(green_tomatoes, red_tomatoes)).
+fof(fact_2, axiom, tomatoes_picked = 137).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by arithmetic
+fof(inf_1, axiom, remaining_tomatoes = minus(initial_tomatoes, tomatoes_picked)).

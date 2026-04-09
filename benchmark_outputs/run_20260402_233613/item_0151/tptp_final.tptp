@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, Apps(Initial)).
+fof(fact_2, axiom, Files(Initial)).
+fof(fact_3, axiom, Apps(Final)).
+fof(fact_4, axiom, Files(Final)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Original] : ((Apps(Original) > Files(Original)) => (Apps(Original) - Files(Original))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, Apps(Initial) > Files(Initial)).
+
+% From rule_1 by Modus Ponens
+fof(inf_2, axiom, Apps(Final) < Files(Final)).
+
+% From inf_1, inf_2 by Arithmetic
+fof(inf_3, axiom, Apps(Original) - Files(Original) = 17).

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker(10) & cake(8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Crackers, Cakes, N] : ((crackers(Crackers) & cakes(Cakes) & N > 0) => ! [I] : (I <= N => (cracker(Crackers) & cake(Cakes)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, ! [X] : (infinecakes(X) <=> cake(cakes(4 * X)))).

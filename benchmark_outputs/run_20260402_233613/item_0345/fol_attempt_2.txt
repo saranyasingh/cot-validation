@@ -1,0 +1,11 @@
+```plaintext
+## FACTS
+1. B_{\text{initial}} ::= 32 :: 32
+2. B_{\text{remaining}} ::= 20 :: 20
+
+## RULES
+1. E(x) ::= x_{\text{eaten}} = B_{\text{initial}} - B_{\text{remaining}} :: E(32) - E(20)
+
+## INFERENCES
+1. Candy eaten ::= E(32) - E(20) :: E(32) - E(20)
+```

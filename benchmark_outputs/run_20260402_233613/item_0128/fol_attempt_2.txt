@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: FrogJumpedDistance(frog_jump_distance) :: frog_jump_distance = 39
+FACT-2: GrassHopperJumpedDistance(grass_hopper_jump_distance) :: grass_hopper_jump_distance = 17
+
+## RULES
+RULE-1: DistanceDifference(distance_difference) :: distance_difference = x - y
+
+## INFERENCES
+INF-1: FrogDroveFartherThanGrassHopper :: RULE-1(FACT-1, FACT-2)

@@ -1,0 +1,6 @@
+**FACTS**
+FACT-1: Marco and his dad together had 20 pounds of strawberries :: StrawberriesMarcoAndDadTotal(20)
+FACT-2: His dad's strawberries weighed 17 pounds :: StrawberriesFatherWeight(17)
+
+**INFERENCES**
+INF-1: Therefore, Marco's strawberries weighed 3 pounds :: StrawberriesMarcoWeight(StrawberriesMarcoAndDadTotal(20) - StrawberriesFatherWeight(17))

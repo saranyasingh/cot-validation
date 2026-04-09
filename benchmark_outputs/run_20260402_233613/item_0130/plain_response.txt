@@ -1,0 +1,23 @@
+To determine how many rows Faye can make, we need to follow these steps:
+
+1. Calculate the total number of pencils Faye has.
+2. Determine how many rows she can form given that each row contains 16 pencils.
+
+First, let's find out how many pencils Faye has in total:
+- Each pack contains 24 pencils.
+- She has 28 packs.
+
+So, the total number of pencils is:
+\[ \text{Total Pencils} = 28 \times 24 \]
+
+Now, calculate the total number of pencils:
+\[ \text{Total Pencils} = 28 \times 24 = 672 \]
+
+Next, we need to figure out how many rows of 16 pencils she can make from these 672 pencils:
+\[ \text{Number of Rows} = \frac{\text{Total Pencils}}{\text{Pencils per Row}} \]
+\[ \text{Number of Rows} = \frac{672}{16} \]
+
+Perform the division:
+\[ \text{Number of Rows} = 42 \]
+
+Therefore, the answer is: 42.

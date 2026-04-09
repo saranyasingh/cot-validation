@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, two_chapters).
+fof(fact_2, axiom, length(first_chapter, 48)).
+fof(fact_3, axiom, length(second_chapter, 11)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ((P = 0) => (P != 0))).
+fof(rule_2, axiom, ! [B] : (book(B) => ? [C] : (chapter_of(B, C) & is_chapter(C)))).
+
+% --- INFERENCES ---
+% From fact_1
+fof(inf_1, axiom, two_chapters).
+
+% From fact_2
+fof(inf_2, axiom, first_chapter_is_48_pages).
+
+% From fact_3
+fof(inf_3, axiom, second_chapter_is_11_pages).
+
+% From rule_1
+fof(inf_4, axiom, difference_in_page_count).
+
+% From fact_2, fact_3 by SubtractLengthFromFirst
+fof(inf_5, axiom, more_pages_first_chapter).
+
+% From inf_5 by arithmetic
+fof(inf_6, axiom, thirty_seven_pages_gt_zero).

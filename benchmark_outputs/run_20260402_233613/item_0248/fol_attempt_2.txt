@@ -1,0 +1,20 @@
+## FACTS
+
+```plaintext
+Fact-1: Jake has 7 fewer peaches than Steven :: (Steven(x) → Jake(x) ≡ x - 7)
+Fact-2: Steven has 17 peaches :: Steven(some_steven) ≡ 17
+```
+
+## RULES
+
+```plaintext
+Rule-1: If Steven has \( S \) peaches, then Jake has \( S - 7 \) peaches :: ∀x ((Steven(x) ∧ x = S) → Jake(x) ≡ S - 7)
+```
+
+## INFERENCES
+
+```plaintext
+INF-1: From Fact-2, Rule-1 by Modus Ponens: Jake(some_jake) ≡ some_jake ≡ 17 - 7 :: Jake(jackie) ≡ 10
+INF-2: Since Jake has 10 peaches, Jake has 8 more peaches than Jill :: ∀y ((Jake(y) ∧ y > 10) → Jill(y) ≡ y - 8)
+INF-3: Given Jake has 10 peaches, Jill has \( 10 - 8 = 2 \) peaches :: Jill(jill) ≡ 2
+```

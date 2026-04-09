@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, pushups(zachary, 51)).
+fof(fact_2, axiom, pushups(david, 44)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B, X, Y] : (( quantity(A, X) & quantity(B, Y) ) => ( ? [Z] : ( difference(Z, A, B) & quantity(Z, X - Y) ) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, difference(pushups(zachary, 51), pushups(david, 44))).

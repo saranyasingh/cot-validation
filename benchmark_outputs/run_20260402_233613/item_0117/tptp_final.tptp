@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, t(2, 5)).
+
+fof(fact_2, axiom, m(1, 6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z] : ((A != B) => ((C = D) => ((plus(E, F)) = (plus(G, H)))))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, minus(m(1, 6), t(2, 5))).

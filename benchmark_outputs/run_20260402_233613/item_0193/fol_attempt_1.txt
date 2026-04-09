@@ -1,0 +1,10 @@
+This conversion already fits the specified structure for FOL, so no further changes were needed. Here is the formatted output:
+
+### FACTS
+FACT-1: There are 3 red peaches in the basket :: RedPeaches(3)
+
+### RULES
+Rule 1: If there are n red peaches, then there are n + 10 green peaches :: RuleForGreenPeaches(n)
+
+### INFERENCES
+INF-1: Given there are 3 red peaches, the total number of green peaches is 13 :: TotalGreenPeaches(3, 10)

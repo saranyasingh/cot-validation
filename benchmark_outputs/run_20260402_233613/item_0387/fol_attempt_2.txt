@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: TotalEarningsDay20($120) :: TotalEarnings(20, $120)
+FACT-2: TotalEarningsDay16($66) :: TotalEarnings(16, $66)
+
+### RULES
+RULE-1: AverageDailyEarnings(TotalEarningsDay20, Days20) :: ∀t (TotalEarnings(t, x) → (∃d (d < Days20 ∧ d > 0) ∧ (∀i (i < d ∧ i > 0) → (x = TotalEarnings(i, y)))))
+
+### INFERENCES
+INF-1: AverageDailyEarnings(TotalEarningsDay20, Days20) :: Rule-1(FACT-1, RULE-1)

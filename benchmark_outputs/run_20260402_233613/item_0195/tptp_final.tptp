@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, pages(favorite_book)).
+fof(fact_2, axiom, chapters(24)).
+fof(fact_3, axiom, finished_in(6_days)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [BOOK, CHS, PAGES_PER_CH] : ((pages(BOOK) & chapters(CHS)) => chapter(PAGES_PER_CH))).
+fof(rule_2, axiom, ! [X, Y, P] : ((pages(PAGES_READ) & days(DAYS_READ)) => reading(x_pages, y_days))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by General Principle
+fof(inf_1, axiom, pages(page_per_chapter)).
+% From FACT-2, RULE-1 by General Principle
+fof(inf_2, axiom, pages(page_per_chapter)).
+% From FACT-3, RULE-2 by General Principle
+fof(inf_3, axiom, reading(4.25_pages, 6_days)).

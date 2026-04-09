@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, candy_initial(33)).
+fof(fact_2, axiom, candy_lost(24)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ( remaining_candies( candy_initial(X) & candy_lost(Y) ) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_candies(33 & 24)).
+fof(inf_2, axiom, bag_capacity(9)).
+fof(inf_3, axiom, number_of_bags( bag_capacity(z) & remaining_candies(w) )).

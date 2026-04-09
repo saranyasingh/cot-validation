@@ -1,0 +1,40 @@
+To convert this chain-of-thought reasoning into structured first-order logic (FOL), we will follow these steps:
+
+### Facts
+These are the given premises without any quantification or rules.
+
+#### Fact-1: Matthew gave equal numbers of crackers and cakes to his 4 friends.
+- Let \( x \) represent the number of crackers each friend received.
+- Since Matthew distributed crackers equally among his 4 friends, the total number of crackers can be represented as \( 4x \).
+- Similarly, let \( y \) represent the number of cakes each friend received.
+- Since Matthew distributed cakes equally among his 4 friends, the total number of cakes can be represented as \( 4y \).
+
+Thus, the facts are:
+Fact-1: CrackerTotal(x, 4) :: x * 4
+Fact-2: CakeTotal(y, 4) :: y * 4
+
+### Rules
+These are derived rules based on the logical structure provided in the premise.
+
+#### Rule-1: Equal Distribution of Crackers and Cakes
+- For every friend, the number of crackers (\( x \)) must be equal to the number of cakes (\( y \)).
+- Mathematically, this can be expressed as:
+  \[
+  x = y
+  \]
+
+### Inferences
+These are logically derived conclusions based on the premises and rules.
+
+#### Infer-1: Number of Crackers per Friend
+- Given that the total number of crackers is 32 and they are divided equally among 4 friends, we calculate:
+  \[
+  x = \frac{32}{4}
+  \]
+- Simplifying this gives us:
+  \[
+  x = 8
+  \]
+
+Thus, the answer is:
+Infer-1: NumberCrackersPerFriend :: 8

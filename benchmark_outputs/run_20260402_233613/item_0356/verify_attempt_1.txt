@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states Josh had 3 marbles, so the initial count (3) is entailed.
+FACT-2: SUPPORTED — The story states he found 6 marbles, so FoundMarbles(6) is entailed.
+FACT-3: SUPPORTED — The story states he lost 5 marbles, so LostMarbles(5) is entailed.
+RULE-1: PLAUSIBLE — It encodes a reasonable general principle about a total after the finding event.
+RULE-2: PLAUSIBLE — It encodes a sensible general principle for the difference between found and lost marbles.

@@ -1,0 +1,34 @@
+% --- FACTS ---
+fof(fact_1, axiom, NintendoGames(kelly) & NintendoGameCount(20)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ! [Y] : ( NintendoGames(P) => DesireToEndUpWith(Y) )).
+fof(rule_2, axiom, DesireToEndUpWith(12)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, NintendoGames(kelly) & NintendoGameCount(20)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, DesireToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_6, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_7, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_8, axiom, WantsToEndUpWith(12)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_9, axiom, WantsToEndUpWith(1)).

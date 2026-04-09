@@ -1,0 +1,5 @@
+LABEL: FACT-1 :: ∃X (NearMountain(X) ∧ MigratedAwayForWinter(X))
+
+LABEL: RULE-1 :: ∀Z ((StayedBehind(Z) → ¬MigratedAwayForWinter(Z)))
+
+LABEL: INF-1 :: ∃X (NearMountain(X) ∧ MigratedAwayForWinter(X)) → 34

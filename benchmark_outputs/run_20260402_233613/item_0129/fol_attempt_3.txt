@@ -1,0 +1,13 @@
+### ## FACTS
+
+**FACT-1:** Jessica added 16 roses to the vase. :: \( \text{JessicaAdded(16)} \)
+
+**FACT-2:** After adding these roses, there were 23 roses in total. :: \( \text{TotalRosesAfterAdding(23)} \)
+
+### ## RULES
+
+**RULE-1:** Solve for \( x \): Subtract 16 from both sides. :: \( \forall x (x + 16 = 23 \rightarrow x = 7) \)
+
+### ## INFERENCES
+
+**INF-1:** The original number of roses in the vase was 7. :: \( \text{OriginalRoses(7)} \)

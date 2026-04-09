@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_number_children = 28 & number_of_children_initially = 28).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ( number_of_children_on_bus(T) => final_number_children(T) = number_of_children_initially + number_of_children_on_bus(T) - number_of_children_off_bus(T) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [T] : ( number_of_children_on_bus(T) - number_of_children_off_bus(T) = 2 ) ).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, ! [T] : ( number_of_children_on_bus(T) > 0 ) ).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, ! [T] : ( number_of_children_off_bus(T) > 0 ) ).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, ? [Y] : ( Y > 0 & number_of_children_on_bus(Y) - number_of_children_off_bus(Y) = 2 ) ).

@@ -1,0 +1,20 @@
+Premise 1: Mom buys a total of 70 white t-shirts.
+Premise 2: Mom purchases these t-shirts in 14 separate packages.
+Premise 3: Each package contains an equal number of t-shirts.
+
+To derive the conclusion:
+Conclusion: Each package contains 5 white t-shirts.
+
+Logical Syllogism:
+
+1. **Major Premise**: All packages contain an equal number of t-shirts (Premise 3).
+2. **Minor Premise**: There are 14 packages (Premise 2).
+3. **Conclusion**: Therefore, if all packages contain an equal number of t-shirts, then dividing the total number of t-shirts by the number of packages gives us the number of t-shirts per package.
+
+Calculation to confirm:
+Total t-shirts = 70
+Number of packages = 14
+
+Each package has \( \frac{70}{14} = 5 \) t-shirts.
+
+The answer is: 5

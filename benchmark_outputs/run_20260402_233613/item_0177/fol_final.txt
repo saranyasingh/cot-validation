@@ -1,0 +1,3 @@
+FACT-1: Julia played tag with 7 kids on Monday :: PlayedWithJulia(7, t_monday)
+FACT-2: Julia played tag with 13 kids on Tuesday :: PlayedWithJulia(13, t_tuesday)
+INF-1: Julia played tag with a total of 20 kids over both days :: TotalPlayedWithJulia = PlayedWithJulia(7, t_monday) ∧ PlayedWithJulia(13, t_tuesday)

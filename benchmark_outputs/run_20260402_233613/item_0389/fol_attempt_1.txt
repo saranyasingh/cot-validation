@@ -1,0 +1,9 @@
+**FACTS**
+FACT-1: TotalPencils(30) :: 30
+FACT-2: PencilsPerRow(5) :: 5
+
+**RULES**
+RULE-1: RowsCanBeMade(total_pencils, pencils_per_row) :: ∀p pencils (total_pencils / pencils_per_row = #rows)
+
+**INFERENCES**
+INF-1: RowsCanBeMade(30, 5) :: RowsCanBeMade(30, 5)

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_earnings(20, dollar_120)).
+fof(fact_2, axiom, total_earnings(16, dollar_66)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, X, Y] : ( total_earnings(T, X) => ? [D] : ( (D < days20 & D > 0) & ! [I] : ( (I < D & I > 0) => (X = total_earnings(I, Y)) ) ) )).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, average_daily_earnings(total_earnings_day20, days20)).

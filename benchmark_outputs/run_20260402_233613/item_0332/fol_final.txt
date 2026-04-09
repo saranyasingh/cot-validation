@@ -1,0 +1,8 @@
+### ## FACTS
+FACT-1: Initially 22 children were on the bus :: ChildrenOnBus(22)
+
+### ## RULES
+RULE-1: If children get off the bus, then fewer children remain on the bus :: ∀x (ChildrenOffBus(x) → ChildrenOnBus(ChildrenOnBus(22) - x))
+
+### ## INFERENCES
+INF-1: Number of children getting off the bus :: ChildrenOffBus(60)

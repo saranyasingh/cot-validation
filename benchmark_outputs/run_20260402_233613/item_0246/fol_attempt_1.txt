@@ -1,0 +1,41 @@
+This conversion involves translating a logical syllogism into First-Order Logic (FOL). Here's the step-by-step process and resulting FOL formula:
+
+### Step-by-Step Logical Analysis:
+1. **Premise 1**: Haley has 20 marbles.
+   - Let \( H \) represent Haley.
+   - Let \( M \) represent the total number of marbles.
+   - So, \( M(H) = 20 \).
+   
+2. **Premise 2**: There are 2 boys who love to play marbles.
+   - Let \( B_1 \) and \( B_2 \) represent the two boys.
+   - Therefore, \( B_1 \) and \( B_2 \) both satisfy the condition of loving to play marbles.
+
+3. **Premise 3**: Haley distributes her marbles equally among the boys.
+   - Let \( D \) represent the action of distributing marbles.
+   - Let \( x \) represent the number of marbles each boy gets after distribution.
+   - Since the distribution is equal, \( x(B_1) = x(B_2) \).
+
+4. **Conclusion**: Each boy will receive 10 marbles.
+   - We want to find out how many marbles each boy gets, denoted as \( x \).
+
+### FOL Formula:
+We can express this in FOL as follows:
+
+**Fact 1**: Haley has 20 marbles.
+\[ M(H) = 20 \]
+
+**Rule**: If a person distributes marbles equally among two people, then each person gets half of the total marbles.
+\[ \forall x (D(x) \rightarrow (\exists y y = x/2)) \]
+Where \( D(x) \) means "Haley distributes marbles to \( x \)", and \( y = x/2 \) represents each receiving half of the total marbles.
+
+**Inference**: Since Haley distributes marbles equally among 2 boys, each boy gets 10 marbles.
+\[ x(B_1) = 10 \land x(B_2) = 10 \]
+
+### Final Answer:
+To summarize, the final FOL formula representing the logical syllogism is:
+
+**INF-1**: Since Haley distributes her marbles equally among the boys, each boy will receive 10 marbles.
+
+Thus, the answer is:
+
+INF-1: \( x(B_1) = 10 \land x(B_2) = 10 \)

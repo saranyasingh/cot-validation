@@ -1,0 +1,14 @@
+```plaintext
+## FACTS
+FACT-1: Paco had 28 cookies initially :: Cookies(Paco, t_initial) 
+FACT-2: After eating some cookies, Paco has 7 cookies remaining :: Cookies(Paco, t_eaten)
+
+## RULES
+RULE-1: If someone eats \( x \) cookies, they have \( 28 - x \) cookies left :: ∀x ((Eating(x)) → (∀t ((Cookies(Paco, t) ∧ Eating(x) → Cookies(Paco, t_eaten)))))
+RULE-2: Someone having fewer than 7 cookies means they ate more than 21 cookies :: ∀y ((LessThan(7, y)) → (∃x ((Eating(x)) ∧ Cookies(Paco, t_eaten) ∧ LessThan(y, Cookies(Paco, t_eaten)))))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, Paco ate \( x \) cookies such that \( 28 - x = 7 \) :: (∃x ((Eating(x)) ∧ Cookies(Paco, t_initial) ∧ Cookies(Paco, t_eaten)))
+INF-2: From FACT-2 and RULE-2, if Paco ate less than 21 cookies, then he had more than 7 cookies left :: (∃x ((Eating(x)) ∧ Cookies(Paco, t_eaten) ∧ LessThan(21, x) ∧ GreaterThan(7, x)))
+INF-3: Conclusion: Paco ate 21 cookies :: (∃x ((Eating(x)) ∧ Cookies(Paco, t_eaten) ∧ Equal(21, x)))
+```

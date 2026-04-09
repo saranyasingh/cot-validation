@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_number_of_trees(9)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (death_in_tree(T) => remaining_trees(T))).
+fof(rule_2, axiom, total_trees_after_planting(10)).
+
+% --- INFERENCES ---
+% From fact_1, rule_2 by Definition
+fof(inf_1, axiom, final_number_of_trees(10)).

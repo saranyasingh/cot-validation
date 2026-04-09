@@ -1,0 +1,5 @@
+FACT-1: Frank has 42 pieces of candy :: CandyTotal(42)
+
+RULE-1: Distribute candies equally :: ∀x∀y(x + y = 2 * CandiesInBag(x, y))
+
+INF-1: There are 21 pieces of candy in each bag :: CandiesInBag(21, 21)

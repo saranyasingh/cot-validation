@@ -1,0 +1,13 @@
+### ## FACTS
+LABEL: FACT-1 :: FredMoneyLastWeek(60)
+LABEL: FACT-2 :: JasonMoneyLastWeek(19)
+
+### ## RULES
+LABEL: RULE-1 :: ∀x (FredMoney(x) → FredMoney(x + 1))
+LABEL: RULE-2 :: ∀y (JasonMoney(y) → JasonMoney(y + 1))
+
+### ## INFERENCES
+LABEL: INF-1 :: FredMoneyLastWeek(60) → FredMoneyLastWeek(70)
+LABEL: INF-2 :: JasonMoneyLastWeek(19) → JasonMoneyLastWeek(38)
+LABEL: INF-3 :: JasonMoneyLastWeek(38) → JasonMoneyNow(52)
+LABEL: INF-4 :: JasonMoneyNow(52) → JasonMade(14)

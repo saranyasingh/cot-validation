@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — directly stated (GrasshopperJumped(25)).
+FACT-2: SUPPORTED — derived from the frog being 32 inches more than the grasshopper (25 + 32 = 57).
+FACT-3: SUPPORTED — derived from the frog minus 26 inches (57 − 26 = 31).
+
+RULE-1: PLAUSIBLE — valid restatement of the frog-to-mouse relation (mouse = frog − 26).
+RULE-2: IMPLAUSIBLE — not a valid general principle; would incorrectly infer the mouse jumps y+26 from y.
+RULE-3: PLAUSIBLE — restates the given frog-to-grasshopper relation (frog = grasshopper + 32).

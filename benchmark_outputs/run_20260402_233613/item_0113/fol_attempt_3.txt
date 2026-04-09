@@ -1,0 +1,10 @@
+### ## FACTS
+### LABEL: FACT 1 :: M = 8
+### LABEL: FACT 2 :: R = M + 6
+
+### ## RULES
+### LABEL: RULE 1 :: T = M + R
+
+### ## INFERENCES
+### LABEL: INF 1 :: T = 8 + 14
+### LABEL: INF 2 :: T = 22

@@ -1,0 +1,8 @@
+LABEL: ## FACTS
+FACT-1: They decided to hold the party in their backyard :: PartyInBackyard(they)
+
+LABEL: ## RULES
+RULE-1: If a party is held in the backyard, then there are no indoor restrictions :: OutdoorParty(they)
+
+LABEL: ## INFERENCES
+INF-1: Since they are holding the party outdoors, there are no indoor restrictions :: OutdoorParty -> NoIndoorRestrictions()

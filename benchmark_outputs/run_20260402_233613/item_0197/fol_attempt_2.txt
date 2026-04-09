@@ -1,0 +1,12 @@
+## FACTS
+**Fact-1:** Jack received 10 emails in the morning :: ReceivedEmails(morning, 10)
+**Fact-2:** Jack received 7 emails in the afternoon :: ReceivedEmails(afternoon, 7)
+
+## RULES
+**Rule-1:** DifferenceBetweenMorningAndAfternoon(emails_in_morning, emails_in_afternoon) :: emails_in_morning - emails_in_afternoon = Difference
+
+## INFERENCES
+**Inference-1:** Difference = 3 :: Difference = 10 - 7
+**Inference-2:** Difference > 0 :: Difference = 3
+**Inference-3:** NumberOfMoreEmailsInMorningThanAfternoon(emails_in_morning, emails_in_afternoon) :: Difference > 0
+**Inference-4:** NumberOfMoreEmailsInMorningThanAfternoon(10, 7) :: NumberOfMoreEmailsInMorningThanAfternoon(10, 7) :: Difference > 0

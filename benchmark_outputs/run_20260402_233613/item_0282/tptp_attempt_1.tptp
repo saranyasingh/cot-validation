@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, hair_length_robin(17)).
+fof(fact_2, axiom, hair_length_after_cut(hair_length_robin(17), 13)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_1, axiom, cut_hair(robin, hair_length_robin(17), hair_length_after_cut(hair_length_robin(17), 13))).

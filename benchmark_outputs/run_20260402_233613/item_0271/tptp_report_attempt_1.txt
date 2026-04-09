@@ -1,0 +1,8 @@
+  % From fact_1, rule_1 by Modus Ponens
+  inf_1: PROVED
+  % From fact_2, rule_2 by Universal Instantiation
+  inf_2: PROVED
+  % From fact_1, rule_1 by a derived inference
+  inf_3: UNKNOWN (GaveUp)
+  inf_4: UNKNOWN (GaveUp)
+  inf_5: UNKNOWN (GaveUp)

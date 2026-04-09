@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_amount_olivia(100)).
+fof(fact_2, axiom, amount_collected_atm(148)).
+fof(fact_3, axiom, final_amount_after_supermarket(159)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( (initial_amount_olivia(X) & amount_collected_atm(X)) => final_amount_after_supermarket(X) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, spending_calculation(100)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, spending_calculation(148)).
+% From INF-1 and INF-2, Apply Addition Law
+fof(inf_3, axiom, spending_calculation(248)).
+% From INF-3, rule_1 by Modus Ponens
+fof(inf_4, axiom, final_amount_after_supermarket(248)).
+% From INF-4, Rule-1 by Modus Tollens
+fof(inf_5, axiom, final_amount_after_supermarket(159) != final_amount_spent(248)).
+% From INF-5, Rule-1 by Modus Ponens
+fof(inf_6, axiom, final_amount_spent(159) != final_amount_spent(248)).
+% From INF-6, Rule-1 by Modus Ponens
+fof(inf_7, axiom, final_amount_spent(89)).

@@ -1,0 +1,5 @@
+LABEL: #FACT-1 :: TotalVisitorsThatDay = 666 :: TotalVisitors(today)
+LABEL: #FACT-2 :: TotalVisitorsPreviousDay = 100 :: TotalVisitors(yesterday)
+LABEL: #RULE-1 :: DifferenceBetweenTwoNumbers :: x - y :: x - y
+
+LABEL: #INF-1 :: DifferenceBetweenTotalVisitorsThatDayAndPreviousDay :: TotalVisitorsThatDay - TotalVisitorsPreviousDay

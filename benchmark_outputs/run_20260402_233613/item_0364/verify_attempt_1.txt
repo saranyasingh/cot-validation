@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED — Direct entailment from "Mary is baking a cake."
+FACT-2: SUPPORTED — Directly stated: recipe calls for 12 cups of sugar.
+FACT-3: SUPPORTED — Directly stated: AlreadyAddedSugar(10).
+FACT-4: SUPPORTED — Directly stated: RequiresFlour(14).
+FACT-5: UNSUPPORTED — Not stated or entailed in the story.
+
+RULE-1: PLAUSIBLE — Encodes a consistent implication given the story context.
+RULE-2: PLAUSIBLE — Reasonable general principle: if sugar has been added, sugar is present.
+RULE-3: IMPLAUSIBLE — Not added flour does not imply flour is present; contradicts common sense.

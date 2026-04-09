@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story shows Mary is baking a cake, implying the task is ongoing and needs completion.
+FACT-2: SUPPORTED — The story states the recipe requires 12 cups of sugar.
+FACT-3: SUPPORTED — The story states she already put in 10 cups of sugar.
+
+RULE-1: PLAUSIBLE — It encodes a sensible link: needing to complete baking implies a fixed sugar requirement (12) in this context.
+RULE-2: PLAUSIBLE — If sugar has been added, sugar is present; a reasonable inference.
+RULE-3: IMPLAUSIBLE — If flour has not been added, it is not valid to conclude that flour is present.

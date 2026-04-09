@@ -1,0 +1,19 @@
+Here is the conversion of the logical syllogism into FOL:
+
+## FACTS
+FACT-1: Jake has 6 fewer peaches than Steven :: PeachesJake > PeachesSteven - 6
+FACT-2: Jake has 8 more apples than Steven :: ApplesJake > ApplesSteven + 8
+
+## RULES
+RULE-1: If someone has x peaches and y apples, they will have x - 6 fewer peaches than Steven :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → PeachDiffSteven(p, a))
+RULE-2: If someone has y peaches and x apples, they will have y + 8 more apples than Steven :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → AppleDiffSteven(p, a))
+
+## INFERENCES
+INF-1: Jake has 6 fewer peaches than Steven :: PeachDiffSteven(Jake, Steven) :: PeachesJake > PeachesSteven - 6
+INF-2: Jake has 8 more apples than Steven :: AppleDiffSteven(Jake, Steven) :: ApplesJake > ApplesSteven + 8
+INF-3: Jake must have 6 fewer peaches than Steven :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → PeachDiffSteven(p, a)) :: PeachesJake > PeachesSteven - 6 ∧ ApplesJake > ApplesSteven + 8
+INF-4: Jake has 11 peaches :: PeachesJake = 11
+INF-5: Jake has 16 apples :: ApplesJake = 16
+
+### Summary:
+Based on the given information, we can conclude that Jake has 11 peaches and 16 apples. Steven has the same number of each fruit. Thus, Steven has the same number of peaches as apples.

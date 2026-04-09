@@ -1,0 +1,22 @@
+Premise 1: Carol bought 3 packs of invitations.
+Premise 2: Each pack has an equal number of invitations.
+Premise 3: There are 12 friends who received invitations.
+
+To determine how many invitations are in each pack, we need to divide the total number of invitations (which is the product of the number of packs and the number of invitations per pack) by the number of packs.
+
+Step-by-step logical reasoning:
+
+1. Let's denote the number of invitations per pack as \( x \).
+2. Since there are 3 packs, the total number of invitations is \( 3x \).
+3. We know that this total number of invitations equals the product of the number of packs and the number of invitations per pack, which is \( 12 \). Therefore, we have:
+   \[
+   3x = 12
+   \]
+4. To find \( x \), we solve the equation:
+   \[
+   x = \frac{12}{3} = 4
+   \]
+
+Conclusion: Each pack contains 4 invitations.
+
+The answer is: 4

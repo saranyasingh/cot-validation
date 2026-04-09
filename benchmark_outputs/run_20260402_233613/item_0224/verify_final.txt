@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states Dan has $3.
+FACT-2: UNSUPPORTED — The story says two bars cost $4; Dan has only $3, so spending $3 is inconsistent.
+RULE-1: PLAUSIBLE — Spending equals number of items times cost per item.
+RULE-2: PLAUSIBLE — The cost per bar is constant if all bars cost the same.

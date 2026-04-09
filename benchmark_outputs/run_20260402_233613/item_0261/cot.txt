@@ -1,0 +1,23 @@
+To determine how many cakes the baker has left after selling some, we need to follow these steps:
+
+1. **Identify Initial Quantities:**
+   - Total pastries initially: 61
+   - Total cakes initially: 167
+
+2. **Calculate Remaining Pastries After Sale:**
+   - Number of pastries sold: 44
+   - Remaining pastries = Initial pastries - Sold pastries
+     \[
+     61 - 44 = 17
+     \]
+
+3. **Determine Remaining Cakes After Sale:**
+   - Number of cakes sold: 108
+   - Since there were only 167 cakes available initially, it's impossible to sell all 167 cakes if only 108 were actually sold.
+   - Therefore, no cakes remain after selling 108 out of the initial 167.
+
+**Conclusion:**
+
+The baker does not have any cakes left because he couldn't sell more than what was available initially. 
+
+The answer is: 0

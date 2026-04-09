@@ -1,0 +1,15 @@
+**FACTS**
+FACT-1: Frank finished a book with 41 chapters :: ChapterCount(41)
+FACT-2: Each chapter contains an equal number of pages :: EqualPagesPerChapter
+FACT-3: The book consists of 450 pages :: TotalPages(450)
+FACT-4: It took Frank 30 days to finish the book :: DaysTaken(30)
+
+**RULES**
+RULE-1: If a book has \( n \) chapters and each chapter contains \( p \) pages, then the total number of pages is \( n \times p \). :: EqualPagesPerChapter
+RULE-2: Given the total number of pages and the total number of days, if the book takes \( d \) days to finish, then the average number of pages read per day is \( \frac{\text{Total Pages}}{\text{Days Taken}} \). :: AveragePagesPerDay
+
+**INFERENCES**
+INF-1: From FACT-1 and RULE-1, the book has 41 chapters :: ChapterCount(41)
+INF-2: The total number of pages in the book is 450 :: TotalPages(450)
+INF-3: It took Frank 30 days to finish the book :: DaysTaken(30)
+INF-4: Therefore, the average number of pages Frank read per day is 15 :: AveragePagesPerDay(15)

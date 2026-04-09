@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: Julia played tag with 5 kids on Monday :: TagPlayedWithKids(5, Monday)
+FACT-2: Julia played tag with some more kids on Tuesday :: TagPlayedWithKids(x, Tuesday)
+
+### ## RULES
+RULE-1: If Julia plays tag with \( n \) kids on Monday, then \( n + m \) kids play tag with her on Tuesday :: ∀n∀m (TagPlayedWithKids(n, Monday) → TagPlayedWithKids(n+m, Tuesday))
+
+### ## INFERENCES
+INF-1: From Fact-1 and Rule-1 by Universal Generalization: If Julia played tag with 5 kids on Monday, then 5 + x kids play tag with her on Tuesday :: ∀y (TagPlayedWithKids(y, Monday) → y+TagPlayedWithKids(y+x, Tuesday))
+INF-2: From Fact-2 and Rule-1 by Universal Generalization: If Julia played tag with some more kids on Tuesday, then x + 5 kids play tag with her on Tuesday :: ∀z (TagPlayedWithKids(z, Tuesday) → z+TagPlayedWithKids(z+5, Monday))
+INF-3: From Fact-1 and Fact-2 and Rule-2 by Universal Generalization: The total number of kids who played tag with Julia over both days equals 15 :: ∀w (TotalTagPlayers(w) = 15)
+INF-4: From INF-1 and INF-2 by Universal Instantiation: If Julia played with 5 kids on Monday, then 5 + x kids play tag with her on Tuesday ::

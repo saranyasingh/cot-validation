@@ -1,0 +1,5 @@
+FACT-1: Initially, there are 902 girls in the school :: GirlsInSchool(902)
+
+RULE-1: Adding 44 girls to the school increases the total number of girls :: ∀x (GirlsInSchool(x) → GirlsInSchool(x + 44))
+
+INF-1: After the new girls join, the total number of girls becomes 946 :: GirlsInSchool(946)

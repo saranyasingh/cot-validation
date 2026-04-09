@@ -1,0 +1,18 @@
+### ## FACTS
+
+```
+LABEL: Initial_goldfish_count(Paige) :: 8
+LABEL: Remaining_goldfish_after_strays(Paige) :: 6
+```
+
+### ## RULES
+
+```
+RULE: Disappear_goldfish(Paige) :: Initial_goldfish_count(Paige) - Remaining_goldfish_after_strays(Paige)
+```
+
+### ## INFERENCES
+
+```
+INFERENCE: Number_of_disappeared_goldfish(Paige) :: Disappear_goldfish(Paige)
+```

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Matthew starts with 31 crackers :: CrackerCount(Matthew, t_start) := 31
+
+## RULES
+RULE-1: Given away crackers are counted from initial amount :: ∀t (CrackerCount(Friend, t) → CrackerCount(Matthew, t) := CrackerCount(Matthew, t) - CrackerCount(Friend, t))
+
+## INFERENCES
+INF-1: Matthew gives away 8 crackers :: CrackerCount(Matthew, t_end) := CrackerCount(Matthew, t_start) - 8
+
+INF-2: Number of friends includes Matthew himself :: ∀t (FriendCount(t) := FriendCount(t) + 1)
+
+INF-3: Total crackers distributed equals total given-away plus original :: ∀t (CrackerCount(Distributed, t) := CrackerCount(Distributed, t) + CrackerCount(GivenAway, t))

@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: TotalFlourNeeded(14) :: TotalFlour(Nodes, FlourType) := 14
+FACT-2: AlreadyAddedFlour(5) :: AlreadyAdded(FlourType) := 5
+
+### ## RULES
+INF-1: MoreFlourNeeded(9) :: MoreFlourNeeded(FlourType) := TotalFlourNeeded(14) - AlreadyAddedFlour(5)
+
+### ## INFERENCES
+MoreFlourNeeded(9) :: MoreFlourNeeded(FlourType) := TotalFlourNeeded(14) - AlreadyAddedFlour(5)

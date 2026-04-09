@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Directly stated that Paco had 28 cookies.
+FACT-2: SUPPORTED — Directly stated that after eating some, Paco had 7 cookies left.
+RULE-1: PLAUSIBLE — The arithmetic relation 28 − x describes how many cookies remain after eating x.
+RULE-2: PLAUSIBLE — If left < 7, then eaten > 21 (given the initial 28), a correct corollary.

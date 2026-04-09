@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Zachary did 51 push-ups :: PushUps(Zachary, 51)
+FACT-2: David did 44 push-ups :: PushUps(David, 44)
+
+## RULES
+RULE-1: Difference Between Two Quantities :: ∀a b (Quantity(a, x) ∧ Quantity(b, y) → (∃z (Difference(z, a, b) ∧ Quantity(z, x-y))))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by Rule-1: The difference in push-ups between Zachary and David is 7 :: Difference(PushUps(Zachary, 51), PushUps(David, 44))

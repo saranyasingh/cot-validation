@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: TotalBlocksTower :: 79
+FACT-2: TotalBlocksHouse :: 82
+
+## RULES
+RULE-1: Difference(blocks_for_tower, blocks_for_house) :: TotalBlocksHouse - TotalBlocksTower
+
+## INFERENCES
+INF-1: Difference(82, 79) :: 3

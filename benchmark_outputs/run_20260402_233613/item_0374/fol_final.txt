@@ -1,0 +1,29 @@
+Here's the conversion of the provided chain of thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: School has 66 classrooms :: NumberOfClassrooms(school) = 66
+```
+
+### Rules
+```plaintext
+RULE-1: Equal number of students in each classroom :: ∀c (NumberOfStudentsInClassroom(c) = NumberOfStudentsPerClassroom)
+```
+
+### Inferences
+```plaintext
+INF-1: Students who want to go on the field trip :: NumberOfStudentsWhoWantFieldTrip(total_students, non_want_field_trip_students)
+INF-2: Buses needed to transport students who want to go on the field trip :: NumberOfBusesNeeded(transported_students, seats_per_bus)
+INF-3: Calculate number of buses :: NumberOfBusesNeeded(NumberOfStudentsWhoWantFieldTrip(), NumberOfSeatsForBus())
+```
+
+### Final Answer
+The final answer can be represented as follows:
+
+**INF-1:** NumberOfStudentsWhoWantFieldTrip(total_students, non_want_field_trip_students) :: NumberOfStudentsWhoWantFieldTrip(102, 22)
+
+**INF-2:** NumberOfBusesNeeded(transported_students, seats_per_bus) :: NumberOfBusesNeeded(80, 8)
+
+**INF-3:** NumberOfBusesNeeded(NumberOfStudentsWhoWantFieldTrip(), NumberOfSeatsForBus()) :: NumberOfBusesNeeded(80, 8)
+
+Therefore, **X** buses are needed to transport all the students who want to go on the field trip.

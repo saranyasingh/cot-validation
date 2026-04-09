@@ -1,0 +1,7 @@
+### ## FACTS
+- LABEL: FACT-1 :: Peaches(Jake) > Peaches(Steven) - 6
+- LABEL: FACT-2 :: Apples(Jake) > Apples(Steven) + 8
+
+### ## RULES
+- LABEL: RULE-1 :: ∀(p, a) ((Peaches(p) ∧ Apples(a)) → PeachDiffSteven(p, a))
+- LABEL: RULE-2 :: ∀(

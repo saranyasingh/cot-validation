@@ -1,0 +1,19 @@
+### ## FACTS
+LABEL: Number of students suggesting bacon \( B \) :: \( B = 394 \)
+LABEL: Number of students suggesting mashed potatoes is 457 :: \( MashedPotatoes = 457 \)
+LABEL: There are 63 more students suggesting mashed potatoes than bacon :: \( MashedPotatoes = B + 63 \)
+
+### ## RULES
+No rules provided; no inference required here.
+
+### ## INFERENCES
+LABEL: Solving for \( B \): \( B = MashedPotatoes - 63 \)
+LABEL: Substituting the value of \( MashedPotatoes \):
+   \[
+   B = 457 - 63
+   \]
+   
+LABEL: Simplifying the right side:
+   \[
+   B = 394
+   \]

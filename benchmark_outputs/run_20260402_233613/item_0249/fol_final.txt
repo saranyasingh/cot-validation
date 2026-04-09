@@ -1,0 +1,13 @@
+## FACTS
+LABEL: FACT-1 :: Initial_cakes :: 121
+LABEL: FACT-2 :: Sold_cakes :: 105
+LABEL: FACT-3 :: Remaining_cakes :: 121 - 105
+
+## RULES
+LABEL: RULE-1 :: If there are any cakes left after selling them, then there must be some cakes remaining :: ∀(cakes_left) (cakes_left → Remaining_cakes(cakes_left))
+LABEL: RULE-2 :: Bought_new_cakes increases the total cakes count :: ∀(new_cakes) (∃cakes_left (cakes_left ∧ Bought_new_cakes(new_cakes)))
+
+## INFERENCES
+LABEL: INF-1 :: After selling 105 cakes, the baker still has 16 cakes :: Remaining_cakes(121 - 105)
+LABEL: INF-2 :: The baker buys 170 new cakes :: Bought_new_cakes(170)
+LABEL: INF-3 :: Adding the new cakes to the remaining ones gives the current total :: Total_cakes :: Remaining_cakes(121 - 105) + Bought_new_cakes(170)

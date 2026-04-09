@@ -1,0 +1,19 @@
+FACT-1: Number of students suggesting bacon \( B \) :: \( B = 394 \)
+
+RULE-1: Number of students suggesting mashed potatoes is 457 :: \( MashedPotatoes = 457 \)
+
+INF-1: There are 63 more students suggesting mashed potatoes than bacon :: \( MashedPotatoes = B + 63 \)
+
+INF-2: Solving for \( B \): \( B = MashedPotatoes - 63 \)
+
+INF-3: Substituting the value of \( MashedPotatoes \):
+   \[
+   B = 457 - 63
+   \]
+   
+INF-4: Simplifying the right side:
+   \[
+   B = 394
+   \]
+
+Therefore, the number of students who suggested bacon is 394.

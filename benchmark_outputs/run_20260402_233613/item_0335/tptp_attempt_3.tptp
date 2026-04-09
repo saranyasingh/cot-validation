@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_pupils(485)).
+
+fof(fact_2, axiom, girls(232)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (total_pupils(P) <=> (girls(P) | boys(P)))).
+
+fof(rule_2, axiom, ! [TP] : (total_pupils(TP) => boys(TP - girls(TP)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Existential Instantiation
+fof(inf_1, axiom, ? [P] : (girls(P) | boys(P))).
+
+% From inf_1 by Universal Instantiation
+fof(inf_2, axiom, boys(a)).
+
+% From inf_2 and rule_2 by Modus Ponens
+fof(inf_3, axiom, boys(485 - 232)).

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: GrasshopperJumped(19) :: Jumped(Grasshopper, 19)
+FACT-2: FrogJumped(Frog) :: Jumped(Frog, x)
+FACT-3: MouseJumped(Mouse) :: Jumped(Mouse, m)
+
+## RULES
+Rule-1: If A jumped B inches, then Frog jumped C inches :: ∀A (∀B (Jumped(A, B) → Jumped(Frog, C))) where C = B + 39
+Rule-2: If A jumped B inches, then Mouse jumped D inches :: ∀A (∀B (Jumped(A, B) → Jumped(Mouse, D))) where D = B - 94
+
+## INFERENCES
+INF-1: FrogJumped(Frog) :: Jumped(Frog, 58)
+INF-2: MouseJumped(Mouse) :: Jumped(Mouse, -36)

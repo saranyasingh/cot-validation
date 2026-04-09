@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, played_with_julia(7, t_monday)).
+fof(fact_2, axiom, played_with_julia(13, t_tuesday)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Definition
+fof(inf_1, axiom, (played_with_julia(7, t_monday) & played_with_julia(13, t_tuesday))).

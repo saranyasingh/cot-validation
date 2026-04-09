@@ -1,0 +1,4 @@
+LABEL: Fact 1 :: M(H) = 20
+LABEL: Rule 1 :: ∀x (D(x) → (∃y y = x/2))
+LABEL: Rule 2 :: ∃x (x = 10)
+LABEL: Inference 1 :: x(B_1) = 10 ∧ x(B_2) = 10

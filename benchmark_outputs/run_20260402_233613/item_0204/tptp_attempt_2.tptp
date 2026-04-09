@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, nintendo_games(kelly) & nintendo_game_count(20)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, Y] : (nintendo_games(P) => desire_to_end_up_with(Y))).
+fof(rule_2, axiom, desire_to_end_up_with(12)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1
+fof(inf_1, axiom, nintendo_games(kelly) & nintendo_game_count(20)).
+
+% From rule_2
+fof(inf_2, axiom, desire_to_end_up_with(12)).
+
+% Desire to end up with 12 implies wants to end up with 12
+fof(inf_3, axiom, desire_to_end_up_with(12) => wants_to_end_up_with(12)).
+
+% From wants to end up with 12 -> wants to give away some Nintendo games
+fof(inf_4, axiom, wants_to_end_up_with(12) => wants_to_give_away_some_nintendo_games).
+
+% Derived wants to give away some Nintendo games
+fof(inf_5, axiom, wants_to_give_away_some_nintendo_games).

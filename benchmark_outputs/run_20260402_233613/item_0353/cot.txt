@@ -1,0 +1,41 @@
+**Logical Syllogism**
+
+1. **Premise 1:** Baker made 52 pastries.
+   - This establishes the quantity of pastries baked.
+
+2. **Premise 2:** Baker made 84 cakes.
+   - This establishes the quantity of cakes baked.
+
+3. **Premise 3:** Baker sold 102 cakes.
+   - This introduces the fact that some cakes were sold, reducing the total number available to sell or consume.
+
+4. **Premise 4:** Baker sold 94 pastries.
+   - This introduces the fact that some pastries were sold, reducing the total number available to eat or trade.
+
+5. **Conclusion:** To find how many more cakes than pastries the baker made,
+   - We need to compare the initial quantities (before any sales) with the quantities after sales.
+
+6. **Step-by-Step Calculation:**
+   
+   - Initial number of cakes = 84
+     \[
+     \text{Cakes remaining} = 84 - 102 + 102 = 84
+     \]
+     (Note: Since we cannot have negative cakes, it simplifies back to 84.)
+
+   - Initial number of pastries = 52
+     \[
+     \text{Pastries remaining} = 52 - 94 + 94 = 52
+     \]
+
+7. **Final Comparison:**
+   - Number of cakes remaining = 84
+   - Number of pastries remaining = 52
+
+8. **Answer:** 
+   - More cakes than pastries:
+     \[
+     84 - 52 = 32
+     \]
+
+Therefore, the baker made 32 more cakes than pastries. The answer is: 32.

@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: InitialCrayons(531)
+FACT-2: RemainingCrayons(391)
+FACT-3: ErasersAvailable(38)
+
+## RULES
+RULE-1: If Paul starts with n crayons and loses m crayons, he has n-m crayons left. This can be expressed as:
+∀ x (Crayons(x) ∧ Lost(y) → RemainingCrayons(x-y))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation:
+RemainingCrayons(531-CraysLost)
+
+INF-2: Given RemainingCrayons(391) and RemainingCrayons(531-CraysLost), 
+we know CraysLost must equal 130 because:
+531 - 391 = 130
+INF-3: Combining INF-1 and INF-2:
+RemainingCrayons(391) = CraysLost - 130
+
+INF-4: Subtracting the number of erasers available from the remaining crayons gives us the difference:
+CraysLost - ErasersAvailable = 130 - 38 = 92
+Thus, Paul has 92 more crayons than erasers left.

@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states the feathers require a total of 628 g of wax.
+FACT-2: SUPPORTED — The story implies there is some wax present (he has some amount) to reach 628 g.
+FACT-3: SUPPORTED — The story says he needs 159 g more, matching AdditionalWax(159).
+RULE-1: PLAUSIBLE — It is a direct formalization/restatement of FACT-1 (TotalWaxRequired(F, W, 628)).

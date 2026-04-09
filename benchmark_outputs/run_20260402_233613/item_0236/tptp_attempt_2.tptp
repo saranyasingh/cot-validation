@@ -1,0 +1,32 @@
+% --- FACTS ---
+fof(fact_1, axiom, starting(fred, t_last_week) & amount(19)).
+fof(fact_2, axiom, ending(fred, t_last_week) & amount(40)).
+fof(fact_3, axiom, starting(jason, t_last_week) & amount(16)).
+fof(fact_4, axiom, ending(jason, t_last_week) & amount(69)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( starting(X, t_last_week) => initial_balance(X) )).
+fof(rule_2, axiom, ! [X] : ( ending(X, t_last_week) => final_balance(X) )).
+fof(rule_3, axiom, ! [X] : ( initial_balance(X) = final_balance(X) + net_change(X) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, initial_balance(fred) = 19).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, final_balance(fred) = 40).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, initial_balance(jason) = 16).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, final_balance(jason) = 69).
+% INF-5: The total earnings relation (arithmetic/formula)
+fof(inf_5, axiom, final_balance(fred, t) + final_balance(jason, t) = final_balance(fred, t_last_week) + final_balance(jason, t_last_week) - ( initial_balance(fred) + initial_balance(jason) )).
+% INF-6: Simplification relation
+fof(inf_6, axiom, ! [T] : ( ( final_balance(fred, T) + final_balance(jason, T) = final_balance(fred, t_last_week) + final_balance(jason, t_last_week) - ( initial_balance(fred) + initial_balance(jason) ) ) => final_balance(fred, T) = ( final_balance(fred, t_last_week) + final_balance(jason, t_last_week) - ( initial_balance(fred) + initial_balance(jason) ) ) / 2 ) ).
+% INF-7: Substitute known values
+fof(inf_7, axiom, final_balance(fred, t) = ( 40 + 69 - ( 19 + 16 ) ) / 2).
+% INF-8: Further simplification
+fof(inf_8, axiom, final_balance(fred, t) = ( 119 - 35 ) / 2).
+% INF-9: Further simplification
+fof(inf_9, axiom, final_balance(fred, t) = 84 / 2).
+% INF-10: Final result
+fof(inf_10, axiom, final_balance(fred, t) = 42).

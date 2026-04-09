@@ -1,0 +1,44 @@
+Let's convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: ShirleySold(Shirley, 10) :: Sold(Shirley, 10)
+```
+
+### RULES
+No rules are needed for this scenario since all information is provided directly.
+
+### INFERENCES
+The conclusion can be derived using logical deduction based on the facts provided.
+
+#### Premise 1: If Shirley delivered 5 cases, then the total number of boxes must be divisible by 5.
+This translates to:
+```plaintext
+IF ShirleyDelivered(Shirley, Cases), THEN TotalBoxesDivisibleBy(Cases, 5) :: TotalBoxesDivisibleBy(SheilDelivered, Cases, 5)
+```
+
+#### Premise 2: If Shirley sold 10 boxes, then the total number of boxes is 10.
+This translates to:
+```plaintext
+IF ShirleySold(Shirley, Boxes), THEN TotalBoxesEqual(Bushy, Boxes) :: TotalBoxesEqual(SheilSold, Bushy, Boxes)
+```
+
+#### Conclusion:
+Since Shirley sold 10 boxes, the total number of boxes is 10. According to Premise 1, if she delivered 5 cases, the total number of boxes must be divisible by 5. Therefore, dividing 10 by 5 gives us:
+```plaintext
+TotalBoxesDivisibleBy(TotalBoxes, Cases, 5) :: TotalBoxesDivisibleBy(TotalBoxes, Cases, 5) :: TotalBoxesDivisibleBy(10, Cases, 5)
+```
+
+However, the direct logical inference without explicitly stating Premise 1 would be:
+```plaintext
+EachCaseContains(BoxesPerCase) :: EachCaseContains(2) :: EachCaseContains(2)
+```
+where `BoxesPerCase` is derived from the division of total boxes by cases:
+```plaintext
+TotalBoxesDivisibleBy(TotalBoxes, Cases, 5) :: EachCaseContains(TotalBoxes / Cases) :: EachCaseContains(10 / 5) :: EachCaseContains(2)
+```
+
+Thus, each case contains **2 boxes**.
+
+### Final Answer
+Each case contains 2 boxes.

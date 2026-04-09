@@ -1,0 +1,6 @@
+FACT-1: Initially there were 4 birds.
+FACT-2: Initially there were 3 storks.
+RULE-1: Adding 6 more storks increases the count of storks by 6.
+INF-1: After adding 6 more storks, there are now 9 storks.
+INF-2: Subtracting the initial number of birds from the current total number of storks gives the difference.
+INF-3: Applying INF-2 results in \(9 - 4 = 5\).

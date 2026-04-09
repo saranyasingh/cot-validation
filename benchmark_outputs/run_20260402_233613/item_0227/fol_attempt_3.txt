@@ -1,0 +1,11 @@
+### ## FACTS
+FACT-1: Number of parents = 61 :: P(parents, 61)
+FACT-2: Number of pupils = 177 :: P(pupils, 177)
+FACT-3: Total number of people = Number of parents + Number of pupils :: T(total_people) = P(parents, 61) + P(pupils, 177)
+
+### ## RULES
+RULE-1: Program's seating capacity = 44 :: S(capacity, 44)
+RULE-2: Actual attendance > Program's seating capacity if any person exceeds the limit :: A(people, total_people) → Not(A(sitting, capacity))
+
+### ## INFERENCES
+INFERENCE-1: Conclusion: There was a discrepancy between the actual attendance and the program's seating capacity :: A(people, total_people) ∧ S(capacity, 44) → Not(S(sitting, capacity))

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, received_money(gwen, mom, 7)).
+fof(fact_2, axiom, received_money(gwen, dad, 5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Gw, P] : ( total_amount(Gw, P) = dadmoney + mommoney )).
+fof(rule_2, axiom, ! [Gw, P, A] : ( remaining_money_after_spending(Gw, P, A) = total_money(Gw, P) - A )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_amount(gwen, parents) = dadmoney + mommoney).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, remaining_money_after_spending(gwen, parents, 4) = total_money(gwen, parents) - amount_spent).
+% From inf_2, rule_2 by Modus Ponens
+fof(inf_3, axiom, difference_between_mom_and_dad_money = ( total_amount(gwen, parents) - amount_spent ) - ( total_amount(gwen, parents) - amount_spent ) ).
+% From inf_3, by Modus Ponens
+fof(inf_4, axiom, difference_between_mom_and_dad_money = 8).

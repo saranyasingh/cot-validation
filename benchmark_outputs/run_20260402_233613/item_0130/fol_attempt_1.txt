@@ -1,0 +1,13 @@
+**FACTS**
+FACT-1: Faye has 28 packs of pencils :: PackNumber = 28
+FACT-2: Each pack contains 24 pencils :: PencilCountPerPack = 24
+
+**INFERENCES**
+INF-1: From FACT-1 and FACT-2, TotalPencils = PackNumber × PencilCountPerPack :: TotalPencils = 28 × 24
+INF-2: TotalPencils = 672
+INF-3: To find the number of rows, divide the total number of pencils by the number of pencils per row :: Rows = TotalPencils ÷ PencilCountPerRow
+INF-4: Given that each row should contain 16 pencils :: PencilCountPerRow = 16
+INF-5: Calculate the number of rows using the derived value :: Rows = 672 ÷ 16
+INF-6: Perform the division to get the final number of rows :: Rows = 42
+
+Thus, Faye could make **42 rows** of pencils.

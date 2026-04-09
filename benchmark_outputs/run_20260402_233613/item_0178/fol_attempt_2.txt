@@ -1,0 +1,52 @@
+## FACTS
+
+1. **Premise 1:** Mary needs a total of 14 cups of flour for the cake.
+   ```plaintext
+   TotalFlourNeeded(Mary) = 14
+   ```
+
+2. **Premise 2:** Mary has already added 7 cups of flour.
+   ```plaintext
+   FlourAdded(Mary) = 7
+   ```
+
+3. **Premise 3:** Subtracting the amount of flour Mary has already added from the total required gives us how much more flour Mary needs to add.
+   ```plaintext
+   RemainingFlour(Mary) = TotalFlourNeeded(Mary) - FlourAdded(Mary)
+   ```
+
+## RULES
+
+1. **Rule-1:** Adding the amount of flour already added to the total required gives the total amount of flour needed.
+   ```plaintext
+   TotalFlourNeeded(Mary) = FlourAdded(Mary) + RemainingFlour(Mary)
+   ```
+
+2. **Rule-2:** Subtraction operation ensures we get the correct amount of flour needed beyond what has been added.
+   ```plaintext
+   RemainingFlour(Mary) = TotalFlourNeeded(Mary) - FlourAdded(Mary)
+   ```
+
+3. **Rule-3:** Subtracting the amount of flour already added from the total required results in the remaining amount of flour needed.
+   ```plaintext
+   RemainingFlour(Mary) = TotalFlourNeeded(Mary) - FlourAdded(Mary)
+   ```
+
+## INFERENCES
+
+1. **Inference-1:** Mary needs to add \(14 - 7 = 7\) more cups of flour to the mixture.
+   ```plaintext
+   RemainingFlour(Mary) = TotalFlourNeeded(Mary) - FlourAdded(Mary)
+   ```
+   Substitute values:
+   ```plaintext
+   RemainingFlour(Mary) = 14 - 7
+   ```
+   Therefore,
+   ```plaintext
+   RemainingFlour(Mary) = 7
+   ```
+   Hence,
+   ```plaintext
+   Mary needs to add 7 more cups of flour to the mixture.
+   ```

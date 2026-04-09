@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, WalletAmount(olivia, t_initial) = 3).
+fof(fact_2, axiom, WalletAmount(olivia, t_atm) = 49).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, T_start, T_sp, Y] : (WalletAmount(P, T_sp) = minus(WalletAmount(P, T_start), Spending(Y)))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, WalletAmount(olivia, t_atm) = minus(WalletAmount(olivia, t_initial), Spending(49))).
+% From fact_2 by Modus Ponens
+fof(inf_2, axiom, WalletAmount(olivia, t_atm) = 49).
+% From inf_1, inf_2 by Transitivity
+fof(inf_3, axiom, WalletAmount(olivia, t_final) = minus(WalletAmount(olivia, t_initial), Spending(49)) & minus(WalletAmount(olivia, t_initial), Spending(49)) = 49).
+% From inf_3 by Substitution
+fof(inf_4, axiom, minus(WalletAmount(olivia, t_initial), Spending(49)) = FinalWalletAmount(olivia, t_final) & FinalWalletAmount(olivia, t_final) = 3).
+% From inf_4 by Transitivity
+fof(inf_5, axiom, WalletAmount(olivia, t_final) = WalletAmount(olivia, t_initial) & WalletAmount(olivia, t_initial) = 3).
+% From inf_5 by Transitivity
+fof(inf_6, axiom, FinalWalletAmount(olivia, t_final) = WalletAmount(olivia, t_initial) & WalletAmount(olivia, t_initial) = 3).
+% From inf_2 by Arithmetic
+fof(inf_7, axiom, minus(49, 49) = 0).

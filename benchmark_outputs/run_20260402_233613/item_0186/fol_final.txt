@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: 10 peaches :: Peaches(10)
+FACT-2: Each basket contains 4 red peaches :: RedPeachesInBasket(4)
+FACT-3: Each basket contains 6 green peaches :: GreenPeachesInBasket(6)
+
+### RULES
+RULE-1: Total peaches per basket equals 10 :: PeachesPerBasketEqualsTen
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Direct Deduction: There is 1 basket containing 10 peaches :: OneBasketWithTenPeaches
+
+INF-2: Conclusion: There is 1 basket. :: OneBasketIsCorrect
+
+Therefore, **The answer is:** 1 basket.

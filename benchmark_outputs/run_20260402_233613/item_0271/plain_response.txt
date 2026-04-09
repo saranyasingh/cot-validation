@@ -1,0 +1,27 @@
+To determine how many pieces of junk mail the mailman should give in each block, we can follow these steps:
+
+1. Calculate the total number of houses in all the blocks.
+   - There are 12 houses in each block and there are 81 blocks.
+   - Total number of houses = 12 houses/block * 81 blocks
+
+2. Determine the total number of pieces of junk mail needed for all the houses.
+   - Each house gets 4 pieces of junk mail.
+   - Total pieces of junk mail = Total number of houses * 4 pieces/house
+
+3. Since the mailman needs to distribute the junk mail equally among all the houses, this calculation will also be used to find out how many pieces of junk mail each house receives.
+
+Let's perform the calculations step-by-step:
+
+1. Calculate the total number of houses:
+   \[
+   12 \text{ houses/block} \times 81 \text{ blocks} = 972 \text{ houses}
+   \]
+
+2. Calculate the total number of pieces of junk mail:
+   \[
+   972 \text{ houses} \times 4 \text{ pieces/house} = 3888 \text{ pieces}
+   \]
+
+Therefore, the mailman should give 3888 pieces of junk mail in each block.
+
+The answer is: 3888

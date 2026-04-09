@@ -1,0 +1,10 @@
+### Fact Section
+FACT-1: NumberOfAppsDeleted(12) :: Number_of_apps_deleted = 12
+FACT-2: NumberOfFilesDeleted(4) :: Number_of_files_deleted = 4
+
+### Rule Section
+RULE-1: MoreAppsThanFiles(Number_of_apps_left, Number_of_files_left) :: Number_of_apps_left > Number_of_files_left
+
+### Inference Section
+INF-1: DifferenceInAppAndFileCount(Number_of_apps_left, Number_of_files_left) :: MoreAppsThanFiles(Number_of_apps_left, Number_of_files_left) & Number_of_apps_left > Number_of_files_left
+INF-2: DifferenceInAppAndFileCount(12, 5) :: INF-1 & 12 > 5

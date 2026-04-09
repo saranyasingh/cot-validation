@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_cakes(54)).
+fof(fact_2, axiom, total_pastries(143)).
+fof(fact_3, axiom, cakes_sold(68)).
+fof(fact_4, axiom, pastries_sold(92)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Q] : (total(Q) = sum(qs_sold) => remaining(Q) = 0)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining(total_cakes(54)) = 0).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, remaining(total_pastries(143)) = 0).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, remaining(total_pastries(143)) > remaining(total_cakes(54))).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_4, axiom, remaining(total_pastries(143)) - remaining(total_cakes(54)) = difference).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_5, axiom, difference = remaining(total_pastries(143)) - remaining(total_cakes(54))).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_6, axiom, difference = 51).

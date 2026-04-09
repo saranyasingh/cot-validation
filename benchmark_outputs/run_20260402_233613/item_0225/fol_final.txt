@@ -1,0 +1,8 @@
+### ## FACTS
+FACT-1: Robin has 28 packages of gum :: PackageCount(Robin, 28)
+
+### ## RULES
+RULE-1: If a person owns a certain number of packages, then each package contains a certain quantity :: ∀p (PackageOwner(p) → (∀c p, q, c ∈ Quantity(c)))
+
+### ## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Each package contains 4 pieces of gum :: PackageQuantity(4, PackageOwner(Robin))

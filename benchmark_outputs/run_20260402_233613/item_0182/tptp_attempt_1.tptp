@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, aquariums_tyler_has(56)).
+fof(fact_2, axiom, animals_per_aquarium(39)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by arithmetic
+fof(inf_1, axiom, total_saltwater_animals(56 * 39)).

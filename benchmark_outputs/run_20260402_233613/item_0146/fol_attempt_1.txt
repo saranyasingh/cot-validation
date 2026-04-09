@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: John uses 2 pieces of nails per plank :: 2 * nails_per_plank
+FACT-2: John plans to use 16 planks :: 16 * planks_used
+
+## RULES
+RULE-1: Total nails needed equals planks times nails per plank :: ∀(planks_used, nails_per_plank) -> (∀(planks_used, nails_per_plank) -> (TotalNails(planks_used, nails_per_plank)))
+
+## INFERENCES
+INF-1: John needs 32 nails for the house walls :: (TotalNails(16, 2))

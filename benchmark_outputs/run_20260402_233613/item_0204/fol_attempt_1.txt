@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+## RULES
+RULE-1: If someone has x Nintendo games, then they want to end up with y Nintendo games :: ∀x∀y(NintendoGames(person) → DesireToEndUpWith(y))
+
+RULE-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12)
+
+## INFERENCES
+INF-1: Kelly currently has 20 Nintendo games :: NintendoGames(kelly) :: NintendoGames(kelly) ∧ NintendoGameCount(20)
+
+INF-2: Kelly wants to end up with 12 Nintendo games :: DesireToEndUpWith(12) :: DesireToEndUpWith(12)
+
+INF-3: From INF-1 and RULE-1, Kelly wants to end up with 12 Nintendo games :: ∀x∀y(NintendoGames(x) → DesireToEndUpWith(y)) :: DesireToEndUpWith(12) :: DesireToEndUpWith(12)
+
+INF-4: If Kelly wants to end up with 12 Nintendo games, she must give away some Nintendo games :: DesireToEndUpWith(12) → NeedsToGiveAwaySomeNintendoGames :: DesireToEndUpWith(12) → NeedsToGiveAwaySomeNintendoGames
+
+INF-5: Since Kelly currently has 20 Nintendo games and wants to end up with 12, she needs to give away 8 Nintendo games :: NeedsToGiveAwaySomeNintendoGames :: NintendoGames(kelly) ∧ NintendoGameCount(20) → NeedsToGiveAwaySomeNintendoGames :: NeedsToGiveAwaySomeNintendoGames :: NeedsToGiveAwaySomeNintendoGames
+
+INF-6: Therefore, Kelly needs to give away 8 Nintendo games :: NeedsToGiveAwaySomeNintendoGames :: NintendoGames(kelly) ∧ NintendoGameCount(20) → NeedsToGiveAwaySomeNintendoGames :: NeedsToGiveAwaySomeNintendoGames :: NeedsToGiveAwaySomeNintendoGames
+
+This concludes the logical reasoning process based on the given premises.

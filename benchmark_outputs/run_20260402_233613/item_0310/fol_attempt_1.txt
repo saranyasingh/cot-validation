@@ -1,0 +1,6 @@
+INF-1: Julia played with 8 kids on Monday :: PlayedWithJulia(8)
+INF-2: Julia played with 11 kids on Tuesday :: PlayedWithJulia(11)
+INF-3: Julia played with 9 kids on Wednesday :: PlayedWithJulia(9)
+INF-4: Difference in number of kids on Tuesday vs. Wednesday :: DifferenceInKids(tuesday, wednesday)
+INF-5: Difference in number of kids on Tuesday vs. Wednesday = 11 - 9 :: DifferenceInKids(tuesday, wednesday)
+INF-6: Difference in number of kids on Tuesday vs. Wednesday = 2 :: DifferenceInKids(tuesday, wednesday)

@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: InitiallyOnFence(x) :: x
+
+## RULES
+RULE-1: TotalBirdsAfterJoining(InitialNumber, JoiningBirds, NewTotal) :: ∀x ∀y (∀z ((InitialNumber(z) ∧ JoiningBirds(y)) → NewTotal(z)))
+
+## INFERENCES
+INF-1: InitiallyOnFence(1) :: For all x such that x is an initial number of birds, if 4 birds join, then the total becomes 5 birds.

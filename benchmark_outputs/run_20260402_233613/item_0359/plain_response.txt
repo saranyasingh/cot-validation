@@ -1,0 +1,28 @@
+Let's break down the problem step by step:
+
+1. Initially, the waiter had 12 customers.
+2. Some customers left, and after that, he still had 14 customers.
+   - This means that \(12 - \text{some number of customers} = 14\).
+3. From this equation, we can find out how many customers left:
+   \[
+   12 - \text{some number of customers} = 14 \\
+   \text{some number of customers} = 12 - 14 = -2
+   \]
+   Since it's not possible to have negative customers, there must be an error in our initial assumption or calculation. Let's correct it.
+
+4. Instead, let's consider the scenario correctly:
+   - The waiter originally had 12 customers.
+   - After some left, he had 14 customers.
+   - So, the difference between these two numbers should give us the number of customers who left:
+     \[
+     \text{Number of customers who left} = 14 - 12 = 2
+     \]
+
+5. Now, if the waiter gets 10 new customers, we add them to his current count (which was 14 before getting more):
+   \[
+   \text{Current total customers} = 14 + 10 = 24
+   \]
+
+Therefore, the waiter has 24 customers now.
+
+The answer is: 24

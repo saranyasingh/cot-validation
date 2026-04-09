@@ -1,0 +1,18 @@
+```plaintext
+## FACTS
+FACT-1: Julia played tag with 18 kids :: PlayedTag(18)
+FACT-2: Julia played with 4 kids on Monday :: PlayedWithKids(Monday, 4)
+
+## RULES
+RULE-1: If someone plays tag with n kids, they play with all those kids :: ∀n (PlayedTag(n) → AllKidsPlayed(n))
+RULE-2: Given that someone played with k kids on mth day, the total played equals the sum over days :: SumPlayed(k, m)
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Julia played with 18 kids on any day :: PlayedTag(18)
+INF-2: From FACT-2, RULE-2 by SumPlayed: TotalPlayed = 4 + (k-1)*18
+   Substitute k = 14 in the equation: TotalPlayed = 4 + (14-1)*18
+   Simplify: TotalPlayed = 4 + 13*18
+   Final result: TotalPlayed = 238
+
+INF-3: Conclusion: Julia played with 14 kids on Tuesday :: PlayedWithKids(Tuesday, 14)
+```

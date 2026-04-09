@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_blocks_tower = 79).
+fof(fact_2, axiom, total_blocks_house = 82).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [BT, BH] : ( difference(BT, BH) = total_blocks_house - total_blocks_tower )).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, 3).

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, pages_of_reading_homework(3)).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1 by NumberPagesReadingHomework
+fof(inf_1, axiom, pages_of_reading_homework(3)).

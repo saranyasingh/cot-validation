@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: Initial storks and birds :: Storks(5), Birds(3)
+LABEL: New birds arriving :: ∀n (Arrived(n) → Birds(Birds(3) + n))
+
+### ## RULES
+There are no rules provided for this problem. We will use common sense to infer facts.
+
+### ## INFERENCES
+LABEL: Difference calculation :: ∀d (Birds(Birds(3) + d) ∧ Storks(5) → d = 2)

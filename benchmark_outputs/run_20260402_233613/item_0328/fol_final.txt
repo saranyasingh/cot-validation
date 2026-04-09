@@ -1,0 +1,3 @@
+FACT-1: Matthew has 8 crackers :: CrackerCount(mattew, 8)
+FACT-2: Matthew gives 2 crackers to each friend :: GivesCrackers(2, mattew, x)
+INF-1: Matthew gave crackers to 4 friends :: FriendsReceivedCrackers(mattew, 4)

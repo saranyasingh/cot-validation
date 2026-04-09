@@ -1,0 +1,9 @@
+### FACTS
+LABEL: BuildingHouseBlocks(89) :: NumberOfBlocksUsedForBuildingHouse;
+LABEL: BuildingTowerBlocks(63) :: NumberOfBlocksUsedForBuildingTower;
+
+### RULES
+LABEL: DifferenceBetweenBuildings(blocks_used_for_house, blocks_used_for_tower) -> blocks_used_for_house - blocks_used_for_tower;
+
+### INFERENCES
+LABEL: DifferenceBetweenBuildings(BuildingHouseBlocks(89), BuildingTowerBlocks(63)) :: NumberOfBlocksUsedForBuildingHouse - NumberOfBlocksUsedForBuildingTower;

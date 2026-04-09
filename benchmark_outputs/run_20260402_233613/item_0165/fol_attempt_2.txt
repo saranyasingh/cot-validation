@@ -1,0 +1,3 @@
+LABEL: Fact-1 :: LENGTH(room) = 5
+LABEL: Fact-2 :: AREA_REQUIRED = 10
+LABEL: Rule-1 :: WIDTH(room) = AREA_REQUIRED / LENGTH(room)

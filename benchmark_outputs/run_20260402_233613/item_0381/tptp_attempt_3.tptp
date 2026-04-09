@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, pages_per_book = 66).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ((66 = 66) => is_valid_book(66))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, is_valid_book(pages_per_book)).
+
+% From none by Given
+fof(inf_2, axiom, total_days = 492).
+
+% From none by Computation
+fof(inf_3, axiom, number_of_books = total_days / days_per_book).
+
+% From none by Computation
+fof(inf_4, axiom, number_of_books = 492 / 66).
+
+% From none by Computation
+fof(inf_5, axiom, number_of_books = 7.5).

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_flour(Nodes, FlourType) = 14).
+
+fof(fact_2, axiom, already_added(FlourType) = 5).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [FlourType] : (more_flour_needed(FlourType) = total_flour_needed(14) - already_added_flour(5))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, more_flour_needed(FlourType) = total_flour_needed(14) - already_added_flour(5)).

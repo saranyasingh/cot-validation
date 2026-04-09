@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, saw_harvesting(orange_sellers)).
+
+fof(fact_2, axiom, harvest_rate(sacks_per_day, 67)).
+
+fof(fact_3, axiom, oranges_per_sack(oranges_per_sack, 12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [HR, SN] : (total_oranges(HR, SN))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_oranges(harvest_rate, number_of_sacks)).
+
+% From fact_2, fact_3 by Substitution
+fof(inf_2, axiom, total_oranges(67, 35)).
+
+% From inf_1, inf_2 by Arithmetic
+fof(inf_3, axiom, total_oranges = 67 * 35).
+
+% From inf_3 by Simplification
+fof(inf_4, axiom, total_oranges = 2345).

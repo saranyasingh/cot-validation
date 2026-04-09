@@ -1,0 +1,37 @@
+To determine how many students are in the school, we need to consider two pieces of information:
+
+1. The number of classrooms.
+2. The seating capacity per bus and the total number of buses.
+
+Let's break this down into a logical syllogism:
+
+**Premise 1:** There are 84 classrooms in the school.
+
+This establishes the base number of classrooms.
+
+**Premise 2:** Each school bus is fully loaded with 118 seats.
+
+This gives us the seating capacity per bus.
+
+**Premise 3:** There are 95 school buses.
+
+This tells us about the number of buses available for transportation.
+
+Now, let's calculate the total seating capacity using these premises:
+
+- **Total Seating Capacity**: Number of Buses × Seats Per Bus
+
+Substitute the known values:
+\[ \text{Total Seating Capacity} = 95 \times 118 \]
+
+Perform the multiplication:
+\[ 95 \times 118 = 11,270 \]
+
+So, there are 11,270 student seats available across all the buses.
+
+Since we have already established that there are 84 classrooms, and assuming each classroom must be occupied (as no other factors are mentioned), the number of students in the school would be equal to the total seating capacity.
+
+Therefore, the answer is: 
+\[
+\boxed{11270}
+\]

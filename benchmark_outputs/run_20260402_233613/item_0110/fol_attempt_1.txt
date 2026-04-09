@@ -1,0 +1,8 @@
+**FACTS:**
+FACT-1: Luke's total score was 154 points :: TotalScore(Luke) = 154
+
+**RULES:**
+Rule-1: Number of rounds = Total score / Points per round :: Rule-1(154, 11)
+
+**INFERENCES:**
+INF-1: Number of rounds = 154 / 11 :: Rule-1(154, 11)

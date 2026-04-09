@@ -1,0 +1,12 @@
+Here is the chain-of-thought reasoning converted into structured First-Order Logic (FOL):
+
+### FACTS
+FACT-1: Matthew has 10 crackers and 8 cakes :: Cracker(x) ∧ Cake(y) ∧ x=10 ∧ y=8
+
+### RULES
+RULE-1: Equal distribution implies equal shares :: ∀(crackers, cakes, n) (Crackers(crackers) ∧ Cakes(cakes) ∧ n > 0 → (∀i (i <= n → Cracker(crackers[i]) ∧ Cake(cakes[i]))))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: If Matthew distributes crackers and cakes equally among his 4 friends, then each person will receive 2 crackers and 2 cakes. Therefore, each person eats 2 cakes. :: Infinecakes(x) ↔ Cake(cakes[4*x])
+
+This concludes the conversion process using the specified FOL structure.

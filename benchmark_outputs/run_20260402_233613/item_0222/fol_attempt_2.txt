@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: B1: BottleCapsAtStart(B)  
+LABEL: RULE-1 :: T1: ThrowAway(T) ∨ Find(F)  
+LABEL: INF-1 :: BottleCapsAtStart(B) ∧ BottleCapsAtEnd(52) → BottleCapsAtEnd(52)

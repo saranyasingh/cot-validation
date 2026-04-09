@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, morning_campers(n_52)).
+fof(fact_2, axiom, afternoon_campers(n_61)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (morning_campers(X) => afternoon_campers(X) - morning_campers(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Substitution
+fof(inf_1, axiom, afternoon_campers(n_61) - morning_campers(n_52) = 9).

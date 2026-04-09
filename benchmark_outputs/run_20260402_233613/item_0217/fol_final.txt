@@ -1,0 +1,22 @@
+### ## FACTS
+LABEL: FACT-1 :: BirdsOnFence(x, 2)
+LABEL: FACT-2 :: ?birds_came_to_join_the_initial_two
+
+### ## RULES
+LABEL: RULE-1 :: ∀x (BirdsOnFence(x, n) → BirdsOnFence(x, n+1))
+
+### ## INFERENCES
+LABEL: INFER-1 :: BirdsOnFence(x, 3)
+LABEL: INFER-2 :: BirdsOnFence(x, 4)
+LABEL: INFER-3 :: BirdsOnFence(x, 5)
+LABEL: INFER-4 :: BirdsOnFence(x, 6)
+
+# Inference Rule Summary
+**Inferences:**
+- From Fact-1: Initially, there were 2 birds on the fence.
+- From Fact-2: More birds came to join them, resulting in 3 birds.
+- From Fact-2: The next round, 4 birds came, making it 7 birds.
+- From Fact-2: Another set of birds joined, increasing the count to 8 birds.
+- From Fact-2: Finally, 6 birds sat on the fence, which matches the given information.
+
+Therefore, the answer is: **4**.

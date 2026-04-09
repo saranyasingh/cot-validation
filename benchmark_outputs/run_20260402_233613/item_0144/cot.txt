@@ -1,0 +1,52 @@
+To solve this problem logically, we need to follow these steps:
+
+### Step 1: Define Variables
+Let:
+- \( S \) be the number of snakes.
+- \( A \) be the number of alligators.
+
+From the problem statement:
+- Total number of animals = 79.
+- Number of snakes hiding = 24.
+- Number of alligators hiding = 51.
+
+### Step 2: Set Up Equations
+Using the given information, we can set up two equations based on the total number of animals and the number of hidden animals:
+\[ S + A = 79 \]
+\[ S - 24 + A - 51 = 0 \]
+
+The second equation accounts for the fact that the number of snakes hiding plus the number of alligators hiding equals zero (since they are all accounted for).
+
+### Step 3: Simplify the Second Equation
+Simplify the second equation:
+\[ S + A - 75 = 0 \]
+\[ S + A = 75 \]
+
+Now we have two equations:
+1. \( S + A = 79 \)
+2. \( S + A = 75 \)
+
+### Step 4: Solve for One Variable
+Since both equations equal \( S + A \), they must be equivalent:
+\[ 79 = 75 \]
+
+This contradiction indicates an error in our initial setup or interpretation. Let's re-evaluate the problem carefully.
+
+### Correct Approach:
+Given:
+- Total number of animals = 79.
+- Number of snakes hiding = 24.
+- Number of alligators hiding = 51.
+
+We should directly use the given numbers:
+- Total number of animals = 79.
+- Number of snakes hiding = 24.
+- Number of alligators hiding = 51.
+
+### Final Calculation:
+Subtract the number of hiding animals from the total number of animals:
+\[ \text{Number of animals not hiding} = 79 - (24 + 51) \]
+\[ \text{Number of animals not hiding} = 79 - 75 \]
+\[ \text{Number of animals not hiding} = 4 \]
+
+Therefore, the answer is: **4**.

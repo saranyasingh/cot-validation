@@ -1,0 +1,11 @@
+LABEL: ## FACTS :: 
+Fact-1: Mary needs 9 cups of flour to make the cake.
+Fact-2: Mary has already added 3 cups of flour to the mixture.
+
+LABEL: ## RULES :: 
+Rule-1: If someone adds x cups of flour, then they need to add y cups to reach the total.  
+Assuming 'y' represents the remaining amount of flour needed.
+
+LABEL: ## INFERENCES :: 
+Inference-1: Adding 3 cups leaves 6 cups to be added.  
+(Inference-1: 9 - 3 = 6)

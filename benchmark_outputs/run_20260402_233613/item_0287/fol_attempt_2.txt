@@ -1,0 +1,10 @@
+```plaintext
+## FACTS
+FACT-1: Rebecca has 18 eggs :: Eggs(18)
+
+## RULES
+RULE-1: If Rebecca has n eggs, then she can make k groups of 6 eggs each :: ∀n,k (Eggs(n) → GroupsOf6(n, k))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, we conclude: Rebecca can make 3 groups of 6 eggs each :: GroupsOf6(Eggs(18), 3)
+```

@@ -1,0 +1,3 @@
+LABEL: Total number of sacks harvested :: TotalHarvested(56, 4)
+LABEL: Number of days :: 4
+LABEL: Number of sacks per day :: SacksPerDay(TotalHarvested(56, 4), 4)

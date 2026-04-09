@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, cookies(paco, t_initial)).
+
+fof(fact_2, axiom, cookies(paco, t_eaten)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( eating(X) => ! [T] : ( (cookies(paco, T) & eating(X)) => cookies(paco, t_eaten) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ? [X] : ( eating(X) & cookies(paco, t_initial) & cookies(paco, t_eaten) ) ).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, ? [X] : ( eating(X) & cookies(paco, t_eaten) & less_than(21, X) & greater_than(7, X) ) ).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, ? [X] : ( eating(X) & cookies(paco, t_eaten) & equal(21, X) ) ).

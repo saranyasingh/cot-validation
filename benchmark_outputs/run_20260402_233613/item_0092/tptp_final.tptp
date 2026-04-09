@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, maker(170)).
+fof(fact_2, axiom, seller(78)).
+fof(fact_3, axiom, buyer(31)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (maker(X) => maker_count(X))).
+fof(rule_2, axiom, ! [Y] : (seller(Y) => seller_count(Y))).
+fof(rule_3, axiom, ! [Z] : (buyer(Z) => buyer_count(Z))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, maker_count(170)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, seller_count(78)).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, buyer_count(31)).
+
+% From fact_2, fact_3, rule_2, rule_3 by Definition
+fof(inf_4, axiom, ! [W] : (seller_count(W) != buyer_count(W))).

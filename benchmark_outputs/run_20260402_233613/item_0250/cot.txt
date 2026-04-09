@@ -1,0 +1,31 @@
+Let's break down this problem using a logical syllogism:
+
+1. **Premise 1:** There were originally 12 roses and 2 orchids in the vase.
+   - This establishes our starting point before any additional flowers were added.
+
+2. **Premise 2:** Jessica cut some more roses and orchids from her flower garden.
+   - This introduces an action (cutting) that occurred after the initial state described in Premise 1.
+
+3. **Premise 3:** After cutting, there are now 10 roses and 21 orchids in the vase.
+   - This provides us with the current state of the vase after the cuts.
+
+4. **Conclusion:** We need to determine how many orchids Jessica cut.
+
+To find out how many orchids Jessica cut, we can use the following steps based on these premises:
+
+- Let \( R \) represent the number of roses cut.
+- Let \( O \) represent the number of orchids cut.
+
+From Premises 2 and 3:
+\[ \text{Roses before} = 12 \]
+\[ \text{Orchids before} = 2 \]
+\[ \text{Roses after} = 10 \]
+\[ \text{Orchids after} = 21 \]
+
+Since no roses were added or removed, the total number of roses remains constant at 12. Therefore, the difference between the original number of roses and the new number of roses must be due to the orchids being cut:
+\[ 12 - 10 = 2 \]
+
+This means Jessica cut 2 orchids because adding 2 orchids would result in 21 orchids instead of the initial 2 orchids.
+
+Thus, the number of orchids Jessica cut is:
+The answer is: 2

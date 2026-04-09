@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: RazorbackShopSellsJerseysAt($76) :: RazorbackShop.Sells(Jerseys, $76)
+FACT-2: RazorbackShopSells2Jerseys :: RazorbackShop.Sells(2, Jeris)
+FACT-3: TotalRevenueFromJerseys(NumberOfJerseysSold, PricePerJersey) :: TotalRevenue(NumberOfJerseysSold, PricePerJersey)
+
+### RULES
+RULE-1: RevenueEqualsNumberOfJerseysTimesPrice(RelatedToNumber, RelatedToPrice) :: NumberOfJerseys * PricePerJersey = TotalRevenue
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Multiplication Law: The total revenue equals the number of jerseys sold times the price per jersey :: TotalRevenue(NumberOfJerseysSold, PricePerJersey)
+INF-2: From FACT-2, RULE-1 by Multiplication Law: The total revenue equals the number of jerseys sold times the price per jersey :: TotalRevenue(NumberOfJerseysSold, PricePerJersey)
+INF-3: From FACT-3, RULE-1 by Substitution: The total revenue equals the number of jerseys sold times the price per jersey :: TotalRevenue(NumberOfJerseysSold, PricePerJersey)
+INF-4: From INF-1, RULE-1 by Modus Ponens: The total revenue equals the number of jerseys sold times the price per jersey :: TotalRevenue(NumberOfJerseysSold, PricePerJersey)

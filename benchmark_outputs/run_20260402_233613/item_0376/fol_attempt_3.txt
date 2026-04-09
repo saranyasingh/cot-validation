@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Baker initially had 7 cakes :: Cake(7)
+FACT-2: Baker also had 148 pastries :: Pastries(148)
+
+## RULES
+RULE-1: If the initial amount of something is known, then the quantity remains unchanged until changed :: ∀a (Cake(a) → Cake(a))
+RULE-2: If an action changes the quantity of something, then the new quantity can be calculated based on the original quantity and the change :: ∀a b c (Cake(a) ∧ Cake(b) → Cake(c) ∧ Cake(c) = Cake(a) + Cake(b))
+
+## INFERENCES
+INF-1: After selling 15 cakes, the number of cakes remaining is the same as the initial number minus the sold ones :: ∀c (Cake(c) → Cake(c))
+INF-2: After selling 103 pastries, the number of pastries remaining is the same as the initial number minus the sold ones :: ∀p (Pastries(p) → Pastries(p))

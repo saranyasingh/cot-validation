@@ -1,0 +1,4 @@
+FACT-1: MachineMakesShirtsPerMinute(6) :: RateOfMachineMakingShirts
+FACT-2: MachineWorkedForToday(12) :: TimeMachineWasOperational
+RULE-1: NumberOfShirtsMadeToday(72) :: RateOfMachineMakingShirts * TimeMachineWasOperational
+INF-1: NumberOfShirtsMadeToday :: Rule1()

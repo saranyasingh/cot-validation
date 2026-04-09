@@ -1,0 +1,43 @@
+Let's break down this problem into a logical syllogism:
+
+Premise 1: Together Adam and Jackie have 12 apples.
+Premise 2: He (Adam) has 9 apples more than Adam and Jackie together do.
+Premise 3: Adam has 8 more apples than Jackie.
+
+From Premise 1:
+- Let \( A \) represent the number of apples Adam has.
+- Let \( J \) represent the number of apples Jackie has.
+
+The first statement tells us that:
+\[ A + J = 12 \]
+
+From Premise 2:
+- We know Adam has 9 apples more than what both have together.
+- This means Adam’s total should be \( 12 + 9 \).
+
+Substituting \( 12 + 9 \) for \( A \):
+\[ A = 12 + 9 \]
+\[ A = 21 \]
+
+From Premise 3:
+- Adam has 8 more apples than Jackie.
+- So if we denote Jackie’s apples as \( J \), then:
+\[ A = J + 8 \]
+
+Now substituting \( A = 21 \) into the equation:
+\[ 21 = J + 8 \]
+
+Solving for \( J \):
+\[ J = 21 - 8 \]
+\[ J = 13 \]
+
+Therefore, Jackie has 13 apples.
+
+To summarize our steps logically:
+1. Combined they have 12 apples.
+2. Adam has 9 more than combined.
+3. Adam has 8 more than Jackie.
+4. From these premises, we deduced Adam had 21 apples.
+5. Using this information about Adam, we found out Jackie had 13 apples.
+
+Thus, the answer is: He (Adam) has 21 apples.

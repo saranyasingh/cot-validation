@@ -1,0 +1,42 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). We'll break down each part of the reasoning into facts, rules, and inferrences.
+
+### Facts
+These are atomic formulas derived directly from the text without any quantification.
+
+#### Fact-1: There were 288 students surveyed.
+```
+Fact-1: 288_students_surveyed
+```
+
+### Rules
+These are universally quantified implications that encode external or linguistic knowledge.
+
+#### Rule-1: If a student suggests bacon, then there are no students suggesting mashed potatoes before them.
+```
+Rule-1: If_suggests_bacon_then_no_suggests_mashed_potatoes
+∀x (Suggests_Bacon(x) → (∀y (Suggests_Mashed_Potatoes(y) → y > x)))
+```
+
+### Inferrences
+These are derived conclusions based on the facts and rules. They cite their premises and the inference rule used.
+
+#### Inf-1: There are 24 students who suggested mashed potatoes.
+```
+Inf-1: 24_students_suggested_mashed_potatoes
+```
+
+### Final Conversion
+Here’s the final formatted output according to the specified guidelines:
+
+```plaintext
+## FACTS
+Fact-1: 288_students_surveyed :: 288_students_surveyed
+
+## RULES
+Rule-1: If_suggests_bacon_then_no_suggests_mashed_potatoes :: ∀x (Suggests_Bacon(x) → (∀y (Suggests_Mashed_Potatoes(y) → y > x)))
+
+## INFERENCES
+Inf-1: 24_students_suggested_mashed_potatoes :: Rule-1 with Premises Fact-1 and Rule-1
+```
+
+This structure ensures clarity and adheres to the required FOL format while maintaining the logical flow of the reasoning.

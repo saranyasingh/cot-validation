@@ -1,0 +1,5 @@
+FACT-1: There are 12 pencils :: Pencils(12)
+
+FACT-2: These pencils are to be placed into 3 rows :: Rows(3)
+
+INF-1: From FACT-1, RULE-1 by Division: Each row gets an equal share of the total pencils :: EqualPencilsPerRow(Pencils, Rows)

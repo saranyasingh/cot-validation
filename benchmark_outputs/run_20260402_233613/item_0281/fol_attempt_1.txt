@@ -1,0 +1,13 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+Fact-1: NumberOfUnripeOrangesHarvestedPerDay(71) :: ∀d (NumberOfUnripeOrangesHarvested(d) = 71)
+Fact-2: NumberOfRipeOrangesHarvestedPerDay(60) :: ∀d (NumberOfRipeOrangesHarvested(d) = 60)
+
+### RULES
+Rule-1: DifferenceBetweenHarvests(11) :: ∀d ((NumberOfUnripeOrangesHarvested(d) = 71) ∧ (NumberOfRipeOrangesHarvested(d) = 60)) → (∀d (NumberOfUnripeOrangesHarvested(d) - NumberOfRipeOrangesHarvested(d) = 11))
+
+### INFERENCES
+Inference-1: DifferenceBetweenHarvests(11) :: Fact-1 ∧ Fact-2 → Rule-1
+
+This FOL representation captures the logical structure of the problem using facts, rules, and inferred conclusions.

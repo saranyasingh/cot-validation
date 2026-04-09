@@ -1,0 +1,7 @@
+FACT-1: There are 16 people riding the Ferris wheel simultaneously :: PeopleOnFerrisWheel(16)
+
+FACT-2: The Ferris wheel has 4 seats :: SeatsOnFerrisWheel(4)
+
+RULE-1: Each seat can hold 4 people :: ∀s (Seats(s) → PeopleInSeat(s, 4)) 
+
+INF-1: Each seat holds 4 people :: PeopleInSeat(1, 4)

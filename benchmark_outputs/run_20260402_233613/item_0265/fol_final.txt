@@ -1,0 +1,4 @@
+LABEL: Fact 1 :: PushUps(Zachary, 51)
+LABEL: Fact 2 :: PushUps(David, 44)
+LABEL: Rule 1 :: DIFFERENCE(XA, XB, XC) :: ∀x y z ((Quantity(x, xa) ∧ Quantity(y, ya) ∧ Quantity(z, za)) → ∃w (DIFFERENT(w, x, y) ∧ DIFFERENT(w, y, z) ∧ Quantity(w, xa - ya) ∧ Quantity(w, za))))
+LABEL: Inference 1 :: DIFFERENCE(PushUps(Zachary, 51), PushUps(David, 44)) :: ∀a b c (Quantity(a, x) ∧ Quantity(b, y) ∧ Quantity(c, z) → (∃d (DIFFERENT(d, a, b) ∧ DIFFERENT(d, b, c) ∧ DIFFERENT(d, c, d) ∧ Quantity(d, x - y) ∧ Quantity(d, z))))

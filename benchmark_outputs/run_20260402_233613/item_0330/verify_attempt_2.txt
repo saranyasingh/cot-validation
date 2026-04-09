@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Directly stated: 7 roses in the vase.
+FACT-2: SUPPORTED — Directly stated: the garden had a total of 59 roses.
+RULE-1: PLAUSIBLE — A reasonable principle: final vase count equals initial vase count plus added roses.
+RULE-2: IMPLAUSIBLE — Misuses numbers: 59 − 7 = 52, not the number added (13); garden total and vase counts are distinct pools.

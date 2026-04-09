@@ -1,0 +1,8 @@
+**FACTS**
+FACT-1: Jack received 9 emails in the day :: TotalEmails(9)
+
+**RULES**
+RULE-1: Given the total emails received, if you know the number of emails received in the morning, you can calculate the number received in the afternoon :: RuleFact(Rule-1)
+
+**INFERENCES**
+INF-1: From FACT-1, RULE-1 by Subtraction: Jack received 2 emails in the afternoon :: EmailInAfternoon(TotalEmails(9) - MorningEmails(7))

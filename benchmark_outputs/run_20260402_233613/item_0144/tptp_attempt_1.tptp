@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, snakes_hidden = 24).
+fof(fact_2, axiom, alligators_hidden = 51).
+fof(fact_3, axiom, animals_total = 79).
+
+% --- RULES ---
+fof(rule_1, axiom, snakes_not_hiding = animals_total - snakes_hidden).
+fof(rule_2, axiom, alligators_not_hiding = animals_total - alligators_hidden).
+
+% --- INFERENCES ---
+% From fact_3, fact_1, rule_1 by Arithmetic
+fof(inf_1, axiom, snakes_not_hiding = 55).
+% From fact_3, fact_2, rule_2 by Arithmetic
+fof(inf_2, axiom, alligators_not_hiding = 28).
+% From inf_1, inf_2 by Arithmetic
+fof(inf_3, axiom, (snakes_not_hiding + alligators_not_hiding) = 83).

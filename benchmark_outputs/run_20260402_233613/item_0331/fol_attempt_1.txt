@@ -1,0 +1,13 @@
+This chain of thought can be translated into First-Order Logic (FOL) as follows:
+
+## FACTS
+FACT-1: Mom bought 70 white t-shirts :: TotalTShirts = 70
+FACT-2: Mom purchased these t-shirts in 14 separate packages :: Packages = 14
+
+## RULES
+RULE-1: If a total quantity is divided equally among a set number of groups, each group gets the same amount :: DividedQuantity(q, g) ≡ (∀i (0 ≤ i < g → q / g = TShirts[i]))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Division: If the total number of t-shirts is divided by the number of packages, each package gets the same number of t-shirts :: EachPackage = 5
+
+Therefore, each package contains 5 white t-shirts.

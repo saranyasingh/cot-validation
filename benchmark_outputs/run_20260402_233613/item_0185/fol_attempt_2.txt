@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Luke earned 3 points per round :: PointsPerRound(3)
+FACT-2: Luke reached a total score of 78 points :: TotalScore(78)
+
+## RULES
+RULE-1: Total Score = Rounds × Points Per Round :: Rule1(TotalPoints, Rounds, PointsPerRound)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, solve for Rounds: Rounds = TotalScore / PointsPerRound :: Rule2(INFER, RULE1, TotalScore, PointsPerRound)

@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, books_per_shelf = 23).
+fof(fact_2, axiom, magazines_per_shelf = 61).
+fof(fact_3, axiom, number_of_shelves = 29).
+
+% --- RULES ---
+fof(rule_1, axiom, total_books = books_per_shelf * number_of_shelves).
+fof(rule_2, axiom, total_magazines = magazines_per_shelf * number_of_shelves).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Multiply
+fof(inf_1, axiom, total_books = 23 * 29).
+
+% From fact_2, rule_2 by Multiply
+fof(inf_2, axiom, total_magazines = 61 * 29).
+
+% From inf_1, inf_2 by Addition
+fof(inf_3, axiom, total_items = 667 + 1769).

@@ -1,0 +1,39 @@
+Let's convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: Chapter1Pages = 60
+```
+
+### Rules
+```plaintext
+RULE-1: TotalBookPages = 93
+```
+
+### Inferences
+```plaintext
+INF-1: Chapter2Pages = TotalBookPages - Chapter1Pages
+INF-2: Chapter2Pages = 93 - 60
+INF-3: Chapter2Pages = 33
+```
+
+Now let’s translate these into FOL syntax:
+
+#### Facts
+```plaintext
+FACT-1: Chapter1Pages = 60
+```
+
+#### Rules
+```plaintext
+RULE-1: TotalBookPages = 93
+```
+
+#### Inferences
+```plaintext
+INF-1: Chapter2Pages = TotalBookPages - Chapter1Pages
+INF-2: Chapter2Pages = 93 - 60
+INF-3: Chapter2Pages = 33
+```
+
+These FOL statements capture the logical relationships and deductions made from the initial premise and subsequent calculations.

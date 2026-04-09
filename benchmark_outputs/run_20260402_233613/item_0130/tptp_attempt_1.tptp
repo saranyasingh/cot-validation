@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, pack_number = 28).
+fof(fact_2, axiom, pencil_count_per_pack = 24).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by arithmetic
+fof(inf_1, axiom, total_pencils = pack_number * pencil_count_per_pack).
+
+% From inf_1 by arithmetic
+fof(inf_2, axiom, total_pencils = 672).
+
+% From inf_2 by arithmetic
+fof(inf_3, axiom, rows = total_pencils / pencil_count_per_row).
+
+% From inf_3 by arithmetic
+fof(inf_4, axiom, pencil_count_per_row = 16).
+
+% From inf_4 by arithmetic
+fof(inf_5, axiom, rows = 672 / 16).
+
+% From inf_5 by arithmetic
+fof(inf_6, axiom, rows = 42).

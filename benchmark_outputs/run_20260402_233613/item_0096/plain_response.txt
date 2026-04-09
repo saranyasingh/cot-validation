@@ -1,0 +1,30 @@
+To determine how many chairs are left unoccupied after the party, we need to follow these steps:
+
+1. Calculate the total number of chairs available.
+2. Subtract the number of chairs occupied from the total number of chairs.
+
+First, let's calculate the total number of chairs:
+- There are 10 sets of tables.
+- Each set has 6 chairs.
+
+\[
+\text{Total number of chairs} = \text{Number of sets} \times \text{Chairs per set}
+\]
+\[
+\text{Total number of chairs} = 10 \times 6 = 60
+\]
+
+Next, we know that 11 people are sitting on chairs. Therefore, the number of chairs occupied is 11.
+
+Finally, we subtract the number of occupied chairs from the total number of chairs to find out how many are left unoccupied:
+
+\[
+\text{Unoccupied chairs} = \text{Total number of chairs} - \text{Occupied chairs}
+\]
+\[
+\text{Unoccupied chairs} = 60 - 11 = 49
+\]
+
+Thus, the number of chairs left unoccupied is 49.
+
+The answer is: 49

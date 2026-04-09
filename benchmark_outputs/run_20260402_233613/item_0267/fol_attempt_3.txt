@@ -1,0 +1,20 @@
+### ## FACTS
+1. **Fact-1:** Helen baked 144 chocolate chip cookies yesterday.
+   - **Helen bakes(ChocolateChipCookiesYesterday, Helen, 144)**
+
+2. **Fact-2:** Helen baked 85 raisin cookies this morning.
+   - **Helen bakes(RaisinCookiesToday, Helen, 85)**
+
+3. **Fact-3:** Helen baked 397 raisin cookies yesterday.
+   - **Helen bakes(RaisinCookiesYesterday, Helen, 397)**
+
+4. **Fact-4:** Helen baked 403 chocolate chip cookies this morning.
+   - **Helen bakes(ChocolateChipCookiesToday, Helen, 403)**
+
+### ## RULES
+None required for this scenario.
+
+### ## INFERENCES
+Since no new information about the distribution of cookies across days needs to be inferred beyond the given facts, there are no additional rules or inferences to derive based on the provided facts.
+
+**Final Answer:** 482

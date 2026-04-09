@@ -1,0 +1,15 @@
+### ## FACTS
+LABEL: #1 :: Books: 15
+LABEL: #2 :: Movies: 14
+LABEL: #3 :: Books read: 11
+LABEL: #4 :: Movies watched: 40
+
+### ## RULES
+No rules were used in this problem.
+
+### ## INFERENCES
+LABEL: #5 :: Remaining books: (15 - 11) = 4
+LABEL: #6 :: Remaining movies: (14 - 40) = -26 (indicating all movies have been watched.)
+LABEL: #7 :: Difference: 4 - (-26) = 30
+
+LABEL: #8 :: There are 30 more movies than books in the 'crazy silly school' series.

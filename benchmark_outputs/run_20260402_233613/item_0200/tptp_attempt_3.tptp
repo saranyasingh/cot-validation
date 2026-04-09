@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, length_of(room) = 20).
+fof(fact_2, axiom, width_of(room) = 19).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : ( difference( length_of(R), width_of(R) ) = length_of(R) - width_of(R) ) ).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Definition of Difference
+fof(inf_1, axiom, difference(20, 19) = 1).

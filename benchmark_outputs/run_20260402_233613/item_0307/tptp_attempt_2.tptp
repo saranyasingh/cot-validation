@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, money_gwen_has(2)).
+fof(fact_2, axiom, money_gwen_has(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [M1] : ! [M2] : ((money_gwen_has(M1) & money_gwen_has(M2)) => money_gwen_has(M1 + M2))).
+fof(rule_2, axiom, ! [M1] : ! [M2] : ((money_gwen_has(M1) & money_gwen_has(M2)) => money_gwen_has(M1 - M2))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, money_gwen_has(2)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, money_gwen_has(4)).
+% Gwen spends 3 dollars
+% From fact_1, rule_2 by Subtraction
+fof(inf_3, axiom, money_gwen_has(-3)).
+% The remaining money after spending
+% From inf_1, inf_2, and arithmetic
+fof(inf_4, axiom, money_gwen_has(2 + 4 - 3) = 3).

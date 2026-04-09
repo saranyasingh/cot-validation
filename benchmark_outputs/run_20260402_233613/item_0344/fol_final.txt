@@ -1,0 +1,25 @@
+```plaintext
+LABEL: ### FACTS ::
+
+FACT-1: Paul had 589 crayons initially :: Crayons(Paul, initial)
+
+FACT-2: Paul gave away 571 crayons to his friends :: CrayonsGiven(Paul, friends, 571)
+
+FACT-3: Paul lost 161 crayons :: CrayonsLost(Paul, 161)
+
+LABEL: ### RULES ::
+
+RULE-1: Given a person and an action, they have a certain quantity of something :: Crayons(Person, Action, Quantity)
+
+RULE-2: If someone has a quantity of something, giving some of it results in fewer crayons :: CrayonsMinus(CrystallineObject, Person, Amount, Result)
+
+RULE-3: Subtracting the same amount from both sides maintains equality :: EqualSubtraction(Amount1, Amount2, NewAmount)
+
+LABEL: ### INFERENCES ::
+
+INF-1: Paul gave away 410 more crayons than he lost :: CrayonsGiven(Paul, friends, 410)
+
+INF-2: The difference between the initial amount and the loss equals the amount given away :: CrayonsDiff(initial, loss, giveaway)
+
+INF-3: Paul had 410 more crayons after giving them away than he did initially :: CrayonsAfterGivingAway(Paul, giveaway)
+```

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Frank has an unknown number of pieces of candy :: UnknownNumber(x)
+FACT-2: He wants to distribute these candies equally among 26 bags :: DistributeCandies(26, x)
+FACT-3: Each bag contains exactly 33 pieces of candy :: ContainsCandy(33, _, _)
+
+## RULES
+RULE-1: If there are \( n \) pieces of candy and they are divided equally among 26 bags, then each bag gets \( \frac{n}{26} \) pieces of candy :: DividesEqually(n, 26, c)
+RULE-2: Given that each bag contains 33 pieces of candy, if Frank has \( x \) pieces of candy, then \( x = 26 \times 33 \) :: TotalCandies(x, 26, 33)
+
+## INFERENCES
+INF-1: From RULE-2, we can derive that the total number of pieces of candy Frank originally had is 858 :: TotalCandies(858, 26, 33)

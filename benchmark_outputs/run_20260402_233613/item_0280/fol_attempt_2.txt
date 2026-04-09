@@ -1,0 +1,10 @@
+```plaintext
+## FACTS
+FACT-1: HarvestUnripeOrangesPerDay :: 65 sacks/day
+
+## RULES
+RULE-1: TotalHarvestedOverDays :: ∀d (TotalHarvested(d) ↔ d ≤ 6)
+
+## INFERENCES
+INF-1: After 6 days of harvest, the total number of sacks of unripe oranges :: 55
+```

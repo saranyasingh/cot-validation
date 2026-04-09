@@ -1,0 +1,6 @@
+LABEL: Fact 1 :: NumberOfChildrenInitially = 28
+LABEL: Rule 1 :: ∀t (NumberChildrenOnBus(t) -> FinalNumberChildren(t) = NumberChildrenInitially + NumberChildrenOnBus(t) - NumberChildrenOffBus(t))
+LABEL: Inference 1 :: NumberChildrenOnBus - NumberChildrenOffBus = 2
+LABEL: Inference 2 :: NumberChildrenOnBus > 0
+LABEL: Inference 3 :: NumberChildrenOffBus > 0
+LABEL: Conclusion :: ∃y (y > 0 ∧ NumberChildrenOnBus(y) - NumberChildrenOffBus(y) = 2)

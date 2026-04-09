@@ -1,0 +1,39 @@
+To determine how many files Dave deleted, we need to follow these steps:
+
+1. **Identify Initial Total Items**: 
+   - Apps initially: 17
+   - Files initially: 21
+
+2. **Identify Remaining Items**:
+   - Apps remaining: 3
+   - Files remaining: 7
+
+3. **Calculate Deleted Items for Apps**:
+   - Initially total apps: 17
+   - Remaining apps: 3
+   - Deleted apps = Initial apps - Remaining apps
+   \[
+   \text{Deleted apps} = 17 - 3 = 14
+   \]
+
+4. **Calculate Deleted Items for Files**:
+   - Initially total files: 21
+   - Remaining files: 7
+   - Deleted files = Initial files - Remaining files
+   \[
+   \text{Deleted files} = 21 - 7 = 14
+   \]
+
+5. **Verify the Calculation**:
+   - We have calculated that Dave deleted 14 apps and 14 files.
+   - Adding back these values should give us the original counts:
+     \[
+     \text{Original apps} = \text{Deleted apps} + \text{Remaining apps} = 14 + 3 = 17
+     \]
+     \[
+     \text{Original files} = \text{Deleted files} + \text{Remaining files} = 14 + 7 = 21
+     \]
+
+Since both calculations match the initial counts, our solution is correct.
+
+Therefore, the number of files Dave deleted is \( \boxed{14} \).

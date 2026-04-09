@@ -1,0 +1,43 @@
+This problem involves basic arithmetic operations but requires careful consideration of the given premises and their logical application. Let’s break down the logical structure step-by-step:
+
+### Facts (atomic formulas):
+1. Each t-shirt is normally priced at $51.
+2. A discount of $8 was applied to each t-shirt during the event.
+3. They sold 130 t-shirts during this event.
+
+### Rules (general principles):
+1. If an item has a normal price \( P \), then after applying a discount \( D \), the new price becomes \( P - D \).
+2. Given the number of items sold \( N \), if each item costs \( P - D \), then the total revenue \( R \) is calculated as \( R = (P - D) \times N \).
+
+### Inferences (derived conclusions):
+From Premises 1 and 2, we can infer:
+- Normal price of each t-shirt: \( 51 \) dollars.
+- Discount applied to each t-shirt: \( 8 \) dollars.
+
+Using these facts, we can calculate the discounted price:
+- Discounted price per t-shirt: \( 51 - 8 = 43 \) dollars.
+
+Next, using the number of t-shirts sold:
+- Number of t-shirts sold: \( 130 \).
+
+Finally, calculating the total revenue:
+- Total revenue: \( 43 \times 130 = 5590 \) dollars.
+
+Thus, the Razorback t-shirt shop made \( \$5590 \) from selling the t-shirts during the Arkansas and Texas Tech game.
+
+**Output:**
+
+```
+## FACTS
+FACT-1: Each t-shirt is normally priced at $51 :: Price(tshirt, 51)
+FACT-2: A discount of $8 was applied to each t-shirt during the event :: Discount(8)
+FACT-3: They sold 130 t-shirts during this event :: Sold(tshirt, 130)
+
+## RULES
+RULE-1: If an item has a normal price \( P \), then after applying a discount \( D \), the new price becomes \( P - D \). :: ∀item (NormalPrice(item) → NewPrice(item, NormalPrice(item) - Discount))
+RULE-2: Given the number of items sold \( N \), if each item costs \( P - D \), then the total revenue \( R \) is calculated as \( R = (P - D) \times N \). :: ∀N (Sold(item, N) → TotalRevenue(TotalRevenue, NormalPrice(item) - Discount, N))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, the discounted price of each t-shirt is $43 :: DiscountedPrice(tshirt, 43)
+INF-2: Using the discounted price and the number of t-shirts sold, calculate the total revenue :: TotalRevenue(total_revenue, 43, 130)
+```

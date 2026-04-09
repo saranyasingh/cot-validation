@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, rose(12) & orchid(2)).
+fof(fact_2, axiom, cut_roses & cut_orchids).
+fof(fact_3, axiom, rose(10) & orchid(21)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y] : ((rose(X) & orchid(Y)) => rose_total(X, Y))).
+fof(rule_2, axiom, ! [X,Y] : ((rose(X) & rose_total(Y, X)) => rose_remaining(Y, X))).
+fof(rule_3, axiom, ! [X,Y] : ((orchid(X) & rose_total(Y, X)) => orchid_remaining(Y, X))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, cut_roses).
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_2, axiom, orchid_cut(11)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, rose_cut(2)).
+% Substituting the values given: 21 - 10 = 11
+% From fact_3, (OrchidCut(11))
+fof(inf_4, axiom, orchid_cut(11)).
+% Jessica cut a total of 2 orchids
+fof(inf_5, axiom, orchid_cut(2)).

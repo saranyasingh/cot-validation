@@ -1,0 +1,9 @@
+## FACTS
+- **Fact-1**: InitialAmount ::= P = \$128
+
+## RULES
+- **Rule-1**: RemainingMoney ::= ∀x ((Purchased)(x) → RemainingMoney(x))
+
+## INFERENCES
+- **Inf-1**: RemainingMoney ::= RemainingMoney(groceries)
+- **Inf-2**: RemainingMoney ::= RemainingMoney(\$128 - \$38)

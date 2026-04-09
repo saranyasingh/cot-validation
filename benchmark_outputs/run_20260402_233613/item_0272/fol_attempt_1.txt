@@ -1,0 +1,9 @@
+**FACTS**
+FACT-1: RazorbackTshirtShopRevenue(60) :: RazorbackTshirtShopTotalRevenue = $60
+FACT-2: RazorbackTshirtPricePerTshirt(10) :: RazorbackTshirtPricePerTshirt = $10
+
+**RULES**
+RULE-1: NumberOfTShirtsSold(total_revenue, price_per_tshirt) :: NumberOfTShirtsSold = total_revenue / price_per_tshirt
+
+**INFERENCES**
+INF-1: NumberOfTShirtsSold(RazorbackTshirtShopRevenue(60), RazorbackTshirtPricePerTshirt(10)) :: 6 t-shirts

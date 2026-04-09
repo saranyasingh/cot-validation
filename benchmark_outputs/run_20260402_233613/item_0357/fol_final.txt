@@ -1,0 +1,26 @@
+## FACTS
+1. **GroceryStoreHasThreeTypesOfSodas**: There exist three types of sodas available at the grocery store.
+   ```fola:: GroceryStore.HasThreeTypesOfSodas()
+```
+
+2. **QuantityOfRegularSoda**: There are 57 bottles of regular soda available.
+   ```fola:: Quantity.RegularSoda(57)
+```
+
+3. **QuantityOfDietSoda**: There are 26 bottles of diet soda available.
+   ```fola:: Quantity.DietSoda(26)
+```
+
+4. **QuantityOfLiteSoda**: There are 27 bottles of lite soda available.
+   ```fola:: Quantity.LiteSoda(27)
+```
+
+## RULES
+5. **TotalBottles**: The total number of bottles can be calculated by summing up the quantities of each type of soda.
+   ```fola:: TotalBottles = Quantity.RegularSoda + Quantity.DietSoda + Quantity.LiteSoda
+```
+
+## INFERENCES
+6. **TotalBottlesInfer**: By applying the rules derived from the facts, we conclude the total number of bottles available.
+   ```fola:: TotalBottles = 57 + 26 + 27 :: 110
+```

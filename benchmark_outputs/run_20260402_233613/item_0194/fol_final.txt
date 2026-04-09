@@ -1,0 +1,9 @@
+## FACTS
+LABEL: FACT-1 :: Fact-1 :: Debby bought 180 water bottles :: WaterBottles(180)
+LABEL: FACT-2 :: Fact-2 :: Debby drinks 54 soda bottles per day :: SodaBottlesPerDay(54)
+
+## RULES
+LABEL: RULE-1 :: Rule-1 :: Daily consumption can be calculated by dividing total bottles by daily consumption rate :: DailyConsumption(total_bottles, daily_consumption_rate) = total_bottles / daily_consumption_rate
+
+## INFERENCES
+LABEL: INFERENCE-1 :: Inf-1 :: How many days will water bottles last :: WaterBottles(180) / SodaBottlesPerDay(54) = DaysRemaining(12)

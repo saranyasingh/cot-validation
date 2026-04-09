@@ -1,0 +1,17 @@
+1. **Premise**: Frank has an unknown number of pieces of candy.
+   - This sets up our initial condition and introduces the variable we need to solve for.
+
+2. **Premise**: He wants to distribute these candies equally among 26 bags.
+   - This gives us information about how the candies will be distributed but not necessarily the total amount.
+
+3. **Premise**: Each bag contains exactly 33 pieces of candy.
+   - This provides the specific detail about the contents of each bag.
+
+4. **Conclusion**:
+   - To find out how many pieces of candy Frank originally had, we multiply the number of bags (26) by the number of pieces per bag (33).
+   - Therefore, \( \text{Total Pieces} = 26 \times 33 \).
+
+5. **Calculation**:
+   - \( 26 \times 33 = 858 \)
+
+The answer is: 858

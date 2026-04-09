@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, unknown_number(x)).
+fof(fact_2, axiom, distribute_candies(26, x)).
+fof(fact_3, axiom, contains_candy(33, _, _)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (divides_equally(N, 26, C))).
+fof(rule_2, axiom, ! [X] : (total_candies(X, 26, 33)).
+
+% --- INFERENCES ---
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_1, axiom, total_candies(858, 26, 33)).

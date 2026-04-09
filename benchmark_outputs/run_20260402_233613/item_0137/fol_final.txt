@@ -1,0 +1,8 @@
+### ## FACTS
+CandyTotal(Frank, 42)
+
+### ## RULES
+DivideIntoTwo(BagQuantity, TotalCandies) ::= ∀(x, y)(x + y = 2 * BagQuantity(x, y))
+
+### ## INFERENCES
+Distributes(CandiesInBag(Frank, 2), 21)

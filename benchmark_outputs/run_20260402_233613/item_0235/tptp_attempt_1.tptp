@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, page_count(chapter1) = 10).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [CH] : (chapter_length(CH) => length_of(CH) = pages_in_chapter(CH))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, pages_in_first_chapter(fact_1)).
+
+% From rule_1 by Given
+fof(inf_2, axiom, pages_in_first_chapter(rule_1)).
+
+% From inf_1, inf_2 by Conjunction
+fof(inf_3, axiom, pages_in_first_chapter(inf_1, inf_2)).

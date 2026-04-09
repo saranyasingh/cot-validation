@@ -1,0 +1,25 @@
+To determine how many total meters James runs in a week, we need to break down the problem into smaller steps and calculate accordingly.
+
+1. **Calculate the number of sprints per week:**
+   - James runs 3 sprints each time.
+   - He runs this 3 times a week.
+   \[
+   \text{Total sprints per week} = 3 \text{ sprints/time} \times 3 \text{ times/week} = 9 \text{ sprints/week}
+   \]
+
+2. **Calculate the distance run per sprint:**
+   - Each sprint is 60 meters long.
+   \[
+   \text{Distance per sprint} = 60 \text{ meters}
+   \]
+
+3. **Calculate the total distance run per week:**
+   - Multiply the number of sprints per week by the distance per sprint.
+   \[
+   \text{Total distance per week} = 9 \text{ sprints/week} \times 60 \text{ meters/sprint} = 540 \text{ meters/week}
+   \]
+
+Therefore, the total meters James runs in a week is:
+\[
+\boxed{540}
+\]

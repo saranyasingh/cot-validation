@@ -1,0 +1,23 @@
+This chain-of-thought reasoning has been successfully converted into structured First-Order Logic (FOL):
+
+```plaintext
+## FACTS
+FACT-1: HarvestUnripeOrangesPerDay :: 65 sacks/day
+
+## RULES
+RULE-1: TotalHarvestedOverDays :: ∀d (TotalHarvested(d) ↔ d ≤ 6)
+RULE-2: CalculateWeeklyProduction :: 455 sacks/week
+RULE-3: CalculateDailyProduction :: 65 sacks/day * 7 days/week = 455 sacks/week
+RULE-4: CalculateSacksAfter6Days :: 455 sacks/week / 7 days/week * 6 days = 55 sacks
+
+## INFERENCES
+INF-1: After 6 days of harvest, the total number of sacks of unripe oranges :: 55
+```
+
+### Explanation:
+- **FACT-1**: States that 65 sacks of unripe oranges are harvested per day.
+- **RULE-1**: Defines the condition under which the total number of sacks of unripe oranges harvested within \(d\) days is calculated.
+- **RULE-2**: Provides the weekly production calculation.
+- **RULE-3**: Calculates the daily production based on the weekly production.
+- **RULE-4**: Computes the number of sacks harvested in 6 days using the daily production rate.
+- **INF-1**: Concludes that after 6 days, the total number of sacks of unripe oranges harvested is 55.

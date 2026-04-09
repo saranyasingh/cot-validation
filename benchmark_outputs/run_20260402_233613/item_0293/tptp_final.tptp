@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, cake_made(54)).
+fof(fact_2, axiom, cake_remaining(13)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, number_of_cakes_sold(41)).

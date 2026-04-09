@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: HoursSpentOnEnglishDaily = 6
+FACT-2: HoursSpentOnChineseDaily = 7
+
+## RULES
+No rules needed for this straightforward calculation.
+
+## INFERENCES
+INF-1: DifferenceInLearningTime = HoursSpentOnChineseDaily - HoursSpentOnEnglishDaily :: 7 - 6
+INF-2: Conclusion: DifferenceInLearningTime = 1
+
+### FINAL ANSWER ###
+INF-1: DifferenceInLearningTime = 1 :: 7 - 6
+INF-2: Conclusion: DifferenceInLearningTime = 1

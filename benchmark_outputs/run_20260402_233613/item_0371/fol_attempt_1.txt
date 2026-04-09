@@ -1,0 +1,19 @@
+### FACTS
+FACT-1: BookHasTwoChapters :: TwoChapters
+FACT-2: FirstChapterLength48Pages :: Length(FirstChapter, 48)
+FACT-3: SecondChapterLength11Pages :: Length(SecondChapter, 11)
+
+### RULES
+RULE-1: SubtractLengthFromFirst :: ∀p (p = 0 → p ≠ 0) :: (∀p ((p = 0) → (¬(p ≠ 0))) → (p ≠ 0))
+RULE-2: BookStructure :: ∀b (b ∈ Book → b has Chapters) :: (∀b (b ∈ Book) → (∃c (c ∈ Chapters(b)) & c has Chapter))
+
+### INFERENCES
+INF-1: BookHasTwoChapters :: BookHasTwoChapters
+INF-2: FirstChapterIs48Pages :: FirstChapterIs48Pages
+INF-3: SecondChapterIs11Pages :: SecondChapterIs11Pages
+INF-4: DifferenceInPageCount :: ∀p (p = 0 → p ≠ 0) :: (∀p ((p = 0) → (¬(p ≠ 0))) → (p ≠ 0))
+INF-5: CalculateDifference :: FirstChapterLength48Pages - SecondChapterLength11Pages :: 37 Pages
+INF-6: MorePagesFirstChapter :: FirstChapterIs48Pages > SecondChapterIs11Pages :: 37 Pages > 0
+
+Therefore,
+LABEL: INF-5 :: MORE-PAGES-FIRST-CHAPTER :: FirstChapterIs48Pages - SecondChapterIs11Pages > 0

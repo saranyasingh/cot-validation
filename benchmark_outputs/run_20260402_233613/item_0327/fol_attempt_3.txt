@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: Rachel picked 2 apples from 1 of her trees :: Picked(2, tree1)
+
+### RULES
+RULE-1: If Rachel picks x apples from a tree, then the tree originally had y apples before picking :: ∀x,y (Picked(x, tree1) → Original(y, tree1))
+
+### INFERENCES
+INF-1: From Premise 1 and Rule-1, the tree originally had at least 9 apples before picking :: Original(9, tree1)
+INF-2: Since the tree originally had more than 2 apples before picking, it must have had 9 apples initially :: Original(9, tree1) (because 2+6=9)

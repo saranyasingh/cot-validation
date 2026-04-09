@@ -1,0 +1,11 @@
+### ## FACTS
+1. $\mathsf{PagesMathHomework} ::= 9$
+2. $\mathsf{PagesReadingHomework} ::= 2$
+3. $\mathsf{PagesBiologyHomework} ::= 96$
+
+### ## RULES
+1. $\mathsf{TotalPagesHomework} ::= (\mathsf{PagesMathHomework} + \mathsf{PagesReadingHomework} + \mathsf{PagesBiologyHomework}) ::= 9 + 2 + 96$
+
+### ## INFERENCES
+1. $\mathsf{DifferenceMathReadingHomework} ::= \mathsf{PagesMathHomework} - \mathsf{PagesReadingHomework} ::= 9 - 2$
+2. $\mathsf{FinalDifference} ::= \mathsf{DifferenceMathReadingHomework}$

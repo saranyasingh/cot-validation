@@ -1,0 +1,5 @@
+INF-1: They harvested a total of 56 sacks over 4 days :: TotalHarvested(56, 4)
+
+INF-2: Total number of sacks divided by the number of days gives the number of sacks per day :: SacksPerDay(TotalHarvested(56, 4), 4)
+
+INF-3: Calculating the result :: SacksPerDay = 14

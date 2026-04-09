@@ -1,0 +1,20 @@
+## FACTS
+
+**Fact-1:** Nell starts with 573 cards :: Nell(573)
+
+**Fact-2:** Nell gives 195 cards to John :: John(195)
+
+**Fact-3:** Nell has 210 cards left after giving cards to both John and Jeff :: Jeff(210)
+
+## RULES
+
+**Rule-1:** If Nell gives \( x \) cards to Jeff, then Nell will have \( 573 - x \) cards left :: ∀x (Nell(x) → Nell(573-x))
+
+## INFERENCES
+
+**Inference-1:** From Fact-1 and Rule-1, Nell gives 195 cards to John and has 378 cards left :: Nell(378)
+
+**Inference-2:** From Inference-1 and Rule-1, if Nell gives \( x \) cards to Jeff, she will have \( 573 - x \) cards left :: Nell(573-x)
+
+**Inference-3:** Solving for \( x \): \( 378 - x = 210 \) :: x = 168
+**Inference-4:** Therefore, Nell gave 168 cards to Jeff :: Jeff(168)

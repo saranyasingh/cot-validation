@@ -1,0 +1,26 @@
+Premise 1: They harvest 65 sacks of unripe oranges per day.
+Premise 2: They harvest 46 sacks of ripe oranges per day.
+Premise 3: We need to find out how many sacks of unripe oranges there will be after 6 days of harvest.
+
+To solve this problem, we need to calculate the total number of sacks of unripe oranges harvested over 6 days. 
+
+Step-by-step Logical Reasoning:
+
+1. **Identify the daily production**: 
+   - Unripe oranges are harvested at a rate of 65 sacks per day.
+
+2. **Calculate the weekly production**:
+   - Since there are 7 days in a week, we multiply the daily production by 7:
+     \[
+     65 \text{ sacks/day} \times 7 \text{ days/week} = 455 \text{ sacks/week}
+     \]
+
+3. **Calculate the production over 6 days**:
+   - To find out how much is produced in 6 days, we divide the weekly production by 7 and then multiply by 6:
+     \[
+     \frac{455 \text{ sacks/week}}{7 \text{ days/week}} \times 6 \text{ days} = 65 \text{ sacks/week} \times 0.857 \approx 55 \text{ sacks}
+     \]
+
+So, after 6 days of harvest, they will have approximately 55 sacks of unripe oranges.
+
+The answer is: 55

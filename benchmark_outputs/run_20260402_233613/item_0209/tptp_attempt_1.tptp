@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, saw_harvesting(orange_sellers)).
+fof(fact_2, axiom, harvest_rate(sacks_per_day, 67)).
+fof(fact_3, axiom, oranges_per_sack(oranges_per_sack, 12)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Multiplication
+fof(inf_1, axiom, total_oranges(harvest_rate, number_of_sacks)).
+% From inf_1 by Substitution
+fof(inf_2, axiom, total_oranges(67, 35)).
+% From inf_2 by Computation
+fof(inf_3, axiom, total_oranges_value = mul(67, 35)).
+% From inf_3 by Simplification
+fof(inf_4, axiom, total_oranges_value = 2345).

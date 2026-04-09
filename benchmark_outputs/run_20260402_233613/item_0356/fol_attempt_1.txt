@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: InitialCount(x) :: x = 3
+FACT-2: FoundMarbles(y) :: y = 6
+FACT-3: LostMarbles(z) :: z = 5
+
+### RULES
+RULE-1: TotalAfterFinding(w) :: w = InitialCount(x) + FoundMarbles(y)
+RULE-2: DifferenceBetweenFoundAndLost(u) :: u = FoundMarbles(y) - LostMarbles(z)
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Addition: TotalAfterFinding(9) :: TotalAfterFinding(9) = 3 + 6 = 9
+INF-2: From FACT-2, RULE-1 by Subtraction: DifferenceBetweenFoundAndLost(1) :: DifferenceBetweenFoundAndLost(1) = 6 - 5 = 1

@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought_house_for(80000, josh)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (total_cost = initial_price + repair_cost)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, new_value_after_repairs = original_value + increase_in_value).
+fof(inf_2, axiom, increase_in_value = percentage_increase * original_value).
+fof(inf_3, axiom, selling_price = new_value_after_repairs + total_cost).
+fof(inf_4, axiom, profit = selling_price - total_cost).
+fof(inf_5, axiom, profit = 20000).

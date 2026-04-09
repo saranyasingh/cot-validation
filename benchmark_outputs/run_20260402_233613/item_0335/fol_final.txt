@@ -1,0 +1,12 @@
+### ## FACTS
+FACT-1: Total number of pupils = 485 :: TotalPupils(485)
+FACT-2: Number of girls = 232 :: Girls(232)
+
+### ## RULES
+RULE-1: Total number of pupils equals sum of girls and boys :: ∀pupil (TotalPupils(pupil) ↔ Girls(pupil) ∨ Boys(pupil))
+RULE-2: Subtracting the number of girls from the total number of pupils gives the number of boys :: ∀total_pupils (TotalPupils(total_pupils) → Boys(total_pupils - Girls(total_pupils)))
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1 by existential instantiation: There exists a pupil who is either a girl or a boy :: ∃pupil (Girls(pupil) ∨ Boys(pupil))
+INF-2: From INF-1 by universal instantiation: A specific pupil is either a girl or a boy :: Boys(x)
+INF-3: From INF-2 and RULE-2 by Modus Ponens: The number of boys can be found by subtracting the number of girls from the total number of pupils :: Boys(TotalPupils - Girls)

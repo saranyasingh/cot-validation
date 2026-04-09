@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Baker made 19 cakes :: MadeCakes(19)
+FACT-2: Baker made 131 pastries :: MadePastries(131)
+
+## RULES
+RULE-1: Sold cakes implies Remaining cakes :: ∀c (SoldCakes(c) → RemainingCakes(c)) [IMPLAUSIBLE]
+RULE-2: Sold pastries implies Remaining pastries :: ∀p (SoldPastries(p) → RemainingPastries(p)) [IMPLAUSIBLE]
+
+## INFERENCES
+INF-1: Remaining cakes :: RemainingCakes(19)
+INF-2: Remaining pastries :: RemainingPastries(131)
+INF-3: Difference :: RemainingPastries() - RemainingCakes() [IMPLAUSIBLE]

@@ -1,0 +1,18 @@
+To solve this problem, we need to determine how many baskets contain a total of 10 peaches, given that each basket contains an equal number of red and green peaches.
+
+Given:
+- Each basket has 4 red peaches.
+- Each basket also has 6 green peaches.
+- The total number of peaches per basket = 4 (red) + 6 (green) = 10 peaches.
+
+Now, since the total number of peaches per basket is exactly 10, it means that every single basket must contain these 10 peaches.
+
+Therefore, the number of baskets containing peaches is simply the total number of peaches divided by the number of peaches per basket:
+
+Number of baskets = Total number of peaches / Number of peaches per basket
+
+Number of baskets = 10 / 10
+
+Number of baskets = 1
+
+So, the answer is: 1

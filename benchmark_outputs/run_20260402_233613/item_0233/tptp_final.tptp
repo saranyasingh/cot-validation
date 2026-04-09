@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, math_homework(rachel, 7)).
+fof(fact_2, axiom, reading_homework(rachel, 11)).
+fof(fact_3, axiom, biology_homework(rachel, 8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : (completed(N, s) => total(N, s))).
+fof(rule_2, axiom, ! [A,B,C] : ((A > B) => (A - B = C))).
+
+% --- INFERENCES ---
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_1, axiom, reading_homework(rachel, 11)).
+% From FACT-3, RULE-1 by Modus Ponens
+fof(inf_2, axiom, biology_homework(rachel, 8)).
+% From inf_1, inf_2 by Subtraction
+fof(inf_3, axiom, reading_homework(rachel, 11) - biology_homework(rachel, 8) = 3).

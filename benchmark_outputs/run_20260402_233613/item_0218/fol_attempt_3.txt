@@ -1,0 +1,14 @@
+## FACTS
+```plaintext
+FACT-1: Marco's strawberries = 15 pounds.
+```
+
+## RULES
+```plaintext
+RULE-1: If x weighs y pounds, then y + z = TotalWeight -> z = TotalWeight - y.
+```
+
+## INFERENCES
+```plaintext
+INF-1: His dad's strawberries = TotalWeight - Marco's strawberries.
+```

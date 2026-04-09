@@ -1,0 +1,59 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). We'll identify facts, rules, and inferences based on the provided information.
+
+### Facts
+These are direct statements about the problem without any quantification.
+
+#### Fact-1: Total cakes made = 126
+\[
+C_{cakes} = 126
+\]
+
+#### Fact-2: Total pastries made = 48
+\[
+P_{pastries} = 48
+\]
+
+### Rules
+These are universally quantified implications that represent external or linguistic knowledge.
+
+#### Rule-1: If cakes are sold, then the remaining cakes are equal to the total cakes minus the cakes sold.
+\[
+\forall x (\text{CakeSold}(x) \rightarrow \text{RemainingCakes}(x) = C_{cakes})
+\]
+
+#### Rule-2: If pastries are sold, then the remaining pastries are equal to the total pastries minus the pastries sold.
+\[
+\forall y (\text{PastrySold}(y) \rightarrow \text{RemainingPastries}(y) = P_{pastries})
+\]
+
+### Inferences
+These are derived conclusions based on the facts and rules.
+
+#### Inference-1: Remaining cakes after selling 115 cakes.
+\[
+\text{RemainingCakes}(115) = C_{cakes} - 115
+\]
+
+Since \(C_{cakes} = 126\) and \(115 < 126\):
+
+\[
+\text{RemainingCakes}(115) = 126 - 115 = 11
+\]
+
+#### Inference-2: Remaining pastries after selling 81 pastries.
+\[
+\text{RemainingPastries}(81) = P_{pastries} - 81
+\]
+
+Since \(P_{pastries} = 48\) and \(81 > 48\):
+
+\[
+\text{RemainingPastries}(81) = 48 - 81 = -33
+\]
+
+This result indicates that the baker ran out of pastries before selling all of them. Therefore, it’s impossible to sell 81 pastries when only 48 were initially available.
+
+### Final Answer:
+The baker made 11 more cakes than pastries. The correct answer is:
+
+**The answer is: 11**

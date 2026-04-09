@@ -1,0 +1,17 @@
+### FACTS
+FACT-1: Rachel completed 7 pages of math homework :: MathHomework(Rachel, 7)
+FACT-2: Rachel completed 11 pages of reading homework :: ReadingHomework(Rachel, 11)
+FACT-3: Rachel completed 8 pages of biology homework :: BiologyHomework(Rachel, 8)
+
+### RULES
+RULE-1: If someone completes \( n \) pages of a subject, then the total pages of that subject completed equals \( n \). :: ∀n (Completed(n, s) → Total(n, s))
+RULE-2: The difference between two quantities can be found by subtracting the smaller quantity from the larger quantity. :: ∀a b c (a > b → a - b = c)
+
+### INFERENCES
+INF-1: From FACT-2 and RULE-1, the total pages of reading homework completed equals 11 :: ReadingHomework(Rachel, 11)
+INF-2: From FACT-3 and RULE-1, the total pages of biology homework completed equals 8 :: BiologyHomework(Rachel, 8)
+INF-3: The difference between reading homework and biology homework is calculated as follows:
+\[
+ReadingHomework(Rachel, 11) - BiologyHomework(Rachel, 8) = 3
+\]
+INF-4: Therefore, Rachel had 3 more pages of reading homework than biology homework :: ReadingHomework(Rachel, 11) - BiologyHomework(Rachel, 8) = 3

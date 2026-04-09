@@ -1,0 +1,22 @@
+### FACTS
+FACT-1: Olivia had 3 dollars in her wallet initially :: WalletAmount(olivia, t_initial) = 3
+
+FACT-2: Olivia collected 49 dollars from an ATM :: WalletAmount(olivia, t_atm) = 49
+
+### RULES
+RULE-1: If someone starts with X dollars and spends Y dollars, they end with Z dollars :: WalletAmount(person, spending_time) = WalletAmount(person, starting_time) - Spending(Y)
+
+### INFERENCES
+INF-1: Olivia's wallet amount before ATM collection is 3 dollars :: WalletAmount(olivia, t_atm) = WalletAmount(olivia, t_initial) - Spending(49)
+
+INF-2: After collecting from the ATM, Olivia ends up with 49 dollars :: WalletAmount(olivia, t_atm) = 49
+
+INF-3: Since both scenarios lead to the same final amount (49 dollars), the net change must be zero :: WalletAmount(olivia, t_final) = WalletAmount(olivia, t_initial) - Spending(49) = 49
+
+INF-4: Therefore, Olivia's initial amount minus the net change equals the final amount :: WalletAmount(olivia, t_initial) - Spending(49) = FinalWalletAmount(olivia, t_final) = 3
+
+INF-5: Given the conditions, Olivia's initial amount is precisely the amount she ends up with after all transactions :: WalletAmount(olivia, t_final) = WalletAmount(olivia, t_initial) = 3
+
+INF-6: Thus, the net effect of the transactions leaves her balance unchanged at 3 dollars :: FinalWalletAmount(olivia, t_final) = WalletAmount(olivia, t_initial) = 3
+
+INF-7: The difference between what Olivia collected from the ATM and what she spent at the supermarket is zero :: 49 - 49 = 0

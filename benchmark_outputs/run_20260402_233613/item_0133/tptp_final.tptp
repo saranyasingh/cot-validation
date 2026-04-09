@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, cracker_count(matthew, t_start) = 31).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (cracker_count(friend, T) => cracker_count(matthew, T) = cracker_count(matthew, T) - cracker_count(friend, T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, cracker_count(matthew, t_end) = cracker_count(matthew, t_start) - 8).

@@ -1,0 +1,33 @@
+Let's break down this problem into a series of logical steps:
+
+1. **Initial State**: There were initially 22 children on the bus.
+   - Premise: "There were initially 22 children on the bus."
+
+2. **Event A**: Some number of children got off the bus.
+   - Let's denote the number of children who got off as \( x \).
+   - Premise: "At the bus stop, 40 children got on the bus and some got off the bus."
+
+3. **Final State**: After these events, there were 2 children on the bus.
+   - This means that after 40 children got on and \( x \) children got off, we have:
+     \[
+     (22 + 40) - x = 2
+     \]
+   - Simplifying the equation:
+     \[
+     62 - x = 2
+     \]
+
+4. **Solve for \( x \)**:
+   - To find \( x \), subtract 2 from both sides of the equation:
+     \[
+     62 - 2 = x
+     \]
+     \[
+     x = 60
+     \]
+
+5. **Conclusion**:
+   - Therefore, 60 children got off the bus at the bus stop.
+   - Final Answer: The number of children who got off the bus at the bus stop is 60.
+
+This logical syllogism shows how each step logically leads to the conclusion based on the initial conditions and subsequent changes described in the problem statement.

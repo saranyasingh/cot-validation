@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, baker_made(52, pastries)).
+fof(fact_2, axiom, baker_made(84, cakes)).
+fof(fact_3, axiom, baker_sold(102, cakes)).
+fof(fact_4, axiom, baker_sold(94, pastries)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Type] : (quantity_of(X, Type) => type_of(X, Type))).
+fof(rule_2, axiom, ! [X, Y, Type] : (sold(X, Y) => minus(quantity_of(X, Type), Y))).
+fof(rule_3, axiom, ! [X, Y, Type] : (remaining(X, Type) => plus(quantity_of(X, Type), Y))).
+fof(rule_4, axiom, ! [A, B] : (difference(A, B) => minus(A, B))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, baker_made(cakes, 84)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, baker_made(pastries, 52)).
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_3, axiom, baker_sold(cakes, 102)).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, baker_sold(pastries, 94)).
+% From inf_1, rule_3 by Modus Ponens
+fof(inf_5, axiom, remaining(cakes, 84)).
+% From inf_2, rule_3 by Modus Ponens
+fof(inf_6, axiom, remaining(pastries, 52)).
+% From inf_1, inf_2 by Rule 4
+fof(inf_7, axiom, difference(cakes, pastries, 32)).
+% From inf_7 by arithmetic comparison (MoreThanDifference)
+fof(inf_8, axiom, 84 > 52).

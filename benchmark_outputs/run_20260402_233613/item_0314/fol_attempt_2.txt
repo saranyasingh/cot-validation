@@ -1,0 +1,3 @@
+### LABEL: Premise 1 :: TotalEmails(9)
+### LABEL: Premise 2 :: MorningEmails(7)
+### LABEL: Conclusion :: EmailInAfternoon(TotalEmails(9) - MorningEmails(7))

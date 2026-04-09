@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED — Directly stated as total snakes (95) in the story.
+FACT-2: SUPPORTED — Directly stated as hiding snakes (64) in the story.
+RULE-1: PLAUSIBLE — NotHidingCount(TotalSnakes, HidingSnakes) is a reasonable principle (not hiding = total minus hiding).

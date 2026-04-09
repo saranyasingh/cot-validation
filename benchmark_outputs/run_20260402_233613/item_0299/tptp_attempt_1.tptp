@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, storks(5)).
+
+fof(fact_2, axiom, birds(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ( arrived(N) => birds( plus( birds(3), N) ) ) ).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, ! [D] : ( ( birds( plus( birds(3), D) ) & storks(5) ) => D = 2 ) ).

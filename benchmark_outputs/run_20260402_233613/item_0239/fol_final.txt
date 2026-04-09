@@ -1,0 +1,20 @@
+### ## FACTS
+```plaintext
+# FACT-1: InitialNumberOfBooksPaulHad :: 134
+# FACT-2: BooksGivenAway :: 39
+# FACT-3: FinalNumberOfBooksLeft :: 68
+```
+
+### ## RULES
+```plaintext
+# RULE-1: AfterGivingAWay :: ∀b (gaveAway(b) → RemainingBooks(b))
+# RULE-2: IfRemainingBooksAre(x), thenSoldBooksAtSale :: SoldBooksDuringSale(x)
+# RULE-3: SolveForBooksSold :: ∀x (RemainingBooksAfterSale - SoldBooksDuringSale == InitialNumberOfBooks - BooksGivenAway)
+```
+
+### ## INFERENCES
+```plaintext
+# INF-1: From FACT-1 and RULE-1: RemainingBooks(134) :: 95
+# INF-2: From INF-1 and RULE-2: SoldBooksDuringSale(95) :: 27
+# INF-3: From INF-2 and RULE-3: SoldBooksDuringSale(27) :: 27
+```

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, girls_in_school(902)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (girls_in_school(X) => girls_in_school(plus(X, 44)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, girls_in_school(946)).

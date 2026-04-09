@@ -1,0 +1,10 @@
+LABEL: FACT-1 :: MathHomework(Rachel, 7)
+LABEL: FACT-2 :: ReadingHomework(Rachel, 11)
+LABEL: FACT-3 :: BiologyHomework(Rachel, 8)
+
+LABEL: RULE-1 :: ∀n (Completed(n, s) → Total(n, s))
+LABEL: RULE-2 :: ∀a b c (a > b → a - b = c)
+
+LABEL: INF-1 :: ReadingHomework(Rachel, 11)
+LABEL: INF-2 :: BiologyHomework(Rachel, 8)
+LABEL: INF-3 :: 11 - 8 = 3

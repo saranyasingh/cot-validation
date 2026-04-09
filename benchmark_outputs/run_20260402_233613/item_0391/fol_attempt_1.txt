@@ -1,0 +1,29 @@
+### FACTS
+FACT-1: MoneySpentOnBooks(x) :: x = 6  
+FACT-2: MoneySpentOnPens(y) :: y = 16  
+
+### RULES
+RULE-1: TotalExpenditure(z) :: z = MoneySpentOnBooks(x) + MoneySpentOnPens(y)  
+
+### INFERENCES
+INF-1: InitialAmount(w) :: w = TotalExpenditure(z) + RemainingMoney(v)  
+
+INF-2: RemainingMoney(v) :: v = 19  
+
+INF-3: InitialAmount(w) :: w = TotalExpenditure(z) + 19  
+
+INF-4: InitialAmount(w) :: w = 22 + 19  
+
+INF-5: InitialAmount(w) :: w = 41  
+
+#### LABELS
+FACT-1: MoneySpentOnBooks(x) :: x = 6  
+RULE-1: TotalExpenditure(z) :: z = MoneySpentOnBooks(x) + MoneySpentOnPens(y)  
+INF-1: InitialAmount(w) :: w = TotalExpenditure(z) + RemainingMoney(v)  
+INF-2: RemainingMoney(v) :: v = 19  
+INF-3: InitialAmount(w) :: w = TotalExpenditure(z) + 19  
+INF-4: InitialAmount(w) :: w = 22 + 19  
+INF-5: InitialAmount(w) :: w = 41  
+
+### FINAL ANSWER
+INF-5: InitialAmount(w) :: w = 41

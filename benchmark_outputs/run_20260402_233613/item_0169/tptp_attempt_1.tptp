@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, money_received(gwen, mom, 8)).
+fof(fact_2, axiom, money_received(gwen, dad, 5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B] : (difference_calc(A, B) <=> (A - B))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_calc(money_received(gwen, mom, 8), money_received(gwen, dad, 5))).

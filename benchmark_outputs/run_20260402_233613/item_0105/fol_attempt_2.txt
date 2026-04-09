@@ -1,0 +1,15 @@
+### ## FACTS
+**FACT-1:** Ryan spends 4 hours per day on learning English :: LearningEnglish(4, t_day)
+**FACT-2:** Ryan spends 6 hours per day on learning Chinese :: LearningChinese(6, t_day)
+**FACT-3:** Ryan spends 86 days learning each language :: NumberOfDaysLearning(86, LearningEnglish, 4)
+**FACT-4:** Ryan spends 86 days learning each language :: NumberOfDaysLearning(86, LearningChinese, 6)
+
+### ## RULES
+**RULE-1:** For every day, Ryan spends hours on learning English :: ∀t (LearningEnglish(hours_on_English, t))
+**RULE-2:** For every day, Ryan spends hours on learning Chinese :: ∀t (LearningChinese(hours_on_Chinese, t))
+**RULE-3:** The total hours spent on learning each language is calculated based on the daily hours and the number of days :: TotalHoursSpent(LearningLanguage, Language_hours_per_day, NumberOfDaysLearning(NumberOf_days)) = Language_hours_per_day * NumberOfDaysLearning(NumberOf_days)
+
+### ## INFERENCES
+**INF-1:** Ryan spends 4 hours per day on learning English :: TotalHoursSpent(LearningEnglish, 4, NumberOfDaysLearning(86))
+**INF-2:** Ryan spends 6 hours per day on learning Chinese :: TotalHoursSpent(LearningChinese, 6, NumberOfDaysLearning(86))
+**INF-3:** The total hours spent on learning English and Chinese are added together :: TotalHoursSpentCombined(TotalHoursSpent(LearningEnglish, 4, NumberOfDaysLearning(86)), TotalHoursSpent(LearningChinese, 6, NumberOfDaysLearning(86))) = TotalHoursSpent(LearningEnglish, 4, NumberOfDaysLearning(86)) + TotalHoursSpent(LearningChinese, 6, NumberOfDaysLearning(86))

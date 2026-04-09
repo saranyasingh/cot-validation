@@ -1,0 +1,11 @@
+LABEL: Fact-1 :: 466 pots :: Pots(466)
+LABEL: Fact-2 :: 53 flowers per pot :: FlowersPerPot(53)
+LABEL: Fact-3 :: 181 sticks per pot :: SticksPerPot(181)
+
+LABEL: Rule-1 :: TotalFlowers(P) :: P * FlowersPerPot(P)
+LABEL: Rule-2 :: TotalSticks(P) :: P * SticksPerPot(P)
+LABEL: Rule-3 :: Total(FlowsAndSticks(P)) :: TotalFlowers(P) + TotalSticks(P)
+
+LABEL: Inference-1 :: TotalFlowers(466) :: 466 * 53 :: 24798
+LABEL: Inference-2 :: TotalSticks(466) :: 466 * 181 :: 84046
+LABEL: Inference-3 :: Total(FlowsAndSticks(466)) :: 24798 + 84046 :: 108844

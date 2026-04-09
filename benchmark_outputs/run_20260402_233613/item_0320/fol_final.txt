@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Mary needs sugar for her cake :: NeedsSugarForCake(mary)
+FACT-2: Recipe requires 5 cups of sugar :: RequiresSugar(5, sugar)
+FACT-3: Recipe requires 14 cups of flour :: RequiresFlour(14, flour)
+
+## RULES
+RULE-1: Needs sugar if there's sugar required :: ∀s (NeedsSugar(s) → Exists s' (RequiresSugar(s', s)))
+RULE-2: Flour is required :: FlourRequired(flour)
+
+## INFERENCES
+INF-1: From Fact-1 and Rule-1, we derive:
+∀m (MaryNeedsSugar(m) → Exists m' (NeedsSugar(m', mary)))
+INF-2: From Fact-2 and Rule-2, we derive:
+∀f (FlourRequired(f) → Exists f' (NeedsSugar(f', flour)))
+INF-3: From Facts-1 and Facts-2, we can infer:
+∃m (MaryNeedsSugar(m) ∧ FlourRequired(f)) :: BothConditionsMet
+INF-4: Combining INF-1 and INF-2, we get:
+∀m (MaryNeedsSugar(m) → Exists m' (NeedsSugar(m', mary))) ∧ ∀f (FlourRequired(f) → Exists f' (NeedsSugar(f', flour))) :: BothConditionsMetWithSpecificValues
+INF-5: Using INF-4, we deduce:
+NeedsSugarForCake(mary) ∧ FlourRequired(f) :: BothConditionsMetWithSpecificValues
+INF-6: Calculate the difference:
+SugarNeeded - FlourAdded = 5 - 11 = -6 :: NegativeDifference
+INF-7: Interpretation: Mary needs to add 6 fewer cups of sugar compared to the total required.

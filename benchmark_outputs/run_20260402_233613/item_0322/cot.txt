@@ -1,0 +1,51 @@
+Let's break down this problem using a logical syllogism:
+
+**Premise 1:** Paul started with 2 books.
+- This establishes the initial number of books Paul had before any sales or purchases.
+
+**Premise 2:** After selling some books and buying 150 new ones, Paul now has 58 books.
+- We know the current total number of books (58) after these transactions.
+
+To find out how many books Paul sold, we need to determine what happened between his starting point and his current count. 
+
+**Step-by-step Reasoning:**
+
+1. **Initial Number of Books**: Let \( B_0 \) be the initial number of books Paul had. From Premise 1, we have:
+   \[
+   B_0 = 2
+   \]
+
+2. **Books Bought**: Let \( B_{\text{new}} \) be the number of new books Paul bought. According to Premise 2, Paul bought 150 new books:
+   \[
+   B_{\text{new}} = 150
+   \]
+
+3. **Total Books After Purchase**: The total number of books after purchasing new ones should equal the sum of the initial books plus the new books:
+   \[
+   B_0 + B_{\text{new}} = \text{Total Books}
+   \]
+   Substituting the known values:
+   \[
+   2 + 150 = \text{Total Books}
+   \]
+   Therefore,
+   \[
+   \text{Total Books} = 152
+   \]
+
+4. **Books Sold Calculation**: To find out how many books were sold, subtract the initial number of books from the total number of books after all transactions:
+   \[
+   \text{Books Sold} = \text{Total Books} - B_0
+   \]
+   Substituting the values we calculated:
+   \[
+   \text{Books Sold} = 152 - 2
+   \]
+   Therefore,
+   \[
+   \text{Books Sold} = 150
+   \]
+
+Thus, Paul sold 150 books.
+
+The answer is: **150**

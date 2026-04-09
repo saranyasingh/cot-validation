@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states the book has 612 pages.
+FACT-2: SUPPORTED — The story says pages are equally distributed over 24 chapters.
+FACT-3: SUPPORTED — The story states Frank finished the book in 6 days.
+
+RULE-1: PLAUSIBLE — It matches the idea that if pages are evenly distributed, each chapter has n/m pages.
+RULE-2: PLAUSIBLE — Reading rate times time equals pages read; a standard relation.

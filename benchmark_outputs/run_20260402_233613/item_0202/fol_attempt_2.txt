@@ -1,0 +1,30 @@
+## FACTS
+- There are 17 bottles in total.
+\[
+Bottles(17)
+\]
+- There are 9 regular soda bottles.
+\[
+RegularSodaBottles(9)
+\]
+
+## RULES
+- Diet soda bottles make up the rest of the bottles.
+\[
+DietSodaBottles(D)
+\]
+
+## INFERENCES
+- Diet soda bottles make up the remaining bottles after accounting for regular soda bottles.
+\[
+D = Bottles - RegularSodaBottles
+\]
+Since there are no other conditions provided that would modify \( D \), we can conclude:
+\[
+D = 17 - 9
+\]
+
+Performing the subtraction:
+\[
+D = 8
+\]

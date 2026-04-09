@@ -1,0 +1,15 @@
+```plaintext
+## FACTS
+FACT-1: TotalRegularBottles = 81
+FACT-2: TotalDietBottles = 60
+```
+
+```plaintext
+## RULES
+INF-1: MoreRegularBottlesThanDiet :: TotalRegularBottles - TotalDietBottles
+```
+
+```plaintext
+## INFERENCES
+INF-1: MoreRegularBottlesThanDiet :: 21
+```

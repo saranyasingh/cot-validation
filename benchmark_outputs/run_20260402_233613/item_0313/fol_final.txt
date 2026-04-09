@@ -1,0 +1,13 @@
+### ## FACTS
+**FACT-1:** Emily made 6 necklaces :: NumberOfNecklaces = 6
+**FACT-2:** Emily started with 18 beads :: TotalBeads = 18
+
+### ## RULES
+No rules provided, as no new principles were introduced.
+
+### ## INFERENCES
+**INF-1:** Each necklace needed 3 beads :: BEADS_PER_NECKLACE = TotalBeads / NumberOfNecklaces
+**INF-2:** BEADS_PER_NECKLACE = 18 / 6
+**INF-3:** BEADS_PER_NECKLACE = 3
+
+**RESULT:** Each necklace needed 3 beads.

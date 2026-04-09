@@ -1,0 +1,23 @@
+### Facts
+- Fact-1: Initial number of wrappers: 46 :: Wrappers(46)
+- Fact-2: Initial number of bottle caps: 50 :: BottleCaps(50)
+
+### Rules
+- Rule-1: Difference between final and initial quantities :: ∀ x (Initial(x) → Final(x))
+    - This rule establishes that for every initial quantity x, the final quantity will differ based on the given differences.
+
+### Inferences
+- INF-1: Number of wrappers changed :: Wrappers(46) → Wrappers(52)
+    - This inference shows that the number of wrappers increased by 6.
+- INF-2: Number of bottle caps changed :: BottleCaps(50) → BottleCaps(21)
+    - This inference shows that the number of bottle caps decreased by 29.
+- INF-3: Final number of bottle caps minus final number of wrappers :: BottleCaps(21) - Wrappers(52)
+    - This inference calculates the net change in the total number of items (bottle caps and wrappers combined).
+- INF-4: Negative difference indicates fewer bottle caps :: -(BottleCaps(21) - Wrappers(52)) > 0
+    - This inference confirms that the number of bottle caps is indeed fewer than the number of wrappers.
+
+Therefore,
+- INF-5: Danny found 35 fewer bottle caps than he originally had :: -(BottleCaps(21) - Wrappers(52)) = -35
+
+Thus, the final answer is:
+**Danny found 35 fewer bottle caps than he originally had.**

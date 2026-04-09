@@ -1,0 +1,34 @@
+### FACTS
+FACT-1: BakerMade(52, Pastries)
+FACT-2: BakerMade(84, Cakes)
+FACT-3: BakerSold(102, Cakes)
+FACT-4: BakerSold(94, Pastries)
+
+### RULES
+RULE-1: QuantityOf(x, type) :: x type
+RULE-2: Sold(x, y) :: QuantityOf(x, type) - y
+RULE-3: Remaining(x, type) :: QuantityOf(x, type) + y
+RULE-4: Difference(a, b) :: a - b
+
+### INFERENCES
+INF-1: BakerMade(Cakes, 84)
+INF-2: BakerMade(Pastries, 52)
+INF-3: BakerSold(Cakes, 102)
+INF-4: BakerSold(Pastries, 94)
+INF-5: Remaining(Cakes, 84)
+INF-6: Remaining(Pastries, 52)
+INF-7: Difference(Cakes, Pastries) :: 84 - 52 :: 32
+INF-8: MoreThanDifference(Difference(Cakes, Pastries)) :: 84 > 52 :: 32
+
+### CONCLUSION
+BakerMade(Cakes, 84) :: 84
+BakerMade(Pastries, 52) :: 52
+Difference(Cakes, Pastries) :: 84 - 52 :: 32
+MoreThanDifference(Difference(Cakes, Pastries)) :: 84 > 52 :: 32
+
+BakerMade(Cakes, 84) :: 84
+BakerMade(Pastries, 52) :: 52
+Difference(Cakes, Pastries) :: 84 - 52 :: 32
+MoreThanDifference(Difference(Cakes, Pastries)) :: 84 > 52 :: 32
+
+Therefore, the baker made 32 more cakes than pastries. The answer is: 32.

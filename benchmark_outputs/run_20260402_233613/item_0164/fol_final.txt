@@ -1,0 +1,12 @@
+LABEL: ## FACTS
+FACT-1: Danny found 82 wrappers and 29 bottle caps at the park :: WrapperFound(82), BottleCapFound(29)
+FACT-2: After collecting these items, Danny now has 42 bottle caps and 61 wrappers in his collection :: BottleCapsCollected(42), WrappersCollected(61)
+
+LABEL: ## RULES
+RULE-1: If Danny finds \( n \) items at the park, then he collects \( n \) wrappers and \( n \) bottle caps :: WrapperFound(n) → WrapperCollected(n), BottleCapFound(n) → BottleCapCollected(n)
+RULE-2: After collecting \( m \) bottle caps and \( p \) wrappers, the remaining number of each item equals the original count minus those collected :: RemainingItems(m, p) ::= OriginalItems(m) - CollectedItems(m, p)
+
+LABEL: ## INFERENCES
+INF-1: From FACT-1 and RULE-1, Danny collected 29 wrapper caps and 29 bottle caps :: WrapperCollected(29), BottleCapCollected(29)
+INF-2: From FACT-2 and RULE-2, the remaining bottle caps and wrappers match the initial counts minus those collected :: BottleCapsRemaining(0), WrappersRemaining(0)
+INF-3: Therefore, Danny started with 13 bottle caps :: InitialBottleCaps(13) := BottleCapsRemaining(0) + BottleCapCollected(29)

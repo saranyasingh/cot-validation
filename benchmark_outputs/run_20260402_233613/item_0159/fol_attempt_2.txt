@@ -1,0 +1,29 @@
+### ## FACTS
+
+FACT-1: Haley planted 14 trees :: Planting(14)
+
+FACT-2: 9 trees died in the typhoon :: TyphoonDeathCount(9)
+
+### ## RULES
+
+RULE-1: If Haley plants a certain number of trees, then there will be that many trees :: ∀n (Planting(n) → NumberOfTrees(n))
+
+RULE-2: If a certain number of trees die in the typhoon, then there were that many trees before the typhoon :: ∀d (TyphoonDeathCount(d) → NumberOfTrees(d))
+
+### ## INFERENCES
+
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: There are 14 trees before the typhoon :: NumberOfTrees(14)
+
+INF-2: From FACT-2, RULE-2 by Universal Instantiation: There were 9 trees before the typhoon :: NumberOfTrees(9)
+
+INF-3: From FACT-1, RULE-1 by Universal Instantiation: Haley planted 14 trees :: Planting(14)
+
+INF-4: From FACT-2, RULE-2 by Universal Instantiation: 9 trees died in the typhoon :: TyphoonDeathCount(9)
+
+INF-5: From FACT-1, RULE-1 by Universal Instantiation: There are 5 trees that survived the typhoon :: SurvivedTropicalStorm(5)
+
+INF-6: From FACT-2, RULE-2 by Universal Instantiation: There are 0 trees left alive after the typhoon :: SurvivedTropicalStorm(0)
+
+INF-7: From FACT-1, RULE-1 by Universal Instantiation: Haley did not plant any additional trees after the typhoon :: NotPlantedAfterTyphoon(0)
+
+INF-8: From FACT-2, RULE-2 by Universal Instantiation: There were no trees that died in the typhoon after Haley's planting :: Not(TyphoonDeathCount(14))

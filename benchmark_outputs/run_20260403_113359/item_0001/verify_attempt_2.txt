@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states ducks lay 16 eggs per day.
+FACT-2: SUPPORTED — The story states Janet eats 3 eggs for breakfast.
+FACT-3: SUPPORTED — The story states Janet uses 4 eggs for muffins daily.
+FACT-4: SUPPORTED — The story implies there are remaining eggs after breakfast and muffin baking.
+RULE-1: PLAUSIBLE — It encodes the general idea of calculating eggs remaining daily from total minus used.
+RULE-2: PLAUSIBLE — It encodes the revenue calculation: revenue equals price per egg times eggs sold.

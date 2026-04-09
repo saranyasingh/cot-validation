@@ -1,0 +1,18 @@
+### FACTS
+FACT-1: Rachel has to complete 8 pages of math homework :: MathHomework(8)
+
+FACT-2: She also needs to complete 3 more pages of math homework than reading homework :: MathHomework(R) = MathHomework(8) + 3
+
+### RULES
+RULE-1: If Rachel completes \( x \) pages of math homework, then she completes \( x + 3 \) pages of reading homework :: ∀x (MathHomework(x) → ReadingHomework(x+3))
+
+### INFERENCES
+INF-1: From FACT-1 and RULE-1 by Universal Instantiation: ReadingHomework(11) :: MathHomework(8) → ReadingHomework(8+3)
+
+INF-2: From INF-1 and Rule-1 again: ReadingHomework(11) :: MathHomework(8) → ReadingHomework(11) by Modus Ponens
+
+INF-3: Total Pages = MathHomework(8) + ReadingHomework(11) :: Fact-1 and Fact-2 combined
+
+INF-4: Total Pages = 8 + 11 :: Combining INF-2 and INF-3
+
+Therefore, the final answer is: 19.

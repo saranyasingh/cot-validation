@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_eggs(rebecca, 8)).
+
+% --- RULES ---
+
+% No rules provided.
+
+% --- INFERENCES ---
+% From fact_1 by Universal Instantiation
+fof(inf_1, axiom, ! [G] : (has_eggs(rebecca, G) => each_group_has(2, G))).

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, frog_jump_distance = 39).
+fof(fact_2, axiom, grass_hopper_jump_distance = 17).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D, X, Y] : (distance_difference(D) => D = X - Y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, distance_difference = 39 - 17).

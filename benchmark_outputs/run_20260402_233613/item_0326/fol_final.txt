@@ -1,0 +1,11 @@
+### ## FACTS
+FACT-1: InitialApps(19) :: Apps(19)
+FACT-2: InitialFiles(18) :: Files(18)
+FACT-3: RemainingApps(6) :: Apps(6)
+FACT-4: RemainingFiles(15) :: Files(15)
+
+### ## RULES
+RULE-1: DifferenceAppsAndFiles(Difference) :: RemainingApps - RemainingFiles
+
+### ## INFERENCES
+INF-1: DifferenceAppsAndFiles(9) :: DifferenceAppsAndFiles(15 - 6)

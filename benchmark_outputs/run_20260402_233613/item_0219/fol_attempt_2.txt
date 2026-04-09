@@ -1,0 +1,14 @@
+## FACTS
+Chocolate :: 7
+
+Candy_bar :: 2
+
+## RULES
+Equality:: (x=y) -> x >= y
+
+Greater_than:: (x>y) -> x > y
+
+## INFERENCES
+Chocolate :: 7 >= 2
+
+Chocolate :: 7 > Candy_bar

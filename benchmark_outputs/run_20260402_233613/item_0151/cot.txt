@@ -1,0 +1,39 @@
+To determine how many more apps than files Dave has left on his phone, we need to follow these steps:
+
+**Premise 1:** Initially, Dave had 15 apps and 24 files.
+- This establishes the starting point for our calculation.
+
+**Premise 2:** After deleting some apps and files, Dave ended up with 21 apps and 4 files.
+- This provides information about what happened after the deletions occurred.
+
+**Step-by-step Logical Reasoning:**
+
+1. **Calculate the number of apps deleted:**
+   - Initial number of apps = 15
+   - Number of apps remaining = 21
+   - Number of apps deleted = Initial number of apps - Number of apps remaining
+   \[
+   \text{Number of apps deleted} = 15 - 21 = -6
+   \]
+   Since this result (-6) indicates an error in interpretation (negative value doesn't make sense), let's reframe it correctly:
+   - Correctly, if initial number of apps was less than the remaining, then there were no deletions but rather new additions which isn't relevant here.
+
+2. **Calculate the number of files deleted:**
+   - Initial number of files = 24
+   - Number of files remaining = 4
+   - Number of files deleted = Initial number of files - Number of files remaining
+   \[
+   \text{Number of files deleted} = 24 - 4 = 20
+   \]
+
+3. **Determine the difference between the remaining apps and files:**
+   - Remaining apps = 21
+   - Remaining files = 4
+   - Difference = Remaining apps - Remaining files
+   \[
+   \text{Difference} = 21 - 4 = 17
+   \]
+
+Therefore, Dave has 17 more apps than files left on his phone.
+
+The answer is: 17

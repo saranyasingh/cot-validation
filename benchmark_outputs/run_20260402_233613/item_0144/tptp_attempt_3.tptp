@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, s = 24).
+fof(fact_2, axiom, a = 51).
+fof(fact_3, axiom, plus(s, a) = 79).
+
+% --- RULES ---
+fof(rule_1, axiom, s_not = minus(79, s)).
+fof(rule_2, axiom, a_not = minus(79, a)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, s_not = minus(79, 24)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, a_not = minus(79, 51)).
+
+% From fact_1, fact_2, fact_3 by arithmetic reasoning
+fof(inf_3, axiom, plus(s_not, a_not) = 83).

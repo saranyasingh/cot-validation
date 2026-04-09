@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — explicitly stated: Paco initially had 39 sweet cookies.
+FACT-2: SUPPORTED — explicitly stated: Paco initially had 6 salty cookies.
+FACT-3: SUPPORTED — explicitly stated: Paco ate 23 salty cookies.
+FACT-4: SUPPORTED — explicitly stated: Paco ate 32 sweet cookies.
+RULE-1: PLAUSIBLE — standard arithmetic rule: remaining = initial − eaten, applicable to each cookie type.
+RULE-2: IMPLAUSIBLE — the difference between initial amounts (39 and 6) does not equal total eaten (23 + 32 = 55).

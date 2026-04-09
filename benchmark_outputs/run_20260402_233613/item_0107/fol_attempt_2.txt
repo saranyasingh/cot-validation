@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: Total number of books per shelf :: 27
+FACT-2: Number of shelves :: 23
+FACT-3: Books on each shelf :: 27
+FACT-4: Magazines per shelf :: 80
+
+### RULES
+Rule-1: If there are x books per shelf and y shelves, then the total number of books is x * y :: ∀(x, y)(Books(x, y) → TotalBooks(x, y))
+Rule-2: If there are z magazines per shelf and n shelves, then the total number of magazines is z * n :: ∀(z, n)(Magazines(z, n) → TotalMagazines(z, n))
+
+### INFERENCES
+INF-1: Total number of books :: TotalBooks(27, 23)
+INF-2: Total number of magazines :: TotalMagazines(80, 23)
+INF-3: Total number of items :: TotalItems(TotalBooks(27, 23), TotalMagazines(80, 23))

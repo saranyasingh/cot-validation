@@ -1,0 +1,10 @@
+LABEL: ## FACTS :: 
+INF-1: Julia played with 8 kids on Monday :: PlayedWithJulia(8)
+INF-2: Julia played with 11 kids on Tuesday :: PlayedWithJulia(11)
+INF-3: Julia played with 9 kids on Wednesday :: PlayedWithJulia(9)
+
+LABEL: ## RULES ::
+INF-4: DifferenceInKids(x, y) ::= x - y :: Infers the difference between two numbers representing the number of kids.
+
+LABEL: ## INFERENCES ::
+INF-5: DifferenceInKids(tuesday, wednesday) :: DifferenceInKids(PlayedWithJulia(11), PlayedWithJulia(9)) :: INF-4 simplifies to 11 - 9 = 2.

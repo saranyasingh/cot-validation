@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, pack_number = 28).
+fof(fact_2, axiom, pencil_count_per_pack = 24).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (total_pencils = mul(pack_number, pencil_count_per_pack))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_pencils = mul(28, 24)).
+% From inf_1 by Arithmetic
+fof(inf_2, axiom, total_pencils = 672).
+% From inf_2 by Division
+fof(inf_3, axiom, rows = div(total_pencils, pencil_count_per_row)).
+% From inf_3 by Given
+fof(inf_4, axiom, pencil_count_per_row = 16).
+% From inf_4 by Division
+fof(inf_5, axiom, rows = div(672, 16)).
+% From inf_5 by Arithmetic
+fof(inf_6, axiom, rows = 42).

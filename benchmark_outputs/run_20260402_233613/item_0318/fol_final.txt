@@ -1,0 +1,15 @@
+```plaintext
+### ## FACTS
+FACT-1: BooksPerShelf = 23 :: 23
+FACT-2: MagazinesPerShelf = 61 :: 61
+FACT-3: NumberOfShelves = 29 :: 29
+
+### ## RULES
+RULE-1: Multiply(BooksPerShelf, NumberOfShelves) :: TotalBooks :: BooksPerShelf * NumberOfShelves
+RULE-2: Multiply(MagazinesPerShelf, NumberOfShelves) :: TotalMagazines :: MagazinesPerShelf * NumberOfShelves
+
+### ## INFERENCES
+INF-1: TotalBooks = BooksPerShelf * NumberOfShelves :: TotalBooks = 23 * 29
+INF-2: TotalMagazines = MagazinesPerShelf * NumberOfShelves :: TotalMagazines = 61 * 29
+INF-3: TotalItems = TotalBooks + TotalMagazines :: TotalItems = 667 + 1769
+```

@@ -1,0 +1,5 @@
+LABEL: FACT-1 :: ∀x (MorningCampers(x) → AfternoonCampers(52))
+LABEL: FACT-2 :: ∃x (AfternoonCampers(x) ∧ x = 61)
+LABEL: RULE-1 :: ∀x (MorningCampers(x) → AfternoonCampers(x) - MorningCampers(x))
+
+LABEL: INF-1 :: (∀x)(MorningCampers(x) → AfternoonCampers(x) - MorningCampers(x)) :: SubtractionRule

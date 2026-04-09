@@ -1,0 +1,9 @@
+LABEL: ## FACTS :: 1. There are 25 pieces of junk mail per block.
+          2. There are 5 pieces of mail per house.
+
+LABEL: ## RULES :: None provided, but logically implied from facts above.
+
+LABEL: ## INFERENCES :: 3. If there are \( n \) houses in a block, then each house gets 5 pieces of mail. Thus, the total number of pieces of mail distributed is \( 5n \).
+             4. Given that the mailman distributes 25 pieces of mail per block, we can set up the equation \( 5n = 25 \).  
+             5. Solve the equation \( 5n = 25 \) to find the value of \( n \):
+                - Dividing both sides by 5, we get \( n = \frac{25}{5} = 5 \).

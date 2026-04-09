@@ -1,0 +1,7 @@
+### LABEL: Fact 1 :: OrderedPizzas(17) :: OrderedPizzas(x) ∧ x = 17
+
+### LABEL: Fact 2 :: SlicesPerPizza(4) :: SlicesPerPizza(y) ∧ y = 4
+
+### LABEL: Rule 1 :: TotalSlices(NumberOfPizzas, SlicesPerPizza) :: ∀p (NumberOfPizzas(p) * SlicesPerPizza(p)) :: TotalSlices(TotalPizzas, TotalSlicesPerPizza)
+
+### LABEL: Inference 1 :: CalculatedTotalSlices(OrderedPizzas(17), SlicesPerPizza(4)) :: TotalSlices(TotalPizzas, TotalSlicesPerPizza) :: 17 * 4 :: 68

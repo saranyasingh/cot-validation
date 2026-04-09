@@ -1,0 +1,24 @@
+**Logical Syllogism**
+
+1. **Premise 1:** Sofia asked the students to suggest specific types of food.
+   - This premise establishes the context of the situation and provides the initial condition for our calculation.
+
+2. **Premise 2:** 144 students suggested adding mashed potatoes.
+   - This premise introduces the number of suggestions related to mashed potatoes as part of the given data.
+
+3. **Premise 3:** 467 students suggested adding bacon to the menu.
+   - This premise adds another piece of information about other options suggested by students.
+
+4. **Premise 4:** 79 students suggested adding tomatoes.
+   - This premise gives us the third piece of information about tomato-related suggestions.
+
+5. **Conclusion:** We need to find out how many more students suggested mashed potatoes than those that suggested tomatoes.
+   - To do this, we subtract the number of students who suggested tomatoes from the number of students who suggested mashed potatoes:
+     \[
+     \text{Difference} = 144 (\text{suggestions for mashed potatoes}) - 79 (\text{suggestions for tomatoes})
+     \]
+     \[
+     \text{Difference} = 65
+     \]
+
+Therefore, **The answer is: 65**.

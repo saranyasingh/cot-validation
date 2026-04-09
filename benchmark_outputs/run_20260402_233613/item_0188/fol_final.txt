@@ -1,0 +1,17 @@
+LABEL: Facts :: 
+FACT-1: The Razorback shop sells t-shirts at a price of $62 per shirt.
+- Fact-1: \( \text{PricePerTshirt} = \$62 \)
+
+FACT-2: They sold 183 t-shirts.
+- Fact-2: \( \text{QuantitySold} = 183 \)
+
+LABEL: Rules ::
+RULE-1: If they sell t-shirts at a certain price and quantity, then their revenue can be calculated as the product of the price per t-shirt and the quantity sold.
+- Rule-1: \( \text{Revenue} = \text{PricePerTshirt} \times \text{QuantitySold} \)
+
+LABEL: Inferences ::
+INF-1: From FACT-1 and RULE-1, we derive the total revenue from t-shirts.
+- Inf-1: \( \text{TotalRevenueFromTshirts} = 62 \times 183 \)
+- Calculating Inf-1: \( \text{TotalRevenueFromTshirts} = 11406 \)
+
+Thus, the Razorback shop made **$11,406** from selling t-shirts.

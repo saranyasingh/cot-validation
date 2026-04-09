@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, birthday_gift(gwen, 14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (received(X) => initial_amount(gwen, X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, initial_amount(gwen, 14)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, spending(gwen, 8, 6)).
+
+% From inf_1, inf_2 by Combination
+fof(inf_3, axiom, total_amount_before_spending(gwen)).
+
+% From inf_3, rule_1 by Proof_of_Inference
+fof(inf_4, axiom, proof_of_inference(inf_3, rule_1)).

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — InitialCount(3) is stated.
+FACT-2: SUPPORTED — FoundMarbles(6) is stated.
+FACT-3: SUPPORTED — LostMarbles(5) is stated.
+RULE-1: PLAUSIBLE — TotalAfterFinding(w) corresponds to initial + found.
+RULE-2: PLAUSIBLE — DifferenceBetweenFoundAndLost(u) corresponds to found − lost (the “how many more”).

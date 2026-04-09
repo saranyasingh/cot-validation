@@ -1,0 +1,13 @@
+### ## FACTS
+LABEL: Fact-1 :: Paul started with 2 books :: PaulHad(2)
+LABEL: Fact-2 :: After selling some books and buying 150 new ones, Paul now has 58 books :: PaulHas(58)
+
+### ## RULES
+LABEL: Rule-1 :: If Paul has x books, then he must have had at least x books initially :: ∀x (PaulHas(x) → PaulHad(x))
+LABEL: Rule-2 :: Buying 150 new books increases the book count by 150 :: ∀b (Buying(b) → b + 150)
+LABEL: Rule-3 :: Selling some books decreases the book count by the number of books sold :: ∀s (Selling(s) → s - s_sold)
+
+### ## INFERENCES
+LABEL: Infer-1 :: Paul started with 2 books :: Fact-1
+LABEL: Infer-2 :: Paul has 58 books now :: Fact-2
+LABEL: Infer-3 :: Paul sold 150 books :: Rule-2, Rule-3

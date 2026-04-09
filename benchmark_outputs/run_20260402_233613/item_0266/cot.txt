@@ -1,0 +1,28 @@
+Premise 1: Winter is almost here.
+Premise 2: Most animals are migrating to warmer countries during winter.
+Premise 3: There are 85 bird families living near the mountain.
+Premise 4: 23 bird families flew away to Africa.
+Premise 5: 37 bird families flew away to Asia.
+
+Given information:
+- Total number of bird families initially = 85
+- Number of birds that flew away to Africa = 23
+- Number of birds that flew away to Asia = 37
+
+Logical Syllogism:
+
+Step 1: Determine how many bird families flew away in total.
+The total number of bird families that flew away can be calculated as follows:
+\[ \text{Total birds flown away} = \text{Birds flying to Africa} + \text{Birds flying to Asia} \]
+\[ \text{Total birds flown away} = 23 + 37 \]
+\[ \text{Total birds flown away} = 60 \]
+
+Step 2: Calculate the number of bird families remaining near the mountain.
+To find out how many bird families were left near the mountain, we subtract the total number of birds that flew away from the initial number of bird families:
+\[ \text{Birds remaining near the mountain} = \text{Initial bird families} - \text{Total birds flown away} \]
+\[ \text{Birds remaining near the mountain} = 85 - 60 \]
+\[ \text{Birds remaining near the mountain} = 25 \]
+
+Conclusion: Therefore, there are 25 bird families left near the mountain.
+
+Answer: The answer is: 25

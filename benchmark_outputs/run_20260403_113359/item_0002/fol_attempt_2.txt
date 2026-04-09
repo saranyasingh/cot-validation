@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: RobeRequiresBlueFiber(2)
+
+## RULES
+Rule-1: IfRobeUsesBlueFiberThenRobeNeedsWhiteFiber(RobeRequiresBlueFiber(x), RobeNeedsHalfWhiteFiberFromBlueFiber(x))
+
+## INFERENCES
+Inference-1: SumOfBoltsForRobe(RobeRequiresBlueFiber(y), RobeNeedsHalfWhiteFiberFromBlueFiber(y))

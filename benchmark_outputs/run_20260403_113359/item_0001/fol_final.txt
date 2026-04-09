@@ -1,0 +1,12 @@
+LABEL: #FACT-1 :: EggsLaidPerDay(16)
+LABEL: #FACT-2 :: EggsEatenForBreakfast(3)
+LABEL: #FACT-3 :: EggsUsedForMuffins(4)
+LABEL: #FACT-4 :: EggsRemainingAfterBaking(EggsLaidPerDay - EggsEatenForBreakfast - EggsUsedForMuffins)
+
+LABEL: #RULE-1 :: EggsRemainingDaily :: ∀d EggsLaidPerDay(d) ∧ EggsEatenForBreakfast(d) ∧ EggsUsedForMuffins(d)
+LABEL: #RULE-2 :: RevenueFromEggs :: EggsRemainingDaily -> Revenue($2 per Egg)
+
+LABEL: #INF-1 :: From RULE-1, RULE-2 by Modus Ponens: EggsRemainingDaily :: EggsRemainingDaily
+LABEL: #INF-2 :: DailyRevenue :: EggsRemainingDaily -> Revenue($2 per Egg) :: EggsRemainingDaily
+LABEL: #INF-3 :: DailyRevenue :: $2 * EggsRemainingDaily :: EggsRemainingDaily
+LABEL: #INF-4 :: FinalRevenue :: DailyRevenue -> $18 :: EggsRemainingDaily

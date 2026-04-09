@@ -1,0 +1,11 @@
+### ## FACTS
+- Initially, there were 2 roses in the vase.
+- Jessica threw away 4 roses from the vase.
+- After throwing away 4 roses, there should have been -2 roses remaining, which is impossible.
+
+### ## RULES
+- Starting with 0 roses and adding more increases the total.
+- Throwing away 4 roses leaves at least one rose behind.
+
+### ## INFERENCES
+- Jessica did not throw away any roses. Therefore, she must have started with 0 roses. Adding 23 new roses results in a total of 23 roses. Hence, Jessica added 23 roses to the vase.

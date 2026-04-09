@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_cases(25)).
+
+fof(fact_2, axiom, number_of_boxes_per_case(14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (rule_for_total_boxes(number_of_cases(25), number_of_boxes_per_case(14))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, rule_for_total_boxes(number_of_cases(25), number_of_boxes_per_case(14))).

@@ -1,0 +1,38 @@
+**CHAIN OF THOUGHT REASONING TO CONVERT**
+
+1. Let's denote:
+   - \( F \) as the amount of wax needed for the feathers.
+   - \( W \) as the amount of wax already present.
+
+2. According to the information given:
+   - \( F = 628 \) grams (total required wax)
+   - \( F + W = 159 \) grams (additional wax needed)
+
+3. We need to find the value of \( W \), which represents how much wax the person already has.
+
+4. Substitute the value of \( F \) into the equation:
+   - \( 628 + W = 159 \)
+
+5. Solve for \( W \):
+   - Subtract 628 from both sides:
+     \[
+     W = 159 - 628
+     \]
+   - Simplify:
+     \[
+     W = -469
+     \]
+
+**OUTPUT SECTION**
+
+## FACTS
+FACT-1: WaxNeeded(F, 628) :: F = 628
+FACT-2: WaxPresent(W) :: W = W
+FACT-3: AdditionalWax(159) :: F + W = 159
+
+## RULES
+RULE-1: TotalWaxRequired(F, W, 628) :: F + W = 628
+
+## INFERENCES
+INF-1: WaxAlreadyPresent(W) :: W = -469
+INF-2: NegativeResult(INF-1) :: LogicalErrorOrInconsistency :: Thepersonalreadyhasnegativeamountofwaxisimpossibleinpracticalterms

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, sold(shirley, 10)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Cases] : (delivered(shirley, Cases) => total_boxes_divisible_by(Cases, 5))).
+fof(rule_2, axiom, ! [Boxes] : (sold(shirley, Boxes) => total_boxes_equal(Boxes, 10))).
+
+% --- INFERENCES ---
+% From fact_1, rule_2 by Modus Ponens
+fof(inf_1, axiom, total_boxes_equal(10, 10)).

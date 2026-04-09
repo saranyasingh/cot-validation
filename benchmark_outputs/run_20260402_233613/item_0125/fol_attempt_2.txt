@@ -1,0 +1,19 @@
+### FACTS
+FACT-1: Julia played with 2 kids on Monday :: PlayedWith(Julia, 2, t_monday)
+FACT-2: Julia played with 14 kids on Tuesday :: PlayedWith(Julia, 14, t_tuesday)
+FACT-3: Julia played with 16 kids on Wednesday :: PlayedWith(Julia, 16, t_wednesday)
+
+### RULES
+RULE-1: If someone plays with x kids, they will play with more than x kids :: ∀x (PlayedWith(x, y, t) → PlayedWith(x, y+1, t))
+RULE-2: If someone plays with y kids on a day, they play with more than y kids on subsequent days :: ∀y ∀t (PlayedWith(y, z, t) → PlayedWith(y, z+1, t))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Julia played with at least 2 kids on Monday :: PlayedWith(Julia, 2, t_monday)
+INF-2: From FACT-2, RULE-2 by Universal Instantiation: Julia played with at least 14 kids on Tuesday :: PlayedWith(Julia, 14, t_tuesday)
+INF-3: From FACT-3, RULE-2 by Universal Instantiation: Julia played with at least 16 kids on Wednesday :: PlayedWith(Julia, 16, t_wednesday)
+INF-4: Summing up the number of kids played with each day: TotalKids = PlayedWith(Julia, 2, t_monday) + PlayedWith(Julia, 14, t_tuesday) + PlayedWith(Julia, 16, t_wednesday) :: TotalKids = 2 + 14 + 16
+
+Therefore,
+TotalKids = 2 + 14 + 16 = 32
+
+The final result is: Julia played with 32 kids on Tuesday and Wednesday combined.

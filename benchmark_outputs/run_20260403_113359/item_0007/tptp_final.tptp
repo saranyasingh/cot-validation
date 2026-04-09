@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, sheep_in(seattle) = 20).
+fof(fact_2, axiom, sheep_in(charleston) = 4 * sheep_in(seattle)).
+
+% --- RULES ---
+fof(rule_1, axiom, sheep_in(toulouse) = 2 * sheep_in(charleston)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Multiplication
+fof(inf_1, axiom, sheep_in(toulouse) = 80).
+
+% From fact_2, rule_1 by Addition
+fof(inf_2, axiom, total_sheep = 260).

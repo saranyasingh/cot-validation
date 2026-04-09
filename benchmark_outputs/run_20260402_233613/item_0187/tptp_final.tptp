@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, morning_rowing(62)).
+
+fof(fact_2, axiom, afternoon_rowing(39)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, M] : (difference_between_morning_and_afternoon(N, M) = N - M)).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, difference_between_morning_and_afternoon(morning_rowing(62), afternoon_rowing(39)) = 23).

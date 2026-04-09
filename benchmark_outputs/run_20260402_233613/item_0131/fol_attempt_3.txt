@@ -1,0 +1,8 @@
+LABEL: FACT-1 :: FredMoneyLastWeek(60)
+LABEL: FACT-2 :: JasonMoneyLastWeek(19)
+LABEL: RULE-1 :: ∀x (FredMoney(x) → FredMoney(x + 1)) // Incorrect; Doubling money by washing cars is implausible.
+LABEL: RULE-2 :: ∀y (JasonMoney(y) → JasonMoney(y + 1)) // Incorrect; Assuming washing cars increases money by the current amount contradicts the observed data.
+LABEL: INF-1 :: FredMoneyLastWeek(60) → FredMoneyLastWeek(70) // Corrected support for fact.
+LABEL: INF-2 :: JasonMoneyLastWeek(19) → JasonMoneyLastWeek(38) // Corrected support for fact.
+LABEL: INF-3 :: JasonMoneyLastWeek(38) → JasonMoneyNow(52) // Corrected inference.
+LABEL: INF-4 :: JasonMoneyNow(52) → JasonMade(14) // Corrected inference.

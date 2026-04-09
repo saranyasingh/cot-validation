@@ -1,0 +1,22 @@
+### FACTS
+FACT-1: Lucy bought 2 packs of cookies :: Bought(2, Cookies)
+FACT-2: Lucy bought 12 packs of cakes :: Bought(12, Cakes)
+
+### RULES
+RULE-1: If someone buys a certain item, they have that item :: ∀i (Bought(x, i) → Has(x, i))
+RULE-2: Total spending equals initial amount minus remaining change :: ∀T (InitialAmount(T) = TotalSpent(T) + Change(T))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Lucy has 2 packs of cookies :: Has(Lucy, 2, Cookies)
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: Lucy has 12 packs of cakes :: Has(Lucy, 12, Cakes)
+INF-3: Combining INF-1 and INF-2, we get Lucy has both 2 packs of cookies and 12 packs of cakes :: Has(Lucy, 2, Cookies) ∧ Has(Lucy, 12, Cakes)
+INF-4: From the conclusion, Lucy had 56 cents left as change :: Change(TotalSpent(T)) = 56 cents
+INF-5: Using Rule-2: InitialAmount(TotalSpent(T)) = TotalSpent(TotalSpent(T)) + 56 cents
+INF-6: Let \( T \) be the initial amount of money Lucy started with :: InitialAmount(T) = TotalSpent(TotalSpent(T)) + 56 cents
+INF-7: Since TotalSpent(TotalSpent(T)) includes all packs bought, including cookies and cakes, we can say: TotalSpent(TotalSpent(T)) = Bought(Cookies) + Bought(Cakes)
+INF-8: Substituting the values: TotalSpent(TotalSpent(T)) = 2 + 12 = 14 packs
+INF-9: Therefore, InitialAmount(T) = 14 packs + 56 cents
+INF-10: The total number of packs of groceries Lucy bought is 14.
+
+Therefore,
+INF-11: The total number of packs of groceries Lucy bought is 14.

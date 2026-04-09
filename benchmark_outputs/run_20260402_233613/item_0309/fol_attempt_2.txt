@@ -1,0 +1,11 @@
+### ## FACTS
+INF-1: Number_of_red_peaches > Number_of_yellow_peaches :: ∀(red_peaches, yellow_peaches) (RedPeaches(red_peaches) ∧ YellowPeaches(yellow_peaches)) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x))) → (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))) -> (∃x ((RedPeaches(x)) ∧ (YellowPeaches(x)))))
+
+### ## RULES
+None needed for this problem since it's an arithmetic operation based on facts provided.
+
+### ## INFERENCES
+INF-2: ∃x ((RedPeaches(x)) ∧ (YellowPeaches(x))) :: RedPeaches(19) ∧ YellowPeaches(11)
+INF-3: Number_of_more_red_peaches > Number_of_yellow_peaches :: RedPeaches(19) - YellowPeaches(11)
+
+INF-4: Number_of_more_red_peaches > Number_of_yellow_peaches :: RedPeaches(19) - YellowPeaches(11) >= 0

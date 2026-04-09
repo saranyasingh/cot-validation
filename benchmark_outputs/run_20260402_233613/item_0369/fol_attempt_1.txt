@@ -1,0 +1,22 @@
+### FACTS
+FACT-1: Jason delivered newspapers :: DeliveredNewspapers(jason)
+
+FACT-2: Now Jason has $57 :: HasMoney($57)
+
+FACT-3: Before delivering newspapers, Jason had $31 :: HadMoney($31)
+
+### RULES
+RULE-1: If someone delivers newspapers, they earn money :: ∀j (DeliveredNewspapers(j) → EarnsMoney(j))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Jason earned money :: EarnsMoney(jason)
+
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: Jason earned money :: EarnsMoney(jason)
+
+INF-3: From FACT-3, RULE-1 by Universal Instantiation: Jason earned money :: EarnsMoney(jason)
+
+INF-4: Calculate earnings: Earnings = CurrentAmount - OriginalAmount :: Earnings = ($57 - $31)
+
+INF-5: Calculate earnings: Earnings = 26 :: Earnings = 26
+
+Therefore, the answer is: Jason earned $26 by delivering newspapers.

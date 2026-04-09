@@ -1,0 +1,18 @@
+```plaintext
+## FACTS
+FACT-1: NeedsToCompleteCakeBaking(Mary) :: (∀x(NeedsToCompleteCakeBaking(x) → x=Mary))
+FACT-2: RequiresSugar(12) :: (∃x(RequiresSugar(x) → x=12))
+FACT-3: AlreadyAddedSugar(10) :: (∃x(AlreadyAddedSugar(x) → x=10))
+
+## RULES
+RULE-1: ∀x (NeedsToCompleteCakeBaking(x) → RequiresSugar(12)) :: (∀x(NeedsToCompleteCakeBaking(x) → RequiresSugar(12)))
+RULE-2: ∀x (AlreadyAddedSugar(x) → Present(Sugar)) :: (∀x(AlreadyAddedSugar(x) → Present(Sugar)))
+RULE-3: ∀x (HasNotAddedFlour() → Present(Flour)) :: (∀x(HasNotAddedFlour() → Present(Flour)))
+
+## INFERENCES
+INF-1: NeedsToCompleteCakeBaking(Mary) → RequiresSugar(12) :: (∀x(NeedsToCompleteCakeBaking(x) → RequiresSugar(12)))
+INF-2: AlreadyAddedSugar(10) → Present(Sugar) :: (∀x(AlreadyAddedSugar(x) → Present(Sugar)))
+INF-3: ∃x(RequiresSugar(s) ∧ s=12) :: (∃x(RequiresSugar(s) ∧ s=12))
+INF-4: ∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)) :: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)))
+INF-5: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar))) → (∃x(RequiresSugar(s) ∧ s=12)) :: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)) → (∃x(RequiresSugar(s) ∧ s=12)))
+```

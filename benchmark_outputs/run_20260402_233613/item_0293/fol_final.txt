@@ -1,0 +1,3 @@
+FACT-1: Baker made 54 cakes initially :: CakeMade(54)
+FACT-2: After selling some cakes, the baker now has 13 cakes remaining :: CakeRemaining(13)
+INF-1: From FACT-1, RULE-1 by Subtraction: The number of cakes sold is 54 - 13 :: NumberOfCakesSold(41)

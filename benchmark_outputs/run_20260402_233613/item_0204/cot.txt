@@ -1,0 +1,39 @@
+Let's break down this problem into a series of logical steps:
+
+**Premise 1:** Kelly currently has 20 Nintendo games.
+- This establishes the starting point of our calculation.
+
+**Premise 2:** Kelly wants to end up with 12 Nintendo games.
+- This sets her desired outcome, which we aim to reach through giving away some games.
+
+**Premise 3:** She currently has 70 Sony games.
+- This gives us an idea of how many games she has overall but doesn't affect her desire to reduce the number of Nintendo games directly.
+
+**Step-by-step Logical Reasoning:**
+
+1. **Initial State Calculation:**
+   - Let \( N \) represent the initial number of Nintendo games Kelly has.
+   - Given: \( N = 20 \).
+
+2. **Desired Final State:**
+   - Let \( F \) represent the final number of Nintendo games Kelly wants.
+   - Given: \( F = 12 \).
+
+3. **Number of Nintendo Games to Give Away:**
+   - To find out how many Nintendo games Kelly needs to give away, subtract the desired final state from the current total:
+     \[
+     \text{Games to give away} = N - F
+     \]
+   - Plugging in the values:
+     \[
+     \text{Games to give away} = 20 - 12 = 8
+     \]
+
+4. **Verification:**
+   - If Kelly gives away 8 Nintendo games, she will have:
+     \[
+     20 - 8 = 12 \text{ Nintendo games}
+     \]
+   - This matches her goal of having exactly 12 Nintendo games left.
+
+Therefore, the answer is: The number of Nintendo games Kelly needs to give away is 8.

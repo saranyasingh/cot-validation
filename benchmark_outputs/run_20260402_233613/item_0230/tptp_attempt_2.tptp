@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, sweet_cookies_paco(t_0) & initial(t_0) = 34).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (eaten_at(T) => remaining(T) = initial(T) - eaten_at(T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Subtraction
+fof(inf_1, axiom, remaining(sweet_cookies_paco, t_0) = 34 - 15).

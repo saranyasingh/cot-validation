@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, peaches(steven, 19)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (peaches(steven, X) => peaches(jake, X - 12))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, peaches(jake, 19 - 12)).

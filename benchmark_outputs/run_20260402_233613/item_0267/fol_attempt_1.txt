@@ -1,0 +1,26 @@
+This problem involves basic arithmetic operations but requires careful reading comprehension and attention to detail to correctly sum the quantities of raisin cookies baked over two different days. Here’s the step-by-step breakdown in FOL syntax:
+
+### Facts:
+1. **Helen baked 144 chocolate chip cookies yesterday.**
+   - Fact-1: ChocolateChipCookiesYesterday(Helen, 144)
+   
+2. **Helen baked 85 raisin cookies this morning.**
+   - Fact-2: RaisinCookiesToday(thisMorning, 85)
+   
+3. **Helen baked 397 raisin cookies yesterday.**
+   - Fact-3: RaisinCookiesYesterday(Helen, 397)
+   
+4. **Helen baked 403 chocolate chip cookies this morning.**
+   - Fact-4: ChocolateChipCookiesToday(thisMorning, 403)
+
+### Rules:
+None required here since all facts are straightforward summations without any conditional or quantified statements needed.
+
+### Inferences:
+Since no new information about the distribution of cookies across days needs to be inferred beyond the given facts, there are no additional rules or inferences to derive based on the provided facts.
+
+The final answer is derived directly from the sums of the given facts without needing further logical derivation.
+
+In summary, the solution can be stated directly:
+
+**Final Answer:** 482

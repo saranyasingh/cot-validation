@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, p(parents, 61)).
+fof(fact_2, axiom, p(pupils, 177)).
+fof(fact_3, axiom, t(total_people) = p(parents, 61) + p(pupils, 177)).
+
+% --- RULES ---
+fof(rule_1, axiom, s(capacity, 44)).
+fof(rule_2, axiom, p(people, total_people) => ~p(sitting, capacity)).
+
+% --- INFERENCES ---
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_1, axiom, p(people, total_people) & s(capacity, 44) => ~s(sitting, capacity)).

@@ -1,0 +1,19 @@
+**FACTS**
+
+FACT-1: Each house gets 4 pieces of junk mail :: ∀h (House(h) → JunkMail(h, 4))
+FACT-2: Each block has 12 houses :: ∀b (Block(b) → Length(Block(b), 12))
+
+**RULES**
+
+RULE-1: Given a house, it gets 4 pieces of junk mail :: ∀h (JunkMail(h, 4))
+RULE-2: A block has 12 houses :: ∀b (Length(Block(b), 12))
+
+**INFERENCES**
+
+INF-1: From FACT-1 and RULE-1 by Universal Instantiation: Each house in any block gets 4 pieces of junk mail :: ∀h∀b (House(h) ∧ Block(b) → JunkMail(h, 4))
+INF-2: From FACT-2 and RULE-2 by Universal Instantiation: Any block has 12 houses :: ∀b (Block(b) → Length(Block(b), 12))
+INF-3: Total junk mail distribution across all blocks :: (∀b (Block(b) → ∏ h∈Block(b) JunkMail(h, 4))) :: (∏ b∈Blocks (∑ h∈Block(b) JunkMail(h, 4)))
+INF-4: Number of blocks :: ∀b (Block(b))
+INF-5: Total junk mail per block :: (∏ b∈Blocks (∑ h∈Block(b) JunkMail(h, 4))) :: (∏ b∈Blocks (∏ h∈Block(b) JunkMail(h, 4)))
+
+Thus, the mailman should give 3888 pieces of junk mail in each block.

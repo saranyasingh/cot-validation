@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: 44 campers went rowing in the morning :: MorningParticipants(44)
+FACT-2: 39 campers went rowing in the afternoon :: AfternoonParticipants(39)
+
+### ## RULES
+Rule-1: Subtracting quantities yields the difference :: ∀a b (a - b = Difference(a, b))
+
+### ## INFERENCES
+INF-1: From FACT-1 and FACT-2, Rule-1 by Subtraction: The difference between morning and afternoon participants is 5 :: Difference(MorningParticipants, AfternoonParticipants) = 5

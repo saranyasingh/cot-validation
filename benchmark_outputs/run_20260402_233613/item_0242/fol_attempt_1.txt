@@ -1,0 +1,44 @@
+To convert the provided chain-of-thought reasoning into structured First-Order Logic (FOL), I'll follow these steps:
+
+### FACTS
+These are facts derived from the premise statements:
+```
+FACT-1: There were 87 bird families living near the mountain.
+```
+
+### RULES
+These are universally quantified implications based on the premises:
+```
+RULE-1: If there are \( n \) bird families, then \( n \) bird families fly away when winter sets in.
+```
+
+### INFERENCES
+Using the rules and facts, derive the final conclusion:
+```
+INF-1: The number of bird families that stayed behind is 80 more than those that flew away.
+```
+
+### Output Format
+Each line will follow the specified format:
+```
+LABEL: <gloss> :: <FOL formula>
+```
+
+### Chain of Thought Reasoning Converted
+
+#### Facts
+```
+FACT-1: There were 87 bird families living near the mountain.
+```
+
+#### Rules
+```
+RULE-1: If there are \( n \) bird families, then \( n \) bird families fly away when winter sets in.
+```
+
+#### Inferences
+```
+INF-1: The number of bird families that stayed behind is 80 more than those that flew away.
+```
+
+This completes the conversion of the chain-of-thought reasoning into structured FOL.

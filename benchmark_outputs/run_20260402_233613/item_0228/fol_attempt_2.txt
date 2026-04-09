@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: HasBeads(Emily, 6)
+LABEL: Rule-1 :: ∀x (HasBeads(x, n) ∧ NecklaceRequiredPerNecklace(y)) → NumberOfNecklacesCanBeMade(x, y) := Quotient(n, y)
+LABEL: INF-1 :: FROM FACT-1, RULE-1 BY DIVISION : Emily can make 2 necklaces :: NumberOfNecklacesCanBeMade(Emily, 2)

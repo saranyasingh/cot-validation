@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, selling_t_shirts_for(215, t_shirt)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (selling_t_shirts_for(P, t_shirt) => total_revenue_from_selling_t_shirts(P))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_revenue(total_revenue_from_selling_t_shirts(215))).
+
+% From inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_revenue(total_revenue_from_selling_t_shirts(215))).
+
+% From inf_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, 4300 = total_revenue(total_revenue_from_selling_t_shirts(215))).

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: TotalFlourNeeded(12) :: TotalFlourNeeded(x)
+FACT-2: FlourAlreadyAdded(2) :: FlourAlreadyAdded(y)
+FACT-3: RemainingFlour(TotalFlourNeeded() - FlourAlreadyAdded())
+
+## RULES
+RULE-1: Difference(FlourNeeded, SaltRequired) :: ∀f s (FlourNeeded(f) ∧ SaltRequired(s) → f - s)
+
+## INFERENCES
+INF-1: RemainingFlour(10) :: RemainingFlour(x)
+INF-2: RemainingSalt(7) :: RemainingSalt(y)
+INF-3: Difference(10, 7) :: Difference(z, y)

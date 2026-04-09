@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, people_on_ferris_wheel(16)).
+
+fof(fact_2, axiom, seats_on_ferris_wheel(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (seats(S) => people_in_seat(S, 4))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, people_in_seat(1, 4)).

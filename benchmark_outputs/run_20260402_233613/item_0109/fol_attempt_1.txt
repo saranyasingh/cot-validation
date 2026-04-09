@@ -1,0 +1,21 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+Fact-1: Jack received 9 emails in the morning :: MorningEmails = 9
+Fact-2: Jack received 10 emails in the afternoon :: AfternoonEmails = 10
+Fact-3: Jack received 7 emails in the evening :: EveningEmails = 7
+```
+
+### Rules
+No rules provided in the original text; however, if there were any implicit rules, they would follow standard FOL syntax.
+
+### Inferences
+```plaintext
+Inf-1: Difference in emails received in the morning and evening :: 
+(∀m (MorningEmails(m) → EveningEmails(m)) ∧ MorningEmails(9) ∧ AfternoonEmails(10))
+→ (MorningEmails(9) - EveningEmails(7) = 2)
+```
+In plain English, this can be read as:
+"If Jack received 9 emails in the morning and 10 emails in the afternoon, then the difference between these two times equals 2 emails."
+This inferential step connects all facts together logically to derive the final result.

@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, harvest_unripe_oranges_per_day(65)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (total_harvested(D) <=> D <= 6)).
+fof(rule_2, axiom, ! [W] : (weekly_production(W) <=> W = 455)).
+fof(rule_3, axiom, ! [D] : (daily_production(D) <=> D = 455)).
+fof(rule_4, axiom, sacks_after_6_days = 55).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_harvested(6) = 55).

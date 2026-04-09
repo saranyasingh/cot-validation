@@ -1,0 +1,44 @@
+To determine how many more children got off the bus than those that got on, we need to follow these steps:
+
+1. **Initial number of children on the bus**: 
+   - There were initially 23 children on the bus.
+
+2. **Children getting on the bus**:
+   - At the bus stop, 24 more children got onto the bus.
+   
+3. **Total number of children after some got on and others got off**:
+   - After 24 children got on, the total number of children on the bus became \(23 + 24 = 47\).
+
+4. **Final number of children on the bus**:
+   - We know that at this point, there were 8 children left on the bus.
+   - Therefore, the difference between the initial number (before any got off) and the final number must equal the number who got off.
+   \[
+   23 + x - 8 = 0 \quad \text{(where } x \text{ is the number of children who got off)}
+   \]
+
+5. **Solving for \(x\)**:
+   - Simplify the equation:
+     \[
+     23 + x - 8 = 0 \\
+     15 + x = 0 \\
+     x = -15
+     \]
+   - Since it's not possible to have negative children getting off, let’s re-evaluate our understanding. Given the problem constraints, if 24 children got on, then the remaining children would be 8, implying they should be subtracted instead of added to reach the correct count.
+
+6. **Revising the approach**:
+   - Let \(y\) be the number of children who got off.
+   - Initially, 23 children were on the bus.
+   - 24 children got on, making the new total \(23 + 24 = 47\).
+   - Finally, there were 8 children left, so:
+     \[
+     47 - y = 8
+     \]
+   - Solving for \(y\):
+     \[
+     y = 47 - 8 \\
+     y = 39
+     \]
+
+Therefore, the number of children who got off the bus is 39. 
+
+The answer is: 39

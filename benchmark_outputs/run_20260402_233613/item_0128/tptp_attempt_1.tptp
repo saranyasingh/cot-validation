@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, frog_jumped_distance(39)).
+fof(fact_2, axiom, grass_hopper_jumped_distance(17)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : ( distance_difference(Z) <=> (Z = minus(X,Y)) )).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, RULE-1 by Rule-Instantiation
+fof(inf_1, axiom, distance_difference(minus(39,17))).

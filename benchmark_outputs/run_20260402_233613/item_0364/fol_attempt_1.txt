@@ -1,0 +1,52 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). We'll follow the guidelines provided, ensuring clarity and adhering to the specified output format.
+
+### Facts
+These are the direct statements derived from the premises without using quantifiers.
+
+```plaintext
+Fact-1: Mary needs to complete her cake baking :: NeedsToCompleteCakeBaking(Mary)
+Fact-2: The recipe requires 12 cups of sugar :: RequiresSugar(12)
+Fact-3: Mary has already added 10 cups of sugar :: AlreadyAddedSugar(10)
+Fact-4: The recipe requires 14 cups of flour :: RequiresFlour(14)
+Fact-5: Mary hasn't yet added any flour to the mixture :: HasNotAddedFlour()
+```
+
+### Rules
+These are universally quantified implications based on external knowledge or linguistic rules.
+
+```plaintext
+Rule-1: If Mary completes her cake baking, then she needs 12 cups of sugar :: ∀x (NeedsToCompleteCakeBaking(x) → RequiresSugar(12))
+Rule-2: If Mary has added sugar, then the sugar is present :: ∀x (AlreadyAddedSugar(x) → Present(Sugar))
+Rule-3: If Mary adds flour, then the flour is present :: ∀x (HasNotAddedFlour() → Present(Flour))
+```
+
+### Inferences
+These are logically derived conclusions from the facts and rules.
+
+```plaintext
+Inf-1: Mary needs 12 cups of sugar :: NeedsToCompleteCakeBaking(Mary) → RequiresSugar(12)
+Inf-2: Mary has already added 10 cups of sugar :: AlreadyAddedSugar(10) → Exists(x)(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x))
+Inf-3: There is enough sugar for the recipe :: (∀x(RequiresSugar(n)) → Exists(y)(y=n))
+Inf-4: Mary hasn't added flour yet :: (∀x(HasNotAddedFlour()) → ¬Exists(z)(z=Flour))
+Inf-5: Mary still needs 2 cups of sugar :: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)))
+Inf-6: The number of additional cups of flour needed :: (∃x(RequiresFlour(f) ∧ ¬Exists(y)(f=y))) → (∃x(RequiresSugar(s) ∧ s=f+2))
+```
+
+### Final Answer
+```plaintext
+FACT-1: NeedsToCompleteCakeBaking(Mary) :: NeedsToCompleteCakeBaking(Mary)
+FACT-2: RequiresSugar(12) :: RequiresSugar(12)
+FACT-3: AlreadyAddedSugar(10) :: AlreadyAddedSugar(10)
+FACT-4: RequiresFlour(14) :: RequiresFlour(14)
+FACT-5: HasNotAddedFlour() :: HasNotAddedFlour()
+
+RULE-1: ∀x (NeedsToCompleteCakeBaking(x) → RequiresSugar(12)) :: (∀x(NeedsToCompleteCakeBaking(x) → RequiresSugar(12)))
+RULE-2: ∀x (AlreadyAddedSugar(x) → Present(Sugar)) :: (∀x(AlreadyAddedSugar(x) → Present(Sugar)))
+RULE-3: ∀x (HasNotAddedFlour() → Present(Flour)) :: (∀x(HasNotAddedFlour() → Present(Flour)))
+
+INF-1: NeedsToCompleteCakeBaking(Mary) → RequiresSugar(12) :: (∀x(NeedsToCompleteCakeBaking(x) → RequiresSugar(12)))
+INF-2: AlreadyAddedSugar(10) → Exists(x)(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x)) :: (∀x(AlreadyAddedSugar(x) → Exists(x)(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x))))
+INF-3: ∃x(RequiresSugar(s) ∧ s=f+2) :: (∃x(RequiresSugar(s) ∧ s=f+2))
+INF-4: ∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)) :: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)))
+INF-5: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar))) → (∃x(RequiresSugar(s) ∧ s=f+2)) :: (∃x(NeedsToCompleteCakeBaking(x) ∧ AlreadyAddedSugar(x) ∧ ¬Exists(z)(z=Sugar)) → (∃x(RequiresSugar(s) ∧ s=f+2)))
+```

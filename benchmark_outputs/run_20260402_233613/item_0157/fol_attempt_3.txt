@@ -1,0 +1,7 @@
+LABEL: InitialApplesTrees(Rachel, 4) :: Fact-1
+
+LABEL: ApplesPerTree(7, 4) :: Fact-2
+
+LABEL: PickedApplesFromTree(Rachel, 7, x, y) :: Rule-1
+
+LABEL: TotalPickedApples(Rachel) :: Inference-1

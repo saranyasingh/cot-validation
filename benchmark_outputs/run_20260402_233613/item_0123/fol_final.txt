@@ -1,0 +1,9 @@
+### ## FACTS
+FACT-1: Faye places her pencils and crayons into 19 rows :: RowCount(19)
+FACT-2: Each row contains 4 pencils :: PencilPerRow(4)
+
+### ## RULES
+RULE-1: From FACT-1, RULE-1 by Simple Arithmetic: TotalPencils = RowCount * PencilPerRow :: (∀r ∈ RowCount(r) ∧ ∀p ∈ PencilPerRow(p)) → (∀total_pencils ∈ TotalPencils(total_pencils) : total_pencils = r * p)
+
+### ## INFERENCES
+INF-1: From FACT-1, RULE-1 by Simple Arithmetic: TotalPencils = RowCount * PencilPerRow :: (∀r ∈ RowCount(r) ∧ ∀p ∈ PencilPerRow(p)) → (∀total_pencils ∈ TotalPencils(total_pencils) : total_pencils = r * p)

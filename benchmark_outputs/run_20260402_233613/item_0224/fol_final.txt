@@ -1,0 +1,14 @@
+### ## FACTS
+FACT-1: Dan started with $3 :: Money(Dan, t_start) = 3
+FACT-2: Dan bought two candy bars and spent all his money ($3) :: CandyBars(Bars, x) ∧ Bars(x, 2) ∧ Money(Dan, t_spent) = 3
+
+### ## RULES
+RULE-1: If Dan buys x candy bars, then he spends x times the cost of one candy bar :: ∀x (CandyBars(Bars, x) → SpendingCost(Cost, Bars, x * Cost))
+RULE-2: Spending cost per candy bar is constant :: ∀x (SpendingCost(Cost, Bars, x * Cost) → CostPerBar(Cost, CostPerBar))
+
+### ## INFERENCES
+INF-1: Cost of each candy bar is constant :: From RULE-1 and RULE-2 by Universal Instantiation: CostPerBar(Cost, CostPerBar)
+INF-2: If Dan buys two candy bars, he spends twice the cost of one candy bar :: From RULE-1 and RULE-2 by Universal Instantiation: SpendingCost(Cost, Bars, 2 * CostPerBar)
+INF-3: Dan's spending must match his initial amount :: From FACT-1 and INF-2 by Universal Instantiation: SpendingCost(Cost, Bars, 2 * CostPerBar) = Money(Dan, t_spent)
+INF-4: Solving for CostPerBar gives the cost of one candy bar :: From INF-3 by Simplification: CostPerBar = (Money(Dan, t_spent) / 2) = 1.5
+INF-5: Each candy bar costs $1.50 :: CostPerBar(Cost, 1.5)

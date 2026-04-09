@@ -1,0 +1,44 @@
+Let's denote:
+- \( A \) as the number of apples Adam has,
+- \( J \) as the number of apples Jackie has.
+
+From the problem statement, we can establish two equations:
+
+1. Together Adam and Jackie have 12 apples:
+\[ A + J = 12 \]
+
+2. Adam has 9 apples more than what Jackie and Adam together have:
+\[ A = J + 9 \]
+
+3. Adam has 8 more apples than Jackie:
+\[ A = J + 8 \]
+
+Now let's solve these equations step-by-step to find out how many apples Adam has.
+
+Firstly, from equation (2):
+\[ A - J = 9 \]
+And from equation (3):
+\[ A - J = 8 \]
+
+Since both expressions equal \( A - J \), it implies that there must be an error in our initial assumption or setup because they cannot simultaneously satisfy both conditions without contradiction. Let’s recheck if any additional context was missed. However, based on standard arithmetic principles, this scenario seems inconsistent unless there might be some other constraint not mentioned here.
+
+Given the constraints provided, if we assume the problem intended for simplicity, then perhaps the third condition should align correctly with the first two. If so, then:
+
+If Adam has 8 more apples than Jackie, and together they have 12 apples, then logically:
+
+Adam would need at least 4.5 apples to fit the total of 12 apples when considering integer values only. But since we're dealing with whole numbers of apples, let’s consider another approach focusing directly on finding Adam's apples.
+
+Given \( A + J = 12 \) and \( A = J + 8 \):
+
+Substitute \( A \) in terms of \( J \) into the first equation:
+\[ J + 8 + J = 12 \]
+\[ 2J + 8 = 12 \]
+\[ 2J = 4 \]
+\[ J = 2 \]
+
+Then substitute \( J = 2 \) back into one of the original equations:
+\[ A = 2 + 8 = 10 \]
+
+So, Adam has 10 apples.
+
+Therefore, the answer is: The answer is: 10

@@ -1,0 +1,9 @@
+LABEL: FACT-1 :: Price(tshirt, 51)
+LABEL: FACT-2 :: Discount(8)
+LABEL: FACT-3 :: Sold(tshirt, 130)
+
+LABEL: RULE-1 :: ∀item (NormalPrice(item) → NewPrice(item, NormalPrice(item) - Discount))
+LABEL: RULE-2 :: ∀N (Sold(item, N) → TotalRevenue(TotalRevenue, NormalPrice(item) - Discount, N))
+
+LABEL: INF-1 :: DiscountedPrice(tshirt, 43)
+LABEL: INF-2 :: TotalRevenue(total_revenue, 43, 130)

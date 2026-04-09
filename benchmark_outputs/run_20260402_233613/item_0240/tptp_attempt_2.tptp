@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_girls_initially(732)).
+fof(fact_2, axiom, number_of_boys_initially(761)).
+fof(fact_3, axiom, number_of_students_initially(1493)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B] : ( sum(A, B) = sum(732, 761) )).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, number_of_students(2183)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, number_of_new_students(690)).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, number_of_students(2183)).

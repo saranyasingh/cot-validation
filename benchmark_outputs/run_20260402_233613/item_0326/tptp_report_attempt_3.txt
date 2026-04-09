@@ -1,0 +1,3 @@
+TPTP syntax error:
+% Type mismatch in argument #1 of difference_apps_and_files(9): expected $i but got $int
+eprover: cte_typecheck.c:327: TypeInferSort: Assertion `false' failed.

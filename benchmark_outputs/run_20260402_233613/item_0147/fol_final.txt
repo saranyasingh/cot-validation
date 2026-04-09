@@ -1,0 +1,17 @@
+LABEL: FACTS :: 
+- Fact-1: Fred had 49 dollars last week :: FredMoneyAtTime(t_last_week) ∧ Amount(49)
+- Fact-2: Fred had 3 dollars initially :: FredMoneyAtTime(t_initial) ∧ Amount(3)
+- Fact-3: Fred has 112 dollars now :: FredMoneyAtTime(t_now) ∧ Amount(112)
+
+LABEL: RULES ::
+- Rule-1: If someone has an amount of money at a certain time, they must have had that amount previously :: ∀t (FredMoneyAtTime(t) → (∃t' (FredMoneyAtTime(t') ∧ TimePassed(t', t)))
+
+LABEL: INFERENCES ::
+- Inference-1: Fred initially had 3 dollars :: FredMoneyAtTime(t_initial) ∧ Amount(3)
+- Inference-2: Fred has 49 dollars last week :: FredMoneyAtTime(t_last_week) ∧ Amount(49)
+- Inference-3: Fred has 112 dollars now :: FredMoneyAtTime(t_now) ∧ Amount(112)
+- Inference-4: Fred has more than 3 dollars initially :: FredMoneyAtTime(t_initial) ∧ Amount(3, Infinity)
+- Inference-5: Fred has less than 112 dollars now :: FredMoneyAtTime(t_now) ∧ Amount(Infinity, 112)
+- Inference-6: Fred has more than 63 dollars now :: FredMoneyAtTime(t_now) ∧ Amount(63, Infinity)
+- Inference-7: Fred has 112 dollars after having 49 dollars :: FredMoneyAtTime(t_now) ∧ FredMoneyAtTime(t_last_week) ∧ Amount(112, 49)
+- Inference-8: Fred earned 60 dollars by delivering newspapers :: FredMoneyAtTime(t_now) ∧ Amount(63) ∧ FredMoneyAtTime(t_now) ∧ Amount(60)

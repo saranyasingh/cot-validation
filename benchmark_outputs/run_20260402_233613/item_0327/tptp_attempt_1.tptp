@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, picked(2, tree1)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (picked(X, tree1) => original(Y, tree1))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, original(9, tree1)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, original(9, tree1)).

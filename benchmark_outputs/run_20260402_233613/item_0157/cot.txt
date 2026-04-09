@@ -1,0 +1,21 @@
+To solve this problem logically, let's break it down into steps:
+
+1. **Identify the initial conditions and actions**: 
+   - Rachel initially had 4 apple trees.
+   - From each tree, she picked 7 apples.
+
+2. **Calculate the number of apples picked**:
+   - Since there are 4 trees and she picks 7 apples from each tree, we multiply the number of trees by the number of apples per tree.
+   \[
+   \text{Number of apples picked} = 4 \times 7 = 28
+   \]
+
+3. **Determine the remaining apples**:
+   - After picking the apples, the trees now have 29 apples left.
+   
+4. **Verify the consistency**:
+   - If Rachel originally had 28 apples (since \(4 \times 7 = 28\)), adding these to the 29 apples that remain gives us the correct total of 57 apples.
+
+Therefore, Rachel picked a total of 28 apples.
+
+The answer is: 28

@@ -1,0 +1,4 @@
+LABEL: Fact 1 :: RazorbackShop sells t-shirts for $215 each :: SellingTShirtsFor(215, t_shirt)
+LABEL: Rule 1 :: SellingTShirtsFor(p, t_shirt) implies TotalRevenue(TotalRevenueFromSellingTShirts(p)) :: SellingTShirtsFor(p, t_shirt) → TotalRevenueFromSellingTShirts(p)
+LABEL: Inference 1 :: TotalRevenueFromSellingTShirts(215) :: TotalRevenue(TotalRevenueFromSellingTShirts(215))
+LABEL: Inference 2 :: From Inference 1, Rule 1: $4300 :: TotalRevenue(TotalRevenueFromSellingTShirts(215))

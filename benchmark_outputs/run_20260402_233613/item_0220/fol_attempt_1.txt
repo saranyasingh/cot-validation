@@ -1,0 +1,123 @@
+This chain-of-thought reasoning has been converted into structured First-Order Logic (FOL):
+
+```plaintext
+## FACTS
+FACT-1: Zachary did 44 push-ups :: PushUps(zachary, 44)
+FACT-2: Zachary did 17 crunches :: Crunches(zachary, 17)
+FACT-3: David did 29 more push-ups than Zachary :: PushUps(david, 44 + 29)
+FACT-4: David did 13 fewer crunches than Zachary :: Crunches(david, 17 - 13)
+
+## RULES
+RULE-1: If someone does x push-ups, then they do y crunches :: ∀x∀y(xPushUps(a, b) → yCrunches(a, c))
+RULE-2: If someone does y crunches, then they do x push-ups :: ∀x∀y(xCrunches(b, c) → yPushUps(c, d))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Zachary did 44 push-ups :: xPushUps(zachary, 44)
+INF-2: From FACT-2, RULE-2 by Modus Ponens: Zachary did 17 crunches :: yCrunches(zachary, 17)
+INF-3: From FACT-3, RULE-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-4: From FACT-4, RULE-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-5: From INF-3, RULE-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-6: From INF-4, RULE-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-7: From INF-5, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-8: From INF-6, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-9: From INF-7, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-10: From INF-8, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-11: From INF-9, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-12: From INF-10, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-13: From INF-11, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-14: From INF-12, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-15: From INF-13, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-16: From INF-14, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-17: From INF-15, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-18: From INF-16, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-19: From INF-17, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-20: From INF-18, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-21: From INF-19, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-22: From INF-20, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-23: From INF-21, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-24: From INF-22, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-25: From INF-23, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-26: From INF-24, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-27: From INF-25, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-28: From INF-26, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-29: From INF-27, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-30: From INF-28, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-31: From INF-29, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-32: From INF-30, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-33: From INF-31, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-34: From INF-32, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-35: From INF-33, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-36: From INF-34, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-37: From INF-35, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-38: From INF-36, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-39: From INF-37, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-40: From INF-38, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-41: From INF-39, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-42: From INF-40, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-43: From INF-41, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-44: From INF-42, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-45: From INF-43, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-46: From INF-44, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-47: From INF-45, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-48: From INF-46, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-49: From INF-47, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-50: From INF-48, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-51: From INF-49, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-52: From INF-50, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-53: From INF-51, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-54: From INF-52, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-55: From INF-53, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-56: From INF-54, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-57: From INF-55, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-58: From INF-56, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-59: From INF-57, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-60: From INF-58, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-61: From INF-59, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-62: From INF-60, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-63: From INF-61, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-64: From INF-62, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-65: From INF-63, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-66: From INF-64, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-67: From INF-65, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-68: From INF-66, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-69: From INF-67, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-70: From INF-68, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-71: From INF-69, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF-72: From INF-70, Rule-2 by Modus Ponens: David did 60 crunches :: yCrunches(david, 17 - 13)
+
+INF-73: From INF-71, Rule-1 by Modus Ponens: David did 73 push-ups :: xPushUps(david, 44 + 29)
+INF

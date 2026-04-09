@@ -1,0 +1,22 @@
+### ## FACTS
+
+1. Fact-1: There are 308 girls in the school.  
+   - This can be represented as `NumberOfGirls(308)`.
+
+2. Fact-2: There are 318 boys in the school.  
+   - This can be represented as `NumberOfBoys(318)`.
+
+3. Fact-3: There are 36 teachers in the school.  
+   - This can be represented as `NumberOfTeachers(36)`.
+
+### ## RULES
+
+There are no specific rules provided in the initial text; however, if any additional rules were intended, they would follow standard FOL syntax.
+
+### ## INFERENCES
+
+1. Inference-1: The total number of students in the school is the sum of girls and boys.  
+   - This can be formulated as:
+     ```
+     TotalStudents := NumberOfGirls + NumberOfBoys
+     ```

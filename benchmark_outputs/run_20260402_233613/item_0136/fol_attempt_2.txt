@@ -1,0 +1,11 @@
+```plaintext
+## FACTS
+FACT-1: Allans has 5 balloons :: BalloonsAllan = 5
+FACT-2: Jake has 3 balloons :: BalloonsJake = 3
+
+## RULES
+RULE-1: Addition rule for counting :: x + y = z if x = 5 and y = 3 then z = 8
+
+## INFERENCES
+INF-1: Difference in balloons :: (BalloonsAllan - BalloonsJake) = 2
+```

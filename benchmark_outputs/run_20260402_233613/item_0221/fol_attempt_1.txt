@@ -1,0 +1,87 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+- **Fact-1:** Ed had 5 more marbles than Doug.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, x) \rightarrow \text{Doug}(\text{has}, \text{marbles}, x - 5)
+  \]
+
+- **Fact-2:** Doug lost 3 of his marbles at the playground.
+  \[
+  \text{Doug}(\text{lost}, \text{marbles}, 3)
+  \]
+
+- **Fact-3:** If Ed had 27 marbles.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27)
+  \]
+
+### Rules
+- **Rule-1:** If Ed has \( n \) marbles, then Doug has \( n - 5 \) marbles.
+  \[
+  \forall n (\text{Ed}(\text{has}, \text{marbles}, n) \rightarrow \text{Doug}(\text{has}, \text{marbles}, n - 5))
+  \]
+
+- **Rule-2:** If Doug has \( m \) marbles, then he loses 3 marbles.
+  \[
+  \forall m (\text{Doug}(\text{has}, \text{marbles}, m) \rightarrow \text{Doug}(\text{lost}, \text{marbles}, 3))
+  \]
+
+- **Rule-3:** If Ed has 27 marbles, then Doug initially had 22 marbles.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]
+
+### Inferences
+- **Inference-1:** From Fact-1 and Rule-1, if Ed has 27 marbles, then Doug has 22 marbles initially.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]
+
+- **Inference-2:** From Fact-3 and Rule-2, if Doug has 19 marbles after losing 3, then Doug initially had 22 marbles.
+  \[
+  \text{Doug}(\text{has}, \text{marbles}, 19) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]
+
+Combining all these steps, we get:
+
+**Final Answer:**
+- **FACT-1:** Ed had 5 more marbles than Doug.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, x) \rightarrow \text{Doug}(\text{has}, \text{marbles}, x - 5)
+  \]
+
+- **FACT-2:** Doug lost 3 of his marbles at the playground.
+  \[
+  \text{Doug}(\text{lost}, \text{marbles}, 3)
+  \]
+
+- **FACT-3:** If Ed had 27 marbles.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27)
+  \]
+
+- **RULE-1:** If Ed has \( n \) marbles, then Doug has \( n - 5 \) marbles.
+  \[
+  \forall n (\text{Ed}(\text{has}, \text{marbles}, n) \rightarrow \text{Doug}(\text{has}, \text{marbles}, n - 5))
+  \]
+
+- **RULE-2:** If Doug has \( m \) marbles, then he loses 3 marbles.
+  \[
+  \forall m (\text{Doug}(\text{has}, \text{marbles}, m) \rightarrow \text{Doug}(\text{lost}, \text{marbles}, 3))
+  \]
+
+- **RULE-3:** If Ed has 27 marbles, then Doug initially had 22 marbles.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]
+
+- **INFERENCE-1:** From Fact-1 and Rule-1, if Ed has 27 marbles, then Doug has 22 marbles initially.
+  \[
+  \text{Ed}(\text{has}, \text{marbles}, 27) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]
+
+- **INFERENCE-2:** From Fact-3 and Rule-2, if Doug has 19 marbles after losing 3, then Doug initially had 22 marbles.
+  \[
+  \text{Doug}(\text{has}, \text{marbles}, 19) \rightarrow \text{Doug}(\text{has}, \text{marbles}, 22)
+  \]

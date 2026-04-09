@@ -1,0 +1,28 @@
+To determine how many campers went rowing in total, we need to consider the information given about their activities in the morning and the afternoon separately.
+
+**Premise 1:** 
+- 13 campers went rowing in the morning.
+  
+**Premise 2:** 
+- 21 campers went rowing in the afternoon.
+
+**Conclusion:**
+The total number of campers who went rowing is the sum of those who went rowing in the morning and those who went rowing in the afternoon.
+
+Let's denote:
+- \( R_m \) as the number of campers who went rowing in the morning.
+- \( R_a \) as the number of campers who went rowing in the afternoon.
+
+From Premise 1, we have:
+\[ R_m = 13 \]
+
+From Premise 2, we have:
+\[ R_a = 21 \]
+
+Now, adding these together gives us the total number of campers who went rowing:
+
+\[ \text{Total} = R_m + R_a \]
+\[ \text{Total} = 13 + 21 \]
+\[ \text{Total} = 34 \]
+
+Therefore, the total number of campers who went rowing is **34**.

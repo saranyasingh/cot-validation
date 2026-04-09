@@ -1,0 +1,7 @@
+LABEL: Fact-1 :: MorningEmails = 9
+LABEL: Fact-2 :: AfternoonEmails = 10
+LABEL: Fact-3 :: EveningEmails = 7
+
+LABEL: Rule :: None provided for inference.
+
+LABEL: Inf-1 :: ((MorningEmails(9) ∧ AfternoonEmails(10) ∧ MorningEmails(9) - EveningEmails(7) = 2))

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states 612 pages.
+FACT-2: SUPPORTED — The story says pages are equally distributed over 24 chapters.
+FACT-3: SUPPORTED — It took Frank 6 days to finish the book.
+RULE-1: PLAUSIBLE — Equal distribution implies each chapter has n/m pages.
+RULE-2: PLAUSIBLE — Reading p pages per day for y days yields p*y pages.

@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_cookies(38)).
+fof(fact_2, axiom, cookies_per_guest(19)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (guests(T, total_cookies(38), cookies_per_guest(19)))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, guests(number_of_guests, 38, 19)).

@@ -1,0 +1,33 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. **Total earnings**: \( T = \$133 \)
+2. **Time period**: \( W = 19 \) weeks
+
+### Rules
+1. **Total earnings divided by time period gives weekly earnings**:
+   \[
+   \forall t (\text{TotalEarnings}(t) \rightarrow \text{WeeklyEarnings}(t))
+   \]
+   where \( \text{TotalEarnings}(t) \) denotes the total earnings at time \( t \).
+
+### Inferences
+1. **Calculate weekly earnings using division**:
+   \[
+   \forall t (\text{TotalEarnings}(t) \rightarrow \text{WeeklyEarnings}(t)) \rightarrow \text{WeeklyEarnings}(t) = \frac{\text{TotalEarnings}(t)}{W}
+   \]
+
+Since there are no additional premises provided other than what’s stated here, the final inference can be considered complete based on the rules provided.
+
+### Summary
+Here are the FOL formulas corresponding to the natural language statements:
+
+#### FACTS
+- FACT-1: TotalEarnings(t) :: TotalEarnings(t)
+- FACT-2: WeeklyEarnings(t) :: WeeklyEarnings(t)
+
+#### RULES
+- RULE-1: ∀t (TotalEarnings(t) → WeeklyEarnings(t)) :: (∀t (TotalEarnings(t)) → (∀t (WeeklyEarnings(t))))
+
+#### INFERENCES
+- INF-1: (TotalEarnings(t) → WeeklyEarnings(t)) :: (∀t (TotalEarnings(t)) → (∀t (WeeklyEarnings(t))))

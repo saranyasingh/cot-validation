@@ -1,0 +1,20 @@
+## FACTS
+LABEL: FACT-1 :: (Rose(12), Orchid(2))
+LABEL: FACT-2 :: (CutRoses, CutOrchids)
+LABEL: FACT-3 :: (Rose(10), Orchid(21))
+
+## RULES
+# No rules provided for this scenario.
+
+## INFERENCES
+LABEL: RULE-1 :: (Rose(x), CutRoses) :: Rose(y) & CutRoses -> x = y
+LABEL: RULE-2 :: (Orchid(x), CutOrchids) :: Orchid(y) & CutOrchids -> x = y
+LABEL: RULE-3 :: (Rose(x), Rose(y)) :: x != y
+LABEL: RULE-4 :: (Orchid(x), Orchard(y)) :: x != y
+LABEL: RULE-5 :: (Rose(x), CutRoses) :: Rose(x) -> Rose(x + 1)
+LABEL: RULE-6 :: (Orchid(x), CutOrchids) :: Orchid(x) -> Orchid(x + 1)
+
+LABEL: INFER-1 :: (Rose(12), CutRoses) :: Rose(10) & CutRoses -> Rose(12) = Rose(10)
+LABEL: INFER-2 :: (Orchid(2), CutOrchids) :: Orchid(21) & CutOrchids -> Orchid(2) = Orchid(21)
+LABEL: INFER-3 :: (Rose(10), Rose(12)) :: Rose(10) != Rose(12)
+LABEL: INFER-4 :: (Orchid(21), Orchid(2)) :: Orchid(21) != Orchid(2)

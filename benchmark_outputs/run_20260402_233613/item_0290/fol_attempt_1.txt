@@ -1,0 +1,32 @@
+This problem involves simple arithmetic operations based on given quantities. Here’s the Chain of Thought Reasoning converted into FOL:
+
+### Facts
+```plaintext
+Fact-1: InitialSweetCookies(Paco) :: 37
+Fact-2: InitialSaltyCookies(Paco) :: 11
+Fact-3: SweetCookiesEaten(Paco) :: 5
+Fact-4: SaltedCookiesEaten(Paco) :: 2
+```
+
+### Rules
+No rules needed since all facts are straightforward arithmetic statements.
+
+### Inferences
+```plaintext
+INF-1: Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 5 - 2
+INF-2: Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 3
+```
+
+### Summary
+#### FACTS
+- `InitialSweetCookies(Paco) :: 37`
+- `InitialSaltyCookies(Paco) :: 11`
+- `SweetCookiesEaten(Paco) :: 5`
+- `SaltedCookiesEaten(Paco) :: 2`
+
+#### RULES
+None applicable here.
+
+#### INFERENCES
+- `Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 5 - 2`
+- `Difference(SweetCookiesEaten, SaltedCookiesEaten) :: 3`

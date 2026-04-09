@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, candy_total(42)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ((X + Y) = (2 * candies_in_bag(X, Y)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, candies_in_bag(21, 21)).

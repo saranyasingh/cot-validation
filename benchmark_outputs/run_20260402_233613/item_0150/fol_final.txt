@@ -1,0 +1,22 @@
+### ## FACTS
+
+```fola
+# Fact 1: Some animal migrates back to cooler countries during summer :: MigratesBackToCoolerCountriesDuringSummer()
+# Fact 2: There are 87 bird families living near a mountain :: ∃x(LivesNearMountain(x) ∧ x ∈ BirdFamily)
+# Fact 3: 18 new bird families have joined these families :: ∃y(y ∈ NewBirdFamily & y ≠ 0)
+```
+
+### ## RULES
+
+```fola
+# Rule 1: MigratesBackToCoolerCountriesDuringSummer implies livesNearMountain :: ∀x(MigratesBackToCoolerCountriesDuringSummer(x) → LivesNearMountain(x))
+# Rule 2: Total bird families after joining :: 87 + 18 = 105 :: ∃z(z ∈ BirdFamily & z > 0)
+```
+
+### ## INFERENCES
+
+```fola
+# Inference 1: There are 87 bird families living near a mountain before any new ones join :: ∃x(LivesNearMountain(x) ∧ x ∈ BirdFamily)
+# Inference 2: New bird families join the existing population :: ∃y(y ∈ NewBirdFamily & y ≠ 0)
+# Inference 3: The total number of bird families now :: ∃z(z ∈ BirdFamily & z > 0)
+```

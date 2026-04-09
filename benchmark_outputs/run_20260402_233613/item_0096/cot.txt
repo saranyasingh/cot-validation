@@ -1,0 +1,15 @@
+Premise 1: They decided to hold the party in their backyard.
+Premise 2: They have 10 sets of tables.
+Premise 3: Each set has 6 chairs.
+Premise 4: There are 11 people sitting on chairs.
+
+Conclusion: Number of chairs left unoccupied = (Number of chairs) - (Number of people)
+
+Explanation:
+- From Premise 1 and Premise 2, we know that they have 10 sets of tables.
+- From Premise 3, we know that each set contains 6 chairs.
+- Therefore, the total number of chairs available is 10 * 6 = 60 chairs.
+- From Premise 4, we know that there are 11 people sitting on chairs.
+- To find out how many chairs are left unoccupied, we subtract the number of people from the total number of chairs: 60 - 11 = 49 chairs.
+
+The answer is: 49 chairs are left unoccupied.

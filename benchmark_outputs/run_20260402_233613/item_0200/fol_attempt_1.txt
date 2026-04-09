@@ -1,0 +1,9 @@
+### FACTS
+FACT-1: RoomLength = 20 feet :: Length(room)
+FACT-2: RoomWidth = 19 feet :: Width(room)
+
+### RULES
+Rule-1: DifferenceBetweenDimensions(Length, Width) :: Length(room) - Width(room)
+
+### INFERENCES
+INF-1: The room is 1 foot longer than it is wide :: INF-1 :: DifferenceBetweenDimensions(RoomLength, RoomWidth)
