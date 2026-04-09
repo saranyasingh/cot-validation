@@ -121,27 +121,11 @@ Output ONLY the three sections (## FACTS, ## RULES, ## INFERENCES) with labeled 
 # ─── Utilities ────────────────────────────────────────────────────────────────
 
 def extract_answer(text: str) -> str:
-    """Extract the value from 'The answer is: X' in model output.
-
-    Strips trailing prose so that "15 bananas" → "15" and
-    "yes, it does" → "yes".  Pure-text answers (e.g. names, colours)
-    are returned as-is after stripping punctuation.
-    """
-    match = re.search(r'[Tt]he answer is[:\s]+(.+)', text)
-    if not match:
-        return ""
-    raw = match.group(1).strip().rstrip('.')
-
-    # Find the last number in the answer (e.g. "step 1 gives 145 groups" → "145").
-    num_matches = re.findall(r'[$€£]?\d[\d,]*\.?\d*', raw)
+    """Extract the last number from model output."""
+    num_matches = re.findall(r'[$€£]?\d[\d,]*\.?\d*', text)
     if num_matches:
         return num_matches[-1]
-
-    # Otherwise return the first "word" (handles "yes, …" → "yes", "blue shirt" → "blue shirt")
-    # but keep short answers whole; only truncate if there is trailing explanatory text
-    # separated by a comma, semicolon, or " — ".
-    short = re.split(r'[,;]| — ', raw)[0].strip()
-    return short
+    return ""
 
 
 def _write(path: str, content: str):
