@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, CostOfHouse(80000)).
+fof(fact_2, axiom, RepairFees(50000)).
+fof(fact_3, axiom, InitialInvestment(130000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ( Increase_in_Value(ValueIncrease(CostOfHouse(80000) * 1.5)) => IncreaseInValue(120000) ) ).
+fof(rule_2, axiom, ! [T] : ( Net_Profit(NetProfit(Increase_in_Value, Initial_Investment)) => NetProfit(120000, 130000) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, IncreaseInValue(120000)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, NetProfit(120000, 130000)).
+% From inf_2, rule_2 by Modus Ponens
+fof(inf_3, axiom, LossOfJosh(10000)).

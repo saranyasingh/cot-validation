@@ -1,0 +1,34 @@
+% --- FACTS ---
+fof(fact_1, axiom, rate(10)).
+
+fof(fact_2, axiom, first_40_hours_earnings(10)).
+
+fof(fact_3, axiom, overtime_rate(1.2)).
+
+fof(fact_4, axiom, hours_worked(45)).
+
+fof(fact_5, axiom, regular_hours(40)).
+
+fof(fact_6, axiom, overtime_hours(5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (hours_worked(X) => earnings(earnings_formula(rate(hours_worked(X)))))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, earnings(400)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, earnings(400)).
+
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, earnings(60)).
+
+% From fact_4, rule_1 by Modus Ponens
+fof(inf_4, axiom, earnings(400)).
+
+% From fact_5, rule_1 by Modus Ponens
+fof(inf_5, axiom, earnings(60)).
+
+% From fact_6, rule_1 by Modus Ponens
+fof(inf_6, axiom, earnings(460)).

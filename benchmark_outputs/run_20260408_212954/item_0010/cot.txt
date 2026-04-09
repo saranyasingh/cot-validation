@@ -1,0 +1,36 @@
+Explanation:
+
+1. Let's start by identifying what we know about Eliza's earnings.
+   - Her regular hourly rate is $10.
+   - For the first 40 hours, she earns at her regular rate.
+   - Overtime is paid at 1.2 times her regular rate.
+
+2. To calculate her earnings for the entire week, we need to break down her work into two parts:
+   - Regular hours (first 40 hours)
+   - Overtime hours (additional hours beyond 40)
+
+3. Calculate the amount earned for the first 40 hours:
+   - Regular rate = $10/hour
+   - Hours worked = 40
+   - Earnings for regular hours = 40 * $10 = $400
+
+4. Calculate the number of overtime hours:
+   - Total hours worked = 45
+   - Regular hours = 40
+   - Overtime hours = 45 - 40 = 5
+
+5. Calculate the overtime rate:
+   - Overtime rate = 1.2 * regular rate = 1.2 * $10 = $12/hour
+
+6. Calculate the earnings for the overtime hours:
+   - Overtime hours = 5
+   - Overtime rate = $12/hour
+   - Earnings for overtime = 5 * $12 = $60
+
+7. Add the earnings from regular hours and overtime to get the total earnings:
+   - Total earnings = Earnings for regular hours + Earnings for overtime
+   - Total earnings = $400 + $60 = $460
+
+Therefore, Eliza's earnings for this week are $460.
+
+The answer is: 460

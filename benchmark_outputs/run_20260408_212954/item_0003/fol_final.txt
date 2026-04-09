@@ -1,0 +1,19 @@
+### ## FACTS
+```
+LABEL: Cost_of_House($80,000) :: CostOfHouse(80000)
+LABEL: Repair_Fees($50,000) :: RepairFees(50000)
+LABEL: Initial_Investment(CostOfHouse(80000) + RepairFees(50000)) :: InitialInvestment(130000)
+LABEL: Increase_in_Value(ValueIncrease(CostOfHouse(80000) * 1.5)) :: IncreaseInValue(120000)
+```
+
+### ## RULES
+```
+LABEL: None provided
+```
+
+### ## INFERENCES
+```
+LABEL: Net_Profit(NetProfit(Increase_in_Value, Initial_Investment)) :: NetProfit(120000, 130000)
+LABEL: After applying Rule-1, the increase in value is indeed $120,000, so Net_Profit is correct.
+LABEL: By applying Rule-2, we get the final calculation of Net_Profit which should be -$10,000, indicating a loss.
+```

@@ -1,0 +1,17 @@
+Let's convert the chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+1. A robe takes 2 bolts of blue fiber.
+   - Fact-1: RobeBlueFiber(2)
+2. A robe takes half that much white fiber.
+   - Fact-2: RobeWhiteFiber(RobeBlueFiber(2)/2)
+
+### RULES
+1. The total number of bolts needed for the robe can be calculated by adding the number of blue bolts to the number of white bolts.
+   - Rule-1: TotalBolts(RobeBlueFiber(2), RobeWhiteFiber(RobeBlueFiber(2)/2)) = RobeBlueFiber(2) + RobeWhiteFiber(RobeBlueFiber(2)/2)
+
+### INFERENCES
+1. From Fact-1 and Rule-1, we can infer the total number of bolts needed for the robe.
+   - Infer-1: TotalBolts(RobeBlueFiber(2), RobeWhiteFiber(RobeBlueFiber(2)/2)) = 4
+
+Therefore, the total number of bolts of fiber needed to make the robe is 4.

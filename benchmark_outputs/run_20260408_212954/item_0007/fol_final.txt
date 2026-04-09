@@ -1,0 +1,11 @@
+FACT-1: Seattle has 20 sheep :: SheepInCity(Seattle, 20)
+
+FACT-2: Charleston has 4 times as many sheep as Seattle :: SheepInCity(Charleston, 4 * SheepInCity(Seattle))
+
+FACT-3: Toulouse has twice as many sheep as Charleston :: SheepInCity(Toulouse, 2 * SheepInCity(Charleston))
+
+INF-1: Total Sheep :: SheepInCity(Seattle, 20) ∧ SheepInCity(Charleston, 4 * SheepInCity(Seattle)) ∧ SheepInCity(Toulouse, 2 * SheepInCity(Charleston))
+
+INF-2: From FACT-1, FACT-2, and FACT-3 by Addition: Total Sheep :: 20 + (4 * 20) + (2 * (4 * 20)) = 20 + 80 + 160 = 260
+
+This concludes the conversion of the chain-of-thought reasoning into structured First-Order Logic.

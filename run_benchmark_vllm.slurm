@@ -24,14 +24,25 @@ MAX_RETRIES="${MAX_RETRIES:-3}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
 VLLM_PORT="${VLLM_PORT:-8000}"
+PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 
 export OPENAI_API_KEY="$(cat ~/.openai_key)"
 
 # ── Environment setup ──────────────────────────────────────────────────────────
-source ~/.bashrc
-conda activate vllm-inference
-# OR: source /path/to/venv/bin/activate
+# Slurm runs a non-interactive shell, so ~/.bashrc conda init doesn't run.
+# Source conda directly, then activate.
+if command -v conda >/dev/null 2>&1; then
+    CONDA_BASE="$(conda info --base)"
+elif [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="$HOME/miniconda3"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="$HOME/anaconda3"
+else
+    echo "ERROR: Could not find conda installation." && exit 1
+fi
+source "${CONDA_BASE}/etc/profile.d/conda.sh"
+conda activate vllm-inference || { echo "ERROR: Failed to activate conda env 'vllm-inference'"; exit 1; }
 
 mkdir -p slurm_logs
 cd "$SLURM_SUBMIT_DIR"
@@ -58,8 +69,7 @@ export VLLM_BASE_URL="http://localhost:${VLLM_PORT}/v1"
 # Prefer `vllm` CLI when on PATH; otherwise use the package entrypoint (typical on clusters).
 if command -v vllm >/dev/null 2>&1; then
     echo "Starting vLLM via: vllm serve ..."
-    vllm serve \
-        --model "$VLLM_MODEL" \
+    vllm serve "$VLLM_MODEL" \
         --port "$VLLM_PORT" \
         --dtype auto \
         --max-model-len 4096 \

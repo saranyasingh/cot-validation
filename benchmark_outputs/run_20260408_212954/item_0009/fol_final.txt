@@ -1,0 +1,6 @@
+LABEL: FACT-1 :: Rule1(3 hours, 60 mph)
+LABEL: FACT-2 :: Rule1(2 hours, 0 mph)
+LABEL: FACT-3 :: Rule1(0.5 hours, 30 mph)
+LABEL: FACT-4 :: Rule1(1 hour, 80 mph)
+
+LABEL: RULE-1 :: Rule1(d, s)

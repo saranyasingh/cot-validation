@@ -126,13 +126,16 @@ def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]
 
     # Syntax check (eprover only)
     if name == "eprover":
-        syntax_check = subprocess.run(
-            ["eprover", "--syntax-only", "--tptp3-format", tptp_path],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
-        )
-        if syntax_check.returncode != 0:
-            error_msg = (syntax_check.stderr or syntax_check.stdout).strip()
-            return tptp_output, True, f"TPTP syntax error:\n{error_msg}"
+        try:
+            syntax_check = subprocess.run(
+                ["eprover", "--syntax-only", "--tptp3-format", tptp_path],
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
+            )
+            if syntax_check.returncode != 0:
+                error_msg = (syntax_check.stderr or syntax_check.stdout).strip()
+                return tptp_output, True, f"TPTP syntax error:\n{error_msg}"
+        except subprocess.TimeoutExpired:
+            return tptp_output, True, "TPTP syntax check timed out (possible malformed formula or unsupported function)"
 
     axioms, inferences = parse_tptp(tptp_output)
 

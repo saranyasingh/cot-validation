@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, sheep_in_city(seattle, 20)).
+fof(fact_2, axiom, sheep_in_city(charleston, 80)).
+fof(fact_3, axiom, sheep_in_city(toulouse, 160)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2, and fact_3 by Addition
+fof(inf_1, axiom, sheep_in_city(seattle, 20) & sheep_in_city(charleston, 80) & sheep_in_city(toulouse, 160)).
+% From fact_1, fact_2, and fact_3 by Addition
+fof(inf_2, axiom, total_sheep(260)).

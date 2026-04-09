@@ -1,0 +1,29 @@
+### Facts
+FACT-1: MorningFeed = 15 cups
+FACT-2: AfternoonFeed = 25 cups
+
+### Rules
+RULE-1: TotalFeed = MorningFeed + AfternoonFeed
+RULE-2: ChickensPerDay = 3 cups/chicken
+RULE-3: TotalChickens = 20 chickens
+RULE-4: FinalMealFeed = ChickensPerDay * TotalChickens
+
+### Inferences
+INF-1: From FACT-1, RULE-1: TotalFeed = 15 cups + 25 cups = 40 cups
+INF-2: From RULE-2, RULE-3: ChickensPerDay = 3 cups/chicken
+INF-3: From RULE-4, RULE-5: TotalDailyFeedRequirement = 3 cups/chicken × 20 chickens = 60 cups
+INF-4: From RULE-1, RULE-2, RULE-5: TotalDailyFeedRequirement - (MorningFeed + AfternoonFeed) = 60 cups - 40 cups = 20 cups
+INF-5: From RULE-4, RULE-5: FinalMealFeed = 60 cups - 40 cups = 20 cups
+
+### Labels
+FACT-1: MorningFeed = 15 cups
+FACT-2: AfternoonFeed = 25 cups
+RULE-1: TotalFeed = MorningFeed + AfternoonFeed
+RULE-2: ChickensPerDay = 3 cups/chicken
+RULE-3: TotalChickens = 20 chickens
+RULE-4: FinalMealFeed = ChickensPerDay * TotalChickens
+INF-1: From FACT-1, RULE-1: TotalFeed = 15 cups + 25 cups = 40 cups
+INF-2: From RULE-2, RULE-3: ChickensPerDay = 3 cups/chicken
+INF-3: From RULE-4, RULE-5: TotalDailyFeedRequirement = 3 cups/chicken × 20 chickens = 60 cups
+INF-4: From RULE-1, RULE-2, RULE-5: TotalDailyFeedRequirement - (MorningFeed + AfternoonFeed) = 60 cups - 40 cups = 20 cups
+INF-5: From RULE-4, RULE-5: FinalMealFeed = 60 cups - 40 cups = 20 cups

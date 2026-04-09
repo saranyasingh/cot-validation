@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states 16 eggs are laid per day.
+FACT-2: SUPPORTED — The story states she eats 3 eggs for breakfast.
+FACT-3: SUPPORTED — The story indicates muffins are baked with four (per day).
+FACT-4: SUPPORTED — The story states price is $2 per egg.
+
+RULE-1: PLAUSIBLE — It encodes a sensible principle (revenue depends on eggs laid and eaten), though it is under-specified (omits muffin usage and price) and would not by itself yield the exact amount.

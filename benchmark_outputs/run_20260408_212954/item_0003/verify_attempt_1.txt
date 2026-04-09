@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states the house was bought for $80,000.
+FACT-2: SUPPORTED — The story states $50,000 in repairs.
+FACT-3: SUPPORTED — The initial investment is the sum of cost and repair fees (80,000 + 50,000).
+
+RULE-1: PLAUSIBLE — The 150% increase implies the value increase is Cost_of_House × 1.5 (i.e., $120,000).
+RULE-2: PLAUSIBLE — Net profit can be framed as a function of increase in value and initial investment in this context.

@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — Regular hourly rate stated as $10.
+FACT-2: SUPPORTED — First 40 hours earned at regular rate.
+FACT-3: SUPPORTED — Overtime paid at 1.2x regular rate.
+FACT-4: SUPPORTED — Hours worked is 45.
+FACT-5: SUPPORTED — Regular hours equal 40.
+FACT-6: SUPPORTED — Overtime hours equal 45−40.
+RULE-1: PLAUSIBLE — Standard earnings formula (rate × hours); overtime can modify rate, but the concept is sound.

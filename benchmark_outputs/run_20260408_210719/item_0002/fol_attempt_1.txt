@@ -1,0 +1,17 @@
+### FACTS
+FACT-1: Blue_fiber = 2 :: Blue_fiber = 2
+
+### RULES
+RULE-1: Total_bolts = Blue_fiber + White_fiber :: ∀t (Total_bolts(t) = Blue_fiber(t) + White_fiber(t))
+
+### INFERENCES
+INF-1: White_fiber = 0.5 * Blue_fiber :: ∀t (White_fiber(t) = 0.5 * Blue_fiber(t))
+INF-2: Total_bolts = Blue_fiber + White_fiber :: ∀t (Total_bolts(t) = Blue_fiber(t) + White_fiber(t))
+INF-3: Total_bolts = 3 :: ∀t (Total_bolts(t) = 3)
+
+### LABELS
+FACT-1: Blue_fiber = 2 :: Blue_fiber = 2
+RULE-1: Total_bolts = Blue_fiber + White_fiber :: ∀t (Total_bolts(t) = Blue_fiber(t) + White_fiber(t))
+INF-1: White_fiber = 0.5 * Blue_fiber :: ∀t (White_fiber(t) = 0.5 * Blue_fiber(t))
+INF-2: Total_bolts = Blue_fiber + White_fiber :: ∀t (Total_bolts(t) = Blue_fiber(t) + White_fiber(t))
+INF-3: Total_bolts = 3 :: ∀t (Total_bolts(t) = 3)

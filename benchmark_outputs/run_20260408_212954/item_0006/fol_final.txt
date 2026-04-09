@@ -1,0 +1,16 @@
+LABEL: ## FACTS
+```plaintext
+FACT-1: Cost(g1) = 5
+FACT-2: Cost(g2) = 0.6 * Cost(g1)
+FACT-3: Cost(gn) = 5 if IsOdd(n) else 3
+```
+
+LABEL: ## RULES
+None required since no new rules were needed.
+
+LABEL: ## INFERENCES
+```plaintext
+INF-1: TotalCost = Sum(Cost(g1), Cost(g2), ..., Cost(g16))
+INF-2: TotalCost = 8 * Cost(g1) + 8 * Cost(g2)
+INF-3: TotalCost = 8 * 5 + 8 * 3
+```

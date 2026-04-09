@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, laying_eggs(janet, 16)).
+fof(fact_2, axiom, eating_eggs(janet, 3)).
+fof(fact_3, axiom, baking_eggs(janet, 4)).
+fof(fact_4, axiom, egg_price(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (eggs_eaten_for_breakfast(X) => eggs_eaten_for_breakfast(Y))).
+
+% --- INFERENCES ---

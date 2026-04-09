@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: EggsLaidPerDay(16)
+FACT-2: Janet eats 3 eggs for breakfast every morning :: EggsEatenForBreakfast(3)
+
+## RULES
+RULE-1: If eggs are laid, they can be either eaten for breakfast or baked for muffins, so if not both, there must be some left :: EggsLeft(EggsLaidPerDay(n)) → ~(EggsEatenForBreakfast(e) ∨ EggsBakedForMuffins(m))
+RULE-2: Eggs left after breakfast and baking can be sold at the market at $2 per egg :: EggsLeft(EggsLeft(EggsLaidPerDay(n))) → EggsSoldAtMarket(n, 2)
+
+## INFERENCES
+INF-1: From Premises 1 and 2, we have 16 eggs laid per day. After eating 3 for breakfast, 13 eggs remain. Since she also bakes muffins using 4 eggs, 9 eggs are left for sale. Therefore, Janet earns $18 every day at the farmers' market :: EggsSoldAtMarket(9, 2)

@@ -1,0 +1,15 @@
+### ## FACTS
+FACT-1: Carla downloads at 2 GB/min :: DownloadRate(2 GB/min)
+FACT-2: Normal speed is 2 GB/min :: DownloadSpeed(2 GB/min)
+FACT-3: Data size = 200 GB :: DataSize(200 GB)
+
+### ## RULES
+RULE-1: If Carla has been downloading at 2 GB/min, then she will have downloaded X GB in Y minutes :: ∀t (DownloadedAt(2 GB/min, t) → Downloaded(X, Y))
+RULE-2: The probability of Carla having been downloading at 2 GB/min for a certain duration is equal to the probability of not being able to download at 2 GB/min for the remainder of the day :: Probability(DownloadedAt(2 GB/min, t), ¬DownloadedAt(2 GB/min, t))
+
+### ## INFERENCES
+INF-1: Carla completed the first 80 GB in 40 minutes :: DownloadedAt(2 GB/min, t_before_restart)
+INF-2: Carla completed the last 120 GB in 60 minutes :: DownloadedAt(2 GB/min, t_after_restart)
+INF-3: Carla took 40 minutes to download 80 GB before the restart :: DurationOfDownload(80 GB, t_before_restart)
+INF-4: Carla took 60 minutes to download the remaining 120 GB after the restart :: DurationOfDownload(120 GB, t_after_restart)
+INF-5: Total time to download 200 GB = DurationOfDownload(80 GB, t_before_restart) + DurationOfDownload(120 GB, t_after_restart) :: TotalTime(200 GB)

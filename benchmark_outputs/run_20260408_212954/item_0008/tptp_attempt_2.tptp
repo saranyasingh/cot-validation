@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, download_rate(two_gb_per_min)).
+fof(fact_2, axiom, download_speed(two_gb_per_min)).
+fof(fact_3, axiom, data_size(two_hundred_gb)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (downloaded_at(two_gb_per_min, T) => downloaded(X, Y))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, downloaded_at(two_gb_per_min, t_before_restart)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, downloaded_at(two_gb_per_min, t_after_restart)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, duration_of_download(eighty_gb, t_before_restart)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, duration_of_download(one_hundred_twenty_gb, t_after_restart)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, total_time(two_hundred_gb)).

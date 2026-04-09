@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: One robe requires 2 bolts of blue fiber :: BoltOfBlueFiber(x) → Robe(x, 2)
+
+FACT-2: For every 2 bolts of blue fiber, there needs to be half that amount of white fiber :: ∀y (BoltOfBlueFiber(y) → WhiteFiber(y, y / 2))
+
+### RULES
+RULE-1: To make one robe, you need twice the amount of blue fiber as white fiber :: ∀x (Robe(x, n) → BoltOfBlueFiber(x) → WhiteFiber(x, n * 0.5))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: To make a robe, you need twice the amount of blue fiber as white fiber :: BoltOfBlueFiber(Robe(x, 2)) → WhiteFiber(Robe(x, 2), 1)
+
+INF-2: From FACT-2, RULE-1 by Universal Instantiation: For any robe, half the amount of white fiber equals the blue fiber :: WhiteFiber(Robe(x, 2), 1) → ∃y (WhiteFiber(Robe(x, 2), y) ∧ BoltOfBlueFiber(Robe(x, 2)))
+
+INF-3: From INF-1 and INF-2 by Modus Ponens: From the premise that one robe requires 2 bolts of blue fiber, we can conclude that making a robe involves using twice the amount of blue fiber as white fiber :: WhiteFiber(Robe(x, 2), 1) :: BoltOfBlueFiber(Robe(x, 2))

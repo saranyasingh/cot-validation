@@ -1,0 +1,18 @@
+## FACTS
+```plaintext
+Fact-1: DucksLayEggs(16)
+Fact-2: BreakfastEggs(3)
+Fact-3: BakingMuffinsEggs(4)
+```
+
+## RULES
+```plaintext
+Rule-1: EggsLeftAfterBreakfast(EggsLayed - BreakfastEaten)
+Rule-2: EggsLeftAfterBaking(BakingMuffinsEggs - EggsLeftAfterBreakfast)
+Rule-3: Earnings(PricePerEgg * EggsLeftAfterBaking)
+```
+
+## INFERENCES
+```plaintext
+Inference-1: Earnings = $18
+```

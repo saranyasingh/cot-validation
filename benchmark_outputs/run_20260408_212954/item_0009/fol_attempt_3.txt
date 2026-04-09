@@ -1,0 +1,24 @@
+### ## FACTS
+FACT-1: John drove for 3 hours at 60 mph :: Driving(John, t_0, t_3, 60 mph)
+FACT-2: John spent 2 hours in traffic at 0 mph :: TrafficAt(John, t_2, 0 mph)
+FACT-3: John drove for 0.5 hours at 30 mph :: Driving(John, t_3, t_3+0.5, 30 mph)
+FACT-4: John drove for 1 hour at 80 mph :: Driving(John, t_3+0.5, t_4, 80 mph)
+
+### ## RULES
+RULE-1: If John drives for 'd' hours at speed 's', then the distance traveled is d * s :: Rule1(d, s)
+
+### ## INFERENCES
+INF-1: John traveled 180 miles driving at 60 mph :: Rule1(3 hours, 60 mph)
+INF-2: John did not travel any distance while in traffic :: Rule1(2 hours, 0 mph)
+INF-3: John traveled 15 miles driving at 30 mph :: Rule1(0.5 hours, 30 mph)
+INF-4: John traveled 80 miles driving at 80 mph :: Rule1(1 hour, 80 mph)
+
+INF-5: The remaining distance John needs to cover can be calculated as follows:
+\[ \text{Remaining Distance} = \sum_{i=0}^{n-1} (\text{Speed}_i \times \text{Time}_i) \]
+where \( n \) is the number of segments, and the segments are defined by the facts provided.
+
+INF-6: Substituting the values:
+\[ \text{Remaining Distance} = 180 + 0 + 15 + 80 = 275 \text{ miles} \]
+
+INF-7: Subtracting the total distance traveled from the initial distance:
+\[ \text{Remaining Distance Away From Home} = 275 - 275 = 0 \text{ miles} \]

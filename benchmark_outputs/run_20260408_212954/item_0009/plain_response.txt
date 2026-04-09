@@ -1,0 +1,36 @@
+To determine how far John is from home at the end of his trip, we need to calculate the distance covered during each segment of his journey.
+
+1. **First Segment**: John drives for 3 hours at a speed of 60 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 60 \text{ mph} \times 3 \text{ hours} = 180 \text{ miles}
+   \]
+
+2. **Second Segment**: John spends the first 2 hours in standstill traffic.
+   \[
+   \text{Distance} = 0 \text{ miles (since he doesn't move)}
+   \]
+   
+3. **Third Segment**: John spends the next half hour driving at a speed of 30 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 30 \text{ mph} \times 0.5 \text{ hours} = 15 \text{ miles}
+   \]
+
+4. **Fourth Segment**: The remaining time of the 4 hours is spent driving at an average speed of \( \frac{80 + 0}{2} = 40 \) mph.
+   \[
+   \text{Distance} = \text{Average Speed} \times \text{Remaining Time} = 40 \text{ mph} \times 2 \text{ hours} = 80 \text{ miles}
+   \]
+
+Now, sum up all the distances:
+\[
+180 \text{ miles} + 0 \text{ miles} + 15 \text{ miles} + 80 \text{ miles} = 275 \text{ miles}
+\]
+
+Therefore, the total distance John has traveled is 275 miles. To find out how far he is from home at the end of those 4 hours, we note that he started 180 miles away and drove another 275 miles, so:
+
+\[
+\text{Total Distance Traveled} - \text{Initial Distance} = 275 \text{ miles} - 180 \text{ miles} = 95 \text{ miles}
+\]
+
+Thus, John is 95 miles away from home at the end of those 4 hours. 
+
+The answer is: 95

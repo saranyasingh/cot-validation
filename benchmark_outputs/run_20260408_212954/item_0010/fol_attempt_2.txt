@@ -1,0 +1,18 @@
+LABEL: FACTS :: 
+FACT-1: Eliza's regular hourly rate is $10 :: Rate($10)
+FACT-2: For the first 40 hours, she earns at her regular rate :: First40HoursEarnings($10)
+FACT-3: Overtime is paid at 1.2 times her regular rate :: OvertimeRate(1.2)
+FACT-4: Hours worked = 45 :: HoursWorked(45)
+FACT-5: Regular hours = 40 :: RegularHours(40)
+FACT-6: Overtime hours = 45 - 40 :: OvertimeHours(5)
+
+LABEL: RULES :: 
+RULE-1: If an employee works x hours, their earnings are given by the formula Rate(x)*HoursWorked(x) :: Earnings(EarningsFormula(Rate(HoursWorked)))
+
+LABEL: INFERENCES :: 
+INF-1: From FACT-1, RATE(40) = $400 :: Earnings($400)
+INF-2: From RULE-1, Earnings(First40HoursEarnings) = $400 :: Earnings($400)
+INF-3: From RULE-1, Earnings(OvertimeRate(1.2)) = $60 :: Earnings($60)
+INF-4: From RULE-1, Earnings(RegularHours(40)) = $400 :: Earnings($400)
+INF-5: From RULE-1, Earnings(OvertimeHours(5)) = $60 :: Earnings($60)
+INF-6: From RULE-1, Earnings(EarningsFormula(Rate(HoursWorked))) = $460 :: Earnings($460)

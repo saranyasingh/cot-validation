@@ -1,0 +1,48 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These are the direct facts stated in natural language form.
+
+#### Fact-1: Janet's ducks lay 16 eggs per day.
+```
+Fact-1: DucksLayEggs(16)
+```
+
+#### Fact-2: Janet eats 3 eggs for breakfast every morning.
+```
+Fact-2: BreakfastEggs(3)
+```
+
+#### Fact-3: Janet uses 4 eggs to bake muffins for her friends.
+```
+Fact-3: BakingMuffinsEggs(4)
+```
+
+### Rules
+These are universally quantified implications that represent general principles or rules derived from the facts.
+
+#### Rule-1: The number of eggs left after breakfast equals the total eggs minus the eggs eaten for breakfast.
+```
+Rule-1: EggsLeftAfterBreakfast(EggsLaid - BreakfastEaten)
+```
+
+#### Rule-2: The number of eggs left after baking muffins equals the eggs left after breakfast minus the eggs used for baking muffins.
+```
+Rule-2: EggsLeftAfterBaking(MuffinEggs - EggsLeftAfterBreakfast)
+```
+
+#### Rule-3: The total earnings equal the number of eggs left after baking multiplied by the price per egg.
+```
+Rule-3: Earnings(PricePerEgg * EggsLeftAfterBaking)
+```
+
+### Inferences
+These are the logical deductions based on the facts and rules.
+
+#### Inference-1: Janet makes $18 every day at the farmers' market.
+```
+Inference-1: Earnings = $18
+```
+
+### Final Answer
+The answer is: 18

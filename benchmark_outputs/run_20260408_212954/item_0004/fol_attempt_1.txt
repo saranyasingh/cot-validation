@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: James runs 3 sprints each time :: SprintCount(3)
+FACT-2: Each sprint is 60 meters long :: SprintLength(60)
+FACT-3: James runs this 3 times a week :: RunsPerWeek(3)
+
+## RULES
+RULE-1: Total distance run in a week = SprintCount * SprintLength * RunsPerWeek :: WeeklyDistance(Total, SprintCount, SprintLength, RunsPerWeek)
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by substitution: James runs 3 sprints each time :: WeeklyDistance(Total, 3, 60, 3)
+INF-2: From FACT-2, RULE-1 by substitution: Each sprint is 60 meters long :: WeeklyDistance(Total, 3, 60, 3)
+INF-3: From FACT-3, RULE-1 by substitution: James runs this 3 times a week :: WeeklyDistance(Total, 3, 60, 3)
+INF-4: Combining all premises using multiplication: The total distance James runs a week = 3 * 60 * 3 :: WeeklyDistance(Total, 3, 60, 3)

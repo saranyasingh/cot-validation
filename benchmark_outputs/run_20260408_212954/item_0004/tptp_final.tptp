@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, sprint_count(3)).
+
+fof(fact_2, axiom, sprint_length(60)).
+
+fof(fact_3, axiom, runs_per_week(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [SprintCount, SprintLength, RunsPerWeek] : ( weekly_distance(total, SprintCount, SprintLength, RunsPerWeek) ) ).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Substitution
+fof(inf_1, axiom, weekly_distance(total, 3, 60, 3)).
+
+% From FACT-2, RULE-1 by Substitution
+fof(inf_2, axiom, weekly_distance(total, 3, 60, 3)).
+
+% From FACT-3, RULE-1 by Substitution
+fof(inf_3, axiom, weekly_distance(total, 3, 60, 3)).
+
+% From FACT-1, FACT-2, FACT-3, RULE-1 by Substitution and Multiplication
+fof(inf_4, axiom, weekly_distance(total, 3, 60, 3)).

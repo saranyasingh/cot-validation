@@ -1,0 +1,14 @@
+### ## FACTS
+```plaintext
+FACT-1: Cost(g1) = 5
+FACT-2: Cost(g2) = 0.6 * Cost(g1)
+FACT-3: Cost(gn) = 5 if IsOdd(n) else 3
+```
+
+### ## RULES
+None required since no new rules were needed.
+
+### ## INFERENCES
+```plaintext
+INF-1: TotalCost = Sum(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
+```

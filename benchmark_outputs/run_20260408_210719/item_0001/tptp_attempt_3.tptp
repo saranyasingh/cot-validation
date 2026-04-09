@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, eggs_laid_per_day(16)).
+
+fof(fact_2, axiom, eggs_eaten_for_breakfast(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, E, M] : ( eggs_left( eggs_laid_per_day(N) ) => ~( eggs_eaten_for_breakfast(E) | eggs_baked_for_muffins(M) ) ) ).
+
+fof(rule_2, axiom, ! [N] : ( eggs_left( eggs_left( eggs_laid_per_day(N) ) ) => eggs_sold_at_market(N, 2) ) ).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_1, axiom, eggs_left( eggs_left( eggs_laid_per_day(16) ) ) => eggs_sold_at_market(9, 2)).
