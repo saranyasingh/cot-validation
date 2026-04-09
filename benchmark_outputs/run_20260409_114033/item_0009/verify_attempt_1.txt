@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — The story states he drove for 3 hours at 60 mph.
+FACT-2: SUPPORTED — The story says he turned around after realizing he forgot something.
+FACT-3: SUPPORTED — The initial 3-hour drive at 60 mph implies a distance (180 miles) was covered.
+FACT-4: SUPPORTED — The story states the first 2 hours were in standstill traffic.
+FACT-5: SUPPORTED — The story states the next half-hour at 30 mph.
+RULE-1: PLAUSIBLE — Distance increases when you drive for a given time at a given speed (distance = speed × time).
+RULE-2: IMPLAUSIBLE — Turning back does not leave the total distance traveled unchanged; it adds more miles.
+RULE-3: PLAUSIBLE — Standing still adds zero distance.

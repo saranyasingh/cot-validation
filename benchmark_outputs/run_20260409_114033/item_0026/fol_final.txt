@@ -1,0 +1,16 @@
+## FACTS
+```plaintext
+FACT-1: ChickenMealCost :: ChickenMealCost = 12
+FACT-2: MilkPacksCost :: MilkPacksCost = 5 * 3 = 15
+FACT-3: AppleCost :: AppleCost = 4 * 1.5 = 6
+FACT-4: TotalSpentOnItems :: TotalSpentOnItems = ChickenMealCost + MilkPacksCost + AppleCost = 12 + 15 + 6
+FACT-5: RemainingAmountAfterPurchases :: RemainingAmountAfterPurchases = 50 - TotalSpentOnItems = 50 - (12 + 15 + 6)
+```
+
+## RULES
+No rules provided in the problem statement.
+
+## INFERENCES
+```plaintext
+INF-1: NumberOfBoxesOfPizza :: NumberOfBoxesOfPizza = RemainingAmountAfterPurchases / PizzaBoxCost
+```

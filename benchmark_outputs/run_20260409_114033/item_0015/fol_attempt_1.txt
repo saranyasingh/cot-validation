@@ -1,0 +1,42 @@
+This chain of thought can be converted into FOL as follows:
+
+## FACTS
+FACT-1: NumberOfContemporaryDancers(20) :: ContemporaryDancer(x)
+FACT-2: PercentEnrolledInContemporaryDance(20%, x) :: Cont(dancer, c)
+FACT-3: NumberOfJazzDancers(16) :: JazzDancer(y)
+FACT-4: PercentEnrolledInJazzDance(25%, y) :: Jd(dancer, j)
+FACT-5: NumberOfHipHopDancers(12) :: HipHopDancer(z)
+FACT-6: PercentEnrolledInHipHopDance(60%, z) :: Hh(dancer, h)
+
+## RULES
+RULE-1: If dancer d is enrolled in a specific dance, then d is a member of that dance :: Member(dancer, dance)
+RULE-2: If there are n dancers enrolled in a dance, then the percentage of dancers in that dance is (n * percent) / 100 :: Percent(dancer, dance, percent) :: EnrolledIn(dancer, dance)
+
+## INFERENCES
+INF-1: NumberOfContemporaryDancers(20) :: ContemporaryDancer(x)
+INF-2: PercentEnrolledInContemporaryDance(20%, x) :: Cont(dancer, c)
+INF-3: NumberOfJazzDancers(16) :: JazzDancer(y)
+INF-4: PercentEnrolledInJazzDance(25%, y) :: Jd(dancer, j)
+INF-5: NumberOfHipHopDancers(12) :: HipHopDancer(z)
+INF-6: PercentEnrolledInHipHopDance(60%, z) :: Hh(dancer, h)
+
+INF-7: From INF-1, Rule-1 by Universal Instantiation: There exists a dancer x enrolled in contemporary dance :: ∃x (ContemporaryDancer(x))
+INF-8: From INF-2, Rule-1 by Universal Instantiation: There exists a dancer x enrolled in contemporary dance :: ∃x (ContemporaryDancer(x))
+INF-9: From INF-3, Rule-1 by Universal Instantiation: There exists a dancer y enrolled in jazz dance :: ∃y (JazzDancer(y))
+INF-10: From INF-4, Rule-1 by Universal Instantiation: There exists a dancer y enrolled in jazz dance :: ∃y (JazzDancer(y))
+INF-11: From INF-5, Rule-1 by Universal Instantiation: There exists a dancer z enrolled in hip-hop dance :: ∃z (HipHopDancer(z))
+INF-12: From INF-6, Rule-1 by Universal Instantiation: There exists a dancer z enrolled in hip-hop dance :: ∃z (HipHopDancer(z))
+
+INF-13: From INF-1, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in contemporary dance is (20 * 20) / 100 = 4% :: PercentCont(dancer, c, 4)
+INF-14: From INF-2, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in contemporary dance is (20 * 20) / 100 = 4% :: PercentCont(dancer, c, 4)
+INF-15: From INF-3, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in jazz dance is (16 * 25) / 100 = 4% :: PercentJd(dancer, j, 4)
+INF-16: From INF-4, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in jazz dance is (16 * 25) / 100 = 4% :: PercentJd(dancer, j, 4)
+INF-17: From INF-5, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in hip-hop dance is (12 * 60) / 100 = 7.2% :: PercentHh(dancer, h, 7.2)
+INF-18: From INF-6, Rule-2 by Universal Instantiation: The percentage of dancers enrolled in hip-hop dance is (12 * 60) / 100 = 7.2% :: PercentHh(dancer, h, 7.2)
+
+INF-19: From INF-7, Rule-1 by Existential Instantiation: There exists a dancer x enrolled in contemporary dance :: ∃x (ContemporaryDancer(x))
+INF-20: From INF-8, Rule-1 by Existential Instantiation: There exists a dancer x enrolled in contemporary dance :: ∃x (ContemporaryDancer(x))
+INF-21: From INF-9, Rule-1 by Existential Instantiation: There exists a dancer y enrolled in jazz dance :: ∃y (JazzDancer(y))
+INF-22: From INF-10, Rule-1 by Existential Instantiation: There exists a dancer y enrolled in jazz dance :: ∃y (JazzDancer(y))
+INF-23: From INF-11, Rule-1 by Existential Instantiation: There exists a dancer z enrolled in hip-hop dance :: ∃z (HipHopDancer(z))
+INF-24: From INF-12, Rule-1 by Existential Instantiation: There exists a dancer z enrolled in hip-hop dance :: ∃z (HipHopDancer(z))

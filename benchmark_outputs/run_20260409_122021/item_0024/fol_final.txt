@@ -1,0 +1,326 @@
+## FACTS
+LABEL: FACT-1 :: MeltRate(2, 1)
+
+LABEL: FACT-2 :: Duration(t_14, t_17)
+
+## RULES
+LABEL: RULE-1 :: ∀h (MeltRate(h) → MeltedBy(h, 4))
+
+LABEL: RULE-2 :: HeightDecreases(h, h - MeltedBy(h, d))
+
+## INFERENCES
+LABEL: INF-1 :: ∃d (MeltedBy(d, 4) ∧ Duration(t_14, t_17)) 
+
+LABEL: INF-2 :: HeightDecreasedAfterBurning := HeightDecreases(original_height, HeightOfCandleAtBurnEnd) 
+
+LABEL: INF-3 :: HeightOfCandleAtBurnEnd := OriginalHeight - MeltedBy(MeltRate(2), Duration(t_14, t_17)) 
+
+LABEL: INF-4 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-5 :: HeightDecreased(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-6 :: HeightOfCandleAtBurnStart := HeightOfCandleAtBurnBegin := original_height 
+
+LABEL: INF-7 :: BurnTime := Duration(t_14, t_17) 
+
+LABEL: INF-8 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-9 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-10 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-11 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-12 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-13 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-14 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-15 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-16 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-17 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-18 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-19 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-20 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-21 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-22 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-23 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-24 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-25 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-26 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-27 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-28 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-29 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-30 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-31 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-32 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-33 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-34 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-35 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-36 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-37 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-38 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-39 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-40 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-41 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-42 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-43 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-44 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-45 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-46 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-47 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-48 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-49 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-50 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-51 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-52 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-53 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-54 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-55 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-56 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-57 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-58 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-59 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-60 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-61 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-62 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-63 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-64 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-65 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-66 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-67 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-68 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-69 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-70 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-71 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-72 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-73 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-74 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-75 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-76 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-77 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-78 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-79 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-80 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-81 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-82 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-83 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-84 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-85 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-86 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-87 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-88 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-89 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-90 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-91 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-92 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-93 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-94 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-95 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-96 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-97 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-98 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-99 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-100 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-101 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-102 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-103 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-104 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-105 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-106 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-107 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-108 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-109 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-110 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-111 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-112 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-113 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-114 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-115 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-116 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-117 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-118 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-119 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-120 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-121 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-122 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-123 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-124 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-125 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-126 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-127 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-128 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-129 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-130 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-131 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-132 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-133 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-134 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-135 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-136 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-137 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-138 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-139 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-140 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-141 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-142 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-143 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-144 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-145 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-146 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-147 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-148 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-149 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-150 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-151 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-152 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-153 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-154 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-155 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-156 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-157 :: HeightDecreases(Candle, HeightDecreasedAfterBurning) 
+
+LABEL: INF-158 :: HeightDecreases(C

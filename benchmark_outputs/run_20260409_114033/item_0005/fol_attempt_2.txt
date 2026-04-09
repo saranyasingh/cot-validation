@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: MorningFeed(15) :: MorningFeed(x) = 15
+FACT-2: AfternoonFeed(25) :: AfternoonFeed(y) = 25
+
+### RULES
+RULE-1: AverageFeedPerChicken(Avg) :: Avg = MorningFeed(x) + AfternoonFeed(y) / 20
+
+### INFERENCES
+INF-1: FinalMealCupsPerChicken(Final) :: Final = AverageFeedPerChicken(Avg) = (MorningFeed(x) + AfternoonFeed(y)) / 20
+INF-2: GivenFinalMeal(CorrectAnswer) :: CorrectAnswer = Final = 2

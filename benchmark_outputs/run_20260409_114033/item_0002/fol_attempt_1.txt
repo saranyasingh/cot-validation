@@ -1,0 +1,33 @@
+Let's convert the chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+1. A robe requires 2 bolts of blue fiber.
+   - Fact-1: RobeBlue(2) :: BlueFiberCount(blue, 2)
+
+2. Half as much white fiber is needed compared to the blue fiber.
+   - Fact-2: WhiteFiberCount = BlueFiberCount / 2 :: WhiteFiberCount(blue) = BlueFiberCount(blue) / 2
+
+### Rules
+1. Total bolts of fabric = Blue fiber + White fiber.
+   - Rule-1: TotalBolts = BlueFiberCount(blue) + WhiteFiberCount(blue) :: TotalBolts(blue) = BlueFiberCount(blue) + WhiteFiberCount(blue)
+
+### Inferences
+1. From Fact-1, Rule-1 by Addition:
+   - Conclusion: TotalBolts(blue) :: TotalBolts(blue) = BlueFiberCount(blue) + WhiteFiberCount(blue)
+
+Now, let's express these in FOL:
+
+```plaintext
+# FACTS
+FACT-1: RobeBlue(2) :: BlueFiberCount(blue, 2)
+
+FACT-2: WhiteFiberCount = BlueFiberCount / 2 :: WhiteFiberCount(blue) = BlueFiberCount(blue) / 2
+
+# RULES
+RULE-1: TotalBolts = BlueFiberCount(blue) + WhiteFiberCount(blue) :: TotalBolts(blue) = BlueFiberCount(blue) + WhiteFiberCount(blue)
+
+# INFERENCES
+INF-1: TotalBolts(blue) :: TotalBolts(blue) = BlueFiberCount(blue) + WhiteFiberCount(blue)
+```
+
+This conversion ensures that each step logically builds upon the previous ones, maintaining clarity and precision in representing the problem using FOL.

@@ -1,0 +1,27 @@
+To determine how many DVDs Billy sold on Tuesday, we need to calculate the total number of DVDs sold to each group of customers and then sum these amounts.
+
+1. For the first 3 customers:
+   Each customer buys 1 DVD.
+   \[
+   3 \text{ customers} \times 1 \text{ DVD/customer} = 3 \text{ DVDs}
+   \]
+
+2. For the next 2 customers:
+   Each customer buys 2 DVDs.
+   \[
+   2 \text{ customers} \times 2 \text{ DVDs/customer} = 4 \text{ DVDs}
+   \]
+
+3. For the last 3 customers:
+   Each customer buys 0 DVDs.
+   \[
+   3 \text{ customers} \times 0 \text{ DVDs/customer} = 0 \text{ DVDs}
+   \]
+
+Now, we add up all the DVDs sold:
+
+\[
+3 \text{ DVDs (first group)} + 4 \text{ DVDs (second group)} + 0 \text{ DVDs (third group)} = 7 \text{ DVDs}
+\]
+
+Therefore, the total number of DVDs Billy sold on Tuesday is 7.

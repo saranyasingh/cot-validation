@@ -1,0 +1,10 @@
+### FACTS
+FACT-1: DownloadsMonth1 :: 60
+FACT-2: DownloadsMonth2 :: 180
+FACT-3: DownloadsMonth3 :: 126
+
+### RULES
+RULE-1: TotalDownloads :: DownloadsMonth1 + DownloadsMonth2 + DownloadsMonth3
+
+### INFERENCES
+INF-1: TotalDownloads :: 60 + 180 + 126

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Toula bought 3 dozen donuts at $68 per dozen :: DonutCost(3 * 68)
+FACT-2: Toula bought 2 dozen mini cupcakes at $80 per dozen :: CupcakeCost(2 * 80)
+FACT-3: Toula bought 6 dozen mini cheesecakes at $55 per dozen :: CheesecakeCost(6 * 55)
+
+## RULES
+RULE-1: Total cost is the sum of individual costs :: TotalCost(CostDonuts, CostCupcakes, CostCheesecakes)
+
+## INFERENCES
+INF-1: The total cost is calculated by adding the costs of each item :: INF-2: TotalCost(DonutCost(3 * 68), CupcakeCost(2 * 80), CheesecakeCost(6 * 55)) :: TotalCost(TotalCost(DonutCost, CupcakeCost, CheesecakeCost))

@@ -1,0 +1,59 @@
+% --- FACTS ---
+fof(fact_1, axiom, short_cost(3, 16.50)).
+
+fof(fact_2, axiom, pants_cost(3, 22.50)).
+
+fof(fact_3, axiom, shoes_cost(3, 42)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C, Q, P] : ( total_cost(C, Q, P) => ( ! [c] : ( short_cost(c) => total_cost(Q, c) ) ) ) ).
+
+fof(rule_2, axiom, ! [C, Q, P] : ( total_cost(C, Q, P) => ( ! [p] : ( pants_cost(p) => total_cost(Q, p) ) ) ) ).
+
+fof(rule_3, axiom, ! [C, Q, P] : ( total_cost(C, Q, P) => ( ! [s] : ( shoes_cost(s) => total_cost(Q, s) ) ) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_5, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_6, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_7, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_8, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_9, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_10, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_11, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_12, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_13, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_14, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_15, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).

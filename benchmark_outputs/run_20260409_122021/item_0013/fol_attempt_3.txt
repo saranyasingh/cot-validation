@@ -1,0 +1,14 @@
+LABEL: FACT-1 :: Initial Investment :: 90
+LABEL: FACT-2 :: Annual Revenue :: 7 * 1.5
+LABEL: FACT-3 :: Annual Expenses :: 3
+
+LABEL: RULE-1 :: Net Profit Per Year :: (Revenue - Costs)
+LABEL: RULE-2 :: Cumulative Profit :: Sum(Net Profit Per Year, n)
+
+LABEL: INF-1 :: From FACT-1, Rule-1: Net Profit Per Year :: (7 * 1.5) - 3
+LABEL: INF-2 :: From Fact-2, Rule-2: Cumulative Profit :: 4.5 * n
+LABEL: INF-3 :: Solve for n where Cumulative Profit > 90 :: 4.5n > 90
+LABEL: INF-4 :: Calculate n :: n > 20
+LABEL: INF-5 :: Since n must be an integer, round up :: n ≥ 21
+
+Therefore, Carlos needs more than 20 years to start earning money on his lemon tree. The answer is 21 years.

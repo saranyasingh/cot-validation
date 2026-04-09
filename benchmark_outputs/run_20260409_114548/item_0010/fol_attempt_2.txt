@@ -1,0 +1,18 @@
+LABEL: FACTS :: 
+Fact-1: RegularEarnings(10, 40)
+Fact-2: OvertimeRate(12, 1.2)
+Fact-3: TotalHoursWorked(45)
+Fact-4: OvertimeHours(5)
+Fact-5: TotalEarnings(460)
+
+LABEL: RULES :: 
+Rule-1: RegularEarnings(Rate, Hours) = Rate * Hours
+Rule-2: TotalEarnings(Earnings) = RegularEarnings(Rate, Hours) + OvertimeEarnings(OvertimeRate, OvertimeHours)
+Rule-3: OvertimeEarnings(Rate, Hours) = OvertimeRate * Hours
+
+LABEL: INFERENCES :: 
+INF-1: From Fact-1 and Rule-1: RegularEarnings(10, 40) :: RegularEarnings(10, 40)
+INF-2: From Fact-2 and Rule-2: TotalEarnings(460) :: TotalEarnings(460)
+INF-3: From Fact-3 and Rule-3: OvertimeEarnings(12, 5) :: OvertimeEarnings(12, 5)
+INF-4: From Fact-4 and Rule-1: OvertimeEarnings(12, 5) :: OvertimeEarnings(12, 5)
+INF-5: From Fact-5 and Rule-2: TotalEarnings(460) :: TotalEarnings(460)

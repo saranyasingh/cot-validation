@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, train_distance_day1 = 80).
+
+fof(fact_2, axiom, train_distance_day2 = 150).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T1, T2] : ( total_distance_over_two_days(T1, T2) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Addition
+fof(inf_1, axiom, total_distance_over_two_days(train_distance_day1, train_distance_day2)).

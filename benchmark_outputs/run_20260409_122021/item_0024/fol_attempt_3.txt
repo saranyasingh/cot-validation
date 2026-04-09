@@ -1,0 +1,4 @@
+LABEL: FACT-1 :: MeltRate(2, 1)
+LABEL: FACT-2 :: Duration(t_14, t_17)
+LABEL: RULE-1 :: ∀h (MeltRate(h) → MeltedBy(h, 4))
+LABEL: RULE-2 :: HeightDecreases(h, h - MeltedBy(h, d))

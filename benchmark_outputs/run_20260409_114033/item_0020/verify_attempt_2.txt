@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states she walked 4 miles in the first hour.
+FACT-2: SUPPORTED — She spent 1 hour on the first 4 miles.
+FACT-3: SUPPORTED — She spent 1 hour on the next 2 miles.
+FACT-4: SUPPORTED — After 6 miles completed, remaining distance is 6 miles on a 12-mile trail.
+RULE-1: PLAUSIBLE — Speed = distance / time; applies to the walking interval t1 with d and s.
+RULE-2: PLAUSIBLE — Average speed = total distance / total time; appropriate for the overall goal.

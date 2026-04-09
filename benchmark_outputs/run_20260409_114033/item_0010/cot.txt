@@ -1,0 +1,44 @@
+To determine Eliza's earnings for the week when she worked 45 hours, we need to break down her total earnings into two parts: her regular work hours at her regular rate and any overtime hours at her overtime rate.
+
+### Step-by-Step Logical Reasoning (Logical Syllogism)
+
+1. **Premise 1:** Eliza's rate per hour for the first 40 hours is $10.
+   - This establishes her base hourly wage for non-overtime hours.
+
+2. **Premise 2:** For any hours worked beyond the initial 40 hours, she receives an overtime pay of 1.2 times her regular hourly rate.
+   - This accounts for the additional hours above the base limit, increasing her earning potential based on the extra time worked.
+
+3. **Premise 3:** Eliza worked a total of 45 hours this week.
+   - This gives us the total hours worked.
+
+4. **Conclusion (Final Answer):** We need to calculate the total earnings by summing up her regular earnings and her overtime earnings separately, then adding them together.
+
+### Calculation Process
+
+- **Regular Earnings:** Since she worked within the first 40 hours, all 40 hours fall under her regular rate of $10 per hour.
+  
+  \[
+  \text{Regular Earnings} = 40 \text{ hours} \times \$10/\text{hour} = \$400
+  \]
+
+- **Overtime Hours:** Subtract the initial 40 hours from the total 45 hours to find out how many hours were worked as overtime.
+
+  \[
+  \text{Overtime Hours} = 45 \text{ hours} - 40 \text{ hours} = 5 \text{ hours}
+  \]
+
+- **Overtime Pay:** Calculate the overtime pay by multiplying the overtime hours by the overtime rate, which is 1.2 times the regular rate ($10).
+
+  \[
+  \text{Overtime Pay} = 5 \text{ hours} \times 1.2 \times \$10/\text{hour} = 60 \times \$10/\text{hour} = \$600
+  \]
+
+- **Total Earnings:** Add the regular earnings to the overtime pay to get the total weekly earnings.
+
+  \[
+  \text{Total Earnings} = \text{Regular Earnings} + \text{Overtime Pay} = \$400 + \$600 = \$1000
+  \]
+
+### Final Answer
+
+The answer is: 1000

@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_investment(90)).
+fof(fact_2, axiom, annual_revenue(10.5)).
+fof(fact_3, axiom, annual_expenses(3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (net_profit_per_year(T) <=> (annual_revenue(T) - annual_expenses(T)))).
+fof(rule_2, axiom, ! [N] : (cumulative_profit(N) <=> sum_net_profit_per_year(N))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, net_profit_per_year(t_1) = (annual_revenue(t_1) - annual_expenses(t_1))).
+
+% From fact_2, rule_2 by inference
+fof(inf_2, axiom, cumulative_profit(n) = sum_net_profit_per_year(n)).
+
+% From INF-2: Solve for n where Cumulative Profit > 90
+fof(inf_3, axiom, gt(mul(4.5, n), 90)).
+
+% From INF-3: n > 20
+fof(inf_4, axiom, gt(n, 20)).
+
+% From INF-4: n is an integer, round up :: n ≥ 21
+fof(inf_5, axiom, geq(n, 21)).

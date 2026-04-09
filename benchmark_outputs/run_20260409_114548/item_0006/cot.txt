@@ -1,0 +1,35 @@
+Explanation:
+
+First, let's break down the problem into smaller parts.
+
+**Premise 1:** Kylar buys 16 glasses.
+- This tells us that the total quantity of glasses is known.
+
+**Premise 2:** Every second glass costs only 60% of the original price.
+- This indicates a discount on every other glass, which affects our calculation.
+
+**Premise 3:** Each glass originally costs $5.
+- This gives us the base price per glass.
+
+To find out how much Kylar needs to pay for all 16 glasses, we'll calculate the cost for each group of glasses (even-numbered or odd-numbered) separately and then sum these amounts.
+
+**Step-by-step Calculation:**
+
+1. **Calculate the cost for the first 8 glasses (since they're not discounted):**
+   - Price per glass = $5
+   - Number of glasses = 8
+   - Total cost for even-numbered glasses = \( 8 \times 5 = \$40 \)
+
+2. **Calculate the cost for the remaining 8 glasses (which are discounted):**
+   - Discount rate = 60%
+   - Cost per discounted glass = \( 5 \times 0.60 = \$3 \)
+   - Number of discounted glasses = 8
+   - Total cost for discounted glasses = \( 8 \times 3 = \$24 \)
+
+3. **Sum up the costs from both groups:**
+   - Total cost = Cost for even-numbered glasses + Cost for discounted glasses
+   - Total cost = \( 40 + 24 = \$64 \)
+
+Therefore, the total amount Kylar needs to pay for 16 glasses is $64.
+
+**Answer:** 64

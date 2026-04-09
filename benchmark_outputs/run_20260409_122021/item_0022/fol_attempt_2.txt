@@ -1,0 +1,30 @@
+```plaintext
+## FACTS
+FACT-1: UNSUPPORTED -- The story does not provide Raymond's birth year. :: Born(Raymond)
+
+## RULES
+RULE-1: PLAUSIBLE -- The rule expresses a true relation: the parent's age at birth equals the parent's age when the child was born. :: ∀x (Fathered(x) → ChildBornAtAge(x))
+
+RULE-2: IMPLAUSIBLE -- The rule wrongly asserts that the child is always y years old when the parent is x, which is not generally correct. :: ∀y (ChildBornAtAge(y,x) → ParentWasBornAtAge(y,x))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Universal Instantiation: Raymond was 23 years old when he had his son. :: RaymondWas23WhenHadSon
+
+INF-2: From Fact-1, RULE-2 by Universal Instantiation: Raymond's son was 23 years old when he was born. :: SonWas23WhenBorn
+
+INF-3: From Rule-2, ChildBornAtAge(23,23) implies that the parent was 23 years old when the child was born. :: ParentWas23WhenChildWasBorn
+
+INF-4: From Rule-1, Fathered(23) implies that Raymond was 23 years old when he had his son. :: RaymondWas23WhenHadSon
+
+INF-5: Given that Raymond was 23 years old when he had his son, we can calculate the number of years he had been alive before his son was born. :: YearsSinceBirthRaymond
+
+INF-6: We know that 6 years have passed since Raymond's birth to reach his current age, so subtracting these 6 years from the total gives us Raymond's birth year. :: BirthYearRaymond
+
+INF-7: From Rule-2, ChildBornAtAge(23,23) implies that the parent was 23 years old when the child was born. :: ParentWas23WhenChildWasBorn
+
+INF-8: Using Rule-1 again, Raymond was 23 years old when he had his son, hence Raymond's son was also 23 years old when he was born. :: SonWas23WhenBorn
+
+INF-9: Subtracting 20 years from Raymond's birth year gives us the year when his son was born. :: YearSonBecame1
+
+INF-10: Raymond's son was born 20 years ago. :: SonBecame1
+```

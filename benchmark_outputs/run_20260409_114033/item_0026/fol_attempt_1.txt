@@ -1,0 +1,58 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL). Here’s the step-by-step process followed by the final FOL representation:
+
+### Facts
+1. **Chicken Meal Cost**: $12
+2. **Milk Packs Cost**: 5 packs * $3/pack = $15
+3. **Apples Cost**: 4 apples * $1.50/apple = $6
+4. **Total Spent on Items**: $12 + $15 + $6 = $33
+5. **Remaining Amount After Purchases**: $50 - $33 = $17
+
+### Rules
+No rules provided in the problem statement.
+
+### Inferences
+To derive the conclusion, let's break down the steps logically:
+
+1. Calculate the total amount spent on chicken meal, milk, and apples.
+2. Subtract this total from the initial amount ($50) to find the remaining amount.
+3. Divide the remaining amount by the cost per box of pizza to determine the number of boxes purchased.
+
+### Final Answer
+The number of boxes of pizza Marie bought is approximately 2.
+
+### Converting to FOL
+
+#### Facts
+```plaintext
+Facts:
+FACT-1: ChickenMealCost = 12
+FACT-2: MilkPacksCost = 5 * 3
+FACT-3: AppleCost = 4 * 1.5
+FACT-4: TotalSpentOnItems = ChickenMealCost + MilkPacksCost + AppleCost
+FACT-5: RemainingAmountAfterPurchases = 50 - TotalSpentOnItems
+```
+
+#### Rule
+Since no additional rules were provided, there are none to include here.
+
+#### Inference
+```plaintext
+Inferences:
+INF-1: NumberOfBoxesOfPizza = RemainingAmountAfterPurchases / PizzaBoxCost
+```
+
+Where `PizzaBoxCost` is defined as $8.50.
+
+#### Labeling
+For clarity and consistency, let's label them accordingly:
+
+```plaintext
+FACT-1: ChickenMealCost :: ChickenMealCost = 12
+FACT-2: MilkPacksCost :: MilkPacksCost = 5 * 3 = 15
+FACT-3: AppleCost :: AppleCost = 4 * 1.5 = 6
+FACT-4: TotalSpentOnItems :: TotalSpentOnItems = ChickenMealCost + MilkPacksCost + AppleCost = 12 + 15 + 6
+FACT-5: RemainingAmountAfterPurchases :: RemainingAmountAfterPurchases = 50 - TotalSpentOnItems = 50 - (12 + 15 + 6)
+INF-1: NumberOfBoxesOfPizza :: NumberOfBoxesOfPizza = RemainingAmountAfterPurchases / PizzaBoxCost
+```
+
+This completes the conversion from the chain-of-thought reasoning to structured FOL, ensuring clear logical structure and grounding in the facts provided.

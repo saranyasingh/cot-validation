@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, teaching_rate(20, 35)).
+fof(fact_2, axiom, coaching_rate(30, 15)).
+fof(fact_3, axiom, teaching_salary(20)).
+fof(fact_4, axiom, coaching_salary(30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W, H] : (teaching_rate(W, H) => weekly_earnings_from_teaching(W, H))).
+fof(rule_2, axiom, ! [WE, WEEKS] : (weekly_earnings_from_teaching(WE, WEEKS) => annual_earnings_from_teaching(WE, WEEKS))).
+fof(rule_3, axiom, ! [W, H] : (coaching_rate(W, H) => weekly_earnings_from_coaching(W, H))).
+fof(rule_4, axiom, ! [WE, WEEKS] : (weekly_earnings_from_coaching(WE, WEEKS) => annual_earnings_from_coaching(WE, WEEKS))).
+fof(rule_5, axiom, ! [TE, CO] : (total_annual_salary(TE, CO) <=> (annual_earnings_from_teaching(TE, 50) & annual_earnings_from_coaching(CO, 50)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, weekly_earnings_from_teaching(20, 35)).
+% From fact_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, annual_earnings_from_teaching(700, 50)).
+% From fact_2, rule_3 by Modus Ponens
+fof(inf_3, axiom, weekly_earnings_from_coaching(30, 15)).
+% From fact_2, rule_4 by Modus Ponens
+fof(inf_4, axiom, annual_earnings_from_coaching(450, 50)).
+% From fact_3, fact_4, rule_5 by arithmetic
+fof(inf_5, axiom, total_annual_salary(35000, 22500)).

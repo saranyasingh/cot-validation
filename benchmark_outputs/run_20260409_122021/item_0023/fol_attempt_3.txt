@@ -1,0 +1,11 @@
+## FACTS
+LABEL: Fact 1 :: 3 * 1 = 3
+LABEL: Fact 2 :: 2 * 2 = 4
+LABEL: Fact 3 :: 0 * 3 = 0
+
+## RULES
+LABEL: Rule 1 :: Multiplication distributes over addition
+LABEL: Rule 2 :: If A happens, then B must happen
+
+## INFERENCES
+LABEL: Inference 1 :: 3 + 4 + 0 = 7

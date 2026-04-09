@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — The story states jewelry worth $5,000 (PresentValueJewelry = 5000).
+FACT-2: SUPPORTED — Growth rate for jewelry is 2.5% as stated.
+FACT-3: SUPPORTED — Time period for jewelry is 1 month as stated.
+FACT-4: SUPPORTED — Electronics present value $8,000.
+FACT-5: SUPPORTED — Growth rate for electronics is 1.2%.
+FACT-6: SUPPORTED — Time period for electronics is 1 month.
+RULE-1: PLAUSIBLE — FutureValue is computed by PV * (1 + r)^t, a standard compound-growth formula.
+RULE-2: PLAUSIBLE — Same compound-growth form applies to electronics.

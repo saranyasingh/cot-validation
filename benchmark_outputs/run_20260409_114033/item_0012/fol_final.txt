@@ -1,0 +1,12 @@
+### FIXED VERSION
+
+#### ## FACTS
+- `DonutCost := 3 * 68` :: `DonutCost := 204`
+- `MiniCupcakeCost := 2 * 80` :: `MiniCupcakeCost := 160`
+- `CheesecakeCost := 6 * 55` :: `CheesecakeCost := 330`
+
+#### ## RULES
+- `TotalCost := DonutCost + MiniCupcakeCost + CheesecakeCost`
+
+#### ## INFERENCES
+- `TotalCost := 204 + 160 + 330` :: `TotalCost := 794`

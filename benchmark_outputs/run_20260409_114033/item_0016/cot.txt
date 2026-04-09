@@ -1,0 +1,33 @@
+To determine which purchase plan maximizes profit, we need to calculate the expected value (EV) for both options based on the given growth rates.
+
+**Step 1:** Calculate the future value of the jewelry.
+- Present Value (PV) = $5,000
+- Growth Rate (r) = 2.5% = 0.025
+- Time period (t) = 1 month
+
+Future Value (FV_jewelry) = PV * (1 + r)^t
+\[ FV_{jewelry} = 5000 \times (1 + 0.025)^1 \]
+\[ FV_{jewelry} = 5000 \times 1.025 \]
+\[ FV_{jewelry} = 5125 \]
+
+**Step 2:** Calculate the future value of the electronics.
+- Present Value (PV) = $8,000
+- Growth Rate (r) = 1.2% = 0.012
+- Time period (t) = 1 month
+
+Future Value (FV_electronics) = PV * (1 + r)^t
+\[ FV_{electronics} = 8000 \times (1 + 0.012)^1 \]
+\[ FV_{electronics} = 8000 \times 1.012 \]
+\[ FV_{electronics} = 8096 \]
+
+**Step 3:** Determine the profit for each option.
+Profit = Future Value - Present Value
+For Jewelry: \( Profit_{jewelry} = 5125 - 5000 \)
+\[ Profit_{jewelry} = 125 \]
+
+For Electronics: \( Profit_{electronics} = 8096 - 8000 \)
+\[ Profit_{electronics} = 96 \]
+
+**Conclusion:** The profit from purchasing the jewelry is higher than the profit from purchasing the electronics. Therefore, the merchant should choose the jewelry purchase plan to maximize his profit.
+
+The answer is: 125

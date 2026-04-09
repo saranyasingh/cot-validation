@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Cynthia consumes 1 serving of ice cream every night :: ConsumesIceCream(serving_per_night=1, nights_in_period=60)
+FACT-2: Each carton contains 15 servings :: ContainsServingsInCarton(servings_per_carton=15)
+FACT-3: Cynthia needs 4 cartons to consume all her ice cream :: NeedsCartons(nights_in_period=60, servings_per_night=1, servings_per_carton=15)
+
+## RULES
+RULE-1: If Cynthia consumes x servings of ice cream, then she spends $y on ice cream :: ConsumesIceCream(x, y)
+RULE-2: Each carton costs $z :: CostsPerCarton(cost_per_carton=z)
+RULE-3: Cynthia buys enough cartons to cover her consumption :: BuysEnoughCartons(consumption, cost_per_carton)
+
+## INFERENCES
+INF-1: Cynthia consumes 60 servings of ice cream in 60 days :: InfersConsumption(60)
+INF-2: She spends $4.00 on each carton of ice cream :: InfersCostPerCarton(4.00)
+INF-3: Cynthia needs 4 cartons to cover her ice cream consumption :: InfersNeedsCartons(60, 15, 4)

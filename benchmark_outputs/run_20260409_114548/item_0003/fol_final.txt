@@ -1,0 +1,19 @@
+## FACTS
+#### FACT-1: HouseCost = $80,000
+#### FACT-2: RepairsCost = $50,000
+#### FACT-3: TotalInitialInvestment = HouseCost + RepairsCost
+#### FACT-4: RenovationIncreasePercentage = 150%
+#### FACT-5: ValueAfterRenovation = OriginalValue + (OriginalValue * RenovationIncreasePercentage)
+#### FACT-6: NetWorthAfterRenovation = ValueAfterRenovation - TotalInitialInvestment
+#### FACT-7: Loss = NetWorthAfterRenovation - TotalInitialInvestment
+
+## RULES
+#### RULE-1: If A, then B -> A implies B :: ∀A B A -> B
+#### RULE-2: If A, then B -> Not(A) implies Not(B) :: ∀A B A -> ¬B
+
+## INFERENCES
+#### INF-1: From FACT-1, RULE-1: HouseCost = $80,000 :: HouseCost = 80000
+#### INF-2: From FACT-2, RULE-1: RepairsCost = $50,000 :: RepairsCost = 50000
+#### INF-3: From INF-1 and INF-2, RULE-2: Not(HouseCost) implies Not(RepairsCost) :: ¬HouseCost -> ¬RepairsCost
+#### INF-4: From HOUSE_COST, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+#### INF-5: From TOTAL_INITIAL_INVESTMENT, RULE-1: TotalInitialInvestment

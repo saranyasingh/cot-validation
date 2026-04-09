@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, size(gb_200)).
+
+% --- RULES ---
+fof(rule_1, axiom, rate(2gb_per_min)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, duration(0.4, rate(2gb_per_min))).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, delay(min_20)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, remaining_size(gb_120)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, duration(gb_120, rate(2gb_per_min))).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, total_download_time(total_time(duration(0.4, rate(2gb_per_min)), delay(min_20), duration(gb_120, rate(2gb_per_min)))).)

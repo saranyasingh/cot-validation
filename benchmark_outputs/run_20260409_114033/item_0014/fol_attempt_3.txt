@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Melanie started with \( x \) vacuum cleaners :: VacuumCleaners(x)
+
+## RULES
+RULE-1: Selling part of the inventory leads to remaining inventory :: ∀y (Sold(y) → RemainingInventory(y))
+
+## INFERENCES
+INF-1: Starting with \( x \) vacuum cleaners, selling a third at the green house leaves \( \frac{2x}{3} \) :: RemainingInventory(greenHouse, \(\frac{2x}{3}\))
+INF-2: Selling 2 vacuum cleaners to the red house reduces the inventory further :: RemainingInventory(redHouse, \(\frac{2x}{3} - 2\))
+INF-3: Selling half of the remaining inventory at the orange house results in \( \frac{1}{2}(\frac{2x}{3} - 2) \) :: RemainingInventory(orangeHouse, \(\frac{1}{2}(\frac{2x}{3} - 2)\))

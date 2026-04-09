@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, consumes_ice_cream(1, 60)).
+fof(fact_2, axiom, contains_servings_in_carton(15)).
+fof(fact_3, axiom, needs_cartons(60, 1, 15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (consumes_ice_cream(X, Y) => consumes_ice_cream(X, Y))).
+fof(rule_2, axiom, ! [Z] : (costs_per_carton(Z))).
+fof(rule_3, axiom, ! [Consumption, Cost] : (buys_enough_cartons(Consumption, Cost))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, infers_consumption(60)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, infers_cost_per_carton(4.00)).
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, infers_needs_cartons(60, 15, 4)).

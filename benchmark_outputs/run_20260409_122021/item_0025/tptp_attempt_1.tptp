@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, sale_price(kyle) = 19.50).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (discounted_price(T) => original_price(T))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, original_price(19.50)).

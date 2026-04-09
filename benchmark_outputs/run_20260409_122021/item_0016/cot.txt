@@ -1,0 +1,30 @@
+To determine the profit maximization strategy, we need to compare the future values of both purchases after accounting for their respective expected increases.
+
+**Premise 1:** The merchant has two options - purchasing jewelry worth $5,000 or electronic gadgets worth $8,000.
+- **Premise 2:** The jewelry market is expected to increase by 2.5%.
+- **Premise 3:** The electronic gadgets market is expected to increase by 1.2%.
+
+We calculate the future value of each option based on these expected increases.
+
+**Calculation for Jewelry:**
+Future Value = Current Value * (1 + Rate of Increase)
+\[ \text{Future Value}_{\text{jewelry}} = \$5,000 \times (1 + 0.025) \]
+\[ \text{Future Value}_{\text{jewelry}} = \$5,000 \times 1.025 \]
+\[ \text{Future Value}_{\text{jewelry}} = \$5,125 \]
+
+**Calculation for Electronic Gadgets:**
+Future Value = Current Value * (1 + Rate of Increase)
+\[ \text{Future Value}_{\text{gadgets}} = \$8,000 \times (1 + 0.012) \]
+\[ \text{Future Value}_{\text{gadgets}} = \$8,000 \times 1.012 \]
+\[ \text{Future Value}_{\text{gadgets}} = \$8,096 \]
+
+Now, let's find the difference in their future values to determine which investment provides more profit.
+
+**Profit Difference Calculation:**
+\[ \text{Profit} = \text{Future Value}_{\text{gadgets}} - \text{Future Value}_{\text{jewelry}} \]
+\[ \text{Profit} = \$8,096 - \$5,125 \]
+\[ \text{Profit} = \$2,971 \]
+
+Therefore, the merchant should choose the electronic gadgets to maximize his profit at the end of this month by making a choice, resulting in an additional profit of $2,971 compared to purchasing jewelry.
+
+The answer is: 2971

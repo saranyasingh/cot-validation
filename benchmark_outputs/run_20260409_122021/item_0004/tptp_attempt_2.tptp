@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, sprint_count(james, james, 3)).
+
+fof(fact_2, axiom, distance_per_session(james, james, 60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : ( ( ! [Y] : sprint_count(Y, W, u0) ) => ( ? [Z] : sprint_count(Z, W, 3) ) => ( distance_per_session(Z, W, 60) ) => weekly_total_distance(W, distance_per_session(Z, W, 60)) ) ).
+
+fof(rule_2, axiom, ! [W] : sessions(W, 3)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, sprint_count(james, james, 3)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, distance_per_session(james, james, 60)).
+
+% INF-3: In one session, James runs 180 meters :: Rule-1
+fof(inf_3, axiom, distance_per_session(james, james, 180)).
+
+% INF-4: James runs 3 sessions per day :: Rule-2
+fof(inf_4, axiom, sessions(james, 3)).
+
+% INF-5: There are 7 days in a week :: Fact-1
+fof(inf_5, axiom, seven_days_in_week).
+
+% INF-6: In a week, James runs 21 sessions :: Rule-1
+fof(inf_6, axiom, sessions(james, 21)).
+
+% INF-7: In a week, James runs 3780 meters :: Rule-2
+fof(inf_7, axiom, weekly_total_distance(james, 3780)).

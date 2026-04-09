@@ -1,0 +1,13 @@
+### FACTS
+FACT-1: Total morning feed = 300 cups :: 15 * 20 = 300
+FACT-2: Total afternoon feed = 500 cups :: 25 * 20 = 500
+FACT-3: Total daily feed = 800 cups :: 300 + 500 = 800
+
+### RULES
+RULE-1: Total feed per chicken per meal = 3 cups :: 3
+RULE-2: Number of meals per chicken = 3 :: 3
+RULE-3: Total feed per chicken for the day = 3 * 3 :: 3 * 3 = 9
+RULE-4: Total feed needed for all chickens = 9 * 20 :: 9 * 20 = 180
+
+### INFERENCES
+INF-1: Total feed needed for all chickens = 180 cups :: Rule-4 by Modus Ponens: From FACT-3 and RULE-4 by Rule-3: Total feed per chicken for the day = 9 cups; Therefore, Total feed needed for all chickens = 9 * 20 = 180 cups

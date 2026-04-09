@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story explicitly states the chicken meal costs $12.
+FACT-2: SUPPORTED — The story states 5 milk packs cost $3 each.
+FACT-3: SUPPORTED — The story states 4 apples cost $1.50 each.
+FACT-4: SUPPORTED — The story states Marie paid a total of $50.
+FACT-5: UNSUPPORTED — The story does not provide any remaining amount after purchases or an initial budget.
+
+RULE-1: PLAUSIBLE — The total spent equals the sum of costs of all item types.
+RULE-2: PLAUSIBLE — Subtotals are computed as unit price times quantity for each item.
+RULE-3: PLAUSIBLE — Unknown quantities (e.g., number of pizza boxes) can be solved via a linear equation using the total.
+RULE-4: PLAUSIBLE — Remaining money equals initial budget minus total spent; needs an initial budget to be meaningful.
+RULE-5: PLAUSIBLE — All prices and quantities are nonnegative; standard arithmetic applies.

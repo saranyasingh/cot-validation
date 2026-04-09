@@ -1,0 +1,14 @@
+## FACTS
+- InitialSize(200GB) :: Size(200GB)
+- NormalDownloadRate(2GB/min) :: Rate(2GB/min)
+- FirstPhaseDuration(40%) :: Duration(40%, Rate(2GB/min))
+- RestartDelay(20min) :: Delay(20min)
+- SecondPhaseRemainingSize(120GB) :: RemainingSize(120GB)
+- SecondPhaseDuration(120GB) :: Duration(120GB, Rate(2GB/min))
+
+## RULES
+- The duration of downloading a portion of the file can be calculated using the formula: Duration(percentage, Rate(rate)) = percentage * (total_size / rate).
+
+## INFERENCES
+- TotalDownloadTime(Duration(40%, Rate(2GB/min)), Delay(20min), Duration(120GB, Rate(2GB/min))) :: TotalDownloadTime(TotalTime)
+- TotalTime = Duration(40%, Rate(2GB/min)) + Delay(20min) + Duration(120GB, Rate(2GB/min)).

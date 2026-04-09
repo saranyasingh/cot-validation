@@ -1,0 +1,26 @@
+To determine the total number of downloads over the three months, we need to calculate the number of downloads for each month and sum them up.
+
+**Premise 1:** In the first month, the program had 60 downloads.
+- **Step**: We start with this given value.
+  
+**Premise 2:** In the second month, the number of downloads was three times the number of downloads in the first month.
+- **Step**: Multiply the first month's downloads (60) by 3.
+  
+**Premise 3:** In the third month, the number of downloads was 70% of the number of downloads in the second month.
+- **Step**: Calculate 70% of the second month's downloads.
+  
+Let's perform these calculations step-by-step:
+
+1. First month downloads = 60
+   - Calculation: \( \text{Second Month} = 3 \times 60 = 180 \)
+   
+2. Second month downloads = 180
+   - Calculation: \( \text{Third Month} = 0.7 \times 180 = 126 \)
+
+Now, let's sum up all the downloads over the three months:
+\[ \text{Total Downloads} = 60 + 180 + 126 \]
+\[ \text{Total Downloads} = 366 \]
+
+Thus, the total number of downloads over the three months is 366.
+
+The answer is: 366

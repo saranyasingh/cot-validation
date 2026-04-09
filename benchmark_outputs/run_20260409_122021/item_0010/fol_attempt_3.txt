@@ -1,0 +1,18 @@
+### FACTS
+```plaintext
+FACT-1: RegularHours(40) :: RegularHours(40)
+```
+
+### RULES
+```plaintext
+RULE-1: EarningsFromRegularHours(hours) :: hours * 10 :: EarningsFromRegularHours(hours)
+RULE-2: EarningsFromOvertime(hours, rate) :: (hours - RegularHours(40)) * rate :: EarningsFromOvertime(hours, rate)
+```
+
+### INFERENCES
+```plaintext
+INF-1: EarningsFromRegularHours(40) :: 40 * 10 :: 400
+INF-2: EarningsFromOvertime(5, 12) :: (5 - 40) * 12 :: 60
+INF-3: TotalEarnings(hours) :: EarningsFromRegularHours(hours) + EarningsFromOvertime(hours) :: EarningsFromRegularHours(hours) + EarningsFromOvertime(hours)
+INF-4: TotalEarnings(45) :: TotalEarnings(45) :: 400 + 60 :: 460
+```

@@ -1,0 +1,39 @@
+Let's break down the conversion of the given chain-of-thought reasoning into First-Order Logic (FOL):
+
+### Facts
+The facts represent the initial conditions or known information about Jill's annual salary calculation process.
+
+```plaintext
+FACT-1: WeeklyEarningTeaching = 20 * 35
+FACT-2: WeeklyEarningCoaching = 30 * 15
+```
+
+### Rules
+The rules represent logical relationships or assumptions derived from the problem statement.
+
+```plaintext
+RULE-1: AnnualEarningTeaching = WeeklyEarningTeaching * 50
+RULE-2: AnnualEarningCoaching = WeeklyEarningCoaching * 50
+```
+
+### Inferences
+The inferences derive the final result from the given facts and rules.
+
+```plaintext
+INF-1: TotalAnnualSalary = AnnualEarningTeaching + AnnualEarningCoaching
+```
+
+Combining all these into the required output format:
+
+### LABEL: Facts :: 
+FACT-1: WeeklyEarningTeaching = 20 * 35  
+FACT-2: WeeklyEarningCoaching = 30 * 15  
+
+### LABEL: Rules :: 
+RULE-1: AnnualEarningTeaching = WeeklyEarningTeaching * 50  
+RULE-2: AnnualEarningCoaching = WeeklyEarningCoaching * 50  
+
+### LABEL: Inferences :: 
+INF-1: TotalAnnualSalary = AnnualEarningTeaching + AnnualEarningCoaching  
+
+This structure ensures that each step in the reasoning is clearly represented in FOL, making it easy to verify and understand the logic behind the calculations.

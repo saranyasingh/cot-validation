@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: SalePriceKyle = 19.50 :: SalePrice(Kyle) = 19.50
+
+## RULES
+RULE-1: DiscountedPrice -> OriginalPrice :: If the price is discounted, then the original price must have been higher.
+
+## INFERENCES
+INF-1: OriginalPrice(SalePriceKyle) :: OriginalPrice(19.50)

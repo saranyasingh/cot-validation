@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, omelet_egg_count(omelette_per_day=3)).
+fof(fact_2, axiom, eggs_per_omelette(eggs_per_omelette=3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, D] : ( total_eggs_in_days(T, D) => eggs_total(everyday_egg_count=T, days_in_period=D) )).
+fof(rule_2, axiom, ! [E] : ( convert_eggs_to_dozen(E) => dozens_of_eggs(dozen_of_eggs=E) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, omelet_egg_count(omelette_per_day=3)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, eggs_per_omelette(eggs_per_omelette=3)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, total_eggs_in_days(omelette_per_day=3, days_counted=28)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, eggs_total(everyday_egg_count=3, days_in_period=28)).
+% From eggs_total(everyday_egg_count=3, days_in_period=28), rule_2 by Modus Ponens
+fof(inf_5, axiom, convert_eggs_to_dozen(eggs_total(everyday_egg_count=3, days_in_period=28))).
+% From convert_eggs_to_dozen(eggs_total(...)), rule_2 by Modus Ponens
+fof(inf_6, axiom, dozens_of_eggs(dozen_of_eggs=7)).

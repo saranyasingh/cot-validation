@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: RainyDays(4weeks)
+FACT-2: EggsPerOmelet(3)
+
+## RULES
+RULE-1: If it rained on a day, then the ground was wet on that day :: IF(RainyDay(d), THEN(GroundWet(d)))
+RULE-2: A person who commits a murder will also commit an act of violence against another person :: PERMITS(Murderer(murderer), ViolentAct(violentact))
+RULE-3: An individual who commits an act of violence against another person will do so with some object :: PERMITS(ViolentAct(violentact), Object(object))
+RULE-4: Someone committing a violent act with a gun is likely to carry a gun :: PERMITS(Object(gun), Carry(carry))
+RULE-5: Someone carrying a gun during a criminal activity is likely to use it for that purpose :: PERMITS(Carry(carry), GunUsed(gunused))
+
+## INFERENCES
+INF-1: From Fact-1, Rule-1 by Modus Ponens: There were rainy days in 4 weeks :: GroundWet(rainyday)
+INF-2: From Fact-2, Rule-2 by Modus Ponens: She made an omelet every day :: OmeletMade(day)
+INF-3: From Fact-2, Rule-3 by Modus Ponens: Each omelet used 3 eggs :: EggUsage(egg, omelet)
+INF-4: From Facts-1 and -2, Rule-4 by Modus Ponens: Total eggs consumed in one week :: EggsConsumed(week)
+INF-5: From Facts-2 and -3, Rule-5 by Modus Ponens: Each omelet had 3 eggs :: EggsInOneOmelet
+INF-6: From Facts-1, Rule-1 by Modus Ponens: The ground was wet in each rainy day :: GroundWet(rainyday)
+INF-7: From Inf-4 and -5, Rule-1 by Modus Ponens: The ground was wet when she ate an omelet :: GroundWet(omelet)
+INF-8: From Inf-1 and -7, Rule-2 by Modus Ponens: She ate an

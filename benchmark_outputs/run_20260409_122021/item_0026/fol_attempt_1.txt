@@ -1,0 +1,1 @@
+INF-1: Marie ordered 2 boxes of pizza :: \(\exists x (\text{MarieOrdered(x)} ∧ \text{PizzaBox}(x)) ∧ \forall x ((\text{PizzaBox}(x) ∧ \text{PizzaType}(x)) → \text{Price}(x) = \$8.50)\)

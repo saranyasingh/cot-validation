@@ -1,0 +1,11 @@
+FACT-1: TotalTripDistance(60miles) :: TotalTripDistance(60)
+
+RULE-1: FirstStopAt(20miles) :: FirstStopAt(20)
+
+RULE-2: SecondStopIs(15milesBeforeEnd) :: SecondStopIs(45)
+
+INF-1: DistanceBetweenFirstAndSecondStops(60miles) :: (
+  TotalTripDistance(60) ∧ 
+  FirstStopAt(20) ∧ 
+  SecondStopIs(45)
+)

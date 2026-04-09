@@ -1,0 +1,19 @@
+LABEL: No FACTs or RULEs provided. :: None.
+
+## FACTS
+- The total cost of the meal is $50.
+- A chicken meal costs $12.
+- Five milk packs cost $3 each.
+- Four apples cost $1.50 each.
+- A box of pizza costs $8.50.
+
+## RULES
+- If you spend $x on chicken meals, milk packs, and apples, then your total cost is $50 if the remaining cost after subtracting these expenses equals $17.
+
+## INFERENCES
+- The cost of five milk packs is $15.
+- The cost of four apples is $6.
+- The total cost of chicken meals, milk packs, and apples is $33.
+- The remaining cost after accounting for chicken meals, milk packs, and apples is $17.
+- Each box of pizza costs $8.50.
+- The number of boxes of pizza is calculated by dividing the remaining cost ($17) by the price per box ($8.50), resulting in 2 boxes.

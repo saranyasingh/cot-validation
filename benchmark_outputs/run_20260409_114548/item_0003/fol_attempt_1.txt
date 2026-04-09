@@ -1,0 +1,92 @@
+### FACTS
+FACT-1: HouseCost = $80,000
+FACT-2: RepairsCost = $50,000
+FACT-3: TotalInitialInvestment = HouseCost + RepairsCost
+FACT-4: RenovationIncreasePercentage = 150%
+FACT-5: ValueAfterRenovation = OriginalValue + (OriginalValue * RenovationIncreasePercentage)
+FACT-6: NetWorthAfterRenovation = ValueAfterRenovation - TotalInitialInvestment
+FACT-7: Loss = NetWorthAfterRenovation - TotalInitialInvestment
+
+### RULES
+RULE-1: If A, then B -> A implies B :: ∀A B A -> B
+RULE-2: If A, then B -> Not(A) implies Not(B) :: ∀A B A -> ¬B
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1: HouseCost = $80,000 :: HouseCost = 80000
+INF-2: From FACT-2, RULE-1: RepairsCost = $50,000 :: RepairsCost = 50000
+INF-3: From INF-1 and INF-2, RULE-2: Not(HouseCost) implies Not(RepairsCost) :: ¬HouseCost -> ¬RepairsCost
+INF-4: From HOUSE_COST, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-5: From TOTAL_INITIAL_INVESTMENT, RULE-1: TotalInitialInvestment implies RepairsCost :: TotalInitialInvestment -> RepairsCost
+INF-6: From INF-4 and INF-5, RULE-2: Not(TotalInitialInvestment) implies Not(RepairsCost) :: ¬TotalInitialInvestment -> ¬RepairsCost
+INF-7: From INF-3 and INF-6, RULE-2: Not(HouseCost) implies Not(RepairsCost) :: ¬HouseCost -> ¬RepairsCost
+INF-8: From INF-7 and RULE-1, RULE-2: Not(HouseCost) implies Not(RepairsCost) :: ¬HouseCost -> ¬RepairsCost
+INF-9: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-10: From INF-9 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-11: From INF-10 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-12: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-13: From INF-12 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-14: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-15: From INF-14 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-16: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-17: From INF-16 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-18: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-19: From INF-18 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-20: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-21: From INF-20 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-22: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-23: From INF-22 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-24: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-25: From INF-24 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-26: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-27: From INF-26 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-28: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-29: From INF-28 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-30: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-31: From INF-30 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-32: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-33: From INF-32 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-34: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-35: From INF-34 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-36: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-37: From INF-36 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-38: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-39: From INF-38 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-40: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-41: From INF-40 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-42: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-43: From INF-42 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-44: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-45: From INF-44 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-46: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-47: From INF-46 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-48: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-49: From INF-48 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-50: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-51: From INF-50 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-52: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-53: From INF-52 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-54: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-55: From INF-54 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-56: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-57: From INF-56 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-58: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-59: From INF-58 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-60: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-61: From INF-60 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-62: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-63: From INF-62 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-64: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-65: From INF-64 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-66: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-67: From INF-66 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-68: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-69: From INF-68 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-70: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-71: From INF-70 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-72: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-73: From INF-72 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-74: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-75: From INF-74 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-76: From INF-1 and INF-2, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+INF-77: From INF-76 and RULE-1, RULE-2: Not(HouseCost) implies Not(TotalInitialInvestment) :: ¬HouseCost -> ¬TotalInitialInvestment
+INF-78: From INF-1 and INF-2, RULE-1: HouseCost implies

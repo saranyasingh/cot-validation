@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, short_cost(3, 16.50)).
+
+fof(fact_2, axiom, pants_cost(3, 22.50)).
+
+fof(fact_3, axiom, shoes_cost(3, 42)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Q, C] : (short_cost(C) => total_cost(Q, C))).
+
+fof(rule_2, axiom, ! [P, C] : (pants_cost(C) => total_cost(P, C))).
+
+fof(rule_3, axiom, ! [S, C] : (shoes_cost(C) => total_cost(S, C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, shorts_total_cost = short_cost(3, 16.50) * 3).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, pants_total_cost = pants_cost(3, 22.50) * 3).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, shoes_total_cost = shoes_cost(3, 42) * 3).

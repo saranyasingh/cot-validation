@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: A candle melts by 2 centimeters every hour :: MeltRate(2, 1)
+FACT-2: From 1:00 PM to 5:00 PM is a span of 4 hours :: Duration(t_14, t_17)
+
+## RULES
+RULE-1: If a candle melts by 2 centimeters every hour, then over 4 hours, it melts 8 centimeters :: ∀h (MeltRate(h) → MeltedBy(h, 4))
+RULE-2: The candle's height decreases by the amount melted :: HeightDecreases(h, h - MeltedBy(h, d))
+
+## INFERENCES
+INF-1: After burning from 1:00 PM to 5:00 PM, the candle will melt 8 centimeters :: MeltedBy(MeltRate(2, 1), 4)
+INF-2: After burning from 1:00 PM to 5:00 PM, the candle will be 8 centimeters shorter :: HeightDecreases(height, height - 8)

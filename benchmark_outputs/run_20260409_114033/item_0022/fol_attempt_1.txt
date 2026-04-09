@@ -1,0 +1,24 @@
+Let's convert the given chain of thought reasoning into structured First-Order Logic (FOL). We'll follow the provided guidelines and produce three sections with labeled lines.
+
+### FACTS
+- **Fact-1**: Raymond was born 6 years before Samantha.
+  - Symbolic representation: BornRaymond(samantha.birth_year - 6)
+
+### RULES
+- **Rule-1**: If someone is born x years after another person, then the latter person is older than the former.
+  - Symbolic representation: OlderThan(person1_birth, person2_birth) ↔ Person1Birth > Person2Birth
+
+### INFERENCES
+- **Inference-1**: Calculate the number of years ago when Raymond's son was born compared to Samantha's current age.
+  - Symbolic representation: YearsAgo = (samantha.current_age - raymond.son_birth_year)
+
+Here’s the breakdown of each section:
+
+#### FACTS
+- Fact-1: `BornRaymond(samantha.birth_year - 6)` :: `(BornRaymond, samantha.birth_year, -6)`
+
+#### RULES
+- Rule-1: `OlderThan(BornRaymond, samantha.birth_year) ↔ BornRaymond > samantha.birth_year` :: `(OlderThan, BornRaymond, samantha.birth_year)`
+
+#### INFERENCES
+- Inference-1: `YearsAgo = (samantha.current_age - raymond.son_birth_year)` :: `(YearsAgo, samantha.current_age, raymond.son_birth_year)`

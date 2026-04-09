@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, b(2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (b(X) => w(X/2))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, w(1)).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, tot(b(2)) + tot(w(1)) = 3).
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, tot(b(2)) + tot(w(1)) = 3).

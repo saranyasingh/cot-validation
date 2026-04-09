@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, duration(1PM, 5PM) = four_hours).
+fof(fact_2, axiom, rate_of_melting_candle = two_cm_per_hr).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D, R] : (total_melted_length(D, R) <=> duration(D, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Modus Ponens
+fof(inf_1, axiom, total_melted_length(duration(1PM, 5PM), rate_of_melting_candle) = eight_cm).

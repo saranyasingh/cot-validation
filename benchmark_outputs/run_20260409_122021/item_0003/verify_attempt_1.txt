@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — IncreaseInValue should be 120000 (150% of 80000); 80000*2.5 is the final value, not the increase.
+RULE-1: IMPLAUSIBLE — Profit = FinalValue - InitialInvestment; it should not be InitialInvestment + IncreaseInValue.

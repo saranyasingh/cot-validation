@@ -1,0 +1,44 @@
+% --- FACTS ---
+fof(fact_1, axiom, InitialOrangeDrink(10)).
+fof(fact_2, axiom, RatioWater(orange_drink, 2/3)).
+fof(fact_3, axiom, InitialPineappleDrink(15)).
+fof(fact_4, axiom, RatioWater(pineapple_drink, 3/5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (AmountWater(orange_drink, X))).
+fof(rule_2, axiom, ! [X] : (AmountWater(pineapple_drink, X))).
+fof(rule_3, axiom, ! [X] : (RemainingWater(initial_water, X))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, AmountWater(orange_drink, 10)).
+
+% From FACT-3, RULE-2 by Modus Ponens
+fof(inf_2, axiom, AmountWater(pineapple_drink, 15)).
+
+% From FACT-1, RULE-3 by Modus Ponens
+fof(inf_3, axiom, RemainingWater(InitialOrangeDrink, 6.67)).
+
+% From FACT-3, RULE-3 by Modus Ponens
+fof(inf_4, axiom, RemainingWater(InitialPineappleDrink, 9)).
+
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_5, axiom, AmountWater(spilled_orange_drink, 1)).
+
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_6, axiom, WaterInSpilledOranges(orange_drink, 2/3)).
+
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_7, axiom, AmountWater(spilled_orange_drink, 0.67)).
+
+% From FACT-4, RULE-3 by Modus Ponens
+fof(inf_8, axiom, RemainingWater(OrangeDrinksAfterSpill, 15.67)).
+
+% From FACT-4, RULE-3 by Modus Ponens
+fof(inf_9, axiom, TotalWaterBeforeSpill(15.67)).
+
+% From FACT-4, RULE-3 by Modus Ponens
+fof(inf_10, axiom, RemainingWater(PineappleDrinksAfterSpill, 9)).
+
+% From FACT-4, RULE-3 by Modus Ponens
+fof(inf_11, axiom, TotalWaterAfterSpill(15)).

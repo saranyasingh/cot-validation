@@ -1,0 +1,21 @@
+To solve this problem, let's work backwards from the information given:
+
+1. After selling half of what was left at the orange house, she had 5 vacuum cleaners left.
+   - This means before selling half at the orange house, she had \(5 \times 2 = 10\) vacuum cleaners.
+
+2. Before selling 2 more to the red house, she had:
+   - Since she sold 2 to the red house, it means before that sale, she had \(10 + 2 = 12\) vacuum cleaners.
+
+3. Before selling a third of her original amount at the green house, she had:
+   - Since she sold a third of them and then had 12 left after that, we can set up the equation for the total before selling: 
+     \[
+     \text{Total before} = \frac{\text{Left after}}{2}
+     \]
+     Given that after selling a third, she had 12 left, we have:
+     \[
+     \text{Total before} = 12 \times 3 = 36
+     \]
+
+Therefore, Melanie started with 36 vacuum cleaners.
+
+The answer is: 36

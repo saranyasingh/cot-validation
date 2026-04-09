@@ -1,0 +1,10 @@
+**FACTS**
+FACT-1: A robe requires 2 bolts of blue fiber :: B(2)
+
+**RULES**
+RULE-1: If there are x bolts of blue fiber, then there are \( \frac{x}{2} \) bolts of white fiber :: ∀x (B(x) → W(\(\frac{x}{2}\)))
+
+**INFERENCES**
+INF-1: Given B(2), calculate W(1) using Rule-1 :: W(1) = \(\frac{2}{2}\) = 1
+INF-2: Total bolts of fiber: T(B(2)) + T(W(1)) :: T(B(2)) + T(W(1)) = B(2) + W(1) = 2 + 1 = 3
+INF-3: Conclusion: There are 3 bolts of fiber in total :: T(B(2)) + T(W(1)) = 3

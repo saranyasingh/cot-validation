@@ -1,0 +1,14 @@
+### FACTS
+FACT-1: ShortsCost(3, 16.50) :: ShortCost(3, 16.50)
+FACT-2: PantsCost(3, 22.50) :: PantsCost(3, 22.50)
+FACT-3: ShoesCost(3, 42) :: ShoesCost(3, 42)
+
+### RULES
+RULE-1: TotalCost(Costs, Quantity, Price) :: Costs * Quantity :: (∀c (ShortCost(c) → TotalCost(Quantity, c)))
+RULE-2: TotalCost(Costs, Quantity, Price) :: Costs * Quantity :: (∀p (PantsCost(p) → TotalCost(Quantity, p)))
+RULE-3: TotalCost(Costs, Quantity, Price) :: Costs * Quantity :: (∀s (ShoesCost(s) → TotalCost(Quantity, s)))
+
+### INFERENCES
+INF-1: ShortsTotalCost = ShortsCost(3, 16.50) :: ShortsTotalCost = ShortsCost(3, 16.50) * 3 :: (∀c (ShortCost(c) → ShortsTotalCost = ShortCost(c) * 3))
+INF-2: PantsTotalCost = PantsCost(3, 22.50) :: PantsTotalCost = PantsCost(3, 22.50) * 3 :: (∀p (PantsCost(p) → PantsTotalCost = PantsCost(p) * 3))
+INF-3: ShoesTotalCost = ShoesCost(3, 42) :: ShoesTotalCost = ShoesCost(3, 42) * 3 :: (∀s (ShoesCost(s) → ShoesTotalCost = ShoesCost(s) * 3))

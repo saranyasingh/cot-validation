@@ -1,0 +1,7 @@
+### LABEL: First Premise :: DonutCost(3 * 68)
+### LABEL: Second Premise :: CupcakeCost(2 * 80)
+### LABEL: Third Premise :: CheesecakeCost(6 * 55)
+
+### LABEL: RULE-1 :: TotalCost(CostDonuts, CostCupcakes, CostCheesecakes)
+
+### LABEL: INF-1 :: TotalCost(DonutCost(3 * 68), CupcakeCost(2 * 80), CheesecakeCost(6 * 55))

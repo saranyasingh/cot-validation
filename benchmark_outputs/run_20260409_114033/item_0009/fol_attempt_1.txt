@@ -1,0 +1,24 @@
+### SOLUTION
+
+#### FACTS
+FACT-1: John drove for 3 hours at 60 mph :: (∀t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)))
+FACT-2: John turned back after realizing he forgot something :: TurnBackAfterRealizingForgotSomething
+FACT-3: Total distance covered initially :: InitialDistanceCovered(John, 180 miles)
+FACT-4: John spent the first 2 hours in standstill traffic :: StandstillTraffic(John, 2 hours)
+FACT-5: John drove at 30 mph for the next half-hour :: DrivingAtSpeed(John, 30 mph, 0.5 hours)
+
+#### RULES
+RULE-1: If John drives for some duration at speed, then the total distance covered increases accordingly :: DrivingAndIncreaseDistance(DrivingForDurationAtSpeed)
+RULE-2: If John turns back after forgetting something, the total distance remains unchanged :: TurnBackDoesNotChangeTotalDistance(TurnBackAfterRealizingForgotSomething)
+RULE-3: If John stands still for some period, no additional distance is added :: StandingStillDoesNotAddDistance(StandingStillTraffic)
+
+#### INFERENCES
+INF-1: John drove for 3 hours at 60 mph :: Inf-DriverDroveForDurationAtSpeed(John, 3 hours, 60 mph)
+INF-2: John turned back after realizing he forgot something :: Inf-TurnBackAfterRealizingForgotSomething
+INF-3: Total distance covered initially :: Inf-InitialDistanceCovered(John, 180 miles)
+INF-4: John spent the first 2 hours in standstill traffic :: Inf-StandingStillTraffic(John, 2 hours)
+INF-5: John drove at 30 mph for the next half-hour :: Inf-DrivenAtSpeed(John, 30 mph, 0.5 hours)
+INF-6: John is 0 miles from home at the end of those 4 hours :: Inf-JohnIsHomeAtEndOfTrip
+
+#### FINAL ANSWER
+**INF-6:** John is 0 miles from home at the end of those 4 hours :: Inf-JohnIsHomeAtEndOfTrip

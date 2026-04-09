@@ -1,0 +1,16 @@
+```plaintext
+## FACTS
+FACT-1: TotalStudents(20)
+FACT-2: ContemporaryDancers(4)
+FACT-3: JazzDancers(4)
+
+## RULES
+RULE-1: If X, then Y :: ∀X(Y)
+RULE-2: If A, B, then C :: ∀A(∀B(C))
+RULE-3: RemainingStudentsAfter(Dancers, Remaining) :: RemainingStudents(Remaining, Dancers)
+
+## INFERENCES
+INF-1: RemainingStudentsAfter(CurrentDancers, Remaining) :: RemainingStudents(Remaining, CurrentDancers)
+INF-2: RemainingStudentsAfter(JazzDancers, Remaining) :: RemainingStudents(Remaining, JazzDancers)
+INF-3: HipHopDancers(60) :: (RemainingStudents(HipHopDancers, Remaining) ∧ ContemporaryDancers(4)) → JazzDancers(4)
+```

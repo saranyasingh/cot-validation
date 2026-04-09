@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, vacuum_cleaners(x)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Y] : (sold(Y) => remaining_inventory(Y))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_inventory(green_house, ((2*x)/3))).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, remaining_inventory(red_house, (((2*x)/3) - 2))).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, remaining_inventory(orange_house, (((1/2) * (((2*x)/3) - 2))))) .
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, inventory_final(inventory, 5)).

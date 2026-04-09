@@ -1,0 +1,45 @@
+To determine how much Kylar needs to pay for 16 glasses, we first calculate the cost of each glass based on the given conditions:
+
+1. The first glass costs $5.
+2. Each subsequent glass costs 60% of the price of the previous glass.
+
+Let's denote:
+- \( C_1 \) as the cost of the first glass = $5
+- \( C_2 \) as the cost of the second glass (which is 60% of \( C_1 \))
+- \( C_n \) as the cost of the nth glass
+
+Given that each subsequent glass costs 60% of the previous one:
+\[ C_2 = 0.6 \times C_1 \]
+\[ C_3 = 0.6 \times C_2 = 0.6^2 \times C_1 \]
+\[ C_4 = 0.6 \times C_3 = 0.6^3 \times C_1 \]
+
+We can generalize this pattern:
+\[ C_{n} = 0.6^{(n-1)} \times C_1 \]
+
+Now, let's calculate the total cost for 16 glasses:
+\[ \text{Total Cost} = C_1 + C_2 + C_3 + ... + C_{16} \]
+
+Using the formula for the sum of a geometric series:
+\[ S_n = \frac{a(1 - r^n)}{1 - r} \]
+where:
+- \( S_n \) is the sum of the first n terms,
+- \( a \) is the first term ($C_1$),
+- \( r \) is the common ratio (0.6),
+- \( n \) is the number of terms (16).
+
+Plugging in the values:
+\[ S_{16} = \frac{5(1 - 0.6^{16})}{1 - 0.6} \]
+
+Calculating the value inside the parentheses and simplifying:
+\[ S_{16} = \frac{5(1 - 0.6^{16})}{0.4} \]
+
+Since \( 0.6^{16} \approx 0.007920930232582623 \):
+\[ S_{16} = \frac{5(1 - 0.007920930232582623)}{0.4} \]
+\[ S_{16} = \frac{5 \times 0.99207906976741738}{0.4} \]
+\[ S_{16} = \frac{4.9603953488370869}{0.4} \]
+\[ S_{16} = 12.400988372092717 \]
+
+Rounding to two decimal places:
+\[ S_{16} \approx 12.40 \]
+
+Therefore, the total amount Kylar needs to pay for 16 glasses is approximately **$12.40**.

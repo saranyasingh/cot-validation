@@ -1,0 +1,22 @@
+### ## FACTS
+```plaintext
+Fact-1: FirstMonthDownloads = 60
+```
+
+### ## RULES
+```plaintext
+Rule-1: SecondMonthDownloads = 3 * FirstMonthDownloads
+Rule-2: ThirdMonthDownloads = 0.7 * SecondMonthDownloads
+```
+
+### ## INFERENCES
+```plaintext
+Inference-1: TotalDownloads = FirstMonthDownloads + SecondMonthDownloads + ThirdMonthDownloads
+```
+```plaintext
+Inference-2: From Fact-1 and Rule-1, Infer-1 by Modus Ponens: FirstMonthDownloads = 60
+From Fact-1 and Rule-2, Infer-2 by Modus Ponens: ThirdMonthDownloads = 0.7 * 180 = 126
+From Inference-1, Infer-3 by Addition: TotalDownloads = 60 + 180 + 126 = 366
+```
+
+This structured FOL representation now includes facts and rules aligned with the original reasoning, adhering to the provided guidelines.

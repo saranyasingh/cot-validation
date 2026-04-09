@@ -1,0 +1,21 @@
+EXPLANATION
+To determine how long it takes Carla to download the entire 200 GB file after the restart, we need to break down the problem into two parts: before the restart and after the restart.
+
+1. **Before the Restart (First Half of Download):**
+   - Carla normally downloads at a rate of 2 GB per minute.
+   - She needs to download half of the 200 GB file first.
+   - Half of 200 GB is 100 GB.
+   - At her normal speed, it would take \( \frac{100 \text{ GB}}{2 \text{ GB/min}} = 50 \text{ minutes} \) to download the first half.
+
+2. **After the Restart (Second Half of Download):**
+   - After restarting, Carla starts again from scratch.
+   - This means she now needs to download the second half of the file, which is also 100 GB.
+   - Again, at her normal speed, it would take another 50 minutes to download the second half.
+
+3. **Total Time Calculation:**
+   - Total time = Time before restart + Time after restart
+   - Total time = 50 minutes + 50 minutes = 100 minutes
+
+Therefore, it takes Carla a total of 100 minutes to download the entire 200 GB file after the restart.
+
+The answer is: 100

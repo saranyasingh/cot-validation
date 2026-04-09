@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, house_price(josh, t_0) = 80000).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (house_buyer(josh, T) => repairs_cost(T, 50000))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, house_buyer(josh, t_0)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, repairs_cost(t_0, 50000)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_3, axiom, total_investment = house_price(josh, t_0) + repairs_cost(t_0, 50000)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_4, axiom, total_investment = 130000).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_5, axiom, value_increase = 1.5 * house_price(josh, t_0)).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_6, axiom, new_value = total_investment + value_increase).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_7, axiom, net_profit = new_value - total_investment).
+
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_8, axiom, net_profit = -10000).

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, donut_cost(3 * 68)).
+fof(fact_2, axiom, cupcake_cost(2 * 80)).
+fof(fact_3, axiom, cheesecake_cost(6 * 55)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D, C, E] : (total_cost(D, C, E))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_cost(donut_cost(3 * 68), cupcake_cost(2 * 80), cheesecake_cost(6 * 55))).

@@ -1,0 +1,11 @@
+## FACTS
+LABEL: FACT-1 :: 15 * 20 = 300
+LABEL: FACT-2 :: 25 * 20 = 500
+LABEL: FACT-3 :: 300 + 500 = 800
+
+## RULES
+LABEL: RULE-1 :: Addition Rule :: For any two numbers \(a\) and \(b\), \(a + b = c\).
+
+## INFERENCES
+LABEL: INF-1 :: 3 * 3 = 9
+LABEL: INF-2 :: 9 * 20 = 180

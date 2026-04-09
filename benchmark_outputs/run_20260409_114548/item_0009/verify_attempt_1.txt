@@ -1,0 +1,20 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — DistanceCoveredInitially is incorrect given 2 hours of standstill; no distance is covered in that period.
+FACT-7: SUPPORTED
+FACT-8: SUPPORTED
+FACT-9: UNSUPPORTED — DistanceDrivenInTraffic mis-defines the 0.5 h at 30 mph as traffic; distance in traffic is 0.
+FACT-10: UNSUPPORTED — The update step is not stated and relies on a misdefined DistanceDrivenInTraffic.
+FACT-11: SUPPORTED
+FACT-12: UNSUPPORTED — The remaining time is 1.5 hours, not 4; distance would be 120 miles, not 320.
+FACT-13: UNSUPPORTED
+FACT-14: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — The total distance traveled is not equal to the remaining distance to reach the destination in this scenario.
+RULE-6: IMPLAUSIBLE — He is not 620 miles away; actual remaining distance is about 45 miles.

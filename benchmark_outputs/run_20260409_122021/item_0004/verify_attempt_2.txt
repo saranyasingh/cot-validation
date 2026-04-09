@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story states James runs 3 sprints each time.
+FACT-2: SUPPORTED — The story states each sprint is 60 meters.
+RULE-1: PLAUSIBLE — It encodes a reasonable principle that total distance depends on weekly sessions.
+RULE-2: PLAUSIBLE — It uses SessionsPerWeek as a valid factor in computing weekly distance.

@@ -1,0 +1,32 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+Facts:
+- JewelryPurchaseValue: \( J \)
+- ElectronicGadgetsPurchaseValue: \( E \)
+- FutureIncreaseJewelryRate: \( r_j \)
+- FutureIncreaseElectronicGadgetsRate: \( r_e \)
+```
+
+Where:
+- \( J = \$5,000 \)
+- \( E = \$8,000 \)
+- \( r_j = 2.5\% = 0.025 \)
+- \( r_e = 1.2\% = 0.012 \)
+
+### Rules
+```plaintext
+Rules:
+- FutureValueJewelry: \( FV_J = J \times (1 + r_j) \)
+- FutureValueGadgets: \( FV_E = E \times (1 + r_e) \)
+- ProfitDifference: \( \Delta P = FV_E - FV_J \)
+```
+
+### Inferences
+```plaintext
+Inferences:
+- FutureValueJewelryFormula: \( \Delta_P = E \times (1 + r_e) - J \times (1 + r_j) \)
+```
+
+This conversion ensures that all logical relationships and calculations are clearly represented using FOL syntax.

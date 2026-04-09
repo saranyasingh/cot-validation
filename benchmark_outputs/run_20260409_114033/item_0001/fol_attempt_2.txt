@@ -1,0 +1,17 @@
+### ## FACTS
+**Fact-1:** Janet's ducks lay 16 eggs per day :: LayEggsPerDay(16)
+**Fact-2:** Janet eats 3 eggs for breakfast every morning :: EatBreakfast(EggCount=3)
+**Fact-3:** Janet bakes muffins using 4 eggs on days when she has more than 4 eggs leftover :: BakeMuffins(EggCount=4, HasMoreThan4Leftover=true)
+**Fact-4:** Eggs eaten for breakfast = 3 :: EggCount(EatenForBreakfast=3)
+**Fact-5:** Remaining eggs after breakfast = 16 - 3 = 13 :: RemainingAfterBreakfast(13)
+**Fact-6:** Eggs used for baking = 4 :: EggCount(Baked=Muffins, UsedForBaking=4)
+**Fact-7:** Eggs used for baking can range from 4 to 13 :: EggsUsedForBakingRange(4, 13)
+**Fact-8:** Eggs used for baking is 4 regardless of remaining eggs :: EggsUsedForBakingIs4(EverydayScenario=true)
+**Fact-9:** Eggs sold at the farmers' market = 5 :: EggsSoldAtMarket(5)
+**Fact-10:** Price per egg = $2 :: PricePerEgg($2)
+
+### ## RULES
+**Rule-1:** Total earnings per day = Number of eggs sold × Price per egg :: TotalEarningsPerDay(NumberOfEggsSold, PricePerEgg)
+
+### ## INFERENCES
+**Inference-1:** Total earnings per day = 5 × $2 = $10 :: TotalEarningsPerDay(5, $2)

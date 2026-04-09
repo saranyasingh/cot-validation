@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: DistanceTraveled(t_1, 4 miles) :: 4 miles
+FACT-2: TimeTaken(t_1, 1 hour) :: 1 hour
+FACT-3: TimeTaken(t_2, 1 hour) :: 1 hour
+FACT-4: RemainingDistance(t_1, t_2, 6 miles) :: 6 miles
+
+## RULES
+RULE-1: WalkingSpeed(t_1, d, s) :: ∀d (WalkingSpeed(d, s)) :: s > 0
+RULE-2: AverageSpeed(t_1, t_2, d, v) :: ∀d (AverageSpeed(t_1, t_2, d, v)) :: v >= d / (t_2 - t_1)
+
+## INFERENCES
+INF-1: WalkingSpeed(t_1, 4 miles, 4 mph) :: 4 mph
+INF-2: AverageSpeed(t_1, t_2, 6 miles, 4 mph) :: 4 mph
+INF-3: WalkingRequiredSpeed(t_1, 6 miles, 12 mph) :: 12 mph

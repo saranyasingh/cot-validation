@@ -1,0 +1,7 @@
+LABEL: FACT-1 :: T
+LABEL: RULE-1 :: ∀x y (StartingWith(x) ∧ Selling(y) → RemainingAfterSale(x, y))
+LABEL: INF-1 :: StartingWith(18) ∧ Selling(6) → RemainingAfterSale(18, 6)
+LABEL: INF-2 :: RemainingAfterSale(18, 6) ∧ Selling(2) → RemainingAfterRedHouse(18, 6, 2)
+LABEL: INF-3 :: RemainingAfterRedHouse(18, 6, 2) → RemainingAfterOrangeHouse(18, 6, 2, 14)
+LABEL: INF-4 :: RemainingAfterOrangeHouse(18, 6, 2, 14) → RemainingAfterSale(18, 6, 2, 14)
+LABEL: INF-5 :: StartingWith(18) → RemainingAfterSale(18, 6, 2, 14)

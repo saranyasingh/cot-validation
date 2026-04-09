@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, regular_hours(40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Hours] : (earnings_from_regular_hours(Hours) = Hours * 10)).
+fof(rule_2, axiom, ! [Hours, Rate] : (earnings_from_overtime(Hours, Rate) = (Hours - regular_hours(40)) * Rate)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Arithmetic evaluation
+fof(inf_1, axiom, earnings_from_regular_hours(40) = 40 * 10).
+
+% From fact_1, rule_2 by Arithmetic evaluation
+fof(inf_2, axiom, earnings_from_overtime(5, 12) = (5 - regular_hours(40)) * 12).
+
+% From inf_1, inf_2 by Definition
+fof(inf_3, axiom, total_earnings(Hours) = earnings_from_regular_hours(Hours) + earnings_from_overtime(Hours)).
+
+% From inf_3 by Calculation
+fof(inf_4, axiom, total_earnings(45) = 460).

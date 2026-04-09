@@ -1,0 +1,9 @@
+### ## FACTS
+INF-1: From the facts about morning and afternoon feed usage, we can deduce the remaining feed for the final meal. This is derived using the subtraction of known feed portions from the total daily feed.
+
+### ## RULES
+None required since there are no unsupported claims or assumptions.
+
+### ## INFERENCES
+INF-2: Subtracting the morning and afternoon feed portions from the total daily feed gives us the remaining feed for the final meal.
+\[ \text{Remaining feed for final meal} = \text{Total daily feed} - (\text{Morning feed} + \text{Afternoon feed}) \]

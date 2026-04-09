@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: InitialInvestment = $90 :: InitialInvestment
+
+## RULES
+RULE-1: AnnualProfit = NumberOfLemons * PricePerLemon - AnnualCost :: AnnualProfit
+
+## INFERENCES
+INF-1: CalculateAnnualRevenue :: AnnualRevenue = 7 * 1.5 - 3
+INF-2: YearsNeededForProfitExceedsInitial :: n = Ceiling(InitialInvestment / AnnualRevenue)
+INF-3: FinalAnswer :: n = 13

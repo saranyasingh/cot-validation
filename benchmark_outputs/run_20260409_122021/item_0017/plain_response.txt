@@ -1,0 +1,24 @@
+To determine the total distance covered by each train over the two days, we need to break down the problem into steps and calculate accordingly.
+
+### Day 1:
+- **Distance traveled on the first leg (westward):** Each train travels 80 miles.
+- **Total distance covered on the first day:** 
+  \[
+  80 \text{ miles} + 80 \text{ miles} = 160 \text{ miles}
+  \]
+
+### Day 2:
+- **Distance traveled on the second leg (northward):** Each train travels 150 miles.
+- **Total distance covered on the second day:** 
+  \[
+  150 \text{ miles} + 150 \text{ miles} = 300 \text{ miles}
+  \]
+
+### Total Distance Covered Over Two Days:
+- Since both trains cover different distances each day but start from the same point and end up at the same destination after completing their respective legs, the total distance covered by each train will be the sum of the distances covered during both days.
+
+Therefore, the total distance covered by each train over the two days is:
+
+\[
+\boxed{460 \text{ miles}}
+\]

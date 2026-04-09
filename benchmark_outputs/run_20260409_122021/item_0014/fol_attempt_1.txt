@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: Melanie started with \( T \) vacuum cleaners :: \( T \)
+
+### RULES
+RULE-1: If a person starts with \( x \) items, sells \( y \), then they have \( x - y \) left :: ∀x y (StartingWith(x) ∧ Selling(y) → RemainingAfterSale(x, y))
+
+### INFERENCES
+INF-1: From RULE-1, starting with 18 vacuum cleaners, selling 6 vacuums to the green house :: StartingWith(18) ∧ Selling(6) → RemainingAfterSale(18, 6)
+INF-2: Remaining after the green house sale, subtracting another 2 :: RemainingAfterSale(18, 6) ∧ Selling(2) → RemainingAfterRedHouse(18, 6, 2)
+INF-3: After selling to the red house, having 14 vacuum cleaners left :: RemainingAfterRedHouse(18, 6, 2) → RemainingAfterOrangeHouse(18, 6, 2, 14)
+INF-4: After selling to the orange house, having 5 vacuum cleaners left :: RemainingAfterOrangeHouse(18, 6, 2, 14) → RemainingAfterSale(18, 6, 2, 14)
+INF-5: Therefore, Melanie started with 18 vacuum cleaners :: StartingWith(18) → RemainingAfterSale(18, 6, 2, 14)

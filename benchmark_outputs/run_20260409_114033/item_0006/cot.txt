@@ -1,0 +1,22 @@
+EXPLANATION
+To determine how much Kylar needs to pay for 16 glasses, we first identify that there's an initial cost of $5 per glass plus a discount on every second glass.
+
+1. **Initial Cost Calculation**:
+   - For the first glass (which is not discounted), Kylar pays $5.
+   
+2. **Discounted Glass Calculation**:
+   - Every second glass gets a discount of 60%, which means it costs 40% of its original price ($5).
+   - Discounted price per second glass = \(5 \times 0.4 = \$2\).
+
+3. **Total Number of Glasses**:
+   - Kylar plans to buy 16 glasses, which includes 8 pairs (since every second glass is counted as two glasses).
+
+4. **Calculating Total Cost**:
+   - Cost for the first 7 glasses (not discounted): \(7 \times 5 = \$35\)
+   - Cost for the 8 discounted glasses: \(8 \times 2 = \$16\)
+
+5. **Adding Up All Costs**:
+   - Total cost = Cost for first 7 glasses + Cost for 8 discounted glasses
+   - Total cost = \(35 + 16 = \$51\)
+
+Therefore, the total amount Kylar needs to pay for all 16 glasses is $\boxed{51}$.

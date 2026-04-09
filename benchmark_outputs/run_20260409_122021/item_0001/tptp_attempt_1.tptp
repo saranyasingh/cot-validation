@@ -1,0 +1,40 @@
+% --- FACTS ---
+fof(fact_1, axiom, egg_production(x, 16, x)).
+fof(fact_2, axiom, egg_consumption(y, 3, y)).
+fof(fact_3, axiom, egg_consumption(z, 4, z)).
+fof(fact_4, axiom, price_of_egg(2, x)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, Q] : (price(P, Q) => value(P, Q))).
+fof(rule_2, axiom, ! [S, V] : (sells(S, V) => earnings(S, V))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, value(egg_production(x, 16, x), 2)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, value(egg_consumption(y, 3, y), 2)).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, value(egg_consumption(z, 4, z), 2)).
+% From fact_4, rule_2 by Existential Generalization
+fof(inf_4, axiom, ? [E, V] : earnings(sells(E, V), V))
+.
+% From INF-1 and INF-4, apply Modus Ponens
+fof(inf_5, axiom, sells(E, V) => earnings(E, V)).
+% From INF-2 and INF-4, apply Modus Ponens
+fof(inf_6, axiom, sells(E, V) => earnings(E, V)).
+% From INF-3 and INF-4, apply Modus Ponens
+fof(inf_7, axiom, sells(E, V) => earnings(E, V)).
+% From INF-1, INF-2, INF-3, INF-6, and INF-7, apply Disjunction Elimination
+fof(inf_8, axiom, (earnings(sells(E, V), V) | earnings(bakes(muffin, V), V) | earnings(donates(donation, V), V) | earnings(loses(layoff, V), V) | earnings(wants(wanting, V), V) | earnings(works(worked, V), V))).
+% From INF-8, apply Rule of Transitivity
+fof(inf_9, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).
+% From INF-9, apply Modus Tollens
+fof(inf_10, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).
+% From INF-10, apply Modus Tollens
+fof(inf_11, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).
+% From INF-11, apply Modus Tollens
+fof(inf_12, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).
+% From INF-11, apply Modus Tollens (alternative formulation)
+fof(inf_13, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).
+% From INF-13, apply Modus Tollens
+fof(inf_14, axiom, (~earnings(sells(E, V), V) | ~earnings(bakes(muffin, V), V) | ~earnings(donates(donation, V), V) | ~earnings(loses(layoff, V), V) | ~earnings(wants(wanting, V), V) | ~earnings(works(worked, V), V))).

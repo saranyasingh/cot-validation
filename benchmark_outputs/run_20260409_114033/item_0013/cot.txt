@@ -1,0 +1,30 @@
+To determine how many years it will take before Carlos starts earning money on the lemon tree, we need to calculate his total annual profit and then find out when that amount exceeds the initial investment.
+
+**Premise 1:** The initial cost to plant the lemon tree is $90.
+- **Explanation**: This is given as part of the problem statement.
+
+**Premise 2:** Each year, the tree grows 7 lemons, which can be sold for $1.5 each.
+- **Explanation**: This information is directly stated in the problem.
+
+**Premise 3:** Watering and feeding the tree costs $3 per year.
+- **Explanation**: This is also provided in the problem.
+
+**Conclusion 4:** Calculate the total annual profit.
+- Total annual revenue = (Number of lemons * Price per lemon) - Annual cost
+- Total annual revenue = (7 lemons * $1.5) - $3
+
+**Calculation:**
+\[ \text{Total annual revenue} = (7 \times 1.5) - 3 \]
+\[ \text{Total annual revenue} = 10.5 - 3 \]
+\[ \text{Total annual revenue} = 7.5 \]
+
+**Premise 5:** Determine the number of years needed for the total annual revenue to exceed the initial investment.
+- We need to find the smallest integer \( n \) such that \( 7.5n > 90 \).
+- Solving this inequality:
+\[ 7.5n > 90 \]
+\[ n > \frac{90}{7.5} \]
+\[ n > 12 \]
+
+Since \( n \) must be an integer greater than 12, the smallest possible value for \( n \) is 13.
+
+**Final Answer:** The answer is: 13

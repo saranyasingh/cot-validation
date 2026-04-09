@@ -1,0 +1,25 @@
+EXPLANATION
+To determine how many cups of feed Wendi needs to give her chickens in the final meal of the day, we start by calculating the total amount of feed given throughout the day.
+
+First, let's break down the information provided:
+- Each chicken gets 3 cups of feed per day.
+- There are 20 chickens in total.
+- Feed is divided into three equal parts (morning, afternoon, evening).
+
+Next, we calculate the total daily feed consumption for all chickens:
+\[ \text{Total daily feed} = \text{Number of chickens} \times \text{Feed per chicken per day} \]
+\[ \text{Total daily feed} = 20 \times 3 = 60 \text{ cups} \]
+
+We know that the feed distribution is as follows:
+- Morning: 15 cups
+- Afternoon: 25 cups
+
+Now, let’s subtract these amounts from the total daily feed to find out how much feed remains for the final meal:
+\[ \text{Remaining feed for final meal} = \text{Total daily feed} - (\text{Morning feed} + \text{Afternoon feed}) \]
+\[ \text{Remaining feed for final meal} = 60 - (15 + 25) \]
+\[ \text{Remaining feed for final meal} = 60 - 40 \]
+\[ \text{Remaining feed for final meal} = 20 \text{ cups} \]
+
+Therefore, Wendi needs to give her chickens **20** cups of feed in the final meal of the day.
+
+The answer is: 20

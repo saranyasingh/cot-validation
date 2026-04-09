@@ -1,0 +1,13 @@
+LABEL: InitialSize(200GB) :: Size(200GB)
+
+LABEL: NormalDownloadRate(2GB/min) :: Rate(2GB/min)
+
+LABEL: FirstPhaseDuration(40%) :: Duration(40%, Rate(2GB/min))
+
+LABEL: RestartDelay(20min) :: Delay(20min)
+
+LABEL: SecondPhaseRemainingSize(120GB) :: RemainingSize(120GB)
+
+LABEL: SecondPhaseDuration(120GB) :: Duration(120GB, Rate(2GB/min))
+
+LABEL: TotalDownloadTime(Duration(40%, Rate(2GB/min)), Delay(20min), Duration(120GB, Rate(2GB/min))) :: TotalDownloadTime(TotalTime)

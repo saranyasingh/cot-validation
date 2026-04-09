@@ -1,0 +1,23 @@
+```plaintext
+## FACTS
+LABEL: FACT-1 :: HourlyWageOfTeacher(20)
+LABEL: FACT-2 :: HoursOfWorkingAsTeacher(35)
+LABEL: FACT-3 :: NumberOfWeeksInAPeriod(50)
+LABEL: FACT-4 :: HourlyWageOfCoach(30)
+LABEL: FACT-5 :: HoursOfWorkingAsCoach(15)
+LABEL: FACT-6 :: NumberOfWeeksInAPeriod(52)
+
+## RULES
+LABEL: RULE-1 :: CalculateWeeklyEarningsFromTeaching(HourlyWage, HoursWorked)
+LABEL: RULE-2 :: CalculateAnnualEarningsFromTeaching(WeeklyEarnings, WeeksPerYear)
+LABEL: RULE-3 :: CalculateWeeklyEarningsFromCoaching(HourlyWage, HoursWorked)
+LABEL: RULE-4 :: CalculateAnnualEarningsFromCoaching(WeeklyEarnings, WeeksPerYear)
+LABEL: RULE-5 :: CalculateTotalAnnualSalary(AnnualEarningsTeaching, AnnualEarningsCoaching)
+
+## INFERENCES
+LABEL: INF-1 :: WeeklyEarningsFromTeaching(HourlyWage, HoursWorked)
+LABEL: INF-2 :: AnnualEarningsFromTeaching(WeeklyEarnings, WeeksPerYear)
+LABEL: INF-3 :: WeeklyEarningsFromCoaching(HourlyWage, HoursWorked)
+LABEL: INF-4 :: AnnualEarningsFromCoaching(WeeklyEarnings, WeeksPerYear)
+LABEL: INF-5 :: TotalAnnualSalary(AnnualEarningsTeaching, AnnualEarningsCoaching)
+```

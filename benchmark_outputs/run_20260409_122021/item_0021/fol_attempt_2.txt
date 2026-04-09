@@ -1,0 +1,23 @@
+### ## FACTS
+FACT-1: InitialOrangeDrink(10) :: 10 liters of orange drink.
+FACT-2: RatioWater(orange_drink, 2/3) :: Orange drink contains 2/3 water.
+FACT-3: InitialPineappleDrink(15) :: 15 liters of pineapple drink.
+FACT-4: RatioWater(pineapple_drink, 3/5) :: Pineapple drink contains 3/5 water.
+
+### ## RULES
+RULE-1: AmountWater(orange_drink, x) :: x liters of water in the orange drink.
+RULE-2: AmountWater(pineapple_drink, x) :: x liters of water in the pineapple drink.
+RULE-3: RemainingWater(initial_water, x) :: x liters of water remaining after spill.
+
+### ## INFERENCES
+INF-1: AmountWater(orange_drink, 10) :: 10 liters of water in the initial orange drink.
+INF-2: AmountWater(pineapple_drink, 15) :: 15 liters of water in the initial pineapple drink.
+INF-3: RemainingWater(InitialOrangeDrink, 6.67) :: 6.67 liters of water in the initial orange drink.
+INF-4: RemainingWater(InitialPineappleDrink, 9) :: 9 liters of water in the initial pineapple drink.
+INF-5: AmountWater(spilled_orange_drink, 1) :: 1 liter of orange drink spilled.
+INF-6: WaterInSpilledOranges(orange_drink, 2/3) :: 2/3 liters of water in the spilled orange drink.
+INF-7: AmountWater(spilled_orange_drink, 0.67) :: 0.67 liters of water in the spilled orange drink.
+INF-8: RemainingWater(OrangeDrinksAfterSpill, 15.67) :: 15.67 liters of water after spill.
+INF-9: TotalWaterBeforeSpill(15.67) :: 15.67 liters of water before spill.
+INF-10: RemainingWater(PineappleDrinksAfterSpill, 9) :: 9 liters of water after spill.
+INF-11: TotalWaterAfterSpill(15) :: 15 liters of water after spill.

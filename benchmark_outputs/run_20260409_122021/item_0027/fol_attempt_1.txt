@@ -1,0 +1,4 @@
+FACT-1: ShortsCost(3, 16.50) :: 3 * 16.50 = 49.50
+FACT-2: PantsCost(3, 22.50) :: 3 * 22.50 = 67.50
+FACT-3: ShoesCost(3, 42.00) :: 3 * 42.00 = 126.00
+INF-1: TotalClothingCost() :: ShortsCost(3, 16.50) + PantsCost(3, 22.50) + ShoesCost(3, 42.00)

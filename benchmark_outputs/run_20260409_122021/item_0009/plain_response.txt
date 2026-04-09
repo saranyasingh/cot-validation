@@ -1,0 +1,40 @@
+To determine how far John is from home after 4 hours, we need to calculate his total distance traveled and subtract it from his starting point (assuming he started at home).
+
+1. **Distance driven initially**: 
+   - John drives for 3 hours at 60 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 60 \, \text{mph} \times 3 \, \text{hours} = 180 \, \text{miles}
+   \]
+
+2. **Distance spent in standstill traffic**:
+   - John spends the first 2 hours in standstill traffic.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 0 \, \text{mph} \times 2 \, \text{hours} = 0 \, \text{miles}
+   \]
+
+3. **Distance driven during the last period**:
+   - John drives for the next half-hour at 30 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 30 \, \text{mph} \times 0.5 \, \text{hours} = 15 \, \text{miles}
+   \]
+
+4. **Remaining time**:
+   - The remaining time is \(4 - 2 - 0.5 = 1.5\) hours.
+
+5. **Distance driven during the final period**:
+   - John drives this remaining time at 80 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 80 \, \text{mph} \times 1.5 \, \text{hours} = 120 \, \text{miles}
+   \]
+
+Now, let's sum up all distances:
+\[
+\text{Total Distance Traveled} = 180 + 0 + 15 + 120 = 315 \, \text{miles}
+\]
+
+Since John starts at home and travels outwards, the distance from home will be equal to the total distance traveled minus the initial 0 miles (since he didn't travel away from home yet):
+\[
+\text{Distance from Home} = 315 - 0 = 315 \, \text{miles}
+\]
+
+Thus, John is 315 miles from home at the end of those 4 hours.

@@ -1,0 +1,38 @@
+Let's convert the given chain-of-thought reasoning into structured first-order logic (FOL). Here's the process step-by-step:
+
+### Facts
+1. **Seattle has 20 sheep**:
+   - Fact-1: \( S = 20 \)
+
+2. **Charleston has 4 times as many sheep as Seattle**:
+   - Fact-2: \( C = 4S \)
+
+3. **Toulouse has twice as many sheep as Charleston**:
+   - Fact-3: \( T = 2C \)
+
+### Rules
+No rules needed for this particular logical conversion since no specific relationships or facts about the relationship between these numbers are provided.
+
+### Inferences
+We can infer the total number of sheep using the values derived from the facts:
+
+1. **Total number of sheep**:
+   - Inf-1: \( S + C + T \)
+   - Substituting \( S = 20 \), \( C = 4 \times 20 = 80 \), and \( T = 2 \times 80 = 160 \):
+     - \( S + C + T = 20 + 80 + 160 = 260 \)
+
+Thus, the total number of sheep in Seattle, Charleston, and Toulouse is **260**.
+
+### Final Conversion
+Here are the converted FOL statements:
+
+#### FACTS
+1. Fact-1: \( S = 20 \)
+2. Fact-2: \( C = 4S \)
+3. Fact-3: \( T = 2C \)
+
+#### RULES
+None
+
+#### INFERENCES
+Inf-1: \( S + C + T = 20 + 80 + 160 = 260 \)

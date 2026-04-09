@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — story states 3 times a week, not twice per week
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — per-day frequency cannot be inferred from the given facts
+RULE-2: IMPLAUSIBLE — mapping per-day to twice per week is unfounded
+RULE-3: PLAUSIBLE

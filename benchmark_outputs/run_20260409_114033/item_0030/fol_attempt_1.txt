@@ -1,0 +1,8 @@
+FACT-1: BootsCost = $99 :: BootsCost = 99
+
+RULE-1: If the boots cost $99, then the total cost after buying the high heels equals the boots' budget :: ∀totalBudget (BootsCost + HighHeelsTotalCost = totalBudget → totalBudget - BootsCost = HighHeelsTotalCost)
+
+INF-1: Given the boots cost $99 and the total budget is $100, the remaining amount for the high heels is equal to the boots' cost :: HighHeelsTotalCost = BootsCost - totalBudget :: HighHeelsTotalCost = $99 - $100 :: HighHeelsTotalCost = -$1 :: BootsWithoutHighHeels :: BootsCost - HighHeelsTotalCost :: $99 - (-$1) :: $100
+
+Therefore,
+INF-2: The price of the boots without considering the high heels is $100 :: BootsWithoutHighHeels :: BootsCost - HighHeelsTotalCost :: $99 - (-$1) :: $100

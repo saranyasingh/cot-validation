@@ -1,0 +1,24 @@
+EXPLANATION
+
+1. Let's start by defining variables for the number of sheep each city has.
+   - Let S represent the number of sheep in Seattle.
+   - Let C represent the number of sheep in Charleston.
+   - Let T represent the number of sheep in Toulouse.
+
+2. According to the problem, we know that:
+   - Seattle has 20 sheep, so \( S = 20 \).
+   - Charleston has 4 times as many sheep as Seattle, so \( C = 4S \).
+   - Toulouse has twice as many sheep as Charleston, so \( T = 2C \).
+
+3. We need to find out how many sheep all three cities have together, which means finding \( S + C + T \).
+
+4. First, substitute the value of \( S \) into the equation for \( C \):
+   - Since \( S = 20 \), then \( C = 4 \times 20 = 80 \).
+
+5. Next, substitute the value of \( C \) into the equation for \( T \):
+   - Since \( C = 80 \), then \( T = 2 \times 80 = 160 \).
+
+6. Now, add up the total number of sheep:
+   - Total sheep = \( S + C + T = 20 + 80 + 160 = 260 \).
+
+Therefore, the answer is: 260.

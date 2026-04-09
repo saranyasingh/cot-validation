@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, pv_jewelry = 5000).
+fof(fact_2, axiom, r_jewelry = 0.025).
+fof(fact_3, axiom, t_jewelry = 1).
+fof(fact_4, axiom, pv_electronics = 8000).
+fof(fact_5, axiom, r_electronics = 0.012).
+fof(fact_6, axiom, t_electronics = 1).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (fv_jewelry = pv_jewelry * (1 + r_jewelry)^t_jewelry)).
+fof(rule_2, axiom, ! [T] : (fv_electronics = pv_electronics * (1 + r_electronics)^t_electronics)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, fv_jewelry = 5000 * (1 + 0.025)^1).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_2, axiom, fv_electronics = 8000 * (1 + 0.012)^1).
+% From inf_1, fact_1 by Subtraction
+fof(inf_3, axiom, profit_jewelry = fv_jewelry - pv_jewelry).
+% From inf_2, fact_4 by Subtraction
+fof(inf_4, axiom, profit_electronics = fv_electronics - pv_electronics).
+% From inf_3, inf_4 by GreaterThan
+fof(inf_5, axiom, profit_jewelry > profit_electronics).
+% From inf_5 by Implication
+fof(inf_6, axiom, (profit_jewelry > profit_electronics) => merchants_should_choose_jewelry).

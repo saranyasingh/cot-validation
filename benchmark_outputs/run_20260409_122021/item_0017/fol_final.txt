@@ -1,0 +1,21 @@
+### ## FACTS
+FACT-1: Train1_traveled_80miles_first_day :: Traveled(Train1, 80, t_1st_day)
+FACT-2: Train2_traveled_80miles_first_day :: Traveled(Train2, 80, t_1st_day)
+FACT-3: Train1_traveled_150miles_second_day :: Traveled(Train1, 150, t_2nd_day)
+FACT-4: Train2_traveled_150miles_second_day :: Traveled(Train2, 150, t_2nd_day)
+
+### ## RULES
+RULE-1: Traveled(x, d, t) :: x traveled d miles at time t :: (∀t (Travels(x, d, t)))
+RULE-2: TravelledOnDay(x, t) :: x travelled some distance on day t :: (∀d (TravelledOnDay(x, d)))
+
+### ## INFERENCES
+INF-1: From Fact-1 and Rule-1: Train1 traveled 80 miles on the first day :: Traveled(Train1, 80, t_1st_day)
+INF-2: From Fact-2 and Rule-1: Train2 traveled 80 miles on the first day :: Traveled(Train2, 80, t_1st_day)
+INF-3: From Fact-3 and Rule-1: Train1 traveled 150 miles on the second day :: Traveled(Train1, 150, t_2nd_day)
+INF-4: From Fact-4 and Rule-1: Train2 traveled 150 miles on the second day :: Traveled(Train2, 150, t_2nd_day)
+INF-5: TotalDistance(Train1, days) :: sum of distances traveled by Train1 on both days :: (∑i=1 to n (Traveled(Train1, di, ti))) where i represents each day
+INF-6: TotalDistance(Train2, days) :: sum of distances traveled by Train2 on both days :: (∑j=1 to m (Traveled(Train2, dj, tj))) where j represents each day
+INF-7: SumTotalDistance(Train1) :: TotalDistance(Train1, days) :: TotalDistance(Train1, days) = Traveled(Train1, 80, t_1st_day) + Traveled(Train1, 150, t_2nd_day)
+INF-8: SumTotalDistance(Train2) :: TotalDistance(Train2, days) :: TotalDistance(Train2, days) = Traveled(Train2, 80, t_1st_day) + Traveled(Train2, 150, t_2nd_day)
+INF-9: CombinedTotalDistance :: TotalDistance(Train1, days) + TotalDistance(Train2, days) :: CombinedTotalDistance = SumTotalDistance(Train1) + SumTotalDistance(Train2)
+INF-10: Conclusion :: CombinedTotalDistance :: 380 miles :: Combine the results of the previous inferences to find the total distance covered by each train in the two days.

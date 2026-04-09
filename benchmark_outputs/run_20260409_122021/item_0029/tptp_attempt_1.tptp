@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_trip_distance(60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (first_stop_at(20))).
+fof(rule_2, axiom, ! [T] : (second_stop_is(45))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1, rule_2 by Modus Ponens
+fof(inf_1, axiom, total_trip_distance(60) & first_stop_at(20) & second_stop_is(45)).

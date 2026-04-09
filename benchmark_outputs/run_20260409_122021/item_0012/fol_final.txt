@@ -1,0 +1,10 @@
+## FACTS
+- DonutCost(3 * 68)
+- CupcakeCost(2 * 80)
+- CheesecakeCost(6 * 55)
+
+## RULES
+- TotalCost(DonutCost, CupcakeCost, CheesecakeCost)
+
+## INFERENCES
+- TotalCost(DonutCost(3 * 68), CupcakeCost(2 * 80), CheesecakeCost(6 * 55))

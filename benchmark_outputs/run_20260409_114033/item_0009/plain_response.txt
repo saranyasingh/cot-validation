@@ -1,0 +1,38 @@
+To determine how far John is from home at the end of his journey, we need to calculate the distance he traveled each segment of his trip and sum them up.
+
+1. **First Segment (3 hours at 60 mph):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 60 \, \text{mph} \times 3 \, \text{hours} = 180 \, \text{miles}
+   \]
+
+2. **Second Segment (standstill traffic for 2 hours):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 0 \, \text{mph} \times 2 \, \text{hours} = 0 \, \text{miles}
+   \]
+   Since he spent the entire second hour in standstill traffic, no distance was covered during this part of the trip.
+
+3. **Third Segment (half an hour at 30 mph):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 30 \, \text{mph} \times 0.5 \, \text{hours} = 15 \, \text{miles}
+   \]
+
+4. **Fourth Segment (remaining time at 80 mph):**
+   The total travel time is 4 hours, and he has already used 5 hours so far (3 hours + 2 hours + 0.5 hours). This means there is no remaining time to cover.
+   
+Since the fourth segment does not contribute any additional distance, we can conclude that John did not complete all 4 hours of travel.
+
+However, since he spent some time in standstill traffic and drove at different speeds, let's re-evaluate the distances:
+
+- Total distance driven:
+  - First segment: 180 miles
+  - Second segment: 0 miles
+  - Third segment: 15 miles
+
+Total distance driven:
+\[
+180 \, \text{miles} + 0 \, \text{miles} + 15 \, \text{miles} = 195 \, \text{miles}
+\]
+
+Thus, John is 195 miles away from home at the end of his 4-hour trip. 
+
+Therefore, the answer is: 195 miles.

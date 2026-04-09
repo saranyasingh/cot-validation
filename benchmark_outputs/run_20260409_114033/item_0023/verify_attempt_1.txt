@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story states the first 3 customers buy one DVD each, and Customer_1 is among them.
+
+FACT-2: UNSUPPORTED — The story indicates the next 2 customers bought 2 DVDs each, but FACT-2 asserts Customers 2 and 3 bought 2 DVDs, which contradicts.
+
+FACT-3: UNSUPPORTED — The story says the last 3 customers bought none, but FACT-3 makes claims about购买 4–8 DVDs that do not align with the described pattern.
+
+RULE-1: IMPLAUSIBLE — It asserts that any purchased DVD was bought only once, which conflicts with the part of the story where some customers buy 2 DVDs.

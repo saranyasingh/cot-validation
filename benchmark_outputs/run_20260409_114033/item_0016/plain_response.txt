@@ -1,0 +1,36 @@
+To determine which purchase plan maximizes profit for the merchant, we need to calculate the potential profits from both options considering their respective growth rates.
+
+### Jewelry Purchase Plan:
+- Initial value: $5,000
+- Growth rate: 2.5%
+
+First, calculate the value after one month:
+\[ \text{Value after one month} = \$5,000 \times (1 + 0.025) = \$5,000 \times 1.025 = \$5,125 \]
+
+Next, calculate the value after two months:
+\[ \text{Value after two months} = \$5,125 \times (1 + 0.025) = \$5,125 \times 1.025 = \$5,256.25 \]
+
+Profit from the jewelry purchase plan:
+\[ \text{Profit} = \$5,256.25 - \$5,000 = \$256.25 \]
+
+### Electronic Gadgets Purchase Plan:
+- Initial value: $8,000
+- Growth rate: 1.2%
+
+First, calculate the value after one month:
+\[ \text{Value after one month} = \$8,000 \times (1 + 0.012) = \$8,000 \times 1.012 = \$8,096 \]
+
+Next, calculate the value after two months:
+\[ \text{Value after two months} = \$8,096 \times (1 + 0.012) = \$8,096 \times 1.012 = \$8,178.34 \]
+
+Profit from the electronic gadgets purchase plan:
+\[ \text{Profit} = \$8,178.34 - \$8,000 = \$178.34 \]
+
+Comparing the profits from both options:
+
+- Jewelry purchase plan: \$256.25
+- Electronic gadgets purchase plan: \$178.34
+
+The jewelry purchase plan yields a higher profit (\$256.25) compared to the electronic gadgets purchase plan (\$178.34).
+
+Therefore, the answer is: The jewelry purchase plan would yield a profit of \$256.25.

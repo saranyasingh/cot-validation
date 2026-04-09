@@ -1,0 +1,31 @@
+Explanation:
+
+1. John drives for 3 hours at 60 mph.
+   - Distance covered = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. John stops due to forgetting something important at home.
+   - No distance covered during this period.
+
+3. John starts his return trip after realizing he forgot something.
+   - Total time available = 4 hours (but he already spent some time on the way).
+
+4. For the first 2 hours, he experiences standstill traffic.
+   - Distance covered = 0 miles (since it's standstill).
+
+5. He then drives at a speed of 30 mph for half an hour.
+   - Distance covered = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+6. After that, he drives at a speed of 80 mph for the remaining 2 hours.
+   - Distance covered = Speed × Time = 80 mph × 2 hours = 160 miles.
+
+7. Summing up all distances:
+   - Initial 3 hours at 60 mph: 180 miles
+   - Standstill traffic for 2 hours: 0 miles
+   - Driving at 30 mph for 0.5 hours: 15 miles
+   - Driving at 80 mph for 2 hours: 160 miles
+
+Total distance = 180 + 0 + 15 + 160 = 355 miles.
+
+Answer: 355
+
+The answer is: 355

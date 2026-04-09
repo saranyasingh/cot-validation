@@ -1,0 +1,16 @@
+### ## FACTS
+FACT-1: James runs 3 sprints each time :: SprintCount(x, x, 3)
+FACT-2: Each sprint is 60 meters long :: DistancePerSession(y, y, 60)
+
+### ## RULES
+RULE-1: TotalDistance(weekly_sessions) :: ∀y (SprintCount(y, weekly_sessions, _)) → (∃z (SprintCount(z, weekly_sessions, 3))) → DistancePerSession(z, weekly_sessions, 60) → WeeklyTotalDistance(weekly_sessions, DistancePerSession(z, weekly_sessions, 60))
+RULE-2: SessionsPerWeek :: ∀w (Sessions(w, 3))
+
+### ## INFERENCES
+INF-1: James runs 3 sprints each time :: Fact-1
+INF-2: Each sprint is 60 meters long :: Fact-2
+INF-3: In one session, James runs 180 meters :: Rule-1
+INF-4: James runs 3 sessions per day :: Rule-2
+INF-5: There are 7 days in a week :: Fact-1
+INF-6: In a week, James runs 21 sessions :: Rule-1
+INF-7: In a week, James runs 3780 meters :: Rule-2

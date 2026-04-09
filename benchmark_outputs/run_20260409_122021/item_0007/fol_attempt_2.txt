@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: S = 20 :: S = 20
+
+### RULES
+RULE-1: If two cities have the same number of sheep, then each city has 20 sheep :: ∀x∀y((City(x) ∧ City(y)) → (S(x) = 20 ∧ S(y) = 20))
+
+### INFERENCES
+INF-1: Given S = 20, it follows that the number of sheep in all three cities is consistent across them :: Fact-1 -> Total_Sheep = 260

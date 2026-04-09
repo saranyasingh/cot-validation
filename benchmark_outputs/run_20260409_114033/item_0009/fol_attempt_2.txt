@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: John drove for 3 hours at 60 mph :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph))
+FACT-2: John realized he forgot something and turned back :: TurnBackAfterRealizingForgotSomething
+FACT-3: John drove for 3 hours at 60 mph :: ∀t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph))
+
+## RULES
+RULE-1: If John drives for some duration at speed, then the total distance covered increases accordingly :: DrivingAndIncreaseDistance(DrivingForDurationAtSpeed)
+RULE-2: If John turns back after forgetting something, the total distance remains unchanged :: TurnBackDoesNotChangeTotalDistance(TurnBackAfterRealizingForgotSomething)
+RULE-3: If John stands still for some period, no additional distance is added :: StandingStillDoesNotAddDistance(StandingStillTraffic)
+
+## INFERENCES
+INF-1: John drove for 3 hours at 60 mph :: John_DroveForDurationAtSpeed_3_hours_60_mph
+INF-2: John turned back after realizing he forgot something :: TurnBackAfterRealizingForgotSomething
+INF-3: John drove for 3 hours at 60 mph :: John_DroveForDurationAtSpeed_3_hours_60_mph
+INF-4: John stood still for 2 hours :: John_StoodStill_2_hours
+INF-5: John drove for 0.5 hours at 30 mph :: John_DroveForDurationAtSpeed_0.5_hours_30_mph
+INF-6: John is 0 miles from home at the end of those 4 hours :: John_IsHomeAtEndOfTrip_0_miles

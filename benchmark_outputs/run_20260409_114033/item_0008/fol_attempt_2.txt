@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Carla's normal download speed is 2 GB per minute :: DownloadSpeed(2, gb/min)
+FACT-2: Carla has completed 40% of the file :: CompletedFile(40%)
+
+## RULES
+RULE-1: Carla downloads \(2 \text{ GB/min} \times 0.8 = 1.6 \text{ GB}\) per minute :: DownloadRate(1.6, gb/min)
+RULE-2: After the restart, Carla's download speed becomes 2 GB per minute :: RestartedDownloadSpeed(2, gb/min)
+
+## INFERENCES
+INF-1: Carla downloads \(1.6 \text{ GB}\) per minute before the restart :: DownloadRate(1.6, gb/min)
+INF-2: Time taken to download 1.6 GB before the restart = \(1.6 \text{ GB} / 2 \text{ GB/min} = 0.8 \text{ min}\) :: TimeToDownload(0.8, min)
+INF-3: Carla finishes downloading 40% of the file before the restart :: CompletedFile(40%, file)
+INF-4: Time taken to download the remaining 60% of the file after the restart = \(198.4 \text{ GB} / 2 \text{ GB/min} = 99.2 \text{ min}\) :: TimeToDownload(99.2, min)
+INF-5: Total time to download the entire file = Time before restart + Time after restart :: TotalTime(TotalTime, min)
+INF-6: Total time to download the entire file = \(0.8 \text{ min} + 99.2 \text{ min} = 100 \text{ min}\) :: TotalTime(100, min)

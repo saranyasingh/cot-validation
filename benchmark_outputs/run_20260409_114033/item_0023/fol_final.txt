@@ -1,0 +1,16 @@
+### ## FACTS
+```plaintext
+FACT-1: Customer_1 ∧ BoughtDVD(1) :: (∀i ∈ [1, 3], i ∈ \{1\} ∧ BoughtDVD(i))  
+FACT-2: Customer_2 ∧ Customer_3 ∧ BoughtDVD(2) :: (∀j ∈ [4, 5], j ∈ \{2, 3\} ∧ BoughtDVD(j, 2))  
+FACT-3: Customer_4 ∧ Customer_5 ∧ Customer_6 ∧ Customer_7 ∧ Customer_8 ∧ ¬BoughtDVD(4) ∧ ¬BoughtDVD(5) ∧ ¬BoughtDVD(6) ∧ ¬BoughtDVD(7) ∧ ¬BoughtDVD(8) :: (∀k ∈ [6, 8], k ∈ \{4, 5, 6, 7, 8\} ∧ ¬BoughtDVD(k))  
+```
+
+### ## RULES
+None provided.
+
+### ## INFERENCES
+```plaintext
+INF-1: From Fact-1 and Rule-1 by Modus Ponens: Customer_1 ∧ BoughtDVD(1) :: (∀i ∈ [1, 3], i ∈ \{1\} ∧ BoughtDVD(i))  
+INF-2: From Fact-2 and Rule-1 by Modus Ponens: Customer_2 ∧ Customer_3 ∧ BoughtDVD(2) :: (∀j ∈ [4, 5], j ∈ \{2, 3\} ∧ BoughtDVD(j, 2))  
+INF-3: From Fact-3 and Rule-1 by Modus Ponens: Customer_4 ∧ Customer_5 ∧ Customer_6 ∧ Customer_7 ∧ Customer_8 ∧ ¬BoughtDVD(4) ∧ ¬BoughtDVD(5) ∧ ¬BoughtDVD(6) ∧ ¬BoughtDVD(7) ∧ ¬BoughtDVD(8) :: (∀k ∈ [6, 8], k ∈ \{4, 5, 6, 7, 8\} ∧ ¬BoughtDVD(k))  
+```

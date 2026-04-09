@@ -1,0 +1,13 @@
+## FACTS
+LABEL: FACT-1 :: 3 * 16.50 = 49.50
+LABEL: FACT-2 :: 3 * 22.50 = 67.50
+LABEL: FACT-3 :: 3 * 42.00 = 126.00
+
+## RULES
+RULE-1 :: multiplication_associativity :: (a * b) * c = a * (b * c)
+
+## INFERENCES
+INFERENCE-1 :: total_cost_shorts = 49.50
+INFERENCE-2 :: total_cost_pants = 67.50
+INFERENCE-3 :: total_cost_shoes = 126.00
+INFERENCE-4 :: total_spent = total_cost_shorts + total_cost_pants + total_cost_shoes

@@ -1,0 +1,16 @@
+LABEL: ANSWER :: 64
+
+---
+
+### FACTS
+FACT-1: Kylar buys 16 glasses :: NumberOfGlasses(16)
+
+### RULES
+RULE-1: CalculateTotalCost :: ∀numberOfGlasses (PricePerGlass * NumberOfDiscountedGlasses(numberOfGlasses) + (NumberOfNonDiscountedGlasses(numberOfGlasses) * DiscountRate * PricePerGlass))
+
+### INFERENCES
+INF-1: Given Premises, calculate the total cost :: 
+   - TotalCost = CalculateTotalCost(NumberOfGlasses(16))
+   - Substituting Known Values: TotalCost = 64
+
+Therefore, the final answer is 64.

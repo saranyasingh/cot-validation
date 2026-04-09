@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, boots_cost(104)).
+
+% --- RULES ---
+% No rules provided in the original premise.
+
+% --- INFERENCES ---
+% From fact_1 by Inference
+fof(inf_1, axiom, booleans(boots_cost = 104)).

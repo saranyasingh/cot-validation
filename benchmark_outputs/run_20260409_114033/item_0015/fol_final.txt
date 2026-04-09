@@ -1,0 +1,18 @@
+## FACTS
+LABEL: FACT-1 :: NumberOfContemporaryDancers(20) :: CONT(dancer, c)
+LABEL: FACT-2 :: PercentEnrolledInContemporaryDance(20%, dancer) :: CONT(dancer, c)
+LABEL: FACT-3 :: NumberOfJazzDancers(16) :: JazzDancer(dancer)
+LABEL: FACT-4 :: PercentEnrolledInJazzDance(25%, dancer) :: Jd(dancer, j)
+LABEL: FACT-5 :: NumberOfHipHopDancers(12) :: HipHopDancer(dancer)
+LABEL: FACT-6 :: PercentEnrolledInHipHopDance(60%, dancer) :: Hh(dancer, h)
+
+## RULES
+LABEL: RULE-1 :: MEMBER(dancer, dance) :: IF EXISTS(dancer, CONT(dancer, c)) THEN ∃c (CONT(dancer, c))
+LABEL: RULE-2 :: PERCENT(dancer, dance, percent) :: IF EXISTS(dancer, CONT(dancer, c)) THEN ∃c (PercentEnrolledInContemporaryDance(percent, c)) AND ∃j (JazzDancer(j)) THEN ∃j (PercentEnrolledInJazzDance(percent, j)) AND ∃z (HipHopDancer(z)) THEN ∃z (PercentEnrolledInHipHopDance(percent, z)) END
+
+## INFERENCES
+LABEL: INFERENCE-1 :: NUMBER_OF_STUDENTS_ENROLLED_IN_CONTINUOUS_DANCE :: 4 :: FROM FACT-1 AND FACT-2
+LABEL: INFERENCE-2 :: NUMBER_OF_STUDENTS_LEFT_AFTER_CONTEMPORARY_DANCE :: 16 :: FROM INFERENCE-1 AND FACT-3
+LABEL: INFERENCE-3 :: NUMBER_OF_JAZZ_DANCERS :: 4 :: FROM FACT-3 AND FACT-4
+LABEL: INFERENCE-4 :: NUMBER_OF_HIPHOP_DANCERS :: 12 :: FROM INFERENCE-3 AND FACT-5
+LABEL: INFERENCE-5 :: PERCENTAGE_OF_STUDENTS_IN_HIPHOP_DANCE :: 60% :: FROM INFERENCE-4 AND FACT-6

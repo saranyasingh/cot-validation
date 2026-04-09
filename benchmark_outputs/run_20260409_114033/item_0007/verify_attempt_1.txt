@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Directly stated: Seattle has 20 sheep.
+FACT-2: SUPPORTED — Charleston is Seattle × 4, per "Charleston has 4 times as many sheep as Seattle."
+FACT-3: SUPPORTED — Toulouse is Charleston × 2, per "Toulouse has twice as many sheep as Charleston."
+RULE-1: IMPLAUSIBLE — Too vague; not a defensible general principle.
+RULE-2: PLAUSIBLE — Doubling a location's sheep increases the total count.
+RULE-3: IMPLAUSIBLE — Tripling one location does not, in general, triple the total.

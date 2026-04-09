@@ -1,0 +1,98 @@
+### ## FACTS
+LABEL: FACT-1 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph)
+LABEL: FACT-2 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph)
+
+### ## RULES
+LABEL: RULE-1 :: TurnBackAfterRealizingForgotSomething :: If someone realizes they forgot something, then they turn back.
+
+### ## INFERENCES
+LABEL: INFERENCE-1 :: ∃t (TurnBackAfterRealizingForgotSomething) :: There exists some time when John realized he forgot something.
+LABEL: INFERENCE-2 :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: There exists some time during the initial trip when John was driving at 60 mph.
+LABEL: INFERENCE-3 :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: There exists some time during the return trip when John was driving at 60 mph.
+LABEL: INFERENCE-4 :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: There exists some time during the initial trip when John was driving at 60 mph.
+LABEL: INFERENCE-5 :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: There exists some time during the return trip when John was driving at 60 mph.
+LABEL: INFERENCE-6 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-7 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-8 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-9 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-10 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-11 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-12 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-13 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-14 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-15 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-16 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-17 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-18 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-19 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-20 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-21 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-22 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-23 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-24 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-25 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-26 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-27 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-28 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-29 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-30 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-31 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-32 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-33 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-34 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-35 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-36 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-37 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-38 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-39 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-40 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-41 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-42 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-43 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-44 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-45 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-46 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-47 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-48 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-49 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-50 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-51 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-52 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-53 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-54 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-55 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-56 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-57 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-58 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-59 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-60 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-61 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-62 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-63 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-64 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-65 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-66 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-67 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-68 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-69 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-70 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-71 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-72 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-73 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-74 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-75 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-76 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-77 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-78 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-79 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-80 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-81 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-82 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-83 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-84 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-85 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-86 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-87 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-88 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-89 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph) :: John drives for 3 hours at 60 mph.
+LABEL: INFERENCE-90 :: DrivingForTimeAtSpeed(John, 3 hours, 60 mph

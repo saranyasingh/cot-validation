@@ -1,0 +1,5 @@
+FACT-1: Eliza worked 40 hours at her regular rate of $10 per hour.
+FACT-2: She worked 5 hours at her overtime rate of 1.2 times her regular rate.
+
+RULE-1: If Eliza works more than 40 hours, she earns overtime pay at 1.2 times her regular rate.
+INF-1: Total earnings can be calculated by summing regular earnings and overtime pay.

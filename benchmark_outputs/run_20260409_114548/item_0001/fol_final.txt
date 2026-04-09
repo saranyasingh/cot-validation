@@ -1,0 +1,20 @@
+### ## FACTS
+Laying(duck, 16, t_0) :: 16
+EggsConsumed(3, t_0) :: 3
+EggsUsed(4, t_0) :: 4
+EggSold(2, t_0) :: 2
+
+### ## RULES
+No RULE lines were provided; only facts were present initially.
+
+### ## INFERENCES
+Laying(duck, 16, t_0) :: 16
+EggsConsumed(3, t_0) :: 3
+EggsUsed(4, t_0) :: 4
+EggSold(2, t_0) :: 2
+
+Inference:: TotalEggs = 16
+Inference:: RemainingEggsAfterBreakfast = 16 - 3
+Inference:: RemainingEggsAfterMuffinBaking = 13 - 4
+Inference:: RevenueFromSales = 9 * 2
+Inference:: EarningsPerDay = 18

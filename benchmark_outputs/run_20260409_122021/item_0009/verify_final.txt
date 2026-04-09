@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states 3 hours at 60 mph, which equals 180 miles.
+FACT-2: UNSUPPORTED — The standstill implies 0 distance, but the fact asserts speed 30 mph for 2 hours; the speed detail is not supported by the story.
+FACT-3: UNSUPPORTED — The story has 1.5 hours at 80 mph (120 miles), not 2 hours at 80 mph (160 miles).
+RULE-1: IMPLAUSIBLE — Not a defensible general principle; it’s just a predicate signature without a usable rule.
+RULE-2: PLAUSIBLE — Reflects standstill traffic as a duration; consistent with the story.
+RULE-3: PLAUSIBLE — Reflects driving at a speed for a duration; consistent with the story.

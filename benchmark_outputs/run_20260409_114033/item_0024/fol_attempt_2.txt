@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: CandleBurningFrom1PMto5PM :: Duration(1PM, 5PM) :: 4h
+FACT-2: MeltingRateCandle :: RateOfMeltingCandle :: 2cm/h
+
+## RULES
+RULE-1: TotalMeltedLength :: Duration * Rate :: Duration * Rate
+
+## INFERENCES
+INF-1: After 1:00 PM to 5:00 PM, the candle will have melted 8 centimeters :: TotalMeltedLength(Duration(1PM, 5PM), RateOfMeltingCandle) :: 8cm

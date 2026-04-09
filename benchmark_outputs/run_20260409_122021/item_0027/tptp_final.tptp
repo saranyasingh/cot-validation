@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, 3 * 16.50 = 49.50).
+fof(fact_2, axiom, 3 * 22.50 = 67.50).
+fof(fact_3, axiom, 3 * 42.00 = 126.00).
+
+% --- RULES ---
+
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, shorts_cost(3, 16.50) + pants_cost(3, 22.50) + shoes_cost(3, 42.00)).

@@ -1,0 +1,37 @@
+### ## FACTS
+FACT-1: John drives for 3 hours at 60 mph :: Distance(John, 3, 60)
+FACT-2: After realizing he forgot something, he tries to get home in 4 hours :: TryToGetHomeIn(John, 4)
+FACT-3: He spends the first 2 hours stuck in traffic :: StuckInTrafficFor(John, 2)
+FACT-4: Remaining distance to cover after traffic = Total distance - Distance covered initially :: RemainingDistance(John)
+FACT-5: Total distance = 180 miles :: TotalDistance
+FACT-6: Distance covered initially = 60 mph × 2 hours :: DistanceCoveredInitially
+FACT-7: Remaining distance(John) = Total distance - Distance covered initially :: RemainingDistance(John)
+FACT-8: In the next half hour, he drives at 30 mph :: DriveAtSpeed(John, 30, 0.5)
+FACT-9: Distance driven in traffic = 30 mph × 0.5 hours :: DistanceDrivenInTraffic
+FACT-10: Remaining distance(John) -= DistanceDrivenInTraffic :: RemainingDistance(John)
+FACT-11: For the remaining 4 hours, he drives at 80 mph :: DriveAtSpeed(John, 80, 4)
+FACT-12: Distance covered during next 4 hours = 80 mph × 4 hours :: DistanceCoveredDuringNext4Hours
+FACT-13: Total distance traveled so far = Distance covered initially + Distance driven in traffic + Distance covered during next 4 hours :: TotalDistanceTraveledSoFar
+FACT-14: John starts at home and drives out to his destination :: StartedFromHomeAndReachedDestination(John)
+
+### ## RULES
+RULE-1: If John drives for a certain amount of time at a given speed, he covers a distance :: ∀speed, duration (Drive(speed, duration) → Distance(speed, duration))
+RULE-2: If John tries to get home within a specified time frame, he will reach that point if he completes the journey :: ∀timeFrame, speed (TryToGetHomeIn(timeFrame) → ReachedDestinationIfCompletesJourney(timeFrame))
+RULE-3: If John realizes he forgot something, he will try to get home again :: ∀timeFrame, speed (RealizesHeForgotSomething(timeFrame) → TryToGetHomeIn(timeFrame))
+
+### ## INFERENCES
+INF-1: John drives for 3 hours at 60 mph :: Distance(John, 3, 60)
+INF-2: After realizing he forgot something, he tries to get home in 4 hours :: TryToGetHomeIn(John, 4)
+INF-3: He spends the first 2 hours stuck in traffic :: StuckInTrafficFor(John, 2)
+INF-4: Remaining distance to cover after traffic = Total distance - Distance covered initially :: RemainingDistance(John)
+INF-5: Total distance = 180 miles :: TotalDistance
+INF-6: Distance covered initially = 60 mph × 2 hours :: DistanceCoveredInitially
+INF-7: Remaining distance(John) = Total distance - Distance covered initially :: RemainingDistance(John)
+INF-8: In the next half hour, he drives at 30 mph :: DriveAtSpeed(John, 30, 0.5)
+INF-9: Distance driven in traffic = 30 mph × 0.5 hours :: DistanceDrivenInTraffic
+INF-10: Remaining distance(John) -= DistanceDrivenInTraffic :: RemainingDistance(John)
+INF-11: For the remaining 4 hours, he drives at 80 mph :: DriveAtSpeed(John, 80, 4)
+INF-12: Distance covered during next 4 hours = 80 mph × 4 hours :: DistanceCoveredDuringNext4Hours
+INF-13: Total distance traveled so far = Distance covered initially + Distance driven in traffic + Distance covered during next 4 hours :: TotalDistanceTraveledSoFar
+INF-14: John starts at home and drives out to his destination :: StartedFromHomeAndReachedDestination(John)
+INF-15: John is 620 miles away from home at the end of 4 hours :: JohnIs620MilesAwayFromHomeAfter4Hours :: TotalDistanceTraveledSoFar == 620

@@ -1,0 +1,31 @@
+This task involves converting a detailed narrative about downloading a large file into a formal first-order logic statement. Here’s how we can represent each step using FOL syntax:
+
+### FACTS
+```plaintext
+FACT-1: InitialSize(200GB) :: Size(200GB)
+```
+
+### RULES
+```plaintext
+RULE-1: NormalDownloadRate(2GB/min) :: Rate(2GB/min)
+```
+
+### INFERENCES
+```plaintext
+INF-1: FirstPhaseDuration(40%) :: Duration(40%, Rate(2GB/min))
+INF-2: RestartDelay(20min) :: Delay(20min)
+INF-3: SecondPhaseRemainingSize(120GB) :: RemainingSize(120GB)
+INF-4: SecondPhaseDuration(120GB) :: Duration(120GB, Rate(2GB/min))
+INF-5: TotalDownloadTime(Duration(40%, Rate(2GB/min)), Delay(20min), Duration(120GB, Rate(2GB/min))) :: TotalDownloadTime(TotalTime)
+```
+
+### Explanation
+Here’s a breakdown of the conversion process:
+1. **Initial Setup**: We define the initial size of the file as 200 GB.
+2. **Normal Download Rate**: Carla’s normal download rate is 2 GB per minute.
+3. **First Phase of Download**: Carla downloads at her normal speed until she has completed 40% of the file. To find out how long this took, we calculate 40% of 200 GB and divide by her download rate.
+4. **Restart Due to Update Installation**: There is an additional delay of 20 minutes after resuming the download.
+5. **Second Phase of Download**: After the delay, Carla starts again at her initial download rate but now needs to download the remaining portion of the file, which is 120 GB. Again, we calculate the duration needed to download this amount.
+6. **Total Time Calculation**: Adding up all these durations gives us the total time taken to download the file.
+
+By structuring the problem in this way, we ensure that each step is clearly defined and logically connected through the rules provided.

@@ -1,0 +1,15 @@
+LABEL: Facts ::  
+1. Janet's ducks lay 16 eggs per day :: EggProduction(x, 16, x)
+2. Janet eats 3 eggs for breakfast :: EggConsumption(y, 3, y)
+3. Janet uses 4 eggs to bake muffins :: EggConsumption(z, 4, z)
+4. Each egg sells for $2 :: PriceOfEgg(2, x)
+
+LABEL: Rules ::  
+5. If an item has a price, then the value of the item is the price times the quantity :: ∀p q (Price(p, q) → Value(p, q))
+6. If Janet sells an item, she earns the value of the item :: ∀s v (Sells(s, v) → Earnings(s, v))
+
+LABEL: Inferences ::  
+7. From Fact-1, Rule-1 by Universal Instantiation: The value of the eggs laid by Janet’s ducks is 16 * 2 :: Value(EggProduction(x, 16, x), 2)
+8. From Fact-2, Rule-1 by Universal Instantiation: The value of the eggs consumed for breakfast is 3 * 2 :: Value(EggConsumption(y, 3, y), 2)
+9. From Fact-3, Rule-1 by Universal Instantiation: The value of the eggs used for baking muffins is 4 * 2 :: Value(EggConsumption(z, 4, z), 2)
+10. From Fact-4, Rule-2 by Existential Generalization: Janet earns money from selling the remaining eggs :: Earnings(EggProduction(x, 16, x) ∧ ¬Sells(EggConsumption(y, 3, y)), Value(EggProduction(x, 16, x), 2))

@@ -1,0 +1,21 @@
+LABEL: FACTS :: 
+```plaintext
+FACT-1: Josh bought the house for $80,000 :: HousePrice(Josh, t_0) = 80000
+```
+
+LABEL: RULES :: 
+```plaintext
+RULE-1: If Josh buys the house, he spends $50,000 on repairs :: ∀t (HouseBuyer(Josh, t) → RepairsCost(t, 50000))
+```
+
+LABEL: INFERENCES :: 
+```plaintext
+INF-1: Josh bought the house at some time t_0 :: HouseBuyer(Josh, t_0)
+INF-2: Josh spent $50,000 on repairs at some time t_0 :: RepairsCost(t_0, 50000)
+INF-3: Total initial investment = HousePrice + RepairsCost :: TotalInvestment = HousePrice + RepairsCost
+INF-4: Total initial investment = $130,000 :: TotalInvestment = 130000
+INF-5: Value increase by 150% after repairs :: ValueIncrease = 1.5 * HousePrice
+INF-6: New value after increase = TotalInitialInvestment + ValueIncrease :: NewValue = TotalInvestment + ValueIncrease
+INF-7: Net profit calculation :: NetProfit = NewValue - TotalInvestment
+INF-8: Net profit = -$10,000 :: NetProfit = -10000
+```

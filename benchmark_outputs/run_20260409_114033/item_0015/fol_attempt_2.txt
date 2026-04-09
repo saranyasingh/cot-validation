@@ -1,0 +1,9 @@
+LABEL: FACT-1 :: NumberOfContemporaryDancers(20) :: ContemporaryDancer(x)
+LABEL: FACT-2 :: PercentEnrolledInContemporaryDance(20%, x) :: Cont(dancer, c)
+LABEL: FACT-3 :: NumberOfJazzDancers(16) :: JazzDancer(y)
+LABEL: FACT-4 :: PercentEnrolledInJazzDance(25%, y) :: Jd(dancer, j)
+LABEL: FACT-5 :: NumberOfHipHopDancers(12) :: HipHopDancer(z)
+LABEL: FACT-6 :: PercentEnrolledInHipHopDance(60%, z) :: Hh(dancer, h)
+
+LABEL: RULE-1 :: MEMBER(dancer, dance) :: IF EXISTS(dancer, CONT(dancer, c)) THEN ∃c (ContemporaryDancer(c))
+LABEL: RULE-2 :: PERCENT(dancer, dance, percent) :: IF EXISTS(dancer, CONT(dancer, c)) THEN ∃c (PercentEnrolledInContemporaryDance(percent, c)) AND ∃j (JazzDancer(j)) THEN ∃j (PercentEnrolledInJazzDance(percent, j)) AND ∃z (HipHopDancer(z)) THEN ∃z (PercentEnrolledInHipHopDance(percent, z)) END LABEL: RULE-2 :: PERCENT(dancer, dance, percent) :: IF EXISTS(dancer, CONT(dancer, c)) THEN ∃c (PercentEnrolledInContemporaryDance(percent, c)) AND ∃j (JazzDancer(j)) THEN ∃j (PercentEnrolledInJazzDance(percent, j)) AND ∃z (HipHopDancer(z)) THEN ∃z (PercentEnrolledInHipHopDance(percent, z)) END

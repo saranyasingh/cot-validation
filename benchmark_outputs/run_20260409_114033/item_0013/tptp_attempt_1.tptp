@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_investment = 90).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [NOL, PPL, AC] : (annual_profit = NOL * PPL - AC)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, annual_revenue = (7 * 1.5) - 3).
+
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_2, axiom, n = ceiling(initial_investment / annual_revenue)).
+
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_3, axiom, n = 13).

@@ -1,0 +1,17 @@
+LABEL: ## FACTS :: 
+```plaintext
+1. initial_cost = 5
+```
+
+LABEL: ## RULES :: 
+```plaintext
+1. discounted_cost = initial_cost * discount_rate
+2. actual_number_of_glasses = number_of_glasses / 2
+```
+
+LABEL: ## INFERENCES :: 
+```plaintext
+1. first_glass_cost = 7 * initial_cost
+2. discounted_glass_cost = 8 * discounted_cost
+3. total_cost = first_glass_cost + discounted_glass_cost
+```

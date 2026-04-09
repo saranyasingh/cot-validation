@@ -1,0 +1,10 @@
+### ## FACTS
+LABEL: FACT-1 :: SprintCount(session) = 3
+LABEL: FACT-2 :: SprintLength(meter) = 60
+LABEL: FACT-3 :: SessionCount(week) = 3
+
+### ## RULES
+LABEL: RULE :: Distance(week) = SprintCount(session) * SprintLength(meter) * SessionCount(week)
+
+### ## INFERENCES
+LABEL: INF-1 :: Distance(week) = SprintCount(session) * SprintLength(meter) * SessionCount(week)

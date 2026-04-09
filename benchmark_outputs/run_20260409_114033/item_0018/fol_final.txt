@@ -1,0 +1,10 @@
+## FACTS ::
+FACT-1: WeeklyEarningTeaching = 20 * 35  
+FACT-2: WeeklyEarningCoaching = 30 * 15  
+
+## RULES ::
+RULE-1: AnnualEarningTeaching = WeeklyEarningTeaching * 50  
+RULE-2: AnnualEarningCoaching = WeeklyEarningCoaching * 50  
+
+## INFERENCES ::
+INF-1: TotalAnnualSalary = AnnualEarningTeaching + AnnualEarningCoaching

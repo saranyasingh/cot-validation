@@ -1,0 +1,16 @@
+LABEL: FACT-1 :: TeachingRate(20, 35)
+LABEL: FACT-2 :: CoachingRate(30, 15)
+LABEL: FACT-3 :: TeachingSalary(20)
+LABEL: FACT-4 :: CoachingSalary(30)
+
+LABEL: RULE-1 :: WeeklyEarningsFromTeaching(HourlyWage, HoursWorked)
+LABEL: RULE-2 :: AnnualEarningsFromTeaching(WeeklyEarnings, WeeksPerYear)
+LABEL: RULE-3 :: WeeklyEarningsFromCoaching(HourlyWage, HoursWorked)
+LABEL: RULE-4 :: AnnualEarningsFromCoaching(WeeklyEarnings, WeeksPerYear)
+LABEL: RULE-5 :: TotalAnnualSalary(AnnualEarningsTeaching, AnnualEarningsCoaching)
+
+LABEL: INF-1 :: From Fact-1, Rule-1: Weekly earnings from teaching = \$700
+LABEL: INF-2 :: From Fact-1, Rule-2: Annual earnings from teaching = \$35,000
+LABEL: INF-3 :: From Fact-2, Rule-3: Weekly earnings from coaching = \$450
+LABEL: INF-4 :: From Fact-2, Rule-4: Annual earnings from coaching = \$22,500
+LABEL: INF-5 :: From Fact-3, Fact-4, Rule-5: Total annual salary = \$57,500

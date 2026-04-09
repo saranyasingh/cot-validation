@@ -1,0 +1,19 @@
+LABEL: FACT-1 :: PV_Jewelry = 5000
+LABEL: FACT-2 :: r_Jewelry = 0.025
+LABEL: FACT-3 :: t_Jewelry = 1
+
+LABEL: FACT-4 :: PV_Electronics = 8000
+LABEL: FACT-5 :: r_Electronics = 0.012
+LABEL: FACT-6 :: t_Electronics = 1
+
+LABEL: RULE-1 :: FV_Jewelry = PV_Jewelry * (1 + r_Jewelry)^t_Jewelry
+LABEL: RULE-2 :: FV_Electronics = PV_Electronics * (1 + r_Electronics)^t_Electronics
+
+LABEL: INF-1 :: FV_Jewelry = 5000 * (1 + 0.025)^1
+LABEL: INF-2 :: FV_Electronics = 8000 * (1 + 0.012)^1
+
+LABEL: INF-3 :: Profit_Jewelry = FV_Jewelry - PV_Jewelry
+LABEL: INF-4 :: Profit_Electronics = FV_Electronics - PV_Electronics
+
+LABEL: INF-5 :: Profit_Jewelry > Profit_Electronics
+LABEL: INF-6 :: Merchants_Should_Chose_Jewelry = Profit_Jewelry > Profit_Electronics

@@ -1,0 +1,30 @@
+### FACTS
+FACT-1: Melanie started with \( x \) vacuum cleaners :: VacuumCleaners(x)
+
+### RULES
+RULE-1: Selling part of the inventory leads to remaining inventory :: ∀y (Sold(y) → RemainingInventory(y))
+
+### INFERENCES
+INF-1: Starting with \( x \) vacuum cleaners, selling a third at the green house leaves \( \frac{2x}{3} \) :: RemainingInventory(greenHouse, \(\frac{2x}{3}\))
+INF-2: Selling 2 vacuum cleaners to the red house reduces the inventory further :: RemainingInventory(redHouse, \(\frac{2x}{3} - 2\))
+INF-3: Selling half of the remaining inventory at the orange house results in \( \frac{1}{2}(\frac{2x}{3} - 2) \) :: RemainingInventory(orangeHouse, \(\frac{1}{2}(\frac{2x}{3} - 2)\))
+INF-4: Final inventory after all sales equals 5 :: InventoryFinal(inventory, 5) 
+
+**Explanation:** 
+We derive each step using logical deductions based on the given conditions and properties of sets and numbers.
+
+#### INF-1: 
+Starting with \( x \) vacuum cleaners, if we sell a third at the green house, then the remaining inventory is \( \frac{2x}{3} \). This can be written as:
+\[ \text{RemainingInventory}(greenHouse, \frac{2x}{3}) \]
+
+#### INF-2: 
+Next, selling 2 vacuum cleaners to the red house means subtracting 2 from the remaining inventory. So, the new inventory is:
+\[ \text{RemainingInventory}(redHouse, \frac{2x}{3} - 2) \]
+
+#### INF-3: 
+Then, selling half of the remaining inventory at the orange house implies dividing the remaining inventory by 2. Thus, the final inventory is:
+\[ \text{RemainingInventory}(orangeHouse, \frac{1}{2}(\frac{2x}{3} - 2)) \]
+
+#### INF-4: 
+Finally, we know that after these sales, Melanie has 5 vacuum cleaners left. Therefore, the final inventory condition can be expressed as:
+\[ \text{InventoryFinal}(inventory, 5) \]

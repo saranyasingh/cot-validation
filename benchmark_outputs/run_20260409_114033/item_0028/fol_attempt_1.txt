@@ -1,0 +1,54 @@
+Let's break down the given chain of thought into structured First-Order Logic (FOL):
+
+### Facts
+1. **Cynthia eats one serving of ice cream every night.**
+   - Fact-1: EatingIceCream(serving, night)
+
+2. **She has been eating ice cream for 60 days.**
+   - Fact-2: EatingIceCream(days, 60)
+
+### Rules
+1. **If she eats ice cream on a particular day, then she ate ice cream on all previous days.**
+   - Rule-1: IfEatingIceCream(day, eaten), ThenEatingIceCream(prevDay, eaten)
+
+### Inferences
+1. **From Fact-2, infer that she ate ice cream each night for those 60 days.**
+   - Rule-2: EatingIceCream(night, 60)
+
+2. **Calculate the total number of servings consumed over 60 nights.**
+   - Rule-3: TotalServings(60)
+
+3. **Determine the number of cartons needed if each carton contains 15 servings.**
+   - Rule-4: CartonsNeeded(servings, carton)
+
+4. **Calculate the cost per carton.**
+   - Rule-5: CostPerCarton(carton)
+
+5. **Calculate the total cost based on the number of cartons needed.**
+   - Rule-6: TotalCost(cartons, cost)
+
+6. **Combine the above rules to get the final result.**
+
+### Combined FOL Formulas
+
+#### Facts
+```plaintext
+Fact-1: EatingIceCream(serving, night)
+Fact-2: EatingIceCream(days, 60)
+```
+
+#### Rules
+```plaintext
+Rule-1: IfEatingIceCream(day, eaten), ThenEatingIceCream(prevDay, eaten)
+Rule-2: EatingIceCream(night, 60)
+```
+
+#### Inferences
+```plaintext
+Rule-3: TotalServings(60)
+Rule-4: CartonsNeeded(servings, carton)
+Rule-5: CostPerCarton(carton)
+Rule-6: TotalCost(cartons, cost)
+```
+
+These rules and facts provide the logical structure necessary to compute the total cost based on the consumption pattern described in the problem statement.

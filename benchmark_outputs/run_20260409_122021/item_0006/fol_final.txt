@@ -1,0 +1,23 @@
+### ## FACTS
+```plaintext
+## FACTS
+FACT-1: A glass costs $5 :: GlassCost(5)
+FACT-2: The second glass costs 60% of the original price :: SecondGlassCost(0.60 * GlassCost())
+```
+
+### ## RULES
+```plaintext
+## RULES
+RULE-1: Cost of any glass is $5 :: ∀g (glasses(g, g) → GlassCost(g)) - This rule is not needed since it contradicts the given fact that the second glass costs 60% of the original price.
+RULE-2: Cost of the second glass is 60% of the original price :: SecondGlassPrice(glass(2), SecondGlassCost()) - This rule is logically consistent and correct.
+```
+
+### ## INFERENCES
+```plaintext
+## INFERENCES
+INF-1: Kylar pays $5 for the first glass :: FirstGlassPayment(GlassCost()) - This inference does not follow from the facts provided.
+INF-2: Kylar pays $3 for every second glass :: SecondGlassPayment(SecondGlassCost()) - This inference does not follow from the facts provided.
+INF-3: Total payment for odd-numbered glasses is 8 * $5 :: OddNumberedGlassesTotal(PaymentForOddNumberedGlasses) - This inference is incorrect because the total payment should be calculated using the actual prices for odd-numbered glasses, not just the cost of one glass.
+INF-4: Total payment for even-numbered glasses is 8 * $3 :: EvenNumberedGlassesTotal(PaymentForEvenNumberedGlasses) - This inference is also incorrect for the same reason as above.
+INF-5: Grand total payment = Payment for odd-numbered glasses + Payment for even-numbered glasses :: GrandTotalPayment(GrandTotalPayment) - This inference is incorrect because the total payment calculation should consider both odd and even-numbered glasses at their respective prices.
+```

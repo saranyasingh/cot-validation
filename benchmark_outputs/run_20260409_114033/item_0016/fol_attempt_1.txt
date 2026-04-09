@@ -1,0 +1,27 @@
+### FACTS
+FACT-1: PresentValueJewelry = 5000 :: PV_Jewelry
+FACT-2: GrowthRateJewelry = 2.5% :: r_Jewelry
+FACT-3: TimePeriodJewelry = 1 month :: t_Jewelry
+
+FACT-4: PresentValueElectronics = 8000 :: PV_Electronics
+FACT-5: GrowthRateElectronics = 1.2% :: r_Electronics
+FACT-6: TimePeriodElectronics = 1 month :: t_Electronics
+
+### RULES
+RULE-1: FutureValueJewelry = PV_Jewelry * (1 + r_Jewelry)^t_Jewelry :: FV_Jewelry
+RULE-2: FutureValueElectronics = PV_Electronics * (1 + r_Electronics)^t_Electronics :: FV_Electronics
+
+### INFERENCES
+INF-1: FutureValueJewelry = 5000 * (1 + 0.025)^1 :: FV_Jewelry
+INF-2: FutureValueElectronics = 8000 * (1 + 0.012)^1 :: FV_Electronics
+
+INF-3: ProfitJewelry = FV_Jewelry - PV_Jewelry :: Profit_Jewelry
+INF-4: ProfitElectronics = FV_Electronics - PV_Electronics :: Profit_Electronics
+
+INF-5: Profit_Jewelry > Profit_Electronics :: Profit_Jewelry > Profit_Electronics
+INF-6: MerchantsShouldChooseJewelry :: Merchants_Should_Chose_Jewelry
+
+### LABELS
+LABEL: Profit_Jewelry :: Profit_Jewelry = 125
+LABEL: Profit_Electronics :: Profit_Electronics = 96
+LABEL: Merchants_Should_Chose_Jewelry :: Merchants_Should_Chose_Jewelry = Profit_Jewelry > Profit_Electronics

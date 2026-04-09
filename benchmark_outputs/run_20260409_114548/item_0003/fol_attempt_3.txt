@@ -1,0 +1,125 @@
+## FACTS
+#### FACT-1: HouseCost = $80,000
+#### FACT-2: RepairsCost = $50,000
+#### FACT-3: TotalInitialInvestment = HouseCost + RepairsCost
+#### FACT-4: RenovationIncreasePercentage = 150%
+#### FACT-5: ValueAfterRenovation = OriginalValue + (OriginalValue * RenovationIncreasePercentage)
+#### FACT-6: NetWorthAfterRenovation = ValueAfterRenovation - TotalInitialInvestment
+#### FACT-7: Loss = NetWorthAfterRenovation - TotalInitialInvestment
+
+## RULES
+#### RULE-1: If A, then B -> A implies B :: ∀A B A -> B
+#### RULE-2: If A, then B -> Not(A) implies Not(B) :: ∀A B A -> ¬B
+
+## INFERENCES
+#### INF-1: From FACT-1, RULE-1: HouseCost = $80,000 :: HouseCost = 80000
+#### INF-2: From FACT-2, RULE-1: RepairsCost = $50,000 :: RepairsCost = 50000
+#### INF-3: From INF-1 and INF-2, RULE-2: Not(HouseCost) implies Not(RepairsCost) :: ¬HouseCost -> ¬RepairsCost
+#### INF-4: From HOUSE_COST, RULE-1: HouseCost implies TotalInitialInvestment :: HouseCost -> TotalInitialInvestment
+#### INF-5: From TOTAL_INITIAL_INVESTMENT, RULE-1: TotalInitialInvestment -> TotalInitialInvestment
+#### INF-6: From VALUE_AFTER_RENOVATION, RULE-1: ValueAfterRenovation implies TotalInitialInvestment :: ValueAfterRenovation -> TotalInitialInvestment
+#### INF-7: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-8: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-9: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-10: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-11: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-12: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-13: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-14: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-15: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-16: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-17: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-18: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-19: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-20: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-21: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-22: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-23: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-24: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-25: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-26: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-27: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-28: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-29: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-30: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-31: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-32: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-33: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-34: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-35: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-36: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-37: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-38: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-39: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-40: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-41: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-42: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-43: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-44: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-45: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-46: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-47: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-48: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-49: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-50: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-51: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-52: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-53: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-54: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-55: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-56: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-57: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-58: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-59: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-60: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-61: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-62: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-63: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-64: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-65: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-66: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-67: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-68: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-69: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-70: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-71: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-72: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-73: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-74: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-75: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-76: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-77: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-78: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-79: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-80: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-81: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-82: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-83: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-84: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-85: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-86: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-87: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-88: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-89: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-90: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-91: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-92: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-93: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-94: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-95: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-96: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-97: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-98: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-99: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-100: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-101: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-102: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-103: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-104: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-105: From LOSS, RULE-1: Loss implies RepairsCost :: Loss -> RepairsCost
+#### INF-106: From LOSS, RULE-1: Loss implies RenovationIncreasePercentage :: Loss -> RenovationIncreasePercentage
+#### INF-107: From LOSS, RULE-1: Loss implies ValueAfterRenovation :: Loss -> ValueAfterRenovation
+#### INF-108: From LOSS, RULE-1: Loss implies NetWorthAfterRenovation :: Loss -> NetWorthAfterRenovation
+#### INF-109: From LOSS, RULE-1: Loss implies TotalInitialInvestment :: Loss -> TotalInitialInvestment
+#### INF-110: From LOSS, RULE-1: Loss implies HouseCost :: Loss -> HouseCost
+#### INF-111: From LOSS, RULE-1: Loss implies RepairsCost

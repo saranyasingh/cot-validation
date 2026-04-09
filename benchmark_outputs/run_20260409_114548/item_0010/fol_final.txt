@@ -1,0 +1,18 @@
+### ## FACTS
+FACT-1: RegularEarnings(10, 40) :: RegularEarnings(RegularRate, RegularHours) = RegularRate * RegularHours
+FACT-2: OvertimeRate(12, 1.2) :: OvertimeRate(OvertimeRate, OvertimeMultiplier) = OvertimeMultiplier * OvertimeRate
+FACT-3: TotalHoursWorked(45) :: TotalHoursWorked(TotalHours) = TotalHours
+FACT-4: OvertimeHours(5) :: OvertimeHours(OvertimeHours) = OvertimeHours
+FACT-5: TotalEarnings(460) :: TotalEarnings(TotalEarnings) = RegularEarnings(RegularRate, RegularHours) + OvertimeEarnings(OvertimeRate, OvertimeHours)
+
+### ## RULES
+RULE-1: RegularEarnings(Rate, Hours) = Rate * Hours :: RegularEarnings(Rate, Hours) = Rate * Hours
+RULE-2: TotalEarnings(Earnings) = RegularEarnings(Rate, Hours) + OvertimeEarnings(OvertimeRate, OvertimeHours) :: TotalEarnings(Earnings) = RegularEarnings(Rate, Hours) + OvertimeEarnings(OvertimeRate, OvertimeHours)
+RULE-3: OvertimeEarnings(Rate, Hours) = OvertimeRate * Hours :: OvertimeEarnings(Rate, Hours) = OvertimeRate * Hours
+
+### ## INFERENCES
+INF-1: From FACT-1 and RULE-1: RegularEarnings(10, 40) :: RegularEarnings(10, 40)
+INF-2: From FACT-2 and RULE-2: TotalEarnings(460) :: TotalEarnings(460)
+INF-3: From FACT-3 and RULE-3: OvertimeEarnings(12, 5) :: OvertimeEarnings(12, 5)
+INF-4: From FACT-4 and RULE-1: OvertimeEarnings(12, 5) :: OvertimeEarnings(12, 5)
+INF-5: From FACT-5 and RULE-2: TotalEarnings(460) :: TotalEarnings(460)

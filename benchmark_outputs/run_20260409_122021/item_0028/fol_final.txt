@@ -1,0 +1,5 @@
+LABEL: Fact 1 :: ConsumesIceCream(serving_per_night=1, nights_in_period=60)
+LABEL: Rule 1 :: ConsumesIceCream(x, y)
+LABEL: Fact 2 :: ContainsServingsInCarton(servings_per_carton=15)
+LABEL: Rule 2 :: CostsPerCarton(cost_per_carton=$4.00)
+LABEL: Fact 3 :: BuysEnoughCartons(consumption, cost_per_carton)

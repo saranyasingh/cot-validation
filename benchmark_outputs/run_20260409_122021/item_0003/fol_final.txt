@@ -1,0 +1,11 @@
+```plaintext
+## FACTS
+FACT-1: InitialInvestment = 80000 + 50000 :: 130000
+FACT-2: IncreaseInValue = 80000 * 1.5 :: 120000
+
+## RULES
+RULE-1: TotalProfit = InitialInvestment - FinalValue :: 330000
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Subtraction: TotalProfit = 130000 - 120000 :: 10000
+```

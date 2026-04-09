@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — the story specifies 3 times a week, not twice
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — asserts per-day sprints, which contradicts the story's weekly pattern
+RULE-2: IMPLAUSIBLE — derives twice-a-week from per-day, not supported
+RULE-3: PLAUSIBLE — aligns with the given SprintDistance(60); it's a straightforward distance rule

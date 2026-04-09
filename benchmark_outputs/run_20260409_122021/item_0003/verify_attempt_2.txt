@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states 80,000 purchase price plus 50,000 in repairs (130,000 total).
+
+FACT-2: SUPPORTED — The story says the value increased by 150% of the original value (80,000 × 1.5 = 120,000).
+
+RULE-1: IMPLAUSIBLE — TotalProfit should be FinalValue − InitialInvestment, not InitialInvestment + IncreaseInValue.

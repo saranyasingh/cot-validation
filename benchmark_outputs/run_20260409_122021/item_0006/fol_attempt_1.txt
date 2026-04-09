@@ -1,0 +1,16 @@
+**CHAIN OF THOUGHT REASONING TO CONVERT**
+
+### **FACTS**
+FACT-1: A glass costs $5 :: GlassCost(5)
+FACT-2: The second glass costs 60% of the original price :: SecondGlassCost(0.60 * GlassCost())
+
+### **RULES**
+RULE-1: Cost of any glass is $5 :: ∀g (glasses(g, g) → GlassCost(g))
+RULE-2: Cost of the second glass is 60% of the original price :: SecondGlassPrice(glass(2), SecondGlassCost())
+
+### **INFERENCES**
+INF-1: Kylar pays $5 for the first glass :: FirstGlassPayment(GlassCost())
+INF-2: Kylar pays $3 for every second glass :: SecondGlassPayment(SecondGlassCost())
+INF-3: Total payment for odd-numbered glasses is 8 * $5 :: OddNumberedGlassesTotal(PaymentForOddNumberedGlasses)
+INF-4: Total payment for even-numbered glasses is 8 * $3 :: EvenNumberedGlassesTotal(PaymentForEvenNumberedGlasses)
+INF-5: Grand total payment = Payment for odd-numbered glasses + Payment for even-numbered glasses :: GrandTotalPayment(GrandTotalPayment)

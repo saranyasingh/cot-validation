@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: ∃t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph))
+LABEL: FACT-2 :: TurnBackAfterRealizingForgotSomething :: TurnBackAfterRealizingForgotSomething
+LABEL: FACT-3 :: ∀t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph)) :: ∀t (DrivingForTimeAtSpeed(John, t, 3 hours, 60 mph))

@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, traveled(train1, 80, t_1st_day)).
+fof(fact_2, axiom, traveled(train2, 80, t_1st_day)).
+fof(fact_3, axiom, traveled(train1, 150, t_2nd_day)).
+fof(fact_4, axiom, traveled(train2, 150, t_2nd_day)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, D, T] : (traveled(X, D, T) <=> travels(X, D, T))).
+fof(rule_2, axiom, ! [X, T] : (travelled_on_day(X, T) => ! [D] : (travelled_on_day(X, D)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, traveled(train1, 80, t_1st_day)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, traveled(train2, 80, t_1st_day)).
+% INF-3: From fact-3 and Rule-1
+fof(inf_3, axiom, traveled(train1, 150, t_2nd_day)).
+% INF-4: From fact-4 and Rule-1
+fof(inf_4, axiom, traveled(train2, 150, t_2nd_day)).
+% INF-5: Sum of distances for Train1 (represented as a definitional relation)
+fof(inf_5, axiom, total_distance(train1, days) <=> (traveled(train1, 80, t_1st_day) & traveled(train1, 150, t_2nd_day))).
+% INF-6: Sum of distances for Train2 (represented as a definitional relation)
+fof(inf_6, axiom, total_distance(train2, days) <=> (traveled(train2, 80, t_1st_day) & traveled(train2, 150, t_2nd_day))).
+% INF-7: SumTotalDistance for Train1
+fof(inf_7, axiom, sum_total_distance(train1) <=> total_distance(train1, days)).
+% INF-8: SumTotalDistance for Train2
+fof(inf_8, axiom, sum_total_distance(train2) <=> total_distance(train2, days)).
+% INF-9: CombinedTotalDistance from both trains
+fof(inf_9, axiom, combined_total_distance <=> add(total_distance(train1, days), total_distance(train2, days))).
+% INF-10: Conclusion (numeric target)
+fof(inf_10, axiom, combined_total_distance = 380).

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, downloads_month1 = 60).
+fof(fact_2, axiom, downloads_month2 = 180).
+fof(fact_3, axiom, downloads_month3 = 126).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [DownloadsMonth1, DownloadsMonth2, DownloadsMonth3] : (total_downloads = DownloadsMonth1 + DownloadsMonth2 + DownloadsMonth3)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_downloads = 60 + 180 + 126).

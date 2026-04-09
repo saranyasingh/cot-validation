@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: NumberOfSheepInSeattle(20) :: NumberOfSheepInSeattle(20)
+FACT-2: NumberOfSheepInCharleston(NumberOfSheepInSeattle * 4) :: NumberOfSheepInCharleston(NumberOfSheepInSeattle * 4)
+FACT-3: NumberOfSheepInToulouse(NumberOfSheepInCharleston * 2) :: NumberOfSheepInToulouse(NumberOfSheepInCharleston * 2)
+
+## RULES
+RULE-1: If A has B sheep, then C has D sheep :: ∀A(B -> D)
+RULE-2: Doubling the number of sheep in a location increases the total count :: ∀C(NumberOfSheepInC(D) -> TotalSheep(C + D))
+RULE-3: Tripling the number of sheep in a location triples the total count :: ∀C(NumberOfSheepInC(D) -> TripledTotalSheep(C + D))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Rule-1: NumberOfSheepInSeattle(20) implies NumberOfSheepInCharleston(80)
+INF-2: From INF-1, RULE-2 by Rule-2: NumberOfSheepInCharleston(80) implies TotalSheep(Charleston + 80)
+INF-3: From INF-2, RULE-3 by Rule-3: TotalSheep(Charleston + 80) implies TripledTotalSheep(20 + 80)
+INF-4: From FACT-2, RULE-1 by Rule-1: NumberOfSheepInCharleston(80) implies NumberOfSheepInToulouse(160)
+INF-5: From INF-4, RULE-2 by Rule-2: NumberOfSheepInToulouse(160) implies TotalSheep(Toulouse + 160)
+INF-6: From INF-5, RULE-3 by Rule-3: TotalSheep(Toulouse + 160) implies TripledTotalSheep(20 + 160)
+INF-7: From INF-6, RULE-1 by Rule-1: TotalSheep(Toulouse + 160) implies TotalSheep(260)
+
+Therefore, the total number of sheep for Toulouse, Charleston, and Seattle together is \(260\).

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, distance_traveled(t_1, 4_miles) = 4_miles).
+fof(fact_2, axiom, time_taken(t_1, 1_hour) = 1_hour).
+fof(fact_3, axiom, time_taken(t_2, 1_hour) = 1_hour).
+fof(fact_4, axiom, remaining_distance(t_1, t_2, 6_miles) = 6_miles).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D, S] : (walking_speed(t_1, D, S) => (S > 0))).
+fof(rule_2, axiom, ! [D, V] : (average_speed(t_1, t_2, D, V) => (V >= D / (t_2 - t_1)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, walking_speed(t_1, 4_miles, 4_mph) = 4_mph).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, average_speed(t_1, t_2, 6_miles, 4_mph) = 4_mph).
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_3, axiom, walking_required_speed(t_1, 6_miles, 12_mph) = 12_mph).

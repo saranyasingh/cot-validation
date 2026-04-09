@@ -1,0 +1,9 @@
+LABEL: ## FACTS :: 
+INF-1: Let \( M \) be the number of cups of feed used in the morning, \( A \) be the number of cups of feed used in the afternoon, and \( F \) be the total number of cups of feed consumed per day. We have \( M = 15 \), \( A = 25 \), and \( F = 60 \). The equation representing the remaining feed for the final meal is \( R = F - (M + A) \).
+
+LABEL: ## RULES :: 
+None required since there are no unsupported claims or assumptions.
+
+LABEL: ## INFERENCES :: 
+INF-2: Subtracting the morning and afternoon feed portions from the total daily feed gives us the remaining feed for the final meal. Specifically,
+\[ \text{Remaining feed for final meal} = \text{Total daily feed} - (\text{Morning feed} + \text{Afternoon feed}) \]

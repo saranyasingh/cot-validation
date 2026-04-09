@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story states Janet's ducks lay 16 eggs per day
+FACT-2: SUPPORTED — The story states she eats three eggs for breakfast every morning
+FACT-3: SUPPORTED — The story indicates muffins are baked every day with four eggs; since 16 total and 3 eaten, there are >4 left
+FACT-4: SUPPORTED — Eggs eaten for breakfast = 3
+FACT-5: SUPPORTED — Remaining eggs after breakfast = 16 - 3 = 13
+FACT-6: SUPPORTED — Eggs used for baking = 4
+FACT-7: UNSUPPORTED — The story specifies 4 eggs for baking; no range 4 to 13
+FACT-8: SUPPORTED — Eggs used for baking is 4 regardless of remaining eggs
+FACT-9: UNSUPPORTED — Eggs sold at the farmers' market = 5
+FACT-10: SUPPORTED — Price per egg = $2
+RULE-1: PLAUSIBLE — Total earnings per day = Number of eggs sold × Price per egg

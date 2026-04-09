@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Claire makes a 3-egg omelet every day :: OmeletEggCount(omelette_per_day=3)
+FACT-2: Claire eats 3 eggs per omelet :: EggsPerOmelette(eggs_per_omelette=3)
+
+## RULES
+RULE-1: Given a daily egg count, calculate total eggs in 28 days :: TotalEggsInDays(total_eggs_per_day, days_counted) :: TotalEggsInDays(omelette_per_day=3, days_counted=28) :: EggsTotal(everyday_egg_count=3, days_in_period=28) :: EggsTotal(everyday_egg_count=3, days_in_period=28)
+
+RULE-2: Convert total eggs to dozens :: ConvertEggsToDozen(total_eggs) :: ConvertEggsToDozen(EggsTotal(everyday_egg_count=3, days_in_period=28)) :: DozensOfEggs(dozen_of_eggs=total_dozen)
+
+## INFERENCES
+INF-1: Claire makes a 3-egg omelet every day :: OmeletEggCount(omelette_per_day=3)
+INF-2: Claire eats 3 eggs per omelet :: EggsPerOmelette(eggs_per_omelette=3)
+INF-3: In 28 days, Claire makes 84 eggs :: TotalEggsInDays(omelette_per_day=3, days_counted=28)
+INF-4: Claire eats 84 eggs in 28 days :: EggsTotal(everyday_egg_count=3, days_in_period=28)
+INF-5: Convert 84 eggs to dozens :: ConvertEggsToDozen(EggsTotal(everyday_egg_count=3, days_in_period=28))
+INF-6: Claire eats 7 dozen eggs in 4 weeks :: DozensOfEggs(dozen_of_eggs=7)

@@ -1,0 +1,31 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Marissa has hiked 4 miles in 1 hour :: Hiked(4, t_1)
+FACT-2: Marissa has hiked 2 miles in 1 hour :: Hiked(2, t_1)
+FACT-3: Total distance Marissa has hiked = 12 miles :: TotalHiked(12)
+```
+
+### RULES
+```plaintext
+RULE-1: If Marissa hikes 4 miles in time t, then she has hiked 4 miles at time t :: ∀t (Hiked(4, t) → Hiked(4, t))
+RULE-2: If Marissa hikes 2 miles in time t, then she has hiked 2 miles at time t :: ∀t (Hiked(2, t) → Hiked(2, t))
+```
+
+### INFERENCES
+```plaintext
+INF-1: Remaining distance to hike = 12 - 4 - 2 :: RemainingDistance(6)
+INF-2: Desired average speed = 4 miles/hour :: DesiredSpeed(4)
+INF-3: Total time needed for the entire trip = 12 / 4 :: TotalTripTime(3)
+INF-4: Time needed to finish remaining 6 miles = 6 / 4 :: TimeNeeded(1.5)
+```
+
+### Final Answer
+```plaintext
+INF-1: From FACT-1, RULE-1 by Modus Ponens: Remaining distance to hike = 6 miles :: RemainingDistance(6)
+INF-2: From FACT-3, RULE-2 by Modus Ponens: Total distance Marissa has hiked = 12 miles :: TotalHiked(12)
+INF-3: From RULE-1, RULE-2 by Modus Ponens: Desired average speed = 4 miles/hour :: DesiredSpeed(4)
+INF-4: From RULE-1, RULE-2 by Modus Ponens: Total time needed for the entire trip = 3 hours :: TotalTripTime(3)
+INF-5: From RULE-1, RULE-2 by Modus Ponens: Time needed to finish remaining 6 miles = 1.5 hours :: TimeNeeded(1.5)
+```

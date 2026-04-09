@@ -1,0 +1,3 @@
+LABEL: Fact-1 :: AmountOfBlueFabricNeededForRobe :: 2
+LABEL: Fact-2 :: AmountOfWhiteFabricNeededForRobe :: 0.5 * AmountOfBlueFabricNeededForRobe
+LABEL: Rule-1 :: TotalAmountOfFabricNeeded :: AmountOfBlueFabricNeededForRobe + AmountOfWhiteFabricNeededForRobe

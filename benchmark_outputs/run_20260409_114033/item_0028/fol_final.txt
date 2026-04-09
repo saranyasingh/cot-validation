@@ -1,0 +1,19 @@
+### ## FACTS
+```plaintext
+Fact-1: EatingIceCream(serving, night)
+Fact-2: EatingIceCream(days, 60)
+```
+
+### ## RULES
+```plaintext
+Rule-1: IfEatingIceCream(day, eaten), ThenEatingIceCream(prevDay, eaten)
+Rule-2: EatingIceCream(night, 60)
+```
+
+### ## INFERENCES
+```plaintext
+Rule-3: TotalServings(60)
+Rule-4: CartonsNeeded(servings, carton)
+Rule-5: CostPerCarton(carton)
+Rule-6: TotalCost(cartons, cost)
+```

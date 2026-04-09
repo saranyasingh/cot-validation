@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, SprintCount(session) = 3).
+fof(fact_2, axiom, SprintLength(meter) = 60).
+fof(fact_3, axiom, SessionCount(week) = 3).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Arithmetic
+fof(inf_1, axiom, Distance(week) = SprintCount(session) * SprintLength(meter) * SessionCount(week)).

@@ -1,0 +1,6 @@
+% --- FACTS ---
+fof(fact_1, axiom, pay(19.50, discount(25))).
+
+% --- RULES ---
+
+% --- INFERENCES ---

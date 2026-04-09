@@ -1,0 +1,42 @@
+Explanation:
+
+1. Janet's ducks lay 16 eggs per day.
+   Premise: This is given directly.
+
+2. Janet eats 3 eggs for breakfast every morning.
+   Premise: This is given directly.
+
+3. Janet bakes muffins using 4 eggs on days when she has more than 4 eggs leftover.
+   Premise: This is given directly.
+
+4. Let's calculate how many eggs are left after breakfast:
+   Eggs eaten for breakfast = 3
+   Remaining eggs after breakfast = 16 - 3 = 13
+
+5. If there are 4 or fewer eggs left, Janet uses all of them to bake muffins.
+   Calculation: Since we don't know if it's 4 or less, let's assume it could be up to 4.
+   Eggs used for baking = 4
+   Remaining eggs after baking = 13 - 4 = 9 (if 4 were the maximum)
+
+6. If there are more than 4 eggs left, Janet only uses 4 for baking.
+   Calculation: Again, assuming it's more than 4.
+   Eggs used for baking = 4
+   Remaining eggs after baking = 13 - 4 = 9 (but since it's more than 4, we need to adjust this)
+   
+7. We need to determine how many eggs are sold at the farmers' market.
+   Let's consider both scenarios:
+   Scenario 1: 4 eggs are baked.
+      Eggs sold = 9 - 4 = 5
+   Scenario 2: More than 4 eggs are left.
+      Eggs sold = 9 - 4 = 5
+   
+8. Regardless of which scenario holds true, Janet always sells 5 eggs.
+
+9. Each egg is sold for $2.
+   Price per egg = $2
+
+10. Total earnings per day = Number of eggs sold × Price per egg
+    Total earnings per day = 5 × $2 = $10
+
+Conclusion:
+The answer is: 10

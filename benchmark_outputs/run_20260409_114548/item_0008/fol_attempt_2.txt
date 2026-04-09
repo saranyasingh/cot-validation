@@ -1,0 +1,12 @@
+## FACTS
+- FACT-1: Carla downloaded 100 GB of data before the restart :: Downloaded(100GB, before_restart)
+- FACT-2: Carla downloaded 100 GB of data after the restart :: Downloaded(100GB, after_restart)
+
+## RULES
+- RULE-1: Carla's download rate remains constant regardless of whether she restarted or not :: Rate(2GB/min, Carla)
+- RULE-2: Time taken to download a certain amount of data is inversely proportional to download rate :: TimeToDownload(D, T) = D / Rate(D, T)
+
+## INFERENCES
+- INF-1: Carla took 50 minutes to download the first half of the file before the restart :: TimeToDownload(100GB, before_restart) = 50 minutes
+- INF-2: Carla took 50 minutes to download the second half of the file after the restart :: TimeToDownload(100GB, after_restart) = 50 minutes
+- INF-3: Total time to download the entire 200 GB file after the restart = 50 minutes + 50 minutes = 100 minutes

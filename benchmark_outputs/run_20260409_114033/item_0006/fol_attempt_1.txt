@@ -1,0 +1,60 @@
+The provided solution already expresses the logical reasoning in First Order Logic (FOL). However, I can structure it similarly if you'd like me to break down each step more explicitly using FOL syntax.
+
+### Chain of Thought Reasoning Converted to Structured First-Order Logic
+
+#### Facts
+These represent the given information without any quantifiers.
+
+1. **Initial Cost**: 
+   - Initial cost per glass = $5
+   - Let `initial_cost` be the constant representing the initial cost of one glass.
+   - Therefore, `initial_cost = 5`.
+
+2. **Discounted Cost**:
+   - Discount rate for every second glass = 60%
+   - Discounted cost per second glass = `initial_cost * 0.4`
+   - Let `discount_rate` be the constant representing the discount rate.
+   - Therefore, `discount_rate = 0.6`.
+   - Let `discounted_cost` be the constant representing the discounted cost of one glass.
+   - Therefore, `discounted_cost = initial_cost * discount_rate`.
+
+3. **Total Number of Glasses**:
+   - Number of glasses = 16
+   - Since every second glass is counted twice, number of actual glasses = `number_of_glasses / 2`.
+   - Let `actual_number_of_glasses` be the constant representing the actual number of glasses.
+   - Therefore, `actual_number_of_glasses = number_of_glasses / 2`.
+
+4. **Total Cost Calculation**:
+   - Cost for first 7 glasses (not discounted): `7 * initial_cost`.
+   - Cost for 8 discounted glasses: `8 * discounted_cost`.
+   - Total cost = `cost_first_glasses + cost_discounted_glasses`.
+   - Let `total_cost` be the constant representing the total cost.
+   - Therefore, `total_cost = 7 * initial_cost + 8 * discounted_cost`.
+
+#### Rules
+These express universally quantified implications that encode external or linguistic knowledge.
+
+1. **Cost for First 7 Glasses**:
+   - This represents the initial cost calculation.
+   - Let `first_glass_cost` be the constant representing the cost of the first glass.
+   - Therefore, `first_glass_cost = 7 * initial_cost`.
+
+2. **Cost for 8 Discounted Glasses**:
+   - This represents the discounted cost calculation.
+   - Let `discounted_glass_cost` be the constant representing the cost of each discounted glass.
+   - Therefore, `discounted_glass_cost = 8 * discounted_cost`.
+
+3. **Total Cost Formula**:
+   - This combines the cost calculations.
+   - Let `total_cost_formula` be the constant representing the total cost formula.
+   - Therefore, `total_cost_formula = first_glass_cost + discounted_glass_cost`.
+
+#### Inferences
+These derive conclusions based on the facts and rules.
+
+1. **Total Cost**:
+   - Combining the facts and rules to get the final total cost.
+   - Let `final_total_cost` be the constant representing the final total cost.
+   - Therefore, `final_total_cost = total_cost_formula`.
+
+Thus, the total amount Kylar needs to pay for all 16 glasses is $\boxed{51}$.

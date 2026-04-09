@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: DistanceCoveredAtSpeedAndTime(60, 3, 180) :: Distance(Car, Speed=60mph, Time=3hours, Distance=180miles)
+FACT-2: DistanceCoveredAtSpeedAndTime(30, 2, 0) :: Distance(Car, Speed=30mph, Time=2hours, Distance=0miles)
+FACT-3: DistanceCoveredAtSpeedAndTime(80, 2, 160) :: Distance(Car, Speed=80mph, Time=2hours, Distance=160miles)
+
+## RULES
+RULE-1: TotalDistance(Runway1, Car, Speed, Time) :: ∀s, t (Distance(Car, s, t) → TotalDistance(Runway1, Car, s, t))
+RULE-2: StandstillTraffic(Driver, Traffic, Duration) :: ∃d (StandstillTraffic(Driver, d, Duration))
+RULE-3: DrivingAtSpeed(Driver, Car, Speed, Duration) :: ∃d (DrivingAtSpeed(Driver, Car, Speed, d))
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Generalization: TotalDistance(Runway1, Car, 60, 3) :: TotalDistance(Runway1, Car, 60mph, 3hours)
+INF-2: From FACT-2, RULE-1 by Generalization: TotalDistance(Runway1, Car, 30, 2) :: TotalDistance(Runway1, Car, 30mph, 2hours)
+INF-3: From FACT-3, RULE-1 by Generalization: TotalDistance(Runway1, Car, 80, 2) :: TotalDistance(Runway1, Car, 80mph, 2hours)
+INF-4: From RULE-2, RULE-1 by Modus Ponens: StandstillTraffic(Driver, 2, 0) :: ∃d (StandstillTraffic(Driver, d, 2hours))
+INF-5: From RULE-3, RULE-1 by Modus Ponens: DrivingAtSpeed(Driver, Car, 30, 0.5) :: ∃d (DrivingAtSpeed(Driver, Car, 30mph, 0.5hours)
+INF-6: From RULE-3, RULE-1 by Modus Ponens: DrivingAtSpeed(Driver, Car, 80, 2) :: ∃d (DrivingAtSpeed(Driver, Car, 80mph, 2hours)
+
+INF-7: From INF-1, INF-2, INF-3 by Addition: TotalDistance(Runway1, Car, 60, 3) + TotalDistance(Runway1, Car, 30, 2) + TotalDistance(Runway1, Car, 80, 2) :: ∃d (TotalDistance(Runway1, Car, 60mph, 3hours) + TotalDistance(Runway1, Car, 30mph, 2hours) + TotalDistance(Runway1, Car, 80mph, 2hours)) 
+
+INF-8: From INF-4, INF-5, INF-6 by Addition: StandstillTraffic(Driver, 2, 0) + DrivingAtSpeed(Driver, Car, 30, 0.5) + DrivingAtSpeed(Driver, Car, 80, 2) :: ∃d (StandstillTraffic(Driver, d, 2hours) + DrivingAtSpeed(Driver, Car, 30mph, 0.5hours) + DrivingAtSpeed(Driver, Car, 80mph, 2hours))
+
+INF-9: FinalResult(TotalDistance(Runway1, Car, 60, 3) + TotalDistance(Runway1, Car, 30, 2) + TotalDistance(Runway1, Car, 80, 2), StandstillTraffic(Driver, 2, 0) + DrivingAtSpeed(Driver, Car, 30, 0.5) + DrivingAtSpeed(Driver, Car, 80, 2)) :: ∃d (TotalDistance(Runway1, Car, 60mph, 3hours) + TotalDistance(Runway1, Car, 30mph, 2hours) + TotalDistance(Runway1, Car, 80mph, 2hours) + StandstillTraffic(Driver, d, 2hours) + DrivingAtSpeed(Driver, Car, 30mph, 0.5hours) + DrivingAtSpeed(Driver, Car, 80mph, 2hours))

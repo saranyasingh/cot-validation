@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: VolumeOfOrangeDrinkWater(t_0) :: Fraction(2, 3) * 10 = 10 / 3
+FACT-2: VolumeOfPineappleDrinkWater(t_0) :: Fraction(3, 5) * 15 = 9
+
+## RULES
+RULE-1: WaterLostFromOrangeDrinks :: VolumeOfOrangeDrinkWater(t_0) / 10 = Fraction(2, 3) / 10
+RULE-2: RemainingWaterAfterSpill :: VolumeOfOrangeDrinkWater(t_0) + VolumeOfPineappleDrinkWater(t_0) - WaterLostFromOrangeDrinks = 10 / 3 + 9 - (Fraction(2, 3) / 10)
+
+## INFERENCES
+INF-1: RemainingWaterAfterSpill :: 10 / 3 + 9 - (Fraction(2, 3) / 10) = 15

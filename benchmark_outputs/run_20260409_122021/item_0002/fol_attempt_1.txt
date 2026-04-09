@@ -1,0 +1,13 @@
+### Facts
+- Fact-1: AmountOfBlueFabricNeededForRobe :: 2
+- Fact-2: AmountOfWhiteFabricNeededForRobe :: 0.5 * AmountOfBlueFabricNeededForRobe
+
+### Rules
+- Rule-1: TotalAmountOfFabricNeeded :: AmountOfBlueFabricNeededForRobe + AmountOfWhiteFabricNeededForRobe
+
+### Inferences
+- INF-1: From Fact-1 and Rule-1 by Addition: TotalAmountOfFabricNeeded :: 2 + 0.5 * 2
+- INF-2: Simplifying INF-1 gives us: TotalAmountOfFabricNeeded :: 3
+
+### Final Answer
+**Total bolts of fabric needed:** 3

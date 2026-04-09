@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, starting_with(18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ( (starting_with(X) & selling(Y)) => remaining_after_sale(X, Y) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ((starting_with(18) & selling(6)) => remaining_after_sale(18, 6))).
+
+% From inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, ((remaining_after_sale(18,6) & selling(2)) => remaining_after_red_house(18,6,2))).
+
+% From inf_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, (remaining_after_red_house(18,6,2) => remaining_after_orange_house(18,6,2,14))).
+
+% From inf_3, rule_1 by Modus Ponens
+fof(inf_4, axiom, (remaining_after_orange_house(18,6,2,14) => remaining_after_sale_4(18,6,2,14))).
+
+% From inf_4, rule_1 by Modus Ponens
+fof(inf_5, axiom, (starting_with(18) => remaining_after_sale_4(18,6,2,14))).

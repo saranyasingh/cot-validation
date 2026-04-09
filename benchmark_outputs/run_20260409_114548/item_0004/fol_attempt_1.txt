@@ -1,0 +1,6 @@
+FACT-1: James runs 3 sprints per session :: SprintCount(session) = 3
+FACT-2: Each sprint is 60 meters long :: SprintLength(meter) = 60
+FACT-3: He repeats this process 3 times a week :: SessionCount(week) = 3
+
+## INFERENCES
+INF-1: Total distance run in a week :: Distance(week) = SprintCount(session) × SprintLength(meter) × SessionCount(week)

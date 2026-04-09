@@ -1,0 +1,18 @@
+## FACTS
+- Premise 1: The merchant has two options - purchasing jewelry worth $5,000 or electronic gadgets worth $8,000.
+- Premise 2: The jewelry market is expected to increase by 2.5%.
+- Premise 3: The electronic gadgets market is expected to increase by 1.2%.
+
+## RULES
+- Future Value = Current Value * (1 + Rate of Increase)
+
+## INFERENCES
+- Future Value_{jewelry} = $5,000 * (1 + 0.025)
+- Future Value_{jewelry} = $5,000 * 1.025
+- Future Value_{jewelry} = $5,125
+- Future Value_{gadgets} = $8,000 * (1 + 0.012)
+- Future Value_{gadgets} = $8,000 * 1.012
+- Future Value_{gadgets} = $8,096
+- Profit = Future Value_{gadgets} - Future Value_{jewelry}
+- Profit = $8,096 - $5,125
+- Profit = $2,971

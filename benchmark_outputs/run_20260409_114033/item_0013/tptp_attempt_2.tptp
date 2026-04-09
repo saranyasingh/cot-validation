@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, InitialInvestment = $90).
+
+% --- RULES ---
+fof(rule_1, axiom, AnnualProfit = NumberOfLemons * PricePerLemon - AnnualCost).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, AnnualRevenue = 7 * 1.5 - 3).
+% From inf_1 by Arithmetic
+fof(inf_2, axiom, n = Ceiling(InitialInvestment / AnnualRevenue)).
+% From inf_2 by Arithmetic
+fof(inf_3, axiom, n = 13).

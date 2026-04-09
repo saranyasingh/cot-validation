@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED — The story states the first customer bought 1 DVD, which directly matches BoughtDVD(1).
+FACT-2: UNSUPPORTED — The statement implies customers 2 and 3 bought 2 DVDs (BoughtDVD(2)), which contradicts the story's "first 3 buy 1 each."
+FACT-3: UNSUPPORTED — It claims customers 4–8 did not buy DVDs, which contradicts the story where customers 4 and 5 bought 2 each and customers 6–8 bought none.

@@ -1,0 +1,17 @@
+```plaintext
+## FACTS
+FACT-1: JamesRuns(3) :: 3 sprints per day
+FACT-2: RunsTwicePerWeek(3) :: 3 times a week
+FACT-3: SprintDistance(60) :: 60 meters per sprint
+
+## RULES
+RULE-1: IfJamesRuns(sprints), then sprintsareperday :: ∀sprints (JamesRuns(sprints) → sprints=3)
+RULE-2: Ifsprintsareperday, then therearetwicetimesaweek :: ∀days (sprints=3 → days=3)
+RULE-3: SprintDistance(60) :: ∀meters (SprintDistance(meters) → meters=60)
+
+## INFERENCES
+INF-1: From RULE-1, RULE-2 by Universal Instantiation: Sprints=3
+INF-2: From RULE-2, RULE-3 by Universal Instantiation: SprintDistance(60)
+INF-3: TotalMeters(Rules, Days): TotalMeters(Rules, Days) :: TotalMeters(Rules, Days) = SprintDistance(60) * Sprints=3 * Days=3
+INF-4: TotalMeters(Facts, Rules): TotalMeters(Facts, Rules) :: TotalMeters(Facts, Rules) = 60 * 3 * 3 = 540
+```

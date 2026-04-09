@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, VolumeOfOrangeDrinkWater(t_0) = 10/3).
+fof(fact_2, axiom, VolumeOfPineappleDrinkWater(t_0) = 9).
+
+% --- RULES ---
+fof(rule_1, axiom, VolumeOfOrangeDrinkWater(t_0) / 10 = (2/3) / 10).
+fof(rule_2, axiom, VolumeOfOrangeDrinkWater(t_0) + VolumeOfPineappleDrinkWater(t_0) - WaterLostFromOrangeDrinks = 10/3 + 9 - (2/3)/10).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, 10/3 + 9 - (2/3)/10 = 15).

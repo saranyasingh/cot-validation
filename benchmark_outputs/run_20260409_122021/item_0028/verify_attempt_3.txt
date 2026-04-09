@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Directly stated: Cynthia consumes 1 serving of ice cream every night
+FACT-2: SUPPORTED — Directly stated: Each carton contains 15 servings
+FACT-3: SUPPORTED — Entailed: 60 days × 1 serving = 60 servings; 60 ÷ 15 = 4 cartons; thus 4 cartons are needed
+RULE-1: PLAUSIBLE — More consumption logically implies more spending; spending is a function of x
+RULE-2: PLAUSIBLE — Price per carton is fixed
+RULE-3: PLAUSIBLE — People buy enough cartons to cover consumption

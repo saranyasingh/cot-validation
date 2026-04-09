@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, regular_hours(40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Hours] : (earnings_from_regular_hours(Hours) <=> hours_times_10(Hours))).
+fof(rule_2, axiom, ! [Hours, Rate] : (earnings_from_overtime(Hours, Rate) <=> overtime_amount(Hours, Rate))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, earnings_from_regular_hours(40)).
+
+% From fact_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, earnings_from_overtime(5, 12)).
+
+% From inf_1, inf_2 by addition
+fof(inf_3, axiom, total_earnings(earnings_from_regular_hours(40), earnings_from_overtime(5, 12))).
+
+% From inf_3 by evaluation
+fof(inf_4, axiom, total_earnings(45)).

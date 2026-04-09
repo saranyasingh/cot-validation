@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_students(20)).
+fof(fact_2, axiom, contemporary_dancers(4)).
+fof(fact_3, axiom, jazz_dancers(4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (y)).
+fof(rule_2, axiom, ! [A] : (! [B] : (c))).
+fof(rule_3, axiom, ! [Dancers, Remaining] : (remaining_students_after(Dancers, Remaining) => remaining_students(Remaining, Dancers))).
+
+% --- INFERENCES ---
+% From rule_3 by Modus Ponens
+fof(inf_1, axiom, ! [Remaining] : (remaining_students(Remaining, current_dancers))).
+% From rule_3 by Modus Ponens
+fof(inf_2, axiom, ! [Remaining] : (remaining_students(Remaining, jazz_dancers))).
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, hiphop_dancers(60) => ! [Remaining] : ((remaining_students(hiphop_dancers, Remaining) & contemporary_dancers(4)) => jazz_dancers(4))).

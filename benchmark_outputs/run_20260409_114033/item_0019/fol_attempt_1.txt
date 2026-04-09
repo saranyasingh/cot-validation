@@ -1,0 +1,28 @@
+### FACTS
+FACT-1: It was raining at noon :: Raining(t_murder)
+
+### RULES
+RULE-1: If it rains at a time, the ground is wet at that time :: ∀t (Raining(t) → GroundWet(t))
+
+### INFERENCES
+INF-1: From FACT-1, RULE-1 by Modus Ponens: The ground was wet at murder time :: GroundWet(t_murder)
+
+INF-2: It was after the murder that Alice saw Mr Black :: After(t_murder, t_seen)
+
+INF-3: The murderer murdered Alice before seeing her :: (∀t (Murderer(mr_black) → Before(t, t_seen)))
+
+INF-4: The killer killed Alice before seeing her :: (∀t (Killer(killer) → Before(t, t_seen)))
+
+INF-5: From INF-3 and INF-4, we can conclude that the killer killed Alice before the murder :: (KilledAliceBeforeMurder(Killer(killer)))
+
+INF-6: From INF-5, we can infer that the killer must have been at the murder location :: (∃location (Killer(killer) → MurderLocation(location)))
+
+INF-7: Since the killer was at the murder location before the murder, they were likely near the scene of the crime :: (∃time (Before(t_murder, t_killer_near_scene) & MurderLocation(location))) 
+
+INF-8: Given the above, the killer could be identified as either Mr Black or someone else nearby :: (∃person (Person(person) & (∀t (Before(t, t_seen) → Person(person)))))
+
+INF-9: The killer could have committed the murder while holding a weapon :: (∃weapon (Weapon(weapon) & (∀t (Before(t, t_seen) → Weapon(weapon)))))
+
+INF-10: Combining all previous inferences, we can deduce the most likely scenario where the killer was holding a weapon and was near the murder location :: (∃knight (Knight(knight) & (∀t (Before(t, t_seen) → Knight(knight)))))
+
+INF-11: Thus, the most probable scenario is that the killer was Mr Black, holding a weapon, and near the murder location :: (∃killer (Killer(killer) & (∀t (Before(t, t_seen) → Killer(killer)))))

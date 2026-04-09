@@ -1,0 +1,27 @@
+LABEL: ## FACTS ::
+FACT-1: RaymondWas23WhenHadSon :: ∃x (Fathered(x,son) ∧ Age(x) = 23)
+
+LABEL: ## RULES ::
+RULE-1: PLAUSIBLE :: ∀x (Fathered(x) → (∃y (ChildBornAtAge(y, x))))
+RULE-2: IMPLAUSIBLE :: ∀y (ChildBornAtAge(y, x) → (∃z (ParentWasBornAtAge(z, y)) ∧ Age(z) = Age(x)))
+
+LABEL: ## INFERENCES ::
+INF-1: RaymondWas23WhenHadSon :: RaymondWas23WhenHadSon
+
+INF-2: YearsSinceBirthRaymond :: YearsSinceBirthRaymond
+
+INF-3: ChildWas23WhenBorn :: ChildWas23WhenBorn
+
+INF-4: ParentWas23WhenChildWasBorn :: ParentWas23WhenChildWasBorn
+
+INF-5: RaymondsSonWas23WhenBorn :: RaymondsSonWas23WhenBorn
+
+INF-6: YearsPassedBeforeSonWasBorn :: YearsPassedBeforeSonWasBorn
+
+INF-7: RaymondsSonWas23WhenHeWasBorn :: RaymondsSonWas23WhenHeWasBorn
+
+INF-8: RaymondsSonWas23WhenHisMotherWasBorn :: RaymondsSonWas23WhenHisMotherWasBorn
+
+INF-9: YearsBetweenRaymondsSonAndRaymondsBirth :: YearsBetweenRaymondsSonAndRaymondsBirth
+
+INF-10: RaymondsSonWasBorn20YearsAgo :: RaymondsSonWasBorn20YearsAgo

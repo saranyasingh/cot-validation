@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: TrainDistanceDay1 :: 80
+FACT-2: TrainDistanceDay2 :: 150
+
+## RULES
+RULE-1: TotalDistanceOverTwoDays :: TrainDistanceDay1 + TrainDistanceDay2
+
+## INFERENCES
+INF-1: From FACT-1, RULE-1 by Addition: Each train covers a total distance of **230** miles over the two days :: TotalDistanceOverTwoDays(TrainDistanceDay1, TrainDistanceDay2)

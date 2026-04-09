@@ -1,0 +1,20 @@
+To calculate how long it will take Carla to download the remaining 80 GB after restarting halfway through, we need to follow these steps:
+
+1. Determine how much time was spent downloading the first half of the file.
+2. Calculate the remaining time needed to finish downloading the second half of the file after the restart.
+
+First, let's find out how long it took Carla to download the first half of the file:
+- The total size of the file is 200 GB.
+- Half of this is \( \frac{200}{2} = 100 \) GB.
+- She downloads at a rate of 2 GB per minute.
+- Therefore, the time taken for the first half is \( \frac{100 \text{ GB}}{2 \text{ GB/min}} = 50 \text{ minutes} \).
+
+Next, since there was a 20-minute delay due to the system restart and another 20 minutes before she could resume the download, we add these delays to her initial download time:
+- Initial download time: 50 minutes
+- System restart delay: 20 minutes
+- Time between resuming download and completing it: 20 minutes
+
+So, the total time to complete the download is:
+\[ 50 + 20 + 20 = 90 \text{ minutes} \]
+
+Therefore, the total time it took Carla to download the entire file is **90 minutes**.

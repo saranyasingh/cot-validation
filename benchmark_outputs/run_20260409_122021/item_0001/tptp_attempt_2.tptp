@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, egg_production(x, 16, x)).
+
+fof(fact_2, axiom, egg_consumption(y, 3, y)).
+
+fof(fact_3, axiom, egg_consumption(z, 4, z)).
+
+fof(fact_4, axiom, price_of_egg(2, x)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, Q] : ( price(P, Q) => value(P, Q) )).
+
+fof(rule_2, axiom, ! [S, V] : ( sells(S, V) => earnings(S, V) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation
+fof(inf_1, axiom, value(egg_production(x, 16, x), 2)).
+
+% From fact_2, rule_1 by Universal Instantiation
+fof(inf_2, axiom, value(egg_consumption(y, 3, y), 2)).
+
+% From fact_3, rule_1 by Universal Instantiation
+fof(inf_3, axiom, value(egg_consumption(z, 4, z), 2)).
+
+% From fact_4, rule_2 by Existential Generalization
+fof(inf_4, axiom, earnings(janet)).

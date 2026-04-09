@@ -1,0 +1,49 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+These are the direct facts extracted from the problem statement.
+
+```plaintext
+FACT-1: Janet's ducks lay 16 eggs per day :: Laying(duck, 16, t_0)
+```
+
+### Rules
+These are universally quantified implications based on external or linguistic knowledge.
+
+```plaintext
+RULE-1: If Janet lays \( n \) eggs, she consumes \( c \) eggs for breakfast :: ∀n (Laying(n, e, t_0) → EggsConsumed(c, t_0))
+RULE-2: Janet uses \( m \) eggs to bake muffins each day :: ∀m (Baking(m, t_0) → EggsUsed(m, t_0))
+RULE-3: Janet earns \( r \) dollars per egg sold :: ∀r (EggSold(r, t_0) → EarnsMoney(r, t_0))
+```
+
+### Inferences
+These are derived conclusions based on the given rules and facts.
+
+```plaintext
+INF-1: Janet's ducks lay 16 eggs per day :: Laying(duck, 16, t_0)
+INF-2: Janet eats three eggs for breakfast :: EggsConsumed(3, t_0)
+INF-3: Janet bakes muffins for her friends using four eggs each day :: EggsUsed(4, t_0)
+INF-4: Janet sells the remaining eggs at the farmers' market daily for $2 per egg :: EggSold(2, t_0)
+INF-5: Janet's ducks lay 16 eggs per day :: Laying(duck, 16, t_0)
+INF-6: Janet eats three eggs for breakfast :: EggsConsumed(3, t_0)
+INF-7: Janet bakes muffins for her friends using four eggs each day :: EggsUsed(4, t_0)
+INF-8: Janet sells the remaining eggs at the farmers' market daily for $2 per egg :: EggSold(2, t_0)
+INF-9: Janet makes money from selling eggs :: EarnsMoney(18, t_0)
+```
+
+### Final Output
+Combining all the labeled lines, we get:
+
+```plaintext
+FACT-1: Janet's ducks lay 16 eggs per day :: Laying(duck, 16, t_0)
+RULE-1: If Janet lays \( n \) eggs, she consumes \( c \) eggs for breakfast :: ∀n (Laying(n, e, t_0) → EggsConsumed(c, t_0))
+RULE-2: Janet uses \( m \) eggs to bake muffins each day :: ∀m (Baking(m, t_0) → EggsUsed(m, t_0))
+RULE-3: Janet earns \( r \) dollars per egg sold :: ∀r (EggSold(r, t_0) → EarnsMoney(r, t_0))
+INF-1: Janet's ducks lay 16 eggs per day :: Laying(duck, 16, t_0)
+INF-2: Janet eats three eggs for breakfast :: EggsConsumed(3, t_0)
+INF-3: Janet bakes muffins for her friends using four eggs each day :: EggsUsed(4, t_0)
+INF-4: Janet sells the remaining eggs at the farmers' market daily for $2 per egg :: EggSold(2, t_0)
+INF-5: Janet makes money from selling eggs :: EarnsMoney(18, t_0)
+```
+
+This output includes all necessary elements: facts, rules, and inferred conclusions in the required format.
