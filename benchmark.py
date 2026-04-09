@@ -34,7 +34,7 @@ import re
 import sys
 from datetime import datetime
 
-from main import run_plain, run_pipeline
+from main import run_plain, run_pipeline, extract_answer
 from clients import make_client, OpenAILLMClient
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -119,6 +119,7 @@ def run_benchmark(
             reasoning_client=reasoning_client, verifier_client=verifier_client,
         )
         pipeline_answer = pipeline_result["answer"]
+        cot_answer = extract_answer(pipeline_result["cot_text"])
         pipeline_ok = answers_match(pipeline_answer, expected)
         if pipeline_ok:
             pipeline_correct += 1
@@ -143,6 +144,7 @@ def run_benchmark(
                 "answer": plain_answer,
                 "correct": plain_ok,
             },
+            "cot_answer": cot_answer,
             "pipeline": {
                 "answer": pipeline_answer,
                 "correct": pipeline_ok,
@@ -202,9 +204,8 @@ def run_benchmark(
     delta = pipeline_acc - plain_acc
     direction = "better" if delta > 0 else "worse" if delta < 0 else "same"
 
-    # Collect incorrect items per approach
-    plain_incorrect = [r for r in results if not r["plain"]["correct"]]
-    pipeline_incorrect = [r for r in results if not r["pipeline"]["correct"]]
+    # Collect items incorrect on either approach
+    any_incorrect = [r for r in results if not r["plain"]["correct"] or not r["pipeline"]["correct"]]
 
     print("\n" + "=" * 72)
     print(f"{'RESULTS SUMMARY':^72}")
@@ -220,16 +221,14 @@ def run_benchmark(
     print(f"  Regressions         : {plain_right_pipeline_wrong}/{plain_correct}  ({regression_rate:.1%} of plain-correct broken by pipeline)")
     print()
 
-    if plain_incorrect:
-        print(f"  -- Plain Prompt Incorrect Items --")
-        for r in plain_incorrect:
-            print(f"    {r['id']:<12} expected={r['expected']!r:<14} got={r['plain']['answer']!r}")
-        print()
-
-    if pipeline_incorrect:
-        print(f"  -- Pipeline Incorrect Items --")
-        for r in pipeline_incorrect:
-            print(f"    {r['id']:<12} expected={r['expected']!r:<14} got={r['pipeline']['answer']!r}")
+    if any_incorrect:
+        print(f"  -- Incorrect Items --")
+        for r in any_incorrect:
+            print(f"    {r['id']}")
+            print(f"      expected  : {r['expected']!r}")
+            print(f"      plain     : {r['plain']['answer']!r}")
+            print(f"      cot       : {r['cot_answer']!r}")
+            print(f"      pipeline  : {r['pipeline']['answer']!r}")
         print()
 
     print(f"  -- Pipeline Internals --")
