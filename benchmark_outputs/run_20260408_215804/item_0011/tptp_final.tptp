@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, FirstMonthDownloads(60)).
+
+fof(fact_2, axiom, ! [X, Y] : (IncreaseInDownloads(FirstMonthDownloads(X), SecondMonthDownloads(Y)) => X * 3 = Y)).
+
+fof(fact_3, axiom, ! [Z] : (ReductionFactor(ThirdMonthDownloads(Z)) => 0.70)).
+
+fof(fact_4, axiom, TotalDownloads(366) = INF-1 + INF-2 + INF-3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (IncreaseInDownloads(FirstMonthDownloads(X), SecondMonthDownloads(Y)) => X * 3 = Y)).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, SecondMonthDownloads(180)).
+
+% From FACT-3
+% Inference deriving a numeric factor
+fof(inf_2, axiom, ReductionFactor(ThirdMonthDownloads(z)) = 0.70).
+
+% From INF-1, INF-2 by some chaining
+fof(inf_3, axiom, ThirdMonthDownloads(126) = SecondMonthDownloads(180) * ReductionFactor(ThirdMonthDownloads(z))).
+
+% From INF-1, INF-2, INF-3
+fof(inf_4, axiom, TotalDownloads(366) = SecondMonthDownloads(180) + ReductionFactor(ThirdMonthDownloads(z)) + ThirdMonthDownloads(126)).

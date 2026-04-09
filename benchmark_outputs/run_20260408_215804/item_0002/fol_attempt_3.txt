@@ -1,0 +1,9 @@
+### ## FACTS
+LABEL: FACT-1 :: B = 2 :: BoltBlue(x) ↔ x = 2
+LABEL: FACT-2 :: W = 0.5B :: BoltWhite(x) ↔ x = 0.5 * B
+
+### ## RULES
+LABEL: RULE-1 :: BoltTotal(BoltBlue, BoltWhite) :: BoltBlue(x) ∧ BoltWhite(x) -> TotalBolts(x) = x1 + x2
+
+### ## INFERENCES
+LABEL: INFER-1 :: BoltTotal(BoltBlue, BoltWhite) :: BoltBlue(2) ∧ BoltWhite(1) -> TotalBolts(3) = 2 + 1 = 3

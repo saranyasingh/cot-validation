@@ -1,0 +1,16 @@
+### ## FACTS
+FACT-1: Carla normally downloads at a rate of 2 GB per minute :: DownloadRate(Carla, 2GB/min)
+FACT-2: Carla has downloaded 80 GB of the 200 GB file before the restart :: DownloadedFile(Carla, 80GB)
+FACT-3: The total size of the file is 200 GB :: FileSize(200GB)
+FACT-4: The restart causes an additional 20-minute delay :: DelayAfterRestart(20minutes)
+
+### ## RULES
+RULE-1: If Carla has downloaded 80 GB, then she will take more than 60 minutes to finish downloading the remaining 120 GB :: ∀d (DownloadedFile(Carla, d) → MoreThan60Minutes(d))
+RULE-2: The restart causes a delay of 20 minutes :: Delay(20minutes)
+
+### ## INFERENCES
+INF-1: Carla has completed 80 GB of the 200 GB file :: DownloadedFile(Carla, 80GB) :: Fact-2
+INF-2: Carla has less than 120 GB left to download :: LessThan120GBLeft(120GB)
+INF-3: Carla will require more than 60 minutes to download the remaining 120 GB :: MoreThan60Minutes(LessThan120GBLeft(120GB)) :: Rule-1
+INF-4: Carla will take a total of 80 minutes to download the entire file after the restart :: TotalTime(80minutes) :: Rule-2, INF-1, INF-2, INF-3
+INF-5: Carla will experience a 20-minute delay after the restart :: Delay(TotalTime(80minutes)) :: Rule-2, INF-4

@@ -1,0 +1,16 @@
+## FACTS
+- Fact-1: Melanie has 5 vacuum cleaners left after selling :: VaccumCleanersLeft(5)
+
+## RULES
+- Rule-1: If Melanie sells half of what is left, then before selling, she had twice as much :: ∀x (VaccumCleanersLeft(x) → VacuumCleanersBefore(SellHalf(x)))
+
+## INFERENCES
+- INF-1: Since she had 5 vacuum cleaners left, before selling, she had 10 :: VacuumCleanersBefore(SellHalf(VaccumCleanersLeft(5)))
+  
+- INF-2: After selling half, she has 8 vacuum cleaners left before selling to the red house :: VacuumCleanersAfter(SellHalf(10))
+
+- INF-3: Selling 2 more vacuum cleaners to the red house results in 8 remaining :: VacuumCleanersAfter(Sell2ToRedHouse(8)) 
+
+- INF-4: She sold a third of her total before the green house :: VacuumCleanersBefore(GreenHouseSale)
+
+- INF-5: Solving for total vacuum cleaners before GreenHouseSale :: VacuumCleanersBefore(GreenHouseSale) = 24

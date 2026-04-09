@@ -1,0 +1,23 @@
+Explanation:
+
+Premise 1: Marissa has already walked 6 miles out of the total 12 miles.
+Premise 2: It took her 1 hour to walk the first 4 miles.
+Premise 3: It took her an additional 1 hour to walk the next 2 miles.
+Premise 4: Her goal is to have an average speed of 4 miles per hour over the entire hike.
+
+Let's break down the problem into steps:
+
+Step 1: Calculate how much time Marissa needs to reach her desired average speed of 4 mph over all 12 miles.
+To do this, we use the formula:
+\[ \text{Average Speed} = \frac{\text{Total Distance}}{\text{Total Time}} \]
+We want the Average Speed to be 4 mph, so we rearrange the formula to solve for Total Time:
+\[ \text{Total Time} = \frac{\text{Total Distance}}{\text{Average Speed}} = \frac{12 \text{ miles}}{4 \text{ mph}} = 3 \text{ hours} \]
+
+Step 2: Determine how many more miles Marissa needs to walk to achieve her desired average speed.
+Since she has already walked 6 miles, she still needs to walk \(12 - 6 = 6\) miles.
+
+Step 3: Calculate how long it will take her to walk these remaining 6 miles at the desired average speed of 4 mph.
+Using the formula again:
+\[ \text{Time} = \frac{\text{Distance}}{\text{Speed}} = \frac{6 \text{ miles}}{4 \text{ mph}} = 1.5 \text{ hours} \]
+
+Therefore, Marissa needs to walk at a speed of **1.5** miles per hour to achieve her desired average speed of 4 mph over the entire hike.

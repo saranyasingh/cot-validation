@@ -63,7 +63,7 @@ def answers_match(predicted: str, expected: str) -> bool:
 def run_benchmark(
     dataset_path: str,
     output_dir: str,
-    max_retries: int = 3,
+    max_retries: int = 5,
     num_problems: int = None,
     reasoning_client=None,
     verifier_client=None,
@@ -274,8 +274,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--max-retries", "-r",
         type=int,
-        default=3,
-        help="Max verify/tptp repair attempts per pipeline run (default: 3).",
+        default=5,
+        help="Max verify/tptp repair attempts per pipeline run (default: 5).",
     )
     parser.add_argument(
         "--num-problems", "-n",

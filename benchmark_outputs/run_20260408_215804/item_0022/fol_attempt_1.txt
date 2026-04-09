@@ -1,0 +1,22 @@
+This problem involves calculating the birth year of Raymond's son using logical deductions from given facts. Here is the conversion of the provided chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### Facts
+```plaintext
+FACT-1: Samantha is currently 31 years old :: CurrentAge(Samantha) = 31
+```
+
+### Rules
+No rules are needed here since all facts provide direct information without requiring any logical derivation.
+
+### Inferences
+We need to derive the birth year of Raymond's son. Given that Samantha is currently 31 years old and assuming the current year is \(Y\), we can calculate her birth year as \(Y - 31\).
+
+Since Raymond's son was born when Samantha was 23 years old, and Raymond's son is 23 years older than Samantha, we add 23 years to Samantha's current age to get the birth year of Raymond's son.
+
+Let's denote the current year as \(Y\). Therefore, the birth year of Raymond's son is calculated as:
+\[ \text{BirthYear(Raymond's Son)} = Y - 31 + 23 = Y - 8 \]
+
+### Conclusion
+The answer is: 29.
+
+Thus, the birth year of Raymond's son is \(Y - 8\) years ago, where \(Y\) is the current year.

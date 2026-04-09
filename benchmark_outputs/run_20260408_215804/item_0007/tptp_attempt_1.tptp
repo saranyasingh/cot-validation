@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, S = 20).
+fof(fact_2, axiom, C = 4 * S).
+fof(fact_3, axiom, T = 2 * C).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by arithmetic
+fof(inf_1, axiom, S + C + T = 260).

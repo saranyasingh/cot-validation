@@ -1,0 +1,10 @@
+## FACTS
+INF-1 :: Total cost of shorts = Mishka bought 3 pairs of shorts * $16.50 per pair.
+INF-2 :: Total cost of pants = Mishka bought 3 pairs of pants * $22.50 per pair.
+INF-3 :: Total cost of shoes = Mishka bought 3 pairs of shoes * $42 per pair.
+
+## RULES
+RULE-1 :: If Mishka buys x pairs of shorts, he spends $16.50 * x dollars.
+
+## INFERENCES
+INF-4 :: Total spending = Cost of shorts + Cost of pants + Cost of shoes.

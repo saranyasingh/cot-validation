@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: B = 2 :: BoltBlue(x) ↔ x = 2
+FACT-2: W = 0.5B :: BoltWhite(x) ↔ x = 0.5 * B
+
+## RULES
+RULE-1: BoltTotal(BoltBlue, BoltWhite) :: BoltBlue(x) ∧ BoltWhite(x) -> TotalBolts(x) = x1 + x2
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Modus Ponens: There are 2 bolts of blue fiber :: BoltBlue(2)
+INF-2: From FACT-2 and RULE-1 by Modus Ponens: There are 1 bolt of white fiber :: BoltWhite(1)
+INF-3: Total Bolts = 2 (blue) + 1 (white) :: BoltTotal(BoltBlue, BoltWhite)(TotalBolts) = 2 + 1 = 3

@@ -1,0 +1,43 @@
+% --- FACTS ---
+fof(fact_1, axiom, walked(6, t_initial)).
+fof(fact_2, axiom, walked(4, t_0)).
+fof(fact_3, axiom, walked(2, t_1)).
+fof(fact_4, axiom, goal(12, 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ( walked(X, Y) => walked(X, Y) )).
+fof(rule_2, axiom, ! [D, S, T] : ( constant_speed(D, S, T) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, walked(6, t_0)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, walked(4, 1)).
+
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, walked(2, 1)).
+
+% From FACT-4 and RULE-2: At an average speed of 4 mph, walking 6 miles takes 1.5 hours
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, time_needed_for_goal(6, 12, 4, 1.5)).
+
+% From RULE-1 and Rule-2: To achieve an average speed of 4 mph, Marissa must walk at least 1.5 hours
+% From rule_1, rule_2 by Modus Ponens
+fof(inf_5, axiom, requires_at_least_time(1.5, 12, 4)).
+
+% Marissa needs to walk 6 more miles to meet her goal
+% From fact_4 by some rule
+fof(inf_6, axiom, needs_more_miles(6, 12)).
+
+% Marissa can walk 1 mile every 1/2 hour at an average speed of 4 mph
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_7, axiom, can_walk_at_speed(1, 0.5, 4)).
+
+% Marissa needs 1.5 hours to walk 1 mile
+% From fact_4 by some rule
+fof(inf_8, axiom, time_required_for_single_mile(1, 1.5)).
+
+% Therefore, Marissa needs to walk at a speed of 1.5 miles per hour to achieve her desired average speed of 4 mph over the entire hike
+% From fact_4 by some rule
+fof(inf_9, axiom, walks_at_speed(1.5, 12, 4)).

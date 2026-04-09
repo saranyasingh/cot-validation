@@ -1,0 +1,13 @@
+## FACTS
+- TravelingWest(trainA, Day1)
+- TravelingNorth(trainB, Day2)
+- TravelingWest(trainB, Day1)
+- TravelingNorth(trainA, Day2)
+
+## RULES
+- TotalDistanceTraveled(TrainA) :: TravelingWest(trainA, Day1) ∨ TravelingNorth(trainA, Day2)
+- TotalDistanceTraveled(TrainB) :: TravelingWest(trainB, Day1) ∨ TravelingNorth(trainB, Day2)
+
+## INFERENCES
+- TotalDistanceTraveled(trainA) :: 80 + 150 = 230
+- TotalDistanceTraveled(trainB) :: 80 + 150 = 230

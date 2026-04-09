@@ -1,0 +1,3 @@
+LABEL: FACT-1 :: FirstThreeCustomers(Sold(DVD)) ∧ FirstThreeCustomers(Bought(1DVD)) ∧ FirstThreeCustomers(NoDVD()) :: 3 DVDs sold to the first three customers.
+LABEL: FACT-2 :: NextTwoCustomers(Sold(DVD)) ∧ NextTwoCustomers(Bought(2DVD)) ∧ NextTwoCustomers(NoDVD()) :: 4 DVDs sold to the next two customers.
+LABEL: FACT-3 :: LastThreeCustomers(Sold(DVD)) ∧ LastThreeCustomers(Bought(0DVD)) ∧ LastThreeCustomers(NoDVD()) :: 0 DVDs sold to the last three customers.

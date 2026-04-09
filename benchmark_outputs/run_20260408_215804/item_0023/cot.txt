@@ -1,0 +1,27 @@
+EXPLANATION
+
+1. **Premise 1:** Billy sold DVDs to his first three customers.
+   - This means he sold \(3\) DVDs to these customers.
+
+2. **Premise 2:** Each of the first three customers bought one DVD.
+   - Therefore, this contributes another \(3\) DVDs to the total count.
+
+3. **Premise 3:** Billy sold DVDs to his next two customers.
+   - This means he sold \(2\) DVDs to these customers.
+
+4. **Premise 4:** Each of the next two customers bought two DVDs.
+   - Thus, this adds an additional \(2 \times 2 = 4\) DVDs to the total count.
+
+5. **Premise 5:** Billy's last three customers didn't buy any DVDs.
+   - This means they contributed \(0\) DVDs to the total count.
+
+6. **Conclusion:** To find the total number of DVDs sold, we sum up all the DVDs sold to each group of customers.
+   - Total DVDs sold = DVDs sold to the first three customers + DVDs sold to the next two customers + DVDs sold to the last three customers
+   - Total DVDs sold = \(3 + 3 + 4 + 0\)
+
+7. **Calculation:** Adding these values together gives us:
+   - Total DVDs sold = \(3 + 3 + 4 + 0 = 10\).
+
+**Answer:** 10 DVDs were sold on Tuesday.
+
+The answer is: 10

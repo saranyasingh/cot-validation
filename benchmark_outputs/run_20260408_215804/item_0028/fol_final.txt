@@ -1,0 +1,10 @@
+LABEL: ## FACTS
+FACT-1: Cynthia eats one serving of ice cream every night for 60 days :: EatingOneServingPerNight(t_21, t_14, x, y, z, w, t_murder)
+FACT-2: One serving of ice cream costs $4.00 :: IceCreamCost($4.00)
+
+LABEL: ## RULES
+RULE-1: If a certain condition holds true, then another certain condition also holds true :: IF THEN
+
+LABEL: ## INFERENCES
+INF-1: Cynthia consumes 60 servings of ice cream :: Fact-1
+INF-2: Total cost for 60 servings is $16.00 :: Rule-1 * INF-1

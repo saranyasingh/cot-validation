@@ -1,0 +1,8 @@
+### FACTS
+FACT-1: Kyle bought the book for $19.50 after a 25% discount :: BoughtFor(19.50, Discount(25%), Book(PurchasedBy(Kyle)))
+
+### RULES
+RULE-1: After a percentage discount, the final price is calculated by multiplying the original price by (1 - discount rate) :: FinalPrice(FinalPrice(OriginalPrice, DiscountRate)) = OriginalPrice * (1 - DiscountRate)
+
+### INFERENCES
+INF-1: From FACT-1, Rule-1 by substitution: The original price of the book was \$26 :: OriginalPrice(BoughtFor(19.50, Discount(25%), Book(PurchasedBy(Kyle)))) = \$26

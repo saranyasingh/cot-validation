@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Story says she walked 4 miles then 2 miles, totaling 6 miles.
+FACT-2: SUPPORTED — It took 1 hour to walk the first 4 miles.
+FACT-3: SUPPORTED — It took another hour to walk the next two miles.
+FACT-4: SUPPORTED — The story says she wants to average 4 mph to cover 12 miles.
+RULE-1: PLAUSIBLE — It's a tautology: if someone walked x miles in y hours, they have walked x miles.
+RULE-2: PLAUSIBLE — At constant speed, distance is proportional to time (distance = speed × time).

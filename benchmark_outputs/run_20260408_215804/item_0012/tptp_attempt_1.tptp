@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_dozen_donuts = 3).
+fof(fact_2, axiom, price_per_dozen_donuts = 68).
+fof(fact_3, axiom, number_of_dozen_mini_cupcakes = 2).
+fof(fact_4, axiom, price_per_dozen_mini_cupcakes = 80).
+fof(fact_5, axiom, number_of_dozen_mini_cheesecakes = 6).
+fof(fact_6, axiom, price_per_dozen_mini_cheesecakes = 55).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, P] : (multiply(N, P) = N * P)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_cost_donuts = multiply(number_of_dozen_donuts, price_per_dozen_donuts)).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_cost_mini_cupcakes = multiply(number_of_dozen_mini_cupcakes, price_per_dozen_mini_cupcakes)).
+% From fact_5, rule_1 by Modus Ponens
+fof(inf_3, axiom, total_cost_mini_cheesecakes = multiply(number_of_dozen_mini_cheesecakes, price_per_dozen_mini_cheesecakes)).
+% From inf_1, inf_2, inf_3, inf_4 by Rule1
+fof(inf_4, axiom, total_cost = add(total_cost_donuts, total_cost_mini_cupcakes, total_cost_mini_cheesecakes)).
+% From inf_1, inf_2, inf_3, inf_4 by Rule1
+fof(inf_5, axiom, ! [N, P] : (multiply(N, P) = N * P)).
+% From inf_5 by Rule1
+fof(inf_6, axiom, ! [N, P] : (multiply(N, P) = N * P)).
+% From arithmetic of constants
+fof(inf_7, axiom, total_cost = add(204, 160, 330)).
+% From inf_7 by arithmetic
+fof(inf_8, axiom, total_cost_final_result = 794).

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought_for(19.50, discount(0.25), book(purchased_by(kyle)))). 
+
+% --- RULES ---
+fof(rule_1, axiom, ! [OriginalPrice, DiscountRate] : final_price(final_price(OriginalPrice, DiscountRate)) = OriginalPrice * (1 - DiscountRate)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, original_price(bought_for(19.50, discount(0.25), book(purchased_by(kyle)))) = 26).

@@ -1,0 +1,12 @@
+### FACTS
+FACT-1: InitialInvestment(lemonTree) :: $90
+FACT-2: EarningsPerLemon(lemonTree) :: 7 * $1.5
+FACT-3: AnnualExpenses(lemonTree) :: $3
+FACT-4: NetProfit(lemonTree) :: EarningsPerLemon - AnnualExpenses
+
+### RULES
+RULE-1: TimeCalculation :: TotalCost / NetProfit = YearsUntilStartEarning
+
+### INFERENCES
+INF-1: StartYear :: YearsUntilStartEarning(InitialInvestment(lemonTree))
+INF-2: StartYear :: TimeCalculation(TotalCost(lemonTree), NetProfit(lemonTree))

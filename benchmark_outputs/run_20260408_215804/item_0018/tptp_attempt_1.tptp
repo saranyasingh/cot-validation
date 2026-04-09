@@ -1,0 +1,72 @@
+% --- FACTS ---
+fof(fact_1, axiom, teaching_hours_per_week(teacher_hours_per_week)).
+fof(fact_2, axiom, weeks_in_year(years_in_year)).
+fof(fact_3, axiom, hourly_rate_teaching(teaching_hourly_rate)).
+fof(fact_4, axiom, hours_as_teacher(hours_as_teacher)).
+fof(fact_5, axiom, coaching_hours_per_week(coach_hours_per_week)).
+fof(fact_6, axiom, weeks_in_year(years_in_year)).
+fof(fact_7, axiom, hourly_rate_coaching(coaching_hourly_rate)).
+fof(fact_8, axiom, hours_as_coach(hours_as_coach)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [HW, HR] : (earnings_from_teaching(HW, HR) <=> (HW * HR))).
+fof(rule_2, axiom, ! [HW, HR] : (earnings_from_coaching(HW, HR) <=> (HW * HR))).
+fof(rule_3, axiom, ! [HT, TR, HC, CR] : (total_annual_salary(HT, TR, HC, CR) <=> (earnings_from_teaching(HT, TR) + earnings_from_coaching(HC, CR)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, jill_teaches(teacher_hours_per_week)).
+
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, years_in_jill_year(years_in_year)).
+
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, earnings_from_teaching(jill_hours_as_teacher, teaching_hourly_rate)).
+
+% From fact_4, rule_4 by Modus Ponens
+fof(inf_4, axiom, jill_is_a_teacher(jill_is_teacher)).
+
+% From fact_5, rule_5 by Modus Ponens
+fof(inf_5, axiom, jill_works_as_teacher(jill_hours_worked, teacher_hours_per_week)).
+
+% From fact_6, rule_6 by Modus Ponens
+fof(inf_6, axiom, years_in_jill_year(years_in_year)).
+
+% From fact_7, rule_7 by Modus Ponens
+fof(inf_7, axiom, coaching_hours_per_week(coach_hours_per_week)).
+
+% From fact_8, rule_8 by Modus Ponens
+fof(inf_8, axiom, jill_is_a_coach(jill_is_coach)).
+
+% From fact_7, rule_9 by Modus Ponens
+fof(inf_9, axiom, coach_earnings(jill_hours_as_coach, coaching_hourly_rate)).
+
+% From fact_8, rule_10 by Modus Ponens
+fof(inf_10, axiom, jill_works_as_coach(jill_hours_worked, coach_hours_per_week)).
+
+% From fact_8, rule_12 by Modus Ponens
+fof(inf_12, axiom, earnings_from_coaching(jill_hours_worked, coaching_hourly_rate)).
+
+% From fact_6, rule_11 by Modus Ponens
+fof(inf_11, axiom, jill_works_as_coach(jill_hours_worked, coach_hours_per_week)).
+
+% From fact_6, rule_8 by Modus Ponens
+fof(inf_8b, axiom, years_in_jill_year(years_in_year)).
+
+% From fact_2, rule_3 by Modus Ponens
+fof(inf_2b, axiom, years_in_jill_year(years_in_year)).
+
+% From fact_8, rule_14 by Modus Ponens
+fof(inf_14, axiom, hours_as_teacher(jill_hours_as_teacher)).
+
+% From fact_5, rule_15 by Modus Ponens
+fof(inf_15, axiom, hours_as_coach(jill_hours_as_coach)).
+
+% From fact_3, rule_16 by Modus Ponens
+fof(inf_16, axiom, jill_earnings(jill_total_earnings)).
+
+% From fact_3, rule_17 by Modus Ponens
+fof(inf_17, axiom, jill_annual_income(jill_annual_income)).
+
+% From fact_3, rule_18 by Modus Ponens
+fof(inf_18, axiom, jill_annual_salary(jill_annual_salary)).

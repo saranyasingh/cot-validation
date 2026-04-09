@@ -1,0 +1,21 @@
+EXPLANATION
+Let's break down the information given to form a logical argument.
+
+1. **Premise**: Seattle has 20 sheep.
+   - Let \( S \) represent the number of sheep in Seattle.
+   - Given: \( S = 20 \).
+
+2. **Premise**: Charleston has 4 times as many sheep as Seattle.
+   - Let \( C \) represent the number of sheep in Charleston.
+   - Given: \( C = 4S \).
+   - Substituting \( S \): \( C = 4 \times 20 = 80 \).
+
+3. **Premise**: Toulouse has twice as many sheep as Charleston.
+   - Let \( T \) represent the number of sheep in Toulouse.
+   - Given: \( T = 2C \).
+   - Substituting \( C \): \( T = 2 \times 80 = 160 \).
+
+Now, let's sum up the total number of sheep for all three cities:
+\[ \text{Total} = S + C + T = 20 + 80 + 160 = 260. \]
+
+Therefore, the answer is: 260.

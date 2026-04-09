@@ -1,0 +1,6 @@
+LABEL: ## FACTS
+```
+FACT-1 :: Orandedrink(orange_drink, t_initial)
+FACT-2 :: Orandedrink(pineapple_drink, t_initial)
+FACT-3 :: MixtureVolume(remaining_volume, spilled_volume, initial_volume)
+```

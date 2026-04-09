@@ -1,0 +1,56 @@
+Let's convert the given chain-of-thought reasoning into structured First-Order Logic (FOL):
+
+### FACTS
+```plaintext
+FACT-1: Mishka bought 3 pairs of shorts. Each pair costs $16.50.
+```
+
+### RULES
+```plaintext
+RULE-1: If Mishka buys x pairs of shorts, he spends $16.50 * x dollars.
+```
+
+### INFERENCES
+```plaintext
+INF-1: Total cost of shorts = Mishka bought 3 pairs of shorts * $16.50 per pair.
+INF-2: Total cost of pants = Mishka bought 3 pairs of pants * $22.50 per pair.
+INF-3: Total cost of shoes = Mishka bought 3 pairs of shoes * $42 per pair.
+INF-4: Total spending = Cost of shorts + Cost of pants + Cost of shoes.
+```
+
+### SUMMARY
+We will now derive the final answer using these logical steps.
+
+**Step-by-step Calculation:**
+
+1. **Cost of Shorts:**
+   - Mishka bought 3 pairs of shorts.
+   - Each pair costs $16.50.
+   ```plaintext
+   Cost_of_shorts = Mishka_bought_pairs * Short_cost_per_pair = 3 * $16.50 = $49.50
+   ```
+
+2. **Cost of Pants:**
+   - Mishka bought 3 pairs of pants.
+   - Each pair costs $22.50.
+   ```plaintext
+   Cost_of_pants = Mishka_bought_pairs * Pants_cost_per_pair = 3 * $22.50 = $67.50
+   ```
+
+3. **Cost of Shoes:**
+   - Mishka bought 3 pairs of shoes.
+   - Each pair costs $42.
+   ```plaintext
+   Cost_of_shoes = Mishka_bought_pairs * Shoes_cost_per_pair = 3 * $42 = $126
+   ```
+
+4. **Total Spending:**
+   Sum up the costs of shorts, pants, and shoes.
+   ```plaintext
+   Total_spending = Cost_of_shorts + Cost_of_pants + Cost_of_shoes
+                  = $49.50 + $67.50 + $126 = $243
+   ```
+
+Thus, Mishka spent a total of $243 on all the clothing items.
+
+The final answer is: **$243**

@@ -1,0 +1,20 @@
+### Facts
+- Jewelry_FutureValue: \(5000 \times (1 + 0.025)\)
+- ElectronicGadgets_FutureValue: \(8000 \times (1 + 0.012)\)
+
+### Rules
+- Rule_1: If FutureValue_Jewelry > FutureValue_ElectronicGadgets, then MaximizeProfit_Jewelry.
+- Rule_2: If FutureValue_ElectronicGadgets > FutureValue_Jewelry, then MaximizeProfit_ElectronicGadgets.
+
+### Inferences
+- INF_1: Jewelry_FutureValue = \$5,125.
+- INF_2: ElectronicGadgets_FutureValue = \$8,096.
+- INF_3: FutureValue_Jewelry > FutureValue_ElectronicGadgets :: Jewelry_FutureValue > ElectronicGadgets_FutureValue.
+- INF_4: MaximizeProfit_Jewelry :: Jewelry_FutureValue > ElectronicGadgets_FutureValue.
+- INF_5: FutureValue_ElectronicGadgets > FutureValue_Jewelry :: ElectronicGadgets_FutureValue > Jewelry_FutureValue.
+- INF_6: MaximizeProfit_ElectronicGadgets :: ElectronicGadgets_FutureValue > Jewelry_FutureValue.
+
+Since Jewelry_FutureValue > ElectronicGadgets_FutureValue, the Merchant should choose Jewelry for the maximum profit. Thus, the maximum profit achievable is \$5,125.
+
+### Final Answer
+MaximizeProfit: Jewelry :: Jewelry_FutureValue > ElectronicGadgets_FutureValue.

@@ -1,0 +1,17 @@
+LABEL: ### ## FACTS
+```
+Fact-1: Claire eats 3 eggs each day :: EggsEatenPerDay(3)
+Fact-2: In 4 weeks, Claire will eat \(x\) dozen eggs :: EggsEaten(x)
+```
+
+LABEL: ### ## RULES
+```
+Rule-1: If Claire eats \(y\) eggs on a particular day, then she eats \(y\) eggs in 4 weeks :: EggsEaten(y)
+Rule-2: 1 dozen equals 12 eggs :: DozensToEggs(12)
+```
+
+LABEL: ### ## INFERENCES
+```
+Infer-1: Since Claire eats 3 eggs per day, she will eat \(3 \times 28 = 84\) eggs in 4 weeks :: EggsEaten(3 * 28)
+Infer-2: To find the number of dozens, divide the total number of eggs by 12 :: EggsEaten(84) / 12
+```

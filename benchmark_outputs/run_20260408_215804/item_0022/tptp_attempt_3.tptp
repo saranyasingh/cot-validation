@@ -1,0 +1,8 @@
+% --- FACTS ---
+fof(fact_1, axiom, current_age(samantha) = 31).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1 by Arithmetic
+fof(inf_1, axiom, birth_year(raymonds_son) = current_year_minus_6).

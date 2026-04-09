@@ -1,0 +1,37 @@
+To determine how far John is from home after 4 hours, we need to calculate his total distance traveled and compare it to the distance back home.
+
+### Step-by-Step Logical Reasoning:
+
+1. **Initial Drive (First Leg):**
+   - Speed: 60 mph
+   - Time: 3 hours
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles
+
+2. **Turnaround Point:**
+   - John realizes he forgot something at home.
+   - This means he has to return immediately, which takes an additional hour (since he had been traveling for 3 hours already).
+
+3. **Return Trip:**
+   - Distance = Initial Travel + Turnaround Distance = 180 miles + 180 miles = 360 miles
+   - Time taken = 3 hours (initial travel) + 1 hour turnaround = 4 hours
+
+4. **Additional Trips:**
+   - First Half Hour:
+     - Speed: 30 mph
+     - Distance = Speed × Time = 30 mph × 0.5 hours = 15 miles
+   - Remaining Time:
+     - Total time spent on trips = 4 hours
+     - Time spent on trips = 3 hours initial trip + 0.5 hours turn-around trip + 15 minutes extra trip = 4 hours
+     - Remaining time = 4 hours - 4 hours = 0 hours
+
+### Calculation Summary:
+- **Total Distance Traveled:** 360 miles (return trip)
+- **Time Spent Driving:** 4 hours (total)
+- **Distance Back Home:** 360 miles
+
+Since John travels 360 miles to go back home and he only has 4 hours to complete this journey, he must have reached his destination within that timeframe. Therefore, he cannot be more than 360 miles away from home at the end of these 4 hours.
+
+**Answer:**
+The answer is: 360
+
+This conclusion is based on the information provided about John's travel times and speeds, ensuring all steps logically follow from the given data.

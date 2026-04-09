@@ -224,7 +224,7 @@ def run_item(
     question: str,
     reasoning_client,
     verifier_client,
-    max_retries: int = 3,
+    max_retries: int = 5,
     output_dir: str = None,
 ) -> dict:
     """
@@ -365,7 +365,7 @@ def run_benchmark(
     output_dir: str,
     reasoning_client,
     verifier_client,
-    max_retries: int = 3,
+    max_retries: int = 5,
 ) -> dict:
     total = len(items)
     correct = passed_verify_count = passed_tptp_count = needed_retry_count = 0
@@ -503,8 +503,8 @@ if __name__ == "__main__":
         help="Root output directory (default: proofwriter_outputs/).",
     )
     parser.add_argument(
-        "--max-retries", "-r", type=int, default=3,
-        help="Max verify/TPTP repair attempts per item (default: 3).",
+        "--max-retries", "-r", type=int, default=5,
+        help="Max verify/TPTP repair attempts per item (default: 5).",
     )
     parser.add_argument(
         "--client", "-c", choices=["openai", "kimi", "deepseek"], default="openai",

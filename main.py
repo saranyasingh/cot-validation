@@ -178,7 +178,7 @@ def run_plain(question: str, output_dir: str = None, reasoning_client=None) -> d
 
 # ─── Full Pipeline ─────────────────────────────────────────────────────────────
 
-def run_pipeline(question: str, max_retries: int = 3, output_dir: str = None,
+def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
                  reasoning_client=None, verifier_client=None) -> dict:
     """
     Run the full CoT → Structured FOL → Verify → TPTP pipeline with error-feedback retries.
@@ -354,8 +354,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--max-retries", "-r",
         type=int,
-        default=3,
-        help="Max verify/tptp repair attempts (default: 3).",
+        default=5,
+        help="Max verify/tptp repair attempts (default: 5).",
     )
     parser.add_argument(
         "--plain",

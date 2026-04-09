@@ -1,0 +1,23 @@
+## FACTS
+
+FACT-1: Marissa has walked 6 miles :: Walked(6, t_initial)
+FACT-2: It took Marissa 1 hour to walk 4 miles :: Walked(4, t_0)
+FACT-3: It took Marissa another hour to walk 2 miles :: Walked(2, t_1)
+FACT-4: She wants to cover 12 miles at an average speed of 4 mph :: Goal(12, 4)
+
+## RULES
+
+RULE-1: If someone walks x miles in y hours, then they have walked x miles :: Walked(x, y)
+RULE-2: Walking at a constant speed covers distance in proportion to time :: ConstantSpeed(d, s, t)
+
+## INFERENCES
+
+INF-1: From FACT-1 and RULE-1: Marissa has walked 6 miles :: Walked(6, t_0)
+INF-2: From FACT-2 and RULE-1: Marissa has walked 4 miles in 1 hour :: Walked(4, 1)
+INF-3: From FACT-3 and RULE-1: Marissa has walked 2 miles in another hour :: Walked(2, 1)
+INF-4: From FACT-4 and RULE-2: At an average speed of 4 mph, walking 6 miles takes 1.5 hours :: TimeNeededForGoal(6, 12, 4, 1.5)
+INF-5: From RULE-1 and Rule-2: To achieve an average speed of 4 mph, Marissa must walk at least 1.5 hours :: RequiresAtLeastTime(1.5, 12, 4)
+INF-6: Marissa needs to walk 6 more miles to meet her goal :: NeedsMoreMiles(6, 12)
+INF-7: Marissa can walk 1 mile every 1/2 hour at an average speed of 4 mph :: CanWalkAtSpeed(1, 0.5, 4)
+INF-8: Marissa needs 1.5 hours to walk 1 mile :: TimeRequiredForSingleMile(1, 1.5)
+INF-9: Therefore, Marissa needs to walk at a speed of **1.5** miles per hour to achieve her desired average speed of 4 mph over the entire hike. :: WalksAtSpeed(1.5, 12, 4)

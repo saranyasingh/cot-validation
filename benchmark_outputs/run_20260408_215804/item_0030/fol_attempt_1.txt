@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: Heels cost 33 dollars each :: HeelPrice(33)
+FACT-2: Second pair of heels costs twice the first pair :: HeelPrice(66)
+
+## RULES
+RULE-1: Boots cost the sum of the prices of two pairs of heels :: BootsCost(B) ↔ HeelPrice(33) + HeelPrice(66)
+
+## INFERENCES
+INF-1: Total cost of heels plus $5 equals cost of boots :: BootsCost(HeelPrice(33) + HeelPrice(66)) + 5 = BootsCost(B)

@@ -1,0 +1,22 @@
+### FACTS
+FACT-1: FirstThreeCustomersSold3DVDs :: FirstThreeCustomers(Sold(DVD))
+FACT-2: NextTwoCustomersBought2DVDs :: NextTwoCustomers(Bought(2DVD))
+FACT-3: LastThreeCustomersDidNotBuyAnyDVDs :: LastThreeCustomers(NoDVD())
+
+### RULES
+RULE-1: SumOfCountsFromGroups :: ∀c (c ∈ Customers -> Sold(c) + Bought(c) = Count(c))
+RULE-2: GroupingAndCounting :: (∀g (g ∈ Groups -> c ∈ g) ∧ c ∈ Customers -> Count(g) = SumOfCountsInGroup(g))
+
+### INFERENCES
+INF-1: TotalDVDsSoldTuesday :: ∀c (c ∈ Customers -> Sold(c)) ∧ ∀g (g ∈ Groups -> c ∈ g) ∧ c ∈ Customers -> Count(g) = SumOfCountsInGroup(g)
+INF-2: ApplyingRule1ToFirstThree :: FirstThreeCustomers(Sold(DVD)) ∧ FirstThreeCustomers(Bought(2DVD)) ∧ FirstThreeCustomers(NoDVD())
+INF-3: ApplyingRule1ToNextTwo :: NextTwoCustomers(Sold(DVD)) ∧ NextTwoCustomers(Bought(2DVD)) ∧ NextTwoCustomers(NoDVD())
+INF-4: ApplyingRule1ToLastThree :: LastThreeCustomers(Sold(DVD)) ∧ LastThreeCustomers(Bought(2DVD)) ∧ LastThreeCustomers(NoDVD())
+INF-5: TotalDVDsSoldTuesdayBySumming :: ∀c (c ∈ Customers -> Sold(c)) ∧ ∀g (g ∈ Groups -> c ∈ g) ∧ c ∈ Customers -> Count(g) = SumOfCountsInGroup(g)
+INF-6: CalculatingTotal :: TotalDVDsSoldTuesday = Sold(FirstThreeCustomers) + Bought(NextTwoCustomers) + Bought(LastThreeCustomers)
+
+### CALCULATION
+INF-7: TotalDVDsSoldTuesday = 3 + 3 + 4 + 0 = 10
+
+### Answer
+10 DVDs were sold on Tuesday.

@@ -1,0 +1,24 @@
+LABEL: FACTS :: 
+FACT-1: NumberOfDozenDonuts = 3
+FACT-2: PricePerDozenDonuts = 68
+FACT-3: NumberOfDozenMiniCupcakes = 2
+FACT-4: PricePerDozenMiniCupcakes = 80
+FACT-5: NumberOfDozenMiniCheesecakes = 6
+FACT-6: PricePerDozenMiniCheesecakes = 55
+
+LABEL: RULES ::
+RULE-1: MultiplyNumberOfDozenByPricePerDozenForTotal :: ∀n p (Multiply(n, p) = n * p)
+
+LABEL: INFERENCES ::
+INF-1: TotalCostDonuts = Multiply(NumberOfDozenDonuts, PricePerDozenDonuts)
+INF-2: TotalCostMiniCupcakes = Multiply(NumberOfDozenMiniCupcakes, PricePerDozenMiniCupcakes)
+INF-3: TotalCostMiniCheesecakes = Multiply(NumberOfDozenMiniCheesecakes, PricePerDozenMiniCheesecakes)
+
+INF-4: TotalCost = Add(TotalCostDonuts, TotalCostMiniCupcakes, TotalCostMiniCheesecakes)
+
+INF-5: ApplyRule1WithInferringVariablesToFormula(INF-1, INF-2, INF-3, INF-4) using Rule1(Multiply(n, p)) :: ∀n p (Multiply(n, p) = n * p)
+INF-6: ApplyRule1WithInferringVariablesToFormula(INF-5, InferringVariables(INF-1, INF-2, INF-3, INF-4)) using Rule1(Multiply(n, p)) :: ∀n p (Multiply(n, p) = n * p)
+
+INF-7: TotalCost = Add(204, 160, 330)
+
+INF-8: TotalCostFinalResult = 794

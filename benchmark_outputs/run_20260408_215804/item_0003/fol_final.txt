@@ -1,0 +1,24 @@
+## FACTS
+LABEL: HousePrice($80,000) :: HousePrice($80,000)
+LABEL: RepairCost($50,000) :: RepairCost($50,000)
+LABEL: ValueIncrease(150%) :: ValueIncrease(150%)
+
+## RULES
+LABEL: Rule1 :: ∀x ∀y ∀z (Present(x,y,z) → Present(y,x,z)) :: ∀x ∀y ∀z (Present(x,y,z) → Present(y,x,z))
+LABEL: Rule2 :: ∀x ∀y ∀z (Met(x,y,z) → Contact(x,y,z)) :: ∀x ∀y ∀z (Met(x,y,z) → Contact(x,y,z))
+LABEL: Rule3 :: ∀x ∀y ∀z (Told(x,y,z) → HasInfo(x,y,z)) :: ∀x ∀y ∀z (Told(x,y,z) → HasInfo(x,y,z))
+
+## INFERENCES
+LABEL: PresentAliceBob(t_14) :: ∃t (Present(Alice,Bob,t) ∧ t = t_14)
+LABEL: PresentBobMrBlack(t_18) :: ∃t (Met(Bob,MrBlack,t) ∧ t = t_18)
+LABEL: PresentMrBlackOffice(t_18) :: ∃t (Met(MrBlack,Office,t) ∧ t = t_18)
+LABEL: HasInfoAliceMurderLocation(t_18) :: ∃t (Told(Alice,MurderLocation,t) ∧ t = t_18)
+LABEL: PresentAliceMrBlack(t_21) :: ∃t (Present(Alice,MrBlack,t) ∧ t = t_21)
+LABEL: HasInfoAliceMurderLocation(t_21) :: ∃t (HasInfo(Alice,MurderLocation,t) ∧ t = t_21)
+LABEL: PresentBobMrBlack(t_21) :: ∃t (Present(Bob,MrBlack,t) ∧ t = t_21)
+LABEL: HasInfoBobMurderLocation(t_21) :: ∃t (HasInfo(Bob,MurderLocation,t) ∧ t = t_21)
+LABEL: ProfitAlice :: ∃t (Present(Alice,MrBlack,t) ∧ Present(Alice,MurderLocation,t) ∧ HasInfo(Alice,MurderLocation,t))
+LABEL: LossAlice :: ProfitAlice > 0
+LABEL: NegativeProfitAlice :: ProfitAlice < 0
+LABEL: LossOfMoneyAlice :: ProfitAlice = -10000
+LABEL: ConclusionAlice :: ProfitAlice = -10000

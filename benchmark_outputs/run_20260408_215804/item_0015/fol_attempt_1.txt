@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: TotalStudents = 20 :: TotalStudents(20)
+
+## RULES
+RULE-1: EnrolledInContemporaryDance(4) :: EnrolledInContemporaryDance(20)
+
+## INFERENCES
+INF-1: ContemplativeClassSize = 4 :: EnrolledInContemporaryDance(4)
+INF-2: RemainingStudentsAfterContemporary = 16 :: RemainingStudents(TotalStudents - EnrolledInContemporaryDance)
+INF-3: EnrolledInJazzDance(4) :: EnrolledInJazzDance(16)
+INF-4: HipHopDancersRemaining(12) :: HipHopDancers(20) - EnrolledInContemporaryDance - EnrolledInJazzDance
+INF-5: PercentageEnrolledHipHop(60) :: (HipHopDancersRemaining / TotalStudents) * 100%

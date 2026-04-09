@@ -1,0 +1,22 @@
+**CHAIN OF THOUGHT REASONING TO CONVERT**
+
+### **FACTS**
+FACT-1: Initially, there were 10 liters of orange drink. :: Orangedrink(orange_drink, t_initial)
+FACT-2: Initially, there were 15 liters of pineapple drink. :: Orangedrink(pineapple_drink, t_initial)
+FACT-3: After spilling 1 liter of orange drink, the remaining volume is 18 liters. :: MixtureVolume(mixture_volume, t_spill)
+
+### **RULES**
+RULE-1: If you spill x liters of liquid from a container, the remaining volume is 100% of what was initially minus x liters. :: MixtureVolume(remaining_volume, spilled_volume, initial_volume)
+
+### **INFERENCES**
+INF-1: From FACT-1, Rule-1 by Subtraction: There were 10 liters of orange drink initially. :: Orandedrink(orange_drink, t_initial)
+INF-2: From FACT-2, Rule-1 by Addition: There were 15 liters of pineapple drink initially. :: Orandedrink(pineapple_drink, t_initial)
+INF-3: From Fact-1, Rule-1 by Subtraction: After spilling 1 liter of orange drink, the remaining volume is 18 liters. :: MixtureVolume(remaining_volume, spilled_volume, initial_volume)
+INF-4: From Fact-2, Rule-1 by Addition: The total initial volume of the mixture is 25 liters. :: MixtureVolume(total_volume, initial_volume, initial_volume)
+INF-5: From Fact-3, Rule-1 by Division: The remaining volume divided by the total volume gives the fraction of the mixture left. :: FractionFraction(fraction_remaining, total_volume, remaining_volume)
+INF-6: From Fact-4, Rule-1 by Multiplication: Multiply the fraction by the initial volume of the pineapples to find the initial volume of the pineapples. :: Orangedrink(pineapple_drink, t_initial)
+INF-7: From Fact-5, Rule-1 by Addition: Add the initial volume of oranges to get the total volume of the mixture. :: MixtureVolume(total_volume, initial_volume, initial_volume)
+INF-8: From Fact-6, Rule-1 by Subtraction: Subtract the volume of oranges to find the volume of pineapples. :: MixtureVolume(pineapple_drink, initial_volume, total_volume)
+INF-9: From Fact-7, Rule-1 by Multiplication: Calculate the proportion of water in the orange drink. :: Proportion(proportion_orange_drink, initial_volume, orange_drink_volume)
+INF-10: From Fact-8, Rule-1 by Addition: Calculate the proportion of water in the pineapple drink. :: Proportion(proportion_pineapple_drink, initial_volume, pineapple_drink_volume)
+INF-11: From Fact-9, Rule-1 by Subtraction: Subtract the proportion of orange drink from 1 to get the final proportion of water in the mixture. :: Proportion(final_proportion_water, total_volume, initial_volume)

@@ -1,0 +1,48 @@
+LABEL: ## FACTS :: 
+1. **Number of Chickens**: There are 20 chickens.
+   ```plaintext
+   Fact-1: Number_of_chickens = 20
+   ```
+
+2. **Feed Requirement per Chicken per Day**: Each chicken gets 3 cups of feed per day.
+   ```plaintext
+   Fact-2: Feed_per_chicken_per_day = 3
+   ```
+
+3. **Total Daily Feed Required**: Multiply the number of chickens by the feed requirement per chicken.
+   ```plaintext
+   Fact-3: Total_daily_feed_required = Number_of_chickens * Feed_per_chicken_per_day
+   ```
+   Substituting the values:
+   ```plaintext
+   Fact-3: Total_daily_feed_required = 20 * 3 = 60 cups
+   ```
+
+LABEL: ## RULES :: 
+1. **Daily Feed Calculation**:
+   - If each chicken gets 3 cups of feed per day, then the total daily feed required can be calculated by multiplying the number of chickens by the feed requirement per chicken.
+   ```plaintext
+   Rule-1: Total_daily_feed_required = Number_of_chickens * Feed_per_chicken_per_day
+   ```
+2. **Morning Feed Calculation**:
+   - Given morning feed: 15 cups
+   ```plaintext
+   Rule-2: Morning_feed_given = 15 cups
+   ```
+
+3. **Afternoon Feed Calculation**:
+   - Given afternoon feed: 25 cups
+   ```plaintext
+   Rule-3: Afternoon_feed_given = 25 cups
+   ```
+
+LABEL: ## INFERENCES :: 
+1. **Remaining Feed Needed**:
+   - The remaining feed needed after giving morning and afternoon feeds is calculated by subtracting the sum of morning and afternoon feeds from the total daily feed required.
+   ```plaintext
+   Rule-4: Remaining_feed_needed = Total_daily_feed_required - (Morning_feed_given + Afternoon_feed_given)
+   ```
+   Substituting the values:
+   ```plaintext
+   Rule-4: Remaining_feed_needed = 60 - (15 + 25) = 60 - 40 = 20 cups
+   ```

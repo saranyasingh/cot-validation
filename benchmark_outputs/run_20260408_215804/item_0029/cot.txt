@@ -1,0 +1,16 @@
+Explanation:
+
+1. Henry's total trip distance is 60 miles.
+   Premise: Total trip length = 60 miles.
+
+2. Henry first stopped at 20 miles into his trip.
+   Premise: First stop = 20 miles.
+
+3. His second stop was 15 miles before the end of the trip.
+   Premise: Second stop = 45 miles (since it was 15 miles before the end).
+
+4. To find out how far he traveled between his first and second stops,
+   we need to calculate the difference between these two points on the trip.
+   Calculation: Distance between first and second stops = 45 - 20 = 25 miles.
+
+Therefore, the answer is: 25.

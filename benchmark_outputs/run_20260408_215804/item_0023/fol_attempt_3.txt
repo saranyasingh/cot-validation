@@ -1,0 +1,13 @@
+## FACTS
+LABEL: FACT-1 :: Sold(DVD)(FirstThreeCustomers) ∧ Bought(1DVD)(FirstThreeCustomers) ∧ NoDVD()(FirstThreeCustomers)
+LABEL: FACT-2 :: Sold(DVD)(NextTwoCustomers) ∧ Bought(2DVD)(NextTwoCustomers) ∧ NoDVD()(NextTwoCustomers)
+LABEL: FACT-3 :: Sold(DVD)(LastThreeCustomers) ∧ Bought(0DVD)(LastThreeCustomers) ∧ NoDVD()(LastThreeCustomers)
+
+## RULES
+LABEL: RULE-1 :: If a customer buys more than one item, then that customer bought at least one item.
+LABEL: RULE-2 :: If a customer does not buy anything, then no other items were purchased by them.
+
+## INFERENCES
+LABEL: INFERENCE-1 :: Infers that the first three customers bought exactly one DVD each.
+LABEL: INFERENCE-2 :: Infers that the next two customers bought exactly two DVDs each.
+LABEL: INFERENCE-3 :: Infers that the last three customers did not purchase any DVDs.

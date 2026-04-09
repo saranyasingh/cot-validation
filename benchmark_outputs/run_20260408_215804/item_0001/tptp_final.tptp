@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, lay_eggs(janet, 16)).
+
+fof(fact_2, axiom, eat_for_breakfast(janet, 3)).
+
+fof(fact_3, axiom, bake_muffins(janet, 4)).
+
+fof(fact_4, axiom, price(egg, \$2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ( eggs_after_breakfast(lay_eggs(janet, X), eat_for_breakfast(janet, Y)) => ( lay_eggs(janet, X - Y) & after(X, Y) ) ).
+
+fof(rule_2, axiom, ! [X, Y] : ( eggs_after_baking(bake_muffins(janet, Y), eggs_after_breakfast(lay_eggs(janet, X))) => ( eggs_after_baking(janet, Y) & after(Y, X) ) ).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, remaining_eggs_after_breakfast(lay_eggs(janet, 16), eat_for_breakfast(janet, 3)) & after(16, 3)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, remaining_eggs_after_breakfast(16, 3) & after(16, 3)).
+
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_3, axiom, remaining_eggs_after_baking(13) & after(13, 4)).
+
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_4, axiom, earnings_from_remaining_eggs(remainder, price(egg, \$2)) & after(remainder, 2)).

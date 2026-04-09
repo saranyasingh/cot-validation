@@ -1,0 +1,25 @@
+## FACTS
+LABEL: Sawyer(Alice, Bob, t_14) :: Sawyer(Alice, Bob, t_14)
+LABEL: WentHomeAt(t_14) :: WentHomeAt(t_14)
+LABEL: MetMrBlack(MrBlack, Office, t_18) :: MetMrBlack(MrBlack, Office, t_18)
+LABEL: ToldAboutMurderLocation(t_18) :: ToldAboutMurderLocation(t_18)
+
+## RULES
+LABEL: RULE-1 :: ∀t (Saw(x, y, t) → Present(x, y, t)) :: ∀t (Saw(x, y, t) → Present(x, y, t))
+LABEL: RULE-2 :: ∀t (Met(x, y, t) → Contact(x, y, t)) :: ∀t (Met(x, y, t) → Contact(x, y, t))
+LABEL: RULE-3 :: ∀t (Told(x, y, t) → HasInfo(x, y, t)) :: ∀t (Told(x, y, t) → HasInfo(x, y, t))
+
+## INFERENCES
+LABEL: Present(Alice, Bob, t_14) :: ∃t (Saw(Alice, Bob, t) ∧ t = t_14)
+LABEL: Present(Bob, MrBlack, t_18) :: ∃t (Met(Bob, MrBlack, t) ∧ t = t_18)
+LABEL: Present(MrBlack, Office, t_18) :: ∃t (Met(MrBlack, Office, t) ∧ t = t_18)
+LABEL: HasInfo(Alice, MurderLocation, t_18) :: ∃t (Told(Alice, MurderLocation, t) ∧ t = t_18)
+LABEL: Present(Alice, MrBlack, t_21) :: ∃t (Present(Alice, MrBlack, t) ∧ t = t_21)
+LABEL: HasInfo(Alice, MurderLocation, t_21) :: ∃t (HasInfo(Alice, MurderLocation, t) ∧ t = t_21)
+LABEL: Present(Bob, MrBlack, t_21) :: ∃t (Present(Bob, MrBlack, t) ∧ t = t_21)
+LABEL: HasInfo(Bob, MurderLocation, t_21) :: ∃t (HasInfo(Bob, MurderLocation, t) ∧ t = t_21)
+LABEL: Profit(Alice) :: ∃t (Present(Alice, MrBlack, t) ∧ Present(Alice, MurderLocation, t) ∧ HasInfo(Alice, MurderLocation, t))
+LABEL: Loss(Alice) :: Profit(Alice) > 0
+LABEL: NegativeProfit(Alice) :: Profit(Alice) < 0
+LABEL: LossOfMoney(Alice) :: Profit(Alice) = -10000
+LABEL: Conclusion(Alice) :: Profit(Alice) = -10000 :: Conclusion(Alice) :: Profit(Alice) = -10000

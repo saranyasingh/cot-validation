@@ -1,0 +1,19 @@
+## FACTS
+```
+Fact-1: It was raining at noon :: Raining(t_12)
+Fact-2: Claire makes a 3-egg omelet every morning :: OmeletteMade(morning)
+```
+
+## RULES
+```
+Rule-1: If it rains at a time, the ground is wet at that time :: ∀t (Raining(t) → GroundWet(t))
+```
+
+## INFERENCES
+```
+Infer-1: From Fact-1, Rule-1 by Modus Ponens: The ground was wet at noon :: GroundWet(t_12)
+Infer-2: Claire ate 3 eggs in the morning :: EggsEatenInMorning(3)
+Infer-3: Total eggs eaten in 4 weeks :: EggsEatenIn4Weeks(EggsEatenInMorning(3), 4 * 7)
+Infer-4: Convert eggs to dozens :: EggsToDozens(EggsEatenIn4Weeks)
+Infer-5: Final result: Claire eats 7 dozen eggs in 4 weeks :: FinalResult(FinalConversionToDozens)
+```

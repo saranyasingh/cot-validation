@@ -1,0 +1,12 @@
+LABEL: FACT-1 :: JanetLaysEggsPerDay(16) :: LayEggs(Janet, 16)
+LABEL: FACT-2 :: JanetEatsForBreakfast(3) :: EatForBreakfast(Janet, 3)
+LABEL: FACT-3 :: JanetBakesMuffins(4) :: BakeMuffins(Janet, 4)
+LABEL: FACT-4 :: EggSoldPrice(\$2) :: Price(Egg, \$2)
+
+LABEL: RULE-1 :: EggsAfterBreakfast(LayEggs(Janet, x), EatForBreakfast(Janet, y)) :: LayEggs(Janet, x - y) :: After(x, y)
+LABEL: RULE-2 :: EggsAfterBaking(BakeMuffins(Janet, y), EggsAfterBreakfast(LayEggs(Janet, x))) :: EggsAfterBaking(Janet, y) :: After(y, x)
+
+LABEL: INF-1 :: RemainingEggsAfterBreakfast(LayEggs(Janet, 16), EatForBreakfast(Janet, 3)) :: RemainingEggsAfterBreakfast(16, 3) :: After(16, 3)
+LABEL: INF-2 :: RemainingEggsAfterBaking(Remainder, EggsAfterBreakfast(13, 3)) :: RemainingEggsAfterBaking(13) :: After(13, 3)
+LABEL: INF-3 :: EarningsFromRemainingEggs(Remainder, Price(Egg, \$2)) :: EarningsFromRemainingEggs(Remainder, \$2) :: After(Remainder, 2)
+LABEL: INF-4 :: DailyIncomeAtMarket(DailyIncomeAtMarket) :: EarningsFromRemainingEggs(9, \$2) :: DailyIncomeAtMarket(18)

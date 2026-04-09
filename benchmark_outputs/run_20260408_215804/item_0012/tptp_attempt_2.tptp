@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_dozen_donuts = 3).
+fof(fact_2, axiom, price_per_dozen_donuts = 68).
+fof(fact_3, axiom, number_of_dozen_mini_cupcakes = 2).
+fof(fact_4, axiom, price_per_dozen_mini_cupcakes = 80).
+fof(fact_5, axiom, number_of_dozen_mini_cheesecakes = 6).
+fof(fact_6, axiom, price_per_dozen_mini_cheesecakes = 55).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, P] : (Multiply(N, P) = N * P)).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Rule1
+fof(inf_1, axiom, total_cost_donuts = Multiply(number_of_dozen_donuts, price_per_dozen_donuts)).
+% From fact_3, fact_4 by Rule1
+fof(inf_2, axiom, total_cost_mini_cupcakes = Multiply(number_of_dozen_mini_cupcakes, price_per_dozen_mini_cupcakes)).
+% From fact_5, fact_6 by Rule1
+fof(inf_3, axiom, total_cost_mini_cheesecakes = Multiply(number_of_dozen_mini_cheesecakes, price_per_dozen_mini_cheesecakes)).
+% From inf_1, inf_2, inf_3 by Add
+fof(inf_4, axiom, total_cost = Add(total_cost_donuts, total_cost_mini_cupcakes, total_cost_mini_cheesecakes)).
+% From inf_1, inf_2, inf_3, inf_4 by Rule1
+fof(inf_5, axiom, total_cost = Add(number_of_dozen_donuts * price_per_dozen_donuts, number_of_dozen_mini_cupcakes * price_per_dozen_mini_cupcakes, number_of_dozen_mini_cheesecakes * price_per_dozen_mini_cheesecakes)).
+% From inf_5 by Rule1
+fof(inf_6, axiom, ! [N, P] : (Multiply(N, P) = N * P)).
+% From inf_4 by Arithmetic evaluation
+fof(inf_7, axiom, total_cost = Add(204, 160, 330)).
+% From inf_7 by Arithmetic evaluation
+fof(inf_8, axiom, total_cost_final_result = 794).

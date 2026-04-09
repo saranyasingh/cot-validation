@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_investment(lemon_tree) = 90).
+
+fof(fact_2, axiom, earnings_per_lemon(lemon_tree) = 10.5).
+
+fof(fact_3, axiom, annual_expenses(lemon_tree) = 3).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (div(total_cost, net_profit) = years_until_start_earning)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, years_until_start_earning(initial_investment(lemon_tree))).

@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, time_begins_at(t_1)).
+
+fof(fact_2, axiom, time_ends_at(t_6)).
+
+fof(fact_3, axiom, melt_rate_of_candle(two_cm_per_hour)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [TA, TB] : (duration_between_times(TA, TB) <=> ? [T] : (time_begins_at(TA) & time_ends_at(TB)))).
+
+fof(rule_2, axiom, ! [DUR, RATE, PROD] : (total_length_burned(DUR, RATE, PROD) <=> (DUR * RATE = PROD))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, time_begins_at(t_1) & time_ends_at(t_6)).
+
+% From fact_2, fact_3, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_length_burned(t_6, two_cm_per_hour, eight_cm)).

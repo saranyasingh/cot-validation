@@ -1,0 +1,11 @@
+FACT-1: Henry traveled 60 miles :: TotalTripDistance(60 miles)
+
+FACT-2: Henry made a first stop at 20 miles :: FirstStop(20 miles)
+
+FACT-3: Henry made a second stop at 45 miles :: SecondStop(45 miles)
+
+RULE-1: Given any point x, the distance between x and another point y is |y-x| :: Distance(x, y)
+
+INF-1: Distance between first and second stops = 45 - 20 :: Distance(FirstStop, SecondStop)
+
+INF-2: From FACT-1, RULE-1 by Subtraction: Distance between first and second stops = 25 miles :: Distance(FirstStop, SecondStop)

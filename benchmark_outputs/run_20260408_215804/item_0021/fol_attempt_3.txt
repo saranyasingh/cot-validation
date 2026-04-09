@@ -1,0 +1,26 @@
+### ## FACTS
+```
+FACT-1 :: Orandedrink(orange_drink, t_initial)
+FACT-2 :: Orandedrink(pineapple_drink, t_initial)
+FACT-3 :: MixtureVolume(remaining_volume, spilled_volume, initial_volume)
+```
+
+### ## RULES
+```
+RULE-1 :: IF Orandedrink(drink_type, t_initial), THEN AmountOfWaterInDrink(drink_type, initial_water_amount)
+    WHERE AmountOfWaterInDrink(drink_type, initial_water_amount) = FractionalPart(FractionalPart(t_initial)) * t_initial
+```
+
+### ## INFERENCES
+```
+INFER-1 :: RemainingOrangeDrinksVolume = InitialOrangeDrinksVolume - SpilledOrangeDrinksVolume
+    WHERE RemainingOrangeDrinksVolume = InitialOrangeDrinksVolume - 1
+        AND SpilledOrangeDrinksVolume = 1
+RemainingMixtureVolume = RemainingOrangeDrinksVolume + PineappleDrinksVolume
+    WHERE RemainingOrangeDrinksVolume = 9
+        AND PineappleDrinksVolume = 9
+TotalWaterInRemainingMixture = WaterInRemainingOrangeDrinks + WaterInOriginalPineappleDrinks
+    WHERE WaterInRemainingOrangeDrinks = FractionalPart(WaterInRemainingOrangeDrinks) * RemainingOrangeDrinksVolume
+        AND WaterInRemainingOrangeDrinks = 6
+        AND WaterInOriginalPineappleDrinks = 9
+```

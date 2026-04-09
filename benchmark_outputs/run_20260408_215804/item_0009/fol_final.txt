@@ -1,0 +1,22 @@
+LABEL: ## FACTS
+## FACT-1: John drove initially at 60 mph for 3 hours :: DistanceTraveled(John, t_initial, 180 miles)
+## FACT-2: After realizing he forgot something, John turned around :: TurnAroundPoint
+## FACT-3: John returned immediately at 60 mph :: ReturnTripSpeed(John, 60 mph)
+## FACT-4: John took a 15-minute rest before returning :: RestTime(John, 15 minutes)
+## FACT-5: John’s total driving time was 4 hours :: TotalDrivingTime(John, 4 hours)
+
+LABEL: ## RULES
+## RULE-1: If someone drives at a constant speed for a certain amount of time, they cover a distance equal to their speed multiplied by time :: RuleOfConstantSpeed(Distance, Speed, Time)
+## RULE-2: A person can turn around if they realize they forgot something :: TurnAroundCondition(TurnAroundPoint)
+## RULE-3: If someone returns immediately, they drive at the same speed :: ReturnTripSameSpeed(ReturnTripSpeed, SameSpeed)
+## RULE-4: Someone who rests during a trip covers less distance due to the rest :: RestTravelLess(Distance, RestTime, RestedSpeed)
+## RULE-5: Given the rules above, any sequence of actions results in a specific outcome :: SequenceOutcome(Outcomes, Actions, Conditions)
+
+LABEL: ## INFERENCES
+## INF-1: John’s initial trip covered 180 miles :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 180 miles, 60 mph, 3 hours)
+## INF-2: John turned around because he realized he forgot something :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 180 miles, 60 mph, 3 hours; TurnAroundPoint)
+## INF-3: John’s return trip at 60 mph covered another 180 miles :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 180 miles, 60 mph, 3 hours)
+## INF-4: John rested for 15 minutes before returning :: ApplyRule(RestTravelLess, Distance, RestTime, RestedSpeed, 15 minutes, 60 mph)
+## INF-5: John’s total driving time was 4 hours :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 180 miles, 60 mph, 3 hours; TurnAroundPoint; RestTravelLess, 15 minutes, 60 mph)
+## INF-6: John arrived back home within 4 hours :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 360 miles, 60 mph, 4 hours)
+## INF-7: John could not be more than 360 miles away from home at the end of these 4 hours :: ApplyRule(RuleOfConstantSpeed, Distance, Speed, Time, 360 miles, 60 mph, 4 hours)

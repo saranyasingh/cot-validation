@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, download_rate(carla, gb_per_min_2)).
+
+fof(fact_2, axiom, downloaded_file(carla, gb_80)).
+
+fof(fact_3, axiom, file_size(gb_200)).
+
+fof(fact_4, axiom, delay_after_restart(twenty_minutes)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (downloaded_file(carla, D) => more_than_60_minutes(D))).
+
+fof(rule_2, axiom, delay(twenty_minutes)).
+
+% --- INFERENCES ---
+% From fact_2
+fof(inf_1, axiom, downloaded_file(carla, gb_80)).
+
+% From fact_2, fact_3 by subtraction
+fof(inf_2, axiom, less_than_120_gb_left(gb_120)).
+
+% From rule_1, inf_2 by Modus Ponens
+fof(inf_3, axiom, more_than_60_minutes(less_than_120_gb_left(gb_120))).
+
+% From rule_2, inf_1, inf_2, inf_3 by Modus Ponens
+fof(inf_4, axiom, total_time(eighty_minutes)).
+
+% From rule_2, inf_4 by Modus Ponens
+fof(inf_5, axiom, delay(total_time(eighty_minutes))).

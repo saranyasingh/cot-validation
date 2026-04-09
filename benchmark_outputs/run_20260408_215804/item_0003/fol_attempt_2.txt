@@ -1,0 +1,9 @@
+LABEL: FACT-1 :: Sawyer(Alice, Bob, t_14)
+LABEL: FACT-2 :: WentHomeAt(t_14)
+LABEL: FACT-3 :: MetMrBlack(MrBlack, Office, t_18)
+LABEL: FACT-4 :: ToldAboutMurderLocation(t_18)
+LABEL: FACT-5 :: SawMrBlack(GroceryStore, t_21)
+
+LABEL: RULE-1 :: ∀t (Saw(x, y, t) → Present(x, y, t))
+LABEL: RULE-2 :: ∀t (Met(x, y, t) → Contact(x, y, t))
+LABEL: RULE-3 :: ∀t (Told(x, y, t) → HasInfo(x, y, t))

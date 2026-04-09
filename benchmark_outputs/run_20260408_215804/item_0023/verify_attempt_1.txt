@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — first three customers bought one DVD each (3 total).
+FACT-2: UNSUPPORTED — the story says the next two customers bought 2 DVDs each (total 4), not 2 total.
+FACT-3: SUPPORTED — last three customers did not buy any DVDs.
+RULE-1: PLAUSIBLE — sums of per-group counts yield the total.
+RULE-2: PLAUSIBLE — grouping and counting is a sensible general principle here.

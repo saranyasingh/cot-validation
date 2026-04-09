@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: TimeBeginsAt(1:00 PM) :: t_1
+FACT-2: TimeEndsAt(5:00 PM) :: t_6
+FACT-3: MeltRateOfCandle(2 cm/hour) :: 2 cm/hour
+
+## RULES
+RULE-1: DurationBetweenTimes(t_a, t_b) :: ∃t (TimeBeginsAt(t_a) ∧ TimeEndsAt(t_b))
+RULE-2: TotalLengthBurned(Duration, Rate) :: Duration * Rate
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1: There exists a time \( t \) such that \( TimeBeginsAt(t) \) and \( TimeEndsAt(t) \). This means the candle starts at 1:00 PM and ends at 5:00 PM.
+INF-2: Using RULE-2 and applying it to the duration and rate, we get the total length burned:
+\[
+\text{Total length burned} = Duration \times Rate = (t_6 - t_1) \times 2 \, \text{cm}
+\]
+Since \( t_6 - t_1 = 4 \) hours,
+\[
+\text{Total length burned} = 4 \, \text{hours} \times 2 \, \text{cm/hour} = 8 \, \text{centimeters}
+\]

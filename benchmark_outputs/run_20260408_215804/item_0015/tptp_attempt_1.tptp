@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_students(20)).
+
+% --- RULES ---
+fof(rule_1, axiom, (enrolled_in_contemporary_dance(4) => enrolled_in_contemporary_dance(20))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, enrolled_in_contemporary_dance(4)).
+% From fact_1, inf_1 by Arithmetic
+fof(inf_2, axiom, remaining_students(16)).
+% From inf_1 by Modus Ponens
+fof(inf_3, axiom, enrolled_in_jazz_dance(16)).
+% From inf_3 by Arithmetic
+fof(inf_4, axiom, hiphop_dancers_remaining(12)).
+% From inf_4 by Arithmetic
+fof(inf_5, axiom, percentage_enrolled_hiphop(60)).

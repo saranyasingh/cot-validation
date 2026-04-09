@@ -1,0 +1,3 @@
+Label: TOTAL_DISTANCE_TRAVELED :: ∀t ((TravelingWest(t) ∧ Day1) ∨ TravelingNorth(t) ∧ Day2)
+
+This represents the total distance covered by each train over the two days, considering their directions and days of travel.

@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_trip_distance(sixty_miles)).
+fof(fact_2, axiom, first_stop(twenty_miles)).
+fof(fact_3, axiom, second_stop(forty_five_miles)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : distance(X, Y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, distance(first_stop, second_stop)).
+% From fact_1, rule_1 by Subtraction
+fof(inf_2, axiom, distance(first_stop, second_stop)).

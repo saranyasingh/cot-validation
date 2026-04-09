@@ -1,0 +1,35 @@
+### FACTS
+FACT-1: TeachingHoursPerWeek(teacher_hours_per_week) :: 35
+FACT-2: WeeksInYear(years_in_year) :: 50
+FACT-3: HourlyRate_teaching(teaching_hourly_rate) :: 20
+FACT-4: HoursAsTeacher(hours_as_teacher) :: 35 * years_in_year
+FACT-5: CoachingHoursPerWeek(coach_hours_per_week) :: 15
+FACT-6: WeeksInYear(years_in_year) :: 50
+FACT-7: HourlyRate_coaching(coaching_hourly_rate) :: 30
+FACT-8: HoursAsCoach(hours_as_coach) :: 15 * years_in_year
+
+### RULES
+RULE-1: EarningsFromTeaching(hours_worked, hourly_rate) :: hours_worked * hourly_rate
+RULE-2: EarningsFromCoaching(hours_worked, hourly_rate) :: hours_worked * hourly_rate
+RULE-3: TotalAnnualSalary(hours_as_teacher, teaching_hourly_rate, hours_as_coach, coaching_hourly_rate) :: EarningsFromTeaching(hours_as_teacher, teaching_hourly_rate) + EarningsFromCoaching(hours_as_coach, coaching_hourly_rate)
+
+### INFERENCES
+INF-1: JillTeaches(teacher_hours_per_week) :: TeachingHoursPerWeek(teacher_hours_per_week)
+INF-2: YearsInJillYear(years_in_year) :: 50
+INF-3: TeacherEarnings(jill_hours_as_teacher, teaching_hourly_rate) :: EarningsFromTeaching(jill_hours_as_teacher, teaching_hourly_rate)
+INF-4: JillIsATeacher(jill_is_teacher) :: True
+INF-5: JillWorksAsTeacher(jill_hours_worked, teacher_hours_per_week) :: jill_hours_worked == jill_hours_as_teacher
+INF-6: JillEarnsFromTeaching(jill_hours_worked, teaching_hourly_rate) :: TeacherEarnings(jill_hours_worked, teaching_hourly_rate)
+INF-7: JillCoaches(coach_hours_per_week) :: CoachingHoursPerWeek(coach_hours_per_week)
+INF-8: YearsInJillYear(years_in_year) :: 50
+INF-9: CoachEarnings(jill_hours_as_coach, coaching_hourly_rate) :: EarningsFromCoaching(jill_hours_as_coach, coaching_hourly_rate)
+INF-10: JillIsACoach(jill_is_coach) :: True
+INF-11: JillWorksAsCoach(jill_hours_worked, coach_hours_per_week) :: jill_hours_worked == jill_hours_as_coach
+INF-12: JillEarnsFromCoaching(jill_hours_worked, coaching_hourly_rate) :: CoachEarnings(jill_hours_worked, coaching_hourly_rate)
+INF-13: JillAnnualSalary(jill_total_salary) :: TotalAnnualSalary(jill_hours_worked, teaching_hourly_rate, jill_hours_worked, coaching_hourly_rate)
+INF-14: JillTeachingHoursPerYear(jill_hours_as_teacher) :: HoursAsTeacher(jill_hours_as_teacher)
+INF-15: JillCoachingHoursPerYear(jill_hours_as_coach) :: HoursAsCoach(jill_hours_as_coach)
+INF-16: JillEarnings(jill_total_earnings) :: JillEarnsFromTeaching(jill_hours_worked, teaching_hourly_rate) + JillEarnsFromCoaching(jill_hours_worked, coaching_hourly_rate)
+INF-17: JillAnnualIncome(jill_annual_income) :: JillEarnings(jill_total_earnings)
+
+INF-18: JillAnnualSalary(jill_annual_salary) :: JillAnnualIncome(jill_annual_income) / YearsInJillYear(years_in_year)

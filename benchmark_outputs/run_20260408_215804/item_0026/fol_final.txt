@@ -1,0 +1,17 @@
+LABEL: ## FACTS
+## FACTS
+FACT-1: ChickenMealCost = $12
+FACT-2: MilkPacksCost = 5 * $3 = $15
+FACT-3: AppleCost = 4 * $1.50 = $6
+FACT-4: PizzaBoxesCost = $50 - ($12 + $15 + $6) = $17
+
+LABEL: ## RULES
+## RULES
+RULE-1: If x pizzas were bought, then the total cost is x times the price of one pizza.
+RULE-2: For every pizza bought, the cost is $8.50.
+
+LABEL: ## INFERENCES
+## INFERENCES
+INF-1: Number of boxes of pizza bought = $\frac{\text{Remaining money}}{\text{Price per pizza}}$
+INF-2: From INF-1, Rule-2 can be instantiated: Number of boxes of pizza bought = $\frac{17}{8.50}$
+INF-3: Simplifying the division gives us: Number of boxes of pizza bought = 2

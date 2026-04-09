@@ -1,0 +1,14 @@
+### FACTS
+```plaintext
+FACT-1: Samantha is currently 31 years old :: CurrentAge(Samantha) = 31
+```
+
+### RULES
+No rules are needed here since all facts provide direct information without requiring any logical derivation.
+
+### INFERENCES
+```plaintext
+INF-1: BirthYear(Raymond's Son) = CurrentYear - 8
+```
+
+Thus, the birth year of Raymond's son is \(CurrentYear - 8\) years ago, where \(CurrentYear\) is the current year.

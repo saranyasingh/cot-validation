@@ -1,0 +1,52 @@
+To determine which purchase plan maximizes profit for the merchant, we need to calculate the potential profits based on the expected price increases for both the jewelry and electronic gadgets markets.
+
+First, let's calculate the increase in value for each item:
+
+1. **Jewelry**:
+   - Initial value: $5,000
+   - Expected increase: 2.5%
+   \[
+   \text{Increase} = 5000 \times 0.025 = 125
+   \]
+   \[
+   \text{New Value} = 5000 + 125 = 5125
+   \]
+
+2. **Electronic Gadgets**:
+   - Initial value: $8,000
+   - Expected increase: 1.2%
+   \[
+   \text{Increase} = 8000 \times 0.012 = 96
+   \]
+   \[
+   \text{New Value} = 8000 + 96 = 8096
+   \]
+
+Now, let's compare the new values after the expected increases:
+
+- Jewelry: $5,125
+- Electronic Gadgets: $8,096
+
+Since $8,096 > $5,125, purchasing the electronic gadgets offers a higher profit.
+
+Next, we calculate the profit from each option:
+
+1. **Profit from Jewelry Purchase**:
+   - Cost: $5,000
+   - New Value: $5,125
+   \[
+   \text{Profit} = 5125 - 5000 = 125
+   \]
+
+2. **Profit from Electronic Gadgets Purchase**:
+   - Cost: $8,000
+   - New Value: $8,096
+   \[
+   \text{Profit} = 8096 - 8000 = 96
+   \]
+
+Comparing the two profits:
+- Jewelry Profit: $125
+- Electronic Gadgets Profit: $96
+
+Therefore, the merchant should choose to purchase the electronic gadgets for a profit of $96. The answer is: 96

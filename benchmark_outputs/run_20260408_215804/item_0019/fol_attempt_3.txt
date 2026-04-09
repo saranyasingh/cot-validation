@@ -1,0 +1,16 @@
+### ## FACTS
+```
+Fact-1: It was raining at noon :: Raining(t_12)
+Fact-2: Claire makes a 3-egg omelette every morning :: OmeletteMade(morning)
+```
+
+### ## RULES
+```
+Rule-1: If it rained at a time, then the ground was wet at that time :: ∀t (Raining(t) → GroundWet(t))
+```
+
+### ## INFERENCES
+```
+Infer-1: From Fact-1, Rule-1 by Modus Ponens: The ground was wet at noon :: GroundWet(t_12)
+Infer-2: Claire made an omelette in the morning :: OmeletteMade(morning)
+```

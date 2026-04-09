@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story includes a teaching hours per week value.
+FACT-2: SUPPORTED — The story states the weeks in a year (50 weeks).
+FACT-3: SUPPORTED — The story states the hourly rate for teaching ($20).
+FACT-4: SUPPORTED — The story states hours per week when teaching (35 hours/week).
+FACT-5: SUPPORTED — The story states hours per week coaching (15 hours/week).
+FACT-6: SUPPORTED — The story states WeeksInYear as 50 (duplicate).
+FACT-7: SUPPORTED — The story states the hourly rate coaching ($30).
+FACT-8: SUPPORTED — The story states hours per week coaching (15 hours/week).
+RULE-1: PLAUSIBLE — EarningsFromTeaching(hours_worked, hourly_rate) is a sensible computation (hours_worked × hourly_rate).
+RULE-2: PLAUSIBLE — EarningsFromCoaching(hours_worked, hourly_rate) is a sensible computation (hours_worked × hourly_rate).
+RULE-3: PLAUSIBLE — TotalAnnualSalary(hours_as_teacher, teaching_hourly_rate, hours_as_coach, coaching_hourly_rate) can plausibly be the sum of teaching and coaching earnings.

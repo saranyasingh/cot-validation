@@ -1,0 +1,20 @@
+### ## FACTS
+```plaintext
+FACT-1: FirstMonthDownloads(60)
+FACT-2: IncreaseInDownloads(FirstMonthDownloads(x), SecondMonthDownloads(y)) :: x * 3 = y
+FACT-3: ReductionFactor(ThirdMonthDownloads(z)) :: 0.70
+FACT-4: TotalDownloads(366) :: INF-1 + INF-2 + INF-3
+```
+
+### ## RULES
+```plaintext
+RULE-1: IncreaseInDownloads(FirstMonthDownloads(x), SecondMonthDownloads(y)) :: x * 3 = y
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: SecondMonthDownloads(180) :: FirstMonthDownloads(60) * 3
+INF-2: ReductionFactor(ThirdMonthDownloads(z)) :: 0.70
+INF-3: ThirdMonthDownloads(126) :: SecondMonthDownloads(180) * ReductionFactor(ThirdMonthDownloads(z))
+INF-4: TotalDownloads(366) :: INF-1 + INF-2 + INF-3
+```

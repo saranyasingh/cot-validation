@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_month_downloads(60)).
+
+fof(fact_2, axiom, ! [X, Y] : (increase_in_downloads(first_month_downloads(X), second_month_downloads(Y)) => X * 3 = Y)).
+
+fof(fact_3, axiom, ! [Z] : (reduction_factor(third_month_downloads(Z)) = 0.70)).
+
+fof(fact_4, axiom, total_downloads(366)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : (increase_in_downloads(first_month_downloads(X), second_month_downloads(Y)) => X * 3 = Y)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, second_month_downloads(180)).
+
+% From fact_3 by Direct Inference
+fof(inf_2, axiom, ! [Z] : (reduction_factor(third_month_downloads(Z)) = 0.70)).
+
+% From inf_1, inf_2 by Multiplication
+fof(inf_3, axiom, third_month_downloads(126)).
+
+% From inf_1, inf_2, inf_3 by Addition
+fof(inf_4, axiom, total_downloads(366)).

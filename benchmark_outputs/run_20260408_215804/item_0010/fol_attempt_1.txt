@@ -1,0 +1,13 @@
+### Facts
+FACT-1: Eliza worked for 40 hours at her regular rate of $10 per hour :: WorkedRegularHours(40, 10)
+FACT-2: Eliza worked for 5 hours at her overtime rate of $12 per hour :: WorkedOvertimeHours(5, 12)
+
+### Rules
+RULE-1: If someone works more than 40 hours, they get paid time-and-a-half for any additional hours :: IfWorkedMoreThan40Hours(hours_worked, hourly_rate) → TimeAndHalfPay(hours_worked, hourly_rate)
+RULE-2: Regular earnings are calculated based on 40 hours at $10 per hour :: CalculateRegularEarnings(hours_worked, hourly_rate) :: 40 * hourly_rate
+
+### Inferences
+INF-1: From RULE-1, if Eliza worked more than 40 hours, her earnings would be time-and-a-half times her overtime rate. Since she worked 45 hours, her earnings should include both regular and overtime components :: EarnsTimeAndAHalfIfWorkedMoreThan40Hours(hours_worked, hourly_rate)
+INF-2: Using RULE-2, calculate her regular earnings :: CalculateRegularEarnings(40, 10)
+INF-3: Multiply her regular earnings by her overtime rate to find her overtime earnings :: MultiplyByOvertimeRate(regular_earnings, overtime_rate)
+INF-4: Sum up regular and overtime earnings to get total earnings :: AddRegularAndOvertimeEarnings(total_earnings, regular_earnings, overtime_earnings)

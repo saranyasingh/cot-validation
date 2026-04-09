@@ -1,0 +1,41 @@
+% --- FACTS ---
+fof(fact_1, axiom, walked(6, t_initial)).
+
+fof(fact_2, axiom, walked(4, t_0)).
+
+fof(fact_3, axiom, walked(2, t_1)).
+
+fof(fact_4, axiom, goal(12, 4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ( walked(X, Y) => walked(X, Y) )).
+
+fof(rule_2, axiom, ! [D, S, T] : ( constant_speed(D, S, T) )).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, walked(6, t_0)).
+
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, walked(4, 1)).
+
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, walked(2, 1)).
+
+% From fact_4 and rule_2 by Modus Ponens
+fof(inf_4, axiom, time_needed_for_goal(6, 12, 4, 1.5)).
+
+% From rule_1 and rule_2 by Modus Ponens
+fof(inf_5, axiom, requires_at_least_time(1.5, 12, 4)).
+
+% From rule_1 and rule_2 by Modus Ponens
+fof(inf_6, axiom, needs_more_miles(6, 12)).
+
+% From rule_2 by Modus Ponens
+fof(inf_7, axiom, can_walk_at_speed(1, 0.5, 4)).
+
+% From rule_2 by Modus Ponens
+fof(inf_8, axiom, time_required_for_single_mile(1, 1.5)).
+
+% From rule_2 by Modus Ponens
+fof(inf_9, axiom, walks_at_speed(1.5, 12, 4)).

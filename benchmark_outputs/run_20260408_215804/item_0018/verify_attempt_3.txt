@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story states 35 hours per week teaching.
+FACT-2: SUPPORTED — The story states 50 weeks per year.
+FACT-3: SUPPORTED — The story states teaching hourly rate is $20.
+FACT-4: SUPPORTED — HoursAsTeacher inferred from 35 hours/week for 50 weeks (35*50).
+FACT-5: SUPPORTED — The story states 15 hours per week coaching.
+FACT-6: SUPPORTED — The story states 50 weeks per year.
+FACT-7: SUPPORTED — The story states coaching hourly rate is $30.
+FACT-8: SUPPORTED — HoursAsCoach inferred from 15 hours/week for 50 weeks (15*50).
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE

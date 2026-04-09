@@ -1,0 +1,11 @@
+LABEL: ## FACTS :: 
+FACT-1: PriceOfFirstGlass($5)
+FACT-2: PriceOfSecondGlass(0.60 * $5)
+...
+FACT-17: PriceOfEighteenthGlass(0.60 * $5)
+
+LABEL: ## RULES :: 
+RULE-1: TotalCostForGlasses(PriceOfFirstGlass, PriceOfSecondGlass, ..., PriceOfEighteenthGlass, 16)
+
+LABEL: ## INFERENCES :: 
+INF-1: From FACT-1, RULE-1 by Rule Application: Total Cost = ($5 + $3) * 8 = $64

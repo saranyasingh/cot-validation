@@ -1,0 +1,29 @@
+To determine how far John is from home after driving for 4 hours, we need to calculate his total distance traveled based on each segment of his journey.
+
+1. **First Segment (3 hours at 60 mph):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 60 \, \text{mph} \times 3 \, \text{hours} = 180 \, \text{miles}
+   \]
+
+2. **Second Segment (first 2 hours in traffic at 30 mph):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 30 \, \text{mph} \times 2 \, \text{hours} = 60 \, \text{miles}
+   \]
+
+3. **Remaining Time (last half hour at 80 mph):**
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 80 \, \text{mph} \times 0.5 \, \text{hours} = 40 \, \text{miles}
+   \]
+
+Now, sum up all these distances:
+\[
+\text{Total Distance Traveled} = 180 \, \text{miles} + 60 \, \text{miles} + 40 \, \text{miles} = 280 \, \text{miles}
+\]
+
+Since John initially drove for 3 hours at 60 mph without turning back, he was already 180 miles away from home when he turned around. Adding the distance he traveled while stuck in traffic:
+
+\[
+\text{Final Distance from Home} = 180 \, \text{miles} + 60 \, \text{miles} = 240 \, \text{miles}
+\]
+
+Therefore, John is 240 miles from home at the end of those 4 hours. The answer is: 240.

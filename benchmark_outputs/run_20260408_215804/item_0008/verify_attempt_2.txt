@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — Directly stated in the story.
+FACT-2: SUPPORTED — 80 GB is 40% of 200 GB (stated).
+FACT-3: SUPPORTED — The file is 200 GB (stated).
+FACT-4: SUPPORTED — The restart takes 20 minutes (stated).
+RULE-1: PLAUSIBLE — With a 2 GB/min rate, 120 GB would take 60 minutes, and the 20-minute restart makes the total exceed 60.
+RULE-2: PLAUSIBLE — The restart causes a delay of 20 minutes (stated).
