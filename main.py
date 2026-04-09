@@ -132,11 +132,10 @@ def extract_answer(text: str) -> str:
         return ""
     raw = match.group(1).strip().rstrip('.')
 
-    # If the answer starts with an optional currency symbol then digits,
-    # grab just that numeric token (e.g. "145 groups" → "145", "$30 per item" → "$30").
-    num_match = re.match(r'^([$€£]?\d[\d,]*\.?\d*)', raw)
-    if num_match:
-        return num_match.group(1)
+    # Find the last number in the answer (e.g. "step 1 gives 145 groups" → "145").
+    num_matches = re.findall(r'[$€£]?\d[\d,]*\.?\d*', raw)
+    if num_matches:
+        return num_matches[-1]
 
     # Otherwise return the first "word" (handles "yes, …" → "yes", "blue shirt" → "blue shirt")
     # but keep short answers whole; only truncate if there is trailing explanatory text
