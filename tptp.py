@@ -22,6 +22,9 @@ def _get_default_client():
 
 TPTP_TEMPLATE = '''\
 Convert the following structured first-order logic into TPTP-FOF syntax.
+IMPORTANT: You must faithfully represent the EXACT reasoning steps in the chain of thought below — do not add new inferences, skip steps, or alter the logic. 
+The goal is to produce a TPTP file that exactly captures the entire reasoning process as given.
+
 
 === INPUT (Structured FOL) ===
 {structured_fol}

@@ -44,11 +44,6 @@ IMPORTANT: You must faithfully represent the EXACT reasoning steps in the chain 
 - Constants: lowercase with underscores (e.g., alice, bob, mr_black, kitchen)
 - Variables: single lowercase letters (x, y, z, w, t) — only in quantified formulas
 
-=== TIME REPRESENTATION ===
-- Use 24-hour time constants: t_21 for 9 PM, t_14 for 2 PM, etc.
-- Use named time constants (t_murder, t_seen) ONLY when the exact time is genuinely unspecified.
-- Temporal predicates: Before(t1, t2), ShortlyBefore(t1, t2)
-
 === OUTPUT CATEGORIES ===
 Produce exactly three sections:
 
@@ -57,8 +52,9 @@ Ground atomic formulas taken directly from the question. No quantifiers.
 Each fact is one atomic predicate applied to constants.
 
 ## RULES
-Universally quantified implications that encode external or linguistic knowledge.
-Every rule MUST start with ∀. These are general principles, not story-specific.
+Universally quantified implications that encode external or linguistic knowledge include basic mathematical knowledge.
+Every rule MUST start with ∀. These are general principles, not story-specific. 
+If they include ground atomic formulas, those formulas must be defined as facts. 
 
 ## INFERENCES
 Derived conclusions. Each inference MUST cite the FACT/RULE/INF labels it depends on
@@ -73,29 +69,56 @@ Labels are FACT-1, FACT-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
 
 === CONSTRAINTS ===
 - Do NOT merge a fact and a rule into one formula.
-- Do NOT use vague time tokens like "deathtime" — use explicit constants or named constants.
 - Every inference MUST cite its premises by label.
 - Output ONLY the three sections with labeled lines. No extra explanation.
 
 === EXAMPLE ===
-Given a story: "It was raining at noon. If it rains, the ground is wet."
+HERE IS EXAMPLE COT REASONING:
+Ana has 6 apples. The apples are split into 2 equal bags. Divide 6 by 2 to get 3. So each bag has 3 apples.
 
+CORRECT OUTPUT LOOKS LIKE THIS:
 ## FACTS
-FACT-1: It was raining at noon :: Raining(t_12)
+FACT-1: Ana has 6 apples :: TotalApples(n_6)
+FACT-2: The apples are split into 2 bags :: AppleBagCount(n_2)
 
 ## RULES
-RULE-1: If it rains at a time, the ground is wet at that time :: ∀t (Raining(t) → GroundWet(t))
+RULE-1: If a total number of apples is equally divided into a number of bags with quotient z, then each bag has z apples :: ∀x∀y∀z((TotalApples(x) ∧ AppleBagCount(y) ∧ EqualDivision(x,y,z)) → ApplesPerBag(z))
 
 ## INFERENCES
-INF-1: From FACT-1, RULE-1 by Modus Ponens: The ground was wet at noon :: GroundWet(t_12)
+# INF-1: Dividing 6 by 2 gives 3, from FACT-1 and FACT-2 by Arithmetic Computation :: EqualDivision(n_6,n_2,n_3)
+# INF-2: Each bag has 3 apples, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: ApplesPerBag(n_3)
 
 === CHAIN OF THOUGHT REASONING TO CONVERT ===
 {cot_text}
 '''
 
+COT_REPAIR_TEMPLATE = '''\
+The following chain-of-thought reasoning has logical errors identified during verification.
+Your job is to produce corrected chain-of-thought reasoning that fixes all the reported issues.
+
+=== ORIGINAL QUESTION ===
+{question}
+
+=== ORIGINAL CHAIN OF THOUGHT REASONING ===
+{cot_text}
+
+=== ERROR REPORT ===
+{error_report}
+
+=== INSTRUCTIONS ===
+Revise the chain-of-thought reasoning to fix the errors identified above. Ensure:
+- Every fact you state is directly supported by the question.
+- Every rule or principle you apply is sound and correctly used.
+- Your reasoning steps are logically valid.
+
+Use the same output format as before:
+EXPLANATION
+The answer is: X
+'''
+
 FOL_REPAIR_TEMPLATE = '''\
 The following structured first-order logic (FOL) extraction has errors.
-Your job is to fix all the reported errors and produce a corrected version.
+Your job is to fix all the reported errors and produce a corrected version. 
 
 IMPORTANT: Your repairs must stay faithful to the EXACT reasoning steps in the original chain of thought — do not add new inferences, skip steps, or alter the logic. Only fix what the error report identifies.
 
@@ -234,14 +257,19 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
             )
 
         if verify_errors:
-            print(f"\n[verify] Errors found. Asking LLM to repair...")
-            structured_fol = verifier_client.complete(FOL_REPAIR_TEMPLATE.format(
+            print(f"\n[verify] Reasoning errors found. Asking reasoning client to produce new CoT...")
+            cot_text = reasoning_client.complete(COT_REPAIR_TEMPLATE.format(
+                question=question,
                 cot_text=cot_text,
-                structured_fol=structured_fol,
                 error_report=verify_report,
             ))
-            print("\n[repair] Updated FOL:")
+            print("\n[repair] Updated CoT:")
+            print(cot_text)
+            print("\n[repair] Re-extracting FOL from updated CoT...")
+            structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
             print(structured_fol)
+            if output_dir:
+                _write(os.path.join(output_dir, f"cot_repair_attempt_{attempt}.txt"), cot_text)
             continue  # re-verify on next attempt
 
         passed_verify = True
