@@ -312,7 +312,10 @@ def run_pipeline(question: str, max_retries: int = 3, output_dir: str = None,
     with open(os.path.join(SCRIPT_DIR, "output.tptp"), "w") as f:
         f.write(tptp_text)
 
-    answer = extract_answer(cot_text)
+    if attempts_used >= max_retries and not (passed_verify and passed_tptp):
+        answer = "could not verify the answer"
+    else:
+        answer = extract_answer(cot_text)
     if output_dir:
         _write(os.path.join(output_dir, "pipeline_answer.txt"), answer)
 
