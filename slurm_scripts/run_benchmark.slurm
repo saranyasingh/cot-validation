@@ -13,7 +13,7 @@
 # #SBATCH --mail-user=saranyasingh@college.harvard.edu
 
 # ── Args (override at submission time via --export or edit here) ───────────────
-DATASET="${DATASET:-dataset.json}"
+DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 CLIENT="${CLIENT:-openai}"       # openai | kimi | deepseek
 MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"

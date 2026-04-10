@@ -13,7 +13,7 @@
 # #SBATCH --mail-user=saranyasingh@college.harvard.edu
 
 # ── Args (override at submission time via --export or edit here) ───────────────
-DATASET="${DATASET:-data/dataset.json}"
+DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 CLIENT="${CLIENT:-openai}"       # openai | kimi | deepseek
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
@@ -69,7 +69,8 @@ if [ -n "$SKIP_TPTP" ]; then
     SKIP_TPTP_ARG="--skip-tptp"
 fi
 
-"$PYTHON" -m main_pipeline.verify_benchmark \
+export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
+"$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/verify_benchmark.py" \
     --dataset "$DATASET" \
     --client "$CLIENT" \
     $OUTPUT_ARG \

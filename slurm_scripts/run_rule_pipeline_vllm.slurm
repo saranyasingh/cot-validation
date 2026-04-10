@@ -19,7 +19,7 @@
 #   sbatch --export=ALL,VLLM_MODEL=meta-llama/Llama-3.1-8B-Instruct run_rule_pipeline_vllm.slurm
 # Or set it directly below.
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
-DATASET="${DATASET:-proofwriter.json}"
+DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/proofwriter.json}"
 MAX_RETRIES="${MAX_RETRIES:-3}"
 LIMIT="${LIMIT:-}"              # number of items to process; empty = all
 OUTPUT_DIR="${OUTPUT_DIR:-}"    # leave empty to use default proofwriter_outputs/
@@ -115,7 +115,8 @@ if [ -n "$LIMIT" ]; then
 fi
 
 # ── Run rule pipeline ──────────────────────────────────────────────────────────
-"$PYTHON" rule_pipeline.py \
+export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
+"$PYTHON" "$SLURM_SUBMIT_DIR/../rule_pipeline/rule_pipeline.py" \
     --dataset-file "$DATASET" \
     --client vllm \
     --model "$VLLM_MODEL" \

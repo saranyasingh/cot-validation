@@ -19,7 +19,7 @@
 # set HF_TOKEN before sbatch (or huggingface-cli login), or put the token in
 # .hf_token in the repo root (gitignored). vLLM pulls from HF unless --model is a local path.
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
-DATASET="${DATASET:-dataset.json}"
+DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
@@ -114,7 +114,7 @@ if [ -n "$NUM_PROBLEMS" ]; then
     NUM_PROBLEMS_ARG="--num-problems $NUM_PROBLEMS"
 fi
 
-"$PYTHON" benchmark.py \
+"$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/benchmark.py" \
     --dataset "$DATASET" \
     --client vllm \
     --max-retries "$MAX_RETRIES" \

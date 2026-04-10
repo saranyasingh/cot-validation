@@ -19,7 +19,7 @@
 #   sbatch --export=ALL,VLLM_MODEL=meta-llama/Llama-3.1-8B-Instruct run_verify_benchmark_vllm.slurm
 # Or set it directly below.
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
-DATASET="${DATASET:-data/dataset.json}"
+DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 SKIP_TPTP="${SKIP_TPTP:-}"       # set to "1" to pass --skip-tptp
@@ -118,7 +118,8 @@ if [ -n "$SKIP_TPTP" ]; then
 fi
 
 # ── Run verify benchmark ───────────────────────────────────────────────────────
-"$PYTHON" -m main_pipeline.verify_benchmark \
+export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
+"$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/verify_benchmark.py" \
     --dataset "$DATASET" \
     --client vllm \
     $OUTPUT_ARG \
