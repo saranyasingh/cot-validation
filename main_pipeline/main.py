@@ -6,7 +6,7 @@ import re
 
 import verify as verify_module
 import tptp as tptp_module
-from clients import make_client, OpenAILLMClient
+from main_pipeline.clients import make_client, OpenAILLMClient
 
 load_dotenv()
 

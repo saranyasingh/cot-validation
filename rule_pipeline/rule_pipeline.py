@@ -23,7 +23,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 import tptp as tptp_module
-from clients import make_client, OpenAILLMClient
+from main_pipeline.clients import make_client, OpenAILLMClient
 
 load_dotenv()
 
@@ -507,10 +507,32 @@ if __name__ == "__main__":
         help="Max verify/TPTP repair attempts per item (default: 5).",
     )
     parser.add_argument(
-        "--client", "-c", choices=["openai", "kimi", "deepseek"], default="openai",
+        "--client", "-c", choices=["openai", "kimi", "deepseek", "vllm"], default="openai",
         help="Reasoning client for CoT/FOL (default: openai). Verification always uses openai.",
     )
+    parser.add_argument(
+        "--model", "-m", default=None,
+        help="Model name for the reasoning client. For vllm, sets VLLM_MODEL (e.g. 'Qwen/Qwen2.5-7B-Instruct').",
+    )
+    parser.add_argument(
+        "--vllm-base-url", default=None,
+        help="Base URL for the vLLM server (default: http://localhost:8000/v1). Sets VLLM_BASE_URL.",
+    )
+    parser.add_argument(
+        "--limit", "-n", type=int, default=None,
+        help="Limit number of items to process (default: all).",
+    )
     args = parser.parse_args()
+
+    if args.vllm_base_url:
+        os.environ["VLLM_BASE_URL"] = args.vllm_base_url
+    if args.model:
+        if args.client == "vllm":
+            os.environ["VLLM_MODEL"] = args.model
+        elif args.client == "kimi":
+            os.environ["KIMI_MODEL"] = args.model
+        elif args.client == "deepseek":
+            os.environ["DEEPSEEK_MODEL"] = args.model
 
     reasoning_client = make_client(args.client)
     verifier_client  = OpenAILLMClient()
@@ -518,6 +540,8 @@ if __name__ == "__main__":
     with open(args.dataset_file) as f:
         raw = json.load(f)
     items = raw if isinstance(raw, list) else raw.get("items", raw)
+    if args.limit:
+        items = items[:args.limit]
     print(f"Loaded {len(items)} items from {args.dataset_file}")
 
     run_id     = datetime.now().strftime("run_%Y%m%d_%H%M%S")
@@ -525,8 +549,9 @@ if __name__ == "__main__":
     output_dir = os.path.join(base_dir, run_id)
     os.makedirs(output_dir, exist_ok=True)
 
+    model_tag = args.model or os.getenv("VLLM_MODEL", "") if args.client == "vllm" else args.model or ""
     print(f"\n=== ProofWriter Benchmark ===")
-    print(f"Reasoning client : {args.client}")
+    print(f"Reasoning client : {args.client}" + (f" ({model_tag})" if model_tag else ""))
     print(f"Verifier client  : openai")
     print(f"Items            : {len(items)}")
     print(f"Max retries      : {args.max_retries}")

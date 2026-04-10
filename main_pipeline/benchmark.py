@@ -34,8 +34,8 @@ import re
 import sys
 from datetime import datetime
 
-from main import run_plain, run_pipeline, extract_answer
-from clients import make_client, OpenAILLMClient
+from main_pipeline.main import run_plain, run_pipeline, extract_answer
+from main_pipeline.clients import make_client, OpenAILLMClient
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 

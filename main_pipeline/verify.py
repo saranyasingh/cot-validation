@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import re
 import os
 
-from clients import OpenAILLMClient
+from main_pipeline.clients import OpenAILLMClient
 
 load_dotenv()
 
