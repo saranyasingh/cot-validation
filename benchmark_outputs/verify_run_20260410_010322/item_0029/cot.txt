@@ -1,0 +1,19 @@
+EXPLANATION
+To determine how many miles Henry traveled between his first and second stops, we need to consider the distances covered at each stage of his journey.
+
+1. **First Stop**: Henry made this stop after covering 20 miles.
+   - Total distance = 60 miles
+   - Distance already covered = 20 miles
+   - Distance remaining before first stop = 60 - 20 = 40 miles
+
+2. **Second Stop**: This stop occurred 15 miles before the end of the trip.
+   - Total distance = 60 miles
+   - Distance remaining before second stop = 60 - 15 = 45 miles
+
+3. **Distance Between Stops**:
+   - Distance between first and second stop = Distance remaining before second stop - Distance remaining before first stop
+   - Distance between first and second stop = 45 miles - 40 miles = 5 miles
+
+Therefore, Henry traveled 5 miles between his first and second stops.
+
+The answer is: 5

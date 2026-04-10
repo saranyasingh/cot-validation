@@ -1,0 +1,12 @@
+FACT-1: UNSUPPORTED — The story states 6 miles in 2 hours (1 hour for the first 4 miles, then 1 hour for the next two miles); 3 hours is not supported.
+FACT-2: SUPPORTED — Remaining distance after walking 6 miles is 6 miles.
+FACT-3: SUPPORTED — Total distance is 12 miles.
+FACT-4: SUPPORTED — Target average speed is 4 mph.
+FACT-5: SUPPORTED — Time to cover 12 miles at 4 mph is 3 hours.
+FACT-6: SUPPORTED — The story describes the time spent so far (1 hour + 1 hour).
+FACT-7: UNSUPPORTED — No such time difference (3 − 3) is described in the story.
+FACT-8: UNSUPPORTED — The claim uses 6 miles in 3 hours, but the 3 hours refer to total time, not that segment.
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE

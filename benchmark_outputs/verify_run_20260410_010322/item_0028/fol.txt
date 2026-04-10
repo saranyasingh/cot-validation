@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: There are 60 days :: TotalDays(n_60)
+FACT-2: One serving per night :: ServingsPerNight(n_1)
+FACT-3: 15 servings per carton :: ServingsPerCarton(n_15)
+FACT-4: Each carton costs 4 :: CostPerCarton(n_4)
+
+## RULES
+RULE-1: If the total number of days is d and the servings per night is s, then the total servings are 60 :: ∀d∀s((TotalDays(d) ∧ ServingsPerNight(s)) → TotalServings(n_60))
+RULE-2: If the total servings is t and the servings per carton is p, then the total cartons are 4 :: ∀t∀p((TotalServings(t) ∧ ServingsPerCarton(p)) → TotalCartons(n_4))
+RULE-3: If the total cartons is c and the cost per carton is q, then the total cost is 16 :: ∀c∀q((TotalCartons(c) ∧ CostPerCarton(q)) → TotalCost(n_16))
+
+## INFERENCES
+INF-1: TotalServings(n_60) from FACT-1, FACT-2 by RULE-1 (Universal Instantiation) :: TotalServings(n_60)
+INF-2: TotalCartons(n_4) from INF-1 and FACT-3 by RULE-2 (Modus Ponens) :: TotalCartons(n_4)
+INF-3: TotalCost(n_16) from INF-2 and FACT-4 by RULE-3 (Modus Ponens) :: TotalCost(n_16)

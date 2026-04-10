@@ -1,0 +1,41 @@
+## FACTS
+FACT-1: The chicken meal cost is 1200 cents :: ChickenMealCost(n_1200)
+FACT-2: The number of chicken meals is 1 :: NumChickenMeals(n_1)
+FACT-3: The milk pack cost is 300 cents :: MilkPackCost(n_300)
+FACT-4: The number of milk packs is 5 :: NumMilkPacks(n_5)
+FACT-5: The apple cost is 150 cents :: AppleCost(n_150)
+FACT-6: The number of apples is 4 :: NumApples(n_4)
+FACT-7: The total payment is 5000 cents :: TotalPayment(n_5000)
+FACT-8: The box cost per box is 850 cents :: BoxCost(n_850)
+FACT-9: Chicken meal cost times quantity (multiplication) :: Mul(n_1200, n_1, n_1200)
+FACT-10: Milk pack cost times quantity (multiplication) :: Mul(n_300, n_5, n_1500)
+FACT-11: Apple cost times quantity (multiplication) :: Mul(n_150, n_4, n_600)
+FACT-12: Sum of chicken total, milk total, and apples total (three-number sum) :: Sum3(n_1200, n_1500, n_600, n_3300)
+FACT-13: Division fact for pizzas: 1700 / 850 = 2 :: Div(n_1700, n_850, n_2)
+FACT-14: Subtraction fact: 5000 - 3300 = 1700 :: Subtract(n_5000, n_3300, n_1700)
+
+## RULES
+RULE-CHICK: If ChickenMealCost(a) and NumChickenMeals(b) and Mul(a,b,c) then ChickenMealTotal(c) :: ∀a∀b∀c((ChickenMealCost(a) ∧ NumChickenMeals(b) ∧ Mul(a,b,c)) → ChickenMealTotal(c))
+
+RULE-MILK: If MilkPackCost(a) and NumMilkPacks(b) and Mul(a,b,c) then MilkTotalCost(c) :: ∀a∀b∀c((MilkPackCost(a) ∧ NumMilkPacks(b) ∧ Mul(a,b,c)) → MilkTotalCost(c))
+
+RULE-APPLE: If AppleCost(a) and NumApples(b) and Mul(a,b,c) then AppleTotalCost(c) :: ∀a∀b∀c((AppleCost(a) ∧ NumApples(b) ∧ Mul(a,b,c)) → AppleTotalCost(c))
+
+RULE-ADD3: If ChickenMealTotal(a) and MilkTotalCost(b) and AppleTotalCost(c) and Sum3(a,b,c,d) then TotalCostBeforePizzas(d) :: ∀a∀b∀c∀d((ChickenMealTotal(a) ∧ MilkTotalCost(b) ∧ AppleTotalCost(c) ∧ Sum3(a,b,c,d)) → TotalCostBeforePizzas(d))
+
+RULE-SUB: If TotalPayment(p) and TotalCostBeforePizzas(s) and Subtract(p,s,r) then PizzasSpent(r) :: ∀p∀s∀r((TotalPayment(p) ∧ TotalCostBeforePizzas(s) ∧ Subtract(p,s,r)) → PizzasSpent(r))
+
+RULE-DIV-BOXES: If PizzasSpent(spent) and BoxCost(price) and Div(spent, price, boxes) then BoxesOrdered(boxes) :: ∀spent∀price∀boxes((PizzasSpent(spent) ∧ BoxCost(price) ∧ Div(spent, price, boxes)) → BoxesOrdered(boxes))
+
+## INFERENCES
+INF-1: Chicken meal total is 1200 derived from ChickenMealCost(1200) [FACT-1], NumChickenMeals(1) [FACT-2], Mul(1200,1,1200) [FACT-9] by RULE-CHICK
+
+INF-2: Milk total is 1500 derived from MilkPackCost(300) [FACT-3], NumMilkPacks(5) [FACT-4], Mul(300,5,1500) [FACT-10] by RULE-MILK
+
+INF-3: Apple total is 600 derived from AppleCost(150) [FACT-5], NumApples(4) [FACT-6], Mul(150,4,600) [FACT-11] by RULE-APPLE
+
+INF-4: Total cost before pizzas is 3300 derived from ChickenMealTotal(1200) [INF-1], MilkTotalCost(1500) [INF-2], AppleTotalCost(600) [INF-3], Sum3(1200,1500,600,3300) [FACT-12] by RULE-ADD3
+
+INF-5: Pizzas spent is 1700 derived from TotalPayment(5000) [FACT-7], TotalCostBeforePizzas(3300) [INF-4], Subtract(5000,3300,1700) [FACT-14] by RULE-SUB
+
+INF-6: Boxes ordered is 2 derived from PizzasSpent(1700) [INF-5], BoxCost(850) [FACT-8], Div(1700,850,2) [FACT-13] by RULE-DIV-BOXES

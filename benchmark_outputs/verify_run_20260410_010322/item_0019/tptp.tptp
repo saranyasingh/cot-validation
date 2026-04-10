@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, omelet_size_daily(claire, n_3)).
+fof(fact_2, axiom, days_per_week(n_7)).
+fof(fact_3, axiom, weeks(n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,E,D,P] : ((omelet_size_daily(X,E) & days_per_week(D) & product(E,D,P)) => weekly_eggs(X,P))).
+fof(rule_2, axiom, ! [X,A,B,C] : ((weekly_eggs(X,A) & weeks(B) & product(A,B,C)) => total_eggs(X,C))).
+fof(rule_3, axiom, ! [X,T,Q] : ((total_eggs(X,T) & divide(T, n_12, Q)) => dozens(X,Q))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, product(n_3, n_7, n_21)).
+% From FACT-1, FACT-2, INF-1, RULE-1 by Modus Ponens
+fof(inf_2, axiom, weekly_eggs(claire, n_21)).
+% From INF-2 by Arithmetic Computation
+fof(inf_3, axiom, product(n_21, n_4, n_84)).
+% From INF-2, FACT-3, INF-3, RULE-2 by Modus Ponens
+fof(inf_4, axiom, total_eggs(claire, n_84)).
+% From INF-4 by Arithmetic Computation
+fof(inf_5, axiom, divide(n_84, n_12, n_7)).
+% From INF-4, INF-5 by Modus Ponens
+fof(inf_6, axiom, dozens(claire, n_7)).

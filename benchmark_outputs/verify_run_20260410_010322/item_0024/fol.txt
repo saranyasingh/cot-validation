@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: MeltingRate(two_cm_per_hour) :: MeltingRate(two_cm_per_hour)
+FACT-2: DurationHours(one_pm, five_pm, four_hours) :: DurationHours(one_pm, five_pm, four_hours)
+FACT-3: Product(two_cm_per_hour, four_hours, eight_cm) :: Product(two_cm_per_hour, four_hours, eight_cm)
+
+## RULES
+RULE-1: ∀r ∀t ∀l((MeltingRate(r) ∧ DurationHours(one_pm, five_pm, t) ∧ Product(r, t, l)) → TotalMeltedLength(l)) :: If a melting rate is r and the duration from one_pm to five_pm is t and Product(r, t, l), then TotalMeltedLength(l)
+RULE-2: ∀l(TotalMeltedLength(l) → FinalAnswer(l)) :: If TotalMeltedLength(l) then FinalAnswer(l)
+
+## INFERENCES
+INF-1: Total melted length is eight centimeters, from MeltingRate(two_cm_per_hour), DurationHours(one_pm, five_pm, four_hours), Product(two_cm_per_hour, four_hours, eight_cm) and RULE-1 by Modus Ponens :: TotalMeltedLength(eight_cm)
+INF-2: FinalAnswer(eight_cm) from TotalMeltedLength(eight_cm) and RULE-2 by Modus Ponens :: FinalAnswer(eight_cm)

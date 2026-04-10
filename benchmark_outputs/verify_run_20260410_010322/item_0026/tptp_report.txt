@@ -1,0 +1,12 @@
+  % From fact_1, fact_2, fact_9, rule_chick by Modus Ponens
+  inf_1: PROVED
+  % From fact_3, fact_4, fact_10, rule_milk by Modus Ponens
+  inf_2: PROVED
+  % From fact_5, fact_6, fact_11, rule_apple by Modus Ponens
+  inf_3: PROVED
+  % From inf_1, inf_2, inf_3, fact_12, rule_add3 by Modus Ponens
+  inf_4: PROVED
+  % From fact_7, inf_4, fact_14, rule_sub by Modus Ponens
+  inf_5: PROVED
+  % From inf_5, fact_8, fact_13, rule_div_boxes by Modus Ponens
+  inf_6: PROVED

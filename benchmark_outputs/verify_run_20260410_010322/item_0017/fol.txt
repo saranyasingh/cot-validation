@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: LeavesAtSameTime(train_a, train_b, san_rafael, t0) :: LeavesAtSameTime(train_a, train_b, san_rafael, t0)
+FACT-2: WestTravel(train_a, n_80) :: WestTravel(train_a, n_80)
+FACT-3: WestTravel(train_b, n_80) :: WestTravel(train_b, n_80)
+FACT-4: NorthTravelSecondDay(train_a, n_150) :: NorthTravelSecondDay(train_a, n_150)
+FACT-5: NorthTravelSecondDay(train_b, n_150) :: NorthTravelSecondDay(train_b, n_150)
+
+## RULES
+RULE-1: ∀t((WestTravel(t, n_80) ∧ NorthTravelSecondDay(t, n_150)) → TotalDistance(t, n_230)) :: ∀t((WestTravel(t, n_80) ∧ NorthTravelSecondDay(t, n_150)) → TotalDistance(t, n_230))
+RULE-2: ∀x∀y((TotalDistance(x, n_230) ∧ TotalDistance(y, n_230)) → EqualDistance(x,y)) :: ∀x∀y((TotalDistance(x, n_230) ∧ TotalDistance(y, n_230)) → EqualDistance(x,y))
+
+## INFERENCES
+INF-1: TotalDistance(train_a, n_230) from RULE-1, FACT-2, FACT-4 by Modus Ponens :: RULE-1, FACT-2, FACT-4
+INF-2: TotalDistance(train_b, n_230) from RULE-1, FACT-3, FACT-5 by Modus Ponens :: RULE-1, FACT-3, FACT-5
+INF-3: EqualDistance(train_a, train_b) from INF-1, INF-2, RULE-2 by Modus Ponens :: INF-1, INF-2, RULE-2

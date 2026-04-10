@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story states Claire makes a 3 egg omelet daily.
+FACT-2: SUPPORTED — The quotidian breakfast implies 7 days per week.
+FACT-3: SUPPORTED — The scenario mentions 4 weeks.
+
+RULE-1: PLAUSIBLE — Converts daily eggs and days-per-week into weekly eggs using a valid product.
+RULE-2: PLAUSIBLE — Converts weekly eggs and weeks into total eggs via multiplication.
+RULE-3: PLAUSIBLE — Converts total eggs into dozens by dividing by 12.

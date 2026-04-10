@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, leaves_at_same_time(train_a, train_b, san_rafael, t0)).
+fof(fact_2, axiom, west_travel(train_a, n_80)).
+fof(fact_3, axiom, west_travel(train_b, n_80)).
+fof(fact_4, axiom, north_travel_second_day(train_a, n_150)).
+fof(fact_5, axiom, north_travel_second_day(train_b, n_150)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : ((west_travel(T, n_80) & north_travel_second_day(T, n_150)) => total_distance(T, n_230))).
+fof(rule_2, axiom, ! [X, Y] : ((total_distance(X, n_230) & total_distance(Y, n_230)) => equal_distance(X, Y))).
+
+% --- INFERENCES ---
+% From RULE-1, FACT-2, FACT-4 by Modus Ponens
+fof(inf_1, axiom, total_distance(train_a, n_230)).
+% From RULE-1, FACT-3, FACT-5 by Modus Ponens
+fof(inf_2, axiom, total_distance(train_b, n_230)).
+% From INF-1, INF-2, RULE-2 by Modus Ponens
+fof(inf_3, axiom, equal_distance(train_a, train_b)).

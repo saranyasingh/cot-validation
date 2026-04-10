@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Total number of students is 20 :: TotalStudents(n_20)
+FACT-2: The contemporary dance percentage is 20% :: ContemporaryPercentValue(n_20)
+FACT-3: The jazz dance percentage is 25% :: JazzPercentValue(n_25)
+
+## RULES
+RULE-1: If the total number of students is T and the contemporary percentage is P, then the number in contemporary is R by ArithmeticComputation(T, P, R) :: ∀T∀P∀R((TotalStudents(T) ∧ ContemporaryPercentValue(P) ∧ ArithmeticComputation(T, P, R)) → ContemporaryCount(R))
+RULE-2: If total is T and contemporary count is C and subtraction yields R, then RemainingAfterContemporary(T, C, R) :: ∀T∀C∀R((TotalStudents(T) ∧ ContemporaryCount(C) ∧ ArithmeticSubtraction(T, C, R)) → RemainingAfterContemporary(T, C, R))
+RULE-3: If RemainingAfterContemporary(T, C, Rem) and JazzPercentValue(P) and ArithmeticComputation(Rem, P, JazzRem), then JazzCount(JazzRem) :: ∀T∀C∀Rem∀P∀JazzRem((RemainingAfterContemporary(T, C, Rem) ∧ JazzPercentValue(P) ∧ ArithmeticComputation(Rem, P, JazzRem)) → JazzCount(JazzRem))
+RULE-4: If RemainingAfterContemporary(T, C, Rem) and JazzCount(J) and ArithmeticSubtraction(Rem, J, RemAfter), then RemainingAfterJazz(Rem, J, RemAfter) :: ∀T∀C∀Rem∀J∀RemAfter((RemainingAfterContemporary(T, C, Rem) ∧ JazzCount(J) ∧ ArithmeticSubtraction(Rem, J, RemAfter)) → RemainingAfterJazz(Rem, J, RemAfter))
+RULE-5: If RemainingAfterJazz(Rem, J, RemAfter), then HipHopCount(RemAfter) :: ∀Rem∀J∀RemAfter((RemainingAfterJazz(Rem, J, RemAfter)) → HipHopCount(RemAfter))
+RULE-6: If Total is T and HipHopCount(H) and ArithmeticComputation(T, H, HipPercent), then HipHopPercent(HipPercent) :: ∀T∀H∀HipPercent((TotalStudents(T) ∧ HipHopCount(H) ∧ ArithmeticComputation(T, H, HipPercent)) → HipHopPercent(HipPercent))
+
+## INFERENCES
+INF-1: Contemporary count is 4, from FACT-1 and FACT-2 by ArithmeticComputation :: ContemporaryCount(n_4)
+INF-2: Remaining after contemporary is 16, from FACT-1, INF-1 by ArithmeticSubtraction :: RemainingAfterContemporary(n_20, n_4, n_16)
+INF-3: Jazz count is 4, from INF-2 and FACT-3 by ArithmeticComputation :: JazzCount(n_4)
+INF-4: Remaining after jazz is 12, from INF-2, INF-3 by ArithmeticSubtraction :: RemainingAfterJazz(n_16, n_4, n_12)
+INF-5: Hip-hop count is 12, from INF-4 by RULE-5 :: HipHopCount(n_12)
+INF-6: Hip-hop percent is 60, from FACT-1, INF-5 by RULE-6 using ArithmeticComputation :: HipHopPercent(n_60)

@@ -1,0 +1,17 @@
+## FACTS
+Jill has 50 weeks of teaching :: TeachingWeeks(jill, n_50)
+Jill teaches 35 hours per week :: HoursPerWeekTeaching(jill, n_35)
+Jill earns 20 dollars per hour for teaching :: HourlyWageTeaching(jill, n_20)
+Jill has 50 weeks of coaching :: CoachingWeeks(jill, n_50)
+Jill coaches for 15 hours per week :: HoursPerWeekCoaching(jill, n_15)
+Jill earns 30 dollars per hour for coaching :: HourlyWageCoaching(jill, n_30)
+
+## RULES
+∀w∀h∀r(((TeachingWeeks(jill,w) ∧ HoursPerWeekTeaching(jill,h) ∧ HourlyWageTeaching(jill,r)) ∧ w=n_50 ∧ h=n_35 ∧ r=n_20) → EarningsTeaching(jill, n_35000))
+∀w∀h∀r(((CoachingWeeks(jill,w) ∧ HoursPerWeekCoaching(jill,h) ∧ HourlyWageCoaching(jill,r)) ∧ w=n_50 ∧ h=n_15 ∧ r=n_30) → EarningsCoaching(jill, n_22500))
+∀t1∀t2(((EarningsTeaching(jill,t1) ∧ EarningsCoaching(jill,t2) ∧ t1=n_35000 ∧ t2=n_22500) → TotalAnnualSalary(jill, n_57500))
+
+## INFERENCES
+EarningsTeaching(jill, n_35000) from TeachingWeeks(jill, n_50) and HoursPerWeekTeaching(jill, n_35) and HourlyWageTeaching(jill, n_20) by RULE-1
+EarningsCoaching(jill, n_22500) from CoachingWeeks(jill, n_50) and HoursPerWeekCoaching(jill, n_15) and HourlyWageCoaching(jill, n_30) by RULE-2
+TotalAnnualSalary(jill, n_57500) from EarningsTeaching(jill, n_35000) and EarningsCoaching(jill, n_22500) by RULE-3

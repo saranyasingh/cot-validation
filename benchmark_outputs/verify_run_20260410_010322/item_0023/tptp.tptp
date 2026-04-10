@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_group_customers(n_3)).
+fof(fact_2, axiom, first_group_per_person(n_1)).
+fof(fact_3, axiom, second_group_customers(n_2)).
+fof(fact_4, axiom, second_group_per_person(n_2)).
+fof(fact_5, axiom, third_group_customers(n_3)).
+fof(fact_6, axiom, third_group_per_person(n_0)).
+fof(fact_7, axiom, product(n_3, n_1, n_3)).
+fof(fact_8, axiom, product(n_2, n_2, n_4)).
+fof(fact_9, axiom, product(n_3, n_0, n_0)).
+fof(fact_10, axiom, sum3(n_3, n_4, n_0, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,Z] : ((first_group_customers(X) & first_group_per_person(Y) & product(X,Y,Z)) => first_group_total(Z))).
+fof(rule_2, axiom, ! [X,Y,Z] : ((second_group_customers(X) & second_group_per_person(Y) & product(X,Y,Z)) => second_group_total(Z))).
+fof(rule_3, axiom, ! [X,Y,Z] : ((third_group_customers(X) & third_group_per_person(Y) & product(X,Y,Z)) => third_group_total(Z))).
+fof(rule_4, axiom, ! [A,B,C,D] : ((first_group_total(A) & second_group_total(B) & third_group_total(C) & sum3(A,B,C,D)) => total_dvds(D))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-7 by Arithmetic Computation
+fof(inf_1, axiom, first_group_total(n_3)).
+% From FACT-3, FACT-4, FACT-8 by Arithmetic Computation
+fof(inf_2, axiom, second_group_total(n_4)).
+% From FACT-5, FACT-6, FACT-9 by Arithmetic Computation
+fof(inf_3, axiom, third_group_total(n_0)).
+% From INF-1, INF-2, INF-3, FACT-10 by Arithmetic Computation
+fof(inf_4, axiom, total_dvds(n_7)).

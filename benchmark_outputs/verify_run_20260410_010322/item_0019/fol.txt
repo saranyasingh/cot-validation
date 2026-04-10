@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: OmeletSizeDaily(claire, n_3) :: Claire makes a 3-egg omelet daily
+FACT-2: DaysPerWeek(n_7) :: There are 7 days in a week
+FACT-3: Weeks(n_4) :: The period considered is 4 weeks
+
+## RULES
+RULE-1: ∀x∀e∀d∀p(((OmeletSizeDaily(x,e) ∧ DaysPerWeek(d) ∧ Product(e,d,p)) → WeeklyEggs(x,p))) :: If someone has omelet size e per day and d is a number of days per week, and Product(e,d,p) holds, then WeeklyEggs(x,p)
+RULE-2: ∀x∀a∀b∀c(((WeeklyEggs(x,a) ∧ Weeks(b) ∧ Product(a,b,c)) → TotalEggs(x,c)) :: If weekly eggs a for x and b weeks with Product(a,b,c), then TotalEggs(x,c)
+RULE-3: ∀x∀t∀q(((TotalEggs(x,t) ∧ Divide(t, n_12, q)) → Dozens(x,q)) :: If total eggs t can be divided by 12 to q, then Dozens(x,q)
+
+## INFERENCES
+INF-1: Product(n_3, n_7, n_21) :: Arithmetic Computation from FACT-1, FACT-2
+INF-2: WeeklyEggs(claire, n_21) :: Modus Ponens (FACT-1, FACT-2, INF-1, RULE-1)
+INF-3: Product(n_21, n_4, n_84) :: Arithmetic Computation
+INF-4: TotalEggs(claire, n_84) :: Modus Ponens (INF-2, FACT-3, INF-3, RULE-2)
+INF-5: Divide(n_84, n_12, n_7) :: Arithmetic Computation
+INF-6: Dozens(claire, n_7) :: Modus Ponens (INF-4, INF-5, RULE-3)

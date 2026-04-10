@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: PaidAfterDiscount(kyle, n_19_50, n_25)
+
+## RULES
+RULE-1: ∀x∀d((PaidAfterDiscount(x, d, n_25)) → ∃p(OriginalPriceOf(x, p) ∧ EqualDiscountFraction(d, p, n_3_over_4)))
+
+RULE-2: ∀d∀p∀r((EqualDiscountFraction(d, p, r)) → OriginalPriceOf(kyle, p))
+
+## INFERENCES
+INF-1: ∃p(OriginalPriceOf(kyle, p) ∧ EqualDiscountFraction(n_19_50, p, n_3_over_4)) :: Modus Ponens, from FACT-1 and RULE-1
+
+INF-2: OriginalPriceOf(kyle, n_26) :: Arithmetic Computation, from INF-1

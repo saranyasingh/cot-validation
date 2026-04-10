@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: InitialInvestment(c_90) :: Initial investment to plant the tree is 90
+FACT-2: RevenueYearly(c_10_5) :: Annual revenue from lemons is 10.5
+FACT-3: YearlyCost(c_3) :: Annual cost to water and feed is 3
+FACT-4: Subtract(c_10_5, c_3, c_7_5) :: 10.5 − 3 = 7.5
+FACT-5: BreakEvenEq(c_90, c_7_5) :: The break-even equation uses 90 and 7.5
+
+## RULES
+RULE-1: ∀r∀c∀p((RevenueYearly(r) ∧ YearlyCost(c) ∧ Subtract(r,c,p)) → AnnualProfit(p)) :: Annual profit is revenue minus cost
+RULE-2: ∀i∀p((BreakEvenEq(i,p)) → BreakEvenSolution(i,p,c_neg12)) :: From the break-even equation, derive a BreakEvenSolution with c_neg12
+RULE-3: BreakEvenSolution(i,p,c_neg12) → FinalAnswer(c_11) :: If the break-even solution is c_neg12, infer the final answer 11
+
+## INFERENCES
+INF-1: AnnualProfit(c_7_5) :: from FACT-2, FACT-3, FACT-4 by RULE-1
+INF-2: BreakEvenSolution(c_90, c_7_5, c_neg12) :: from FACT-5 by RULE-2
+INF-3: FinalAnswer(c_11) :: from INF-2 by RULE-3

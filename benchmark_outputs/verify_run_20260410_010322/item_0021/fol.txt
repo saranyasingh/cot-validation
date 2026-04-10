@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Initial volume of orange_drink is 10 liters :: Volume(orange_drink, n_10)
+FACT-2: Water fraction numerator of orange_drink is 2 :: WaterFractionNumerator(orange_drink, n_2)
+FACT-3: Water fraction denominator of orange_drink is 3 :: WaterFractionDenominator(orange_drink, n_3)
+FACT-4: Initial volume of pineapple_drink is 15 liters :: Volume(pineapple_drink, n_15)
+FACT-5: Water fraction numerator of pineapple_drink is 3 :: WaterFractionNumerator(pineapple_drink, n_3)
+FACT-6: Water fraction denominator of pineapple_drink is 5 :: WaterFractionDenominator(pineapple_drink, n_5)
+FACT-7: One liter is spilled :: Spilled(n_1)
+FACT-8: Remaining total volume after spill is 24 liters :: RemainingVolume(n_24)
+FACT-9: Initial combined volume of orange_drink and pineapple_drink is 25 liters :: InitialTotalVolume(n_25)
+
+## RULES
+RULE-1: If a drink D has volume V and its water fraction has numerator N and denominator Den, then WaterFromDrink(D,V,N,Den) :: ∀D∀V∀N∀Den((Volume(D,V) ∧ WaterFractionNumerator(D,N) ∧ WaterFractionDenominator(D,Den)) → WaterFromDrink(D,V,N,Den))
+RULE-2: If WaterFromDrink(D1,V1,N1,Den1) and WaterFromDrink(D2,V2,N2,Den2), then WaterTotal(V1*N1/Den1 + V2*N2/Den2) :: ∀D1∀D2∀V1∀N1∀Den1∀V2∀N2∀Den2((WaterFromDrink(D1,V1,N1,Den1) ∧ WaterFromDrink(D2,V2,N2,Den2)) → WaterTotal(V1*N1/Den1 + V2*N2/Den2))
+RULE-3: If InitialTotalVolume(I) and Spilled(S) and RemainingVolume(R) and R = I - S, then RemainingVolume(R) :: ∀I∀S∀R((InitialTotalVolume(I) ∧ Spilled(S) ∧ RemainingVolume(R) ∧ R = I - S) → RemainingVolume(R))
+
+## INFERENCES
+INF-1: WaterFromDrink(orange_drink, n_10, n_2, n_3) from FACT-1, FACT-2, FACT-3 by RULE-1 (Universal Instantiation -> Modus Ponens)
+INF-2: WaterFromDrink(pineapple_drink, n_15, n_3, n_5) from FACT-4, FACT-5, FACT-6 by RULE-1 (Universal Instantiation -> Modus Ponens)
+INF-3: WaterTotal(n_47_over_3) from INF-1 and INF-2 by RULE-2 (Arithmetic combination: (20/3) + 9 = 47/3)
+INF-4: The remaining water amount is approximately 15.67 liters from INF-3 by Arithmetic Computation
+INF-5: The final answer: 15.67 liters :: 15_67_liters by INF-4 (Numeric approximation)

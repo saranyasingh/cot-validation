@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The current value of jewelry is 5000 :: CurrentValue(jewelry, n_5000)
+FACT-2: Jewelry market growth rate is 0.025 :: GrowthRate(jewelry, n_025)
+FACT-3: The current value of electronic gadgets is 8000 :: CurrentValue(gadgets, n_8000)
+FACT-4: Gadgets market growth rate is 0.012 :: GrowthRate(gadgets, n_012)
+
+## RULES
+RULE-1: If a plan p has current value C and growth rate r and F is the product C*(1+r), then FutureValue(p, F) :: ∀p∀C∀r∀F((CurrentValue(p, C) ∧ GrowthRate(p, r) ∧ ProductPlus(C, r, F)) → FutureValue(p, F))
+RULE-2: If FutureValue(jewelry, FJ) and FutureValue(gadgets, FG) and Difference(FJ, FG, P) then Profit(P) :: ∀FJ∀FG∀P((FutureValue(jewelry, FJ) ∧ FutureValue(gadgets, FG) ∧ Difference(FJ, FG, P)) → Profit(P))
+RULE-3: If Profit(P) and AbsValue(P, N) then Answer(N) :: ∀P∀N((Profit(P) ∧ AbsValue(P,N)) → Answer(N))
+
+## INFERENCES
+INF-1: FutureValue(jewelry, n_5125) :: from FACT-1 and FACT-2 by Arithmetic Computation
+INF-2: FutureValue(gadgets, n_8096) :: from FACT-3 and FACT-4 by Arithmetic Computation
+INF-3: Profit(n_neg2971) :: from INF-1 and INF-2 by Subtraction
+INF-4: Answer(n_2971) :: from INF-3 by AbsoluteValue

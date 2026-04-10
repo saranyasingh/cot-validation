@@ -1,0 +1,44 @@
+To determine how much water is left after spilling one liter of orange drink, we need to follow these steps:
+
+**Premise 1:** Initially, there are 10 liters of orange drink.
+- **Explanation:** This sets up our starting point.
+
+**Premise 2:** Two-thirds of this orange drink is water.
+- **Explanation:** We know the composition of the orange drink before any water is added or spilled.
+
+**Premise 3:** There are 15 liters of pineapple drink.
+- **Explanation:** This establishes the quantity of pineapple drink available.
+
+**Premise 4:** Three-fifths of this pineapple drink is water.
+- **Explanation:** This gives us the amount of water in the pineapple drink.
+
+**Premise 5:** After pouring the orange drink into the pineapple drink, one liter is spilled.
+- **Explanation:** This introduces an event (spillage) that affects the total volume but not the proportions of water within the mixtures.
+
+**Premise 6:** The remaining mixture has a total volume of 24 liters.
+- **Explanation:** After accounting for the spillage, we calculate the new total volume of the mixed drinks.
+
+**Premise 7:** To find out how much water is in the remaining 24 liters, we need to consider both the initial amounts of water in the orange and pineapple drinks.
+- **Explanation:** This leads us to the calculation needed to find the total amount of water.
+
+Now, let's calculate the amount of water initially present in each drink and then sum them up to get the total water content in the remaining mixture.
+
+**Calculation:**
+
+1. **Water in Orange Drink:**
+   - Initial volume of orange drink = 10 liters
+   - Fraction of orange drink that is water = \(\frac{2}{3}\)
+   - Water in orange drink = \(10 \times \frac{2}{3} = \frac{20}{3} \approx 6.67\) liters
+
+2. **Water in Pineapple Drink:**
+   - Initial volume of pineapple drink = 15 liters
+   - Fraction of pineapple drink that is water = \(\frac{3}{5}\)
+   - Water in pineapple drink = \(15 \times \frac{3}{5} = 9\) liters
+
+3. **Total Water Content:**
+   - Total water in the remaining 24 liters = Water in orange drink + Water in pineapple drink
+   - Total water content = \(6.67 + 9 = 15.67\) liters
+
+Thus, the total amount of water in the remaining 24 liters is approximately 15.67 liters.
+
+**Answer:** The answer is: 15.67

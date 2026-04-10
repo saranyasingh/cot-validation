@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: TotalDistance(n_60) :: TotalDistance(n_60)
+FACT-2: DistanceCoveredBeforeFirstStop(n_20) :: DistanceCoveredBeforeFirstStop(n_20)
+FACT-3: EndDistanceAtSecondStop(n_15) :: EndDistanceAtSecondStop(n_15)
+
+## RULES
+RULE-1: Distance remaining before first stop from subtraction :: ∀D∀C∀R((TotalDistance(D) ∧ DistanceCoveredBeforeFirstStop(C) ∧ Subtract(D, C, R)) → DistRemainingBeforeFirstStop(R))
+RULE-2: Distance remaining before second stop from subtraction :: ∀D∀E∀R((TotalDistance(D) ∧ EndDistanceAtSecondStop(E) ∧ Subtract(D, E, R)) → DistRemainingBeforeSecondStop(R))
+RULE-3: Distance between stops from difference of remaining distances :: ∀R1∀R2∀R3((DistRemainingBeforeFirstStop(R1) ∧ DistRemainingBeforeSecondStop(R2) ∧ Subtract(R2, R1, R3)) → DistBetweenStops(R3))
+RULE-4: If there is a distance between stops, Henry traveled that distance :: ∀d((DistBetweenStops(d)) → HenryTraveled(henry, d))
+
+## INFERENCES
+INF-1: Subtract(n_60, n_20, n_40) :: from FACT-1 and FACT-2 by ArithmeticSubtraction
+INF-2: DistRemainingBeforeFirstStop(n_40) :: from INF-1, FACT-1, FACT-2 by RULE-1
+INF-3: Subtract(n_60, n_15, n_45) :: from FACT-1 and FACT-3 by ArithmeticSubtraction
+INF-4: DistRemainingBeforeSecondStop(n_45) :: from INF-3, FACT-1, FACT-3 by RULE-2
+INF-5: Subtract(n_45, n_40, n_5) :: from INF-4, INF-2 by ArithmeticSubtraction
+INF-6: DistBetweenStops(n_5) :: from INF-2, INF-4, INF-5 by RULE-3
+INF-7: HenryTraveled(henry, n_5) :: from INF-6 by RULE-4

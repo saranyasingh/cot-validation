@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Toula bought 3 dozen donuts :: DonutsBought(n_3)
+FACT-2: Price per dozen for donuts is 68 :: PricePerDozen(donuts, n_68)
+FACT-3: Toula bought 2 dozen mini cupcakes :: MiniCupcakesDozens(n_2)
+FACT-4: Price per dozen for mini cupcakes is 80 :: PricePerDozen(mini_cupcakes, n_80)
+FACT-5: Toula bought 6 dozen mini cheesecakes :: CheesecakesDozens(n_6)
+FACT-6: Price per dozen for mini cheesecakes is 55 :: PricePerDozen(cheesecakes, n_55)
+
+## RULES
+RULE-1: ∀x∀y((DonutsBought(x) ∧ PricePerDozen(donuts, y)) → DonutsTotal(n_204))
+RULE-2: ∀x∀y((MiniCupcakesDozens(x) ∧ PricePerDozen(mini_cupcakes, y)) → CupcakesTotal(n_160))
+RULE-3: ∀x∀y((CheesecakesDozens(x) ∧ PricePerDozen(cheesecakes, y)) → CheesecakesTotal(n_330))
+RULE-4: ∀x∀y∀z((DonutsTotal(x) ∧ CupcakesTotal(y) ∧ CheesecakesTotal(z)) → TotalCost(n_794))
+
+## INFERENCES
+INF-1: DonutsTotal(n_204) from FACT-1, FACT-2, and RULE-1 by Modus Ponens :: DonutsTotal(n_204)
+INF-2: CupcakesTotal(n_160) from FACT-3, FACT-4, and RULE-2 by Modus Ponens :: CupcakesTotal(n_160)
+INF-3: CheesecakesTotal(n_330) from FACT-5, FACT-6, and RULE-3 by Modus Ponens :: CheesecakesTotal(n_330)
+INF-4: TotalCost(n_794) from INF-1, INF-2, INF-3, and RULE-4 by Modus Ponens :: TotalCost(n_794)

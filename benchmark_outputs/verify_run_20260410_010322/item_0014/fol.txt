@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: StartMelanieVacuumCleaners(n_x) :: StartMelanieVacuumCleaners(n_x)
+FACT-2: GreenHouseSoldFraction(n_x, n_3) :: GreenHouseSoldFraction(n_x, n_3)
+FACT-3: RemainingAfterGreenHouse(n_x, n_2over3) :: RemainingAfterGreenHouse(n_x, n_2over3)
+FACT-4: RedHouseSold(n_2over3, n_2) :: RedHouseSold(n_2over3, n_2)
+FACT-5: RemainingAfterRedHouse(n_2over3, n_2over3_minus_2) :: RemainingAfterRedHouse(n_2over3, n_2over3_minus_2)
+FACT-6: OrangeHouseSoldHalf(n_2over3_minus_2, n_1over2) :: OrangeHouseSoldHalf(n_2over3_minus_2, n_1over2)
+FACT-7: LeftAfterAll(n_5) :: LeftAfterAll(n_5)
+FACT-8: Equal(n_x, n_12) :: Equal(n_x, n_12)
+
+## RULES
+RULE-1: If StartMelanieVacuumCleaners(x) ∧ GreenHouseSoldFraction(x, f) then RemainingAfterGreenHouse(x, r) where r = 2/3 * x :: ∀x∀f∀r((StartMelanieVacuumCleaners(x) ∧ GreenHouseSoldFraction(x, f)) → RemainingAfterGreenHouse(x, r))
+
+RULE-2: If RemainingAfterGreenHouse(x, r) ∧ RedHouseSold(r, s) then RemainingAfterRedHouse(x, r) :: ∀x∀r∀s((RemainingAfterGreenHouse(x, r) ∧ RedHouseSold(r, s)) → RemainingAfterRedHouse(x, r))
+
+RULE-3: If RemainingAfterRedHouse(x, r) ∧ OrangeHouseSoldHalf(r, t) then LeftAfterAll(x, u) where u = 5 :: ∀x∀r∀t((RemainingAfterRedHouse(x, r) ∧ OrangeHouseSoldHalf(r, t)) → LeftAfterAll(x, n_5))
+
+RULE-4: If Equal(x, n_12) then x equals 12 :: ∀x((Equal(x, n_12)) → (x = 12))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Modus Ponens to get RemainingAfterGreenHouse(n_x, n_2over3) :: Modus Ponens
+INF-2: From INF-1 and RULE-2 by Modus Ponens to get RemainingAfterRedHouse(n_x, n_2over3_minus_2) :: Modus Ponens
+INF-3: From INF-2 and RULE-3 by Modus Ponens to get LeftAfterAll(n_x, n_5) :: Modus Ponens
+INF-4: From INF-3 and RULE-4 (using FACT-8 Equal(n_x, n_12)) by Modus Ponens and Equality Reasoning to conclude x = 12 :: Modus Ponens

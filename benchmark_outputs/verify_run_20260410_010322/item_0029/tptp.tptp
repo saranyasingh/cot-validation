@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_distance(n_60)).
+fof(fact_2, axiom, distance_covered_before_first_stop(n_20)).
+fof(fact_3, axiom, end_distance_at_second_stop(n_15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : ! [C] : ! [R] : ((total_distance(D) & distance_covered_before_first_stop(C) & subtract(D, C, R)) => dist_remaining_before_first_stop(R))).
+fof(rule_2, axiom, ! [D] : ! [E] : ! [R] : ((total_distance(D) & end_distance_at_second_stop(E) & subtract(D, E, R)) => dist_remaining_before_second_stop(R))).
+fof(rule_3, axiom, ! [R1] : ! [R2] : ! [R3] : ((dist_remaining_before_first_stop(R1) & dist_remaining_before_second_stop(R2) & subtract(R2, R1, R3)) => dist_between_stops(R3))).
+fof(rule_4, axiom, ! [d] : (dist_between_stops(d) => henry_traveled(henry, d))). 
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by ArithmeticSubtraction
+fof(inf_1, axiom, subtract(n_60, n_20, n_40)).
+% From inf_1, fact_1, fact_2 by RULE-1
+fof(inf_2, axiom, dist_remaining_before_first_stop(n_40)).
+% From fact_1, fact_3 by ArithmeticSubtraction
+fof(inf_3, axiom, subtract(n_60, n_15, n_45)).
+% From inf_3, fact_1, fact_3 by RULE-2
+fof(inf_4, axiom, dist_remaining_before_second_stop(n_45)).
+% From inf_4, inf_2 by ArithmeticSubtraction
+fof(inf_5, axiom, subtract(n_45, n_40, n_5)).
+% From inf_2, inf_4, inf_5 by RULE-3
+fof(inf_6, axiom, dist_between_stops(n_5)).
+% From inf_6 by RULE-4
+fof(inf_7, axiom, henry_traveled(henry, n_5)).

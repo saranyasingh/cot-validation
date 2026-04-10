@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Mishka bought 3 pairs of shorts :: Bought(mishka, shorts, n_3)
+FACT-2: Cost per pair of shorts = 16.50 dollars :: CostPerPair(shorts, n_1650)
+FACT-3: Total cost for shorts = 49.50 dollars :: ShortsTotal(n_4950)
+FACT-4: Mishka bought 3 pairs of pants :: Bought(mishka, pants, n_3)
+FACT-5: Cost per pair of pants = 22.50 dollars :: CostPerPair(pants, n_2250)
+FACT-6: Total cost for pants = 67.50 dollars :: PantsTotal(n_6750)
+FACT-7: Mishka bought 3 pairs of shoes :: Bought(mishka, shoes, n_3)
+FACT-8: Cost per pair of shoes = 42 dollars :: CostPerPair(shoes, n_4200)
+FACT-9: Total cost for shoes = 126 dollars :: ShoesTotal(n_12600)
+FACT-10: Total expenditure = 243 dollars :: TotalExpenditure(n_24300)
+FACT-11: The totals sum correctly :: SumTotal(n_4950, n_6750, n_12600, n_24300)
+
+## RULES
+RULE-1: If a person buys q items of an item i and the cost per item is p and r = q * p, then the total cost for that item is r :: ∀x∀y∀q∀p∀r((Bought(x,y,n_q) ∧ CostPerPair(y,n_p) ∧ Multiply(n_q,n_p,n_r)) → ItemTotalCost(x,y,n_r))
+RULE-2: If ShortsTotal(a) ∧ PantsTotal(b) ∧ ShoesTotal(c) ∧ SumTotal(a,b,c,d) then TotalExpenditure(d) :: ∀a∀b∀c∀d((ShortsTotal(a) ∧ PantsTotal(b) ∧ ShoesTotal(c) ∧ SumTotal(a,b,c,d)) → TotalExpenditure(d))
+
+## INFERENCES
+INF-1: Total expenditure 24300 cents derived from ShortsTotal(4950) ∧ PantsTotal(6750) ∧ ShoesTotal(12600) ∧ SumTotal(4950,6750,12600,24300) via RULE-2 :: TotalExpenditure(n_24300)

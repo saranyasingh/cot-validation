@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — birth year is not obtained as a simple difference of ages; units and current year are ignored
+RULE-2: IMPLAUSIBLE — if birth year is c and age at birth is d, the son's birth year should be c + d, not c - d; the resulting “e years ago” would be incorrect

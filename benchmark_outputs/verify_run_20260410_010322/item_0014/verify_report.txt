@@ -1,0 +1,13 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — Red sale is not fixed at 2; it should be green sale plus 2.
+FACT-5: UNSUPPORTED — Remaining after red is not (2/3)x − 2; that would assume red sale is 2, which is incorrect.
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: UNSUPPORTED — x is not necessarily 12; the correct starting amount is 36.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The conclusion should reflect the new remaining after red, not preserve the old remainder.
+RULE-3: IMPLAUSIBLE — The final LeftAfterAll being fixed at 5 does not follow from generic premises.
+RULE-4: PLAUSIBLE

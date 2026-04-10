@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: First group has 3 customers :: FirstGroup_Customers(n_3)
+FACT-2: First group per-customer DVDs = 1 :: FirstGroup_PerPerson(n_1)
+FACT-3: Second group has 2 customers :: SecondGroup_Customers(n_2)
+FACT-4: Second group per-customer DVDs = 2 :: SecondGroup_PerPerson(n_2)
+FACT-5: Third group has 3 customers :: ThirdGroup_Customers(n_3)
+FACT-6: Third group per-customer DVDs = 0 :: ThirdGroup_PerPerson(n_0)
+FACT-7: 3 × 1 = 3 :: Product(n_3, n_1, n_3)
+FACT-8: 2 × 2 = 4 :: Product(n_2, n_2, n_4)
+FACT-9: 3 × 0 = 0 :: Product(n_3, n_0, n_0)
+FACT-10: 3 + 4 + 0 = 7 :: Sum3(n_3, n_4, n_0, n_7)
+
+## RULES
+RULE-1: If FirstGroup_Customers(x) ∧ FirstGroup_PerPerson(y) ∧ Product(x,y,z) then FirstGroup_Total(z) :: ∀x∀y∀z((FirstGroup_Customers(x) ∧ FirstGroup_PerPerson(y) ∧ Product(x,y,z)) → FirstGroup_Total(z))
+RULE-2: If SecondGroup_Customers(x) ∧ SecondGroup_PerPerson(y) ∧ Product(x,y,z) then SecondGroup_Total(z) :: ∀x∀y∀z((SecondGroup_Customers(x) ∧ SecondGroup_PerPerson(y) ∧ Product(x,y,z)) → SecondGroup_Total(z))
+RULE-3: If ThirdGroup_Customers(x) ∧ ThirdGroup_PerPerson(y) ∧ Product(x,y,z) then ThirdGroup_Total(z) :: ∀x∀y∀z((ThirdGroup_Customers(x) ∧ ThirdGroup_PerPerson(y) ∧ Product(x,y,z)) → ThirdGroup_Total(z))
+RULE-4: If FirstGroup_Total(a) ∧ SecondGroup_Total(b) ∧ ThirdGroup_Total(c) ∧ Sum3(a,b,c,d) then TotalDVDs(d) :: ∀a∀b∀c∀d((FirstGroup_Total(a) ∧ SecondGroup_Total(b) ∧ ThirdGroup_Total(c) ∧ Sum3(a,b,c,d)) → TotalDVDs(d))
+
+## INFERENCES
+INF-1: First group total DVDs is 3, from FACT-1, FACT-2, FACT-7 by RULE-1 via Arithmetic Computation :: FirstGroup_Total(n_3)
+INF-2: Second group total DVDs is 4, from FACT-3, FACT-4, FACT-8 by RULE-2 via Arithmetic Computation :: SecondGroup_Total(n_4)
+INF-3: Third group total DVDs is 0, from FACT-5, FACT-6, FACT-9 by RULE-3 via Arithmetic Computation :: ThirdGroup_Total(n_0)
+INF-4: Total DVDs is 7, from INF-1, INF-2, INF-3, FACT-10 by RULE-4 via Arithmetic Computation :: TotalDVDs(n_7)

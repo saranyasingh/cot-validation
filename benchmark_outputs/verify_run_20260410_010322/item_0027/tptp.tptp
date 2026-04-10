@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(mishka, shorts, n_3)).
+fof(fact_2, axiom, cost_per_pair(shorts, n_1650)).
+fof(fact_3, axiom, shorts_total(n_4950)).
+fof(fact_4, axiom, bought(mishka, pants, n_3)).
+fof(fact_5, axiom, cost_per_pair(pants, n_2250)).
+fof(fact_6, axiom, pants_total(n_6750)).
+fof(fact_7, axiom, bought(mishka, shoes, n_3)).
+fof(fact_8, axiom, cost_per_pair(shoes, n_4200)).
+fof(fact_9, axiom, shoes_total(n_12600)).
+fof(fact_10, axiom, total_expenditure(n_24300)).
+fof(fact_11, axiom, sum_total(n_4950, n_6750, n_12600, n_24300)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Q, P, R] : ((bought(X, Y, n(Q)) & cost_per_pair(Y, n(P)) & multiply(n(Q), n(P), n(R))) => item_total_cost(X, Y, n(R)))).
+fof(rule_2, axiom, ! [A, B, C, D] : ((shorts_total(A) & pants_total(B) & shoes_total(C) & sum_total(A, B, C, D)) => total_expenditure(D))).
+
+% --- INFERENCES ---
+% From fact_11, rule_2 by Modus Ponens
+fof(inf_1, axiom, total_expenditure(n_24300)).

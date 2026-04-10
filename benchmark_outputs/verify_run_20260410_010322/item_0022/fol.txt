@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Raymond and Samantha are cousins :: Cousin(raymond, samantha)
+FACT-2: Samantha is currently 31 years old :: CurrentAge(samantha, n_31)
+FACT-3: Raymond is older than Samantha by 6 years :: AgeDifference(raymond, samantha, n_6)
+FACT-4: Raymond had his son at age 23 :: AgeAtChildBirth(raymond, n_23)
+
+## RULES
+RULE-1: If Samantha's current age is a and Raymond is older than Samantha by b and a - b = c, then Raymond's birth year is c :: ∀a∀b∀c((CurrentAge(samantha, a) ∧ AgeDifference(raymond, samantha, b) ∧ Subtract(a, b, c)) → BirthYear(raymond, c))
+RULE-2: If Raymond's birth year is c and Raymond's age at his son's birth is d and c - d = e then Raymond's son was born e years ago :: ∀c∀d∀e((BirthYear(raymond, c) ∧ AgeAtChildBirth(raymond, d) ∧ Subtract(c, d, e)) → YearsAgoChildBirth(raymond, e))
+
+## INFERENCES
+INF-1: Subtract(n_31, n_6, n_25) is derived from FACT-2 and FACT-3 by Arithmetic Computation :: Subtract(n_31, n_6, n_25)
+INF-2: BirthYear(raymond, n_25) follows from FACT-2, FACT-3, and INF-1 by RULE-1 :: BirthYear(raymond, n_25)
+INF-3: Subtract(n_25, n_23, n_2) is derived from INF-2 and FACT-4 by Arithmetic Computation :: Subtract(n_25, n_23, n_2)
+INF-4: YearsAgoChildBirth(raymond, n_2) follows from INF-2, FACT-4, and INF-3 by RULE-2 :: YearsAgoChildBirth(raymond, n_2)

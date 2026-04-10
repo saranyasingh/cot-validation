@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, donuts_bought(n_3)).
+fof(fact_2, axiom, price_per_dozen(donuts, n_68)).
+fof(fact_3, axiom, mini_cupcakes_dozens(n_2)).
+fof(fact_4, axiom, price_per_dozen(mini_cupcakes, n_80)).
+fof(fact_5, axiom, cheesecakes_dozens(n_6)).
+fof(fact_6, axiom, price_per_dozen(cheesecakes, n_55)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y] : ((donuts_bought(X) & price_per_dozen(donuts, Y)) => donuts_total(n_204))).
+fof(rule_2, axiom, ! [X, Y] : ((mini_cupcakes_dozens(X) & price_per_dozen(mini_cupcakes, Y)) => cupcakes_total(n_160))).
+fof(rule_3, axiom, ! [X, Y] : ((cheesecakes_dozens(X) & price_per_dozen(cheesecakes, Y)) => cheesecakes_total(n_330))).
+fof(rule_4, axiom, ! [X, Y, Z] : ((donuts_total(X) & cupcakes_total(Y) & cheesecakes_total(Z)) => total_cost(n_794))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, and rule_1 by Modus Ponens
+fof(inf_1, axiom, donuts_total(n_204)).
+% From fact_3, fact_4, and rule_2 by Modus Ponens
+fof(inf_2, axiom, cupcakes_total(n_160)).
+% From fact_5, fact_6, and rule_3 by Modus Ponens
+fof(inf_3, axiom, cheesecakes_total(n_330)).
+% From inf_1, inf_2, inf_3, and rule_4 by Modus Ponens
+fof(inf_4, axiom, total_cost(n_794)).

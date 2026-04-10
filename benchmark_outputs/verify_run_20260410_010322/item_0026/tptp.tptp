@@ -1,0 +1,37 @@
+% --- FACTS ---
+fof(fact_1, axiom, chicken_meal_cost(n_1200)).
+fof(fact_2, axiom, num_chicken_meals(n_1)).
+fof(fact_3, axiom, milk_pack_cost(n_300)).
+fof(fact_4, axiom, num_milk_packs(n_5)).
+fof(fact_5, axiom, apple_cost(n_150)).
+fof(fact_6, axiom, num_apples(n_4)).
+fof(fact_7, axiom, total_payment(n_5000)).
+fof(fact_8, axiom, box_cost(n_850)).
+fof(fact_9, axiom, mul(n_1200, n_1, n_1200)).
+fof(fact_10, axiom, mul(n_300, n_5, n_1500)).
+fof(fact_11, axiom, mul(n_150, n_4, n_600)).
+fof(fact_12, axiom, sum3(n_1200, n_1500, n_600, n_3300)).
+fof(fact_13, axiom, div(n_1700, n_850, n_2)).
+fof(fact_14, axiom, subtract(n_5000, n_3300, n_1700)).
+
+% --- RULES ---
+fof(rule_chick, axiom, ! [A,B,C] : ((chicken_meal_cost(A) & num_chicken_meals(B) & mul(A,B,C)) => chicken_meal_total(C))).
+fof(rule_milk, axiom, ! [A,B,C] : ((milk_pack_cost(A) & num_milk_packs(B) & mul(A,B,C)) => milk_total_cost(C))).
+fof(rule_apple, axiom, ! [A,B,C] : ((apple_cost(A) & num_apples(B) & mul(A,B,C)) => apple_total_cost(C))).
+fof(rule_add3, axiom, ! [A,B,C,D] : ((chicken_meal_total(A) & milk_total_cost(B) & apple_total_cost(C) & sum3(A,B,C,D)) => total_cost_before_pizzas(D))).
+fof(rule_sub, axiom, ! [P,S,R] : ((total_payment(P) & total_cost_before_pizzas(S) & subtract(P,S,R)) => pizzas_spent(R))).
+fof(rule_div_boxes, axiom, ! [Spent, Price, Boxes] : ((pizzas_spent(Spent) & box_cost(Price) & div(Spent,Price,Boxes)) => boxes_ordered(Boxes))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_9, rule_chick by Modus Ponens
+fof(inf_1, axiom, chicken_meal_total(n_1200)).
+% From fact_3, fact_4, fact_10, rule_milk by Modus Ponens
+fof(inf_2, axiom, milk_total_cost(n_1500)).
+% From fact_5, fact_6, fact_11, rule_apple by Modus Ponens
+fof(inf_3, axiom, apple_total_cost(n_600)).
+% From inf_1, inf_2, inf_3, fact_12, rule_add3 by Modus Ponens
+fof(inf_4, axiom, total_cost_before_pizzas(n_3300)).
+% From fact_7, inf_4, fact_14, rule_sub by Modus Ponens
+fof(inf_5, axiom, pizzas_spent(n_1700)).
+% From inf_5, fact_8, fact_13, rule_div_boxes by Modus Ponens
+fof(inf_6, axiom, boxes_ordered(n_2)).

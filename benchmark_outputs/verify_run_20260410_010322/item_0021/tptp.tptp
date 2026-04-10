@@ -1,0 +1,32 @@
+% --- FACTS ---
+fof(fact_1, axiom, Volume(orange_drink, n_10)).
+fof(fact_2, axiom, WaterFractionNumerator(orange_drink, n_2)).
+fof(fact_3, axiom, WaterFractionDenominator(orange_drink, n_3)).
+fof(fact_4, axiom, Volume(pineapple_drink, n_15)).
+fof(fact_5, axiom, WaterFractionNumerator(pineapple_drink, n_3)).
+fof(fact_6, axiom, WaterFractionDenominator(pineapple_drink, n_5)).
+fof(fact_7, axiom, Spilled(n_1)).
+fof(fact_8, axiom, RemainingVolume(n_24)).
+fof(fact_9, axiom, InitialTotalVolume(n_25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,V,N,Den] : ((Volume(D,V) & WaterFractionNumerator(D,N) & WaterFractionDenominator(D,Den)) => WaterFromDrink(D,V,N,Den)))..
+fof(rule_2, axiom, ! [D1,D2,V1,N1,Den1,V2,N2,Den2] : ((WaterFromDrink(D1,V1,N1,Den1) & WaterFromDrink(D2,V2,N2,Den2)) => WaterTotal(V1*N1/Den1 + V2*N2/Den2)))..
+fof(rule_3, axiom, ! [I,S,R] : ((InitialTotalVolume(I) & Spilled(S) & RemainingVolume(R) & R = I - S) => RemainingVolume(R)))..
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, WaterFromDrink(orange_drink, n_10, n_2, n_3)).
+
+% From fact_4, fact_5, fact_6 by Rule-1
+fof(inf_2, axiom, WaterFromDrink(pineapple_drink, n_15, n_3, n_5)).
+
+% From INF-1 and INF-2 by RULE-2
+fof(inf_3, axiom, WaterTotal(n_47_over_3)).
+
+% From INF-3 by Arithmetic Computation
+fof(inf_4, axiom, RemainingVolume(n_15_67_liters)).
+
+% The final answer: 15.67 liters :: 15_67_liters by INF-4
+% From inf_4 by Numeric approximation
+fof(inf_5, axiom, RemainingVolume(n_15_67_liters)).
