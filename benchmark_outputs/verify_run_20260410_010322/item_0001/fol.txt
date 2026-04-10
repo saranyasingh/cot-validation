@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: DucksLayEggsPerDay(janet, n_16)
+FACT-2: Janet eats three eggs for breakfast every morning :: BreakfastEggsEatenPerDay(janet, n_3)
+FACT-3: Janet uses four eggs to bake muffins for her friends every day :: EggsUsedForMuffins(janet, n_4)
+FACT-4: There are 9 eggs left after accounting for breakfast and muffins :: EggsLeft(janet, n_9)
+FACT-5: Price per egg is $2 :: PricePerEgg(janet, n_2)
+
+## RULES
+RULE-1: If someone has eggs left and a price per egg, there exists a product value for the product of those amounts :: ∀s∀r∀p((EggsLeft(s, r) ∧ PricePerEgg(s, p)) → ∃z ProductValue(r, p, z))
+RULE-2: If someone has eggs left, a price per egg, and a product value for the product, then their earnings equal that product value :: ∀s∀r∀p∀z((EggsLeft(s, r) ∧ PricePerEgg(s, p) ∧ ProductValue(r, p, z)) → Earnings(s, z))
+
+## INFERENCES
+INF-1: 9 × 2 = 18, from FACT-4 and FACT-5 by Arithmetic Computation :: ProductValue(n_9, n_2, n_18)
+INF-2: Earnings(janet, n_18) from FACT-4, FACT-5, INF-1 by RULE-2 (Modus Ponens with universal instantiation) :: Earnings(janet, n_18)

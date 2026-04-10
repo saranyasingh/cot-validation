@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, regular_rate(eliza, n_10)).
+fof(fact_2, axiom, regular_hours(eliza, n_40)).
+fof(fact_3, axiom, total_hours(eliza, n_45)).
+fof(fact_4, axiom, overtime_hours(eliza, n_5)).
+fof(fact_5, axiom, overtime_rate(eliza, n_12)).
+fof(fact_6, axiom, product(n_40, n_10, n_400)).
+fof(fact_7, axiom, product(n_5, n_12, n_60)).
+fof(fact_8, axiom, sum(n_400, n_60, n_460)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,H,R,E] : ((regular_hours(P,H) & regular_rate(P,R) & product(H,R,E)) => regular_earnings(P,E))).
+fof(rule_2, axiom, ! [P,H,R,E] : ((overtime_hours(P,H) & overtime_rate(P,R) & product(H,R,E)) => overtime_earnings(P,E))).
+fof(rule_3, axiom, ! [P,E1,E2,E3] : ((regular_earnings(P,E1) & overtime_earnings(P,E2) & sum(E1,E2,E3)) => total_earnings(P,E3))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-1, FACT-6 by Modus Ponens on RULE-1
+fof(inf_1, axiom, regular_earnings(eliza, n_400)).
+% From FACT-4, FACT-5, FACT-7 by Modus Ponens on RULE-2
+fof(inf_2, axiom, overtime_earnings(eliza, n_60)).
+% From INF-1, INF-2, FACT-8 by Modus Ponens on RULE-3
+fof(inf_3, axiom, total_earnings(eliza, n_460)).

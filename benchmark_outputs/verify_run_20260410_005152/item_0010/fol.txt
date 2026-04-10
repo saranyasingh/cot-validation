@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Eliza's regular rate per hour is $10 :: RegularRate(eliza, n_10)
+FACT-2: Eliza regular hours are 40 hours :: RegularHours(eliza, n_40)
+FACT-3: Eliza total hours are 45 hours :: TotalHours(eliza, n_45)
+FACT-4: Eliza overtime hours are 5 :: OvertimeHours(eliza, n_5)
+FACT-5: Eliza overtime rate is $12 per hour :: OvertimeRate(eliza, n_12)
+FACT-6: 40 * 10 = 400 :: Product(n_40, n_10, n_400)
+FACT-7: 5 * 12 = 60 :: Product(n_5, n_12, n_60)
+FACT-8: 400 + 60 = 460 :: Sum(n_400, n_60, n_460)
+
+## RULES
+RULE-1: Regular earnings from regular hours and rate via multiplication :: ∀p∀H∀R∀E((RegularHours(p,H) ∧ RegularRate(p,R) ∧ Product(H,R,E)) → RegularEarnings(p,E))
+RULE-2: Overtime earnings from overtime hours and rate via multiplication :: ∀p∀H∀R∀E((OvertimeHours(p,H) ∧ OvertimeRate(p,R) ∧ Product(H,R,E)) → OvertimeEarnings(p,E))
+RULE-3: Total earnings from RegularEarnings, OvertimeEarnings, and Sum :: ∀p∀E1∀E2∀E3((RegularEarnings(p,E1) ∧ OvertimeEarnings(p,E2) ∧ Sum(E1,E2,E3)) → TotalEarnings(p,E3))
+
+## INFERENCES
+INF-1: Regular earnings of 400 from regular hours (40) and regular rate (10) using multiplication :: RegularEarnings(eliza, n_400) from FACT-2, FACT-1, FACT-6 by Modus Ponens on RULE-1
+INF-2: Overtime earnings of 60 from overtime hours (5) and overtime rate (12) using multiplication :: OvertimeEarnings(eliza, n_60) from FACT-4, FACT-5, FACT-7 by Modus Ponens on RULE-2
+INF-3: Total earnings of 460 from RegularEarnings (400), OvertimeEarnings (60), and Sum (400+60=460) :: TotalEarnings(eliza, n_460) from INF-1, INF-2, FACT-8 by Modus Ponens on RULE-3

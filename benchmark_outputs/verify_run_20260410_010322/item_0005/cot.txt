@@ -1,0 +1,29 @@
+To solve this problem, we need to break down the information given and use it to find out how much feed Wendi needs to give in the final meal.
+
+**Premise 1:** Every day, Wendi feeds each of her chickens three cups of mixed chicken feed.
+- This means that regardless of the time of day or the amount of feed given during other meals, each chicken receives exactly 3 cups per day.
+
+**Premise 2:** Wendi gives the chickens their feed in three separate meals throughout the day.
+- This implies that there are two additional meals besides the morning and afternoon meals mentioned.
+
+**Premise 3:** In the morning, Wendi gives her flock of chickens 15 cups of feed.
+- This tells us about the total amount of feed given at one specific time (morning).
+
+**Premise 4:** In the afternoon, Wendi gives her chickens another 25 cups of feed.
+- This provides more details on the amount of feed given during another specific time period (afternoon).
+
+Now let's calculate the total amount of feed given over the course of the day:
+
+Total feed given = Feed in the morning + Feed in the afternoon
+= 15 cups + 25 cups
+= 40 cups
+
+Since each chicken gets 3 cups per day, and there are 20 chickens, we can calculate the total feed needed for all chickens:
+
+Total feed needed for all chickens = Total feed given / Number of chickens
+= 40 cups / 20 chickens
+= 2 cups/chicken
+
+Therefore, Wendi needs to give each chicken an additional 2 cups of feed in the final meal of the day.
+
+The answer is: 2

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — Remaining after green should be 2v/3, not v/3.
+FACT-3: UNSUPPORTED — After red sale, remaining should be 2v/3 - 2, not v/3 - 2.
+FACT-4: UNSUPPORTED — After orange sale, remaining should be (v/3) - 1, not half_of_v_div_3_minus_2.
+FACT-5: UNSUPPORTED — The final remaining is 5, but the fact asserts half_of_v_div_3_minus_2 equals 5, which is not supported by the story.

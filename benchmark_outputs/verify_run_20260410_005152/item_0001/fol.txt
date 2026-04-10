@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: EggsLaidPerDay(janets_ducks, n_16)
+FACT-2: EggsEatenForBreakfast(janet, n_3)
+FACT-3: EggsUsedForMuffins(janet, n_4)
+FACT-4: PricePerEgg(n_2)
+FACT-5: Subtract(n_16, n_3, n_13)
+FACT-6: Subtract(n_13, n_4, n_9)
+FACT-7: Multiply(n_9, n_2, n_18)
+
+## RULES
+RULE-1: ∀g∀a∀b∀r((EggsLaidPerDay(g, a) ∧ EggsEatenForBreakfast(janet, b) ∧ Subtract(a, b, r)) → EggsRemainingAfterBreakfast(g, r))
+RULE-2: ∀g∀r1∀m∀r2((EggsRemainingAfterBreakfast(g, r1) ∧ EggsUsedForMuffins(janet, m) ∧ Subtract(r1, m, r2)) → EggsRemainingAfterMuffins(g, r2))
+RULE-3: ∀g∀r∀p∀q((EggsRemainingAfterMuffins(g, r) ∧ PricePerEgg(p) ∧ Multiply(r, p, q)) → RevenueFromSellingRemainingEggs(janet, q))
+RULE-4: ∀x∀y((RevenueFromSellingRemainingEggs(x, y) → JanetMakesDaily(x, y)))
+
+## INFERENCES
+INF-1: EggsRemainingAfterBreakfast(janets_ducks, n_13) :: from FACT-1, FACT-2, FACT-5 by RULE-1 (Universal Instantiation, Modus Ponens)
+INF-2: EggsRemainingAfterMuffins(janets_ducks, n_9) :: from INF-1, FACT-3, FACT-6 by RULE-2 (Universal Instantiation, Modus Ponens)
+INF-3: RevenueFromSellingRemainingEggs(janet, n_18) :: from INF-2, FACT-4, FACT-7 by RULE-3 (Universal Instantiation, Modus Ponens)
+INF-4: JanetMakesDaily(janet, n_18) :: from INF-3 by RULE-4 (Modus Ponens)

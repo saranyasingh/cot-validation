@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_glass_cost(5)).
+fof(fact_2, axiom, glasses_count_with_cost(8,5)).
+fof(fact_3, axiom, glasses_count_with_cost(8,3)).
+fof(fact_4, axiom, cost_of_group(8,5,40)).
+fof(fact_5, axiom, cost_of_group(8,3,24)).
+fof(fact_6, axiom, total_cost_all(64)).
+fof(fact_7, axiom, glasses_total(16)).
+fof(fact_8, axiom, pay(kylar,64)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : ( total_cost_all(A) => pay(kylar, A) )).
+
+% --- INFERENCES ---
+% From fact_6, rule_1 by Modus Ponens
+fof(inf_1, axiom, pay(kylar, 64)).

@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Initial planting cost of the lemon tree :: PlantingCost(lemon_tree, n_90)
+FACT-2: Lemons grown per year :: LemonsPerYear(lemon_tree, n_7)
+FACT-3: Price per lemon :: PricePerLemon(lemon_tree, n_150)
+FACT-4: Annual expenses :: AnnualExpenses(lemon_tree, n_3)
+FACT-5: Product of lemons per year and price per lemon :: Multiply(n_7, n_150, n_10_50)
+FACT-6: Subtract revenue minus expenses :: Subtract(n_10_50, n_3, n_7_50)
+FACT-7: Total investment :: TotalInvestment(lemon_tree, n_90)
+FACT-8: Division for years :: Divide(n_90, n_7_50, n_12)
+
+## RULES
+RULE-1: If lemons per year and price per lemon and their product, then growth revenue :: ∀t∀L∀P∀R((LemonsPerYear(t, L) ∧ PricePerLemon(t, P) ∧ Multiply(L, P, R)) → GrowthRevenue(t, R))
+RULE-2: If growth revenue and annual expenses and subtraction, then net profit per year :: ∀t∀R∀E∀N((GrowthRevenue(t, R) ∧ AnnualExpenses(t, E) ∧ Subtract(R, E, N)) → NetProfitPerYear(t, N))
+RULE-3: If total investment and net profit per year and division, then years to profit :: ∀t∀I∀N∀Y((TotalInvestment(t, I) ∧ NetProfitPerYear(t, N) ∧ Divide(I, N, Y)) → YearsToProfit(t, Y))
+
+## INFERENCES
+INF-1: GrowthRevenue(lemon_tree, n_10_50) :: GrowthRevenue(lemon_tree, n_10_50) is derived from FACT-2, FACT-3, FACT-5 using RULE-1
+INF-2: NetProfitPerYear(lemon_tree, n_7_50) :: NetProfitPerYear(lemon_tree, n_7_50) is derived from INF-1, FACT-4, FACT-6 using RULE-2
+INF-3: YearsToProfit(lemon_tree, n_12) :: YearsToProfit(lemon_tree, n_12) is derived from FACT-7, INF-2, FACT-8 using RULE-3

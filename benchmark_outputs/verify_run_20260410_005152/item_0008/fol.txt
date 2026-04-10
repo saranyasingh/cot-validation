@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: TotalSize(n_200) :: The total size of the file is 200 GB
+FACT-2: DownloadRate(n_2) :: The download rate is 2 GB per minute
+
+## RULES
+RULE-1: ∀S∀R∀T((TotalSize(S) ∧ DownloadRate(R) ∧ EqualDivision(S,R,T)) → NormalTime(T)) :: If a file size S is divided by rate R into time T, then the normal download time is T
+
+## INFERENCES
+INF-1: EqualDivision(n_200, n_2, n_100) :: from FACT-1, FACT-2 by Arithmetic Computation
+INF-2: NormalTime(n_100) :: from INF-1, RULE-1 by Modus Ponens

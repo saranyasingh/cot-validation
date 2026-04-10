@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCount(seattle, n_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: TimesAsMany(charleston, seattle, n_4)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TimesAsMany(toulouse, charleston, n_2)
+
+## RULES
+RULE-1: ∀X∀Y∀n∀m∀z((TimesAsMany(X,Y,n) ∧ SheepCount(Y,m) ∧ Product(n,m,z)) → SheepCount(X,z))
+
+## INFERENCES
+INF-1: 4 × 20 = 80, from FACT-2 and FACT-1 by Arithmetic Computation :: Product(n_4, n_20, n_80)
+INF-2: Charleston has 80 sheep, from FACT-2, FACT-1, INF-1 by RULE-1 :: SheepCount(charleston, n_80)
+INF-3: 2 × 80 = 160, from FACT-3 and INF-2 by Arithmetic Computation :: Product(n_2, n_80, n_160)
+INF-4: Toulouse has 160 sheep, from FACT-3, INF-2, INF-3 by RULE-1 :: SheepCount(toulouse, n_160)
+INF-5: 20 + 80 = 100, from FACT-1 and INF-2 by Arithmetic Computation :: Sum(n_20, n_80, n_100)
+INF-6: 100 + 160 = 260, from INF-5 and INF-3 by Arithmetic Computation :: Sum(n_100, n_160, n_260)
+INF-7: Total sheep = 260, from INF-6 by Arithmetic Computation :: TotalSheep(n_260)

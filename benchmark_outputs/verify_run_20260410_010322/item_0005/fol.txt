@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: DailyFeedPerChicken(three_cups) :: Every day, Wendi feeds each chicken three cups.
+FACT-2: MorningFeedAmount(fifteen_cups) :: In the morning, 15 cups of feed are given.
+FACT-3: AfternoonFeedAmount(twentyfive_cups) :: In the afternoon, 25 cups of feed are given.
+FACT-4: ChickensCount(twenty) :: There are 20 chickens.
+
+## RULES
+RULE-1: ∀t∀c∀r((Divide(t,c,r)) → PerChickenFinalMeal(r)) :: If a division result r is obtained by dividing t by c, then the per-chicken final meal equals r.
+
+## INFERENCES
+INF-1: ADD(fifteen_cups, twentyfive_cups, forty_cups) :: 15 + 25 = 40, from FACT-2 and FACT-3 by Arithmetic Computation
+  :: ADD(fifteen_cups, twentyfive_cups, forty_cups)
+
+INF-2: DIVIDE(forty_cups, twenty, two_cups) :: 40 ÷ 20 = 2, from INF-1 and FACT-4 by Arithmetic Computation
+  :: DIVIDE(forty_cups, twenty, two_cups)
+
+INF-3: PerChickenFinalMeal(two_cups) :: from INF-2 and RULE-1 by Modus Ponens
+  :: PerChickenFinalMeal(two_cups)

@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Total number of students = 20 :: TotalStudents(n_20)
+FACT-2: Contemporary dance percentage = 20% :: ContemporaryPercent(n_20)
+FACT-3: 20% of 20 equals 4 :: PercentOf(n_20, n_20, n_4)
+FACT-4: 20 - 4 = 16 :: Subtract(n_20, n_4, n_16)
+FACT-5: 25% of 16 equals 4 :: PercentOf(n_16, n_25, n_4)
+FACT-6: 16 - 4 = 12 :: Subtract(n_16, n_4, n_12)
+FACT-7: 60% of 20 equals 12 :: PercentOf(n_20, n_60, n_12)
+
+## RULES
+RULE-1: If TotalStudents(x) ∧ ContemporaryPercent(p) ∧ PercentOf(x, p, y) then ContemporaryEnrolled(y) :: ∀x∀p∀y((TotalStudents(x) ∧ ContemporaryPercent(p) ∧ PercentOf(x, p, y)) → ContemporaryEnrolled(y))
+RULE-2: If TotalStudents(x) ∧ ContemporaryEnrolled(a) ∧ Subtract(x, a, z) then RemainingStudents(z) :: ∀x∀a∀z((TotalStudents(x) ∧ ContemporaryEnrolled(a) ∧ Subtract(x, a, z)) → RemainingStudents(z))
+RULE-3: If RemainingStudents(x) ∧ PercentOf(x, p, y) then JazzEnrolled(y) :: ∀x∀p∀y((RemainingStudents(x) ∧ PercentOf(x, p, y)) → JazzEnrolled(y))
+RULE-4: If RemainingStudents(x) ∧ JazzEnrolled(a) ∧ Subtract(x, a, z) then HipHopEnrolled(z) :: ∀x∀a∀z((RemainingStudents(x) ∧ JazzEnrolled(a) ∧ Subtract(x, a, z)) → HipHopEnrolled(z))
+RULE-5: If TotalStudents(x) ∧ PercentOf(x, p, y) then HipHopPercent(p) :: ∀x∀p∀y((TotalStudents(x) ∧ PercentOf(x, p, y)) → HipHopPercent(p))
+
+## INFERENCES
+INF-1: ContemporaryEnrolled(n_4), from FACT-1, FACT-2, FACT-3 and RULE-1 by Modus Ponens :: ContemporaryEnrolled(n_4)
+INF-2: RemainingStudents(n_16), from FACT-1, INF-1, FACT-4 and RULE-2 by Modus Ponens :: RemainingStudents(n_16)
+INF-3: JazzEnrolled(n_4), from INF-2, FACT-5 and RULE-3 by Modus Ponens :: JazzEnrolled(n_4)
+INF-4: HipHopEnrolled(n_12), from INF-2, INF-3, FACT-6 and RULE-4 by Modus Ponens :: HipHopEnrolled(n_12)
+INF-5: HipHopPercent(n_60), from FACT-1, FACT-7 and RULE-5 by Modus Ponens :: HipHopPercent(n_60)

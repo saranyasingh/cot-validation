@@ -1,0 +1,33 @@
+To determine how much Janet makes every day at the farmers' market, we need to follow these steps:
+
+**Premise 1:** Janet's ducks lay 16 eggs per day.
+
+- This establishes the total number of eggs laid by the ducks each day.
+  
+**Premise 2:** Janet eats three eggs for breakfast every morning.
+
+- This reduces the available eggs by 3 after breakfast consumption.
+  
+**Premise 3:** Janet uses four eggs to bake muffins for her friends every day.
+
+- This further reduces the remaining eggs by 4 after baking.
+  
+**Premise 4:** After accounting for breakfast and muffin-making, there are \(16 - 3 - 4 = 9\) eggs left.
+
+- This shows that out of the original 16 eggs, 9 remain after all other activities have been completed.
+
+**Premise 5:** Janet sells the remainder (9 eggs) at the farmers' market daily for $2 per egg.
+
+- This gives us the price at which each egg is sold.
+
+**Conclusion:** To find out how much money Janet makes from selling the remaining eggs, multiply the number of remaining eggs by the price per egg.
+
+\[
+\text{Daily earnings} = 9 \text{ eggs} \times \$2/\text{egg}
+\]
+
+\[
+\text{Daily earnings} = \$18
+\]
+
+Therefore, the amount Janet makes every day at the farmers' market is **$18**.

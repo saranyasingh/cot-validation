@@ -1,0 +1,27 @@
+## FACTS
+FACT-1: John travels at 60 mph for the first leg :: Speed(john, n_60)
+FACT-2: John travels for 3 hours :: Time(john, n_3)
+FACT-3: Distance covered in the first leg :: Distance(john, n_180)
+FACT-4: Turnaround window is 4 hours :: ReturnWindow(john, n_4)
+FACT-5: Spent the first 2 hours stuck in traffic :: StuckInTraffic(john, n_2)
+FACT-6: John travels at 30 mph for the first half-hour :: Speed(john, n_30)
+FACT-7: Time for the first half-hour :: Time(john, n_0_5)
+FACT-8: Distance covered in the first half-hour :: Distance(john, n_15)
+FACT-9: Remaining distance to cover :: RemainingDistance(john, n_165)
+FACT-10: Remaining time after first half-hour :: RemainingTime(john, n_1_5)
+FACT-11: John travels at 80 mph for the last 1.5 hours :: Speed(john, n_80)
+FACT-12: Time for the last segment :: Time(john, n_1_5)
+FACT-13: Distance covered in the last segment :: Distance(john, n_120)
+FACT-14: Total distance after 4 hours :: TotalDistance(john, n_315)
+FACT-15: Product(n_60, n_3, n_180) :: Product(n_60, n_3, n_180)
+FACT-16: Product(n_30, n_0_5, n_15) :: Product(n_30, n_0_5, n_15)
+FACT-17: Product(n_80, n_1_5, n_120) :: Product(n_80, n_1_5, n_120)
+
+## RULES
+RULE-1: If Speed(p, s) ∧ Time(p, t) ∧ Product(s, t, d) then Distance(p, d) :: ∀p∀s∀t∀d((Speed(p,s) ∧ Time(p,t) ∧ Product(s,t,d)) → Distance(p,d))
+
+## INFERENCES
+INF-1: Distance(john, n_180) from FACT-1, FACT-2, FACT-15 via RULE-1 (Modus Ponens)
+INF-2: Distance(john, n_15) from FACT-6, FACT-7, FACT-16 via RULE-1 (Modus Ponens)
+INF-3: Distance(john, n_120) from FACT-11, FACT-12, FACT-17 via RULE-1 (Modus Ponens)
+INF-4: TotalDistance(john, n_315) from FACT-3, INF-2, INF-3 via RULE-2

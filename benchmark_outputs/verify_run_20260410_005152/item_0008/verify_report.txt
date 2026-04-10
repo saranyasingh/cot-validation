@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The story states a 200 GB file size.
+
+FACT-2: SUPPORTED — The story states a download rate of 2 GB/minute.
+
+RULE-1: PLAUSIBLE — It expresses a standard time calculation (time = size/rate) under exact division, a sensible general principle for this context.

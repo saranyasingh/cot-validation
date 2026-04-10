@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, blue_amount(robe, n_2)).
+fof(fact_2, axiom, white_is_half_blue(robe)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : ((white_is_half_blue(R) & blue_amount(R, n_2)) => white_amount(R, n_1))).
+fof(rule_2, axiom, ! [R] : ((blue_amount(R, n_2) & white_amount(R, n_1)) => total_fiber(R, n_3))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, RULE-1 by Modus Ponens
+fof(inf_1, axiom, white_amount(robe, n_1)).
+% From FACT-1, INF-1, RULE-2 by Modus Ponens
+fof(inf_2, axiom, total_fiber(robe, n_3)).

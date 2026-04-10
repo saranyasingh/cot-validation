@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — 60% of 200 GB is 120 GB, not 1.2 GB
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — the story does not mention a 60-minute time budget
+FACT-5: UNSUPPORTED — 40% of 200 GB is 80 GB, not 16 GB
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — ignores time spent before restart and miscounts remaining budget
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — omits the restart time in total duration

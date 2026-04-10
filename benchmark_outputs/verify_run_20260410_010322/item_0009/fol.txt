@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: john drives for 3 hours at 60 mph :: Drives(john, n_3, n_60)
+FACT-2: Planned return home in 4 hours :: PlannedReturnTime(john, n_4)
+FACT-3: Spends the first 2 hours stuck in traffic :: TrafficTime(john, n_2)
+FACT-4: In these 2 hours, drives at 30 mph :: TrafficSpeed(john, n_30)
+FACT-5: Has driven 240 miles so far :: DistanceSoFar(john, n_240)
+FACT-6: Spends the next half-hour driving at 80 mph :: DrivesInPeriod(john, n_0_5, n_80)
+FACT-7: Remaining distance to home is 200 miles :: RemainingDistanceToHome(john, n_200)
+
+## RULES
+RULE-1: If a person has a remaining distance to home, then the final answer is that distance :: ∀x∀d((RemainingDistanceToHome(x, d)) → Answer(x, d))
+
+## INFERENCES
+INF-1: 200 miles remaining implies final answer is 200 miles :: From FACT-7 and RULE-1 by Modus Ponens :: Answer(john, n_200)

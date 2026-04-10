@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: The cost of buying the house is 80,000 :: PurchaseCost(house, n_80000)
+FACT-2: The amount spent on repairs is 50,000 :: RepairsCost(house, n_50000)
+FACT-3: Original purchase price is 80,000 :: OriginalPurchasePrice(n_80000)
+FACT-4: Percentage increase is 150% :: PercentageIncrease(n_150)
+FACT-5: Original price times percentage increase equals 120,000 :: Multiply(n_80000, n_150, n_120000)
+FACT-6: Sum of costs for house purchase and repairs is 130,000 :: SumCosts(house, n_80000, n_50000, n_130000)
+
+## RULES
+RULE-1: If purchase cost, repairs cost, and their sum are given, then the total expenses equal that sum :: ∀h, c1, c2, t((PurchaseCost(h, c1) ∧ RepairsCost(h, c2) ∧ SumCosts(h, c1, c2, t)) → TotalExpenses(t))
+RULE-2: If original purchase price, percentage increase, and their product exist, then the value increase is the product :: ∀p, q, r((OriginalPurchasePrice(p) ∧ PercentageIncrease(q) ∧ Multiply(p, q, r)) → ValueIncrease(r))
+RULE-3: If value increase, total expenses, and their difference give net profit, then NetProfit(np) :: ∀v, t, np((ValueIncrease(v) ∧ TotalExpenses(t) ∧ Subtract(v, t, np)) → NetProfit(np))
+RULE-4: If there is a NetProfit np for Josh, then LossForJosh(josh, np) :: ∀np((NetProfit(np)) → LossForJosh(josh, np))
+
+## INFERENCES
+INF-1: ValueIncrease(120000) from OriginalPurchasePrice(80000) ∧ PercentageIncrease(150) ∧ Multiply(80000, 150, 120000) by RULE-2
+INF-2: TotalExpenses(130000) from PurchaseCost(house, 80000) ∧ RepairsCost(house, 50000) ∧ SumCosts(house, 80000, 50000, 130000) by RULE-1
+INF-3: Subtract(120000, 130000, 10000) from ValueIncrease(120000) ∧ TotalExpenses(130000) by Arithmetic Subtraction
+INF-4: NetProfit(10000) from Subtract(120000, 130000, 10000) ∧ ValueIncrease(120000) ∧ TotalExpenses(130000) by RULE-3
+INF-5: LossForJosh(josh, 10000) from NetProfit(10000) by RULE-4

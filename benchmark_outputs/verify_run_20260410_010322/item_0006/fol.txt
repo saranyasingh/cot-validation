@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Cost(glass, n_5) :: The cost of one glass is 5
+FACT-2: DiscountedGlasses(n_8) :: There are 8 glasses that cost 60% (half) of their original price
+FACT-3: DiscountedPrice(glass, n_3) :: At 60%, the price of one glass is 3
+FACT-4: DiscountedTotal(n_24) :: Total cost for 8 glasses at 3 each is 24
+FACT-5: FullTotal(n_40) :: Total cost for remaining 8 glasses is 40
+FACT-6: TotalCost(n_64) :: Total cost is 64
+FACT-7: FinalAnswer(n_64) :: The final answer is 64
+
+## RULES
+RULE-1: ArithmeticComputation :: ∀a∀b∀c((a = n_24 ∧ b = n_40 ∧ c = n_64) → Sum(a,b,c)) 
+RULE-2: SumToTotal :: ∀a∀b∀c((Sum(a,b,c)) → TotalCost(c))
+
+## INFERENCES
+INF-1: 24 + 40 = 64, from FACT-4 and FACT-5 by ArithmeticComputation :: Sum(n_24, n_40, n_64)
+INF-2: TotalCost(64) from INF-1 and RULE-2 by Modus Ponens :: TotalCost(n_64)
+INF-3: FinalAnswer(64) from FACT-6 by Identity :: FinalAnswer(n_64)

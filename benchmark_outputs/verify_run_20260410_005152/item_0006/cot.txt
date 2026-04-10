@@ -1,0 +1,23 @@
+EXPLANATION
+Let's break down the problem into steps.
+
+**Step 1:** Determine the cost of each glass.
+- The first glass costs $5.
+- Every second glass costs 60% of the price of the first glass.
+
+So, the price of the second glass is \( 5 \times 0.6 = \$3 \).
+
+**Step 2:** Calculate how many glasses cost 60% (second type) and how many cost 100% (first type).
+- There are 8 glasses that cost $5 each (since there are 16 total glasses divided by 2).
+- There are also 8 glasses that cost $3 each (because half of the remaining glasses after the first 8 are second type).
+
+**Step 3:** Compute the total cost for each group.
+- Cost for the 8 glasses at $5 each: \( 8 \times 5 = \$40 \)
+- Cost for the 8 glasses at $3 each: \( 8 \times 3 = \$24 \)
+
+**Step 4:** Sum up the total cost.
+- Total cost for all 16 glasses: \( 40 + 24 = \$64 \)
+
+Therefore, Kylar needs to pay $64 for the 16 glasses.
+
+The answer is: 64

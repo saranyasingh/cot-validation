@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — directly stated in the story.
+FACT-2: SUPPORTED — follows from Charleston is 4 times Seattle and Seattle = 20.
+FACT-3: SUPPORTED — follows from Toulouse is twice Charleston and Charleston = 80.
+FACT-4: SUPPORTED — entailed by the arithmetic of the given facts.
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — FourTimes(a, b) does not imply FourTimes(b, a); the relation is not symmetric.

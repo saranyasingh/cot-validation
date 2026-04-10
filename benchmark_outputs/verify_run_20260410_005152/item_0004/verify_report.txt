@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The rule mislabels the weekly calculation (should use sessions per week, not weeks per week), leading to a mismatch with the given facts.

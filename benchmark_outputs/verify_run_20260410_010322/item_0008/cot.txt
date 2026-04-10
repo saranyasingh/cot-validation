@@ -1,0 +1,24 @@
+To determine how long it takes Carla to download the entire 200 GB file after the interruption caused by restarting Windows, we need to break down the problem into two parts: the time spent during the initial 60% download (before the restart) and the time needed to complete the remaining 40% download.
+
+### Step 1: Calculate the time taken to download the first 60% of the file before the restart.
+- Carla's normal download speed is 2 GB per minute.
+- Therefore, the amount of data downloaded in the first 60% is \( 2 \text{ GB/min} \times 0.6 = 1.2 \text{ GB} \).
+- To find out how many minutes this takes, we use the formula: Time = Data / Speed.
+- Thus, the time taken to download the first 60% is \( \frac{1.2 \text{ GB}}{2 \text{ GB/min}} = 0.6 \text{ minutes} \).
+
+### Step 2: Account for the time lost due to the restart.
+- The restart took 20 minutes.
+- This means that 20 minutes were not used for downloading the file.
+
+### Step 3: Calculate the effective time available for downloading the second part of the file.
+- Since 20 minutes were wasted on the restart, only \( 60 - 20 = 40 \) minutes are left for downloading the remaining 40% of the file.
+- At her normal speed, Carla needs \( 0.4 \text{ GB/min} \times 40 \text{ minutes} = 16 \text{ GB} \) to finish the last 40%.
+- To find out how much time this would take, we use the same formula as before: Time = Data / Speed.
+- Thus, the time taken to download the last 40% is \( \frac{16 \text{ GB}}{2 \text{ GB/min}} = 8 \text{ minutes} \).
+
+### Step 4: Sum up all the times to get the total download time.
+- First part of the download: 0.6 minutes
+- Second part of the download: 8 minutes
+- Total download time: \( 0.6 + 8 = 8.6 \text{ minutes} \)
+
+Therefore, the total time it takes Carla to download the entire 200 GB file after the restart is **8.6 minutes**.

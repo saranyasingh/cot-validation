@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, sprint_distance(n_60)).
+
+fof(fact_2, axiom, sprints_per_session(james, n_3)).
+
+fof(fact_3, axiom, sessions_per_week(james, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,S,D,Z] : ((sprint_distance(D) & sprints_per_session(P,S) & multiply(S,D,Z)) => distance_per_session(P,Z))).
+
+fof(rule_2, axiom, ! [P,D,S,W] : ((distance_per_session(P,D) & sessions_per_week(P,S) & multiply(D,S,W)) => weekly_distance(P,W))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, by Arithmetic Computation
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, multiply(n_3, n_60, n_180)).
+
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, distance_per_session(james, n_180)).
+
+% From inf_2, fact_3 by Arithmetic Computation
+% From inf_2, fact_3 by Arithmetic Computation
+fof(inf_3, axiom, multiply(n_180, n_3, n_540)).
+
+% From inf_2, fact_3, inf_3 by Modus Ponens
+% From inf_2, fact_3, inf_3 by Modus Ponens
+fof(inf_4, axiom, weekly_distance(james, n_540)).

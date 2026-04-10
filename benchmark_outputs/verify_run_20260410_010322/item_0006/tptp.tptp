@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost(glass, n_5)).
+fof(fact_2, axiom, discounted_glasses(n_8)).
+fof(fact_3, axiom, discounted_price(glass, n_3)).
+fof(fact_4, axiom, discounted_total(n_24)).
+fof(fact_5, axiom, full_total(n_40)).
+fof(fact_6, axiom, total_cost(n_64)).
+fof(fact_7, axiom, final_answer(n_64)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B, C] : ((A = n_24 & B = n_40 & C = n_64) => sum(A, B, C))).
+fof(rule_2, axiom, ! [A, B, C] : (sum(A, B, C) => total_cost(C))).
+
+% --- INFERENCES ---
+% From FACT-4, FACT-5 by ArithmeticComputation
+fof(inf_1, axiom, sum(n_24, n_40, n_64)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, total_cost(n_64)).
+% From FACT-6 by Identity
+fof(inf_3, axiom, final_answer(n_64)).

@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: TotalVacuums(melanie, v) :: Melanie started with a total of v vacuum cleaners
+FACT-2: RemainingGreen(melanie, v_div_3) :: After selling at the green house, she had v/3 left
+FACT-3: RemainingRed(melanie, v_div_3_minus_2) :: After selling 2 more at the red house, she had v/3 - 2 left
+FACT-4: RemainingOrange(melanie, half_of_v_div_3_minus_2) :: After selling half of what was left at the orange house, she had (1/2)(v/3 - 2) left
+FACT-5: Eq(half_of_v_div_3_minus_2, five) :: (1/2)(v/3 - 2) = 5
+
+## RULES
+RULE-1: ∀x (Eq(half_of_v_div_3_minus_2, five) → InitialTotal(melanie, thirty_six)) 
+RULE-2: ∀n (InitialTotal(melanie, n) → Answer(n))
+
+## INFERENCES
+INF-1: InitialTotal(melanie, thirty_six) :: Modus Ponens on FACT-5 and RULE-1
+INF-2: Answer(thirty_six) :: Modus Ponens on INF-1 and RULE-2

@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Each sprint is 60 meters :: SprintDistance(n_60)
+FACT-2: James completes 3 sprints per session :: SprintsPerSession(james, n_3)
+FACT-3: James runs this session 3 times a week :: SessionsPerWeek(james, n_3)
+
+## RULES
+RULE-1: If someone has s sprints per session and each sprint is d meters, and Multiply(s, d, z), then DistancePerSession(p, z) :: ∀p∀s∀d∀z((SprintDistance(d) ∧ SprintsPerSession(p, s) ∧ Multiply(s, d, z)) → DistancePerSession(p, z))
+RULE-2: If DistancePerSession(p, d) ∧ SessionsPerWeek(p, s) ∧ Multiply(d, s, w), then WeeklyDistance(p, w) :: ∀p∀d∀s∀w((DistancePerSession(p, d) ∧ SessionsPerWeek(p, s) ∧ Multiply(d, s, w)) → WeeklyDistance(p, w))
+
+## INFERENCES
+INF-1: Multiplication of 3 and 60 yields 180 from SprintDistance(n_60) and SprintsPerSession(james, n_3) by Arithmetic Computation :: Multiply(n_3, n_60, n_180)
+INF-2: DistancePerSession(james, n_180) from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: DistancePerSession(james, n_180)
+INF-3: Multiplication of 180 and 3 yields 540 from DistancePerSession(james, n_180) and SessionsPerWeek(james, n_3) by Arithmetic Computation :: Multiply(n_180, n_3, n_540)
+INF-4: WeeklyDistance(james, n_540) from INF-2, FACT-3, INF-3 by RULE-2 using Modus Ponens :: WeeklyDistance(james, n_540)

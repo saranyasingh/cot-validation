@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Cost of the house is 80,000 dollars :: HouseCost(n_80000)
+FACT-2: Repairs cost is 50,000 dollars :: RepairsCost(n_50000)
+FACT-3: Total cost is 130,000 dollars :: TotalCost(n_130000)
+FACT-4: Original cost is 130,000 dollars :: OriginalCost(n_130000)
+FACT-5: 150 percent is given as a percentage :: Percentage(n_150)
+FACT-6: 150% of 130,000 equals 195,000 :: Multiply(n_150, n_130000, n_195000)
+FACT-7: 130,000 plus 195,000 equals 325,000 :: Sum(n_130000, n_195000, n_325000)
+FACT-8: 325,000 minus 130,000 equals 195,000 :: Difference(n_325000, n_130000, n_195000)
+
+## RULES
+RULE-1: If a total cost x and a percentage p produce a value a via Multiply(p, x, a), then IncreaseValue(a) :: ∀p∀x∀a((Percentage(p) ∧ TotalCost(x) ∧ Multiply(p, x, a)) → IncreaseValue(a))
+RULE-2: If OriginalCost(o) and IncreaseValue(i) and Sum(o, i, c) then SalePrice(c) :: ∀o∀i∀c((OriginalCost(o) ∧ IncreaseValue(i) ∧ Sum(o, i, c)) → SalePrice(c))
+RULE-3: If SalePrice(s) and OriginalCost(o) and Difference(s, o, d) then Profit(d) :: ∀s∀o∀d((SalePrice(s) ∧ OriginalCost(o) ∧ Difference(s, o, d)) → Profit(d))
+
+## INFERENCES
+INF-1: IncreaseValue(n_195000) :: IncreaseValue(n_195000) sourced from TotalCost(n_130000), Percentage(n_150), and Multiply(n_150, n_130000, n_195000) by RULE-1
+INF-2: SalePrice(n_325000) :: SalePrice(n_325000) sourced from OriginalCost(n_130000), IncreaseValue(n_195000), and Sum(n_130000, n_195000, n_325000) by RULE-2
+INF-3: Profit(n_195000) :: Profit(n_195000) sourced from SalePrice(n_325000), OriginalCost(n_130000), and Difference(n_325000, n_130000, n_195000) by RULE-3

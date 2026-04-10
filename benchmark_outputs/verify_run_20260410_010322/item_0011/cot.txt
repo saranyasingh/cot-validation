@@ -1,0 +1,11 @@
+Explanation:
+
+1. In the first month, the program had 60 downloads.
+2. In the second month, the number of downloads increased to three times the first month's downloads: \(60 \times 3 = 180\) downloads.
+3. However, in the third month, these 180 downloads were reduced by 30%. To find out how many downloads there were after this reduction, we calculate 70% (which is 100% - 30%) of the second-month downloads: \(180 \times 0.7 = 126\) downloads.
+
+To find the total number of downloads over the three months, we sum up the downloads from each month: \(60 + 180 + 126 = 366\).
+
+Therefore, the total number of downloads over the three months is 366.
+
+The answer is: 366

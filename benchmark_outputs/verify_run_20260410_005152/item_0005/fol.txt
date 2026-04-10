@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Number of chickens is 20 :: Chickens(n_20)
+FACT-2: Amount of feed per chicken per meal is 3 cups :: PerMeal(n_3)
+FACT-3: Morning total feed is 60 cups :: MorningTotal(n_60)
+FACT-4: Afternoon total feed is 25 cups :: AfternoonTotal(n_25)
+FACT-5: Sum of morning and afternoon totals is 85 cups :: Sum(n_60, n_25, n_85)
+FACT-6: Total feed required per day is 60 cups :: DailyRequirement(n_60)
+FACT-7: Final meal target is 30 cups :: FinalMealTarget(n_30)
+
+## RULES
+RULE-1: If the morning total equals x, the afternoon total equals y, and x and y sum to z, then the two-meal total is z :: ∀x∀y∀z((MorningTotal(x) ∧ AfternoonTotal(y) ∧ Sum(x,y,z)) → TwoMealTotal(z))
+
+## INFERENCES
+INF-1: TwoMealTotal(n_85) :: from FACT-3, FACT-4, FACT-5 by RULE-1 (Modus Ponens)

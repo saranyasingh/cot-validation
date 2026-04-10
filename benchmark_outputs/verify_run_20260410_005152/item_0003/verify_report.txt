@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story states Josh buys a house for $80,000.
+FACT-2: SUPPORTED — Repairs cost $50,000.
+FACT-3: SUPPORTED — 80,000 + 50,000 = 130,000, so total cost is $130,000.
+FACT-4: UNSUPPORTED — The story does not state Original Cost is $130,000; the original cost would be $80,000.
+FACT-5: SUPPORTED — 150 percent is a percentage mentioned in the story.
+FACT-6: SUPPORTED — 150% of 130,000 equals 195,000.
+FACT-7: SUPPORTED — 130,000 plus 195,000 equals 325,000.
+FACT-8: SUPPORTED — 325,000 minus 130,000 equals 195,000.
+RULE-1: PLAUSIBLE — It expresses a reasonable step that a computed increase amount is recognized as an IncreaseValue.
+RULE-2: PLAUSIBLE — It states sale price equals original cost plus increase.
+RULE-3: PLAUSIBLE — It states profit equals sale price minus original cost.

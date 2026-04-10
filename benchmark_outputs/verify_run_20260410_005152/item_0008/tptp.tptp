@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_size(n_200)).
+
+fof(fact_2, axiom, download_rate(n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : ! [R] : ! [T] : ((total_size(S) & download_rate(R) & equal_division(S,R,T)) => normal_time(T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, equal_division(n_200, n_2, n_100)).
+
+% From inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, normal_time(n_100)).

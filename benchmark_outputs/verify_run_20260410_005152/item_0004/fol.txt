@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: DistancePerSprint(james, n_60) :: DistancePerSprint(james, n_60)
+FACT-2: SprintsPerSession(james, n_3) :: SprintsPerSession(james, n_3)
+FACT-3: SessionsPerWeek(james, n_3) :: SessionsPerWeek(james, n_3)
+
+## RULES
+RULE-1: Distance for three sprints equals the product of distance per sprint and sprints per session :: ∀x∀d∀s∀t((DistancePerSprint(x, d) ∧ SprintsPerSession(x, s) ∧ Product(d, s, t)) → DistanceForThreeSprints(x, t))
+RULE-2: Weekly distance equals distance for three sprints times weeks per week :: ∀x∀t∀w∀total((DistanceForThreeSprints(x, t) ∧ SessionsPerWeek(x, w) ∧ Product(t, w, total)) → DistancePerWeek(x, total))
+
+## INFERENCES
+INF-1: 60 × 3 = 180, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_60, n_3, n_180)
+INF-2: DistanceForThreeSprints(james, n_180) from FACT-1, FACT-2, INF-1 by RULE-1 :: DistanceForThreeSprints(james, n_180)
+INF-3: 180 × 3 = 540, from INF-2 and FACT-3 by Arithmetic Computation :: Product(n_180, n_3, n_540)
+INF-4: DistancePerWeek(james, n_540) from INF-2 and INF-3 by RULE-2 :: DistancePerWeek(james, n_540)

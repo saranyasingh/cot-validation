@@ -1,0 +1,22 @@
+Explanation:
+1. John drives for 3 hours at 60 mph.
+   - Distance covered = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. After realizing he forgot something at home, he tries to return home in 4 hours.
+   - Since he spent the first 2 hours stuck in traffic, he has only 2 hours left to cover the total distance of 180 miles (distance already traveled) + (distance to go back).
+   - Total time available after turning around = 4 hours - 2 hours = 2 hours.
+
+3. He spends the first half-hour (0.5 hours) driving at 30 mph.
+   - Distance covered in this period = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+4. He now needs to cover the remaining 165 miles (total distance - distance already traveled - distance covered in the first half hour) in the remaining 1.5 hours (since he has 2 hours total minus the 0.5 hours spent driving at 30 mph).
+
+5. He drives the remaining time at 80 mph.
+   - Distance covered in these 1.5 hours = Speed × Time = 80 mph × 1.5 hours = 120 miles.
+
+6. Total distance covered by the end of the 4 hours = Distance already traveled + Distance covered in the first half hour + Remaining distance covered in the last 1.5 hours.
+   - Total distance covered = 180 miles + 15 miles + 120 miles = 315 miles.
+
+7. Since John started his journey at home, the distance from home when he arrives at the end of the 4 hours would be equal to the total distance he has covered plus the initial 180 miles he had already driven towards home.
+
+Therefore, the answer is: 315 miles.

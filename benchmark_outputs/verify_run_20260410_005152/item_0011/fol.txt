@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: The first month had 60 downloads :: FirstMonthDownloads(n_60)
+FACT-2: The second month had 180 downloads :: SecondMonthDownloads(n_180)
+FACT-3: The third month had 126 downloads :: ThirdMonthDownloads(n_126)
+FACT-4: The sum of the three months equals 366 :: SumThreeMonths(n_60, n_180, n_126, n_366)
+
+## RULES
+RULE-1: ∀a∀b∀c∀d((FirstMonthDownloads(a) ∧ SecondMonthDownloads(b) ∧ ThirdMonthDownloads(c) ∧ SumThreeMonths(a,b,c,d)) → TotalDownloads(d))
+
+## INFERENCES
+INF-1: TotalDownloads(n_366) is inferred from FACT-1, FACT-2, FACT-3, FACT-4 and RULE-1 by Modus Ponens (after instantiating RULE-1 with a=n_60, b=n_180, c=n_126, d=n_366) :: TotalDownloads(n_366)

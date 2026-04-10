@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Carla's normal download speed is 2 GB per minute :: Speed(carla, n_2gb_per_min)
+FACT-2: The first 60% of the file corresponds to 1.2 GB :: DataFirst60Percent_GB(n_1_2_gb)
+FACT-3: The restart took 20 minutes :: RestartTime(n_20_min)
+FACT-4: The total time budget before considering restarts is 60 minutes :: BudgetMinutes(n_60_min)
+FACT-5: The data needed for the last 40% is 16 GB :: Last40PercentData_GB(n_16_gb)
+
+## RULES
+RULE-1: If data amount d is the first 60% and speed s is Carla's speed, then the time to download that portion t satisfies t = d / s :: ∀d∀s((DataFirst60Percent_GB(d) ∧ Speed(carla, s)) → ∃t(TimeToDownload60Minutes(d, s, t) ∧ t = d / s))
+RULE-2: If budget minutes b and restart time r, then the remaining minutes r' satisfy r' = b − r :: ∀b∀r((BudgetMinutes(b) ∧ RestartTime(r)) → ∃r'(RemainingMinutes(r') ∧ r' = b - r)))
+RULE-3: If data amount d for the last 40% and speed s (Carla's speed) then time for last 40% t' satisfies t' = d / s :: ∀d∀s((Last40PercentData_GB(d) ∧ Speed(carla, s)) → ∃t(TimeToDownloadLast40Minutes(d, s, t) ∧ t = d / s))
+RULE-4: If times t and t' are the times for the first 60% and the last 40% respectively, then the total time T = t + t' :: ∀t∀t'(TimeToDownload60Minutes(_, _, t) ∧ TimeToDownloadLast40Minutes(_, _, t') → ∃T(TimeTotalMinutes(T) ∧ T = t + t'))
+
+## INFERENCES
+INF-1: TimeToDownload60Minutes with t = 0.6 minutes derived from FACT-1 and FACT-2 by RULE-1 :: TimeFirst60Minutes(n_0_6)
+INF-2: RemainingMinutes with value 40 derived from BudgetMinutes(60) and RestartTime(20) by RULE-2 :: RemainingMinutes(n_40)
+INF-3: TimeToDownloadLast40Minutes with t' = 8 minutes derived from Last40PercentData_GB(16) and Speed(carla, 2gb_per_min) by RULE-3 :: TimeLast40Minutes(n_8)
+INF-4: TimeTotalMinutes with value 8.6 minutes derived from INF-1 (0.6 minutes) and INF-3 (8 minutes) by RULE-4 :: TimeTotalMinutes(n_8_6)

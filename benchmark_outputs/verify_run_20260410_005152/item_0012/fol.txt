@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: toula bought 3 dozen donuts :: DozenBought(toula, donuts, n_3)
+FACT-2: price per dozen donuts :: PricePerDozen(donuts, n_68)
+FACT-3: toula bought 2 dozen mini_cupcakes :: DozenBought(toula, mini_cupcakes, n_2)
+FACT-4: price per dozen mini_cupcakes :: PricePerDozen(mini_cupcakes, n_80)
+FACT-5: toula bought 6 dozen mini_cheesecakes :: DozenBought(toula, mini_cheesecakes, n_6)
+FACT-6: price per dozen mini_cheesecakes :: PricePerDozen(mini_cheesecakes, n_55)
+
+## RULES
+RULE-1: If DozenBought(Person, Item, D) ∧ PricePerDozen(Item, P) ∧ Product(D, P, Cost) then CostForItem(Person, Item, Cost)
+RULE-2: If CostForItem(Person, donuts, C1) ∧ CostForItem(Person, mini_cupcakes, C2) ∧ CostForItem(Person, mini_cheesecakes, C3) ∧ Add(C1, C2, Sum12) ∧ Add(Sum12, C3, Total) then TotalCost(Person, Total)
+
+## INFERENCES
+INF-1: 3 × 68 = 204 :: Product(n_3, n_68, n_204) [from FACT-1, FACT-2 by Arithmetic Computation]
+INF-2: 2 × 80 = 160 :: Product(n_2, n_80, n_160) [from FACT-3, FACT-4 by Arithmetic Computation]
+INF-3: 6 × 55 = 330 :: Product(n_6, n_55, n_330) [from FACT-5, FACT-6 by Arithmetic Computation]
+INF-4: cost of donuts is 204 :: CostForItem(toula, donuts, n_204) [from FACT-1, FACT-2, INF-1 by RULE-1]
+INF-5: cost of mini_cupcakes is 160 :: CostForItem(toula, mini_cupcakes, n_160) [from FACT-3, FACT-4, INF-2 by RULE-1]
+INF-6: cost of mini_cheesecakes is 330 :: CostForItem(toula, mini_cheesecakes, n_330) [from FACT-5, FACT-6, INF-3 by RULE-1]
+INF-7: add 204 and 160 to get 364 :: Add(n_204, n_160, n_364) [from INF-4, INF-5 by Arithmetic Computation]
+INF-8: add 364 and 330 to get 794 :: Add(n_364, n_330, n_794) [from INF-7, INF-6 by Arithmetic Computation]
+INF-9: total cost is 794 :: TotalCost(toula, n_794) [from INF-4, INF-5, INF-6, INF-7, INF-8 by RULE-2]

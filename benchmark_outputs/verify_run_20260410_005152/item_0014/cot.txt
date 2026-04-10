@@ -1,0 +1,25 @@
+EXPLANATION
+1. Let's denote the total number of vacuum cleaners Melanie started with as \( V \).
+
+2. According to the problem, after selling some vacuum cleaners at the green house, she had \( \frac{V}{3} \) remaining.
+
+3. Then, she sold 2 more vacuum cleaners at the red house, leaving her with \( \frac{V}{3} - 2 \).
+
+4. After that, she sold half of what was left at the orange house. This means she sold \( \frac{1}{2} \left( \frac{V}{3} - 2 \right) \), which leaves her with \( \frac{1}{2} \left( \frac{V}{3} - 2 \right) \).
+
+5. We know that after these sales, she had 5 vacuum cleaners left. Therefore, we can set up the equation:
+   \[
+   \frac{1}{2} \left( \frac{V}{3} - 2 \right) = 5
+   \]
+
+6. Solving this equation for \( V \):
+   \[
+   \frac{1}{2} \left( \frac{V}{3} - 2 \right) = 5 \\
+   \frac{V}{3} - 2 = 10 \\
+   \frac{V}{3} = 12 \\
+   V = 36
+   \]
+
+7. Thus, Melanie started with 36 vacuum cleaners.
+
+THE ANSWER IS: 36

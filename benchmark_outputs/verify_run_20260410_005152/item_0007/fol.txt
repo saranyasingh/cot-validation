@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: CityCount(seattle, n_20)
+FACT-2: Charleston has 80 sheep :: CityCount(charleston, n_80)
+FACT-3: Toulouse has 160 sheep :: CityCount(toulouse, n_160)
+FACT-4: Total sheep count is 260 :: TotalSheep(n_260)
+
+## RULES
+RULE-1: If a city has a certain number of sheep, then it has that same number of sheep (identity) :: ∀x∀n( CityCount(x, n) → CityCount(x, n) )
+RULE-2: If a relation FourTimes(a, b) holds, then the same relation holds for that pair (identity) :: ∀a∀b( FourTimes(a, b) → FourTimes(a, b) )
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Modus Ponens :: CityCount(seattle, n_20)
+INF-2: From FACT-2 and RULE-1 by Modus Ponens :: CityCount(charleston, n_80)
+INF-3: From FACT-3 and RULE-1 by Modus Ponens :: CityCount(toulouse, n_160)
+INF-4: From FACT-4 and RULE-1 by Modus Ponens :: TotalSheep(n_260)

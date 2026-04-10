@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, speed(john, n_60)).
+fof(fact_2, axiom, time(john, n_3)).
+fof(fact_3, axiom, distance(john, n_180)).
+fof(fact_4, axiom, return_window(john, n_4)).
+fof(fact_5, axiom, stuck_in_traffic(john, n_2)).
+fof(fact_6, axiom, speed(john, n_30)).
+fof(fact_7, axiom, time(john, n_0_5)).
+fof(fact_8, axiom, distance(john, n_15)).
+fof(fact_9, axiom, remaining_distance(john, n_165)).
+fof(fact_10, axiom, remaining_time(john, n_1_5)).
+fof(fact_11, axiom, speed(john, n_80)).
+fof(fact_12, axiom, time(john, n_1_5)).
+fof(fact_13, axiom, distance(john, n_120)).
+fof(fact_14, axiom, total_distance(john, n_315)).
+fof(fact_15, axiom, product(n_60, n_3, n_180)).
+fof(fact_16, axiom, product(n_30, n_0_5, n_15)).
+fof(fact_17, axiom, product(n_80, n_1_5, n_120)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,S,T,D] : ((speed(P,S) & time(P,T) & product(S,T,D)) => distance(P,D))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-15 via RULE-1 (Modus Ponens)
+fof(inf_1, axiom, distance(john, n_180)).
+% From FACT-6, FACT-7, FACT-16 via RULE-1 (Modus Ponens)
+fof(inf_2, axiom, distance(john, n_15)).
+% From FACT-11, FACT-12, FACT-17 via RULE-1 (Modus Ponens)
+fof(inf_3, axiom, distance(john, n_120)).
+% From FACT-3, INF-2, INF-3 via RULE-2
+fof(inf_4, axiom, total_distance(john, n_315)).

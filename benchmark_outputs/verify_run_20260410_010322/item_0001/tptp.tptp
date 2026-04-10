@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, ducks_lay_eggs_per_day(janet, n_16)).
+fof(fact_2, axiom, breakfast_eggs_eaten_per_day(janet, n_3)).
+fof(fact_3, axiom, eggs_used_for_muffins(janet, n_4)).
+fof(fact_4, axiom, eggs_left(janet, n_9)).
+fof(fact_5, axiom, price_per_egg(janet, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S, R, P] : ((eggs_left(S, R) & price_per_egg(S, P)) => ? [Z] : (product_value(R, P, Z)))).
+fof(rule_2, axiom, ! [S, R, P, Z] : ((eggs_left(S, R) & price_per_egg(S, P) & product_value(R, P, Z)) => earnings(S, Z))). 
+
+% --- INFERENCES ---
+% From fact_4, fact_5 by Arithmetic Computation
+fof(inf_1, axiom, product_value(n_9, n_2, n_18)).
+% From fact_4, fact_5, inf_1 by Modus Ponens
+fof(inf_2, axiom, earnings(janet, n_18)).

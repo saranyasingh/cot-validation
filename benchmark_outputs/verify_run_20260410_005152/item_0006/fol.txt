@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: The first glass costs $5 :: FirstGlassCost(5)
+FACT-2: There are 8 glasses that cost $5 :: GlassesCountWithCost(8,5)
+FACT-3: There are 8 glasses that cost $3 :: GlassesCountWithCost(8,3)
+FACT-4: Cost for the 8 glasses at $5 each is 40 :: CostOfGroup(8,5,40)
+FACT-5: Cost for the 8 glasses at $3 each is 24 :: CostOfGroup(8,3,24)
+FACT-6: Total cost for all 16 glasses is 64 :: TotalCostAll(64)
+FACT-7: There are 16 glasses in total :: GlassesTotal(16)
+FACT-8: Kylar pays 64 dollars :: Pay(kylar,64)
+
+## RULES
+RULE-1: If the total cost is a number A, then Kylar pays that amount :: ∀A(TotalCostAll(A) → Pay(kylar, A))
+
+## INFERENCES
+INF-1: Pay(kylar, 64) follows from FACT-6 and RULE-1 by Modus Ponens :: Pay(kylar, 64)

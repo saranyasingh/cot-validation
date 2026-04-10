@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Eliza's hourly rate is 10 dollars :: HourlyRate(eliza, n_10)
+FACT-2: Eliza works 40 regular hours :: RegularHours(eliza, n_40)
+FACT-3: Eliza's total hours worked are 45 :: TotalHoursWorked(eliza, n_45)
+FACT-4: 45 minus 40 equals 5 :: Subtract(n_45, n_40, n_5)
+FACT-5: Regular earnings from rate×hours = 400 :: Product(n_10, n_40, n_400)
+FACT-6: Overtime earnings from rate×overtime hours = 50 :: Product(n_10, n_5, n_50)
+FACT-7: Regular earnings plus overtime earnings sum to 450 :: Sum(n_400, n_50, n_450)
+
+## RULES
+RULE-1: ∀p∀r∀h∀e((HourlyRate(p, r) ∧ RegularHours(p, h) ∧ Product(r, h, e)) → RegularEarnings(p, e))
+RULE-2: ∀p∀t∀h∀o((TotalHoursWorked(p, t) ∧ RegularHours(p, h) ∧ Subtract(t, h, o)) → OvertimeHours(p, o))
+RULE-3: ∀p∀r∀o∀e((HourlyRate(p, r) ∧ OvertimeHours(p, o) ∧ Product(r, o, e)) → OvertimeEarnings(p, e))
+RULE-4: ∀p∀e1∀e2∀E((RegularEarnings(p, e1) ∧ OvertimeEarnings(p, e2) ∧ Sum(e1, e2, E)) → TotalEarnings(p, E))
+
+## INFERENCES
+INF-1: OvertimeHours(eliza, n_5) :: from FACT-3, FACT-2, FACT-4 by RULE-2
+INF-2: RegularEarnings(eliza, n_400) :: from FACT-1, FACT-2, FACT-5 by RULE-1
+INF-3: OvertimeEarnings(eliza, n_50) :: from FACT-1, INF-1, FACT-6 by RULE-3
+INF-4: TotalEarnings(eliza, n_450) :: from INF-2, INF-3, FACT-7 by RULE-4

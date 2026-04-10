@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: A robe requires blue fiber amount 2 :: BlueAmount(robe, n_2)
+FACT-2: A robe requires white fiber half as blue fiber :: WhiteIsHalfBlue(robe)
+
+## RULES
+RULE-1: If an object r has WhiteIsHalfBlue(r) and BlueAmount(r, n_2), then WhiteAmount(r, n_1) :: ∀r((WhiteIsHalfBlue(r) ∧ BlueAmount(r, n_2)) → WhiteAmount(r, n_1))
+RULE-2: If BlueAmount(r, n_2) ∧ WhiteAmount(r, n_1) then TotalFiber(r, n_3) :: ∀r((BlueAmount(r, n_2) ∧ WhiteAmount(r, n_1)) → TotalFiber(r, n_3))
+
+## INFERENCES
+INF-1: WhiteAmount(robe, n_1) from FACT-1, FACT-2, RULE-1 by Modus Ponens :: WhiteAmount(robe, n_1)
+INF-2: TotalFiber(robe, n_3) from FACT-1, INF-1 by RULE-2 by Modus Ponens :: TotalFiber(robe, n_3)

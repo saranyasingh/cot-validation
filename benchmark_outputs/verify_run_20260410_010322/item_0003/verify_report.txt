@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — The rule incorrectly treats the net profit as the difference between value increase and total expenses; in this case that difference is -10,000, while true net profit depends on final sale price minus total costs.
+RULE-4: IMPLAUSIBLE — Net profit implies a gain, not a loss; the rule states the opposite.

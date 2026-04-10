@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, DozenBought(toula, donuts, n_3)).
+fof(fact_2, axiom, PricePerDozen(donuts, n_68)).
+fof(fact_3, axiom, DozenBought(toula, mini_cupcakes, n_2)).
+fof(fact_4, axiom, PricePerDozen(mini_cupcakes, n_80)).
+fof(fact_5, axiom, DozenBought(toula, mini_cheesecakes, n_6)).
+fof(fact_6, axiom, PricePerDozen(mini_cheesecakes, n_55)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Person, Item, D, P, Cost] : ((DozenBought(Person, Item, D) & PricePerDozen(Item, P) & Product(D, P, Cost)) => CostForItem(Person, Item, Cost))).
+fof(rule_2, axiom, ! [Person, C1, C2, C3, Sum12, Total] : ((CostForItem(Person, donuts, C1) & CostForItem(Person, mini_cupcakes, C2) & CostForItem(Person, mini_cheesecakes, C3) & Add(C1, C2, Sum12) & Add(Sum12, C3, Total)) => TotalCost(Person, Total)).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, Product(n_3, n_68, n_204)).
+% From FACT-3, FACT-4 by Arithmetic Computation
+fof(inf_2, axiom, Product(n_2, n_80, n_160)).
+% From FACT-5, FACT-6 by Arithmetic Computation
+fof(inf_3, axiom, Product(n_6, n_55, n_330)).
+% From FACT-1, FACT-2, INF-1 by RULE-1
+fof(inf_4, axiom, CostForItem(toula, donuts, n_204)).
+% From FACT-3, FACT-4, INF-2 by RULE-1
+fof(inf_5, axiom, CostForItem(toula, mini_cupcakes, n_160)).
+% From FACT-5, FACT-6, INF-3 by RULE-1
+fof(inf_6, axiom, CostForItem(toula, mini_cheesecakes, n_330)).
+% From INF-4, INF-5 by Arithmetic Computation
+fof(inf_7, axiom, Add(n_204, n_160, n_364)).
+% From INF-7, INF-6 by Arithmetic Computation
+fof(inf_8, axiom, Add(n_364, n_330, n_794)).
+% From INF-4, INF-5, INF-6, INF-7, INF-8 by RULE-2
+fof(inf_9, axiom, TotalCost(toula, n_794)).

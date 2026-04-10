@@ -1,0 +1,21 @@
+Explanation:
+
+1. First, we calculate the cost of one glass.
+   - One glass costs $5.
+
+2. Next, we determine how many glasses cost at 60% of their original price.
+   - Since it's every second glass, there are 8 glasses that cost 60% (half) of their original price.
+
+3. We find out the price of these glasses.
+   - At 60%, the price of one glass is \(5 \times 0.6 = \$3\).
+
+4. Now, we calculate the total cost for these 8 glasses.
+   - Total cost for 8 glasses at $3 each is \(8 \times 3 = \$24\).
+
+5. Finally, we add the cost of the other 8 glasses that cost the full price ($5 each).
+   - Total cost for the remaining 8 glasses is \(8 \times 5 = \$40\).
+
+6. To get the total amount Kylar needs to pay, we sum up both amounts.
+   - Total cost is \(24 + 40 = \$64\).
+
+Therefore, the answer is: 64.

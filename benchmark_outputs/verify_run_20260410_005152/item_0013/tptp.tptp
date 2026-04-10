@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, planting_cost(lemon_tree, n_90)).
+fof(fact_2, axiom, lemons_per_year(lemon_tree, n_7)).
+fof(fact_3, axiom, price_per_lemon(lemon_tree, n_150)).
+fof(fact_4, axiom, annual_expenses(lemon_tree, n_3)).
+fof(fact_5, axiom, multiply(n_7, n_150, n_10_50)).
+fof(fact_6, axiom, subtract(n_10_50, n_3, n_7_50)).
+fof(fact_7, axiom, total_investment(lemon_tree, n_90)).
+fof(fact_8, axiom, divide(n_90, n_7_50, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, L, P, R] : ((lemons_per_year(T, L) & price_per_lemon(T, P) & multiply(L, P, R)) => growth_revenue(T, R))).
+fof(rule_2, axiom, ! [T, R, E, N] : ((growth_revenue(T, R) & annual_expenses(T, E) & subtract(R, E, N)) => net_profit_per_year(T, N))).
+fof(rule_3, axiom, ! [T, I, N, Y] : ((total_investment(T, I) & net_profit_per_year(T, N) & divide(I, N, Y)) => years_to_profit(T, Y))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-3, FACT-5 by Modus Ponens
+fof(inf_1, axiom, growth_revenue(lemon_tree, n_10_50)).
+% From INF-1, FACT-4, FACT-6 by Modus Ponens
+fof(inf_2, axiom, net_profit_per_year(lemon_tree, n_7_50)).
+% From FACT-7, INF-2, FACT-8 by Modus Ponens
+fof(inf_3, axiom, years_to_profit(lemon_tree, n_12)).

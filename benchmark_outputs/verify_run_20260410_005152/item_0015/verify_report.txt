@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED — The story states total students = 20.
+FACT-2: SUPPORTED — The story states 20% contemporary.
+FACT-3: SUPPORTED — 20% of 20 equals 4.
+FACT-4: SUPPORTED — 20 − 4 = 16.
+FACT-5: SUPPORTED — 25% of 16 equals 4.
+FACT-6: SUPPORTED — 16 − 4 = 12.
+FACT-7: SUPPORTED — 60% of 20 equals 12.
+RULE-1: PLAUSIBLE — It correctly infers the number enrolled in contemporary from total and percent.
+RULE-2: PLAUSIBLE — It correctly infers the remaining number after subtraction.
+RULE-3: PLAUSIBLE — It correctly infers jazz count from remaining and a percent.
+RULE-4: PLAUSIBLE — It correctly infers hip-hop count from remaining and jazz.
+RULE-5: IMPLAUSIBLE — Too broad: deriving HipHopPercent from any PercentOf statement can misattribute percentages to hip-hop.
