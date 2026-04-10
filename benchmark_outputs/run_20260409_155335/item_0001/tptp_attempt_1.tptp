@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, eggs_laid_per_day(janets_ducks, sixteen)).
+fof(fact_2, axiom, eggs_eaten_for_breakfast(janet, three)).
+fof(fact_3, axiom, eggs_used_for_muffins(janet, four)).
+fof(fact_4, axiom, price_per_egg(two_dollars)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N, M, B, T, R] : ((eggs_laid_per_day(janets_ducks, N) & eggs_eaten_for_breakfast(janet, M) & eggs_used_for_muffins(janet, B)) => (subtract(N, M, T) & subtract(T, B, R) & remaining_eggs(janet, R))).
+fof(rule_2, axiom, ! [R, P, E] : ((remaining_eggs(janet, R) & price_per_egg(P)) => (multiply(R, P, E) & earnings_from_remaining_eggs(janet, E))).
+fof(rule_3, axiom, ! [E] : (earnings_from_remaining_eggs(janet, E) => janet_makes_money_today(janet, E)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, subtract(sixteen, three, thirteen) & subtract(thirteen, four, nine) & remaining_eggs(janet, nine)).
+% From inf_1, fact_4, rule_2 by Modus Ponens
+fof(inf_2, axiom, multiply(nine, two_dollars, eighteen) & earnings_from_remaining_eggs(janet, eighteen)).
+% From inf_2, rule_3 by Modus Ponens
+fof(inf_3, axiom, janet_makes_money_today(janet, eighteen)).

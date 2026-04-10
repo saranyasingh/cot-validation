@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: EggsLaidPerDay(janets_ducks, 16).
+FACT-2: Janet eats 3 eggs for breakfast :: EggsEatenForBreakfast(janet, 3).
+FACT-3: Janet uses 4 eggs for muffins :: EggsUsedForMuffins(janet, 4).
+FACT-4: The price per egg is 2 dollars :: PricePerEgg(2).
+
+## RULES
+RULE-1: For all N, M, B, if EggsLaidPerDay(janets_ducks, N) & EggsEatenForBreakfast(janet, M) & EggsUsedForMuffins(janet, B) then exists T, RR ( Subtract(N, M, T) & Subtract(T, B, RR) & RemainingEggs(janet, RR) ) :: Remaining eggs are computed from total minus breakfast minus muffins.
+RULE-2: For all R, P, if RemainingEggs(janet, R) & PricePerEgg(P) then exists E ( Multiply(R, P, E) & EarningsFromRemainingEggs(janet, E) ) :: Earnings from remaining eggs.
+RULE-3: For all E, if EarningsFromRemainingEggs(janet, E) then JanetMakesMoneyToday(janet, E) :: Janet's daily earnings.
+
+## INFERENCES
+INF-1: Remaining eggs after subtracting breakfast and muffins :: Subtract(16, 3, 13) ∧ Subtract(13, 4, 9) ∧ RemainingEggs(janet, 9).
+INF-2: Revenue calculation from 9 remaining eggs at $2 each :: Multiply(9, 2, 18) ∧ EarningsFromRemainingEggs(janet, 18).
+INF-3: Janet makes money today equal to 18 :: JanetMakesMoneyToday(janet, 18).

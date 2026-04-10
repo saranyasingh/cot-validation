@@ -1,0 +1,6 @@
+  % From fact_1, fact_2 by Arithmetic Computation
+  inf_1: PROVED
+  % From inf_1, fact_3 by Arithmetic Computation
+  inf_2: PROVED
+  % From inf_2, inf_1, and fact_1 by Arithmetic Computation
+  inf_3: PROVED

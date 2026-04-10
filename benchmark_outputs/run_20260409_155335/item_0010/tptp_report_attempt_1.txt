@@ -1,0 +1,6 @@
+  % From fact_1, fact_2, fact_9 by Modus Ponens
+  inf_1: PROVED
+  % From fact_4, fact_5, fact_10 by Modus Ponens
+  inf_2: PROVED
+  % From inf_1, inf_2, fact_11 by Conjunction Introduction and Modus Ponens
+  inf_3: PROVED

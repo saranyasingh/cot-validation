@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story implies 3 sprints occur in each run/session.
+FACT-2: SUPPORTED — The story states 3 runs per week.
+FACT-3: SUPPORTED — The story states 60 meters per sprint.
+
+RULE-1: IMPLAUSIBLE — It incorrectly derives SprintsPerSession as the product of SprintsPerRun and RunsPerWeek.
+RULE-2: PLAUSIBLE — Per-session distance equals (sprints per session) times (sprint length).
+RULE-3: PLAUSIBLE — Weekly distance equals (session distance) times (runs per week).

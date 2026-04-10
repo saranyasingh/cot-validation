@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_sheep(seattle, n_20)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S] : (has_sheep(seattle, S) => has_sheep(charleston, mult(4, S)))).
+fof(rule_2, axiom, ! [S] : (has_sheep(charleston, S) => has_sheep(toulouse, mult(2, S)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, has_sheep(charleston, mult(4, n_20))).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, has_sheep(toulouse, mult(2, mult(4, n_20)))).
+% From inf_1, inf_2, fact_1 by Addition
+fof(inf_3, axiom, total_sheep(n_260)).

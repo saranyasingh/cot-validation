@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — Directly stated (buys the house for $80,000).
+FACT-2: SUPPORTED — Directly stated (spends $50,000 on repairs).
+FACT-3: SUPPORTED — Derived from 80,000 + 50,000 = 130,000 total cost.
+FACT-4: SUPPORTED — Directly stated (value increased by 150%).
+FACT-5: SUPPORTED — Derived: increase in value = 120,000 (150% of 80,000).
+FACT-6: SUPPORTED — Derived: net profit = 200,000 − 130,000 = 70,000.
+RULE-1: PLAUSIBLE — Negative net profit implies a loss.
+RULE-2: IMPLAUSIBLE — NetProfit should not imply a NegativeValue for that amount.

@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED — Directly stated as 3 hours at 60 mph.
+FACT-2: SUPPORTED — Initial leg distance derived from 3 hours × 60 mph = 180 miles.
+FACT-3: SUPPORTED — First half-hour distance is 15 miles (0.5 h × 30 mph).
+FACT-4: SUPPORTED — Last period distance is 120 miles (1.5 h × 80 mph).
+FACT-5: UNSUPPORTED — The story does not explicitly state John started at home; home is the target, not necessarily the origin.
+FACT-6: SUPPORTED — First half-hour lasted 0.5 hours (factized as 0.5 h).
+FACT-7: SUPPORTED — First half-hour speed is 30 mph.
+FACT-8: SUPPORTED — Last period lasted 1.5 hours.
+FACT-9: SUPPORTED — Last period speed is 80 mph.
+RULE-1: PLAUSIBLE — It encodes that total distance equals the sum of segment distances (180 + 15 + 120 = 315).
+RULE-2: IMPLAUSIBLE — If started at home and total distance is d, distance from home would not necessarily equal d (turns around break that equivalence).
+RULE-3: PLAUSIBLE — If DistanceFromHome(x, d) holds, then the final answer is d (tautological in this context).

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: The 80% of the 200 GB file equals 160 GB :: EightyPercentOf(file_200_gb, file_160_gb)
+FACT-2: The time to download 160 GB at 2 GB/min is 80 minutes :: TimeToDownload(file_160_gb, speed_2_gb_per_min, time_80_minutes)
+FACT-3: There is a 20-minute downtime :: Downtime(downtime_20_minutes)
+FACT-4: The restartOccurred for the 200 GB file :: RestartOccurred(file_200_gb)
+
+## RULES
+RULE-1: If 80% of a file is some portion and the time to download that portion at a speed is t1 and there is a downtime d, then the time to download the whole file at the same speed is t1 + d (with t2 = 100 minutes in this instance) :: ∀s((EightyPercentOf(file_200_gb, file_160_gb) ∧ TimeToDownload(file_160_gb, s, time_80_minutes) ∧ Downtime(downtime_20_minutes)) → TimeToDownload(file_200_gb, s, time_100_minutes))
+
+## INFERENCES
+INF-1: The total time to download the 200 GB file at 2 GB/min is 100 minutes, derived from FACT-1, FACT-2, FACT-3 by RULE-1 :: TimeToDownload(file_200_gb, speed_2_gb_per_min, time_100_minutes)

@@ -1,0 +1,34 @@
+## FACTS
+FACT-1: 16 eggs laid per day :: TotalEggsLaidPerDay(n_16)
+FACT-2: 3 eggs eaten per day :: EggsEatenPerDay(n_3)
+FACT-3: 16 minus 3 equals 13 :: Subtract(n_16, n_3, n_13)
+FACT-4: 4 eggs per muffin :: MuffinsPerMuffin(n_4)
+FACT-5: 2 dollars per egg :: PricePerEgg(n_2)
+FACT-6: 2 dollars per muffin :: PricePerMuffin(n_2)
+FACT-7: FloorDiv(13, 4, 3) :: FloorDiv(n_13, n_4, n_3)
+FACT-8: 13 × 2 = 26 :: Multiply(n_13, n_2, n_26)
+FACT-9: 3 × 2 = 6 :: Multiply(n_3, n_2, n_6)
+FACT-10: 26 + 6 = 32 :: Sum(n_26, n_6, n_32)
+
+## RULES
+RULE-1: If total eggs x and eggs eaten y and Subtract(x, y, z), then EggsLeft(z) :: ∀x∀y∀z((TotalEggsLaidPerDay(x) ∧ EggsEatenPerDay(y) ∧ Subtract(x,y,z)) → EggsLeft(z))
+RULE-2: If EggsLeft(a) and MuffinsPerMuffin(b) and FloorDiv(a,b,c), then MuffinsBaked(c) :: ∀a∀b∀c((EggsLeft(a) ∧ MuffinsPerMuffin(b) ∧ FloorDiv(a,b,c)) → MuffinsBaked(c))
+RULE-3: If EggsLeft(a) and PricePerEgg(b) and Multiply(a,b,c), then RevenueFromEggs(c) :: ∀a∀b∀c((EggsLeft(a) ∧ PricePerEgg(b) ∧ Multiply(a,b,c)) → RevenueFromEggs(c))
+RULE-4: If MuffinsBaked(d) and PricePerMuffin(e) and Multiply(d,e,f), then MuffinsRevenue(f) :: ∀d∀e∀f((MuffinsBaked(d) ∧ PricePerMuffin(e) ∧ Multiply(d,e,f)) → MuffinsRevenue(f))
+RULE-5: If RevenueFromEggs(g) and MuffinsRevenue(h) and Sum(g,h,i), then TotalEarnings(i) :: ∀g∀h∀i((RevenueFromEggs(g) ∧ MuffinsRevenue(h) ∧ Sum(g,h,i)) → TotalEarnings(i))
+
+## INFERENCES
+INF-1: EggsLeft(n_13) from FACT-1, FACT-2, FACT-3 via RULE-1 (Modus Ponens)
+  Depend on: FACT-1, FACT-2, FACT-3, RULE-1
+
+INF-2: MuffinsBaked(n_3) from INF-1, FACT-4, FACT-7 via RULE-2 (Modus Ponens)
+  Depend on: INF-1, FACT-4, FACT-7, RULE-2
+
+INF-3: RevenueFromEggs(n_26) from INF-1, FACT-5, FACT-8 via RULE-3 (Modus Ponens)
+  Depend on: INF-1, FACT-5, FACT-8, RULE-3
+
+INF-4: MuffinsRevenue(n_6) from INF-2, FACT-6, FACT-9 via RULE-4 (Modus Ponens)
+  Depend on: INF-2, FACT-6, FACT-9, RULE-4
+
+INF-5: TotalEarnings(n_32) from INF-3, INF-4, FACT-10 via RULE-5 (Modus Ponens)
+  Depend on: INF-3, INF-4, FACT-10, RULE-5

@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: James runs 3 sprints each day :: SprintsPerDay(james, n_3)
+FACT-2: He runs these sprints 3 times a week :: SprintsPerWeek(james, n_3)
+FACT-3: Each sprint is 60 meters long :: SprintLength(n_60)
+FACT-4: There are 7 days in a week :: DaysInWeek(n_7)
+
+## RULES
+RULE-1: ∀x((SprintsPerDay(x, n_3) ∧ SprintsPerWeek(x, n_3)) → SprintsPerSession(x, n_9)) :: ∀x((SprintsPerDay(x, n_3) ∧ SprintsPerWeek(x, n_3)) → SprintsPerSession(x, n_9))
+RULE-2: ∀x((SprintsPerSession(x, n_9) ∧ SprintLength(n_60)) → DistancePerSession(x, n_540)) :: ∀x((SprintsPerSession(x, n_9) ∧ SprintLength(n_60)) → DistancePerSession(x, n_540))
+RULE-3: ∀x((DistancePerSession(x, n_540) ∧ DaysInWeek(n_7)) → DistancePerWeek(x, n_3780)) :: ∀x((DistancePerSession(x, n_540) ∧ DaysInWeek(n_7)) → DistancePerWeek(x, n_3780))
+RULE-4: ∀x((DistancePerWeek(x, c)) → WeeklyDistance(x, c)) :: ∀x((DistancePerWeek(x, c)) → WeeklyDistance(x, c))
+
+## INFERENCES
+INF-1: SprintsPerSession(james, n_9) :: from FACT-1, FACT-2, RULE-1 by Modus Ponens (after universal instantiation)
+INF-2: DistancePerSession(james, n_540) :: from INF-1, FACT-3 by Modus Ponens
+INF-3: DistancePerWeek(james, n_3780) :: from INF-2, FACT-4 by Modus Ponens
+INF-4: WeeklyDistance(james, n_3780) :: from INF-3 by Modus Ponens

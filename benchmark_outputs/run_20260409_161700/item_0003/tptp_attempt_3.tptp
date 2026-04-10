@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, purchase_price(house, n_80000)).
+fof(fact_2, axiom, repair_cost(house, n_50000)).
+fof(fact_3, axiom, sum(n_80000, n_50000, n_130000)).
+fof(fact_4, axiom, increased_value(house, n_120000)).
+fof(fact_5, axiom, sum(n_120000, n_130000, n_250000)).
+fof(fact_6, axiom, difference(n_250000, n_130000, n_120000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [H, P, R, S] : ((purchase_price(H, P) & repair_cost(H, R) & sum(P, R, S)) => total_cost(H, S))).
+fof(rule_2, axiom, ! [H, IV, TC, SP] : ((increased_value(H, IV) & total_cost(H, TC) & sum(IV, TC, SP)) => selling_price(H, SP))).
+fof(rule_3, axiom, ! [H, SP, TC, D] : ((selling_price(H, SP) & total_cost(H, TC) & difference(SP, TC, D)) => profit(H, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Modus Ponens
+fof(inf_1, axiom, total_cost(house, n_130000)).
+% From inf_1, fact_4, fact_5 by Modus Ponens
+fof(inf_2, axiom, selling_price(house, n_250000)).
+% From inf_2, inf_1, fact_6 by Modus Ponens
+fof(inf_3, axiom, profit(house, n_120000)).

@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Initial purchase price of the house :: InitialPurchasePrice(josh, 80000)
+FACT-2: Amount spent on repairs :: RepairsCost(josh, 50000)
+FACT-3: Total cost :: TotalCost(josh, 130000)
+FACT-4: Value increase percentage :: ValueIncreasePercentage(josh, 150)
+FACT-5: Increase in value :: IncreaseInValue(josh, 120000)
+FACT-6: Net profit :: NetProfit(josh, -10000)
+
+## RULES
+RULE-1: If net profit is negative, then there is a loss for that agent :: ∀x ∀p (NetProfit(x, p) ∧ NegativeValue(p) → Loss(x))
+RULE-2: NetProfit(x, p) → NegativeValue(p)
+
+## INFERENCES
+INF-1: NegativeValue(-10000) from NetProfit(josh, -10000) by RULE-2
+INF-2: Loss(josh) from NetProfit(josh, -10000) and NegativeValue(-10000) by RULE-1

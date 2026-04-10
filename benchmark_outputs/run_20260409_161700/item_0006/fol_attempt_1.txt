@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: First Glass costs 5 dollars :: FirstGlassCosts(n_5)
+FACT-2: Second Glass costs 3 dollars :: SecondGlassCosts(n_3)
+FACT-3: Third Glass costs 1.80 dollars :: ThirdGlassCosts(n_1_80)
+FACT-4: Sixteenth term price equals 14 dollars :: A16Price(n_14)
+FACT-5: Total for 16 glasses is 75.60 dollars :: TotalExpression(n_16, n_75_60)
+FACT-6: Final answer is 75.60 dollars :: FinalAnswer(n_75_60)
+
+## RULES
+RULE-1: General formula for the nth term of an arithmetic sequence: if the first term is a1 and the common difference is d, then the nth term an equals a1 + (n − 1)·d :: ∀a1∀d∀n∀an((FirstGlassCosts(a1) ∧ CommonDifference(d) ∧ NthTerm(n,an)) → an = a1 + (n - 1) d)
+
+## INFERENCES
+INF-1: From RULE-1 and FACT-1, FACT-2, FACT-3 by universal instantiation and modus ponens we infer the 16th term value a16 = 14 :: A16Price(n_14)
+INF-2: From FACT-5 by direct reference we infer TotalExpression(n_16, n_75_60) :: TotalExpression(n_16, n_75_60)
+INF-3: From FACT-6 by direct reference we infer FinalAnswer(n_75_60) :: FinalAnswer(n_75_60)

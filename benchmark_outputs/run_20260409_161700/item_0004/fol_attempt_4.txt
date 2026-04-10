@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: James runs 3 sprints per run :: SprintsPerRun(james, n_3)
+FACT-2: He runs 3 times a week :: RunsPerWeek(james, n_3)
+FACT-3: Each sprint is 60 meters long :: SprintLength(n_60)
+FACT-4: 3 × 3 = 9 :: Product(n_3, n_3, n_9)
+FACT-5: 9 × 60 = 540 :: Product(n_9, n_60, n_540)
+FACT-6: 540 × 7 = 3780 :: Product(n_540, n_7, n_3780)
+
+## RULES
+RULE-1: James runs 3 sprints per run and 3 times per week imply 9 sprints per session :: ∀x∀a∀b∀z((SprintsPerRun(x,a) ∧ RunsPerWeek(x,b) ∧ Product(a,b,z)) → SprintsPerSession(x,z))
+RULE-2: If a session has a_sprints and each sprint is length_s meters, then distance per session is a_sprints × length_s :: ∀x∀a∀b∀c((SprintsPerSession(x,a) ∧ SprintLength(b) ∧ Product(a,b,c)) → DistancePerSessionMeters(x,c))
+RULE-3: If distance per session is d and d × 7 = total, then distance per week is total :: ∀x∀d∀e((DistancePerSessionMeters(x,d) ∧ Product(d, n_7, e)) → DistancePerWeekMeters(x,e))
+
+## INFERENCES
+INF-1: SprintsPerSession(james, n_9) from FACT-1, FACT-2, FACT-4 by RULE-1 (Modus Ponens) :: SprintsPerRun(james, n_3) ∧ RunsPerWeek(james, n_3) ∧ Product(n_3, n_3, n_9) → SprintsPerSession(james, n_9)
+INF-2: DistancePerSessionMeters(james, n_540) from INF-1, FACT-3, FACT-5 by RULE-2 (Modus Ponens) :: SprintsPerSession(james, n_9) ∧ SprintLength(n_60) ∧ Product(n_9, n_60, n_540) → DistancePerSessionMeters(james, n_540)
+INF-3: DistancePerWeekMeters(james, n_3780) from INF-2, FACT-6 by RULE-3 (Modus Ponens) :: DistancePerSessionMeters(james, n_540) ∧ Product(n_540, n_7, n_3780) → DistancePerWeekMeters(james, n_3780)

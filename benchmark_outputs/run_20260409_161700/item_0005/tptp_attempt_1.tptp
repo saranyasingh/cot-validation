@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, daily_feed_per_chicken(n_3)).
+fof(fact_2, axiom, chickens(n_20)).
+fof(fact_3, axiom, morning_feed(n_15)).
+fof(fact_4, axiom, afternoon_feed(n_25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ! [C] : ! [T] : ((daily_feed_per_chicken(P) & chickens(C) & multiply(P, C, T)) => total_feed(T))).
+fof(rule_2, axiom, ! [M] : ! [A] : ! [S] : ((morning_feed(M) & afternoon_feed(A) & add(M, A, S)) => sum_morning_afternoon(S))).
+fof(rule_3, axiom, ! [T] : ! [S] : ! [R] : ((total_feed(T) & sum_morning_afternoon(S) & subtract(T, S, R)) => remaining_feed(R))).
+fof(rule_4, axiom, ! [R] : ( remaining_feed(R) => final_answer(R) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by ArithmeticComputation
+fof(inf_1, axiom, total_feed(n_60)).
+% From fact_3, fact_4 by ArithmeticComputation
+fof(inf_2, axiom, sum_morning_afternoon(n_40)).
+% From inf_1, inf_2 by ArithmeticComputation
+fof(inf_3, axiom, subtract(n_60, n_40, n_20)).
+% From inf_3 by ArithmeticComputation
+fof(inf_4, axiom, remaining_feed(n_20)).
+% From inf_4 by RULE-4
+fof(inf_5, axiom, final_answer(n_20)).

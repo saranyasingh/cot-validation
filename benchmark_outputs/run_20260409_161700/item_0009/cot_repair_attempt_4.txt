@@ -1,0 +1,23 @@
+EXPLANATION
+
+1. **Initial Leg**: John drives for 3 hours at a speed of 60 mph.
+   - Distance covered = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. **Turnaround Point**: John realizes he forgot something at home and decides to turn around immediately.
+   - No new travel occurs here; only rest stops or other activities happen.
+
+3. **Second Leg**: The remaining time is 4 hours total minus the 2 hours already spent in standstill traffic, which equals 2 hours left for travel.
+   - John spends the next half-hour (0.5 hours) driving at a speed of 30 mph.
+     - Distance covered in this period = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+4. **Remaining Period**: The remaining time for the journey is 1.5 hours (4 hours total - 2 hours already spent = 2 hours), with John traveling at a speed of 80 mph.
+   - Distance covered in these last 1.5 hours = Speed × Time = 80 mph × 1.5 hours = 120 miles.
+
+5. **Total Distance Covered**:
+   - Total distance covered = Initial leg distance + Second leg distance + Remaining period distance
+   - Total distance covered = 180 miles + 15 miles + 120 miles = 315 miles.
+
+6. **Distance from Home**:
+   - Since John started at home and was 315 miles away after 4 hours, he must be 315 miles from home when he reaches his destination.
+
+Therefore, the answer is: 315 miles.

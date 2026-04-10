@@ -1,0 +1,17 @@
+## FACTS
+Fact-1: The first glass costs five dollars :: BaseCost(n_5)
+Fact-2: The common ratio is sixty percent :: CommonRatio(n_60)
+Fact-3: There are sixteen glasses :: GlassCount(n_16)
+Fact-4: The sum for 16 terms equals 11.50125 dollars (from the calculation) :: Sum16Value(n_11_50125)
+Fact-5: The 2nd glass costs three dollars :: P2Cost(n_3)
+Fact-6: The 3rd glass costs 1.80 dollars :: P3Cost(n_180)
+Fact-7: The 4th glass costs 1.08 dollars :: P4Cost(n_108)
+Fact-8: The 5th glass costs 0.648 dollars :: P5Cost(n_648)
+Fact-9: The 6th glass costs 0.3888 dollars :: P6Cost(n_3888)
+Fact-10: (0.60)^16 is approximately 0.0799 :: RPower16(n_0_0799)
+
+## RULES
+Rule-1: If there is a base cost p, a ratio r, and a count n of terms, then the sum for n terms is SumValue(n, p, r) :: ∀p∀r∀n((BaseCost(p) ∧ CommonRatio(r) ∧ GlassCount(n)) → SumValue(n, p, r))
+
+## INFERENCES
+INF-1: From Fact-1, Fact-2, Fact-3 via Rule-1 (Universal Instantiation) we get SumValue(n_16, n_5, n_60) :: SumValue(16, 5, 0.60)

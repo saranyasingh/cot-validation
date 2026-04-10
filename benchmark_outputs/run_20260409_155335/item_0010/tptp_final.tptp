@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, regular_rate(eliza, amount_10)).
+fof(fact_2, axiom, regular_hours(eliza, hours_40)).
+fof(fact_3, axiom, total_hours(eliza, hours_45)).
+fof(fact_4, axiom, overtime_rate(eliza, amount_12)).
+fof(fact_5, axiom, overtime_hours(eliza, hours_5)).
+fof(fact_6, axiom, regular_earnings(eliza, amount_400)).
+fof(fact_7, axiom, overtime_earnings(eliza, amount_60)).
+fof(fact_8, axiom, total_earnings(eliza, amount_460)).
+fof(fact_9, axiom, compute_regular_earnings(eliza, amount_10, hours_40, amount_400)).
+fof(fact_10, axiom, compute_overtime_earnings(eliza, amount_12, hours_5, amount_60)).
+fof(fact_11, axiom, compute_total_earnings(eliza, amount_400, amount_60, amount_460)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, R, H, E] : ((regular_rate(P, R) & regular_hours(P, H) & compute_regular_earnings(P, R, H, E)) => regular_earnings(P, E))).
+fof(rule_2, axiom, ! [P, R, H, E] : ((overtime_rate(P, R) & overtime_hours(P, H) & compute_overtime_earnings(P, R, H, E)) => overtime_earnings(P, E))).
+fof(rule_3, axiom, ! [P, A, B, C] : ((regular_earnings(P, A) & overtime_earnings(P, B) & compute_total_earnings(P, A, B, C)) => total_earnings(P, C))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_9 by Modus Ponens
+fof(inf_1, axiom, regular_earnings(eliza, amount_400)).
+
+% From fact_4, fact_5, fact_10 by Modus Ponens
+fof(inf_2, axiom, overtime_earnings(eliza, amount_60)).
+
+% From inf_1, inf_2, fact_11 by Conjunction Introduction and Modus Ponens
+fof(inf_3, axiom, total_earnings(eliza, amount_460)).

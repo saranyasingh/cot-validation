@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Janet lays 16 eggs per day :: EggsLaidPerDay(janet, n_16)
+FACT-2: Janet eats 3 eggs per day :: EggsEatenPerDay(janet, n_3)
+FACT-3: Price per egg is 2 dollars :: PricePerEgg(n_2)
+
+## RULES
+RULE-1: If someone lays 16 eggs per day and eats 3 eggs per day, then they have 13 eggs left for sale :: ∀a((EggsLaidPerDay(a, n_16) ∧ EggsEatenPerDay(a, n_3)) → EggsLeftForSale(a, n_13))
+RULE-2: If someone has 13 eggs left for sale and the price per egg is 2 dollars, then their daily earnings are 26 dollars :: ∀a((EggsLeftForSale(a, n_13) ∧ PricePerEgg(n_2)) → DailyEarnings(a, n_26))
+
+## INFERENCES
+INF-1: Janet has 13 eggs left for sale, from FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: EggsLeftForSale(janet, n_13)
+INF-2: Janet earns 26 dollars per day, from INF-1 and FACT-3 by RULE-2 (Modus Ponens) :: DailyEarnings(janet, n_26)

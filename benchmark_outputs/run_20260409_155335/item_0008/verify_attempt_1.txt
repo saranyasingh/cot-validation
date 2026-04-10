@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — the story does not entail a defined time to reach half given the restart
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — depends on the (unsupported) half-time fact
+FACT-6: UNSUPPORTED — relies on FACT-5; not entailed by the story
+
+RULE-1: IMPLAUSIBLE — total time is not simply half-time plus restart; actual total is different
+RULE-2: PLAUSIBLE

@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — 40% of 200 GB is 80 GB, not 160 GB.
+FACT-4: UNSUPPORTED — Time for 80 GB at 2 GB/min is 40 minutes, not 80 minutes.
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — Remaining part being 40 GB is not supported by the story.
+FACT-7: UNSUPPORTED — Time remaining should be 40 minutes for 80 GB at 2 GB/min, not 20.
+FACT-8: UNSUPPORTED — The given sum does not reflect the actual total time (would be 160 minutes, not 100).
+RULE-1: IMPLAUSIBLE — The rule equates total time to T + D, ignoring the additional time needed to finish the download after restart.

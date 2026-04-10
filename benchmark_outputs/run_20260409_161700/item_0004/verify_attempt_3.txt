@@ -1,0 +1,9 @@
+FACT-1: UNSUPPORTED — The story says 3 sprints 3 times a week, not 3 sprints per day.
+FACT-2: SUPPORTED — The story states he runs these sprints 3 times a week.
+FACT-3: SUPPORTED — The story states each sprint is 60 meters long.
+FACT-4: SUPPORTED — It is standard knowledge that there are 7 days in a week.
+
+RULE-1: IMPLAUSIBLE — The rule ties 3 daily sprints and 3 weekly sprints to a 9-sprint session in a way that is unclear and not a defensible general principle.
+RULE-2: PLAUSIBLE — DistancePerSession equals SprintsPerSession times SprintLength; straightforward multiplication.
+RULE-3: IMPLAUSIBLE — DistancePerWeek would equal DistancePerSession times 7 only if there is a session every day; the facts indicate 3 sessions per week, so this is not implied.
+RULE-4: PLAUSIBLE — It is a valid identity: DistancePerWeek implies WeeklyDistance with the same value.

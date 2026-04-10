@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states "The ducks Janet owns lay 16 eggs per day."
+FACT-2: SUPPORTED — The story states "She eats three for breakfast every morning."
+FACT-3: SUPPORTED — The story states "price... $2 per fresh duck egg."
+
+RULE-1: PLAUSIBLE — It encodes a straightforward arithmetic relation (eggs laid minus eggs eaten equals eggs left for sale) that fits the context.
+RULE-2: PLAUSIBLE — It encodes that daily earnings equal (eggs left for sale) × (price per egg), a standard revenue calculation.

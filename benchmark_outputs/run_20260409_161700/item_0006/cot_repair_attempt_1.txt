@@ -1,0 +1,79 @@
+EXPLANATION
+To determine how much Kylar needs to pay for 16 glasses, we first identify the cost structure given in the problem.
+
+1. **First Glass**: Costs $5.
+2. **Second Glass onwards**: Each subsequent glass costs 60% of the price of the preceding glass.
+
+Let's break down the calculation step-by-step:
+
+- For the first glass (the base case), it costs $5.
+  
+- The next glass (second glass) would then cost 60% of $5:
+  \[
+  0.60 \times 5 = 3 \text{ dollars}
+  \]
+
+- For the third glass (third glass):
+  - It costs 60% of $3:
+    \[
+    0.60 \times 3 = 1.80 \text{ dollars}
+    \]
+
+- Continue this pattern until the sixteenth glass. We observe that the prices form an arithmetic sequence with a common ratio of 0.6.
+
+**General Formula for nth term in an Arithmetic Sequence**:
+\[
+a_n = a_1 + (n - 1)d
+\]
+where \(a_n\) is the nth term, \(a_1\) is the first term ($5 initially), \(d\) is the common difference (0.60), and \(n\) is the position of the term in the sequence.
+
+For the sixteenth glass (\(n=16\)):
+\[
+a_{16} = 5 + (16 - 1) \cdot 0.60
+\]
+\[
+a_{16} = 5 + 15 \cdot 0.60
+\]
+\[
+a_{16} = 5 + 9
+\]
+\[
+a_{16} = 14 \text{ dollars}
+\]
+
+However, since the prices follow a geometric progression (each successive price is 60% of the previous one), the sixthteenth glass should actually cost 60% of $14:
+\[
+a_{16} = 14 \times 0.60 = 8.40 \text{ dollars}
+\]
+
+Now, summing up all these individual costs:
+\[
+Total = \sum_{i=1}^{16} i \cdot 0.60^i
+\]
+
+Using the properties of geometric sequences, the sum of the first n terms can be calculated as:
+\[
+S_n = a \frac{1-r^n}{1-r}
+\]
+where \(a\) is the first term ($5 initially), \(r\) is the common ratio (0.60), and \(n\) is the number of terms (16).
+
+Substituting the values:
+\[
+S_{16} = 5 \frac{1-(0.6)^{16}}{1-0.6}
+\]
+\[
+S_{16} = 5 \frac{1-0.00053}{0.4}
+\]
+\[
+S_{16} = 5 \frac{0.99947}{0.4}
+\]
+\[
+S_{16} = 5 \times 2.498675
+\]
+\[
+S_{16} = 12.493375
+\]
+
+Therefore, Kylar needs to pay approximately $12.49 for 16 glasses.
+
+The answer is: 12.49

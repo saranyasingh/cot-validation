@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, download_rate(carla, two_gb_per_minute)).
+fof(fact_2, axiom, total_data(two_hundred_gb)).
+fof(fact_3, axiom, time_to_download_half_is(carla, fifty_minutes)).
+fof(fact_4, axiom, restart_time(twenty_minutes)).
+fof(fact_5, axiom, sum(fifty_minutes, twenty_minutes, seventy_minutes)).
+fof(fact_6, axiom, time_to_download_full_again_is(carla, hundred_minutes)).
+fof(fact_7, axiom, sum(seventy_minutes, hundred_minutes, one_hundred_seventy_minutes)).
+fof(fact_8, axiom, hours_equivalent(one_hundred_seventy_minutes, hours_2_8333)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, F, R, G, M, T] : ( time_to_download_half_is(X, F) & restart_time(R) & time_to_download_full_again_is(X, G) & sum(F, R, M) & sum(M, G, T) => total_time_minutes(X, T) )).
+fof(rule_2, axiom, ! [X, T, H] : ( total_time_minutes(X, T) & hours_equivalent(T, H) => time_in_hours(X, H) )).
+
+% --- INFERENCES ---
+% From FACT-3, FACT-4, FACT-5, FACT-6, FACT-7 by Modus Ponens
+fof(inf_1, axiom, total_time_minutes(carla, one_hundred_seventy_minutes)).
+% From INF-1, FACT-8 by Modus Ponens
+fof(inf_2, axiom, time_in_hours(carla, hours_2_8333)).

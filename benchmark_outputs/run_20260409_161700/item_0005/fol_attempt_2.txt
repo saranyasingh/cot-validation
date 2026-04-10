@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Daily feed per chicken is 3 cups :: DailyFeedPerChicken(n_3)
+FACT-2: There are 20 chickens :: Chickens(n_20)
+FACT-3: Morning feed is 15 cups :: MorningFeed(n_15)
+FACT-4: Afternoon feed is 25 cups :: AfternoonFeed(n_25)
+FACT-5: Product of daily feed per chicken and number of chickens is 60 :: Multiply(n_3, n_20, n_60)
+FACT-6: Sum of morning and afternoon is 40 :: Add(n_15, n_25, n_40)
+FACT-7: Subtraction of total and morning-afternoon is 20 :: Subtract(n_60, n_40, n_20)
+
+## RULES
+RULE-1: If daily feed per chicken is p and there are c chickens and Multiply(p, c, t) then TotalFeed(t) :: ∀p∀c∀t((DailyFeedPerChicken(p) ∧ Chickens(c) ∧ Multiply(p, c, t)) → TotalFeed(t))
+RULE-2: If morning feed is m and afternoon feed is a and Add(m, a, s) then SumMorningAfternoon(s) :: ∀m∀a∀s((MorningFeed(m) ∧ AfternoonFeed(a) ∧ Add(m, a, s)) → SumMorningAfternoon(s))
+RULE-3: If TotalFeed(t) and SumMorningAfternoon(s) and Subtract(t, s, r) then RemainingFeed(r) :: ∀t∀s∀r((TotalFeed(t) ∧ SumMorningAfternoon(s) ∧ Subtract(t, s, r)) → RemainingFeed(r))
+RULE-4: If RemainingFeed(r) then FinalAnswer(r) :: ∀r(RemainingFeed(r) → FinalAnswer(r))
+
+## INFERENCES
+INF-1: 60 cups total feed, from FACT-1, FACT-2, and FACT-5 by RULE-1 :: TotalFeed(n_60)
+INF-2: 40 cups morning+afternoon, from FACT-3, FACT-4, and FACT-6 by RULE-2 :: SumMorningAfternoon(n_40)
+INF-3: 60 − 40 = 20 cups, from INF-1 and INF-2 by ArithmeticComputation :: Subtract(n_60, n_40, n_20)
+INF-4: Remaining feed 20 cups, from INF-3 by RULE-3 :: RemainingFeed(n_20)
+INF-5: Final answer 20 cups, from INF-4 by RULE-4 :: FinalAnswer(n_20)

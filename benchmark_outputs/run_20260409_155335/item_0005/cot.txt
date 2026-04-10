@@ -1,0 +1,19 @@
+EXPLANATION
+
+Let's break down the problem into steps.
+
+1. **Daily Feed Distribution**: Wendi distributes 3 cups of mixed feed per chicken throughout the day.
+   - For 20 chickens: \( 3 \text{ cups/chicken} \times 20 \text{ chickens} = 60 \text{ cups/day} \)
+
+2. **Morning Feed**: On the first day (morning), she provides 15 cups of feed.
+   - Remaining feed needed after morning: \( 60 \text{ cups/day} - 15 \text{ cups/morning} = 45 \text{ cups/day} \)
+
+3. **Afternoon Feed**: On the second day (afternoon), she provides an additional 25 cups of feed.
+   - Remaining feed needed after afternoon: \( 45 \text{ cups/day} - 25 \text{ cups/afternoon} = 20 \text{ cups/day} \)
+
+**Final Meal Calculation**: Since the remaining feed needs to be divided equally among all 20 chickens, we divide the total remaining feed by the number of chickens.
+   - Final meal amount: \( \frac{20 \text{ cups/day}}{20 \text{ chickens}} = 1 \text{ cup/chicken} \)
+
+Therefore, Wendi needs to give her chickens 1 cup of feed in the final meal of the day.
+
+The answer is: 1

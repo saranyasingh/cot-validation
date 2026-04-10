@@ -1,0 +1,18 @@
+EXPLANATION
+1. First, we need to calculate how much time Carla spends downloading before the restart.
+   - She normally downloads at 2 GB per minute.
+   - There are 200 GB in total.
+   - At 2 GB per minute, the time to download half of the file (100 GB) would be \( \frac{100}{2} = 50 \) minutes.
+
+2. Next, we add the time taken during the restart period.
+   - The restart takes 20 minutes.
+   
+3. Now, we sum up the time spent downloading and restarting.
+   - Total time = Downloading time + Restart time
+   - Total time = 50 minutes + 20 minutes = 70 minutes
+   
+4. Finally, we convert this total time into hours since the problem asks for the rate in GB/hour.
+   - Time in hours = \(\frac{70}{60}\)
+   - Time in hours = 1.1667 hours
+
+Therefore, the answer is: 1.1667

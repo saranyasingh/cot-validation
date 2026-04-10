@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: SheepIn(seattle, n_20)
+
+## RULES
+RULE-1: ∀x∀y((SheepIn(seattle, x) ∧ Factor(charleston, y)) → SheepIn(charleston, z)) :: If Seattle has x sheep and Charleston has factor y, then Charleston has z sheep (arithmetic computed externally)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Arithmetic Computation :: Multiply(n_20, n_4, n_80)
+
+INF-2: From FACT-1, INF-1, and RULE-1 by Modus Ponens :: SheepIn(charleston, n_80)
+
+INF-3: From INF-2 and Arithmetic Computation :: Multiply(n_80, n_2, n_160)
+
+INF-4: From INF-3 by Arithmetic Computation :: SheepIn(toulouse, n_160)
+
+INF-5: From INF-2, INF-4 by Summation (arith) :: Sum(n_160, n_80, n_260)
+

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The robe requires 2 bolts of blue fiber :: BlueBolts(robe, n_2)
+FACT-2: The white fiber requirement is half as much as the blue fiber for this robe :: HalfOfBlueToWhite(n_2, n_1)
+FACT-3: 2 plus 1 equals 3 :: Sum(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If an entity r has BlueBolts(r,b) and HalfOfBlueToWhite(b,w), then WhiteBolts(r,w) :: ∀r∀b∀w((BlueBolts(r,b) ∧ HalfOfBlueToWhite(b,w)) → WhiteBolts(r,w))
+RULE-2: If an entity r has BlueBolts(r,b) and WhiteBolts(r,w) and Sum(b,w,t), then TotalBolts(r,t) :: ∀r∀b∀w∀t(((BlueBolts(r,b) ∧ WhiteBolts(r,w)) ∧ Sum(b,w,t)) → TotalBolts(r,t))
+
+## INFERENCES
+INF-1: WhiteBolts(robe, n_1) from FACT-1, FACT-2 by RULE-1 (Modus Ponens) :: WhiteBolts(robe, n_1)
+INF-2: TotalBolts(robe, n_3) from FACT-1, INF-1, FACT-3 by RULE-2 (Modus Ponens) :: TotalBolts(robe, n_3)

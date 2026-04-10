@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, P1(n_1, n_5)).
+fof(fact_2, axiom, Ratio(n_60)).
+fof(fact_3, axiom, SumFor16(n_16, n_125)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, R] : ( (P1(A) & Ratio(R)) => InfiniteGeometricSum(A, R) )).
+fof(rule_2, axiom, ! [A, R, S] : ( (InfiniteGeometricSum(A, R) & SumFormula(A, R, S)) => SumFor16(n_16, S) )).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, P2(n_2, n_3)).
+% From INF-1 by Arithmetic Computation
+fof(inf_2, axiom, P3(n_3, n_180)).
+% From INF-2 by Arithmetic Computation
+fof(inf_3, axiom, P4(n_4, n_108)).
+% From INF-3 by Arithmetic Computation
+fof(inf_4, axiom, P5(n_5, n_648)).
+% From INF-4 by Arithmetic Computation
+fof(inf_5, axiom, P6(n_6, n_3888)).
+% From FACT-3 by Arithmetic Computation
+fof(inf_6, axiom, SumFor16(n_16, n_125)).

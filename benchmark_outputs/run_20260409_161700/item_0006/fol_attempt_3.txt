@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The cost of the first glass is 5 dollars :: P1(n_1, n_5)
+FACT-2: The cost of a subsequent glass is 60% of the previous :: Ratio(n_60)
+FACT-3: The total cost for 16 glasses is 12.5 dollars :: SumFor16(n_16, n_125)
+
+## RULES
+RULE-1: If the first term is a and the common ratio is r, then the infinite geometric series with that first term and ratio converges to a/(1-r) :: ∀a∀r((P1(a) ∧ Ratio(r)) → InfiniteGeometricSum(a, r))
+RULE-2: If InfiniteGeometricSum(a, r) and SumFormula(a, r, S) then SumFor16(n_16, S) :: ∀a∀r∀S((InfiniteGeometricSum(a, r) ∧ SumFormula(a, r, S)) → SumFor16(n_16, S))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by Arithmetic Computation: P2(n_2, n_3) :: P2(n_2, n_3)
+INF-2: From INF-1 by Arithmetic Computation: P3(n_3, n_180) :: P3(n_3, n_180)
+INF-3: From INF-2 by Arithmetic Computation: P4(n_4, n_108) :: P4(n_4, n_108)
+INF-4: From INF-3 by Arithmetic Computation: P5(n_5, n_648) :: P5(n_5, n_648)
+INF-5: From INF-4 by Arithmetic Computation: P6(n_6, n_3888) :: P6(n_6, n_3888)
+INF-6: From FACT-3 by Arithmetic Computation: SumFor16(n_16, n_125) :: SumFor16(n_16, n_125)

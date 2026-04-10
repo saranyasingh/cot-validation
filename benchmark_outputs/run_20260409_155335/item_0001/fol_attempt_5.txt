@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: EggsLaidPerDay(janets_ducks, 16).
+FACT-2: EggsEatenForBreakfast(janet, 3).
+FACT-3: EggsUsedForMuffins(janet, 4).
+FACT-4: PricePerEgg(2).
+
+## RULES
+RULE-1: ![N,M,B] : ( ( EggsLaidPerDay(janets_ducks, N) & EggsEatenForBreakfast(janet, M) & EggsUsedForMuffins(janet, B) ) => ?[T, RR] ( Subtract(N, M, T) & Subtract(T, B, RR) & RemainingEggs(janet, RR) ) ).
+
+RULE-2: ![R,P] : ( ( RemainingEggs(janet, R) & PricePerEgg(P) ) => ?[E] ( Multiply(R, P, E) & EarningsFromRemainingEggs(janet, E) ) ).
+
+RULE-3: ![E] : ( EarningsFromRemainingEggs(janet, E) => JanetMakesMoneyToday(janet, E) ).
+
+## INFERENCES
+INF-1: Subtract(16, 3, 13) ∧ Subtract(13, 4, 9) ∧ RemainingEggs(janet, 9)
+INF-2: Multiply(9, 2, 18) ∧ EarningsFromRemainingEggs(janet, 18)
+INF-3: JanetMakesMoneyToday(janet, 18)

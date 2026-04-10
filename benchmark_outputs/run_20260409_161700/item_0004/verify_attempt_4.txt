@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED — Directly stated: he runs 3 sprints in each run.
+FACT-2: SUPPORTED — Directly stated: 3 times a week.
+FACT-3: SUPPORTED — Directly stated: each sprint is 60 meters.
+FACT-4: SUPPORTED — Deduced: 3 × 3 = 9 from sprints per run and runs per week.
+FACT-5: SUPPORTED — Deduced: 9 × 60 = 540.
+FACT-6: UNSUPPORTED — 540 × 7 = 3780 is not stated or entailed by the story.
+
+RULE-1: IMPLAUSIBLE — It claims 9 sprints per session, but the facts indicate 9 sprints per week.
+RULE-2: PLAUSIBLE — Distance per session = number of sprints in session × length per sprint.
+RULE-3: IMPLAUSIBLE — The use of a fixed 7 (d × 7 = total) misaligns with the actual weekly structure and is not a robust general principle here.

@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: One glass costs five dollars :: OriginalPricePerGlass(five_dollars)
+FACT-2: There are sixteen glasses in total :: GlassCount(sixteen)
+FACT-3: Eight glasses are discounted :: DiscountedCount(eight)
+FACT-4: Eight glasses are not discounted :: NonDiscountedCount(eight)
+FACT-5: Discounted price is three dollars :: DiscountedPrice(three_dollars)
+FACT-6: Multiply(eight, three_dollars, twenty_four_dollars) :: Multiply(eight, three_dollars, twenty_four_dollars)
+FACT-7: Multiply(eight, five_dollars, forty_dollars) :: Multiply(eight, five_dollars, forty_dollars)
+FACT-8: Add(twenty_four_dollars, forty_dollars, sixty_four_dollars) :: Add(twenty_four_dollars, forty_dollars, sixty_four_dollars)
+
+## RULES
+RULE-1: Discounted total cost equals the product of discounted count and discounted price :: ∀N ∀D ∀T ((DiscountedCount(N) ∧ DiscountedPrice(D) ∧ Multiply(N, D, T)) → DiscountedTotalCost(T))
+RULE-2: Non-discounted total cost equals the product of non-discounted count and original price :: ∀N ∀P ∀T ((NonDiscountedCount(N) ∧ OriginalPricePerGlass(P) ∧ Multiply(N, P, T)) → NonDiscountedTotalCost(T))
+RULE-3: Total amount equals the sum of discounted total cost and non-discounted total cost :: ∀D ∀ND ((DiscountedTotalCost(D) ∧ NonDiscountedTotalCost(ND)) → ∃T (Add(D, ND, T) ∧ TotalAmount(T)))
+RULE-4: If the total amount exists, Kylar pays that amount :: ∀T (TotalAmount(T) → KylarPays(T))
+
+## INFERENCES
+INF-1: From FACT-3 and FACT-5 by RULE-1: DiscountedTotalCost(twenty_four_dollars)
+INF-2: From FACT-4 and FACT-7 by RULE-2: NonDiscountedTotalCost(forty_dollars)
+INF-3: From INF-1, INF-2 and FACT-8 by RULE-3: TotalAmount(sixty_four_dollars)
+INF-4: From INF-3 by RULE-4: KylarPays(sixty_four_dollars)

@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Speed(john, leg1, n_60) :: Speed(john, leg1, n_60)
+FACT-2: Time(john, leg1, n_3) :: Time(john, leg1, n_3)
+FACT-3: Speed(john, leg2, n_30) :: Speed(john, leg2, n_30)
+FACT-4: Time(john, leg2, n_0_5) :: Time(john, leg2, n_0_5)
+FACT-5: Speed(john, leg3, n_80) :: Speed(john, leg3, n_80)
+FACT-6: Time(john, leg3, n_1) :: Time(john, leg3, n_1)
+
+## RULES
+RULE-1: ∀p∀leg∀s∀t∀d((Speed(p, leg, s) ∧ Time(p, leg, t) ∧ Product(s, t, d)) → Distance(p, leg, d)) :: If a person travels a leg with speed s for time t producing product d, then the leg distance is d
+RULE-2: ∀p∀a∀b∀c∀d((Sum3(a,b,c,d)) → TotalDistance(p, d)) :: If the sum of three distances equals d, then the total distance is d
+RULE-3: ∀p∀d((TotalDistance(p, d)) → DistanceFromHome(p, d)) :: If total distance is d, then distance from home is d
+
+## INFERENCES
+INF-1: 60 × 3 = 180, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_60, n_3, n_180)
+INF-2: 30 × 0.5 = 15, from FACT-3 and FACT-4 by Arithmetic Computation :: Product(n_30, n_0_5, n_15)
+INF-3: 80 × 1 = 80, from FACT-5 and FACT-6 by Arithmetic Computation :: Product(n_80, n_1, n_80)
+INF-4: Distance(john, leg1, n_180), from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: Distance(john, leg1, n_180)
+INF-5: Distance(john, leg2, n_15), from FACT-3, FACT-4, INF-2, and RULE-1 by Modus Ponens :: Distance(john, leg2, n_15)
+INF-6: Distance(john, leg3, n_80), from FACT-5, FACT-6, INF-3, and RULE-1 by Modus Ponens :: Distance(john, leg3, n_80)
+INF-7: Sum3(n_180, n_15, n_80, n_275) :: from INF-4, INF-5, INF-6 by Arithmetic Computation :: 180 + 15 + 80 = 275
+INF-8: TotalDistance(john, n_275) :: from INF-7 by RULE-2
+INF-9: DistanceFromHome(john, n_275) :: from INF-8 by RULE-3

@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: John drives for 3 hours at 60 mph :: Drives(john, n_3, n_60)
+FACT-2: The initial leg distance is 180 miles :: DistanceInitial(john, n_180)
+FACT-3: The distance covered in the first half-hour is 15 miles :: DistanceInPeriod1(john, n_15)
+FACT-4: The distance covered in the last period is 120 miles :: DistanceInPeriod2(john, n_120)
+FACT-5: John started at home :: StartedAtHome(john)
+FACT-6: The first half-hour lasted 0.5 hours :: Period1Time(john, n_0_5)
+FACT-7: The first half-hour had speed 30 mph :: Period1Speed(john, n_30)
+FACT-8: The last period lasted 1.5 hours :: Period2Time(john, n_1_5)
+FACT-9: The last period had speed 80 mph :: Period2Speed(john, n_80)
+
+## RULES
+RULE-1: ∀x((DistanceInitial(x, n_180) ∧ DistanceInPeriod1(x, n_15) ∧ DistanceInPeriod2(x, n_120)) → TotalDistance(x, n_315)) :: If the initial leg distance is 180 miles and the first period distance is 15 miles and the second period distance is 120 miles, then the total distance is 315 miles
+RULE-2: ∀x∀d((StartedAtHome(x) ∧ TotalDistance(x, d)) → DistanceFromHome(x, d)) :: If someone started at home and has total distance d, then they are distance d from home
+RULE-3: ∀x∀d((DistanceFromHome(x, d)) → FinalAnswer(d)) :: If distance from home is d, then the final answer is d
+
+## INFERENCES
+INF-1: TotalDistance(john, n_315) from FACT-2, FACT-3, FACT-4 and RULE-1 by Modus Ponens :: RULE-1, FACT-2, FACT-3, FACT-4
+INF-2: DistanceFromHome(john, n_315) from FACT-5, INF-1 and RULE-2 by Modus Ponens :: RULE-2, FACT-5, INF-1
+INF-3: FinalAnswer(n_315) from INF-2 and RULE-3 by Modus Ponens :: RULE-3, INF-2

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: DownloadRate(carla, two_gb_per_minute) :: Carla downloads at 2 GB per minute.
+FACT-2: TotalData(two_hundred_gb) :: There are 200 GB in total.
+FACT-3: TimeToDownloadHalfIs(carla, fifty_minutes) :: Time to download half the file is fifty_minutes.
+FACT-4: RestartTime(twenty_minutes) :: Restart takes twenty minutes.
+FACT-5: Sum(fifty_minutes, twenty_minutes, seventy_minutes) :: Fifty_minutes plus twenty_minutes equals seventy_minutes.
+FACT-6: HoursEquivalent(seventy_minutes, hours_1_1667) :: 70 minutes equals 1.1667 hours.
+
+## RULES
+RULE-1: PLAUSIBLE — ∀x, t, h (TotalTimeMinutes(x, t) ∧ HoursEquivalent(t, h) → TimeInHours(x, h))
+
+## INFERENCES

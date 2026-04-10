@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: James runs 3 sprints per run :: SprintsPerRun(james, n_3)
+FACT-2: James runs 3 times a week :: RunsPerWeek(james, n_3)
+FACT-3: Each sprint is 60 meters long :: SprintLength(n_60)
+
+## RULES
+RULE-1: If a person James has SprintsPerRun a and RunsPerWeek b and Product(a,b,c), then SprintsPerSession c :: ∀a∀b∀c((SprintsPerRun(james, a) ∧ RunsPerWeek(james, b) ∧ Product(a,b,c)) → SprintsPerSession(james, c))
+RULE-2: If James has SprintsPerSession s and SprintLength l and Product(s, l, m), then SessionDistance m :: ∀s∀l∀m((SprintsPerSession(james, s) ∧ SprintLength(l) ∧ Product(s, l, m)) → SessionDistance(james, m))
+RULE-3: If James has SessionDistance p and RunsPerWeek q and Product(p, q, r), then WeeklyDistance r :: ∀p∀q∀r((SessionDistance(james, p) ∧ RunsPerWeek(james, q) ∧ Product(p, q, r)) → WeeklyDistance(james, r))
+
+## INFERENCES
+INF-1: 3 × 3 = 9, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_3, n_3, n_9)
+INF-2: James has SprintsPerSession(james, n_9) from FACT-1, FACT-2, INF-1 by RULE-1 :: Modus Ponens
+INF-3: 9 × 60 = 540, from INF-2 and FACT-3 by Arithmetic Computation :: Product(n_9, n_60, n_540)
+INF-4: SessionDistance(james, n_540) from INF-2, FACT-3 by RULE-2 :: Modus Ponens
+INF-5: 540 × 3 = 1620, from INF-4 and FACT-2 by Arithmetic Computation :: Product(n_540, n_3, n_1620)
+INF-6: WeeklyDistance(james, n_1620) from INF-4, FACT-2, INF-5 by RULE-3 :: Modus Ponens

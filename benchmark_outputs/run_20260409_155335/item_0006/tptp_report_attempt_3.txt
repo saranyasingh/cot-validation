@@ -1,0 +1,11 @@
+  % From fact_3, fact_5 by Modus Ponens
+  inf_1: PROVED
+  % From fact_4, fact_7 by Modus Ponens
+  inf_2: PROVED
+  % From inf_1, inf_2 and fact_8 by RULE-3
+  inf_3: NOT PROVED
+  % From inf_3 by Modus Ponens
+  inf_4: PROVED
+
+Prover errors:
+inf_3: NOT PROVED — inference does not follow from axioms

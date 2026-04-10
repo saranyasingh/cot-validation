@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Janet lays 16 eggs per day :: EggsLaidPerDay(janet, n_16)
+FACT-2: Janet eats 3 eggs per day :: EggsEatenPerDay(janet, n_3)
+FACT-3: Janet uses 4 eggs per muffin :: EggsPerMuffin(janet, n_4)
+FACT-4: Price per egg is 2 dollars :: PricePerEgg(n_2)
+FACT-5: Price per muffin is 2 dollars :: PricePerMuffin(n_2)
+
+## RULES
+RULE-1: If a person lays L eggs and eats E eggs, then there exists R such that Subtracts(L,E,R) and EggsLeftPerDay(p,R) :: ∀p∀L∀E((EggsLaidPerDay(p,L) ∧ EggsEatenPerDay(p,E)) → ∃R(Subtracts(L,E,R) ∧ EggsLeftPerDay(p,R)))
+RULE-2: If EggsLeftPerDay(p,L) and EggsPerMuffin(p,M) and CeilDiv(L,M,R) then MuffinsBakedPerDay(p,R) :: ∀p∀L∀M∀R((EggsLeftPerDay(p,L) ∧ EggsPerMuffin(p,M) ∧ CeilDiv(L,M,R)) → MuffinsBakedPerDay(p,R))
+RULE-3: If EggsLeftPerDay(p,L) and PricePerEgg(Price) then RevenueFromEggs(p, Mul(L, Price)) :: ∀p∀L∀Price((EggsLeftPerDay(p,L) ∧ PricePerEgg(Price)) → RevenueFromEggs(p, Mul(L, Price)))
+RULE-4: If MuffinsBakedPerDay(p,M) and PricePerMuffin(Price) then RevenueFromMuffins(p, Mul(M, Price)) :: ∀p∀M∀Price((MuffinsBakedPerDay(p,M) ∧ PricePerMuffin(Price)) → RevenueFromMuffins(p, Mul(M, Price)))
+RULE-5: If RevenueFromEggs(p,R1) and RevenueFromMuffins(p,R2) then TotalRevenue(p, Add(R1,R2)) :: ∀p∀R1∀R2((RevenueFromEggs(p,R1) ∧ RevenueFromMuffins(p,R2)) → TotalRevenue(p, Add(R1,R2)))
+
+## INFERENCES
+INF-1: Eggs left per day computed from eggs laid and eggs eaten by ArithmeticComputation using FACT-1 and FACT-2 :: EggsLeftPerDay(janet, n_13)
+INF-2: Muffins baked per day computed from EggsLeftPerDay(janet, n_13) and FACT-3 by ArithmeticComputation :: MuffinsBakedPerDay(janet, n_4)
+INF-3: Revenue from eggs computed from EggsLeftPerDay(janet, n_13) and FACT-4 by ArithmeticComputation :: RevenueFromEggs(janet, n_26)
+INF-4: Revenue from muffins computed from MuffinsBakedPerDay(janet, n_4) and FACT-5 by ArithmeticComputation :: RevenueFromMuffins(janet, n_8)
+INF-5: Total revenue computed from RevenueFromEggs(janet, n_26) and RevenueFromMuffins(janet, n_8) by ArithmeticComputation :: TotalRevenue(janet, n_34)

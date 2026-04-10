@@ -1,0 +1,40 @@
+EXPLANATION
+To calculate the total cost for 16 glasses, we start with the base cost of the first glass, which is $5. Since each subsequent glass costs 60% of the previous glass’s price, we use the formula for the sum of a geometric series to find the total cost.
+
+1. **Base Cost**: The first glass costs $5.
+   
+2. **Geometric Series**: The cost of each subsequent glass forms a geometric series where each term is 60% of the previous term. 
+
+   Let \( P_n \) represent the cost of the \( n \)-th glass. Then,
+   \[
+   P_n = P_{n-1} \times 0.60
+   \]
+   Given that the first term \( P_1 = \$5 \),
+   \[
+   P_2 = 5 \times 0.60 = \$3
+   \]
+   \[
+   P_3 = 3 \times 0.60 = \$1.80
+   \]
+   Continuing this process, we get:
+   \[
+   P_4 = 1.80 \times 0.60 = \$1.08
+   \]
+   \[
+   P_5 = 1.08 \times 0.60 = \$0.648
+   \]
+   \[
+   P_6 = 0.648 \times 0.60 = \$0.3888
+   \]
+   And so on...
+
+3. To find the total cost, we sum up the infinite geometric series starting at 5 and having a common ratio of 0.60. The sum of an infinite geometric series is given by:
+   \[
+   S = \frac{P_1}{1 - r}
+   \]
+   where \( P_1 = 5 \) and \( r = 0.60 \). Therefore,
+   \[
+   S = \frac{5}{1 - 0.60} = \frac{5}{0.40} = 12.5
+   \]
+
+Hence, Kylar needs to pay approximately $\boxed{12.5}$ dollars for 16 glasses.

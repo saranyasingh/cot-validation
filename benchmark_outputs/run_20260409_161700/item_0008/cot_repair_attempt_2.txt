@@ -1,0 +1,22 @@
+### REVISION
+
+### EXPLANATION
+
+First, calculate the amount of data Carla needs to download after the restart:
+
+\[ 200 \text{ GB} - 160 \text{ GB} = 40 \text{ GB} \]
+
+Next, determine how long it will take to download the remaining 40 GB at her normal speed:
+
+\[ \frac{40 \text{ GB}}{2 \text{ GB/min}} = 20 \text{ minutes} \]
+
+Now, add the 20-minute downtime caused by the restart:
+
+\[ 20 \text{ minutes} + 20 \text{ minutes} = 40 \text{ minutes} \]
+
+Since the restart only affects the start of the download, Carla needs to download the entire file again, which adds another 40 minutes. Therefore, the total time to complete the download is:
+
+\[ 40 \text{ minutes} + 40 \text{ minutes} = 80 \text{ minutes} \]
+
+### ANSWER
+The total time it takes Carla to download the 200 GB file after restarting is **80 minutes**.

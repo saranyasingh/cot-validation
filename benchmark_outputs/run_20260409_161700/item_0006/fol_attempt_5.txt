@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The first term of the geometric series is 5 dollars :: FirstTermCost(n_5)
+FACT-2: The common ratio is 0.60 :: CommonRatio(n_0_60)
+FACT-3: The sum formula for the first term and ratio is S = 12.5 :: SumFormula(n_5, n_0_60, n_12_5)
+
+## RULES
+RULE-1: ∀a ∀r ∀s((FirstTermCost(a) ∧ CommonRatio(r) ∧ SumFormula(a, r, s)) → InfiniteGeometricSumValue(s)) :: If the first term is a, the ratio is r, and the sum formula yields s, then the infinite geometric sum value is s
+RULE-2: ∀s(InfiniteGeometricSumValue(s) → TotalCostFor16Glasses(s)) :: The total cost for 16 glasses equals the infinite geometric sum value
+
+## INFERENCES
+INF-1: InfiniteGeometricSumValue(n_12_5) :: From FACT-1, FACT-2, FACT-3 by RULE-1
+INF-2: TotalCostFor16Glasses(n_12_5) :: From INF-1 by RULE-2

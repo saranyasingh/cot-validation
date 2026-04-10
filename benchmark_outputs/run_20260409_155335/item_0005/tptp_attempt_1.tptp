@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, cups_per_chicken(3)).
+fof(fact_2, axiom, chickens(20)).
+fof(fact_3, axiom, morning_feed(15)).
+fof(fact_4, axiom, afternoon_feed(25)).
+fof(fact_5, axiom, remaining_after_morning(45)).
+fof(fact_6, axiom, remaining_after_afternoon(20)).
+fof(fact_7, axiom, final_meal_per_chicken(1)).
+fof(fact_8, axiom, total_cups_per_day(60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C,A] : ((chickens(C) & final_meal_per_chicken(A)) => receives(C, A))).
+
+% --- INFERENCES ---
+% From FACT-7, RULE-1 by Universal Instantiation
+fof(inf_1, axiom, ! [X] : (chickens(X) => receives(X, 1))).

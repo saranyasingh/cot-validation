@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, original_price_per_glass(five_dollars)).
+fof(fact_2, axiom, glass_count(sixteen)).
+fof(fact_3, axiom, discounted_count(eight)).
+fof(fact_4, axiom, non_discounted_count(eight)).
+fof(fact_5, axiom, discounted_price(three_dollars)).
+fof(fact_6, axiom, multiply(eight, three_dollars, twenty_four_dollars)).
+fof(fact_7, axiom, multiply(eight, five_dollars, forty_dollars)).
+fof(fact_8, axiom, add(twenty_four_dollars, forty_dollars, sixty_four_dollars)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N] : ! [D] : ! [T] : ((discounted_count(N) & discounted_price(D) & multiply(N, D, T)) => discounted_total_cost(T))).
+fof(rule_2, axiom, ! [N] : ! [P] : ! [T] : ((non_discounted_count(N) & original_price_per_glass(P) & multiply(N, P, T)) => non_discounted_total_cost(T))).
+fof(rule_3, axiom, ! [D] : ! [ND] : ! [T] : ((discounted_total_cost(D) & non_discounted_total_cost(ND) & add(D, ND, T)) => total_amount(T))).
+fof(rule_4, axiom, ! [T] : (total_amount(T) => kylar_pays(T))).
+
+% --- INFERENCES ---
+% From FACT-3, rule_1 by Modus Ponens
+fof(inf_1, axiom, discounted_total_cost(twenty_four_dollars)).
+% From FACT-4, rule_2 by Modus Ponens
+fof(inf_2, axiom, non_discounted_total_cost(forty_dollars)).
+% From inf_1, inf_2, fact_8 by RULE-3
+fof(inf_3, axiom, total_amount(sixty_four_dollars)).
+% From inf_3 by RULE-4
+fof(inf_4, axiom, kylar_pays(sixty_four_dollars)).

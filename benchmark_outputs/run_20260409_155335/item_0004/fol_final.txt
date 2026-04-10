@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: NumberOfSprints(james, three) :: NumberOfSprints(james, three)
+FACT-2: DistancePerSprint(james, sixty) :: DistancePerSprint(james, sixty)
+FACT-3: Multiply(three, sixty, one_eighty) :: Multiply(three, sixty, one_eighty)
+
+## RULES
+RULE-1: If a person has a number of sprints Ns and a distance per sprint Ds and the product M of Ns and Ds, then the total meters is M :: ∀x ∀Ns ∀Ds ∀M ( NumberOfSprints(x, Ns) ∧ DistancePerSprint(x, Ds) ∧ Multiply(Ns, Ds, M) → TotalMeters(x, M) )
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3, RULE-1 by Modus Ponens: TotalMeters(james, one_eighty)

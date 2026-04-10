@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: TimeInLeg(john, leg_one, n_3) ::
+FACT-2: SpeedInLeg(john, leg_one, n_60) ::
+FACT-3: TimeInLeg(john, leg_two, n_0_5) ::
+FACT-4: SpeedInLeg(john, leg_two, n_30) ::
+FACT-5: TimeInLeg(john, leg_three, n_2_5) ::
+FACT-6: SpeedInLeg(john, leg_three, n_80) ::
+FACT-7: StartsAtHome(john) ::
+
+## RULES
+RULE-1: ∀x∀L∀t∀s((TimeInLeg(x,L,t) ∧ SpeedInLeg(x,L,s) ∧ Prod(s,t,d)) → DistanceInLeg(x,L,d)) ::
+RULE-2: ∀x∀d1∀d2∀d3∀d12∀d4((DistanceInLeg(x, leg_one, d1) ∧ DistanceInLeg(x, leg_two, d2) ∧ DistanceInLeg(x, leg_three, d3) ∧ Sum(d1, d2, d12) ∧ Sum(d12, d3, d4)) → TotalDistance(x, d4)) ::
+RULE-3: ∀x∀d((StartsAtHome(x) ∧ TotalDistance(x,d)) → DistanceFromHome(x,d)) ::
+
+## INFERENCES
+INF-1: Prod(n_60, n_3, n_180) :: from FACT-2 and FACT-1 by Arithmetic Computation ::
+INF-2: DistanceInLeg(john, leg_one, n_180) :: from INF-1, FACT-1, FACT-2 by Modus Ponens (RULE-1) ::
+INF-3: Prod(n_30, n_0_5, n_15) :: from FACT-3 and FACT-4 by Arithmetic Computation ::
+INF-4: DistanceInLeg(john, leg_two, n_15) :: from INF-3, FACT-3, FACT-4 by Modus Ponens (RULE-1) ::
+INF-5: Prod(n_80, n_2_5, n_200) :: from FACT-5 and FACT-6 by Arithmetic Computation ::
+INF-6: DistanceInLeg(john, leg_three, n_200) :: from INF-5, FACT-5, FACT-6 by Modus Ponens (RULE-1) ::
+INF-7: Sum(n_180, n_15, n_195) :: from INF-2, INF-4 by Arithmetic Computation ::
+INF-8: Sum(n_195, n_200, n_395) :: from INF-6, INF-7 by Arithmetic Computation ::
+INF-9: TotalDistance(john, n_395) :: from INF-2, INF-4, INF-6, INF-7, INF-8 by Modus Ponens (RULE-2) ::
+INF-10: DistanceFromHome(john, n_395) :: from FACT-7, INF-9 by Modus Ponens (RULE-3) ::

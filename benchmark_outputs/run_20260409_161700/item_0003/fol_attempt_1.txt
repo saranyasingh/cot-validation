@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Josh bought the house for 80,000 :: InitialInvestment(josh, n_80000)
+FACT-2: Josh paid 50,000 for repairs :: RepairCost(josh, n_50000)
+FACT-3: Total cost after repairs is 130,000 :: TotalCostAfterRepairs(josh, n_130000)
+FACT-4: Increase in value is 120,000 :: IncreasedValue(josh, n_120000)
+FACT-5: 130,000 + 120,000 = 250,000 :: Add(n_130000, n_120000, n_250000)
+FACT-6: Selling price is 250,000 :: SellingPrice(josh, n_250000)
+FACT-7: EqualAmount(n_250000, n_250000) :: EqualAmount(n_250000, n_250000)
+
+## RULES
+RULE-1: If selling price equals total cost including increase, then profit is zero :: ∀p∀s∀u((SellingPrice(p,s) ∧ TotalCostIncludingIncrease(p,u) ∧ EqualAmount(s,u)) → Profit(p, n_0))
+RULE-2: If total cost after repairs plus increased value equals total cost including increase, then TotalCostIncludingIncrease :: ∀p∀c∀t∀u((TotalCostAfterRepairs(p,c) ∧ IncreasedValue(p,t) ∧ Add(c,t,u)) → TotalCostIncludingIncrease(p,u))
+
+## INFERENCES
+INF-1: TotalCostIncludingIncrease(josh, n_250000) from FACT-3, FACT-4, FACT-5 by RULE-2
+INF-2: Profit(josh, n_0) from FACT-6, INF-1, FACT-7 by RULE-1

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, count(seattle, n_20)).
+fof(fact_2, axiom, four_times(charleston, seattle)).
+fof(fact_3, axiom, twice(toulouse, charleston)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ((count(Y, n_20) & four_times(X, Y)) => count(X, n_80))).
+fof(rule_2, axiom, ! [X] : ! [Y] : ((count(Y, n_80) & twice(X, Y)) => count(X, n_160))).
+fof(rule_3, axiom, ! [A] : ! [B] : ! [C] : ((count(A, n_160) & count(B, n_80) & count(C, n_20)) => total_sheep(n_260))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, count(charleston, n_80)).
+% From inf_1, fact_3 by Arithmetic Computation
+fof(inf_2, axiom, count(toulouse, n_160)).
+% From inf_2, inf_1, and fact_1 by Arithmetic Computation
+fof(inf_3, axiom, total_sheep(n_260)).

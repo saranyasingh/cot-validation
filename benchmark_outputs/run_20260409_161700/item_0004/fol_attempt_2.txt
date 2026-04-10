@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: James runs 3 sprints each time he goes running :: SprintsPerRun(james, n_3)
+FACT-2: He goes running 3 times a week :: RunsPerWeek(james, n_3)
+FACT-3: Each sprint is 60 meters long :: SprintLength(n_60)
+FACT-4: There are 7 days in a week :: DaysInWeek(n_7)
+
+## RULES
+RULE-1: If a person has 3 sprints per run and runs 3 times per week, then that person has 9 sprints in a session :: ∀p((SprintsPerRun(p, n_3) ∧ RunsPerWeek(p, n_3)) → SprintsInSession(p, n_9))
+RULE-2: If a person has 9 sprints in a session and sprint length 60, then meters in session 540 :: ∀p((SprintsInSession(p, n_9) ∧ SprintLength(n_60)) → MetersInSession(p, n_540))
+RULE-3: If a person has meters in session 540 and 7 days in a week, then weekly distance 3780 :: ∀p((MetersInSession(p, n_540) ∧ DaysInWeek(n_7)) → WeeklyDistance(p, n_3780))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: SprintsInSession(james, n_9)
+INF-2: From INF-1 and FACT-3 by RULE-2 (Modus Ponens) :: MetersInSession(james, n_540)
+INF-3: From INF-2 and FACT-4 by RULE-3 (Modus Ponens) :: WeeklyDistance(james, n_3780)

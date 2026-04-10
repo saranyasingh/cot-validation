@@ -1,0 +1,32 @@
+To determine how far John is from home after 4 hours, we need to calculate his total distance traveled during that period. Let's break down the journey into segments:
+
+1. **First Segment**: John drives for 3 hours at a speed of 60 mph.
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 60 \, \text{mph} \times 3 \, \text{hours} = 180 \, \text{miles}
+   \]
+
+2. **Second Segment**: John initially attempts to return home but gets stuck in traffic for the first 2 hours. During these 2 hours, he does not move (distance = 0 miles).
+   
+3. **Third Segment**: John spends 0.5 hours driving at 30 mph:
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 30 \, \text{mph} \times 0.5 \, \text{hours} = 15 \, \text{miles}
+   \]
+   However, since this segment starts only after the initial trip, we should consider it as part of the second attempt to go back home.
+
+4. **Fourth Segment**: After realizing he needs to turn around again, John drives for the remaining 2 hours at 80 mph:
+   \[
+   \text{Distance} = \text{Speed} \times \text{Time} = 80 \, \text{mph} \times 2 \, \text{hours} = 160 \, \text{miles}
+   \]
+
+Now, let's sum up all the distances traveled:
+- First segment: 180 miles
+- Second segment: 0 miles (since no movement)
+- Third segment: 15 miles (part of the second attempt)
+- Fourth segment: 160 miles
+
+Total distance traveled:
+\[
+180 + 0 + 15 + 160 = 355 \, \text{miles}
+\]
+
+Therefore, the answer is: 355 miles.

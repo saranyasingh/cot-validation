@@ -1,0 +1,9 @@
+FACT-1: UNSUPPORTED — The story indicates 40% progress (80 GB downloaded); 80% (160 GB) is not stated or entailed.
+
+FACT-2: UNSUPPORTED — It asserts 160 GB would take 80 minutes; the story uses 80 GB (40%), so this is not entailed and misaligns with the given progress.
+
+FACT-3: SUPPORTED — The story states there is a 20-minute downtime for updates.
+
+FACT-4: SUPPORTED — The story says Windows forces a restart, i.e., a restart occurred.
+
+RULE-1: IMPLAUSIBLE — The rule incorrectly implies total time equals time for the completed portion plus downtime; it ignores that after a restart the entire file must be re-downloaded, so this reasoning distorts the situation.

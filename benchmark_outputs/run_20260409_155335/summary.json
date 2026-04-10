@@ -1,0 +1,27 @@
+{
+  "dataset": "GSM8K",
+  "run_id": "run_20260409_155335",
+  "total": 10,
+  "plain": {
+    "correct": 6,
+    "accuracy": 0.6
+  },
+  "pipeline": {
+    "correct": 4,
+    "accuracy": 0.4,
+    "passed_verify": 6,
+    "verify_rate": 0.6,
+    "passed_tptp": 6,
+    "tptp_rate": 0.6,
+    "needed_retry": 7,
+    "retry_rate": 0.7,
+    "avg_attempts": 3.4
+  },
+  "error_analysis": {
+    "plain_errors": 4,
+    "errors_caught_by_pipeline": 0,
+    "error_catch_rate": 0.0,
+    "regressions": 2,
+    "regression_rate": 0.3333
+  }
+}

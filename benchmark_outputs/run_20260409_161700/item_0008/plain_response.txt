@@ -1,0 +1,31 @@
+To determine how long it will take Carla to download the remaining 160 GB (since 200 - 40 = 160) after restarting, we need to calculate her download speed before and after the restart.
+
+First, let's find out what percentage of the total download time Carla had when the restart occurred:
+- The download was initially at 80%.
+- She then had to restart for 20 minutes.
+
+So, if \( t \) is the initial download time in minutes, we know that:
+\[ 0.8t + 20 = t \]
+Solving for \( t \):
+\[ 20 = t - 0.8t \]
+\[ 20 = 0.2t \]
+\[ t = \frac{20}{0.2} \]
+\[ t = 100 \text{ minutes} \]
+
+Now, we calculate the actual download rate during this period:
+\[ \text{Download rate} = \frac{2GB}{\text{minutes}} \times \frac{100 \text{ minutes}}{100} = 2GB/\text{minute} \]
+
+Next, we need to calculate the remaining time required to complete the download:
+- Remaining data to be downloaded: 160 GB
+- Current download rate: 2 GB/min
+
+Time needed to finish the remaining part:
+\[ \text{Time} = \frac{\text{Remaining Data}}{\text{Current Download Rate}} \]
+\[ \text{Time} = \frac{160 \text{ GB}}{2 \text{ GB/min}} \]
+\[ \text{Time} = 80 \text{ minutes} \]
+
+Finally, adding the time taken for the restart:
+\[ \text{Total Time} = 20 \text{ minutes} + 80 \text{ minutes} \]
+\[ \text{Total Time} = 100 \text{ minutes} \]
+
+Therefore, the total time it takes Carla to download the file is **100 minutes**.

@@ -1,0 +1,6 @@
+  % From fact_1, rule_1 by Modus Ponens
+  inf_1: PROVED
+  % From inf_1, rule_2 by Modus Ponens
+  inf_2: PROVED
+  % From inf_1, inf_2, fact_1 by Addition
+  inf_3: UNKNOWN (GaveUp)

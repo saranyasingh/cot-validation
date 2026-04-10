@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: DownloadRate(carla, two_gb_per_minute) :: Carla downloads at 2 GB per minute.
+FACT-2: TotalData(two_hundred_gb) :: There are 200 GB in total.
+FACT-3: TimeToDownloadHalfIs(carla, fifty_minutes) :: Time to download half the file is fifty_minutes.
+FACT-4: RestartTime(twenty_minutes) :: Restart takes twenty minutes.
+FACT-5: Sum(fifty_minutes, twenty_minutes, seventy_minutes) :: Fifty_minutes plus twenty_minutes equals seventy_minutes.
+FACT-6: HoursEquivalent(seventy_minutes, hours_1_1667) :: Seventy_minutes correspond to 1.1667 hours.
+
+## RULES
+RULE-1: Total time in minutes equals the sum of the half-download time and restart time :: ∀x, f, r, m (TimeToDownloadHalfIs(x, f) ∧ RestartTime(r) ∧ Sum(f, r, m) → TotalTimeMinutes(x, m))
+RULE-2: Time in hours equals given hours for the total minutes :: ∀x, t, h (TotalTimeMinutes(x, t) ∧ HoursEquivalent(t, h) → TimeInHours(x, h))
+
+## INFERENCES
+INF-1: From FACT-3, FACT-4, FACT-5 using RULE-1 by Modus Ponens: TotalTimeMinutes(carla, seventy_minutes)
+INF-2: From INF-1 and FACT-6 using RULE-2 by Modus Ponens: TimeInHours(carla, hours_1_1667)

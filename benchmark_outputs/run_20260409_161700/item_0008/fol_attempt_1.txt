@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: NormalSpeed(carla, n_2) :: Carla's normal download speed is 2 GB per minute
+FACT-2: TotalFileSize(n_200) :: The total file size is 200 GB
+FACT-3: FirstPartGB(n_160) :: The first part downloaded before restart is 160 GB
+FACT-4: TimeFirstPartMinutes(n_80) :: Time to download the first part is 80 minutes
+FACT-5: DowntimeMinutes(n_20) :: Downtime during restart is 20 minutes
+FACT-6: RemainingPartGB(n_40) :: The remaining part after restart is 40 GB
+FACT-7: TimeRemainingMinutes(n_20) :: Time to download the remaining part is 20 minutes
+FACT-8: Sum(n_80, n_20, n_100) :: 80 + 20 = 100 (sum for total time)
+
+## RULES
+RULE-1: ∀T∀D∀S((TimeFirstPartMinutes(T) ∧ DowntimeMinutes(D) ∧ Sum(T, D, S)) → TotalTimeMinutes(S)) :: If the time for the first part is T, and downtime is D, and T+D=S, then the total time is S
+
+## INFERENCES
+INF-1: The total time is 100 minutes, from FACT-4, FACT-5, and FACT-8 by RULE-1 (Modus Ponens) :: TotalTimeMinutes(n_100)

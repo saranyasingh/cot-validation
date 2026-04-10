@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+RULE-1: IMPLAUSIBLE — In this scenario total elapsed minutes is not simply the sum of half-download time and restart time because the restart resets progress and requires re-downloading the full file, making the total time larger.
+RULE-2: PLAUSIBLE

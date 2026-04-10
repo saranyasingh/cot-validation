@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: EggsLaidPerDay(janets_ducks, sixteen)
+FACT-2: Janet eats 3 eggs for breakfast every morning :: EggsEatenForBreakfast(janet, three)
+FACT-3: Janet uses 4 eggs to bake muffins for her friends every day :: EggsUsedForMuffins(janet, four)
+FACT-4: Each egg is sold for $2 :: PricePerEgg(two_dollars)
+
+## RULES
+RULE-1: If Janet's ducks lay N eggs, Janet eats M eggs, and Janet uses B eggs for muffins, then Subtract(N, M, T) ∧ Subtract(T, B, R) ∧ RemainingEggs(janet, R) :: ∀N ∀M ∀B ((EggsLaidPerDay(janets_ducks, N) ∧ EggsEatenForBreakfast(janet, M) ∧ EggsUsedForMuffins(janet, B)) → Subtract(N, M, T) ∧ Subtract(T, B, R) ∧ RemainingEggs(janet, R))
+RULE-2: If RemainingEggs(janet, R) and PricePerEgg(P) then Multiply(R, P, E) ∧ EarningsFromRemainingEggs(janet, E) :: ∀R ∀P ((RemainingEggs(janet, R) ∧ PricePerEgg(P)) → Multiply(R, P, E) ∧ EarningsFromRemainingEggs(janet, E))
+RULE-3: If EarningsFromRemainingEggs(janet, E) then JanetMakesMoneyToday(janet, E) :: ∀E (EarningsFromRemainingEggs(janet, E) → JanetMakesMoneyToday(janet, E))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Universal Instantiation with N=sixteen, M=three, B=four: Subtract(sixteen, three, thirteen) ∧ Subtract(thirteen, four, nine) ∧ RemainingEggs(janet, nine)
+INF-2: From INF-1 and FACT-4 and RULE-2 by Modus Ponens: Multiply(nine, two_dollars, eighteen) ∧ EarningsFromRemainingEggs(janet, eighteen)
+INF-3: From INF-2 and RULE-3 by Modus Ponens: JanetMakesMoneyToday(janet, eighteen)

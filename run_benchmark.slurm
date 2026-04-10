@@ -15,7 +15,7 @@
 # ── Args (override at submission time via --export or edit here) ───────────────
 DATASET="${DATASET:-dataset.json}"
 CLIENT="${CLIENT:-openai}"       # openai | kimi | deepseek
-MAX_RETRIES="${MAX_RETRIES:-3}"
+MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 

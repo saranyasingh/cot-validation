@@ -1,0 +1,15 @@
+FACT-1: SUPPORTED — Directly stated: John travels at 60 mph during the initial leg.
+FACT-2: SUPPORTED — Directly stated: John travels for 3 hours on the first leg.
+FACT-3: SUPPORTED — Entailed: distance = speed × time = 60 × 3 = 180 miles.
+FACT-4: SUPPORTED — Directly stated: next leg speed is 30 mph.
+FACT-5: SUPPORTED — Directly stated: next leg lasts 0.5 hours.
+FACT-6: SUPPORTED — Entailed: 0.5 h × 30 mph = 15 miles for the second leg.
+FACT-7: SUPPORTED — Entailed: standstill implies 0 mph.
+FACT-8: SUPPORTED — Directly stated: 2 hours in standstill.
+FACT-9: SUPPORTED — Entailed: standstill distance is 0 miles.
+FACT-10: SUPPORTED — Directly stated: remaining period speed is 80 mph.
+FACT-11: SUPPORTED — Directly stated: remaining period is 1.5 hours.
+FACT-12: SUPPORTED — Entailed: 1.5 h × 80 mph = 120 miles during remaining period.
+FACT-13: SUPPORTED — Entailed: total distance covered is 315 miles (180 + 0 + 15 + 120).
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — Would imply the answer is the total distance traveled, not the distance from home, misapplying the rule to the given question.

@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, cups_per_chicken(3)).
+fof(fact_3, axiom, morning_feed(15)).
+fof(fact_4, axiom, afternoon_feed(25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C, A] : ((chicken(C) & final_meal_per_chicken(A)) => receives(C, A))).
+
+% --- INFERENCES ---

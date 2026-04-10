@@ -1,0 +1,18 @@
+## FACTS
+LABEL: John is 180 miles away from home after the initial drive. :: initial_distance_from_home(john, 180).
+LABEL: John turned around due to forgetting something at home. :: turned_around(john, forget_home).
+LABEL: Distance covered in the first half-hour is 15 miles. :: first_halfhour_distance(john, 15).
+LABEL: Speed during the first half-hour is 30 mph. :: first_halfhour_speed(john, 30).
+LABEL: Distance covered in the second interval is 160 miles. :: second_interval_distance(john, 160).
+LABEL: Speed during the second interval is 80 mph. :: second_interval_speed(john, 80).
+LABEL: Total distance traveled after turning around is 355 miles. :: total_distance_after_turning(john, 355).
+LABEL: Final distance from home is 535 miles. :: final_distance_from_home(john, 535).
+
+## RULES
+LABEL: If initial distance from home is 180 miles and the first half-hour distance is 15 miles and the second interval distance is 160 miles, then total distance after turning is 355 miles. :: (initial_distance_from_home(john, 180) ∧ first_halfhour_distance(john, 15) ∧ second_interval_distance(john, 160)) → total_distance_after_turning(john, 355).
+LABEL: If initial distance from home is 180 miles and total distance after turning is 355 miles, then final distance from home is 535 miles. :: (initial_distance_from_home(john, 180) ∧ total_distance_after_turning(john, 355)) → final_distance_from_home(john, 535).
+
+## INFERENCES
+LABEL: From initial distance 180 miles and first half-hour distance 15 miles and second interval distance 160 miles, infer total distance after turning 355 miles. :: (initial_distance_from_home(john, 180) ∧ first_halfhour_distance(john, 15) ∧ second_interval_distance(john, 160)) → total_distance_after_turning(john, 355).
+LABEL: From initial distance 180 miles and total distance after turning 355 miles, infer final distance from home 535 miles. :: (initial_distance_from_home(john, 180) ∧ total_distance_after_turning(john, 355)) → final_distance_from_home(john, 535).
+LABEL: The final answer to the problem is 535 miles. :: final_distance_from_home(john, 535).

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: 3 cups per chicken :: CupsPerChicken(3).
+FACT-3: Morning feed is 15 cups :: MorningFeed(15).
+FACT-4: Afternoon feed is 25 cups :: AfternoonFeed(25).
+
+## RULES
+RULE-1: All chickens receive the final meal amount per chicken :: ! [C, A] : ((Chicken(C) & FinalMealPerChicken(A)) -> Receives(C, A)).
+
+## INFERENCES
+

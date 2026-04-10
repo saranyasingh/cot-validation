@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_purchase_price(josh, 80000)).
+fof(fact_2, axiom, repairs_cost(josh, 50000)).
+fof(fact_3, axiom, total_cost(josh, 130000)).
+fof(fact_4, axiom, value_increase_percentage(josh, 150)).
+fof(fact_5, axiom, increase_in_value(josh, 120000)).
+fof(fact_6, axiom, net_profit(josh, -10000)).
+fof(fact_7, axiom, negative_value(-10000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, P] : ((net_profit(X, P) & negative_value(P)) => loss(X))).
+
+% --- INFERENCES ---
+% From fact_6, rule_1 by Modus Ponens
+fof(inf_1, axiom, loss(josh)).

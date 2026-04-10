@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Carla's target download is 200 GB :: TargetFileSize(carla, gb_200)
+FACT-2: Carla initially downloaded 160 GB :: InitialDownloadedSize(carla, gb_160)
+FACT-3: Carla's download rate is 2 GB per minute :: DownloadRate(carla, gb_per_min_2)
+FACT-4: 160 GB at 2 GB/min yields 80 minutes (equal division) :: EqualDivision(gb_160, gb_per_min_2, min_80)
+FACT-5: Time to download remaining data after initial portion is 20 minutes :: RemainingTimeAfterInitial(carla, min_20)
+FACT-6: 80 minutes plus 20 minutes equals 100 minutes (added time) :: AddTime(min_80, min_20, min_100)
+
+## RULES
+RULE-1: If a person has downloaded amount A and a rate R, and EqualDivision(A, R, T) holds, then TimeForInitialDownload(person, T) :: ∀x∀a∀r∀t((InitialDownloadedSize(x,a) ∧ DownloadRate(x,r) ∧ EqualDivision(a,r,t)) → TimeForInitialDownload(x,t))
+RULE-2: If TimeForInitialDownload(x, t1) and RemainingTimeAfterInitial(x, t2) and AddTime(t1, t2, tsum) hold, then TotalTime(x, tsum) :: ∀x∀t1∀t2∀tsum((TimeForInitialDownload(x,t1) ∧ RemainingTimeAfterInitial(x,t2) ∧ AddTime(t1,t2,tsum)) → TotalTime(x,tsum))
+RULE-3: If TotalTime(x, t) holds, then FinalAnswer(x, t) :: ∀x∀t((TotalTime(x,t) → FinalAnswer(x,t)))
+
+## INFERENCES
+INF-1: TimeForInitialDownload(carla, min_80) from FACT-2, FACT-3, FACT-4 and RULE-1 via mult-premise Modus Ponens/Instantiation :: TimeForInitialDownload(carla, min_80)
+INF-2: TotalTime(carla, min_100) from INF-1, FACT-5, FACT-6 and RULE-2 via Modus Ponens/Instantiation :: TotalTime(carla, min_100)
+INF-3: FinalAnswer(carla, min_100) from INF-2 and RULE-3 via Modus Ponens/Instantiation :: FinalAnswer(carla, min_100)

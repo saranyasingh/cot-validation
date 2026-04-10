@@ -1,0 +1,10 @@
+% --- FACTS ---
+fof(fact_1, axiom, robe_blue_bolt_count(robe, 2)).
+fof(fact_2, axiom, white_fiber_half_as_blue(robe)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : ( robe_blue_bolt_count(R, 2) & white_fiber_half_as_blue(R) => total_bolt_count(R, 3) )).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, total_bolt_count(robe, 3)).

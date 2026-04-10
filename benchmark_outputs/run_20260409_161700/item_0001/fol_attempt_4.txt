@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Janet lays 16 eggs per day :: EggsLaidPerDay(janet, n_16)
+FACT-2: Janet eats 3 eggs per day :: EggsEatenPerDay(janet, n_03)
+FACT-3: Subtract(16, 3, 13) :: Subtract(n_16, n_03, n_13)
+FACT-4: Price per egg is 2 dollars :: PricePerEgg(p_02)
+FACT-5: Multiply(13, 2, 26) :: Multiply(n_13, p_02, m_26)
+
+## RULES
+RULE-1: If x lays n1 eggs per day and x eats n2 eggs per day, and Subtract(n1, n2, n3), then EggsLeftForSale(x, n3) :: ∀x∀n1∀n2∀n3((EggsLaidPerDay(x, n1) ∧ EggsEatenPerDay(x, n2) ∧ Subtract(n1, n2, n3)) → EggsLeftForSale(x, n3))
+RULE-2: If EggsLeftForSale(x, n) and PricePerEgg(p) and Multiply(n, p, m), then DailyEarnings(x, m) :: ∀x∀n∀p∀m((EggsLeftForSale(x, n) ∧ PricePerEgg(p) ∧ Multiply(n, p, m)) → DailyEarnings(x, m))
+
+## INFERENCES
+INF-1: Eggs left for sale is 13 from FACT-1, FACT-2, and FACT-3 using RULE-1 (Universal Instantiation + Modus Ponens) :: EggsLeftForSale(janet, n_13)
+INF-2: Daily earnings are 26 from INF-1, FACT-4, and FACT-5 using RULE-2 (Universal Instantiation + Modus Ponens) :: DailyEarnings(janet, m_26)

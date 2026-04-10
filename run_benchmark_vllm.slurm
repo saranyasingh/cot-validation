@@ -20,7 +20,7 @@
 # .hf_token in the repo root (gitignored). vLLM pulls from HF unless --model is a local path.
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
 DATASET="${DATASET:-dataset.json}"
-MAX_RETRIES="${MAX_RETRIES:-3}"
+MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
 VLLM_PORT="${VLLM_PORT:-8000}"

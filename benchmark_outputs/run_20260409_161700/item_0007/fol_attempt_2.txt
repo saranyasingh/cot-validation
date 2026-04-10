@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: The Seattle location has 20 sheep :: Count(seattle, n_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: FourTimes(charleston, seattle)
+FACT-3: Toulouse has twice as many sheep as Charleston :: Twice(toulouse, charleston)
+
+## RULES
+RULE-1: If Count(y, n_20) ∧ FourTimes(x, y) then Count(x, n_80) :: ∀x∀y((Count(y, n_20) ∧ FourTimes(x, y)) → Count(x, n_80))
+RULE-2: If Count(y, n_80) ∧ Twice(x, y) then Count(x, n_160) :: ∀x∀y((Count(y, n_80) ∧ Twice(x, y)) → Count(x, n_160))
+RULE-3: If Count(a, n_160) ∧ Count(b, n_80) ∧ Count(c, n_20) then TotalSheep(n_260) :: ∀a∀b∀c((Count(a, n_160) ∧ Count(b, n_80) ∧ Count(c, n_20)) → TotalSheep(n_260))
+
+## INFERENCES
+INF-1: Charleston's 80 from FACT-1 and FACT-2 by Arithmetic Computation :: Count(charleston, n_80)
+INF-2: Toulouse's 160 from INF-1 and FACT-3 by Arithmetic Computation :: Count(toulouse, n_160)
+INF-3: Total 260 from INF-2, INF-1, and FACT-1 by Arithmetic Computation :: TotalSheep(n_260)

@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: PurchasePrice(house, n_80000) :: PurchasePrice(house, n_80000)
+FACT-2: RepairCost(house, n_50000) :: RepairCost(house, n_50000)
+FACT-3: Sum(n_80000, n_50000, n_130000) :: Sum(n_80000, n_50000, n_130000)
+FACT-4: IncreasedValue(house, n_120000) :: IncreasedValue(house, n_120000)
+FACT-5: Sum(n_120000, n_130000, n_250000) :: Sum(n_120000, n_130000, n_250000)
+FACT-6: Difference(n_250000, n_130000, n_120000) :: Difference(n_250000, n_130000, n_120000)
+
+## RULES
+RULE-1: If PurchasePrice(h, p) and RepairCost(h, r) and Sum(p, r, s) then TotalCost(h, s) :: ∀h∀p∀r∀s((PurchasePrice(h, p) ∧ RepairCost(h, r) ∧ Sum(p, r, s)) → TotalCost(h, s))
+RULE-2: If IncreasedValue(h, iv) and TotalCost(h, tc) and Sum(iv, tc, sp) then SellingPrice(h, sp) :: ∀h∀iv∀tc∀sp((IncreasedValue(h, iv) ∧ TotalCost(h, tc) ∧ Sum(iv, tc, sp)) → SellingPrice(h, sp))
+RULE-3: If SellingPrice(h, sp) and TotalCost(h, tc) and Difference(sp, tc, d) then Profit(h, d) :: ∀h∀sp∀tc∀d((SellingPrice(h, sp) ∧ TotalCost(h, tc) ∧ Difference(sp, tc, d)) → Profit(h, d))
+
+## INFERENCES
+INF-1: TotalCost(house, n_130000) from FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens) :: TotalCost(house, n_130000)
+INF-2: SellingPrice(house, n_250000) from INF-1, FACT-4, FACT-5 by RULE-2 (Modus Ponens) :: SellingPrice(house, n_250000)
+INF-3: Profit(house, n_120000) from INF-2, INF-1, FACT-6 by RULE-3 (Modus Ponens) :: Profit(house, n_120000)

@@ -1,0 +1,15 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: UNSUPPORTED — the remaining time is 1.5 h, not 1 h
+FACT-8: UNSUPPORTED — uses incorrect times and sums distances not supported by the story
+FACT-9: UNSUPPORTED — distance from home is not 275 miles
+FACT-10: UNSUPPORTED — final answer is not 275 miles
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — DistanceFromHome is not equal to TotalDistance in general
+RULE-5: PLAUSIBLE

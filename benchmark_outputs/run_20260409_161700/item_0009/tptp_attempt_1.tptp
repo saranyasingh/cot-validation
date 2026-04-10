@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, speed(john, mph_60)).
+fof(fact_2, axiom, time(john, hours_3)).
+fof(fact_3, axiom, product(mph_60, hours_3, miles_180)).
+fof(fact_4, axiom, speed(john, mph_30)).
+fof(fact_5, axiom, time(john, hours_05)).
+fof(fact_6, axiom, product(mph_30, hours_05, miles_15)).
+fof(fact_7, axiom, speed(john, mph_0)).
+fof(fact_8, axiom, time(john, hours_2)).
+fof(fact_9, axiom, product(mph_0, hours_2, miles_0)).
+fof(fact_10, axiom, speed(john, mph_80)).
+fof(fact_11, axiom, time(john, hours_15)).
+fof(fact_12, axiom, product(mph_80, hours_15, miles_120)).
+fof(fact_13, axiom, total_distance(john, miles_315)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,S,T,D] : ((speed(X, S) ∧ time(X, T) ∧ product(S, T, D)) => distance(X, D))).
+fof(rule_2, axiom, ! [X, D] : (total_distance(X, D) => answer(X, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Modus Ponens
+fof(inf_1, axiom, distance(john, miles_180)).
+% From fact_4, fact_5, fact_6 by Modus Ponens
+fof(inf_2, axiom, distance(john, miles_15)).
+% From fact_7, fact_8, fact_9 by Modus Ponens
+fof(inf_3, axiom, distance(john, miles_0)).
+% From fact_10, fact_11, fact_12 by Modus Ponens
+fof(inf_4, axiom, distance(john, miles_120)).
+% From fact_13 by Modus Ponens using rule_2
+% From fact_13, rule_2 by Modus Ponens
+fof(inf_5, axiom, answer(john, miles_315)).

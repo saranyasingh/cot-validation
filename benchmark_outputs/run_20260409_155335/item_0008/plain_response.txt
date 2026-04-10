@@ -1,0 +1,13 @@
+To calculate how long it will take for Carla to download the remaining 80 GB (since 200 - 160 = 40GB), we first need to determine her new download speed after the restart.
+
+Her original speed was 2 GB per minute, and during the initial 160 GB download period, she would have taken:
+\[ \text{Time} = \frac{\text{Total Size}}{\text{Speed}} = \frac{160 \text{ GB}}{2 \text{ GB/min}} = 80 \text{ minutes} \]
+
+However, due to the restart, this process needs to be repeated from the start, adding an additional 20-minute window:
+
+\[ \text{Total Time} = 80 \text{ minutes} + 20 \text{ minutes} + 80 \text{ minutes} = 180 \text{ minutes} \]
+
+Converting minutes into hours gives us:
+\[ \text{Total Time in Hours} = \frac{180 \text{ minutes}}{60} = 3 \text{ hours} \]
+
+Therefore, it will take Carla 3 hours to complete the download after restarting. The answer is: 3.

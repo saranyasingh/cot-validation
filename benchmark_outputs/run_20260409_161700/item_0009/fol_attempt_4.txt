@@ -1,0 +1,26 @@
+## FACTS
+FACT-1: John drives leg1 for 3 hours :: TimeDriven(john, leg1, n_3)
+FACT-2: John drives leg1 at 60 mph :: SpeedDriven(john, leg1, n_60)
+FACT-3: 60 × 3 = 180 miles :: Product(n_60, n_3, n_180)
+FACT-4: The journey lasts 4 hours in total :: TotalTime(john, n_4)
+FACT-5: There is 2 hours of standstill time :: StandstillTime(john, n_2)
+FACT-6: 30 mph × 0.5 h = 15 miles :: Product(n_30, n_0_5, n_15)
+FACT-7: 80 mph × 1 h = 80 miles :: Product(n_80, n_1, n_80)
+FACT-8: 180 + 15 + 80 = 275 :: Sum3(n_180, n_15, n_80, n_275)
+FACT-9: Distance from home after 4 hours = 275 miles :: DistanceFromHome(john, n_275)
+FACT-10: The final answer is 275 miles :: Answer(john, n_275)
+
+## RULES
+RULE-1: If TimeDriven(p, leg, t) ∧ SpeedDriven(p, leg, s) ∧ Product(s, t, d) then DistanceCovered(p, leg, d) :: ∀p∀leg∀t∀s∀d((TimeDriven(p, leg, t) ∧ SpeedDriven(p, leg, s) ∧ Product(s, t, d)) → DistanceCovered(p, leg, d))
+RULE-2: If TotalTime(p, T) ∧ StandstillTime(p, S) ∧ Difference(T, S, R) then RemainingTravelTime(p, R) :: ∀p∀T∀S∃R((TotalTime(p, T) ∧ StandstillTime(p, S) ∧ Difference(T, S, R)) → RemainingTravelTime(p, R))
+RULE-3: If DistanceCovered(p, leg1, d1) ∧ DistanceCovered(p, leg2, d2) ∧ DistanceCovered(p, leg3, d3) ∧ Sum3(d1, d2, d3, d) then TotalDistance(p, d) :: ∀p∀l1∀l2∀l3∀d1∀d2∀d3∀d((DistanceCovered(p, l1, d1) ∧ DistanceCovered(p, l2, d2) ∧ DistanceCovered(p, l3, d3) ∧ Sum3(d1, d2, d3, d)) → TotalDistance(p, d))
+RULE-4: If TotalDistance(p, d) then DistanceFromHome(p, d) :: ∀p∀d((TotalDistance(p, d)) → DistanceFromHome(p, d))
+RULE-5: If DistanceFromHome(p, d) then Answer(p, d) :: ∀p∀d((DistanceFromHome(p, d)) → Answer(p, d))
+
+## INFERENCES
+INF-1: DistanceCovered(john, leg1, n_180) from FACT-1, FACT-2, FACT-3 by Arithmetic Computation (RULE-1) :: DistanceCovered(john, leg1, n_180)
+INF-2: DistanceCovered(john, leg2, n_15) from FACT-6 by Arithmetic Computation (RULE-1) :: DistanceCovered(john, leg2, n_15)
+INF-3: DistanceCovered(john, leg3, n_80) from FACT-7 by Arithmetic Computation (RULE-1) :: DistanceCovered(john, leg3, n_80)
+INF-4: TotalDistance(john, n_275) from INF-1, INF-2, INF-3 and FACT-8 by Sum Rule (RULE-3) :: TotalDistance(john, n_275)
+INF-5: DistanceFromHome(john, n_275) from INF-4 by RULE-4 :: DistanceFromHome(john, n_275)
+INF-6: Answer(john, n_275) from INF-5 by RULE-5 :: Answer(john, n_275)

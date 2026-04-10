@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The ducks Janet owns lay 16 eggs per day :: EggsLaidPerDay(janets_ducks, n_16)
+FACT-2: Janet eats 3 eggs per day for breakfast :: EggsEatenPerDay(janet, n_3)
+FACT-3: The price per egg is 2 dollars :: PricePerEgg(n_2)
+FACT-4: Subtract(n_16, n_3, n_13)
+FACT-5: Multiply(n_13, n_2, n_26)
+
+## RULES
+RULE-1: If a specific ducks a and a person p eat b eggs, and a − b = c, then EggsLeftForSale(p, c) :: ∀ducks∀p∀a∀b∀c((EggsLaidPerDay(ducks,a) ∧ EggsEatenPerDay(p,b) ∧ Subtract(a,b,c)) → EggsLeftForSale(p,c))
+RULE-2: If EggsLeftForSale(p,l) and PricePerEgg(pp) and Multiply(l,pp,e) then DailyEarnings(p,e) :: ∀p∀l∀pp∀e((EggsLeftForSale(p,l) ∧ PricePerEgg(pp) ∧ Multiply(l,pp,e)) → DailyEarnings(p,e))
+
+## INFERENCES
+INF-1: Subtract(n_16, n_3, n_13) :: from FACT-4
+INF-2: EggsLeftForSale(janet, n_13) :: from FACT-1, FACT-2, INF-1 by RULE-1
+INF-3: Multiply(n_13, n_2, n_26) :: from FACT-5
+INF-4: DailyEarnings(janet, n_26) :: from INF-2, FACT-3, INF-3 by RULE-2

@@ -1,0 +1,18 @@
+### EXPLANATION
+
+First, calculate the amount of data downloaded in the first 80% of the file before the restart:
+
+\[ 80\% \text{ of } 200 \text{ GB} = 0.80 \times 200 = 160 \text{ GB} \]
+
+Next, determine the time taken to download the first 160 GB:
+
+\[ \frac{160 \text{ GB}}{2 \text{ GB/min}} = 80 \text{ minutes} \]
+
+Then, account for the 20-minute downtime due to the restart:
+
+\[ 80 \text{ minutes} + 20 \text{ minutes} = 100 \text{ minutes} \]
+
+Finally, since the restart occurred halfway through the first 80 GB, no further adjustments are necessary because the restart was just the mid-point. Thus, the total time to download the rest of the file is still calculated based on the full 200 GB without needing an adjustment.
+
+### ANSWER
+The total time it takes Carla to download the 200 GB file after restarting is **100 minutes**.

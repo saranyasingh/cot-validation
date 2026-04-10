@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: First glass costs five dollars :: FirstGlassCost(val_5)
+FACT-2: Second glass costs three dollars :: SecondGlassCost(val_3)
+FACT-3: Third glass costs one point eight dollars :: ThirdGlassCost(val_1_8)
+FACT-4: Sixteenth glass costs eight point four dollars :: SixteenthGlassCost(val_8_40)
+FACT-5: 0.60 × 5 = 3 dollars :: Multiply(val_0_60, val_5, val_3)
+FACT-6: 0.60 × 3 = 1.80 dollars :: Multiply(val_0_60, val_3, val_1_8)
+FACT-7: Sum expression for 16 terms :: SumExpression(val_sum_16)
+FACT-8: The final answer is 12.49 :: AnswerValue(val_12_49)
+
+## RULES
+RULE-1: If the price of the first glass is p1 and the price of the second glass is p2 and p2 = 0.60 × p1, then NextCostRelation(p1,p2) :: ∀p1∀p2((FirstGlassCost(p1) ∧ SecondGlassCost(p2) ∧ Multiply(val_0_60, p1, p2)) → NextCostRelation(p1,p2))
+RULE-2: If the price of the second glass is p1 and the price of the third glass is p2 and p2 = 0.60 × p1, then NextCostRelation(p1,p2) :: ∀p1∀p2((SecondGlassCost(p1) ∧ ThirdGlassCost(p2) ∧ Multiply(val_0_60, p1, p2)) → NextCostRelation(p1,p2))
+RULE-3: If a geometric sum has components A, R, N and yields S, then SumValue(A,R,N,S) :: ∀A∀R∀N∀S((SumGeometric(A,R,N,S)) → SumValue(A,R,N,S))
+
+## INFERENCES
+INF-1: Second glass cost of 3 dollars derived from FACT-1, FACT-2, FACT-5 and RULE-1 by Modus Ponens :: NextCostRelation(val_5, val_3)
+INF-2: Third glass cost of 1.8 dollars derived from FACT-2, FACT-6, and RULE-2 by Modus Ponens :: NextCostRelation(val_3, val_1_8)

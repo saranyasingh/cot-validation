@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — The story states the normal download rate is 2 GB/min.
+FACT-2: SUPPORTED — The file size is given as 200 GB.
+FACT-3: SUPPORTED — Half of 200 GB at 2 GB/min takes 50 minutes.
+FACT-4: SUPPORTED — Restart time is given as 20 minutes.
+FACT-5: SUPPORTED — 50 minutes plus 20 minutes equals 70 minutes.
+FACT-6: SUPPORTED — 70 minutes converts to approximately 1.1667 hours.
+RULE-1: IMPLAUSIBLE — The total time is not simply 50 + 20 minutes; after restart you must re-download the entire file, making the total time different (e.g., 160 minutes per the given data).
+RULE-2: PLAUSIBLE — Converting total minutes to hours is a valid general principle.

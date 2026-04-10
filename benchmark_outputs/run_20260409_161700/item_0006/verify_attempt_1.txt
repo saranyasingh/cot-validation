@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — 16th term would be 5*(0.6)^(15) ≈ 0.00235, not 14
+FACT-5: UNSUPPORTED — sum of the 16 terms in a geometric sequence with a1=5, r=0.6 is about 12.50, not 75.60
+FACT-6: UNSUPPORTED — the stated final total 75.60 does not match the sequence implied by the story
+RULE-1: PLAUSIBLE — it is the correct formula for an arithmetic sequence, but the story uses a geometric progression (ratio 0.6), so applying it would misrepresent the facts

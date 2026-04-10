@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: SprintsPerRun(james, n_3)
+FACT-2: RunsPerWeek(james, n_3)
+FACT-3: DistancePerSprint(n_60)
+
+## RULES
+RULE-1: ∀x∀a∀b∀c((SprintsPerRun(x,a) ∧ RunsPerWeek(x,b) ∧ Mult(a,b,c)) → SprintsPerWeek(x,c))
+RULE-2: ∀x∀s∀d∀t((SprintsPerWeek(x,s) ∧ DistancePerSprint(d) ∧ Mult(s,d,t)) → TotalDistancePerWeek(x,t))
+
+## INFERENCES
+INF-1: 3 × 3 = 9, from FACT-1 and FACT-2 by Arithmetic Computation :: Mult(n_3, n_3, n_9)
+INF-2: SprintsPerWeek(james, n_9) from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: SprintsPerWeek(james, n_9)
+INF-3: 9 × 60 = 540, from Arithmetic Computation :: Mult(n_9, n_60, n_540)
+INF-4: TotalDistancePerWeek(james, n_540) from INF-2, FACT-3, INF-3 and RULE-2 by Modus Ponens :: TotalDistancePerWeek(james, n_540)

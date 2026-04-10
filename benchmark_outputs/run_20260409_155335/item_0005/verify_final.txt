@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — The story says each chicken gets three cups per day.
+FACT-3: SUPPORTED — Morning feed is 15 cups.
+FACT-4: SUPPORTED — Afternoon feed is 25 cups.
+RULE-1: PLAUSIBLE — It is reasonable that the final meal is distributed evenly among all 20 chickens (20 cups total, 1 cup per chicken), given the total daily amount.

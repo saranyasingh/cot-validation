@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_sprints(james, three)).
+fof(fact_2, axiom, distance_per_sprint(james, sixty)).
+fof(fact_3, axiom, multiply(three, sixty, one_eighty)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Ns, Ds, M] : ((number_of_sprints(X, Ns) & distance_per_sprint(X, Ds) & multiply(Ns, Ds, M)) => total_meters(X, M))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_meters(james, one_eighty)).

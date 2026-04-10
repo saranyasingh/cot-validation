@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The difference between 200GB and 160GB is 40GB :: Subtracts(n_200gb, n_160gb, n_40gb)
+FACT-2: Time to download 40GB at 2GB/min is 20 minutes :: TimeToDownload(n_40gb, n_2gb_per_min, n_20min)
+FACT-3: 20 minutes plus 20 minutes equals 40 minutes :: AddTimes(n_20min, n_20min, n_40min)
+FACT-4: The re-download adds 40 minutes :: ReDownloadTime(n_40min)
+FACT-5: 40 minutes plus 40 minutes equals 80 minutes :: SumTimes(n_40min, n_40min, n_80min)
+
+## RULES
+RULE-1: Subtraction yields remaining data :: ∀a∀b∀c((Subtracts(a,b,c)) → RemainingData(c))
+RULE-2: Adding times yields total downtime :: ∀a∀b∀c((AddTimes(a,b,c)) → DowntimeTotal(c))
+RULE-3: Summing times yields total time in minutes :: ∀a∀b∀c((SumTimes(a,b,c)) → TotalTimeMinutes(c))
+
+## INFERENCES
+INF-1: RemainingData(n_40gb) :: from FACT-1 by RULE-1 using Modus Ponens
+INF-2: DowntimeTotal(n_40min) :: from FACT-3 by RULE-2 using Modus Ponens
+INF-3: TotalTimeMinutes(n_80min) :: from FACT-5 by RULE-3 using Modus Ponens

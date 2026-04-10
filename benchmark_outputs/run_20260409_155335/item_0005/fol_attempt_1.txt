@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: CupsPerChicken(3) :: 3 cups per chicken
+FACT-2: Chickens(20) :: 20 chickens
+FACT-3: MorningFeed(15) :: morning feed is 15 cups
+FACT-4: AfternoonFeed(25) :: afternoon feed is 25 cups
+FACT-5: RemainingAfterMorning(45) :: remaining after morning is 45 cups
+FACT-6: RemainingAfterAfternoon(20) :: remaining after afternoon is 20 cups
+FACT-7: FinalMealPerChicken(1) :: final meal is 1 cup per chicken
+FACT-8: TotalCupsPerDay(60) :: total cups per day is 60
+
+## RULES
+RULE-1: ∀C ∀A ((Chicken(C) ∧ FinalMealPerChicken(A)) → Receives(C, A)) :: If something is a chicken and there is a final meal amount A per chicken, then that chicken receives A
+
+## INFERENCES
+INF-1: From FACT-7 and RULE-1 by Universal Instantiation: Receives(x, 1) :: (∗) for any chicken x
+

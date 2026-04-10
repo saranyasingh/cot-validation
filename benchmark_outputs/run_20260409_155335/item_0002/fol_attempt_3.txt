@@ -1,0 +1,9 @@
+## FACTS
+FACT-1: robe has 2 blue bolts :: RobeBlueBoltCount(robe, 2)
+FACT-2: white fiber is half as much as blue fiber for the robe :: WhiteFiberHalfAsBlue(robe)
+
+## RULES
+RULE-1: If robe has 2 blue bolts and white fiber is half as much as blue fiber, then total bolts are 3 :: ![R] : ((RobeBlueBoltCount(R, 2) & WhiteFiberHalfAsBlue(R)) => TotalBoltCount(R, 3))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 using RULE-1 by Modus Ponens: the total bolts for robe are 3 :: TotalBoltCount(robe, 3)

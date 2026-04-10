@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Blue bolt amount is 2 :: BlueBoltAmount(n_2)
+FACT-2: White bolt equals half blue bolt :: WhiteBoltIsHalfOfBlue(n_2, n_1)
+FACT-3: Sum of blue and white bolts is 3 :: SumOfBlueAndWhiteIs(n_3, n_2, n_1)
+
+## RULES
+RULE-1: If white bolt amount is half of blue bolt amount, then white bolt amount :: ∀b∀w(WhiteBoltIsHalfOfBlue(b,w) → WhiteBoltAmount(w))
+RULE-2: If sum of blue and white bolts is s with blue bolt b and white bolt w, and blue bolt amount is b and white bolt amount is w, then total bolts is s :: ∀s∀b∀w((SumOfBlueAndWhiteIs(s,b,w) ∧ BlueBoltAmount(b) ∧ WhiteBoltAmount(w)) → TotalBolts(s))
+
+## INFERENCES
+INF-1: WhiteBoltAmount(n_1) from FACT-2 and RULE-1 by Modus Ponens :: WhiteBoltAmount(n_1)
+INF-2: TotalBolts(n_3) from FACT-3, FACT-1, INF-1 and RULE-2 by Modus Ponens :: TotalBolts(n_3)

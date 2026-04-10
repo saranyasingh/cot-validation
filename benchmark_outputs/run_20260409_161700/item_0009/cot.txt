@@ -1,0 +1,26 @@
+EXPLANATION
+
+1. John drives for 3 hours at a speed of 60 mph.
+   - Distance covered = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. John turns around due to forgetting something at home.
+   - This means his trip now consists of two segments: back to home and reaching home again.
+
+3. John's goal is to reach home within 4 hours total.
+   - However, he spends the first 2 hours in standstill traffic, which does not contribute to covering any distance.
+   - He also spends the next half-hour (0.5 hours) driving at 30 mph.
+     - Distance covered in this period = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+4. After these initial periods, John has driven for a total of 2 + 0.5 = 2.5 hours.
+   - Therefore, he still needs to cover an additional distance to make up the remaining 1.5 hours (4 hours total - 2.5 hours already spent).
+
+5. For the remaining 1.5 hours, John drives at a speed of 80 mph.
+   - Distance covered in these last 1.5 hours = Speed × Time = 80 mph × 1.5 hours = 120 miles.
+
+6. To find out how far John is from home after completing his journey, we add up all the distances he has covered so far:
+   - Total distance covered = Initial segment distance + Standstill traffic distance + Remaining distance
+   - Total distance covered = 180 miles + 15 miles + 120 miles = 315 miles.
+
+7. Since John started at home and ended up 315 miles away, he must have been 315 miles from home when he turned around.
+
+Therefore, the answer is: 315.

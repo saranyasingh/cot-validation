@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: John travels at speed 60 mph :: Speed(john, mph_60)
+FACT-2: John travels for 3 hours :: Time(john, hours_3)
+FACT-3: The first leg distance is 180 miles :: Product(mph_60, hours_3, miles_180)
+FACT-4: John travels at speed 30 mph :: Speed(john, mph_30)
+FACT-5: John travels for 0.5 hours :: Time(john, hours_05)
+FACT-6: The second leg distance is 15 miles :: Product(mph_30, hours_05, miles_15)
+FACT-7: John travels at speed 0 mph during standstill :: Speed(john, mph_0)
+FACT-8: John spends 2 hours in standstill :: Time(john, hours_2)
+FACT-9: The standstill distance is 0 miles :: Product(mph_0, hours_2, miles_0)
+FACT-10: John travels at speed 80 mph during remaining period :: Speed(john, mph_80)
+FACT-11: John travels for 1.5 hours in remaining period :: Time(john, hours_15)
+FACT-12: The remaining period distance is 120 miles :: Product(mph_80, hours_15, miles_120)
+FACT-13: Total distance covered is 315 miles :: TotalDistance(john, miles_315)
+
+## RULES
+RULE-1: If a person x travels at speed s for time t and the product of s and t is d, then x covers distance d :: ∀x∀s∀t∀d((Speed(x, s) ∧ Time(x, t) ∧ Product(s, t, d)) → Distance(x, d))
+RULE-2: If TotalDistance(x, d) then Answer(x, d) :: ∀x∀d(TotalDistance(x, d) → Answer(x, d))
+
+## INFERENCES
+INF-1: Distance(john, miles_180), from FACT-1, FACT-2, FACT-3 by Modus Ponens using RULE-1
+INF-2: Distance(john, miles_15), from FACT-4, FACT-5, FACT-6 by Modus Ponens using RULE-1
+INF-3: Distance(john, miles_0), from FACT-7, FACT-8, FACT-9 by Modus Ponens using RULE-1
+INF-4: Distance(john, miles_120), from FACT-10, FACT-11, FACT-12 by Modus Ponens using RULE-1
+INF-5: Answer(john, miles_315), from FACT-13 by Modus Ponens using RULE-2

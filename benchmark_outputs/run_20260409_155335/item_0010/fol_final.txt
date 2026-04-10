@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Eliza's regular rate is $10 :: RegularRate(eliza, amount_10)
+FACT-2: Eliza's regular hours are 40 :: RegularHours(eliza, hours_40)
+FACT-3: Eliza's total hours are 45 :: TotalHours(eliza, hours_45)
+FACT-4: Eliza's overtime rate is $12 :: OvertimeRate(eliza, amount_12)
+FACT-5: Eliza's overtime hours are 5 :: OvertimeHours(eliza, hours_5)
+FACT-6: Eliza's regular earnings are $400 :: RegularEarnings(eliza, amount_400)
+FACT-7: Eliza's overtime earnings are $60 :: OvertimeEarnings(eliza, amount_60)
+FACT-8: Eliza's total earnings are $460 :: TotalEarnings(eliza, amount_460)
+FACT-9: ComputeRegularEarnings(eliza, amount_10, hours_40, amount_400) :: ComputeRegularEarnings(eliza, amount_10, hours_40, amount_400)
+FACT-10: ComputeOvertimeEarnings(eliza, amount_12, hours_5, amount_60) :: ComputeOvertimeEarnings(eliza, amount_12, hours_5, amount_60)
+FACT-11: ComputeTotalEarnings(eliza, amount_400, amount_60, amount_460) :: ComputeTotalEarnings(eliza, amount_400, amount_60, amount_460)
+
+## RULES
+RULE-1: Regular earnings derive from regular rate and regular hours :: ∀p ∀r ∀h ∀e ((RegularRate(p, r) ∧ RegularHours(p, h) ∧ ComputeRegularEarnings(p, r, h, e)) → RegularEarnings(p, e))
+RULE-2: Overtime earnings derive from overtime rate and overtime hours :: ∀p ∀r ∀h ∀e ((OvertimeRate(p, r) ∧ OvertimeHours(p, h) ∧ ComputeOvertimeEarnings(p, r, h, e)) → OvertimeEarnings(p, e))
+RULE-3: Total earnings derive from regular and overtime earnings and their total computation :: ∀p ∀a ∀b ∀c ((RegularEarnings(p, a) ∧ OvertimeEarnings(p, b) ∧ ComputeTotalEarnings(p, a, b, c)) → TotalEarnings(p, c))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-9 and RULE-1 by Modus Ponens: RegularEarnings(eliza, amount_400)
+INF-2: From FACT-4, FACT-5, FACT-10 and RULE-2 by Modus Ponens: OvertimeEarnings(eliza, amount_60)
+INF-3: From INF-1, INF-2, FACT-11 and RULE-3 by Conjunction Introduction and Modus Ponens: TotalEarnings(eliza, amount_460)

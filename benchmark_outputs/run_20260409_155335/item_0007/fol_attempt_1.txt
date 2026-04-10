@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: HasSheep(seattle, n_20)
+
+## RULES
+RULE-1: Charleston has four times as many sheep as Seattle :: ∀s (HasSheep(seattle, s) → HasSheep(charleston, Mult(4, s)))
+RULE-2: Toulouse has twice as many sheep as Charleston :: ∀s (HasSheep(charleston, s) → HasSheep(toulouse, Mult(2, s)))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep (from FACT-1, RULE-1 by Modus Ponens) :: HasSheep(charleston, Mult(4, n_20))
+
+INF-2: Toulouse has 160 sheep (from INF-1, RULE-2 by Modus Ponens) :: HasSheep(toulouse, Mult(2, Mult(4, n_20)))
+
+INF-3: Total sheep across three locations is 260 (from INF-1, INF-2, FACT-1 by Addition) :: TotalSheep(n_260)

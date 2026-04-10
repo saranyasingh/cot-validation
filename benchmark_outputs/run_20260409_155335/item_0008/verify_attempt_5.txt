@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — The story states the download rate is 2 GB/minute.
+FACT-2: SUPPORTED — The file size is 200 GB.
+FACT-3: SUPPORTED — At 2 GB/min, 100 GB (half) takes 50 minutes.
+FACT-4: SUPPORTED — The restart takes 20 minutes.
+FACT-5: SUPPORTED — 50 minutes plus 20 minutes equals 70 minutes.
+FACT-6: UNSUPPORTED — The actual total time is not 70 minutes; with restart, it is longer (e.g., 160 minutes).
+FACT-7: SUPPORTED — 70 minutes converts to approximately 1.1667 hours.

@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: James runs 3 sprints each day :: SprintsPerDay(james, n_3)
+FACT-2: Each sprint is 60 meters long :: SprintLengthMeters(n_60)
+
+## RULES
+RULE-1: If someone has s sprints per day and each sprint has length l, and there is a product p = s × l, then the daily distance is p :: ∀a∀s∀l∀p((SprintsPerDay(a,s) ∧ SprintLengthMeters(l) ∧ Product(s,l,p)) → DailyDistanceMeters(a,p))
+RULE-2: If daily distance is d and there is a product total = d × days, then weekly distance is total :: ∀a∀d∀days∀total((DailyDistanceMeters(a,d) ∧ Product(d,days,total)) → WeeklyDistanceMeters(a,total))
+
+## INFERENCES
+INF-1: Product(n_3, n_60, n_180) :: from FACT-1, FACT-2 by Arithmetic Computation
+INF-2: DailyDistanceMeters(james, n_180) :: from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens
+INF-3: Product(n_180, n_7, n_1260) :: 180 × 7 = 1260, from INF-2 by Arithmetic Computation
+INF-4: WeeklyDistanceMeters(james, n_1260) :: from INF-2, INF-3 by RULE-2 via Modus Ponens

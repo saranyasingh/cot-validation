@@ -1,0 +1,18 @@
+## FACTS
+initial_distance_from_home(john, 180).
+turned_around(john, forget_home).
+first_halfhour_distance(john, 15).
+first_halfhour_speed(john, 30).
+second_interval_distance(john, 160).
+second_interval_speed(john, 80).
+total_distance_after_turning(john, 355).
+final_distance_from_home(john, 535).
+
+## RULES
+((initial_distance_from_home(john, 180) & first_halfhour_distance(john, 15) & second_interval_distance(john, 160)) -> total_distance_after_turning(john, 355)).
+((initial_distance_from_home(john, 180) & total_distance_after_turning(john, 355)) -> final_distance_from_home(john, 535)).
+
+## INFERENCES
+((initial_distance_from_home(john, 180) & first_halfhour_distance(john, 15) & second_interval_distance(john, 160)) -> total_distance_after_turning(john, 355)).
+((initial_distance_from_home(john, 180) & total_distance_after_turning(john, 355)) -> final_distance_from_home(john, 535)).
+final_distance_from_home(john, 535).

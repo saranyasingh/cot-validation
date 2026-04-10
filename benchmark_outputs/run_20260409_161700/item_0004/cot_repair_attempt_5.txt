@@ -1,0 +1,17 @@
+EXPLANATION
+
+1. **SprintsPerRun** - James runs 3 sprints each time he goes for a run.
+   
+2. **RunsPerWeek** - He runs 3 times a week.
+
+To find out how many sprints he runs in a week, we multiply the number of sprints per run by the number of runs per week:
+
+\[ \text{SprintsPerWeek} = \text{SprintsPerRun} \times \text{RunsPerWeek} = 3 \times 3 = 9 \]
+
+3. **DistancePerSprint** - Each sprint is 60 meters long.
+
+Now, to calculate the total distance he runs in a week, we multiply the number of sprints per week by the distance of each sprint:
+
+\[ \text{TotalDistancePerWeek} = \text{SprintsPerWeek} \times \text{DistancePerSprint} = 9 \times 60 = 540 \text{ meters} \]
+
+Therefore, the answer is: 540 meters.
