@@ -25,6 +25,7 @@ from main_pipeline.verify import verify_fol
 from main_pipeline.tptp import convert_and_check
 from main_pipeline.clients import make_client, OpenAILLMClient
 from main_pipeline.benchmark import answers_match
+from main_pipeline.derivation_tree import build_derivation_tree
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -201,6 +202,17 @@ def run_verify_benchmark(
             true_negatives += 1
             outcome = "TN"
 
+        derivation_tree = build_derivation_tree(
+            result["structured_fol"],
+            result["verify_report"],
+            result["tptp_report"],
+        )
+        if item_dir:
+            _write(
+                os.path.join(item_dir, "derivation_tree.json"),
+                json.dumps(derivation_tree, indent=2),
+            )
+
         entry = {
             "id": item_id,
             "question": question,
@@ -211,6 +223,7 @@ def run_verify_benchmark(
             "passed_verify": result["passed_verify"],
             "passed_tptp": result["passed_tptp"],
             "outcome": outcome,
+            "derivation_tree": derivation_tree,
         }
         results.append(entry)
 
