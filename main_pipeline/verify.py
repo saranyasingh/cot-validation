@@ -18,31 +18,38 @@ def _get_default_client():
     return _default_client
 
 VERIFY_PROMPT = '''\
-You are a careful verifier of logical reasoning. You are given a short story
-and a structured extraction containing FACTS (claimed to come from the story)
-and RULES (general commonsense principles used in the reasoning).
+You are a careful verifier of mathematical reasoning. You are given a math
+word problem and a structured extraction containing FACTS (claimed to come
+from the problem) and RULES (mathematical principles used in the reasoning).
 
 Your job is to check two things:
 
 **A) Fact Grounding** — Is each FACT directly stated in or obviously entailed
-by the story?
-- SUPPORTED: the story directly states it or it is an obvious direct entailment
-  (e.g., "Bob was holding a knife" entails "Bob had a knife").
-- UNSUPPORTED: the fact adds information not in the story, changes details,
-  or makes assumptions beyond what is written.
+by the problem?
+- SUPPORTED: the problem directly states it or it is an obvious direct
+  entailment (e.g., "there are 6 apples split into 2 bags" entails
+  "the total apple count is 6").
+- UNSUPPORTED: the fact adds information not in the problem, changes
+  quantities, or makes assumptions beyond what is written.
 
-**B) Rule Plausibility** — Is each RULE a sound commonsense or logical
-principle, given the story and facts it will be applied to?
-- PLAUSIBLE: the rule encodes a defensible general principle that does not
-  distort the meaning of the facts when applied in this context.
-- IMPLAUSIBLE: the rule is logically flawed, overly broad, unfounded,
-  a non-sequitur, or — critically — would misrepresent or distort the
-  evidence from this story when applied to the facts above.
-  For example, a rule that converts incriminating evidence (being at a crime
-  scene near the time of the crime) into exonerating evidence (absence from
-  the scene) should be marked IMPLAUSIBLE.
+**B) Rule Validity** — Is each RULE a sound and correctly encoded mathematical
+or logical principle?
+- PLAUSIBLE: the rule correctly encodes a valid mathematical relationship
+  (e.g., division, multiplication, addition) using universally quantified
+  predicates with separate variables for each numeric quantity, so that
+  the theorem prover can validate specific arithmetic steps as inferences.
+- IMPLAUSIBLE: the rule is mathematically incorrect, uses the wrong
+  operation, inverts a relationship (e.g., encodes multiplication where
+  division is needed), or — critically — embeds a specific arithmetic
+  computation directly inside the rule formula rather than abstracting it
+  into a predicate relation. For example, a rule that computes "x + y"
+  or "x / y" numerically inside the FOL formula is IMPLAUSIBLE: each
+  numeric value must be a separate constant and the arithmetic result
+  (e.g., Sum(n_5, n_3, n_8), Quotient(n_6, n_2, n_3)) must be left as
+  a ground predicate to be asserted as an axiom and checked by the theorem
+  prover as an inference, not baked into the rule itself.
 
-=== STORY ===
+=== MATH PROBLEM ===
 {story}
 
 === FACTS ===
