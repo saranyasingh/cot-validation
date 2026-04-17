@@ -1,0 +1,28 @@
+### ## FACTS
+
+- **FACT-1**: The bear is green.
+- **FACT-2**: The bear likes the mouse.
+- **FACT-3**: The bear needs the cow.
+- **FACT-4**: The bear needs the mouse.
+- **FACT-5**: The bear sees the cow.
+- **FACT-6**: The bear sees the mouse.
+- **FACT-7**: The cow likes the bear.
+- **FACT-8**: The cow sees the bear.
+- **FACT-9**: The mouse likes the cow.
+- **FACT-10**: The mouse sees the rabbit.
+- **FACT-11**: The rabbit is young.
+- **FACT-12**: Young people are kind.
+- **FACT-13**: The bear is young.
+
+### ## RULES
+
+- **RULE-1**: If someone is kind then they need the bear.
+- **RULE-2**: If someone is round and they do not need the bear then they see the rabbit.
+- **RULE-3**: If someone needs the bear then the bear is young.
+
+### ## INFERENCES
+
+**INFER-1**: Since the bear needs the bear (Rule-3), and the bear needs the mouse (Fact-4), and the bear likes the mouse (Fact-2), and young people are kind (Fact-12), we can apply Rule-1 that if someone is kind then they need the bear.
+**INFER-2**: Therefore, since the bear needs the bear, and we've established that young people are kind, we can conclude that the bear must be young (INFER-1).
+
+Thus, based on our logical deduction and the available facts and rules, we can confidently state that the answer is: True.

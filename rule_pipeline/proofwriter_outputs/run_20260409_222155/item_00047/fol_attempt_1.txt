@@ -1,0 +1,28 @@
+FACT-1: Erin is furry.
+FACT-2: Furry people are big.
+RULE-1: If someone is nice then they are green.
+RULE-2: If Anne is nice then Anne is green.
+RULE-3: If Gary is white then Gary is big.
+RULE-4: Big people are rough.
+RULE-5: If Gary is white then Gary is big.
+RULE-6: If someone is nice then they are green.
+INF-1: Erin is big.
+INF-2: Erin is furry.
+INF-3: Erin is nice. // Derived conclusion using Rule 5 and Rule 6.
+INF-4: Erin is green. // Derived conclusion using Rule 2.
+
+Final Answer:
+FACT-1: Erin is furry.
+FACT-2: Furry people are big.
+RULE-1: If someone is nice then they are green.
+RULE-2: If Anne is nice then Anne is green.
+RULE-3: If Gary is white then Gary is big.
+RULE-4: Big people are rough.
+RULE-5: If Gary is white then Gary is big.
+RULE-6: If someone is nice then they are green.
+INF-1: Erin is big.
+INF-2: Erin is furry.
+INF-3: Erin is nice. // Derived conclusion using Rule 5 and Rule 6.
+INF-4: Erin is green. // Derived conclusion using Rule 2.
+
+The answer is: Unknown

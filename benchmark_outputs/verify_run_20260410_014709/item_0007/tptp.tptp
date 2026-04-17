@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, twice_as_many(toulouse, charleston)).
+fof(fact_2, axiom, four_times_as_many(charleston, seattle)).
+fof(fact_3, axiom, sheep_in(seattle, n_20)).
+fof(fact_4, axiom, mult4(n_20, n_80)).
+fof(fact_5, axiom, mult2(n_80, n_160)).
+fof(fact_6, axiom, sum3(n_160, n_80, n_20, n_260)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [N] : ! [M] : ((twice_as_many(X,Y) & sheep_in(Y,N) & mult2(N,M)) => sheep_in(X,M))).
+fof(rule_2, axiom, ! [X] : ! [Y] : ! [N] : ! [M] : ((four_times_as_many(X,Y) & sheep_in(Y,N) & mult4(N,M)) => sheep_in(X,M))).
+fof(rule_3, axiom, ! [A] : ! [B] : ! [C] : ! [D] : ((sum3(A,B,C,D) & sheep_in(toulouse,A) & sheep_in(charleston,B) & sheep_in(seattle,C)) => total_three_cities(D))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-3, FACT-4 by RULE-2
+fof(inf_1, axiom, sheep_in(charleston, n_80)).
+% From FACT-1, INF-1, FACT-5 by RULE-1
+fof(inf_2, axiom, sheep_in(toulouse, n_160)).
+% From INF-2, INF-1, FACT-3, FACT-6 by RULE-3
+fof(inf_3, axiom, total_three_cities(n_260)).

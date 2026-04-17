@@ -1,0 +1,31 @@
+### ## FACTS
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- AllGreenPeopleAreBlue :: G(x) → B(x)
+
+### ## RULES
+- EatsBaldEagleEatsDog :: Eats(BaldEagle, Dog)
+- GreenPeopleEatDog :: G(p) → Eats(Dog, p)
+
+### ## INFERENCE
+- BaldEagleIsGreen :: G(TheBaldEagle)
+- If SomeoneEatsTheBaldEagleThenSomeoneIsGreen :: Eats(BaldEagle, p) → G(p)
+- If SomeoneEatsTheLionThenTheLionNeedsTheBaldEagle :: Eats(Lion, p) → Needs(Lion, BaldEagle)
+- If SomeoneNeedsTheCowThenTheyNeedTheDog :: Needs(Cow, p) → Needs(Dog, p)
+- If SomeoneChasesTheBaldEagleThenTheyEatTheBaldEagle :: Chases(BaldEagle, p) → Eats(BaldEagle, p)
+- If SomeoneNeedsTheDogAndTheyAreGreenThenTheDogChasesTheLion :: Needs(Dog, p) ∧ G(p) → Chases(Lion, p)
+- If SomeoneChasesTheLionThenTheyAreRough :: Chases(Lion, p) → Rough(p)
+- If SomeoneChasesTheBaldEagleThenTheyAreRough :: Chases(BaldEagle, p) → Rough(p)
+- If SomeoneEatsTheDogThenTheDogEatsTheCow :: Eats(Dog, p) → Eats(Cow, p)
+
+### LABEL: Natural Language Gloss :: FOL Formula
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- AllGreenPeopleAreBlue :: G(x) → B(x)
+- BaldEagleIsGreen :: G(TheBaldEagle)
+- If SomeoneEatsTheBaldEagleThenSomeoneIsGreen :: Eats(BaldEagle, p) → G(p)
+- If SomeoneEatsTheLionThenTheLionNeedsTheBaldEagle :: Eats(Lion, p) → Needs(Lion, BaldEagle)
+- If SomeoneNeedsTheCowThenTheyNeedTheDog :: Needs(Cow, p) → Needs(Dog, p)
+- If SomeoneChasesTheBaldEagleThenTheyEatTheBaldEagle :: Chases(BaldEagle, p) → Eats(BaldEagle, p)
+- If SomeoneNeedsTheDogAndTheyAreGreenThenTheDogChasesTheLion :: Needs(Dog, p) ∧ G(p) → Chases(Lion, p)
+- If SomeoneChasesTheLionThenTheyAreRough :: Chases(Lion, p) → Rough(p)
+- If SomeoneChasesTheBaldEagleThenTheyAreRough :: Chases(BaldEagle, p) → Rough(p)
+- If SomeoneEatsTheDogThenTheDogEatsTheCow :: Eats(Dog, p) → Eats(Cow, p)

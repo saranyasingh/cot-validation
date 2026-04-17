@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Eggs laid per day by Janet :: EggsLaidPerDay(janet, n_16)
+FACT-2: Eggs eaten for breakfast by Janet :: EggsEatenForBreakfast(janet, n_3)
+FACT-3: Eggs used for muffins by Janet :: EggsUsedForMuffins(janet, n_4)
+FACT-4: Price per egg for Janet :: PricePerEgg(janet, n_2)
+
+## RULES
+RULE-1: If a person p lays L eggs per day and eats E eggs for breakfast, and Subtract(L,E,D), then EggsRemainingAfterBreakfast(p,D) :: ∀p∀L∀E∀D((EggsLaidPerDay(p,L) ∧ EggsEatenForBreakfast(p,E) ∧ Subtract(L,E,D)) → EggsRemainingAfterBreakfast(p,D))
+RULE-2: If EggsRemainingAfterBreakfast(p,A) and EggsUsedForMuffins(p,B) and Subtract(A,B,C), then EggsRemainingAfterMuffins(p,C) :: ∀p∀A∀B∀C((EggsRemainingAfterBreakfast(p,A) ∧ EggsUsedForMuffins(p,B) ∧ Subtract(A,B,C)) → EggsRemainingAfterMuffins(p,C))
+RULE-3: If EggsRemainingAfterMuffins(p,R) and PricePerEgg(p,P) and Product(R,P,T), then TotalRevenue(p,T) :: ∀p∀R∀P∀T((EggsRemainingAfterMuffins(p,R) ∧ PricePerEgg(p,P) ∧ Product(R,P,T)) → TotalRevenue(p,T))
+
+## INFERENCES
+# INF-1: 16 − 3 = 13, from FACT-1 and FACT-2 by ArithmeticComputation :: Subtract(n_16,n_3,n_13)
+# INF-2: EggsRemainingAfterBreakfast(janet, n_13), from FACT-1, FACT-2, INF-1 by RULE-1
+# INF-3: Subtract(n_13, n_4, n_9), from INF-2 and FACT-3 by ArithmeticComputation
+# INF-4: EggsRemainingAfterMuffins(janet, n_9), from INF-2, FACT-3, INF-3 by RULE-2
+# INF-5: Product(n_9, n_2, n_18), from INF-4 and FACT-4 by ArithmeticComputation
+# INF-6: TotalRevenue(janet, n_18), from INF-4, FACT-4, INF-5 by RULE-3

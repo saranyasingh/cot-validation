@@ -1,0 +1,15 @@
+FACT-1: The bear is green.
+FACT-2: The bear likes the mouse.
+RULE-1: If someone is round then they like the mouse.
+RULE-2: If someone likes the bear and they like the mouse then the bear likes the mouse.
+RULE-3: If someone is round and they do not need the bear then they see the rabbit.
+RULE-4: The mouse likes the bear.
+RULE-5: If someone is round then they like the mouse.
+RULE-6: If someone is round and they do not need the bear then they see the rabbit.
+RULE-7: If someone is kind then they need the bear.
+RULE-8: Young people are kind.
+RULE-9: The rabbit is young.
+RULE-10: Young people are kind.
+INF-1: The mouse likes the bear.
+INF-2: The mouse does not need the bear.
+INF-3: The mouse sees the rabbit.

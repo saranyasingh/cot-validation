@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Raymond was born 6 years before Samantha :: BirthDifference(raymond, samantha, n_6)
+FACT-2: Samantha is 31 years old :: Age(samantha, n_31)
+FACT-3: Raymond has a son who was born when he was 23 :: AgeWhenHadChild(raymond, raymond_son, n_23)
+
+## RULES
+RULE-1: If y is age a, x is older than y by d years, and a + d = c, then Age(x, c) :: ∀x∀y∀a∀d∀c((Age(y, a) ∧ BirthDifference(x, y, d) ∧ Sum(a, d, c)) → Age(x, c))
+RULE-2: If x is age a, x has a child y born when d, and a − d = t, then YearsSinceBirth(x, y, t) :: ∀x∀y∀a∀d∀t((Age(x, a) ∧ AgeWhenHadChild(x, y, d) ∧ Diff(a, d, t)) → YearsSinceBirth(x, y, t))
+
+## INFERENCES
+INF-1: 31 + 6 = 37, from FACT-2 and FACT-1 by Arithmetic Computation :: Sum(n_31, n_6, n_37)
+INF-2: Age(raymond, n_37), from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: Age(raymond, n_37)
+INF-3: 37 - 23 = 14, from INF-2 and FACT-3 by Arithmetic Computation :: Diff(n_37, n_23, n_14)
+INF-4: Raymond's son was born 14 years ago :: YearsSinceBirth(raymond, raymond_son, n_14) from INF-2, FACT-3, INF-3 by RULE-2

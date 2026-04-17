@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — The story states the download rate is 2 GB/min.
+FACT-2: SUPPORTED — The story says 40% of the file is downloaded.
+FACT-3: SUPPORTED — 40% of 200 GB equals 80 GB, as implied by FACT-2.
+FACT-4: SUPPORTED — The restart occurs after 40% downloaded.
+FACT-5: SUPPORTED — The interruption lasts 20 minutes.
+FACT-6: SUPPORTED — No data is transferred during the 20-minute interruption.
+FACT-7: SUPPORTED — The file size is 200 GB.
+FACT-8: SUPPORTED — Time to finish at the initial rate is 200/2 = 100 minutes.
+FACT-9: UNSUPPORTED — It would take 40 minutes to reach 40% (80 GB) at 2 GB/min, not 100; FACT-9 contradicts the given progress and rate.
+RULE-1: IMPLAUSIBLE — It disregards the recovery impact of the interruption; final time should reflect the restart and downtime, not just the constant-speed prediction.
+RULE-2: PLAUSIBLE — It is a tautology: if the final answer is t, then the answer is t.

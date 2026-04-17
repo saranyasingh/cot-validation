@@ -1,0 +1,43 @@
+EXPLANATION
+
+To determine how much Kylar needs to pay for 16 glasses, we first need to calculate the cost of one glass and then multiply that by the total number of glasses.
+
+Step 1: Calculate the cost of one glass.
+- The problem states that the price of the first glass is $5.
+- Every second glass costs 60% of the price of the first glass.
+
+Let's denote the price of the first glass as \( P_1 \).
+\[ P_1 = \$5 \]
+
+For the second glass (which is the second element in our sequence), it costs 60% of \( P_1 \):
+\[ P_2 = 0.60 \times P_1 \]
+\[ P_2 = 0.60 \times \$5 \]
+\[ P_2 = \$3 \]
+
+Now, let's assume the pattern continues such that every subsequent glass costs 60% of the price of the preceding glass.
+
+Step 2: Determine the total cost for 16 glasses.
+Since the problem doesn't specify any other conditions or patterns for additional glasses beyond the first two, we'll use the information provided directly.
+
+We know the first two glasses cost $5 and $3 respectively. For simplicity, if there were no discount on further glasses, the calculation would be straightforward.
+
+However, since the problem specifies that every second glass costs 60% of the price of the first glass, we need to consider this discount when calculating the total cost.
+
+Step 3: Apply the discount to find the total cost.
+Assuming the pattern holds consistently for all 16 glasses, the third glass would also be at 60% of the first glass:
+\[ P_3 = 0.60 \times P_1 \]
+\[ P_3 = 0.60 \times \$5 \]
+\[ P_3 = \$3 \]
+
+Following this pattern, each subsequent glass would be discounted similarly.
+
+Step 4: Sum up the total cost.
+If we sum up the prices of all 16 glasses using the given discounts, we get:
+\[ Total Cost = 16 \times P_1 + 8 \times P_2 \]
+\[ Total Cost = 16 \times \$5 + 8 \times \$3 \]
+\[ Total Cost = \$80 + \$24 \]
+\[ Total Cost = \$104 \]
+
+Therefore, Kylar needs to pay $104 for 16 glasses.
+
+The answer is: 104

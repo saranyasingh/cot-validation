@@ -1,0 +1,16 @@
+To determine if the statement "Dave is not white" is true based on the given facts and rules, let's analyze this step-by-step:
+
+1. **Fact**: Dave is kind.
+   - Rule: All kind, furry people are big.
+   - Therefore, Dave must be big because he is kind and we can infer that all kind people are big due to the rule provided.
+
+2. **Fact**: Dave is young.
+   - Rule: All young people are smart.
+   - Therefore, Dave must be smart because he is young and all young people are smart.
+
+3. **Fact**: Dave is white.
+   - This directly contradicts our conclusion from Fact 2, as we have established that Dave is not smart.
+
+Since Dave being white directly conflicts with his status as young and smart (as derived from Facts 2 and 3), the statement "Dave is not white" must be false.
+
+**The answer is: False**

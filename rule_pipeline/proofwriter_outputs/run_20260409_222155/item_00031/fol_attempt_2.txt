@@ -1,0 +1,10 @@
+### ## FACTS
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- AllGreenPeopleAreBlue :: G(x) → B(x)
+
+### ## RULES
+- EatsBaldEagleEatsDog :: Eats(BaldEagle, Dog)
+- GreenPeopleEatDog :: G(p) → Eats(Dog, p)
+
+### ## INFERENCE
+- BaldEagleIsGreen :: G(TheBaldEagle)

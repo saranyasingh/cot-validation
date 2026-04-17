@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The story says Toulouse has twice as many as Charleston; thus Charleston does not have twice Toulouse.
+RULE-1: IMPLAUSIBLE — The conclusion 80 is not guaranteed for arbitrary f; it would only hold if f=4 and y=20.
+RULE-2: IMPLAUSIBLE — With x=80 and an unspecified f, y would be 80/f; the rule fixes y at 40 regardless of f.
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE

@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_customers_on_tuesday(n_8)).
+fof(fact_2, axiom, first_group_customers(n_3)).
+fof(fact_3, axiom, first_group_per_customer(n_1)).
+fof(fact_4, axiom, second_group_customers(n_2)).
+fof(fact_5, axiom, second_group_per_customer(n_2)).
+fof(fact_6, axiom, third_group_customers(n_3)).
+fof(fact_7, axiom, third_group_per_customer(n_0)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S,P,D] : ((first_group_customers(S) & first_group_per_customer(P) & product(S,P,D)) => first_group_total(D))).
+fof(rule_2, axiom, ! [S,P,D] : ((second_group_customers(S) & second_group_per_customer(P) & product(S,P,D)) => second_group_total(D))).
+fof(rule_3, axiom, ! [S,P,D] : ((third_group_customers(S) & third_group_per_customer(P) & product(S,P,D)) => third_group_total(D))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Arithmetic Computation
+fof(inf_1, axiom, product(n_3, n_1, n_3)).
+% From inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, first_group_total(n_3)).
+% From fact_4, fact_5 by Arithmetic Computation
+fof(inf_3, axiom, product(n_2, n_2, n_4)).
+% From inf_3, rule_2 by Modus Ponens
+fof(inf_4, axiom, second_group_total(n_4)).
+% From fact_6, fact_7 by Arithmetic Computation
+fof(inf_5, axiom, product(n_3, n_0, n_0)).
+% From inf_5, rule_3 by Modus Ponens
+fof(inf_6, axiom, third_group_total(n_0)).
+% From inf_2, inf_4 by Arithmetic Computation
+fof(inf_7, axiom, sum(n_3, n_4, n_7)).
+% From inf_7, inf_6 by Arithmetic Computation
+fof(inf_8, axiom, total_dvds_sold(n_7)).

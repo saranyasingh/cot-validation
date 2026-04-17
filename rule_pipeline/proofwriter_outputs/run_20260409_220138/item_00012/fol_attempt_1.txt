@@ -1,0 +1,3 @@
+FACT-1: The bear needs the mouse.
+RULE-1: If someone is round and they do not need the bear then they see the rabbit.
+INF-1: The bear does not need the bear :: ∀ x ((Round(x) → ~(Needs(x, bear)) → SeeRabbit(x)))

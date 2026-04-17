@@ -1,0 +1,249 @@
+FACT-1: The bald eagle chases the lion.
+FACT-2: The bald eagle is blue.
+FACT-3: The bald eagle is nice.
+FACT-4: The bald eagle is round.
+FACT-5: The bald eagle needs the cow.
+FACT-6: The bald eagle needs the lion.
+FACT-7: The cow chases the bald eagle.
+FACT-8: The cow is round.
+FACT-9: The cow needs the bald eagle.
+RULE-1: If someone chases the bald eagle then they eat the bald eagle.
+RULE-2: If someone needs the dog and they are green then the dog chases the lion.
+RULE-3: If someone eats the bald eagle then they are green.
+RULE-4: If someone eats the lion then the lion needs the bald eagle.
+RULE-5: If someone needs the cow then they need the dog.
+RULE-6: If someone is rough then they chase the bald eagle.
+RULE-7: If someone chases the lion then they are rough.
+RULE-8: If someone is rough and they eat the dog then the dog eats the cow.
+INF-1: The lion is green.
+INF-2: The lion eats the bald eagle.
+INF-3: The bald eagle is green.
+INF-4: The bald eagle needs the cow.
+INF-5: The lion needs the bald eagle.
+INF-6: The cow needs the dog.
+INF-7: The dog chases the lion.
+INF-8: The dog eats the cow.
+INF-9: The dog is blue.
+INF-10: The lion is rough.
+INF-11: The dog is rough.
+INF-12: The dog eats the cow.
+INF-13: The lion chases the bald eagle.
+INF-14: The lion eats the bald eagle.
+INF-15: The bald eagle is round.
+INF-16: The lion is round.
+INF-17: The lion is blue.
+INF-18: The lion is nice.
+INF-19: The lion is green.
+INF-20: The lion needs the cow.
+INF-21: The lion needs the dog.
+INF-22: The dog chases the lion.
+INF-23: The dog eats the cow.
+INF-24: The dog chases the lion.
+INF-25: The dog chases the lion.
+INF-26: The dog chases the lion.
+INF-27: The dog chases the lion.
+INF-28: The dog chases the lion.
+INF-29: The dog chases the lion.
+INF-30: The dog chases the lion.
+INF-31: The dog chases the lion.
+INF-32: The dog chases the lion.
+INF-33: The dog chases the lion.
+INF-34: The dog chases the lion.
+INF-35: The dog chases the lion.
+INF-36: The dog chases the lion.
+INF-37: The dog chases the lion.
+INF-38: The dog chases the lion.
+INF-39: The dog chases the lion.
+INF-40: The dog chases the lion.
+INF-41: The dog chases the lion.
+INF-42: The dog chases the lion.
+INF-43: The dog chases the lion.
+INF-44: The dog chases the lion.
+INF-45: The dog chases the lion.
+INF-46: The dog chases the lion.
+INF-47: The dog chases the lion.
+INF-48: The dog chases the lion.
+INF-49: The dog chases the lion.
+INF-50: The dog chases the lion.
+INF-51: The dog chases the lion.
+INF-52: The dog chases the lion.
+INF-53: The dog chases the lion.
+INF-54: The dog chases the lion.
+INF-55: The dog chases the lion.
+INF-56: The dog chases the lion.
+INF-57: The dog chases the lion.
+INF-58: The dog chases the lion.
+INF-59: The dog chases the lion.
+INF-60: The dog chases the lion.
+INF-61: The dog chases the lion.
+INF-62: The dog chases the lion.
+INF-63: The dog chases the lion.
+INF-64: The dog chases the lion.
+INF-65: The dog chases the lion.
+INF-66: The dog chases the lion.
+INF-67: The dog chases the lion.
+INF-68: The dog chases the lion.
+INF-69: The dog chases the lion.
+INF-70: The dog chases the lion.
+INF-71: The dog chases the lion.
+INF-72: The dog chases the lion.
+INF-73: The dog chases the lion.
+INF-74: The dog chases the lion.
+INF-75: The dog chases the lion.
+INF-76: The dog chases the lion.
+INF-77: The dog chases the lion.
+INF-78: The dog chases the lion.
+INF-79: The dog chases the lion.
+INF-80: The dog chases the lion.
+INF-81: The dog chases the lion.
+INF-82: The dog chases the lion.
+INF-83: The dog chases the lion.
+INF-84: The dog chases the lion.
+INF-85: The dog chases the lion.
+INF-86: The dog chases the lion.
+INF-87: The dog chases the lion.
+INF-88: The dog chases the lion.
+INF-89: The dog chases the lion.
+INF-90: The dog chases the lion.
+INF-91: The dog chases the lion.
+INF-92: The dog chases the lion.
+INF-93: The dog chases the lion.
+INF-94: The dog chases the lion.
+INF-95: The dog chases the lion.
+INF-96: The dog chases the lion.
+INF-97: The dog chases the lion.
+INF-98: The dog chases the lion.
+INF-99: The dog chases the lion.
+INF-100: The dog chases the lion.
+INF-101: The dog chases the lion.
+INF-102: The dog chases the lion.
+INF-103: The dog chases the lion.
+INF-104: The dog chases the lion.
+INF-105: The dog chases the lion.
+INF-106: The dog chases the lion.
+INF-107: The dog chases the lion.
+INF-108: The dog chases the lion.
+INF-109: The dog chases the lion.
+INF-110: The dog chases the lion.
+INF-111: The dog chases the lion.
+INF-112: The dog chases the lion.
+INF-113: The dog chases the lion.
+INF-114: The dog chases the lion.
+INF-115: The dog chases the lion.
+INF-116: The dog chases the lion.
+INF-117: The dog chases the lion.
+INF-118: The dog chases the lion.
+INF-119: The dog chases the lion.
+INF-120: The dog chases the lion.
+INF-121: The dog chases the lion.
+INF-122: The dog chases the lion.
+INF-123: The dog chases the lion.
+INF-124: The dog chases the lion.
+INF-125: The dog chases the lion.
+INF-126: The dog chases the lion.
+INF-127: The dog chases the lion.
+INF-128: The dog chases the lion.
+INF-129: The dog chases the lion.
+INF-130: The dog chases the lion.
+INF-131: The dog chases the lion.
+INF-132: The dog chases the lion.
+INF-133: The dog chases the lion.
+INF-134: The dog chases the lion.
+INF-135: The dog chases the lion.
+INF-136: The dog chases the lion.
+INF-137: The dog chases the lion.
+INF-138: The dog chases the lion.
+INF-139: The dog chases the lion.
+INF-140: The dog chases the lion.
+INF-141: The dog chases the lion.
+INF-142: The dog chases the lion.
+INF-143: The dog chases the lion.
+INF-144: The dog chases the lion.
+INF-145: The dog chases the lion.
+INF-146: The dog chases the lion.
+INF-147: The dog chases the lion.
+INF-148: The dog chases the lion.
+INF-149: The dog chases the lion.
+INF-150: The dog chases the lion.
+INF-151: The dog chases the lion.
+INF-152: The dog chases the lion.
+INF-153: The dog chases the lion.
+INF-154: The dog chases the lion.
+INF-155: The dog chases the lion.
+INF-156: The dog chases the lion.
+INF-157: The dog chases the lion.
+INF-158: The dog chases the lion.
+INF-159: The dog chases the lion.
+INF-160: The dog chases the lion.
+INF-161: The dog chases the lion.
+INF-162: The dog chases the lion.
+INF-163: The dog chases the lion.
+INF-164: The dog chases the lion.
+INF-165: The dog chases the lion.
+INF-166: The dog chases the lion.
+INF-167: The dog chases the lion.
+INF-168: The dog chases the lion.
+INF-169: The dog chases the lion.
+INF-170: The dog chases the lion.
+INF-171: The dog chases the lion.
+INF-172: The dog chases the lion.
+INF-173: The dog chases the lion.
+INF-174: The dog chases the lion.
+INF-175: The dog chases the lion.
+INF-176: The dog chases the lion.
+INF-177: The dog chases the lion.
+INF-178: The dog chases the lion.
+INF-179: The dog chases the lion.
+INF-180: The dog chases the lion.
+INF-181: The dog chases the lion.
+INF-182: The dog chases the lion.
+INF-183: The dog chases the lion.
+INF-184: The dog chases the lion.
+INF-185: The dog chases the lion.
+INF-186: The dog chases the lion.
+INF-187: The dog chases the lion.
+INF-188: The dog chases the lion.
+INF-189: The dog chases the lion.
+INF-190: The dog chases the lion.
+INF-191: The dog chases the lion.
+INF-192: The dog chases the lion.
+INF-193: The dog chases the lion.
+INF-194: The dog chases the lion.
+INF-195: The dog chases the lion.
+INF-196: The dog chases the lion.
+INF-197: The dog chases the lion.
+INF-198: The dog chases the lion.
+INF-199: The dog chases the lion.
+INF-200: The dog chases the lion.
+INF-201: The dog chases the lion.
+INF-202: The dog chases the lion.
+INF-203: The dog chases the lion.
+INF-204: The dog chases the lion.
+INF-205: The dog chases the lion.
+INF-206: The dog chases the lion.
+INF-207: The dog chases the lion.
+INF-208: The dog chases the lion.
+INF-209: The dog chases the lion.
+INF-210: The dog chases the lion.
+INF-211: The dog chases the lion.
+INF-212: The dog chases the lion.
+INF-213: The dog chases the lion.
+INF-214: The dog chases the lion.
+INF-215: The dog chases the lion.
+INF-216: The dog chases the lion.
+INF-217: The dog chases the lion.
+INF-218: The dog chases the lion.
+INF-219: The dog chases the lion.
+INF-220: The dog chases the lion.
+INF-221: The dog chases the lion.
+INF-222: The dog chases the lion.
+INF-223: The dog chases the lion.
+INF-224: The dog chases the lion.
+INF-225: The dog chases the lion.
+INF-226: The dog chases the lion.
+INF-227: The dog chases the lion.
+INF-228: The dog chases the lion.
+INF-229: The dog chases the lion.
+INF-230: The dog chases the lion.
+INF-231: The dog chases the lion.
+INF-232: The dog chases

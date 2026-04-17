@@ -1,0 +1,32 @@
+### FACTS
+- **FACT-1:** The bald eagle chases the lion.
+- **FACT-2:** The bald eagle is blue.
+- **FACT-3:** The bald eagle is nice.
+- **FACT-4:** The bald eagle needs the cow.
+- **FACT-5:** The bald eagle needs the lion.
+- **FACT-6:** The cow chases the bald eagle.
+- **FACT-7:** The cow is round.
+- **FACT-8:** The cow needs the bald eagle.
+- **FACT-9:** The dog eats the lion.
+- **FACT-10:** The dog is blue.
+- **FACT-11:** The lion chases the bald eagle.
+- **FACT-12:** The lion eats the bald eagle.
+- **FACT-13:** The lion eats the cow.
+- **FACT-14:** All green people are blue.
+
+### RULES
+- **RULE-1:** If someone chases the bald eagle then they eat the bald eagle.
+- **RULE-2:** If someone needs the dog and they are green then the dog chases the lion.
+- **RULE-3:** If someone eats the bald eagle then they are green.
+- **RULE-4:** If someone eats the lion then the lion needs the bald eagle.
+- **RULE-5:** If someone needs the cow then they need the dog.
+- **RULE-6:** If someone is rough then they chase the bald eagle.
+- **RULE-7:** If someone chases the lion then they are rough.
+- **RULE-8:** If someone is rough and they eat the dog then the dog eats the cow.
+
+### INFERENCES
+**INF-1:** Since the bald eagle needs the cow (FACT-4), and the cow needs the bald eagle (FACT-8), it follows that the bald eagle needs the cow (by transitivity of needs). According to Rule 6, if the bald eagle needs the cow and the dog chases the lion (Rule 1), then the dog chases the lion (since the dog eats the lion and the dog chases the lion implies the dog chases the lion through Rule 3).
+
+Therefore, the statement "The bald eagle does not eat the bald eagle" is true.
+
+**Final Answer:** True

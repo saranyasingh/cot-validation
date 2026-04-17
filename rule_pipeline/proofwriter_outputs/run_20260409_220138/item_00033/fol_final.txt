@@ -1,0 +1,43 @@
+### ## FACTS
+**FACT-1:** 
+- **Gloss:** The bald eagle chases the lion.
+- **FOL Formula:** chase\_lion(bald\_eagle).
+
+**FACT-2:** 
+- **Gloss:** The bald eagle is blue.
+- **FOL Formula:** blue(bald\_eagle).
+
+**FACT-3:** 
+- **Gloss:** The bald eagle is nice.
+- **FOL Formula:** nice(bald\_eagle).
+
+**FACT-4:** 
+- **Gloss:** The bald eagle is round.
+- **FOL Formula:** round(bald\_eagle).
+
+**FACT-5:** 
+- **Gloss:** The bald eagle needs the cow.
+- **FOL Formula:**
+
+### ## RULES
+- Rule: "If someone chases the lion then they eat the bald eagle."
+- Rule: "If someone is rough and they eat the dog then the dog eats the cow."
+- Rule: "If someone eats the bald eagle then they are green."
+
+### ## INFERENCES
+**Inference-1:** 
+- From **FACT-1**: chase\_lion(bald\_eagle).
+- From **RULE-1**: If someone chases the lion then they eat the bald eagle.
+- Therefore, **Inference-1**: eat\_bald\_eagle(bald\_eagle).
+
+**Inference-2:** 
+- From **FACT-2**: blue(bald\_eagle).
+- From **RULE-2**: If someone eats the bald eagle then they are green.
+- Therefore, **Inference-2**: green(eat\_bald\_eagle(bald\_eagle)).
+
+**Inference-3:** 
+- From **FACT-3**: nice(bald\_eagle).
+- From **RULE-1**: If someone chases the lion then they eat the bald eagle.
+- From **Inference-1**: eat\_bald\_eagle(bald\_eagle).
+- From **RULE-2**: If someone eats the bald eagle then they are green.
+- Therefore, **Inference-3**: green(nice(bald\_eagle)).

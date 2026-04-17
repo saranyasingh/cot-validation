@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Wendi's daily feed is 3 cups :: CupsPerDay(Wendi, n_3)
+FACT-2: Morning portion is 15 cups :: MorningPortion(Wendi, n_15)
+FACT-3: Afternoon portion is 25 cups :: AfternoonPortion(Wendi, n_25)
+FACT-4: Morning and afternoon sum to 40 cups :: Sum(n_15, n_25, n_40)
+FACT-5: Weekly total required is 21 cups :: WeeklyTotalRequired(n_21)
+FACT-6: Weekly total minus distributed equals -19 cups :: Difference(n_21, n_40, n_-19)
+FACT-7: Result -19 is negative :: Negative(n_-19)
+
+## RULES
+RULE-1: If the weekly total minus the distributed is negative, then FinalMealCups(Wendi, 0) :: ∀x((Difference(n_21, n_40, n_-19) ∧ Negative(n_-19)) → FinalMealCups(Wendi, n_0))
+
+## INFERENCES
+INF-1: From FACT-6 and FACT-7 by Conjunction Introduction, obtain (Difference(n_21, n_40, n_-19) ∧ Negative(n_-19)) :: Difference(n_21, n_40, n_-19) ∧ Negative(n_-19)
+INF-2: From INF-1 and RULE-1 by Modus Ponens, derive FinalMealCups(Wendi, n_0) :: FinalMealCups(Wendi, n_0)

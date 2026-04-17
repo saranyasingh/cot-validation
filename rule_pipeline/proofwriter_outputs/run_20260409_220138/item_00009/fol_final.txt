@@ -1,0 +1,38 @@
+### ## FACTS
+- The bear is green.
+- The bear needs the mouse.
+- The bear needs the cow.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The mouse likes the cow.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone is kind then they need the bear.
+- If someone sees the cow then they are cold.
+- If someone is cold then they like the rabbit.
+- If someone needs the bear then the bear is young.
+- If someone is round then they like the mouse.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- **Inferencing 1:** If the bear is green, then the bear needs the mouse.
+  - From Fact-1 and RULE-1: If the bear is green, then the bear needs the mouse.
+- **Inferencing 2:** If the bear is green, then the bear is round.
+  - From Inference 1 and RULE-2: If the bear is green, then the bear is round.
+- **Inferencing 3:** If the bear is green, then the bear is round and needs the mouse.
+  - Combining Inferences 1 and 2: If the bear is green, then the bear is round and needs the mouse.
+- **Inferencing 4:** If the bear is green, then the bear is round and needs the mouse.
+  - From Inference 3 and RULE-3: If the bear is green, then the bear is round and needs the mouse.
+- **Inferencing 5:** The bear is young.
+  - From Fact-5 and RULE-4: If someone needs the bear, then the bear is young.
+- **Inferencing 6:** The bear is young.
+  - From Inference 4 and RULE-4: If someone needs the bear, then the bear is young.
+- **Inferencing 7:** Young people are kind.
+  - From Fact-6 and RULE-5: If someone is young, then they are kind.
+- **Inferencing 8:** The bear is kind.
+  - From Inference 5 and Inference 7: Young people are kind, so the bear is kind.

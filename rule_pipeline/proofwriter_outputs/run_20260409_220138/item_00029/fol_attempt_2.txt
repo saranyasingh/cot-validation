@@ -1,0 +1,115 @@
+### ## FACTS
+FACT-1: The bald eagle chases the lion.
+FACTORIAL: ∃x(Chases(x, the_lion))
+
+FACT-2: The bald eagle is blue.
+FACTORIAL: ∀y(Blue(y) → y = the_bald_eagle)
+
+FACT-3: The bald eagle is nice.
+FACTORIAL: ∀z(Nice(z) → z = the_bald_eagle)
+
+FACT-4: The bald eagle is round.
+FACTORIAL: ∀w(Round(w) → w = the_bald_eagle)
+
+FACT-5: The bald eagle needs the cow.
+FACTORIAL: ∀v(Needs(v, cow) → v = the_bald_eagle)
+
+FACT-6: The lion chases the bald eagle.
+FACTORIAL: ∃x(Chases(x, the_lion))
+
+FACT-7: The lion eats the bald eagle.
+FACTORIAL: ∃y(Eats(y, the_bald_eagle))
+
+FACT-8: The cow chases the bald eagle.
+FACTORIAL: ∃x(Chases(x, the_cow))
+
+FACT-9: The lion eats the cow.
+FACTORIAL: ∃y(Eats(y, the_cow))
+
+### ## RULES
+RULE-1: Chases(x, y) → Eats(y, x)
+
+RULE-2: If someone needs the dog and they are green then the dog chases the lion.
+FACTORIAL: (∀w(Needs(w, dog) ∧ Blue(w) → Dog(chases, lion)))
+
+RULE-3: If someone eats the bald eagle then they are green.
+FACTORIAL: (∃y(Eats(y, the_bald_eagle) → Green(y)))
+
+RULE-4: If someone eats the lion then the lion needs the bald eagle.
+FACTORIAL: (∃y(Eats(y, the_lion) → Needs(the_lion, the_bald_eagle)))
+
+RULE-5: If someone needs the cow then they need the dog.
+FACTORIAL: (∀v(Needs(v, cow) → Needs(v, dog)))
+
+### ## INFERENCES
+INF-1: The lion eats the cow.
+FACTORIAL: ∃y(Eats(y, the_cow))
+
+INF-2: The dog chases the lion.
+FACTORIAL: ∃x(Chases(x, the_lion))
+
+INF-3: The lion needs the bald eagle.
+FACTORIAL: ∃y(Needs(y, the_bald_eagle))
+
+INF-4: The bald eagle needs the cow.
+FACTORIAL: ∃y(Needs(y, the_cow))
+
+INF-5: The lion eats the bald eagle.
+FACTORIAL: ∃y(Eats(y, the_bald_eagle))
+
+INF-6: The bald eagle is blue.
+FACTORIAL: ∀y(Blue(y) → y = the_bald_eagle)
+
+INF-7: The lion is blue.
+FACTORIAL: ∀y(Below(y, the_lion) → y = the_lion)
+
+INF-8: The bald eagle needs the lion.
+FACTORIAL: ∃y(Needs(y, the_lion))
+
+INF-9: The lion needs the dog.
+FACTORIAL: ∃y(Needs(y, dog))
+
+INF-10: The dog chases the lion.
+FACTORIAL: ∃x(Chases(x, the_lion))
+
+INF-11: The lion eats the dog.
+FACTORIAL: ∃y(Eats(y, the_dog))
+
+INF-12: The dog eats the cow.
+FACTORIAL: ∃y(Eats(y, the_cow))
+
+INF-13: The lion is blue.
+FACTORIAL: ∀y(Below(y, the_lion) → y = the_lion)
+
+INF-14: The dog is blue.
+FACTORIAL: ∀y(Below(y, the_dog) → y = the_dog)
+
+INF-15: The lion needs the dog.
+FACTORIAL: ∃y(Needs(y, dog))
+
+INF-16: The dog needs the cow.
+FACTORIAL: ∃y(Needs(y, cow))
+
+INF-17: The cow chases the lion.
+FACTORIAL: ∃x(Chases(x, the_lion))
+
+INF-18: The lion needs the cow.
+FACTORIAL: ∃y(Needs(y, the_cow))
+
+INF-19: The dog needs the cow.
+FACTORIAL: ∃y(Needs(y, the_cow))
+
+INF-20: The lion eats the cow.
+FACTORIAL: ∃y(Eats(y, the_cow))
+
+INF-21: The lion needs the dog.
+FACTORIAL: ∃y(Needs(y, dog))
+
+INF-22: The dog needs the cow.
+FACTORIAL: ∃y(Needs(y, the_cow))
+
+INF-23: The lion eats the dog.
+FACTORIAL: ∃y(Eats(y, the_dog))
+
+INF-24: The dog eats the cow.
+FACTORIAL: ∃y(Eats(y, the_cow))

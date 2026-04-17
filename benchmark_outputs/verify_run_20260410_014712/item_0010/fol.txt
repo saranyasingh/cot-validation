@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Regular hourly rate for Eliza :: RegularHourlyRate(eliza, n_10)
+FACT-2: Regular hours worked for Eliza :: RegularHours(eliza, n_40)
+FACT-3: The product of regular rate and regular hours is 400 :: Product(n_10, n_40, n_400)
+FACT-4: Overtime hourly rate for Eliza :: OvertimeHourlyRate(eliza, n_12)
+FACT-5: Hours beyond regular hours for Eliza :: HoursBeyond(eliza, n_5)
+FACT-6: The product of overtime rate and overtime hours is 60 :: Product(n_12, n_5, n_60)
+FACT-7: Sum of 400 and 60 is 460 :: Sum(n_400, n_60, n_460)
+
+## RULES
+RULE-1: Regular earnings from regular rate and hours :: ∀p∀r∀h∀e((RegularHourlyRate(p,r) ∧ RegularHours(p,h) ∧ Product(r,h,e)) → RegularEarnings(p,e))
+RULE-2: Overtime earnings from overtime rate and overtime hours :: ∀p∀r∀hb∀e((OvertimeHourlyRate(p,r) ∧ HoursBeyond(p,hb) ∧ Product(r,hb,e)) → OvertimeEarnings(p,e))
+RULE-3: Total earnings from regular and overtime earnings :: ∀p∀er∀oe∀et((RegularEarnings(p,er) ∧ OvertimeEarnings(p,oe) ∧ Sum(er,oe,et)) → TotalEarnings(p,et))
+
+## INFERENCES
+INF-1: Regular earnings for Eliza from FACT-1, FACT-2, and FACT-3 via RULE-1 (Modus Ponens) :: RegularEarnings(eliza, n_400)
+INF-2: Overtime earnings for Eliza from FACT-5, FACT-6 via RULE-2 (Modus Ponens) :: OvertimeEarnings(eliza, n_60)
+INF-3: Total earnings for Eliza from INF-1, INF-2, and FACT-7 via RULE-3 (Modus Ponens) :: TotalEarnings(eliza, n_460)

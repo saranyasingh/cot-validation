@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_month_downloads(n_60)).
+fof(fact_2, axiom, multiplies(n_3, n_60, n_180)).
+fof(fact_3, axiom, percent_of(n_180, n_70, n_126)).
+fof(fact_4, axiom, add(n_60, n_180, n_240)).
+fof(fact_5, axiom, add(n_240, n_126, n_366)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, B] : ((first_month_downloads(A) & multiplies(n_3, A, B)) => second_month_downloads(B))).
+fof(rule_2, axiom, ! [X, Y, Z] : ((second_month_downloads(X) & percent_of(X, Y, Z)) => third_month_downloads(Z))).
+fof(rule_3, axiom, ! [A, B, C] : ((first_month_downloads(A) & second_month_downloads(B) & add(A, B, C)) => sum_first_two(C))).
+fof(rule_4, axiom, ! [A, B, C] : ((sum_first_two(A) & third_month_downloads(B) & add(A, B, C)) => total_downloads(C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, second_month_downloads(n_180)).
+
+% From inf_1, fact_3 by Modus Ponens
+fof(inf_2, axiom, third_month_downloads(n_126)).
+
+% From fact_1, inf_1, fact_4 by Modus Ponens
+fof(inf_3, axiom, sum_first_two(n_240)).
+
+% From inf_3, inf_2, fact_5 by Modus Ponens
+fof(inf_4, axiom, total_downloads(n_366)).

@@ -1,0 +1,13 @@
+### ## FACTS
+1. **IsGreen(Bear)** :: **B**
+2. **Likes(Mouse, Bear)** :: **LMB**
+3. **Needs(Cow, Bear)** :: **NCB**
+4. **Sees(Rabbit, Mouse)** :: **SRM**
+
+### ## RULES
+1. **If (someone is kind), then (they need the bear).** :: **K -> NCB**
+2. **If (someone sees the cow), then (they are cold).** :: **SC -> Cold**
+3. **If (someone is cold), then (they like the rabbit).** :: **Cold -> LRM**
+4. **If (someone needs the bear), then (the bear is young).** :: **NCB -> Y**
+5. **If (someone is round), then (they like the mouse).** :: **R -> LMB**
+6. **If (someone likes the bear AND someone likes the

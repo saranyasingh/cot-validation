@@ -1,0 +1,45 @@
+### ## FACTS
+FACT-1: Bob is cold.
+FACT-2: Dave is kind.
+FACT-3: Dave is young.
+FACT-4: Gary is big.
+FACT-5: Gary is cold.
+FACT-6: Gary is white.
+FACT-7: Gary is young.
+FACT-8: Harry is cold.
+FACT-9: Harry is kind.
+FACT-10: Harry is white.
+FACT-11: Harry is young.
+FACT-12: Smart, young people are furry.
+FACT-13: All kind, furry people are big.
+FACT-14: Smart, big people are furry.
+FACT-15: All white, kind people are young.
+FACT-16: All cold, smart people are big.
+FACT-17: All young people are smart.
+FACT-18: All cold, young people are white.
+
+### ## RULES
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+
+### ## INFERENCES
+INFERENCE-1: Dave is young.
+INFERENCE-2: Dave is kind.
+INFERENCE-3: Dave is furry.
+INFERENCE-4: Dave is big.
+INFERENCE-5: Dave is cold.
+INFERENCE-6: Dave is white.
+INFERENCE-7: Harry is young.
+INFERENCE-8: Harry is kind.
+INFERENCE-9: Harry is furry.
+INFERENCE-10: Harry is big.
+INFERENCE-11: Harry is cold.
+INFERENCE-12: Harry is white.
+INFERENCE-13: All white, kind people are young.
+INFERENCE-14: Harry is young.
+INFERENCE-15: Harry is smart.
+INFERENCE-16: Smart, young people are furry.
+INFERENCE-17: All kind, furry people are big.
+INFERENCE-18: Harry is big.
+INFERENCE-19: All white, kind people are young.
+INFERENCE-20: Harry is old.

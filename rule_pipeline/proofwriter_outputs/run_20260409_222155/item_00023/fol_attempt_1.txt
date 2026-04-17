@@ -1,0 +1,22 @@
+FACT-1: Bob is cold.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Dave is big.
+INF-2: Dave is furry.
+INF-3: Dave is cold.
+INF-4: Dave is white.
+
+FACT-1: Dave is kind.
+RULE-3: All kind, furry people are big.
+INF-5: Dave is big.
+INF-6: Dave is furry.
+INF-7: Dave is cold.
+INF-8: Dave is young.
+
+FACT-9: All kind, furry people are big.
+INF-9: Dave is kind.
+INF-10: Dave is furry.
+INF-11: Dave is big.
+INF-12: Dave is young.
+
+INFERENCE: Dave is young.

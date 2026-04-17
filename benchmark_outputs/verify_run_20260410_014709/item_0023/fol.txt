@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Total number of customers on Tuesday is 8 :: TotalCustomersOnTuesday(n_8)
+FACT-2: The first group has 3 customers :: FirstGroupCustomers(n_3)
+FACT-3: Each of the first group buys 1 DVD :: FirstGroupPerCustomer(n_1)
+FACT-4: The second group has 2 customers :: SecondGroupCustomers(n_2)
+FACT-5: Each of the second group buys 2 DVDs :: SecondGroupPerCustomer(n_2)
+FACT-6: The third group has 3 customers :: ThirdGroupCustomers(n_3)
+FACT-7: Each of the third group buys 0 DVDs :: ThirdGroupPerCustomer(n_0)
+
+## RULES
+RULE-1: If FirstGroupCustomers(S) ∧ FirstGroupPerCustomer(P) ∧ Product(S,P,D) then FirstGroupTotal(D) :: ∀S∀P∀D((FirstGroupCustomers(S) ∧ FirstGroupPerCustomer(P) ∧ Product(S,P,D)) → FirstGroupTotal(D))
+RULE-2: If SecondGroupCustomers(S) ∧ SecondGroupPerCustomer(P) ∧ Product(S,P,D) then SecondGroupTotal(D) :: ∀S∀P∀D((SecondGroupCustomers(S) ∧ SecondGroupPerCustomer(P) ∧ Product(S,P,D)) → SecondGroupTotal(D))
+RULE-3: If ThirdGroupCustomers(S) ∧ ThirdGroupPerCustomer(P) ∧ Product(S,P,D) then ThirdGroupTotal(D) :: ∀S∀P∀D((ThirdGroupCustomers(S) ∧ ThirdGroupPerCustomer(P) ∧ Product(S,P,D)) → ThirdGroupTotal(D))
+
+## INFERENCES
+INF-1: 3 multiplied by 1 equals 3, from FACT-2 and FACT-3 by Arithmetic Computation :: Product(n_3, n_1, n_3)
+INF-2: FirstGroupTotal(3) from INF-1 and RULE-1 by Modus Ponens :: FirstGroupTotal(n_3)
+INF-3: 2 multiplied by 2 equals 4, from FACT-4 and FACT-5 by Arithmetic Computation :: Product(n_2, n_2, n_4)
+INF-4: SecondGroupTotal(4) from INF-3 and RULE-2 by Modus Ponens :: SecondGroupTotal(n_4)
+INF-5: 3 multiplied by 0 equals 0, from FACT-6 and FACT-7 by Arithmetic Computation :: Product(n_3, n_0, n_0)
+INF-6: ThirdGroupTotal(0) from INF-5 and RULE-3 by Modus Ponens :: ThirdGroupTotal(n_0)
+INF-7: 3 + 4 equals 7, from INF-2 and INF-4 by Arithmetic Computation :: Sum(n_3, n_4, n_7)
+INF-8: 7 + 0 equals 7, from INF-7 and INF-6 by Arithmetic Computation :: TotalDVDsSold(n_7)

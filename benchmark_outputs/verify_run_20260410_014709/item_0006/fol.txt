@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The price of the first glass is $5 :: FirstGlassPrice(n_5)
+FACT-2: Every second glass costs 60% of the price of the first glass :: SecondGlassPriceIs60PercentOfFirst(n_3, n_5)
+FACT-3: The third glass would also be $3 :: ThirdGlassPrice(n_3)
+
+## RULES
+RULE-1: If the price of the first glass is p and the price of the second glass is q where q is 60% of p, then the price of the second glass is q :: ∀p∀q((FirstGlassPrice(p) ∧ SecondGlassPriceIs60PercentOfFirst(q, p)) → SecondGlassPrice(q))
+RULE-2: If the price of the first glass is p and the price of the second glass is r, then the total cost is 104 :: ∀p∀r((FirstGlassPrice(p) ∧ SecondGlassPrice(r)) → TotalCost(n_104))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: SecondGlassPrice(n_3)
+INF-2: From FACT-1 and INF-1 by RULE-2 (Modus Ponens) :: TotalCost(n_104)

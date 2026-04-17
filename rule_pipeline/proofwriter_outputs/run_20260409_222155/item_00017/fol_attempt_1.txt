@@ -1,0 +1,13 @@
+FACT-1: Smart, young people are furry.
+FACT-2: All kind, furry people are big.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Harry is big.
+INF-2: Harry is furry.
+LABEL: Inference Rule: Modus Ponens
+LABEL: Fact-1: Smart, young people are furry :: (x)(Smart(x) & Young(x) -> Furry(x))
+LABEL: Fact-2: All kind, furry people are big :: (∀y)(Kind(y) ∧ Furry(y) -> Big(y))
+LABEL: RULE-1: If someone is furry and big then they are cold :: (P(x)) <-> (Furry(x) ∧ Big(x))
+LABEL: RULE-2: If someone is big then they are furry :: (Q(x)) -> Furry(x)
+LABEL: INF-1: Harry is big :: Harry is Big(Harry)
+LABEL: INF-2: Harry is furry :: Harry is Furry(Harry)

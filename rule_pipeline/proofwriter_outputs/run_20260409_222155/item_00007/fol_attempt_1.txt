@@ -1,0 +1,19 @@
+FACT-1: The bear is green. :: (∀x)(IsGreen(x) → IsKind(x))
+FACT-2: The bear likes the mouse. :: (∃y)(Likes(Bear, y))
+RULE-3: If someone is cold then they like the rabbit. :: (∃x)(Cold(x) → Likes(Rabbit, x))
+RULE-4: If someone is round and they do not need the bear then they see the rabbit. :: (∃x)(Round(x) ∧ ¬Needs(Bear, x) → See(Rabbit, x))
+
+## FACTS
+- The bear is green.
+- The bear likes the mouse.
+
+## RULES
+- If someone is cold then they like the rabbit.
+
+## INFERENCES
+- The bear likes the mouse.
+- The bear sees the mouse.
+
+Since the bear sees the mouse, we can infer that the bear might be cold. However, the bear could also be hot or somewhere else. Therefore, we cannot determine if the bear is young based solely on the given information.
+
+**Answer**: Unknown

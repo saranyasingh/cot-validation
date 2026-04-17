@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: ServingsPerNight(cynthia, n_1)
+FACT-2: DaysInPeriod(n_60)
+FACT-3: ServingsPerCarton(n_15)
+FACT-4: PricePerCarton(n_4)
+
+## RULES
+RULE-1: ∀x∀s∀d∀t((ServingsPerNight(x, s) ∧ DaysInPeriod(d) ∧ EqualProduct(s, d, t)) → TotalServings(x, t))
+RULE-2: ∀x∀t∀s∀c((TotalServings(x, t) ∧ ServingsPerCarton(s) ∧ EqualQuotient(t, s, c)) → CartonsNeeded(x, c))
+RULE-3: ∀x∀c∀p∀cc((CartonsNeeded(x, c) ∧ PricePerCarton(p) ∧ EqualProduct(c, p, cc)) → TotalCost(x, cc))
+
+## INFERENCES
+INF-1: 60 = 1*60, from FACT-1 and FACT-2 by Arithmetic Computation :: EqualProduct(n_1, n_60, n_60)
+INF-2: TotalServings(cynthia, n_60) from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalServings(cynthia, n_60)
+INF-3: EqualQuotient(n_60, n_15, n_4) from INF-2 and FACT-3 by Arithmetic Computation :: EqualQuotient(n_60, n_15, n_4)
+INF-4: CartonsNeeded(cynthia, n_4) from INF-2, FACT-3, INF-3, and RULE-2 by Modus Ponens :: CartonsNeeded(cynthia, n_4)
+INF-5: EqualProduct(n_4, n_4, n_16) from INF-4 and FACT-4 by Arithmetic Computation :: EqualProduct(n_4, n_4, n_16)
+INF-6: TotalCost(cynthia, n_16) from INF-4, FACT-4, INF-5, and RULE-3 by Modus Ponens :: TotalCost(cynthia, n_16)

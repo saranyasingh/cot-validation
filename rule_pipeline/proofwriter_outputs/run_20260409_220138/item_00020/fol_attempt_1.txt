@@ -1,0 +1,12 @@
+FACT-1: Bob is cold.
+FACT-2: Dave is kind.
+FACT-3: Dave is young.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Dave is not big :: ∀x(Fuzzy(x) → Big(x)) → Cold(x)
+INF-2: Dave is not big :: ∀x(Big(x) → Fuzzy(x))
+INF-3: Dave is not big :: ¬(Big(Dave))
+INF-4: Dave is not big :: ¬(Fuzzy(Dave))
+INF-5: Dave is not big :: ¬Cold(Dave)
+
+Since the statement "Dave is not big" cannot be conclusively determined based on the provided facts and rules without additional information, the answer is Unknown.

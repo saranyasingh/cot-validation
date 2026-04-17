@@ -1,0 +1,18 @@
+FACT-1: The bear is green.
+RULE-1: If someone is kind then they need the bear.
+FACT-2: The bear needs the mouse.
+RULE-2: If someone is round then they like the mouse.
+FACT-3: The mouse likes the cow.
+RULE-3: If someone likes the bear and they like the mouse then the bear likes the mouse.
+FACT-4: The cow sees the bear.
+RULE-4: If someone is cold then they like the rabbit.
+FACT-5: The rabbit is young.
+RULE-5: Young people are kind.
+
+LABEL: Fact-Rule-Main :: ∀ x ((Needs(x, mouse)) → Kind(x)) ∧ Round(x) → Likes(x, mouse)
+
+LABEL: Main-Inference :: Likes(bear, mouse) ∧ Round(bear) → Kind(bear)
+
+LABEL: Inferencing :: Kind(bear) :: Fact-1 ∧ RULE-1 ∧ Fact-2 ∧ RULE-2 ∧ Fact-3 ∧ RULE-3 ∧ Fact-4 ∧ RULE-4 ∧ Fact-5 ∧ RULE-5
+
+Final Answer: True

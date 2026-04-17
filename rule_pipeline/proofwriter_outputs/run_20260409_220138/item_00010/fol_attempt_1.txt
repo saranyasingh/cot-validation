@@ -1,0 +1,90 @@
+### CHAIN OF THOUGHT REASONING TO CONVERT
+
+#### Facts
+1. The bear is green.
+2. The bear likes the mouse.
+3. The bear needs the cow.
+4. The bear needs the mouse.
+5. The bear sees the cow.
+6. The bear sees the mouse.
+7. The cow likes the bear.
+8. The cow sees the bear.
+9. The mouse likes the cow.
+10. The mouse sees the rabbit.
+11. The rabbit is young.
+12. Young people are kind.
+
+#### Rules
+1. If someone is kind then they need the bear.
+2. If someone sees the cow then they are cold.
+3. If someone is cold then they like the rabbit.
+4. If someone needs the bear then the bear is young.
+5. If someone is round then they like the mouse.
+6. If someone likes the bear and they like the mouse then the bear likes the mouse.
+7. If someone likes the cow then the cow likes the bear.
+8. If someone is round and they do not need the bear then they see the rabbit.
+
+### INFERENCES
+1. Fact: "The bear is green."
+   - Not relevant to determining kindness.
+
+2. Fact: "The bear likes the mouse."
+   - Not sufficient to determine kindness.
+
+3. Rule: "If someone is kind then they need the bear."
+   - Not applicable without more context.
+
+4. Rule: "If someone sees the cow then they are cold."
+   - Fact: "The bear sees the cow."
+   - Conclusion: "The bear is cold."
+
+5. Rule: "If someone is cold then they like the rabbit."
+   - Fact: "The bear is cold."
+   - Conclusion: "The rabbit is young."
+
+6. Fact: "Young people are kind."
+   - Rule: "If someone needs the bear then the bear is young."
+   - Conclusion: "The bear is young."
+
+7. Fact: "The bear needs the mouse."
+   - Rule: "If someone needs the bear then the bear is young."
+   - Conclusion: "The bear is young."
+
+8. Fact: "The mouse sees the rabbit."
+   - Not relevant to determining kindness.
+
+9. Fact: "The rabbit is young."
+   - Not necessary for concluding the bear's kindness status.
+
+10. Rule: "If someone is round then they like the mouse."
+    - Fact: "The bear is green."
+    - Conclusion: "The bear is not round."
+
+11. Rule: "If someone likes the cow then the cow likes the bear."
+    - Fact: "The cow likes the bear."
+    - Conclusion: "The bear likes the cow."
+
+12. Rule: "If someone is round and they do not need the bear then they see the rabbit."
+    - Fact: "The bear is not round."
+    - Conclusion: "The bear does not see the rabbit."
+
+### Final Answer
+**Final inference:**
+- "The bear is green."
+  - Not relevant to determining kindness.
+- "The bear likes the mouse."
+  - Not sufficient to determine kindness.
+- "The bear needs the cow."
+  - Not sufficient to determine kindness.
+- "The bear needs the mouse."
+  - Conclusion: The bear is young.
+- "The bear sees the cow."
+  - Conclusion: The bear is cold.
+- "The rabbit is young."
+  - Conclusion: The bear is not round.
+- "The bear likes the cow."
+  - Conclusion: The bear likes the cow.
+
+Given these points, we cannot definitively determine whether the bear is kind or not. Thus, the conclusion remains unknown.
+
+**Answer:** Unknown

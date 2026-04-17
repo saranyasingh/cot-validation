@@ -1,0 +1,12 @@
+### FACTS
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- AllGreenPeopleAreBlue :: G(x) → B(x)
+
+### RULES
+- EatsBaldEagleEatsDog :: Eats(BaldEagle, Dog)
+- GreenPeopleEatDog :: G(p) → Eats(Dog, p)
+
+### INFERENCE
+- BaldEagleIsGreen :: G(TheBaldEagle)
+
+This conclusion is derived through logical deduction based on the provided facts and rules.

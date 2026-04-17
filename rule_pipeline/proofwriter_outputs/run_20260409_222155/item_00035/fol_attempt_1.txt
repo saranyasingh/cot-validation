@@ -1,0 +1,24 @@
+### FACTS
+- Fact_1: The dog chases the lion.
+- Fact_2: The dog is green.
+- Fact_3: If someone eats the bald eagle then they are green.
+
+### RULES
+- Rule_1: If someone chases the bald eagle then they eat the bald eagle.
+- Rule_2: If someone needs the dog and they are green then the dog chases the lion.
+- Rule_3: If someone eats the bald eagle then they are green.
+- Rule_4: If someone eats the lion then the lion needs the bald eagle.
+- Rule_5: If someone needs the cow then they need the dog.
+- Rule_6: If someone is rough then they chase the bald eagle.
+- Rule_7: If someone chases the lion then they are rough.
+- Rule_8: If someone is rough and they eat the dog then the dog eats the cow.
+
+### INFERENCES
+- **INF-1**: The dog chases the lion. (Fact_1)
+
+- **INF-2**: The dog is green. (Fact_2)
+
+- **INF-3**: Since the dog chases the lion, and the dog is green, and there is no direct rule stating that the dog chasing implies the dog chases the lion specifically for eating purposes, we cannot definitively infer from these facts alone that the dog chases the lion due to eating. Therefore, the inference here is unknown because the direct link between chasing and eating isn't explicitly stated in our facts or rules.
+
+Thus, the final answer is:
+**INF-3**: The dog chases the lion. (Unknown)

@@ -1,0 +1,9 @@
+FACT-1: Harry is cold.
+FACT-2: Harry is white.
+FACT-3: Harry is young.
+FACT-4: Harry is kind.
+RULE-1: If someone is fuzzy AND big THEN they are cold.
+RULE-2: If someone is big THEN they are fuzzy.
+INF-1: Harry is fuzzy.
+INF-2: Harry is big.
+INF-3: Harry is cold.

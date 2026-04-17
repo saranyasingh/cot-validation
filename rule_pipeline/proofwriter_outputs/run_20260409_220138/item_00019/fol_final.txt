@@ -1,0 +1,96 @@
+### ## FACTS
+- Bob is cold.
+- Dave is kind.
+- Dave is young.
+- Gary is big.
+- Gary is cold.
+- Gary is white.
+- Gary is young.
+- Harry is cold.
+- Harry is kind.
+- Harry is white.
+- Harry is young.
+- Smart, young people are furry.
+- All kind, furry people are big.
+- Smart, big people are furry.
+- All white, kind people are young.
+- All cold, smart people are big.
+- All young people are smart.
+- All cold, young people are white.
+
+### ## RULES
+- If someone is furry and big then they are cold.
+- If someone is big then they are furry.
+
+### ## INFERENCES
+- Dave is big. (From FACT-7)
+- Dave is furry. (From RULE-3)
+- Dave is kind. (From FACT-2)
+- Dave is white. (From RULE-4)
+- Dave is young. (From FACT-3)
+
+**ERROR REPORT**
+No FACT or RULE lines found in the structured FOL.
+
+**CONSTRAINTS**
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTF syntax issues must be corrected.
+
+**PROBLEM FACTS**
+- Bob is cold.
+- Dave is kind.
+- Dave is young.
+- Gary is big.
+- Gary is cold.
+- Gary is white.
+- Gary is young.
+- Harry is cold.
+- Harry is kind.
+- Harry is white.
+- Harry is young.
+- Smart, young people are furry.
+- All kind, furry people are big.
+- Smart, big people are furry.
+- All white, kind people are young.
+- All cold, smart people are big.
+- All young people are smart.
+- All cold, young people are white.
+
+**RULESET**
+- If someone is furry and big then they are cold.
+- If someone is big then they are furry.
+
+**OUTPUT**
+
+### ## FACTS
+- Bob is cold.
+- Dave is kind.
+- Dave is young.
+- Gary is big.
+- Gary is cold.
+- Gary is white.
+- Gary is young.
+- Harry is cold.
+- Harry is kind.
+- Harry is white.
+- Harry is young.
+- Smart, young people are furry.
+- All kind, furry people are big.
+- Smart, big people are furry.
+- All white, kind people are young.
+- All cold, smart people are big.
+- All young people are smart.
+- All cold, young people are white.
+
+### ## RULES
+- If someone is furry and big then they are cold.
+- If someone is big then they are furry.
+
+### ## INFERENCES
+- Dave is big. (From FACT-7)
+- Dave is furry. (From RULE-3)
+- Dave is kind. (From FACT-2)
+- Dave is white. (From RULE-4)
+- Dave is young. (From FACT-3)

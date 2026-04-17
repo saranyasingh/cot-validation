@@ -1,0 +1,5 @@
+FACT-1: The dog eats the lion.
+RULE-1: If someone eats the lion then the lion needs the bald eagle.
+RULE-2: If someone needs the dog and they are green then the dog chases the lion.
+INF-1: The dog is green.
+INF-2: Therefore, the dog chases the lion.

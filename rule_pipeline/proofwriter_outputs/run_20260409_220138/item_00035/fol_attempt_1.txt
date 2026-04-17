@@ -1,0 +1,12 @@
+FACT-1: The cow chases the bald eagle.
+FACT-2: The bald eagle chases the lion.
+RULE-1: If someone chases the bald eagle then they eat the bald eagle.
+RULE-2: If someone needs the dog and they are green then the dog chases the lion.
+RULE-3: If someone eats the bald eagle then they are green.
+RULE-4: If someone eats the lion then the lion needs the bald eagle.
+RULE-5: If someone needs the cow then they need the dog.
+RULE-6: If someone is rough then they chase the bald eagle.
+RULE-7: If someone chases the lion then they are rough.
+INF-1: The lion is rough because it satisfies Rule 7.
+INF-2: Therefore, the dog needs the lion because it satisfies Rule 5.
+INF-3: Hence, the dog chases the lion because it satisfies Rule 2.

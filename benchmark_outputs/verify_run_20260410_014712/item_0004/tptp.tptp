@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, number_of_sprints(n_3)).
+fof(fact_2, axiom, runs_per_week(n_3)).
+fof(fact_3, axiom, distance_per_sprint(n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,Z] : ((number_of_sprints(X) & distance_per_sprint(Y) & product(X,Y,Z)) => distance_per_session(Z))).
+fof(rule_2, axiom, ! [X,Y] : ((number_of_sprints(X) & distance_per_sprint(Y)) => product(n_3, n_60, n_180))).
+fof(rule_3, axiom, ! [A,B] : ((distance_per_session(A) & runs_per_week(B)) => product(n_180, n_3, n_540))).
+fof(rule_4, axiom, ! [X,Y,Z] : ((distance_per_session(X) & runs_per_week(Y) & product(X,Y,Z)) => total_weekly_distance(Z))).
+
+% --- INFERENCES ---
+% From fact_1, fact_3 by ArithmeticComputation
+fof(inf_1, axiom, product(n_3, n_60, n_180)).
+% From fact_1, fact_3, inf_1 by RULE-1
+fof(inf_2, axiom, distance_per_session(n_180)).
+% From inf_2, fact_2 by ArithmeticComputation
+fof(inf_3, axiom, product(n_180, n_3, n_540)).
+% From inf_2, fact_2, inf_3 by RULE-4
+fof(inf_4, axiom, total_weekly_distance(n_540)).

@@ -1,0 +1,64 @@
+### ## FACTS
+- The bald eagle is blue.
+- The lion is green.
+
+### ## RULES
+- If someone eats the bald eagle then they are green.
+- If someone eats the lion then the lion needs the bald eagle.
+- If someone needs the cow then they need the dog.
+
+### ## INFERENCES
+- The lion is green.
+- The lion needs the bald eagle.
+- The lion is not blue.
+
+### ERROR REPORT
+No FACT or RULE lines found in the structured FOL.
+
+### CONSTRAINTS
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTP syntax issues must be corrected.
+
+### PROBLEM FACTS
+- The bald eagle chases the lion.
+- The bald eagle is blue.
+- The bald eagle is nice.
+- The bald eagle is round.
+- The bald eagle needs the cow.
+- The bald eagle needs the lion.
+- The cow chases the bald eagle.
+- The cow is round.
+- The cow needs the bald eagle.
+- The dog eats the lion.
+- The dog is blue.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The lion eats the cow.
+- All green people are blue.
+
+### RULESET
+- If someone chases the bald eagle then they eat the bald eagle.
+- If someone needs the dog and they are green then the dog chases the lion.
+- If someone eats the bald eagle then they are green.
+- If someone eats the lion then the lion needs the bald eagle.
+- If someone needs the cow then they need the dog.
+- If someone is rough then they chase the bald eagle.
+- If someone chases the lion then they are rough.
+- If someone is rough and they eat the dog then the dog eats the cow.
+
+### OUTPUT
+### ## FACTS
+- The bald eagle is blue.
+- The lion is green.
+
+### ## RULES
+- If someone eats the bald eagle then they are green.
+- If someone eats the lion then the lion needs the bald eagle.
+- If someone needs the cow then they need the dog.
+
+### ## INFERENCES
+- The lion is green.
+- The lion needs the bald eagle.
+- The lion is not blue.

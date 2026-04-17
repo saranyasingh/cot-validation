@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — Directly stated: 16 eggs per day.
+FACT-2: SUPPORTED — Directly stated: eats three for breakfast.
+FACT-3: SUPPORTED — Directly stated: muffins with four eggs.
+FACT-4: SUPPORTED — Directly stated: $2 per egg.
+
+RULE-1: PLAUSIBLE — Encodes EggsRemainingAfterBreakfast = L - E.
+RULE-2: PLAUSIBLE — Encodes EggsRemainingAfterMuffins = EggsRemainingAfterBreakfast - B.
+RULE-3: PLAUSIBLE — Encodes TotalRevenue = EggsRemainingAfterMuffins * P.

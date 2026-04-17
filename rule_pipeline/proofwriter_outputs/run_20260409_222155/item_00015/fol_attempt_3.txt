@@ -1,0 +1,20 @@
+### ## FACTS
+- Harry is cold.
+- Harry is white.
+- Harry is young.
+- Harry is kind.
+
+### ## RULES
+- If someone is fuzzy AND big THEN they are cold.
+  - (Fuzzy ∧ Big) → Cold.
+- If someone is big THEN they are fuzzy.
+  - Big → Fuzzy.
+
+### ## INFERENCES
+- Harry is fuzzy.
+- Harry is big.
+- Harry is furry.
+- Harry is cold.
+- Harry is kind.
+- Harry is young.
+- Harry is white.

@@ -1,0 +1,24 @@
+{
+  "dataset": "GSM8K",
+  "run_id": "verify_run_20260410_014712",
+  "total": 10,
+  "skip_tptp": false,
+  "cot": {
+    "correct": 4,
+    "incorrect": 6,
+    "accuracy": 0.4
+  },
+  "verification": {
+    "flagged": 7,
+    "passed": 3
+  },
+  "error_detection": {
+    "true_positives": 6,
+    "false_positives": 1,
+    "false_negatives": 0,
+    "true_negatives": 3,
+    "precision": 0.8571,
+    "recall": 1.0,
+    "f1": 0.9231
+  }
+}

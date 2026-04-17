@@ -1,0 +1,24 @@
+### ## FACTS
+- **Fact 1:** Charlie is big.
+- **Fact 2:** Charlie is rough.
+- **Fact 3:** Charlie is smart.
+- **Fact 4:** Charlie is white.
+- **Fact 5:** Young, green things are smart.
+- **Fact 6:** Young things are white.
+- **Fact 7:** Young things are quiet.
+- **Fact 8:** All quiet, white things are rough.
+- **Fact 9:** All white things are young.
+- **Fact 10:** Young, green things are rough.
+- **Fact 11:** Big things are green.
+- **Fact 12:** Quiet things are big.
+
+### ## RULES
+- **Rule 1:** If something is young then it is big.
+- **Rule 2:** All quiet, white things are rough.
+- **Rule 3:** All white things are young.
+
+### ## INFERENCES
+- **Inference 1:** Since Charlie is big (Fact 1), and all quiet, white things are rough (Rule 2), Charlie cannot be white (contradiction).
+- **Inference 2:** Charlie is big (Fact 1). According to Rule 1, Charlie must be young. Also, from Fact 6, young things are white. Thus, Charlie must be white (since all young things are white).
+
+**Final Answer:** The inferred conclusion is False.

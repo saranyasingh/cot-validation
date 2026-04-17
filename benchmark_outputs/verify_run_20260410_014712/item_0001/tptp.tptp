@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_eggs_per_day(janet, n_16)).
+fof(fact_2, axiom, breakfast_eggs(janet, n_3)).
+fof(fact_3, axiom, muffin_eggs(janet, n_4)).
+fof(fact_4, axiom, price_per_egg(n_2)).
+fof(fact_5, axiom, subtract(n_16, n_3, n_13)).
+fof(fact_6, axiom, subtract(n_13, n_4, n_9)).
+fof(fact_7, axiom, multiply(n_9, n_2, n_18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,T,B,R] : ((total_eggs_per_day(P,T) & breakfast_eggs(P,B) & subtract(T,B,R)) => eggs_left_after_breakfast(P,R))).
+fof(rule_2, axiom, ! [P,R1,M,R2] : ((eggs_left_after_breakfast(P,R1) & muffin_eggs(P,M) & subtract(R1,M,R2)) => eggs_left_after_baking(P,R2))).
+fof(rule_3, axiom, ! [P,R2,PRICE,R3] : ((eggs_left_after_baking(P,R2) & price_per_egg(PRICE) & multiply(R2,PRICE,R3)) => revenue(P,R3))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_5 by RULE-1 (Modus Ponens)
+fof(inf_1, axiom, eggs_left_after_breakfast(janet, n_13)).
+% From inf_1, fact_3, fact_6 by RULE-2 (Modus Ponens)
+fof(inf_2, axiom, eggs_left_after_baking(janet, n_9)).
+% From inf_2, fact_4, fact_7 by RULE-3 (Modus Ponens)
+fof(inf_3, axiom, revenue(janet, n_18)).

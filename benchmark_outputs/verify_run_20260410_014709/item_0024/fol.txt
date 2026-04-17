@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Duration from 1:00 PM to 5:00 PM is four hours :: TimeSpan(one_pm, five_pm, n_4)
+FACT-2: The candle melts at a rate of 2 centimeters per hour :: MeltingRate(n_2)
+
+## RULES
+RULE-1: If there is a time span from a to b with duration h and a melting rate r, and a product t such that Product(h,r,t) holds, then TotalMelting(t) :: ∀a∀b∀h∀r∀t((TimeSpan(a,b,h) ∧ MeltingRate(r) ∧ Product(h,r,t)) → TotalMelting(t))
+RULE-2: If TotalMelting(t) then ShortenedBy(t) :: ∀t(TotalMelting(t) → ShortenedBy(t))
+
+## INFERENCES
+INF-1: 4 * 2 equals 8, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_4, n_2, n_8)
+INF-2: TotalMelting(n_8), from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalMelting(n_8)
+INF-3: ShortenedBy(n_8), from TotalMelting(n_8) and RULE-2 by Modus Ponens :: ShortenedBy(n_8)

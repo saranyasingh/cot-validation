@@ -1,0 +1,9 @@
+FACT-1: Bob is cold.
+FACT-2: Dave is kind.
+FACT-3: Dave is young.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Gary is cold.
+INF-2: Gary is big.
+INF-3: Gary is furry.
+INF-4: Gary is white (since no specific information about Gary’s color is given).

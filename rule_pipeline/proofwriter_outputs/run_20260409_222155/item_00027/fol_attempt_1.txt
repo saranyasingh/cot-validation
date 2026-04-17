@@ -1,0 +1,11 @@
+FACT-1: The cow chases the bald eagle.
+FACT-2: The lion chases the bald eagle.
+RULE-1: If someone chases the bald eagle then they eat the bald eagle.
+RULE-2: If someone needs the dog and they are green then the dog chases the lion.
+RULE-3: If someone eats the bald eagle then they are green.
+RULE-4: The cow chases the lion.
+RULE-5: The lion chases the bald eagle.
+RULE-6: The dog chases the lion.
+RULE-7: If someone eats the lion then the lion needs the cow.
+INF-1: The cow is green.
+INF-2: Therefore, the cow eats the bald eagle.

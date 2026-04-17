@@ -1,0 +1,16 @@
+FACT-1: The bear is green.
+FACT-2: The bear likes the mouse.
+FACT-3: The bear needs the cow.
+RULE-4: The bear needs the mouse.
+RULE-5: The bear sees the cow.
+RULE-6: The bear sees the mouse.
+RULE-7: The cow likes the bear.
+RULE-8: The cow sees the bear.
+RULE-9: The mouse likes the cow.
+RULE-10: The mouse sees the rabbit.
+RULE-11: The rabbit is young.
+RULE-12: Young people are kind.
+INF-1: The mouse sees the rabbit.
+
+Therefore,
+LABEL: INF-1 :: The mouse sees the rabbit.

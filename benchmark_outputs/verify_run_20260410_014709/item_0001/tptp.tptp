@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, eggs_laid_per_day(janet, n_16)).
+fof(fact_2, axiom, eggs_eaten_for_breakfast(janet, n_3)).
+fof(fact_3, axiom, eggs_used_for_muffins(janet, n_4)).
+fof(fact_4, axiom, price_per_egg(janet, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,L,E,D] : ((eggs_laid_per_day(P,L) & eggs_eaten_for_breakfast(P,E) & subtract(L,E,D)) => eggs_remaining_after_breakfast(P,D))).
+fof(rule_2, axiom, ! [P,A,B,C] : ((eggs_remaining_after_breakfast(P,A) & eggs_used_for_muffins(P,B) & subtract(A,B,C)) => eggs_remaining_after_muffins(P,C))).
+fof(rule_3, axiom, ! [Pp, R, Pr, T] : ((eggs_remaining_after_muffins(Pp,R) & price_per_egg(Pp,Pr) & product(R,Pr,T)) => total_revenue(Pp,T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by ArithmeticComputation
+fof(inf_1, axiom, subtract(n_16, n_3, n_13)).
+% From fact_1, fact_2, inf_1 by RULE-1
+fof(inf_2, axiom, eggs_remaining_after_breakfast(janet, n_13)).
+% From inf_2, fact_3 by ArithmeticComputation
+fof(inf_3, axiom, subtract(n_13, n_4, n_9)).
+% From inf_2, fact_3, inf_3 by RULE-2
+fof(inf_4, axiom, eggs_remaining_after_muffins(janet, n_9)).
+% From inf_4, fact_4 by ArithmeticComputation
+fof(inf_5, axiom, product(n_9, n_2, n_18)).
+% From inf_4, fact_4, inf_5 by RULE-3
+fof(inf_6, axiom, total_revenue(janet, n_18)).

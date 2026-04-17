@@ -1,0 +1,47 @@
+### ## FACTS
+1. The bald eagle chases the lion.
+2. The bald eagle is blue.
+3. The bald eagle is nice.
+4. The bald eagle is round.
+5. The bald eagle needs the cow.
+6. The bald eagle needs the lion.
+7. The cow chases the bald eagle.
+8. The cow is round.
+9. The cow needs the bald eagle.
+10. The dog eats the lion.
+11. The dog is blue.
+12. The lion chases the bald eagle.
+13. The lion eats the bald eagle.
+14. The lion eats the cow.
+15. All green people are blue.
+
+### ## RULES
+1. If someone chases the bald eagle then they eat the bald eagle.
+2. If someone needs the dog and they are green then the dog chases the lion.
+3. If someone eats the bald eagle then they are green.
+4. If someone eats the lion then the lion needs the bald eagle.
+5. If someone needs the cow then they need the dog.
+6. If someone is rough then they chase the bald eagle.
+7. If someone chases the lion then they are rough.
+8. If someone is rough and they eat the dog then the dog eats the cow.
+
+### ## INFERENCES
+1. The lion needs the bald eagle (Fact 5 combined with Rule 4).
+2. The lion chases the bald eagle (Fact 10 combined with Rule 2).
+3. The lion is rough (from Rule 7).
+4. The dog chases the lion (because the lion is rough and Rule 6).
+5. The dog is blue (Fact 11).
+6. The cow needs the dog (Rule 5 combined with Fact 8).
+7. The cow needs the bald eagle (Fact 8).
+8. The cow is round (Fact 9).
+9. The dog eats the cow (Fact 14).
+10. Therefore, the cow needs the dog (by Modus Ponens from Steps 5 and 7).
+11. The dog eats the cow (Fact 14).
+12. Therefore, the cow needs the dog (by Modus Ponens from Step 10 and Step 11).
+13. The dog chases the lion (by Modus Ponens from Step 2 and Step 6).
+14. The lion chases the bald eagle (by Modus Ponens from Step 1 and Step 3).
+15. The lion needs the bald eagle (by Modus Ponens from Step 1 and Step 4).
+16. Therefore, the lion needs the cow (by Modus Ponens from Steps 13 and 15).
+
+**Final Inference:**
+The lion needs the cow (True).

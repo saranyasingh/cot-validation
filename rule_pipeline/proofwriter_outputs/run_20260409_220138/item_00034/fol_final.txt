@@ -1,0 +1,40 @@
+### ## FACTS
+- The bald eagle chases the lion.
+- The bald eagle is blue.
+- The bald eagle is nice.
+- The bald eagle is round.
+- The bald eagle needs the cow.
+- The bald eagle needs the lion.
+- The cow chases the bald eagle.
+- The cow is round.
+- The cow needs the bald eagle.
+- The dog eats the lion.
+- The dog is blue.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The lion eats the cow.
+- All green people are blue.
+
+### ## RULES
+- If someone chases the bald eagle then they eat the bald eagle.
+- If someone needs the dog and they are green then the dog chases the lion.
+- If someone eats the bald eagle then they are green.
+- If someone eats the lion then the lion needs the bald eagle.
+- If someone needs the cow then they need the dog.
+- If someone is rough then they chase the bald eagle.
+- If someone chases the lion then they are rough.
+- If someone is rough and they eat the dog then the dog eats the cow.
+
+### ## INFERENCES
+- **Inference-1**: The lion is green.
+  - Premises:
+    - The lion chases the bald eagle (FACT_5).
+    - From Rule 1, the lion eats the bald eagle (RULE_9).
+    - Therefore, the lion is green (RULE_4).
+
+- **Inference-2**: The lion cannot be both green and not green.
+  - Conclusion: Since the lion is chasing the bald eagle and eating the bald eagle, and the lion being green contradicts itself, the lion cannot be both green and not green simultaneously.
+
+Thus, the final inference establishes that the statement "The bald eagle is not green" is **False**.
+
+Therefore, the answer is: **False**.

@@ -1,0 +1,78 @@
+### ## FACTS
+- Erin is furry.
+- Erin is big.
+- All nice people are big.
+- All nice people are green.
+- Big people are rough.
+- Rough people are not white.
+- All furry people are big.
+
+### ## RULES
+- If someone is nice then they are green.
+- If someone is nice then they are big.
+- If someone is big then they are rough.
+- If someone is rough then they are not white.
+- All furry people are big.
+- All nice people are big.
+- All nice people are green.
+- If someone is nice then they are green.
+
+### ## INFERENCES
+- Erin is big.
+- Erin is nice.
+- Erin is green.
+- Erin is not white.
+
+**ERROR REPORT**
+- No FACT or RULE lines found in the structured FOL.
+
+**CONSTRAINTS**
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTF syntax issues must be corrected.
+
+**PROBLEM FACTS**
+- Erin is furry.
+- Erin is big.
+- All nice people are big.
+- All nice people are green.
+- Big people are rough.
+- Rough people are not white.
+- All furry people are big.
+
+**RULESET**
+- If someone is nice then they are green.
+- If someone is nice then they are big.
+- If someone is big then they are rough.
+- If someone is rough then they are not white.
+- All furry people are big.
+- All nice people are big.
+- All nice people are green.
+- If someone is nice then they are green.
+
+**OUTPUT**
+### ## FACTS
+- Erin is furry.
+- Erin is big.
+- All nice people are big.
+- All nice people are green.
+- Big people are rough.
+- Rough people are not white.
+- All furry people are big.
+
+### ## RULES
+- If someone is nice then they are green.
+- If someone is nice then they are big.
+- If someone is big then they are rough.
+- If someone is rough then they are not white.
+- All furry people are big.
+- All nice people are big.
+- All nice people are green.
+- If someone is nice then they are green.
+
+### ## INFERENCES
+- Erin is big.
+- Erin is nice.
+- Erin is green.
+- Erin is not white.

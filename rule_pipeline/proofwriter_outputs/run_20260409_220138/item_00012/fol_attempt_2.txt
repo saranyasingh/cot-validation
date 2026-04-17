@@ -1,0 +1,20 @@
+### ## FACTS
+- **FACT-1**: The bear needs the mouse.
+- **FACT-2**: The bear needs the cow.
+- **FACT-3**: The bear sees the mouse.
+- **FACT-4**: The bear sees the rabbit.
+
+### ## RULES
+- **RULE-1**: If someone is round and they do not need the bear then they see the rabbit.
+- **RULE-2**: If someone is kind then they need the bear.
+- **RULE-3**: If someone sees the cow then they are cold.
+- **RULE-4**: If someone is cold then they like the rabbit.
+- **RULE-5**: If someone needs the bear then the bear is young.
+- **RULE-6**: If someone is round then they like the mouse.
+- **RULE-7**: If someone likes the bear and they like the mouse then the bear likes the mouse.
+- **RULE-8**: If someone likes the cow then the cow likes the bear.
+- **RULE-9**: If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- **INF-1**: The bear does not need the bear :: ∀ x ((Round(x) → ~(Needs(x, bear)) → SeeRabbit(x)))
+  - **Reasoning**: Given the rules, if a person is round and they do not need the bear, they should see the rabbit. Hence, the bear (which is round) does not need the bear.

@@ -1,0 +1,15 @@
+### ## FACTS
+- The_rabbit_is_young :: True
+
+### ## RULES
+- Rule_4: If someone is round then they like the mouse.
+- Rule_5: If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- Fact_1: The_bear_is_kind :: (∀x)(IsRound(x) → LikesMouse(x)) ∧ (∀y)(IsRound(y) ∧ NeedsBear(y) → SeesRabbit(y))
+- Fact_2: The_bear_sees_the_rabbit :: (∀z)(LikesBear(z) ∧ LikesMouse(z) → SeesRabbit(z))
+
+### CONCLUSION:
+Given the provided facts and rules, while we infer that the bear sees the rabbit due to the bear's roundness and lack of need for the bear, there is insufficient evidence to definitively state whether the rabbit is not kind. Thus, the statement "The rabbit is not kind" remains uncertain based on the current information.
+
+**Final Answer:** Unknown

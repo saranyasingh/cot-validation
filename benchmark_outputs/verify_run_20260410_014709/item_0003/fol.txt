@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: PurchasePrice(josh, n_80000)
+FACT-2: RepairCost(josh, n_50000)
+FACT-3: IncreasePercentage(josh, n_150)
+
+## RULES
+RULE-1: ∀j∀p∀r∀s((PurchasePrice(j, p) ∧ RepairCost(j, r) ∧ Sum(p, r, s)) → InitialCost(j, s))
+RULE-2: ∀j∀c∀t∀v((InitialCost(j, c) ∧ IncreasePercentage(j, t) ∧ Multiply(c, t, v)) → IncreaseValue(j, v))
+RULE-3: ∀j∀v∀c∀p((IncreaseValue(j, v) ∧ InitialCost(j, c) ∧ Subtract(v, c, p)) → Profit(j, p))
+
+## INFERENCES
+INF-1: Sum(n_80000, n_50000, n_130000) :: from FACT-1, FACT-2 by ArithmeticComputation
+INF-2: InitialCost(josh, n_130000) :: from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens
+INF-3a: Multiply(n_130000, n_150, n_195000) :: from INF-2, FACT-3 by ArithmeticComputation
+INF-3b: IncreaseValue(josh, n_195000) :: from INF-2, FACT-3, INF-3a by RULE-2
+INF-4: Subtract(n_195000, n_130000, n_65000) :: from INF-3b, INF-2 by ArithmeticComputation
+INF-5: Profit(josh, n_65000) :: from INF-3b, INF-2, INF-4 by RULE-3

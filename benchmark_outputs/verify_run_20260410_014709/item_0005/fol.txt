@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Wendi has 20 chickens :: Chickens(wendi, n_20)
+FACT-2: Each chicken receives 3 cups of feed per day :: FeedPerChickenPerDay(n_3)
+FACT-3: Morning feed is 15 cups :: MorningFeed(n_15)
+FACT-4: Afternoon feed is 25 cups :: AfternoonFeed(n_25)
+
+## RULES
+RULE-1: If Chickens(wendi, x) ∧ FeedPerChickenPerDay(y) ∧ Multiply(x, y, z) then TotalFeedPerDay(z) :: ∀x∀y∀z((Chickens(wendi, x) ∧ FeedPerChickenPerDay(y) ∧ Multiply(x, y, z)) → TotalFeedPerDay(z))
+RULE-2: If Subtract(n_a, n_b, n_c) then FinalMealFeed(n_c) :: ∀a∀b∀c((Subtract(n_a, n_b, n_c)) → FinalMealFeed(n_c))
+RULE-3: If Add(n_x, n_y, n_z) then PreFinalMealFeed(n_z) :: ∀x∀y∀z((Add(n_x, n_y, n_z)) → PreFinalMealFeed(n_z))
+
+## INFERENCES
+INF-1: Multiply(n_20, n_3, n_60) :: Multiply( n_20, n_3, n_60 ) from FACT-1, FACT-2 by Arithmetic Computation
+INF-2: Add(n_15, n_25, n_40) :: Add( n_15, n_25, n_40 ) from FACT-3, FACT-4 by Arithmetic Computation
+INF-3: PreFinalMealFeed(n_40) :: PreFinalMealFeed(n_40) from INF-2 by Modus Ponens with RULE-3
+INF-4: Subtract(n_60, n_40, n_20) :: Subtract(n_60, n_40, n_20) from INF-1 and INF-3 by Arithmetic Computation
+INF-5: FinalMealFeed(n_20) :: FinalMealFeed(n_20) from INF-4 by Modus Ponens with RULE-2

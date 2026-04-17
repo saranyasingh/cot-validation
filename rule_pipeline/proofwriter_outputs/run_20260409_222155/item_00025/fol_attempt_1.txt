@@ -1,0 +1,7 @@
+FACT-1: The dog eats the lion. :: Dog eats Lion
+
+RULE-1: Rule 5: If someone needs the cow then they need the dog. :: Dog needs Cow
+
+INF-1: Modus Ponens: Dog needs Cow -> Dog needs Lion :: Dog needs Lion
+
+INF-2: Unknown: Dog needs Lion does not necessarily imply the dog is green or needs anything else. :: Unknown

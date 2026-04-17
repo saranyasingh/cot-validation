@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, blue_bolts_for_robe(robe, n_2)).
+fof(fact_2, axiom, half_of(n_2, n_1)).
+fof(fact_3, axiom, sum_equals(n_2, n_1, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R,B,W] : ((blue_bolts_for_robe(R,B) & half_of(B,W)) => white_bolts_for_robe(R,W))).
+fof(rule_2, axiom, ! [R,B,W,T] : ((blue_bolts_for_robe(R,B) & white_bolts_for_robe(R,W) & sum_equals(B,W,T)) => total_bolts_for_robe(R,T))).
+fof(rule_3, axiom, ! [R,T] : (total_bolts_for_robe(R,T) => answer_value(T))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by RULE-1 (Modus Ponens)
+fof(inf_1, axiom, white_bolts_for_robe(robe, n_1)).
+
+% From FACT-1, INF-1, FACT-3 by RULE-2 (Modus Ponens)
+fof(inf_2, axiom, total_bolts_for_robe(robe, n_3)).
+
+% From INF-2 by RULE-3 (Modus Ponens)
+fof(inf_3, axiom, answer_value(n_3)).

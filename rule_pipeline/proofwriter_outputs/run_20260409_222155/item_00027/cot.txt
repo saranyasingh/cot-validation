@@ -1,0 +1,35 @@
+To determine if the statement "The cow eats the bald eagle" is true, false, or unknown, we will use the provided facts and rules to reason through this logically.
+
+### Step 1: Identify Relevant Facts
+We need information about who eats whom and who chases whom in relation to the bald eagle and the cow.
+
+**Facts relevant to the statement:**
+- The cow chases the bald eagle.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The dog chases the lion.
+- The dog eats the lion.
+- The dog eats the cow.
+
+### Step 2: Apply Rules
+Let's apply the rules to see how they relate to our statement:
+
+#### Rule Application:
+- **Rule 3:** If someone eats the bald eagle, then they are green.
+- **Rule 5:** If someone eats the lion, then the lion needs the bald eagle.
+- **Rule 7:** If someone eats the lion, then the lion needs the cow.
+
+From these rules, we can deduce that if the cow eats the bald eagle, then the lion would have eaten the bald eagle first (due to Rule 5), and since the lion needs the cow according to Rule 7, the cow must also be green according to Rule 3.
+
+### Step 3: Logical Deduction
+Since the cow is chasing the bald eagle, let’s consider the possible scenarios based on the chase sequence:
+- If the lion chases the bald eagle, then the lion eats the bald eagle.
+- Since the lion eats the bald eagle, the lion becomes green according to Rule 3.
+- Given that the lion needs the cow (Rule 5), and the cow is chasing the lion (Rule 4), the cow must be green because the lion has already become green due to eating the bald eagle (Rule 3).
+
+Thus, we conclude that both the lion and the cow are green.
+
+### Conclusion
+Given that the cow is green, and using Rule 3, we know that the cow does indeed eat the bald eagle.
+
+Therefore, the answer is: True

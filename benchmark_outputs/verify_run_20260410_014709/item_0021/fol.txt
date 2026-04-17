@@ -1,0 +1,26 @@
+## FACTS
+FACT-1: The orange drink contains 2/3 water :: WaterInOrange(n_2_over_3)
+FACT-2: The orange drink has 10 liters :: OrangeVolume(n_10)
+FACT-3: The pineapple juice has 15 liters :: PineappleVolume(n_15)
+FACT-4: The total volume before spillage is 25 liters :: PreSpillTotalVolume(n_25)
+FACT-5: One liter of orange spills :: SpilledFromOrange(n_1)
+FACT-6: Remaining orange volume is 9 liters :: RemainingOrangeVolume(n_9)
+FACT-7: Remaining total volume after spill is 24 liters :: RemainingTotalVolume(n_24)
+FACT-8: 9 plus 15 equals 24 :: Add(n_9, n_15, n_24)
+FACT-9: 20/3 divided by 24 equals 5/18 :: Divide(n_20_over_3, n_24, n_5_over_18)
+FACT-10: 5/18 times 24 equals 20/3 :: Multiply(n_5_over_18, n_24, n_20_over_3)
+FACT-11: Initial water liters = 20/3 :: InitialWaterLiters(n_20_over_3)
+FACT-12: Water proportion remaining = 5/18 :: WaterProportionRemaining(n_5_over_18)
+FACT-13: Water in remaining liters = 20/3 :: WaterInRemainingLiters(n_20_over_3)
+FACT-14: Final water approximation = 2.8 :: FinalWaterApprox(n_2_8)
+
+## RULES
+RULE-1: If orange contains water fraction w and orange volume o and Multiply(o, w, i) then InitialWaterLiters(i) :: ∀w∀o∀i((WaterInOrange(w) ∧ OrangeVolume(o) ∧ Multiply(o,w,i)) → InitialWaterLiters(i))
+RULE-2: If remaining orange volume a and pineapple volume b and Add(a,b,c) then RemainingTotalVolume(c) :: ∀a∀b∀c((RemainingOrangeVolume(a) ∧ PineappleVolume(b) ∧ Add(a,b,c)) → RemainingTotalVolume(c))
+RULE-3: If InitialWaterLiters(p) and RemainingTotalVolume(q) and Divide(p,q,r) then WaterProportionRemaining(r) :: ∀p∀q∀r((InitialWaterLiters(p) ∧ RemainingTotalVolume(q) ∧ Divide(p,q,r)) → WaterProportionRemaining(r))
+RULE-4: If WaterProportionRemaining(r) and RemainingTotalVolume(s) and Multiply(r,s,t) then WaterInRemainingLiters(t) :: ∀r∀s∀t((WaterProportionRemaining(r) ∧ RemainingTotalVolume(s) ∧ Multiply(r,s,t)) → WaterInRemainingLiters(t))
+
+## INFERENCES
+INF-1: InitialWaterLiters(n_20_over_3) from FACT-1, FACT-2 by RULE-1
+INF-2: WaterProportionRemaining(n_5_over_18) from INF-1, FACT-9, by RULE-3
+INF-3: WaterInRemainingLiters(n_20_over_3) from INF-2, FACT-10, by RULE-4

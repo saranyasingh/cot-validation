@@ -1,0 +1,26 @@
+### ## FACTS
+- The bear is green.
+- The bear likes the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The cow likes the bear.
+- The cow sees the bear.
+- The mouse likes the cow.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone is kind then they need the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+- If someone needs the bear then the bear is young.
+- If someone is round then they like the mouse.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+**INFER-1**: Since the bear needs the bear (Rule-3), and the bear needs the mouse (Fact-4), and the bear likes the mouse (Fact-2), and young people are kind (Fact-12), we can apply Rule-1 that if someone is kind then they need the bear.
+**INFER-2**: Therefore, since the bear needs the bear, and we've established that young people are kind, we can conclude that the bear must be young (INFER-1).

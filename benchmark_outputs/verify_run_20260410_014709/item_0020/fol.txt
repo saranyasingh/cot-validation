@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Marissa walked 4 miles in 1 hour :: Walked(marissa, four_miles, one_hour)
+FACT-2: Marissa walked 2 more miles in 1 hour :: Walked(marissa, two_more_miles, one_hour)
+FACT-3: The goal is to achieve an average speed of 4 mph :: GoalAverageSpeed(four_mph)
+
+## RULES
+RULE-1: If a person walked 4 miles in 1 hour and 2 more miles in 1 hour, then their total time is 2 hours :: ∀p((Walked(p, four_miles, one_hour) ∧ Walked(p, two_more_miles, one_hour)) → TotalTime(p, two_hours))
+RULE-2: If a person walked 4 miles in 1 hour and 2 more miles in 1 hour, then their total distance is 6 miles :: ∀p((Walked(p, four_miles, one_hour) ∧ Walked(p, two_more_miles, one_hour)) → TotalDistance(p, six_miles))
+RULE-3: If a person has total distance 6 miles and total time 2 hours, then their average speed is 3 mph :: ∀p((TotalDistance(p, six_miles) ∧ TotalTime(p, two_hours)) → AvgSpeed(p, three_mph))
+RULE-4: If AvgSpeed(p, s) and GoalAverageSpeed(g) then AdjustmentNeeded(p, s, g) :: ∀p∀s∀g((AvgSpeed(p, s) ∧ GoalAverageSpeed(g)) → AdjustmentNeeded(p, s, g))
+
+## INFERENCES
+INF-1: TotalTime(marissa, two_hours) from FACT-1, FACT-2 via RULE-1 by Modus Ponens :: TotalTime(marissa, two_hours)
+INF-2: TotalDistance(marissa, six_miles) from FACT-1, FACT-2 via RULE-2 by Modus Ponens :: TotalDistance(marissa, six_miles)
+INF-3: AvgSpeed(marissa, three_mph) from INF-1, INF-2 via RULE-3 by Modus Ponens :: AvgSpeed(marissa, three_mph)
+INF-4: AdjustmentNeeded(marissa, three_mph, four_mph) from INF-3 and FACT-3 via RULE-4 by Modus Ponens :: AdjustmentNeeded(marissa, three_mph, four_mph)

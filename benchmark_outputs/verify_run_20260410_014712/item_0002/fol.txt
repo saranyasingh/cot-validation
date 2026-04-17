@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: The robe requires 2 bolts of blue fiber :: RobeBlueFiber(robe, n_2)
+FACT-2: The robe's white fiber amount is half as blue fiber amount :: WhiteFiberHalfBlue(robe)
+FACT-3: Half(n_2, n_1) :: Half(n_2, n_1)
+FACT-4: Add(n_2, n_1, n_3) :: Add(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If a robe r has blue fiber amount b and white fiber is half blue fiber, then WhiteFiber(r, w) where Half(b, w) :: ∀r∀b∀w((RobeBlueFiber(r,b) ∧ WhiteFiberHalfBlue(r) ∧ Half(b,w)) → WhiteFiber(r,w))
+RULE-2: If RobeBlueFiber(r,b) and WhiteFiber(r,w) and Add(b,w,t), then TotalBoltFiber(r,t) :: ∀r∀b∀w∀t((RobeBlueFiber(r,b) ∧ WhiteFiber(r,w) ∧ Add(b,w,t)) → TotalBoltFiber(r,t))
+
+## INFERENCES
+INF-1: WhiteFiber(robe, n_1) is inferred from FACT-1, FACT-2, and FACT-3 using RULE-1 (Modus Ponens) :: WhiteFiber(robe, n_1)
+INF-2: TotalBoltFiber(robe, n_3) is inferred from FACT-1, INF-1, and FACT-4 using RULE-2 (Modus Ponens) :: TotalBoltFiber(robe, n_3)

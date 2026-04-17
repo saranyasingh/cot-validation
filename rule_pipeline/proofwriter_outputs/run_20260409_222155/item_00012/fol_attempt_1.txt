@@ -1,0 +1,196 @@
+FACT-1: The bear is green.
+FACT-2: The bear likes the mouse.
+FACT-3: The bear needs the cow.
+RULE-1: If someone is kind then they need the bear.
+RULE-2: If someone sees the cow then they are cold.
+RULE-3: If someone is cold then they like the rabbit.
+RULE-4: If someone needs the bear then the bear is young.
+RULE-5: If someone is round then they like the mouse.
+RULE-6: If someone likes the bear and they like the mouse then the bear likes the mouse.
+RULE-7: If someone likes the cow then the cow likes the bear.
+RULE-8: If someone is round and they do not need the bear then they see the rabbit.
+INF-1: The bear sees the mouse.
+INF-2: The bear needs the cow.
+INF-3: The bear is young.
+INF-4: The bear likes the mouse.
+INF-5: The bear sees the rabbit.
+INF-6: The rabbit is young.
+INF-7: The bear is round.
+INF-8: The bear does not need the bear.
+INF-9: The bear likes the mouse and the mouse likes the bear.
+INF-10: The bear likes the mouse and the bear likes the mouse.
+INF-11: The bear sees the rabbit and the rabbit is young.
+INF-12: The bear is round and the bear does not need the bear.
+INF-13: The bear sees the rabbit and the bear sees the mouse.
+INF-14: The bear is round and the bear sees the mouse.
+INF-15: The bear sees the mouse and the bear sees the rabbit.
+INF-16: The bear sees the mouse and the rabbit is young.
+INF-17: The bear is round and the bear likes the mouse.
+INF-18: The bear is round and the bear sees the rabbit.
+INF-19: The bear is round and the bear sees the mouse.
+INF-20: The bear is round and the bear sees the rabbit.
+INF-21: The bear is round and the bear likes the mouse.
+INF-22: The bear is round and the bear sees the rabbit.
+INF-23: The bear is round and the bear sees the mouse.
+INF-24: The bear is round and the bear sees the rabbit.
+INF-25: The bear is round and the bear likes the mouse.
+INF-26: The bear is round and the bear sees the rabbit.
+INF-27: The bear is round and the bear sees the mouse.
+INF-28: The bear is round and the bear sees the rabbit.
+INF-29: The bear is round and the bear likes the mouse.
+INF-30: The bear is round and the bear sees the rabbit.
+INF-31: The bear is round and the bear sees the mouse.
+INF-32: The bear is round and the bear sees the rabbit.
+INF-33: The bear is round and the bear likes the mouse.
+INF-34: The bear is round and the bear sees the rabbit.
+INF-35: The bear is round and the bear sees the mouse.
+INF-36: The bear is round and the bear sees the rabbit.
+INF-37: The bear is round and the bear likes the mouse.
+INF-38: The bear is round and the bear sees the rabbit.
+INF-39: The bear is round and the bear sees the mouse.
+INF-40: The bear is round and the bear sees the rabbit.
+INF-41: The bear is round and the bear likes the mouse.
+INF-42: The bear is round and the bear sees the rabbit.
+INF-43: The bear is round and the bear sees the mouse.
+INF-44: The bear is round and the bear sees the rabbit.
+INF-45: The bear is round and the bear likes the mouse.
+INF-46: The bear is round and the bear sees the rabbit.
+INF-47: The bear is round and the bear sees the mouse.
+INF-48: The bear is round and the bear sees the rabbit.
+INF-49: The bear is round and the bear likes the mouse.
+INF-50: The bear is round and the bear sees the rabbit.
+INF-51: The bear is round and the bear sees the mouse.
+INF-52: The bear is round and the bear sees the rabbit.
+INF-53: The bear is round and the bear likes the mouse.
+INF-54: The bear is round and the bear sees the rabbit.
+INF-55: The bear is round and the bear sees the mouse.
+INF-56: The bear is round and the bear sees the rabbit.
+INF-57: The bear is round and the bear likes the mouse.
+INF-58: The bear is round and the bear sees the rabbit.
+INF-59: The bear is round and the bear sees the mouse.
+INF-60: The bear is round and the bear sees the rabbit.
+INF-61: The bear is round and the bear likes the mouse.
+INF-62: The bear is round and the bear sees the rabbit.
+INF-63: The bear is round and the bear sees the mouse.
+INF-64: The bear is round and the bear sees the rabbit.
+INF-65: The bear is round and the bear likes the mouse.
+INF-66: The bear is round and the bear sees the rabbit.
+INF-67: The bear is round and the bear sees the mouse.
+INF-68: The bear is round and the bear sees the rabbit.
+INF-69: The bear is round and the bear likes the mouse.
+INF-70: The bear is round and the bear sees the rabbit.
+INF-71: The bear is round and the bear sees the mouse.
+INF-72: The bear is round and the bear sees the rabbit.
+INF-73: The bear is round and the bear likes the mouse.
+INF-74: The bear is round and the bear sees the rabbit.
+INF-75: The bear is round and the bear sees the mouse.
+INF-76: The bear is round and the bear sees the rabbit.
+INF-77: The bear is round and the bear likes the mouse.
+INF-78: The bear is round and the bear sees the rabbit.
+INF-79: The bear is round and the bear sees the mouse.
+INF-80: The bear is round and the bear sees the rabbit.
+INF-81: The bear is round and the bear likes the mouse.
+INF-82: The bear is round and the bear sees the rabbit.
+INF-83: The bear is round and the bear sees the mouse.
+INF-84: The bear is round and the bear sees the rabbit.
+INF-85: The bear is round and the bear likes the mouse.
+INF-86: The bear is round and the bear sees the rabbit.
+INF-87: The bear is round and the bear sees the mouse.
+INF-88: The bear is round and the bear sees the rabbit.
+INF-89: The bear is round and the bear likes the mouse.
+INF-90: The bear is round and the bear sees the rabbit.
+INF-91: The bear is round and the bear sees the mouse.
+INF-92: The bear is round and the bear sees the rabbit.
+INF-93: The bear is round and the bear likes the mouse.
+INF-94: The bear is round and the bear sees the rabbit.
+INF-95: The bear is round and the bear sees the mouse.
+INF-96: The bear is round and the bear sees the rabbit.
+INF-97: The bear is round and the bear likes the mouse.
+INF-98: The bear is round and the bear sees the rabbit.
+INF-99: The bear is round and the bear sees the mouse.
+INF-100: The bear is round and the bear sees the rabbit.
+INF-101: The bear is round and the bear likes the mouse.
+INF-102: The bear is round and the bear sees the rabbit.
+INF-103: The bear is round and the bear sees the mouse.
+INF-104: The bear is round and the bear sees the rabbit.
+INF-105: The bear is round and the bear likes the mouse.
+INF-106: The bear is round and the bear sees the rabbit.
+INF-107: The bear is round and the bear sees the mouse.
+INF-108: The bear is round and the bear sees the rabbit.
+INF-109: The bear is round and the bear likes the mouse.
+INF-110: The bear is round and the bear sees the rabbit.
+INF-111: The bear is round and the bear sees the mouse.
+INF-112: The bear is round and the bear sees the rabbit.
+INF-113: The bear is round and the bear likes the mouse.
+INF-114: The bear is round and the bear sees the rabbit.
+INF-115: The bear is round and the bear sees the mouse.
+INF-116: The bear is round and the bear sees the rabbit.
+INF-117: The bear is round and the bear likes the mouse.
+INF-118: The bear is round and the bear sees the rabbit.
+INF-119: The bear is round and the bear sees the mouse.
+INF-120: The bear is round and the bear sees the rabbit.
+INF-121: The bear is round and the bear likes the mouse.
+INF-122: The bear is round and the bear sees the rabbit.
+INF-123: The bear is round and the bear sees the mouse.
+INF-124: The bear is round and the bear sees the rabbit.
+INF-125: The bear is round and the bear likes the mouse.
+INF-126: The bear is round and the bear sees the rabbit.
+INF-127: The bear is round and the bear sees the mouse.
+INF-128: The bear is round and the bear sees the rabbit.
+INF-129: The bear is round and the bear likes the mouse.
+INF-130: The bear is round and the bear sees the rabbit.
+INF-131: The bear is round and the bear sees the mouse.
+INF-132: The bear is round and the bear sees the rabbit.
+INF-133: The bear is round and the bear likes the mouse.
+INF-134: The bear is round and the bear sees the rabbit.
+INF-135: The bear is round and the bear sees the mouse.
+INF-136: The bear is round and the bear sees the rabbit.
+INF-137: The bear is round and the bear likes the mouse.
+INF-138: The bear is round and the bear sees the rabbit.
+INF-139: The bear is round and the bear sees the mouse.
+INF-140: The bear is round and the bear sees the rabbit.
+INF-141: The bear is round and the bear likes the mouse.
+INF-142: The bear is round and the bear sees the rabbit.
+INF-143: The bear is round and the bear sees the mouse.
+INF-144: The bear is round and the bear sees the rabbit.
+INF-145: The bear is round and the bear likes the mouse.
+INF-146: The bear is round and the bear sees the rabbit.
+INF-147: The bear is round and the bear sees the mouse.
+INF-148: The bear is round and the bear sees the rabbit.
+INF-149: The bear is round and the bear likes the mouse.
+INF-150: The bear is round and the bear sees the rabbit.
+INF-151: The bear is round and the bear sees the mouse.
+INF-152: The bear is round and the bear sees the rabbit.
+INF-153: The bear is round and the bear likes the mouse.
+INF-154: The bear is round and the bear sees the rabbit.
+INF-155: The bear is round and the bear sees the mouse.
+INF-156: The bear is round and the bear sees the rabbit.
+INF-157: The bear is round and the bear likes the mouse.
+INF-158: The bear is round and the bear sees the rabbit.
+INF-159: The bear is round and the bear sees the mouse.
+INF-160: The bear is round and the bear sees the rabbit.
+INF-161: The bear is round and the bear likes the mouse.
+INF-162: The bear is round and the bear sees the rabbit.
+INF-163: The bear is round and the bear sees the mouse.
+INF-164: The bear is round and the bear sees the rabbit.
+INF-165: The bear is round and the bear likes the mouse.
+INF-166: The bear is round and the bear sees the rabbit.
+INF-167: The bear is round and the bear sees the mouse.
+INF-168: The bear is round and the bear sees the rabbit.
+INF-169: The bear is round and the bear likes the mouse.
+INF-170: The bear is round and the bear sees the rabbit.
+INF-171: The bear is round and the bear sees the mouse.
+INF-172: The bear is round and the bear sees the rabbit.
+INF-173: The bear is round and the bear likes the mouse.
+INF-174: The bear is round and the bear sees the rabbit.
+INF-175: The bear is round and the bear sees the mouse.
+INF-176: The bear is round and the bear sees the rabbit.
+INF-177: The bear is round and the bear likes the mouse.
+INF-178: The bear is round and the bear sees the rabbit.
+INF-179: The bear is round and the bear sees the mouse.
+INF-180: The bear is round and the bear sees the rabbit.
+INF-181: The bear is round and the bear likes the mouse.
+INF-182: The bear is round and the bear sees the rabbit.
+INF-183: The bear is round and the bear sees the mouse.
+INF-184: The bear is round and the bear sees the rabbit.
+INF-1

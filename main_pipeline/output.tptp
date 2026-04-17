@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, price(h1, n_33)).
+fof(fact_2, axiom, twice(h2, h1)).
+fof(fact_3, axiom, boots_minus_sum_equals(boots, h1, h2, n_5)).
+fof(fact_4, axiom, add(n_33, n_66, n_99)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [H1, H2] : ((price(H1, n_33) & twice(H2, H1)) => price(H2, n_66))).
+fof(rule_2, axiom, ! [B, U, V] : ((boots_minus_sum_equals(B, U, V, n_5) & price(U, n_33) & price(V, n_66) & add(n_33, n_66, n_99)) => price(B, n_104))).
+fof(rule_3, axiom, ! [B] : (price(B, n_104) => final_answer(n_104))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, price(h2, n_66)).
+% From inf_1, fact_3, fact_4 by Modus Ponens
+fof(inf_2, axiom, price(boots, n_104)).
+% From inf_2 by Modus Ponens
+fof(inf_3, axiom, final_answer(n_104)).

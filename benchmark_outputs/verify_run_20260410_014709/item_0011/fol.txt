@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: The first month downloads are 60 :: FirstMonthDownloads(n_60)
+FACT-2: Three times 60 equals 180 :: Multiplies(n_3, n_60, n_180)
+FACT-3: 70% of 180 equals 126 :: PercentOf(n_180, n_70, n_126)
+FACT-4: Add 60 and 180 equals 240 :: Add(n_60, n_180, n_240)
+FACT-5: Add 240 and 126 equals 366 :: Add(n_240, n_126, n_366)
+
+## RULES
+RULE-1: If the first month downloads are a and b is the product of 3 and a, then the second month downloads are b :: ∀a∀b((FirstMonthDownloads(a) ∧ Multiplies(n_3, a, b)) → SecondMonthDownloads(b))
+RULE-2: If the second month downloads are x and y is the percent of x equals z, then the third month downloads are z :: ∀x∀y∀z((SecondMonthDownloads(x) ∧ PercentOf(x, y, z)) → ThirdMonthDownloads(z))
+RULE-3: If the first month downloads are a and the second month downloads are b and Add(a,b,c) then SumFirstTwo(c) :: ∀a∀b∀c((FirstMonthDownloads(a) ∧ SecondMonthDownloads(b) ∧ Add(a,b,c)) → SumFirstTwo(c))
+RULE-4: If SumFirstTwo(a) and ThirdMonthDownloads(b) and Add(a,b,c) then TotalDownloads(c) :: ∀a∀b∀c((SumFirstTwo(a) ∧ ThirdMonthDownloads(b) ∧ Add(a,b,c)) → TotalDownloads(c))
+
+## INFERENCES
+INF-1: SecondMonthDownloads(n_180) :: from FACT-1, FACT-2 via RULE-1 (Modus Ponens)
+INF-2: ThirdMonthDownloads(n_126) :: from INF-1, FACT-3 via RULE-2 (Modus Ponens)
+INF-3: SumFirstTwo(n_240) :: from FACT-1, INF-1, FACT-4 via RULE-3 (Modus Ponens)
+INF-4: TotalDownloads(n_366) :: from INF-3, INF-2, FACT-5 via RULE-4 (Modus Ponens)

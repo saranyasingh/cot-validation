@@ -1,0 +1,32 @@
+### ## FACTS
+- Fact-1: Anne is big.
+- Fact-2: Anne is green.
+- Fact-3: Anne is nice.
+- Fact-4: Bob is kind.
+- Fact-5: Erin is furry.
+- Fact-6: Erin is white.
+- Fact-7: Gary is furry.
+- Fact-8: Gary is green.
+- Fact-9: Gary is nice.
+- Fact-10: Gary is white.
+- Fact-11: Kind people are nice.
+- Fact-12: Big people are rough.
+- Fact-13: Green people are white.
+- Fact-14: All rough people are kind.
+- Fact-15: All nice people are big.
+- Fact-16: Furry people are big.
+
+### ## RULES
+- Rule-1: If Gary is white then Gary is big.
+- Rule-2: If Anne is nice then Anne is green.
+- Rule-3: If someone is nice then they are green.
+
+### ## INFERENCES
+- INF-1: Erin is furry.
+- INF-2: Erin is white.
+- INF-3: Erin is green.
+- INF-4: Erin is nice.
+- INF-5: Erin is fuzzy because she is both furry and fuzzy.
+- INF-6: Erin is not big because Erin is fuzzy and all furry people are big, which contradicts the assumption that Erin might be big. Therefore, Erin cannot be big.
+
+**Final Answer:** The statement "Erin is not big." is False.

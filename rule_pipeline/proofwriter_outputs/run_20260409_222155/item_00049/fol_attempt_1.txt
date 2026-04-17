@@ -1,0 +1,7 @@
+FACT-1: Anne is green :: "Anne is green"
+
+RULE-1: If something is young then it is big :: "If X is young, then X is big."
+
+INFERENCE-1: Anne is young :: From Fact 4 and Rule 1, if Anne is young, then Anne is big.
+
+CONCLUSION: Anne is big :: Since Anne is young according to Inference 1, and all young things are big based on Rule 1, therefore Anne is big.

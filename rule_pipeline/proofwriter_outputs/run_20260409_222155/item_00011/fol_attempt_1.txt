@@ -1,0 +1,8 @@
+FACT-1: The bear needs the mouse.
+FACT-2: The bear sees the mouse.
+RULE-1: If someone is round then they like the mouse.
+INF-1: The bear is round.
+INF-2: Therefore, the bear likes the mouse.
+INF-3: Therefore, the bear sees the mouse.
+INF-4: Therefore, the bear needs the mouse.
+INF-5: Therefore, the bear needs the bear.

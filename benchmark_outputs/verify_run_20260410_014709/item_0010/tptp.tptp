@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, regular_hours(eliza, n_40)).
+fof(fact_2, axiom, regular_rate(eliza, n_10)).
+fof(fact_3, axiom, overtime_hours eliza, n_5)? No, fix.
+Wait, I must correct: The line should be:
+fof(fact_3, axiom, overtime_hours(eliza, n_5)).
+fof(fact_4, axiom, overtime_rate(eliza, n_12)).
+fof(fact_5, axiom, multiplies(n_40, n_10, n_400)).
+fof(fact_6, axiom, multiplies(n_5, n_12, n_60)).
+fof(fact_7, axiom, sum(n_400, n_60, n_460)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [H] : ! [R] : ! [E] : ((regular_hours(X,H) & regular_rate(X,R) & multiplies(H,R,E)) => regular_earnings(X,E))).
+fof(rule_2, axiom, ! [X] : ! [H] : ! [R] : ! [E] : ((overtime_hours(X,H) & overtime_rate(X,R) & multiplies(H,R,E)) => overtime_earnings(X,E))).
+fof(rule_3, axiom, ! [X] : ! [A] : ! [B] : ! [C] : ((regular_earnings(X,A) & overtime_earnings(X,B) & sum(A,B,C)) => total_earnings(X,C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, regular_earnings(eliza, n_400)).
+% From fact_3, fact_4, fact_6 by Modus Ponens
+fof(inf_2, axiom, overtime_earnings(eliza, n_60)).
+% From inf_1, inf_2, fact_7 by Modus Ponens
+fof(inf_3, axiom, total_earnings(eliza, n_460)).

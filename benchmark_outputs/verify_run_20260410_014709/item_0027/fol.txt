@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: ShortsCount(n_3) :: 3 pairs of shorts
+FACT-2: ShortsPricePerPair(n_1650) :: price per shorts pair = 16.50
+FACT-3: PantsCount(n_3) :: 3 pairs of pants
+FACT-4: PantsPricePerPair(n_2250) :: price per pants pair = 22.50
+FACT-5: ShoesCount(n_3) :: 3 pairs of shoes
+FACT-6: ShoesPricePerPair(n_4200) :: price per shoes pair = 42
+
+## RULES
+RULE-1: ∀q∀p∀r((ShortsCount(q) ∧ ShortsPricePerPair(p) ∧ Product(q,p,r)) → ShortsCost(r))
+RULE-2: ∀q∀p∀r((PantsCount(q) ∧ PantsPricePerPair(p) ∧ Product(q,p,r)) → PantsCost(r))
+RULE-3: ∀q∀p∀r((ShoesCount(q) ∧ ShoesPricePerPair(p) ∧ Product(q,p,r)) → ShoesCost(r))
+RULE-4: ∀a∀b∀c∀d((SumCosts(a,b,c,d)) → TotalCost(d))
+
+## INFERENCES
+INF-1: Product(n_3, n_1650, n_4950) :: ArithmeticComputation from FACT-1, FACT-2
+INF-2: ShortsCost(n_4950) :: from INF-1, FACT-1, FACT-2 by RULE-1
+INF-3: Product(n_3, n_2250, n_6750) :: ArithmeticComputation from FACT-3, FACT-4
+INF-4: PantsCost(n_6750) :: from INF-3 by RULE-2
+INF-5: Product(n_3, n_4200, n_12600) :: ArithmeticComputation from FACT-5, FACT-6
+INF-6: ShoesCost(n_12600) :: from INF-5 by RULE-3
+INF-7: SumCosts(n_4950, n_6750, n_12600, n_24300) :: ArithmeticComputation from INF-2, INF-4, INF-6
+INF-8: TotalCost(n_24300) :: from INF-7 by RULE-4

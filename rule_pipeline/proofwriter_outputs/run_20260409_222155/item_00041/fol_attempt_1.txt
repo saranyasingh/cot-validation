@@ -1,0 +1,3 @@
+FACT-1: Bob is furry.
+RULE-1: If someone is nice then they are green.
+INF-1: Bob is green :: (∀x (Nice(x) → Green(x))) ∧ Bob is nice.

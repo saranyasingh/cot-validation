@@ -1,0 +1,5 @@
+FACT-1: The bear sees the cow.
+RULE-1: If someone is round then they like the mouse.
+RULE-2: If someone is round and they do not need the bear then they see the rabbit.
+INF-1: The bear is not round.
+INF-2: There is no direct evidence linking the bear to liking the rabbit through any of the provided rules.

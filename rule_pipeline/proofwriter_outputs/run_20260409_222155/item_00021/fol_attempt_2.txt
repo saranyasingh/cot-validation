@@ -1,0 +1,43 @@
+### ## FACTS
+- **Fact-1:** Bob is cold.
+- **Fact-2:** Dave is kind.
+- **Fact-3:** Dave is young.
+- **Fact-4:** Gary is big.
+- **Fact-5:** Gary is cold.
+- **Fact-6:** Gary is white.
+- **Fact-7:** Gary is young.
+- **Fact-8:** Harry is cold.
+- **Fact-9:** Harry is kind.
+- **Fact-10:** Harry is white.
+- **Fact-11:** Harry is young.
+- **Fact-12:** Smart, young people are furry.
+- **Fact-13:** All kind, furry people are big.
+- **Fact-14:** Smart, big people are furry.
+- **Fact-15:** All white, kind people are young.
+- **Fact-16:** All cold, smart people are big.
+- **Fact-17:** All young people are smart.
+- **Fact-18:** All cold, young people are white.
+
+### ## RULES
+- **Rule-1:** If someone is furry and big then they are cold.
+- **Rule-2:** If someone is big then they are furry.
+
+### ## INFERENCES
+- **Step 1:** From Fact-1: Bob is cold.
+- **Step 2:** From Fact-2: Dave is kind.
+- **Step 3:** From Rule-2: Since Dave is kind, Dave is big.
+- **Step 4:** From Fact-3: Dave is young.
+- **Step 5:** From Rule-1: Since Dave is big, Dave is fuzzy (big and furry).
+- **Step 6:** From Fact-12: Smart, young people are furry.
+- **Step 7:** Dave is fuzzy (big and furry).
+- **Step 8:** From Fact-17: All young people are smart.
+- **Step 9:** From Fact-3: Dave is young.
+- **Step 10:** Dave is smart.
+- **Step 11:** From Fact-16: All cold, smart people are big.
+- **Step 12:** From Fact-4: Gary is big.
+- **Step 13:** From Fact-5: Gary is cold.
+- **Step 14:** Dave is cold (from Fact-1 and Fact-4).
+
+**Final Conclusion:** Based on the given facts and rules, Dave is indeed cold. 
+
+**Answer:** True

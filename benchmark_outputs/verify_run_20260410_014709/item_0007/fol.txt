@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Toulouse has twice as many sheep as Charleston :: TwiceAsMany(toulouse, charleston)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: FourTimesAsMany(charleston, seattle)
+FACT-3: Seattle has 20 sheep :: SheepIn(seattle, n_20)
+FACT-4: 4 * 20 = 80 :: Mult4(n_20, n_80)
+FACT-5: 80 * 2 = 160 :: Mult2(n_80, n_160)
+FACT-6: 160 + 80 + 20 = 260 :: Sum3(n_160, n_80, n_20, n_260)
+
+## RULES
+RULE-1: If a city x has twice as many sheep as city y and city y has n sheep, and m is such that m = 2*n, then city x has m sheep :: ∀x∀y∀n∀m((TwiceAsMany(x,y) ∧ SheepIn(y,n) ∧ Mult2(n,m)) → SheepIn(x,m))
+RULE-2: If a city x has 4 times as many sheep as city y and city y has n sheep, and m is such that m = 4*n, then city x has m sheep :: ∀x∀y∀n∀m((FourTimesAsMany(x,y) ∧ SheepIn(y,n) ∧ Mult4(n,m)) → SheepIn(x,m))
+RULE-3: If Sum3(a,b,c,d) and SheepIn(toulouse,a) and SheepIn(charleston,b) and SheepIn(seattle,c) then TotalThreeCities(d) :: ∀a∀b∀c∀d((Sum3(a,b,c,d) ∧ SheepIn(toulouse,a) ∧ SheepIn(charleston,b) ∧ SheepIn(seattle,c)) → TotalThreeCities(d))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep, from FACT-2, FACT-3, and FACT-4 by RULE-2 :: SheepIn(charleston, n_80)
+INF-2: Toulouse has 160 sheep, from FACT-1, INF-1, and FACT-5 by RULE-1 :: SheepIn(toulouse, n_160)
+INF-3: Total sheep across Toulouse, Charleston, and Seattle is 260, from INF-2, INF-1, FACT-3, and FACT-6 by RULE-3 :: TotalThreeCities(n_260)

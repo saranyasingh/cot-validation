@@ -1,0 +1,216 @@
+FACT-1: The bald eagle chases the lion.
+RULE-1: If someone chases the bald eagle then they eat the bald eagle.
+INF-1: The bald eagle eats the lion.
+RULE-2: If someone eats the bald eagle then they are green.
+INF-2: The bald eagle is green.
+RULE-3: If someone is rough then they chase the bald eagle.
+INF-3: The bald eagle is rough.
+RULE-4: If someone chases the lion then they are rough.
+INF-4: The lion is rough.
+RULE-5: If someone is rough and they eat the dog then the dog eats the cow.
+INF-5: The dog eats the cow.
+RULE-6: If someone needs the cow then they need the dog.
+INF-6: The dog needs the cow.
+RULE-7: If someone eats the lion then the lion needs the bald eagle.
+INF-7: The lion needs the bald eagle.
+RULE-8: If someone needs the bald eagle then they eat the bald eagle.
+INF-8: The lion eats the bald eagle.
+RULE-9: If someone needs the cow then they need the dog.
+INF-9: The lion needs the cow.
+RULE-10: If someone needs the cow then they need the dog.
+INF-10: The lion needs the dog.
+RULE-11: If someone needs the dog then the dog chases the lion.
+INF-11: The dog chases the lion.
+RULE-12: If someone chases the lion then they are rough.
+INF-12: The dog chases the lion.
+INF-13: If someone chases the lion then they are rough.
+INF-14: The dog chases the lion.
+INF-15: If someone chases the lion then they are rough.
+INF-16: The dog chases the lion.
+INF-17: If someone chases the lion then they are rough.
+INF-18: The dog chases the lion.
+INF-19: If someone chases the lion then they are rough.
+INF-20: The dog chases the lion.
+INF-21: If someone chases the lion then they are rough.
+INF-22: The dog chases the lion.
+INF-23: If someone chases the lion then they are rough.
+INF-24: The dog chases the lion.
+INF-25: If someone chases the lion then they are rough.
+INF-26: The dog chases the lion.
+INF-27: If someone chases the lion then they are rough.
+INF-28: The dog chases the lion.
+INF-29: If someone chases the lion then they are rough.
+INF-30: The dog chases the lion.
+INF-31: If someone chases the lion then they are rough.
+INF-32: The dog chases the lion.
+INF-33: If someone chases the lion then they are rough.
+INF-34: The dog chases the lion.
+INF-35: If someone chases the lion then they are rough.
+INF-36: The dog chases the lion.
+INF-37: If someone chases the lion then they are rough.
+INF-38: The dog chases the lion.
+INF-39: If someone chases the lion then they are rough.
+INF-40: The dog chases the lion.
+INF-41: If someone chases the lion then they are rough.
+INF-42: The dog chases the lion.
+INF-43: If someone chases the lion then they are rough.
+INF-44: The dog chases the lion.
+INF-45: If someone chases the lion then they are rough.
+INF-46: The dog chases the lion.
+INF-47: If someone chases the lion then they are rough.
+INF-48: The dog chases the lion.
+INF-49: If someone chases the lion then they are rough.
+INF-50: The dog chases the lion.
+INF-51: If someone chases the lion then they are rough.
+INF-52: The dog chases the lion.
+INF-53: If someone chases the lion then they are rough.
+INF-54: The dog chases the lion.
+INF-55: If someone chases the lion then they are rough.
+INF-56: The dog chases the lion.
+INF-57: If someone chases the lion then they are rough.
+INF-58: The dog chases the lion.
+INF-59: If someone chases the lion then they are rough.
+INF-60: The dog chases the lion.
+INF-61: If someone chases the lion then they are rough.
+INF-62: The dog chases the lion.
+INF-63: If someone chases the lion then they are rough.
+INF-64: The dog chases the lion.
+INF-65: If someone chases the lion then they are rough.
+INF-66: The dog chases the lion.
+INF-67: If someone chases the lion then they are rough.
+INF-68: The dog chases the lion.
+INF-69: If someone chases the lion then they are rough.
+INF-70: The dog chases the lion.
+INF-71: If someone chases the lion then they are rough.
+INF-72: The dog chases the lion.
+INF-73: If someone chases the lion then they are rough.
+INF-74: The dog chases the lion.
+INF-75: If someone chases the lion then they are rough.
+INF-76: The dog chases the lion.
+INF-77: If someone chases the lion then they are rough.
+INF-78: The dog chases the lion.
+INF-79: If someone chases the lion then they are rough.
+INF-80: The dog chases the lion.
+INF-81: If someone chases the lion then they are rough.
+INF-82: The dog chases the lion.
+INF-83: If someone chases the lion then they are rough.
+INF-84: The dog chases the lion.
+INF-85: If someone chases the lion then they are rough.
+INF-86: The dog chases the lion.
+INF-87: If someone chases the lion then they are rough.
+INF-88: The dog chases the lion.
+INF-89: If someone chases the lion then they are rough.
+INF-90: The dog chases the lion.
+INF-91: If someone chases the lion then they are rough.
+INF-92: The dog chases the lion.
+INF-93: If someone chases the lion then they are rough.
+INF-94: The dog chases the lion.
+INF-95: If someone chases the lion then they are rough.
+INF-96: The dog chases the lion.
+INF-97: If someone chases the lion then they are rough.
+INF-98: The dog chases the lion.
+INF-99: If someone chases the lion then they are rough.
+INF-100: The dog chases the lion.
+INF-101: If someone chases the lion then they are rough.
+INF-102: The dog chases the lion.
+INF-103: If someone chases the lion then they are rough.
+INF-104: The dog chases the lion.
+INF-105: If someone chases the lion then they are rough.
+INF-106: The dog chases the lion.
+INF-107: If someone chases the lion then they are rough.
+INF-108: The dog chases the lion.
+INF-109: If someone chases the lion then they are rough.
+INF-110: The dog chases the lion.
+INF-111: If someone chases the lion then they are rough.
+INF-112: The dog chases the lion.
+INF-113: If someone chases the lion then they are rough.
+INF-114: The dog chases the lion.
+INF-115: If someone chases the lion then they are rough.
+INF-116: The dog chases the lion.
+INF-117: If someone chases the lion then they are rough.
+INF-118: The dog chases the lion.
+INF-119: If someone chases the lion then they are rough.
+INF-120: The dog chases the lion.
+INF-121: If someone chases the lion then they are rough.
+INF-122: The dog chases the lion.
+INF-123: If someone chases the lion then they are rough.
+INF-124: The dog chases the lion.
+INF-125: If someone chases the lion then they are rough.
+INF-126: The dog chases the lion.
+INF-127: If someone chases the lion then they are rough.
+INF-128: The dog chases the lion.
+INF-129: If someone chases the lion then they are rough.
+INF-130: The dog chases the lion.
+INF-131: If someone chases the lion then they are rough.
+INF-132: The dog chases the lion.
+INF-133: If someone chases the lion then they are rough.
+INF-134: The dog chases the lion.
+INF-135: If someone chases the lion then they are rough.
+INF-136: The dog chases the lion.
+INF-137: If someone chases the lion then they are rough.
+INF-138: The dog chases the lion.
+INF-139: If someone chases the lion then they are rough.
+INF-140: The dog chases the lion.
+INF-141: If someone chases the lion then they are rough.
+INF-142: The dog chases the lion.
+INF-143: If someone chases the lion then they are rough.
+INF-144: The dog chases the lion.
+INF-145: If someone chases the lion then they are rough.
+INF-146: The dog chases the lion.
+INF-147: If someone chases the lion then they are rough.
+INF-148: The dog chases the lion.
+INF-149: If someone chases the lion then they are rough.
+INF-150: The dog chases the lion.
+INF-151: If someone chases the lion then they are rough.
+INF-152: The dog chases the lion.
+INF-153: If someone chases the lion then they are rough.
+INF-154: The dog chases the lion.
+INF-155: If someone chases the lion then they are rough.
+INF-156: The dog chases the lion.
+INF-157: If someone chases the lion then they are rough.
+INF-158: The dog chases the lion.
+INF-159: If someone chases the lion then they are rough.
+INF-160: The dog chases the lion.
+INF-161: If someone chases the lion then they are rough.
+INF-162: The dog chases the lion.
+INF-163: If someone chases the lion then they are rough.
+INF-164: The dog chases the lion.
+INF-165: If someone chases the lion then they are rough.
+INF-166: The dog chases the lion.
+INF-167: If someone chases the lion then they are rough.
+INF-168: The dog chases the lion.
+INF-169: If someone chases the lion then they are rough.
+INF-170: The dog chases the lion.
+INF-171: If someone chases the lion then they are rough.
+INF-172: The dog chases the lion.
+INF-173: If someone chases the lion then they are rough.
+INF-174: The dog chases the lion.
+INF-175: If someone chases the lion then they are rough.
+INF-176: The dog chases the lion.
+INF-177: If someone chases the lion then they are rough.
+INF-178: The dog chases the lion.
+INF-179: If someone chases the lion then they are rough.
+INF-180: The dog chases the lion.
+INF-181: If someone chases the lion then they are rough.
+INF-182: The dog chases the lion.
+INF-183: If someone chases the lion then they are rough.
+INF-184: The dog chases the lion.
+INF-185: If someone chases the lion then they are rough.
+INF-186: The dog chases the lion.
+INF-187: If someone chases the lion then they are rough.
+INF-188: The dog chases the lion.
+INF-189: If someone chases the lion then they are rough.
+INF-190: The dog chases the lion.
+INF-191: If someone chases the lion then they are rough.
+INF-192: The dog chases the lion.
+INF-193: If someone chases the lion then they are rough.
+INF-194: The dog chases the lion.
+INF-195: If someone chases the lion then they are rough.
+INF-196: The dog chases the lion.
+INF-197: If someone chases the lion then they are rough.
+INF-198: The dog chases the lion.
+INF-199: If someone chases the lion then they are rough.
+INF-200: The dog chases the lion.
+INF-201: If someone chases the lion then they are rough.
+INF-202: The dog chases the lion.
+INF-203: If

@@ -1,0 +1,13 @@
+  % From FACT-1, RULE-1 by Modus Ponens
+  inf_1: NOT PROVED
+  % From FACT-3, FACT-4 by Modus Ponens
+  inf_2: NOT PROVED
+  % From INF-1, INF-2 by RULE-3
+  inf_3: NOT PROVED
+  % From INF-3 and FACT-5 by RULE-4
+  inf_4: PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms
+inf_2: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms

@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Claire eats 3 eggs per day :: EggsPerDay(claire, n_3)
+FACT-2: There are 7 days in a week :: DaysInWeek(n_7)
+FACT-3: There are 4 weeks :: Weeks(n_4)
+FACT-4: There are 12 eggs in a dozen :: DozenSize(n_12)
+
+## RULES
+RULE-1: Eggs per week from daily eggs and days per week via multiplication :: ∀p∀d∀w∀ee((EggsPerDay(p, d) ∧ DaysInWeek(w) ∧ Multiply(d, w, ee)) → EggsPerWeek(p, ee))
+RULE-2: Total eggs equals eggs per week times number of weeks :: ∀p∀ee∀w∀total((EggsPerWeek(p, ee) ∧ Weeks(w) ∧ Multiply(ee, w, total)) → TotalEggs(p, total))
+RULE-3: Dozens from total eggs and 12 per dozen :: ∀p∀total∀d∀dozen((TotalEggs(p, total) ∧ DozenSize(d) ∧ Divide(total, d, dozen)) → Dozens(p, dozen))
+
+## INFERENCES
+INF-1: 3 × 7 = 21, from FACT-1 and FACT-2 by Arithmetic Computation :: Multiply(n_3, n_7, n_21)
+INF-2: EggsPerWeek(claire, n_21) from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: EggsPerWeek(claire, n_21)
+INF-3: 21 × 4 = 84, from INF-2 and FACT-3 by Arithmetic Computation :: Multiply(n_21, n_4, n_84)
+INF-4: TotalEggs(claire, n_84) from INF-2, FACT-3, INF-3 by Modus Ponens :: TotalEggs(claire, n_84)
+INF-5: 84 ÷ 12 = 7, from INF-4 and FACT-4 by Arithmetic Computation :: Divide(n_84, n_12, n_7)
+INF-6: Dozens(claire, n_7) from INF-4, FACT-4, INF-5 by Modus Ponens :: Dozens(claire, n_7)

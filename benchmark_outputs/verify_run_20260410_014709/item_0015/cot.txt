@@ -1,0 +1,35 @@
+EXPLANATION
+1. First, we need to determine how many students are enrolled in contemporary dance.
+   - Since 20% of the 20 students enrolled in contemporary dance,
+   \[
+   20\% \times 20 = 0.20 \times 20 = 4 \text{ students}
+   \]
+
+2. Next, we calculate the number of students who did not enroll in contemporary dance (i.e., those left after accounting for the contemporary dancers).
+   - There were originally 20 students, so subtracting the 4 who enrolled in contemporary dance leaves us with:
+   \[
+   20 - 4 = 16 \text{ students}
+   \]
+
+3. Of these remaining 16 students, 25% enrolled in jazz dance.
+   - Thus, the number of students enrolled in jazz dance is:
+   \[
+   25\% \times 16 = 0.25 \times 16 = 4 \text{ students}
+   \]
+
+4. Finally, we find out how many students enrolled in hip-hop dance by subtracting the numbers already accounted for (contemporary and jazz dancers) from the total number of students.
+   - Total students: 20
+   - Contemporary dancers: 4
+   - Jazz dancers: 4
+   - Hip-hop dancers: \(20 - 4 - 4 = 12\) students
+
+5. To find the percentage of the entire student body that enrolled in hip-hop dance, we use the formula:
+   \[
+   \left(\frac{\text{Number of hip-hop dancers}}{\text{Total number of students}}\right) \times 100\%
+   \]
+   Substituting our values gives:
+   \[
+   \left(\frac{12}{20}\right) \times 100\% = 0.6 \times 100\% = 60\%
+   \]
+
+Therefore, the percentage of the entire students enrolled in hip-hop dance is 60%.

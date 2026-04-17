@@ -1,0 +1,26 @@
+To determine if Harry is smart based on the given facts and rules, let's break down the logic:
+
+1. **Given Facts**:
+   - Harry is cold.
+   - Harry is white.
+   - Harry is young.
+   - Harry is kind.
+   - Harry is fuzzy (implied by "smart, kind, furry" in the final rule).
+
+2. **Rules**:
+   - If someone is furry and big then they are cold.
+     - This can be written as: Fuzzy AND Big -> Cold.
+   - If someone is big then they are furry.
+     - This can be written as: Big -> Fuzzy.
+
+3. **Logical Analysis**:
+   - From the first fact, we know Harry is both white and fuzzy.
+   - According to the second rule, since Harry is fuzzy, he must also be big.
+   - Since Harry is big, according to the third rule, he must be cold.
+   - We already know that Harry is cold.
+
+4. **Conclusion**:
+   - Given that Harry is cold, fuzzy, big, and kind, all conditions for being smart apply.
+   - Therefore, Harry is smart.
+
+The answer is: True

@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, chicken_meal_cost(n_12)).
+fof(fact_2, axiom, milk_total_cost(n_15)).
+fof(fact_3, axiom, apple_total_cost(n_6)).
+fof(fact_4, axiom, sum3(n_12, n_15, n_6, n_33)).
+fof(fact_5, axiom, total_paid(n_50)).
+fof(fact_6, axiom, diff(n_50, n_33, n_17)).
+fof(fact_7, axiom, box_price(n_850)).
+fof(fact_8, axiom, quotient(n_17, n_850, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,S] : ((chicken_meal_cost(A) & milk_total_cost(B) & apple_total_cost(C) & sum3(A,B,C,S)) => known_items_total_cost(S))).
+fof(rule_2, axiom, ! [P,S,R] : ((total_paid(P) & known_items_total_cost(S) & diff(P,S,R)) => remaining_amount(R))).
+fof(rule_3, axiom, ! [A,B,C] : ((remaining_amount(A) & box_price(B) & quotient(A,B,C)) => boxes_bought(C))).
+fof(rule_4, axiom, ! [X] : ((boxes_bought(X)) => final_answer(X))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, fact_4 by Modus Ponens
+fof(inf_1, axiom, known_items_total_cost(n_33)).
+% From inf_1, fact_5, fact_6 by Modus Ponens
+fof(inf_2, axiom, remaining_amount(n_17)).
+% From inf_2, fact_8 by Modus Ponens
+fof(inf_3, axiom, boxes_bought(n_2)).
+% From inf_3 by Modus Ponens
+fof(inf_4, axiom, final_answer(n_2)).

@@ -1,0 +1,10 @@
+FACT-1: Bob is cold.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Dave is fuzzy because he is big.
+
+INF-2: Given Dave is fuzzy, he could be cold according to Rule 1.
+
+INF-3: However, the facts do not explicitly state whether Dave is cold or not.
+
+Final Answer: Unknown

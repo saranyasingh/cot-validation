@@ -1,0 +1,12 @@
+### ## FACTS
+- Erin is furry. :: ∀ x (Furry(x) → Big(x))
+- Erin is white. :: ∀ x (White(x) ↔ Fur(y))
+
+### ## RULES
+- All furry people are big. :: ∀ x (Furry(x) → Big(x))
+- White people are green. :: ∀ x (White(x) → Green(x))
+
+### ## INFERENCES
+- Erin is furry. :: ∀ x (Furry(x) → Big(x)) :: Fact-1
+- Erin is white. :: ∀ x (White(x) ↔ Fur(y)) :: Fact-1
+- Erin is green. :: ∀ x (White(x) → Green(x)) :: White(Erin)

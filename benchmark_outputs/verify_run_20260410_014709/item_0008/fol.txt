@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Carla downloads at rate 2 GB per minute :: DownloadsRate(carla, two_gb_per_minute)
+FACT-2: 40% of the file downloaded :: PercentDownloaded(carla, forty_percent)
+FACT-3: 80 GB downloaded :: AmountDownloaded(carla, eighty_gb)
+FACT-4: Restart occurs after 40% downloaded :: RestartAfterPercent(carla, forty_percent)
+FACT-5: Interruption lasts 20 minutes :: InterruptionMinutes(twenty_minutes)
+FACT-6: No data transferred during interruption :: NoDataTransferredDuringInterruption(carla)
+FACT-7: Total file size is 200 GB :: TotalFileSize(200_gb)
+FACT-8: Time to finish at initial rate is 100 minutes :: PredictedTotalTimeConstantSpeed(carla, n_100_minutes)
+FACT-9: Time spent before restart is 100 minutes :: TimeSpentBeforeRestart(carla, n_100_minutes)
+
+## RULES
+RULE-1: If the predicted total time at constant speed for a person is t, then the final answer for that person is t :: ∀p∀t((PredictedTotalTimeConstantSpeed(p, t)) → FinalAnswer(p, t))
+RULE-2: If the final answer for a person is t, then the answer is t :: ∀p∀t((FinalAnswer(p, t)) → AnswerIs(p, t))
+
+## INFERENCES
+INF-1: FinalAnswer(carla, n_100_minutes) inferred from FACT-8 and RULE-1 by Modus Ponens :: FinalAnswer(carla, n_100_minutes)
+INF-2: AnswerIs(carla, n_100_minutes) inferred from INF-1 and RULE-2 by Modus Ponens :: AnswerIs(carla, n_100_minutes)

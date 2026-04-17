@@ -1,0 +1,19 @@
+### ## FACTS
+```plaintext
+FACT-1: Bob is kind.
+```
+
+### ## RULES
+```plaintext
+RULE-1: If Gary is white then Gary is big.
+RULE-2: If Anne is nice then Anne is green.
+RULE-3: If someone is nice then they are green.
+RULE-4: Kind people are nice.
+RULE-5: All nice people are big.
+RULE-6: All rough people are kind.
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: The statement "Bob is kind" remains unknown.
+```

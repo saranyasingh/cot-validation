@@ -1,0 +1,16 @@
+FACT-1: The bear is green.
+FACT-2: The bear likes the mouse.
+RULE-1: If someone is kind then they need the bear.
+INF-1: The bear is needed by someone who is kind.
+INF-2: Since the bear is liked by someone (the mouse), the person who likes the mouse could be kind.
+INF-3: Hence, the bear is needed by someone who is kind.
+INF-4: By Rule 1, if the bear is needed by someone who is kind, then the bear is young.
+INF-5: Given Fact 1, the bear is green, suggesting possible physical attributes rather than age.
+INF-6: The rule states if someone is round and they do not need the bear then they see the rabbit.
+INF-7: The rabbit being young is another piece of indirect information, potentially linking to the bear's age indirectly through the rabbit's characteristics.
+INF-8: Thus, even though we can't directly link the bear's age to the rules, the presence of a young rabbit indirectly supports the idea that the bear might be considered young.
+
+Therefore, the final inference:
+INF-9: Based on the indirect clues involving the rabbit's youth and the bear's perceived relationship to the cow and mouse, we cannot conclusively determine if the bear is young or not.
+
+**Answer:** Unknown

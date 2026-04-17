@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Josh bought a house for 80000 dollars :: BoughtHouse(josh, n_80000)
+FACT-2: Josh paid 50000 in repairs :: RepairsCost(josh, n_50000)
+FACT-3: The value increase was 150 percent :: ValueIncreasePercent(josh, n_150)
+
+## RULES
+RULE-1: If a person bought a house for 80000 and the value increase is 150 percent, then the new value is 200000 :: ∀x((BoughtHouse(x, n_80000) ∧ ValueIncreasePercent(x, n_150)) → NewValue(x, n_200000))
+RULE-2: If a person’s new value is 200000 and the repairs cost 50000, then their profit is 150000 :: ∀x((NewValue(x, n_200000) ∧ RepairsCost(x, n_50000)) → Profit(x, n_150000))
+
+## INFERENCES
+INF-1: NewValue(josh, n_200000) inferred from FACT-1, FACT-3, and RULE-1 by Modus Ponens
+INF-2: Profit(josh, n_150000) inferred from INF-1, FACT-2, and RULE-2 by Modus Ponens

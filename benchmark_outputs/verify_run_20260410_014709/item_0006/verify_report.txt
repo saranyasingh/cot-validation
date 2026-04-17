@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The story states the first glass costs $5.
+FACT-2: SUPPORTED — The story states every second glass costs 60% of the price (i.e., $3 if the first is $5).
+FACT-3: UNSUPPORTED — The story does not imply the third glass is $3; with only even glasses discounted, the third would not necessarily be $3.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — It arbitrarily asserts the total cost is 104, which does not follow from the given facts.

@@ -1,0 +1,17 @@
+FACT-1: Anne is big.
+FACT-2: Anne is green.
+FACT-3: Anne is nice.
+FACT-4: Bob is kind.
+FACT-5: Erin is furry.
+FACT-6: Erin is white.
+FACT-7: Gary is furry.
+FACT-8: Gary is green.
+FACT-9: Gary is nice.
+FACT-10: Gary is white.
+RULE-1: Kind people are nice.
+RULE-2: Big people are rough.
+RULE-3: All furry people are big.
+RULE-4: All nice people are big.
+INFER-1: Gary is big.
+INFER-2: Big people are rough.
+INFER-3: Therefore, Gary is not rough.

@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, chickens(wendi, n_20)).
+fof(fact_2, axiom, feed_per_chicken_per_day(n_3)).
+fof(fact_3, axiom, morning_feed(n_15)).
+fof(fact_4, axiom, afternoon_feed(n_25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z] : ((chickens(wendi, X) & feed_per_chicken_per_day(Y) & multiply(X, Y, Z)) => total_feed_per_day(Z))).
+fof(rule_2, axiom, ! [A, B, C] : ((subtract(A, B, C)) => final_meal_feed(C))).
+fof(rule_3, axiom, ! [X, Y, Z] : ((add(X, Y, Z)) => pre_final_meal_feed(Z))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, multiply(n_20, n_3, n_60)).
+% From FACT-3, FACT-4 by Arithmetic Computation
+fof(inf_2, axiom, add(n_15, n_25, n_40)).
+% From INF-2, RULE-3 by Modus Ponens
+fof(inf_3, axiom, pre_final_meal_feed(n_40)).
+% From INF-1, INF-3 by Arithmetic Computation
+fof(inf_4, axiom, subtract(n_60, n_40, n_20)).
+% From INF-4, rule_2 by Modus Ponens
+fof(inf_5, axiom, final_meal_feed(n_20)).

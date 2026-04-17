@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, walked(marissa, four_miles, one_hour)).
+fof(fact_2, axiom, walked(marissa, two_more_miles, one_hour)).
+fof(fact_3, axiom, goal_average_speed(four_mph)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ((walked(P, four_miles, one_hour) & walked(P, two_more_miles, one_hour)) => total_time(P, two_hours))).
+fof(rule_2, axiom, ! [P] : ((walked(P, four_miles, one_hour) & walked(P, two_more_miles, one_hour)) => total_distance(P, six_miles))).
+fof(rule_3, axiom, ! [P] : ((total_distance(P, six_miles) & total_time(P, two_hours)) => avg_speed(P, three_mph))).
+fof(rule_4, axiom, ! [P] : ! [S] : ! [G] : ((avg_speed(P, S) & goal_average_speed(G)) => adjustment_needed(P, S, G))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, total_time(marissa, two_hours)).
+% From FACT-1, RULE-2 by Modus Ponens
+fof(inf_2, axiom, total_distance(marissa, six_miles)).
+% From INF-1, INF-2 via RULE-3 by Modus Ponens
+fof(inf_3, axiom, avg_speed(marissa, three_mph)).
+% From INF-3, FACT-3 via RULE-4 by Modus Ponens
+fof(inf_4, axiom, adjustment_needed(marissa, three_mph, four_mph)).

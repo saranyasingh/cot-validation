@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: TotalStudents(n_20) :: TotalStudents(n_20)
+FACT-2: ContemporaryDancers(n_4) :: ContemporaryDancers(n_4)
+FACT-3: RemainingAfterContemporary(n_16) :: RemainingAfterContemporary(n_16)
+FACT-4: JazzDancers(n_4) :: JazzDancers(n_4)
+FACT-5: HipHopDancers(n_12) :: HipHopDancers(n_12)
+FACT-6: ComputePercent(n_12, n_20, n_60) :: ComputePercent(n_12, n_20, n_60)
+
+## RULES
+RULE-1: If a is the number of HipHopDancers, b is the number of TotalStudents, and ComputePercent(a,b,c) holds, then HipHopPercentage(c) holds :: ∀a∀b∀c((HipHopDancers(a) ∧ TotalStudents(b) ∧ ComputePercent(a,b,c)) → HipHopPercentage(c))
+
+## INFERENCES
+INF-1: HipHopPercentage(n_60) :: HipHopPercentage(n_60) from FACT-5, FACT-1, FACT-6 via RULE-1 (Modus Ponens)

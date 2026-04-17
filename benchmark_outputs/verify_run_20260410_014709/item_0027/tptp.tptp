@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, shorts_count(n_3)).
+fof(fact_2, axiom, shorts_price_per_pair(n_1650)).
+fof(fact_3, axiom, pants_count(n_3)).
+fof(fact_4, axiom, pants_price_per_pair(n_2250)).
+fof(fact_5, axiom, shoes_count(n_3)).
+fof(fact_6, axiom, shoes_price_per_pair(n_4200)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [Q] : ! [P] : ! [R] : ((shorts_count(Q) & shorts_price_per_pair(P) & product(Q,P,R)) => shorts_cost(R))).
+fof(rule_2, axiom, ! [Q] : ! [P] : ! [R] : ((pants_count(Q) & pants_price_per_pair(P) & product(Q,P,R)) => pants_cost(R))).
+fof(rule_3, axiom, ! [Q] : ! [P] : ! [R] : ((shoes_count(Q) & shoes_price_per_pair(P) & product(Q,P,R)) => shoes_cost(R))).
+fof(rule_4, axiom, ! [A] : ! [B] : ! [C] : ! [D] : ((sum_costs(A,B,C,D)) => total_cost(D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by ArithmeticComputation
+fof(inf_1, axiom, product(n_3, n_1650, n_4950)).
+% From inf_1, fact_1, fact_2 by Rule 1
+fof(inf_2, axiom, shorts_cost(n_4950)).
+% From fact_3, fact_4 by ArithmeticComputation
+fof(inf_3, axiom, product(n_3, n_2250, n_6750)).
+% From inf_3 by Rule 2
+fof(inf_4, axiom, pants_cost(n_6750)).
+% From fact_5, fact_6 by ArithmeticComputation
+fof(inf_5, axiom, product(n_3, n_4200, n_12600)).
+% From inf_5 by Rule 3
+fof(inf_6, axiom, shoes_cost(n_12600)).
+% From inf_2, inf_4, inf_6 by ArithmeticComputation
+fof(inf_7, axiom, sum_costs(n_4950, n_6750, n_12600, n_24300)).
+% From inf_7 by Rule 4
+fof(inf_8, axiom, total_cost(n_24300)).

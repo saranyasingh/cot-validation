@@ -1,0 +1,459 @@
+FACT-1: The bear is green.
+RULE-1: If someone is kind then they need the bear.
+RULE-2: If someone needs the bear then the bear is young.
+RULE-3: The bear is green.
+RULE-4: The bear needs the mouse.
+RULE-5: The mouse likes the cow.
+RULE-6: The cow likes the bear.
+RULE-7: If someone is round then they like the mouse.
+RULE-8: If someone is round and they do not need the bear then they see the rabbit.
+
+## FACTS
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+
+## RULES
+- If someone is kind then they need the bear.
+- If someone needs the bear then the bear is young.
+- If someone is round then they like the mouse.
+
+## INFERENCES
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The bear needs the mouse.
+- The mouse likes the cow.
+- The cow likes the bear.
+- The bear is green.
+- The

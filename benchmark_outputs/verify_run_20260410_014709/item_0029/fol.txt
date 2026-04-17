@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: The entire bike trip covers 60 miles :: TotalDistance(n_60)
+FACT-2: The first stop is at 20 miles :: FirstStopAt(n_20)
+FACT-3: The second stop is 15 miles before the end :: SecondStopBeforeEnd(n_15)
+
+## RULES
+RULE-1: If a subtraction of two numbers yields c, then the second stop is at c miles :: ∀a∀b∀c((Subtraction(a,b,c)) → SecondStopPosition(c))
+RULE-2: If a subtraction of two numbers yields c, then the distance between stops is c :: ∀a∀b∀c((Subtraction(a,b,c)) → DistanceBetweenStops(c))
+RULE-3: If the distance between stops is d, then the final answer is d :: ∀d(DistanceBetweenStops(d) → AnswerIs(d))
+
+## INFERENCES
+INF-0: 60 minus 20 equals 40, from FACT-1 and FACT-2 by Arithmetic Computation :: Subtraction(n_60, n_20, n_40)
+INF-1: 60 minus 15 equals 45, from FACT-1 and FACT-3 by Arithmetic Computation :: Subtraction(n_60, n_15, n_45)
+INF-2: SecondStopPosition(n_45) from INF-1 and RULE-1 by Modus Ponens
+INF-3: 45 minus 20 equals 25, from INF-2 and FACT-2 by Arithmetic Computation :: Subtraction(n_45, n_20, n_25)
+INF-4: DistanceBetweenStops(n_25) from INF-3 and RULE-2 by Modus Ponens
+INF-5: AnswerIs(n_25) from INF-4 and RULE-3 by Modus Ponens

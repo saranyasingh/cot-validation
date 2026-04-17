@@ -1,0 +1,29 @@
+### ## FACTS
+- **Fact-1:** The bear is green.
+- **Fact-2:** The bear likes the mouse.
+- **Fact-3:** The bear needs the cow.
+- **Fact-4:** The bear needs the mouse.
+- **Fact-5:** The bear sees the cow.
+- **Fact-6:** The bear sees the mouse.
+- **Fact-7:** The cow likes the bear.
+- **Fact-8:** The cow sees the bear.
+- **Fact-9:** The mouse likes the cow.
+- **Fact-10:** The mouse sees the rabbit.
+- **Fact-11:** The rabbit is young.
+- **Fact-12:** Young people are kind.
+
+### ## RULES
+- **Rule-1:** If someone is round then they like the mouse.
+- **Rule-2:** If someone does not need the bear then they see the rabbit.
+- **Rule-3:** If someone likes the bear and they like the mouse then the bear likes the mouse.
+- **Rule-4:** If someone is cold then they like the rabbit.
+- **Rule-5:** If someone needs the bear then the bear is young.
+- **Rule-6:** If someone is round and they do not need the bear then they see the rabbit.
+- **Rule-7:** If someone likes the cow then the cow likes the bear.
+- **Rule-8:** If someone is round and they need the bear then they like the mouse.
+- **Rule-9:** If someone likes the cow and they need the mouse then the mouse needs the cow.
+
+### ## INFERENCES
+- **INF-1:** The mouse sees the rabbit. (This follows from Fact-10.)
+- **INF-2:** The bear sees the rabbit. (This follows from Fact-5 and Fact-10.)
+- **INF-3:** The mouse sees the rabbit. (This follows from Fact-10.)

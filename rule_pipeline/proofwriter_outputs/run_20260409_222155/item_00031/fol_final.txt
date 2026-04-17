@@ -1,0 +1,47 @@
+### ## FACTS
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- TheBaldEagleIsNice :: TheBaldEagle Is Nice
+- TheBaldEagleIsRound :: TheBaldEagle Is Round
+- TheBaldEagleNeedsTheCow :: TheBaldEagle Needs The Cow
+- TheBaldEagleNeedsTheLion :: TheBaldEagle Needs The Lion
+- TheCowChasesTheBaldEagle :: TheCow Chases The BaldEagle
+- TheCowIsRound :: TheCow Is Round
+- TheCowNeedsTheBaldEagle :: TheCow Needs The BaldEagle
+- TheDogEatsTheLion :: TheDog Eats The Lion
+- TheDogIsBlue :: TheDog Is Blue
+- TheLionChasesTheBaldEagle :: TheLion Chases The BaldEagle
+- TheLionEatsTheBaldEagle :: TheLion Eats The BaldEagle
+- TheLionEatsTheCow :: TheLion Eats The Cow
+- AllGreenPeopleAreBlue :: G(x) → B(x)
+
+### ## RULES
+- If SomeoneChasesTheBaldEagleThenTheyEatTheBaldEagle :: Chases(BaldEagle, p) → Eats(BaldEagle, p)
+- If SomeoneNeedsTheDogAndTheyAreGreenThenTheDogChasesTheLion :: Needs(Dog, p) ∧ G(p) → Chases(Lion, p)
+- If SomeoneEatsTheLionThenTheLionNeedsTheBaldEagle :: Eats(Lion, p) → Needs(Lion, BaldEagle)
+- If SomeoneNeedsTheCowThenTheyNeedTheDog :: Needs(Cow, p) → Needs(Dog, p)
+- If SomeoneIsRoughThenTheyChaseTheBaldEagle :: IsRough(p) → Chases(BaldEagle, p)
+- If SomeoneChasesTheLionThenTheyAreRough :: Chases(Lion, p) → IsRough(p)
+- If SomeoneIsRoughAndTheyEatTheDogThenTheDogEatsTheCow :: IsRough(p) ∧ Eats(Dog, p) → Eats(Cow, p)
+
+### ## INFERENCES
+- If SomeoneChasesTheBaldEagleThenTheyEatTheBaldEagle :: Chases(BaldEagle, p) → Eats(BaldEagle, p)
+- If SomeoneNeedsTheDogAndTheyAreGreenThenTheDogChasesTheLion :: Needs(Dog, p) ∧ G(p) → Chases(Lion, p)
+- If SomeoneEatsTheLionThenTheLionNeedsTheBaldEagle :: Eats(Lion, p) → Needs(Lion, BaldEagle)
+- If SomeoneNeedsTheCowThenTheyNeedTheDog :: Needs(Cow, p) → Needs(Dog, p)
+- If SomeoneIsRoughThenTheyChaseTheBaldEagle :: IsRough(p) → Chases(BaldEagle, p)
+- If SomeoneChasesTheLionThenTheyAreRough :: Chases(Lion, p) → IsRough(p)
+- If SomeoneIsRoughAndTheyEatTheDogThenTheDogEatsTheCow :: IsRough(p) ∧ Eats(Dog, p) → Eats(Cow, p)
+- TheBaldEagleIsBlue :: TheBaldEagle Is Blue
+- TheBaldEagleIsNice :: TheBaldEagle Is Nice
+- TheBaldEagleIsRound :: TheBaldEagle Is Round
+- TheBaldEagleNeedsTheCow :: TheBaldEagle Needs The Cow
+- TheBaldEagleNeedsTheLion :: TheBaldEagle Needs The Lion
+- TheCowChasesTheBaldEagle :: TheCow Chases The BaldEagle
+- TheCowIsRound :: TheCow Is Round
+- TheCowNeedsTheBaldEagle :: TheCow Needs The BaldEagle
+- TheDogEatsTheLion :: TheDog Eats The Lion
+- TheDogIsBlue :: TheDog Is Blue
+- TheLionChasesTheBaldEagle :: TheLion Chases The BaldEagle
+- TheLionEatsTheBaldEagle :: TheLion Eats The BaldEagle
+- TheLionEatsTheCow :: TheLion Eats The Cow
+- AllGreenPeopleAreBlue :: G(x) → B(x)

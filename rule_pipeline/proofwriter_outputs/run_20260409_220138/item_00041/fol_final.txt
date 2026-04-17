@@ -1,0 +1,17 @@
+### ## FACTS
+- Anne is green.
+- Bob is kind.
+
+### ## RULES
+- If someone is nice then they are green.
+- If Bob is kind, then Bob is green.
+
+### ## INFERENCES
+- From Fact 2 (Anne is green) and Rule 5 (If someone is nice then they are green):
+  - Conclusion: Anne is green.
+
+- From Fact 3 (Bob is kind) and Rule 5:
+  - Conclusion: Bob is green.
+
+Therefore, the final inference is:
+- Bob is green.

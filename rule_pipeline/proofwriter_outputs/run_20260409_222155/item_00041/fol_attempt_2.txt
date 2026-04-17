@@ -1,0 +1,10 @@
+### ## FACTS
+- **Fact-1:** Bob is furry.
+  
+### ## RULES
+- **Rule-1:** If someone is nice, then they are green.
+
+### ## INFERENCES
+- **Inference-1:** Bob is green :: (∀x (Nice(x) → Green(x))) ∧ Bob is furry.
+  
+This inference combines the given facts that Bob is furry and applies the rule that if someone is nice, then they are green. The conjunction ensures both conditions are met.

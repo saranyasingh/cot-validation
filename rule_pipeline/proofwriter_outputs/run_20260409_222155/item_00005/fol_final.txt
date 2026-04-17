@@ -1,0 +1,44 @@
+### ## FACTS
+1. IsGreen(Bear) :: B
+2. Likes(Mouse, Bear) :: LMB
+3. Needs(Cow, Bear) :: NCB
+4. Sees(Rabbit, Mouse) :: SRM
+
+### ## RULES
+1. If (someone is kind), then (they need the bear). :: K -> NCB
+2. If (someone sees the cow), then (they are cold). :: SC -> Cold
+3. If (someone is cold), then (they like the rabbit). :: Cold -> LRM
+4. If (someone needs the bear), then (the bear is young). :: NCB -> Y
+5. If (someone is round), then (they like the mouse). :: R -> LMB
+6. If (someone likes the bear AND someone likes the mouse) then the bear likes the mouse. :: (LMB ∧ LMB) -> LBM
+7. If (someone likes the cow) then (the cow likes the bear). :: LCM -> CCB
+8. If (someone is round and they do not need the bear) then they see the rabbit. :: (R ∧ ¬(NCB)) -> RM
+
+### ## INFERENCES
+1. K -> NCB
+2. SC -> Cold
+3. Cold -> LRM
+4. NCB -> Y
+5. R -> LMB
+6. LMB ∧ LMB -> LBM
+7. LCM -> CCB
+8. (R ∧ ¬(NCB)) -> RM
+9. Likes(Mouse, Bear)
+10. Sees(Rabbit, Mouse)
+11. Likes(Mouse, Rabbit)
+12. Sees(Rabbit, Cow)
+13. Sees(Cow, Rabbit)
+14. Needs(Cow, Rabbit)
+15. Needs(Cow, Bear)
+16. Needs(Bear, Rabbit)
+17. Needs(Bear, Cow)
+18. Likes(Bear, Rabbit)
+19. Likes(Bear, Cow)
+20. Likes(Cow, Rabbit)
+21. Likes(Cow, Bear)
+22. Needs(Bear, Mouse)
+23. Needs(Cow, Mouse)
+24. Needs(Mouse, Rabbit)
+25. Needs(Mouse, Cow)
+
+The bear likes the rabbit.

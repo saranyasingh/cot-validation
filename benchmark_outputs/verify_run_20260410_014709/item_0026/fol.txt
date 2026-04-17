@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: The cost of the chicken meal is 12 dollars :: ChickenMealCost(n_12)
+FACT-2: The total cost of the milk is 15 dollars :: MilkTotalCost(n_15)
+FACT-3: The total cost of the apples is 6 dollars :: AppleTotalCost(n_6)
+FACT-4: The sum of 12, 15, and 6 is 33 :: Sum3(n_12, n_15, n_6, n_33)
+FACT-5: Marie paid 50 dollars :: TotalPaid(n_50)
+FACT-6: 50 minus 33 equals 17 :: Diff(n_50, n_33, n_17)
+FACT-7: The price per pizza box is 8.50 dollars :: BoxPrice(n_850)
+FACT-8: The quotient of 17 and 8.50 is 2 :: Quotient(n_17, n_850, n_2)
+
+## RULES
+RULE-1: Sum of three costs leads to known items total :: ∀a∀b∀c∀s((ChickenMealCost(a) ∧ MilkTotalCost(b) ∧ AppleTotalCost(c) ∧ Sum3(a,b,c,s)) → KnownItemsTotalCost(s))
+RULE-2: Known items total and amount paid yield remaining amount :: ∀p∀s∀r((TotalPaid(p) ∧ KnownItemsTotalCost(s) ∧ Diff(p,s,r)) → RemainingAmount(r))
+RULE-3: Remaining amount and price per box and quotient yield boxes bought :: ∀a∀b∀c((RemainingAmount(a) ∧ BoxPrice(b) ∧ Quotient(a,b,c)) → BoxesBought(c))
+RULE-4: Boxes bought yield final answer :: ∀x((BoxesBought(x)) → FinalAnswer(x))
+
+## INFERENCES
+INF-1: KnownItemsTotalCost(n_33) inferred from FACT-1, FACT-2, FACT-3, and FACT-4 by RULE-1
+INF-2: RemainingAmount(n_17) inferred from INF-1, FACT-5, and FACT-6 by RULE-2
+INF-3: BoxesBought(n_2) inferred from INF-2, FACT-8 by RULE-3
+INF-4: FinalAnswer(n_2) inferred from INF-3 by RULE-4

@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_investment(n_90)).
+fof(fact_2, axiom, lemons_per_year(n_7)).
+fof(fact_3, axiom, price_per_lemon(n_3_over_2)).
+fof(fact_4, axiom, water_cost(n_3)).
+fof(fact_5, axiom, revenue_from_lemons(n_7, n_3_over_2, n_10_5)).
+fof(fact_6, axiom, subtract(n_10_5, n_3, n_7_5)).
+fof(fact_7, axiom, divide(n_90, n_7_5, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [Z] : ( revenue_from_lemons(X,Y,Z) => annual_revenue(Z) )).
+fof(rule_2, axiom, ! [R] : ! [W] : ! [P] : ((annual_revenue(R) & water_cost(W) & subtract(R,W,P)) => annual_net_profit(P))).
+fof(rule_3, axiom, ! [A] : ! [B] : ! [C] : ((initial_investment(A) & annual_net_profit(B) & divide(A,B,C)) => years_to_recover_investment(C))).
+fof(rule_4, axiom, ! [C] : (years_to_recover_investment(C) => break_even_year_count(C))).
+
+% --- INFERENCES ---
+% From fact_5, rule_1 by Modus Ponens
+fof(inf_1, axiom, annual_revenue(n_10_5)).
+
+% From inf_1, fact_4, and fact_6 by Modus Ponens
+fof(inf_2, axiom, annual_net_profit(n_7_5)).
+
+% From inf_2, fact_1, and fact_7 by Modus Ponens
+fof(inf_3, axiom, years_to_recover_investment(n_12)).
+
+% From inf_3 by Modus Ponens
+fof(inf_4, axiom, break_even_year_count(n_12)).

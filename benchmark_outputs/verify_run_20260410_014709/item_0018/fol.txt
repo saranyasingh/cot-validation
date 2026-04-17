@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: TeachingRate(jill, n_20) :: TeachingRate(jill, n_20)
+FACT-2: TeachingHoursPerWeek(jill, n_35) :: TeachingHoursPerWeek(jill, n_35)
+FACT-3: CoachingRate(jill, n_30) :: CoachingRate(jill, n_30)
+FACT-4: CoachingHoursPerWeek(jill, n_15) :: CoachingHoursPerWeek(jill, n_15)
+FACT-5: WeeksPerYear(jill, n_50) :: WeeksPerYear(jill, n_50)
+FACT-6: AnnualSalary(jill, n_57500) :: AnnualSalary(jill, n_57500)
+
+## RULES
+RULE-1: If Jill's teaching rate is r and hours per week is h and w is the product r*h, then WeeklyTeachingEarnings(jill, w) :: ∀r∀h∀w((TeachingRate(jill, r) ∧ TeachingHoursPerWeek(jill, h) ∧ Multiply(r, h, w)) → WeeklyTeachingEarnings(jill, w))
+
+RULE-2: If Jill's coaching rate is r and hours per week is h and w is the product r*h, then WeeklyCoachingEarnings(jill, w) :: ∀r∀h∀w((CoachingRate(jill, r) ∧ CoachingHoursPerWeek(jill, h) ∧ Multiply(r, h, w)) → WeeklyCoachingEarnings(jill, w))
+
+RULE-3: If WeeklyTeachingEarnings(jill, t) and WeeklyCoachingEarnings(jill, c) and s is the sum of t and c, then TotalWeeklyEarnings(jill, s) :: ∀t∀c∀s((WeeklyTeachingEarnings(jill, t) ∧ WeeklyCoachingEarnings(jill, c) ∧ Sum(t, c, s)) → TotalWeeklyEarnings(jill, s))
+
+RULE-4: If TotalWeeklyEarnings(jill, w) and WeeksPerYear(jill, k) and a is the product w*k, then AnnualSalary(jill, a) :: ∀w∀k∀a((TotalWeeklyEarnings(jill, w) ∧ WeeksPerYear(jill, k) ∧ Multiply(w, k, a)) → AnnualSalary(jill, a))
+
+## INFERENCES
+INF-1: WeeklyTeachingEarnings(jill, n_700) :: From FACT-1, FACT-2 via RULE-1 with Multiply(n_20, n_35, n_700) 
+INF-2: WeeklyCoachingEarnings(jill, n_450) :: From FACT-3, FACT-4 via RULE-2 with Multiply(n_30, n_15, n_450) 
+INF-3: TotalWeeklyEarnings(jill, n_1150) :: From INF-1, INF-2 via RULE-3 with Sum(n_700, n_450, n_1150) 
+INF-4: AnnualSalary(jill, n_57500) :: From INF-3 and FACT-5 via RULE-4 with Multiply(n_1150, n_50, n_57500)

@@ -1,0 +1,29 @@
+FACT-1: The bald eagle needs the lion.
+RULE-1: If someone chases the lion then they are rough.
+RULE-2: If someone is rough and they eat the dog then the dog eats the cow.
+RULE-3: If someone eats the lion then the lion needs the bald eagle.
+RULE-4: The bald eagle needs the lion.
+RULE-5: If someone chases the lion then they are rough.
+
+## FACTS
+1. The bald eagle needs the lion.
+2. The dog chases the lion.
+3. The dog eats the cow.
+
+## RULES
+1. If someone chases the lion then they are rough.
+2. If someone is rough and they eat the dog then the dog eats the cow.
+3. If someone eats the lion then the lion needs the bald eagle.
+4. The bald eagle needs the lion.
+5. The dog chases the lion.
+
+## INFERENCES
+1. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+2. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+3. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+4. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+5. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+6. The dog chases the lion. :: Dog_chases_Lion :: (∃d)(Dog(d) ∧ Lion(d))
+
+### Conclusion:
+The final inference shows that the dog chases the lion, which leads us to conclude that the bald eagle is likely rough due to its action of chasing the lion. Hence, the statement "The bald eagle is not rough" is False.

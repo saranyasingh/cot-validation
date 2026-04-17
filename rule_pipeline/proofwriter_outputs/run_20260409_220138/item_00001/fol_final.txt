@@ -1,0 +1,53 @@
+### ## FACTS
+- The bear needs the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone needs the bear, then the bear is young.
+- If someone is kind then they need the bear.
+- If someone sees the cow then they are cold.
+- If someone is cold then they like the rabbit.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- **Fact:** The bear needs the mouse.
+  - **Rule:** If someone needs the bear, then the bear is young.
+    - Premise: Fact implies the bear needs the mouse.
+    - Conclusion: Therefore, the bear is young.
+
+- **Fact:** The bear needs the cow.
+  - **Rule:** If someone needs the bear, then the bear is young.
+    - Premise: Fact implies the bear needs the cow.
+    - Conclusion: Therefore, the bear is young.
+
+- **Fact:** The bear needs the mouse.
+  - **Rule:** If someone needs the bear, then the bear is young.
+    - Premise: Fact implies the bear needs the mouse.
+    - Conclusion: Therefore, the bear is young.
+
+- **Fact:** The bear sees the cow.
+  - **Rule:** If someone sees the cow then they are cold.
+    - Premise: Fact implies the bear sees the cow.
+    - Conclusion: Therefore, the bear is cold.
+
+- **Fact:** The bear sees the mouse.
+  - **Rule:** If someone sees the mouse then they are young.
+    - Premise: Fact implies the bear sees the mouse.
+    - Conclusion: Therefore, the bear is young.
+
+- **Fact:** The mouse sees the rabbit.
+  - **Rule:** If someone sees the rabbit then they are kind.
+    - Premise: Fact implies the mouse sees the rabbit.
+    - Conclusion: Therefore, the mouse is kind.
+
+- **Inference:** Since the bear needs the mouse, the bear is young. This matches the initial information provided, confirming the correctness of the inference.
+
+Therefore, the final answer is: **True**

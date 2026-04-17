@@ -1,0 +1,20 @@
+Explanation:
+1. Initially, Carla downloads at a rate of 2 GB per minute.
+2. She continues this speed until 40% of the file (80 GB) is downloaded.
+3. After reaching 40%, the system force-restarts due to an update installation taking 20 minutes.
+4. This means that during the 20-minute break, nothing is being downloaded.
+5. We need to calculate how much additional time Carla needs to catch up after restarting.
+
+Let's break down the problem further:
+6. If Carla had continued at her initial speed, she would have finished downloading the entire 200 GB in \( \frac{200}{2} = 100 \) minutes.
+7. During the 20-minute interruption, no data was transferred, so we need to find out what fraction of the total time it took to finish the download if we account for the lost time.
+8. Since she could only transfer 80 GB before the interruption, she effectively used up \( \frac{80}{200} = \frac{2}{5} \) of the total time available to complete the download.
+
+Now let’s calculate the remaining time needed:
+9. Total time to download the whole file is 100 minutes.
+10. Time already spent: 20 minutes + 80 minutes = 100 minutes.
+11. Fraction of the total time wasted: \( \frac{20 + 80}{100} = \frac{100}{100} = 1 \).
+
+So, it takes Carla exactly as long to download the rest of the file once she starts again as it did initially, because the interruptions do not affect the actual amount of work done.
+
+Therefore, the answer is: 100.

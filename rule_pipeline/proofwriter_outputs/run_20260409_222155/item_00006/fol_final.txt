@@ -1,0 +1,89 @@
+### ## FACTS
+```plaintext
+- Fact_1: The bear is green.
+- Fact_2: The bear likes the mouse.
+- Fact_3: The bear needs the cow.
+- Fact_4: The bear needs the mouse.
+- Fact_5: The bear sees the cow.
+- Fact_6: The bear sees the mouse.
+- Fact_7: The cow likes the bear.
+- Fact_8: The cow sees the bear.
+- Fact_9: The mouse likes the cow.
+- Fact_10: The mouse sees the rabbit.
+- Fact_11: The rabbit is young.
+- Fact_12: Young people are kind.
+```
+
+### ## RULES
+```plaintext
+- Rule_1: If someone is kind then they need the bear.
+- Rule_2: If someone sees the cow then they are cold.
+- Rule_3: If someone is cold then they like the rabbit.
+- Rule_4: If someone needs the bear then the bear is young.
+- Rule_5: If someone is round then they like the mouse.
+- Rule_6: If someone likes the bear and they like the mouse then the bear likes the mouse.
+- Rule_7: If someone likes the cow then the cow likes the bear.
+- Rule_8: If someone is round and they do not need the bear then they see the rabbit.
+```
+
+### ## INFERENCES
+```plaintext
+- INF_1: If the bear is kind, then the bear needs the bear.
+- INF_2: The bear needs the mouse because the bear needs the bear (INF_1).
+- INF_3: If the bear needs the mouse, the bear must like the mouse.
+- INF_4: The bear sees the rabbit because the mouse sees the rabbit (Fact_9).
+- INF_5: The bear sees the rabbit because the bear sees the cow (Fact_5).
+- INF_6: The bear is round because the bear sees the rabbit (INF_4).
+- INF_7: The bear is young because the bear needs the mouse (INF_2).
+- INF_8: Young people are kind because the bear is round (INF_6).
+- INF_9: The bear is kind because the bear is young (INF_8).
+- INF_10: The bear likes the mouse because the bear needs the mouse (INF_2).
+- INF_11: The bear sees the rabbit because the bear is round (INF_5).
+- INF_12: The bear does not like the rabbit because the bear does not need the rabbit (Fact_4).
+```
+
+### OUTPUT SECTION
+Labeled Lines:
+- No FACT or RULE lines found in the structured FOL.
+- Constraint violation detected in the input data structure. Please ensure the facts and rules are correctly formatted before proceeding.
+
+---
+
+### ERROR REPORT
+No FACT or RULE lines found in the structured FOL.
+
+---
+
+### CONSTRAINTS
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTP syntax issues must be corrected.
+
+### PROBLEM FACTS
+- The bear is green.
+- The bear likes the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The cow likes the bear.
+- The cow sees the bear.
+- The mouse likes the cow.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### RULESET
+- If someone is kind then they need the bear.
+- If someone sees the cow then they are cold.
+- If someone is cold then they like the rabbit.
+- If someone needs the bear then the bear is young.
+- If someone is round then they like the mouse.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+Output ONLY the three sections (## FACTS, ## RULES, ## INFERENCES) with labeled lines.
+LABEL: <natural language gloss> :: <FOL formula>
+No extra explanation.

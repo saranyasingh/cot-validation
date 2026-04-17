@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Kyle has a 25% discount :: DiscountPercent(kyle, n_25)
+FACT-2: Kyle paid the discounted price of 19.50 :: DiscountedPricePaid(kyle, n_19_50)
+
+## RULES
+RULE-1: If someone has a 25% discount, then they paid 75% of the original price :: ∀x(DiscountPercent(x, n_25) → PaidPercentOfOriginal(x, n_75))
+RULE-2: If DiscountedPricePaid(x, D) ∧ PaidPercentOfOriginal(x, R) ∧ Divide(D, R, O) then OriginalPrice(x, O) :: ∀x∀D∀R∀O((DiscountedPricePaid(x, D) ∧ PaidPercentOfOriginal(x, R) ∧ Divide(D, R, O)) → OriginalPrice(x, O))
+
+## INFERENCES
+INF-1: PaidPercentOfOriginal(kyle, n_75) :: from FACT-1 and RULE-1 by Universal Instantiation
+INF-2: Divide(n_19_50, n_75, n_26) :: from FACT-2 and INF-1 by Arithmetic Computation
+INF-3: OriginalPrice(kyle, n_26) :: from FACT-2, INF-1, INF-2 and RULE-2 by Modus Ponens

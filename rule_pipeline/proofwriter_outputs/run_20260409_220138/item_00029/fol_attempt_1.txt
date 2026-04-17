@@ -1,0 +1,15 @@
+FACT-1: The bald eagle chases the lion.
+FACTORIAL: ∃x(Chases(x, the_lion))
+RULE-1: Chases(x, y) → Eats(y, x)
+FACTORIAL: ∃y(Eats(lion, y))
+
+FACTORIAL: ∀z((Needs(z, dog) ∧ Green(z)) → Dog(chases, lion))
+FACTORIAL: ∀w(Needs(w, cow) → Needs(w, dog))
+FACTORIAL: ∀u(Dog(eats, w) → Needs(u, cow))
+FACTORIAL: ∀v(Needs(v, dog) → Dog(chases, lion))
+FACTORIAL: ∀t(Needs(t, cow) → t(chases, lion))
+
+FACTORIAL: ∀s(Green(s) → s(blue))
+FACTORIAL: ∀p(People(p) ∧ Green(p) → p(blue))
+
+INF-1: False

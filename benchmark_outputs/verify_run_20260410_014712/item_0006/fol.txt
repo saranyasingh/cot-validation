@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: The first glass costs 5 :: FirstGlassCost(n_5)
+FACT-2: The second glass costs 3 :: SecondGlassCost(n_3)
+FACT-3: There are 14 remaining glasses :: RemainingGlasses(n_14)
+FACT-4: 14 multiplied by 3 equals 42 :: Multiply(n_14, n_3, n_42)
+FACT-5: 5 plus 42 equals 47 :: Sum(n_5, n_42, n_47)
+
+## RULES
+RULE-1: If the cost of the first glass is a and there is a remaining-glasses count r such that r multiplied by b equals d and the second glass costs b and the sum of a and d equals e, then the total cost is e :: ∀a∀r∀b∀d∀e((FirstGlassCost(a) ∧ Multiply(r,b,d) ∧ RemainingGlasses(r) ∧ SecondGlassCost(b) ∧ Sum(a,d,e)) → TotalCost(e))
+
+## INFERENCES
+INF-1: The total cost is 47, derived from FACT-1, FACT-3, FACT-4, FACT-2, FACT-5 via RULE-1 (Modus Ponens) :: TotalCost(n_47)

@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: The initial investment to plant the lemon tree is $90 :: InitialInvestment(n_90)
+FACT-2: The tree yields 7 lemons per year :: LemonsPerYear(n_7)
+FACT-3: The price per lemon is $1.5 :: PricePerLemon(n_3_over_2)
+FACT-4: The annual water cost is $3 :: WaterCost(n_3)
+FACT-5: RevenueFromLemons(n_7, n_3_over_2, n_10_5) :: RevenueFromLemons(n_7, n_3_over_2, n_10_5)
+FACT-6: Subtract(n_10_5, n_3, n_7_5) :: Subtract(n_10_5, n_3, n_7_5)
+FACT-7: Divide(n_90, n_7_5, n_12) :: Divide(n_90, n_7_5, n_12)
+
+## RULES
+RULE-1: RevenueFromLemons implies AnnualRevenue :: ∀x∀y∀z((RevenueFromLemons(x,y,z) → AnnualRevenue(z)))
+RULE-2: AnnualRevenue and WaterCost and Subtract imply AnnualNetProfit :: ∀r∀w∀p((AnnualRevenue(r) ∧ WaterCost(w) ∧ Subtract(r,w,p)) → AnnualNetProfit(p))
+RULE-3: InitialInvestment and AnnualNetProfit and Divide imply YearsToRecoverInvestment :: ∀a∀b∀c((InitialInvestment(a) ∧ AnnualNetProfit(b) ∧ Divide(a,b,c)) → YearsToRecoverInvestment(c))
+RULE-4: YearsToRecoverInvestment implies BreakEvenYearCount :: ∀c((YearsToRecoverInvestment(c)) → BreakEvenYearCount(c))
+
+## INFERENCES
+INF-1: AnnualRevenue(n_10_5) from FACT-5 and RULE-1 by Modus Ponens :: AnnualRevenue(n_10_5)
+INF-2: AnnualNetProfit(n_7_5) from INF-1, FACT-4, and FACT-6 by RULE-2 using Modus Ponens :: AnnualNetProfit(n_7_5)
+INF-3: YearsToRecoverInvestment(n_12) from INF-2, FACT-1, and FACT-7 by RULE-3 using Modus Ponens :: YearsToRecoverInvestment(n_12)
+INF-4: BreakEvenYearCount(n_12) from INF-3 by RULE-4 using Modus Ponens :: BreakEvenYearCount(n_12)

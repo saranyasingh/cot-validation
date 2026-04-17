@@ -1,0 +1,19 @@
+## FACTS
+DistanceBySegment(john, first_segment, n_180) :: DistanceBySegment(john, first_segment, n_180)
+TimeForSegment(john, first_segment, n_3) :: TimeForSegment(john, first_segment, n_3)
+SpeedForSegment(john, first_segment, n_60) :: SpeedForSegment(john, first_segment, n_60)
+DistanceBySegment(john, second_segment, n_0) :: DistanceBySegment(john, second_segment, n_0)
+TimeForSegment(john, second_segment, n_2) :: TimeForSegment(john, second_segment, n_2)
+DistanceBySegment(john, third_segment, n_30) :: DistanceBySegment(john, third_segment, n_30)
+TimeForSegment(john, third_segment, n_1) :: TimeForSegment(john, third_segment, n_1)
+SpeedForSegment(john, third_segment, n_30) :: SpeedForSegment(john, third_segment, n_30)
+DistanceBySegment(john, fourth_segment, n_80) :: DistanceBySegment(john, fourth_segment, n_80)
+TimeForSegment(john, fourth_segment, n_1) :: TimeForSegment(john, fourth_segment, n_1)
+SpeedForSegment(john, fourth_segment, n_80) :: SpeedForSegment(john, fourth_segment, n_80)
+SumOfDistances(n_180, n_0, n_30, n_80, n_290) :: SumOfDistances(n_180, n_0, n_30, n_80, n_290)
+
+## RULES
+RULE-1: If the four segment distances d1, d2, d3, d4 for john sum to tot (via SumOfDistances(d1, d2, d3, d4, tot)) and the corresponding segment distances are known (DistanceBySegment(john, first_segment, d1) ∧ DistanceBySegment(john, second_segment, d2) ∧ DistanceBySegment(john, third_segment, d3) ∧ DistanceBySegment(john, fourth_segment, d4)), then John is at distance tot from home :: ∀d1∀d2∀d3∀d4∀tot((DistanceBySegment(john, first_segment, d1) ∧ DistanceBySegment(john, second_segment, d2) ∧ DistanceBySegment(john, third_segment, d3) ∧ DistanceBySegment(john, fourth_segment, d4) ∧ SumOfDistances(d1, d2, d3, d4, tot)) → DistanceFromHome(john, tot))
+
+## INFERENCES
+INF-1: DistanceFromHome(john, n_290) is inferred from FACT-1, FACT-2, FACT-3, FACT-4, and FACT-12 using RULE-1 via Modus Ponens :: DistanceFromHome(john, n_290)

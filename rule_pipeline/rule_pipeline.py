@@ -22,7 +22,7 @@ import re
 from datetime import datetime
 from dotenv import load_dotenv
 
-import tptp as tptp_module
+import main_pipeline.tptp as tptp_module
 from main_pipeline.clients import make_client, OpenAILLMClient
 
 load_dotenv()

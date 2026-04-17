@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: The robe requires 2 blue bolts :: BlueBoltsForRobe(robe, n_2)
+FACT-2: Half of blue bolts equals white bolts :: HalfOf(n_2, n_1)
+FACT-3: Sum of blue and white bolts equals total bolts :: SumEquals(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If a robe has B blue bolts and HalfOf(B, W), then WhiteBoltsForRobe(Robe, W) :: ∀r∀b∀w((BlueBoltsForRobe(r,b) ∧ HalfOf(b,w)) → WhiteBoltsForRobe(r,w))
+RULE-2: If a robe has B blue bolts and WhiteBoltsForRobe has W, and SumEquals(B,W,T), then TotalBoltsForRobe(Robe,T) :: ∀r∀b∀w∀t((BlueBoltsForRobe(r,b) ∧ WhiteBoltsForRobe(r,w) ∧ SumEquals(b,w,t)) → TotalBoltsForRobe(r,t))
+RULE-3: If TotalBoltsForRobe(Robe,T) then AnswerValue(T) :: ∀r∀t((TotalBoltsForRobe(r,t)) → AnswerValue(t))
+
+## INFERENCES
+INF-1: WhiteBoltsForRobe(robe, n_1) :: from FACT-1, FACT-2 by RULE-1 (Modus Ponens)
+INF-2: TotalBoltsForRobe(robe, n_3) :: from FACT-1, INF-1, FACT-3 by RULE-2 (Modus Ponens)
+INF-3: The robe requires 3 bolts in total :: AnswerValue(n_3) :: from INF-2 by RULE-3 (Modus Ponens)

@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, birth_difference(raymond, samantha, n_6)).
+fof(fact_2, axiom, age(samantha, n_31)).
+fof(fact_3, axiom, age_when_had_child(raymond, raymond_son, n_23)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, A, D, C] : ((age(Y, A) & birth_difference(X, Y, D) & sum(A, D, C)) => age(X, C))).
+fof(rule_2, axiom, ! [X, Y, A, D, T] : ((age(X, A) & age_when_had_child(X, Y, D) & diff(A, D, T)) => years_since_birth(X, Y, T))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-1 by Arithmetic Computation
+fof(inf_1, axiom, sum(n_31, n_6, n_37)).
+% From FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens
+fof(inf_2, axiom, age(raymond, n_37)).
+% From INF-2, FACT-3 by Arithmetic Computation
+fof(inf_3, axiom, diff(n_37, n_23, n_14)).
+% From INF-2, FACT-3, INF-3 by RULE-2
+fof(inf_4, axiom, years_since_birth(raymond, raymond_son, n_14)).

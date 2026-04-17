@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Janet has 16 eggs per day :: TotalEggsPerDay(janet, n_16)
+FACT-2: Janet eats 3 eggs for breakfast :: BreakfastEggs(janet, n_3)
+FACT-3: Janet uses 4 eggs for muffins :: MuffinEggs(janet, n_4)
+FACT-4: Price per egg is 2 dollars :: PricePerEgg(n_2)
+FACT-5: 16 minus 3 equals 13 :: Subtract(n_16, n_3, n_13)
+FACT-6: 13 minus 4 equals 9 :: Subtract(n_13, n_4, n_9)
+FACT-7: 9 times 2 equals 18 :: Multiply(n_9, n_2, n_18)
+
+## RULES
+RULE-1: ∀p∀t∀b∀r((TotalEggsPerDay(p,t) ∧ BreakfastEggs(p,b) ∧ Subtract(t,b,r)) → EggsLeftAfterBreakfast(p,r))
+RULE-2: ∀p∀r1∀m∀r2((EggsLeftAfterBreakfast(p,r1) ∧ MuffinEggs(p,m) ∧ Subtract(r1,m,r2)) → EggsLeftAfterBaking(p,r2))
+RULE-3: ∀p∀r2∀price∀r3((EggsLeftAfterBaking(p,r2) ∧ PricePerEgg(price) ∧ Multiply(r2,price,r3)) → Revenue(p,r3))
+
+## INFERENCES
+INF-1: EggsLeftAfterBreakfast(janet, n_13) :: from FACT-1, FACT-2, FACT-5 by RULE-1 (Modus Ponens)
+INF-2: EggsLeftAfterBaking(janet, n_9) :: from INF-1, FACT-3, FACT-6 by RULE-2 (Modus Ponens)
+INF-3: Revenue(janet, n_18) :: from INF-2, FACT-4, FACT-7 by RULE-3 (Modus Ponens)

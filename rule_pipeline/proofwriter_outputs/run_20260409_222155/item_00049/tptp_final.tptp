@@ -1,0 +1,9 @@
+% --- FACTS ---
+fof(fact_1, axiom, green(anne)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (young(X) => big(X))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, young(anne)).

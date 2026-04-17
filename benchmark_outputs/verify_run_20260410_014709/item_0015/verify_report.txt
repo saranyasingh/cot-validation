@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — story states total of 20 students.
+FACT-2: SUPPORTED — 4 is 20% of 20 per story.
+FACT-3: SUPPORTED — after removing contemporary, 16 remain.
+FACT-4: SUPPORTED — jazz dancers are 4, which is 25% of 16.
+FACT-5: SUPPORTED — hip-hop dancers are 12 (the rest).
+FACT-6: SUPPORTED — ComputePercent(12,20,60) expresses 12/20 = 60%.
+RULE-1: PLAUSIBLE — a direct, sensible inference that if ComputePercent(a,b,c) holds, then HipHopPercentage(c) holds.

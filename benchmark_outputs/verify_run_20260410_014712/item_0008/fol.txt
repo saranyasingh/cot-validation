@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: 40% of 200 GB equals 80 GB :: 40PercentOf(gb_200, gb_80)
+FACT-2: Time to download 80 GB at 2 GB/min is 40 minutes :: TimeRequired(gb_80, speed_2gb_per_min, min_40)
+FACT-3: Remaining size after downloading 80 GB is 120 GB :: RemainingSize(gb_200, gb_80, gb_120)
+FACT-4: Time to download 120 GB at 2 GB/min is 60 minutes :: TimeRequired(gb_120, speed_2gb_per_min, min_60)
+FACT-5: Restart time is 20 minutes :: RestartTime(min_20)
+FACT-6: 40 + 20 + 60 = 120 :: SumThree(min_40, min_20, min_60, min_120)
+
+## RULES
+RULE-1: If three time components sum to a total, then that total is the total time :: ∀a∀b∀c∀d((SumThree(a,b,c,d)) → TotalTime(d))
+
+## INFERENCES
+INF-1: TotalTime(min_120) :: FACT-6, RULE-1 by Modus Ponens

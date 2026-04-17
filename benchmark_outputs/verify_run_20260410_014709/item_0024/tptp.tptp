@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, timespan(one_pm, five_pm, n_4)).
+fof(fact_2, axiom, melting_rate(n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,H,R,T] : ((timespan(A,B,H) & melting_rate(R) & product(H,R,T)) => total_melting(T))).
+fof(rule_2, axiom, ! [T] : (total_melting(T) => shortened_by(T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, product(n_4, n_2, n_8)).
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_melting(n_8)).
+% From inf_2, rule_2 by Modus Ponens
+fof(inf_3, axiom, shortened_by(n_8)).

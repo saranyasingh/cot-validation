@@ -1,0 +1,33 @@
+### ## FACTS
+- The bald eagle chases the lion.
+- The bald eagle is blue.
+- The bald eagle is nice.
+- The bald eagle is round.
+- The bald eagle needs the cow.
+- The bald eagle needs the lion.
+- The cow chases the bald eagle.
+- The cow is round.
+- The cow needs the bald eagle.
+- The dog eats the lion.
+- The dog is blue.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The lion eats the cow.
+- All green people are blue.
+
+### ## RULES
+- Rule 10: "If someone chases the bald eagle then they eat the bald eagle."
+- Rule 15: "If someone needs the dog and they are green then the dog chases the lion."
+
+### ## INFERENCES
+- From the facts: The bald eagle chases the lion and the dog eats the lion.
+- By Rule 10: The dog eats the lion implies the dog chases the lion.
+- By Rule 15: The dog chases the lion implies the dog needs the lion.
+- By Rule 15: The dog needs the lion implies the dog needs the cow.
+- By Rule 15: The dog needs the cow implies the cow needs the dog.
+- By Rule 15: The cow needs the dog implies the cow needs the bald eagle.
+- By Rule 15: The cow needs the bald eagle implies the cow needs the lion.
+- By Rule 15: The cow needs the lion implies the cow chases the lion.
+- Therefore, the dog chases the lion indirectly via the cow’s involvement.
+
+Given these logical deductions, the conclusion is that the dog does indeed chase the lion. Thus, the original statement "The dog does not chase the lion" is incorrect.

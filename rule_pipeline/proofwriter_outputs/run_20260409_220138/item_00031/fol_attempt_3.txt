@@ -1,0 +1,30 @@
+### ## FACTS
+- The bald eagle chases the lion.
+- The bald eagle is blue.
+- The bald eagle is nice.
+- The bald eagle is round.
+- The bald eagle needs the cow.
+- The bald eagle needs the lion.
+- The cow chases the bald eagle.
+- The cow is round.
+- The cow needs the bald eagle.
+- The dog eats the lion.
+- The dog is blue.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The lion eats the cow.
+- All green people are blue.
+
+### ## RULES
+- **Rule-1:** If someone chases the bald eagle then they eat the bald eagle.
+- **Rule-2:** If someone needs the dog and they are green then the dog chases the lion.
+- **Rule-3:** If someone eats the bald eagle then they are green.
+
+### ## INFERENCES
+- **Inference-1:** From Fact-1: The bald eagle chases the lion. Applying Rule-1: Since the bald eagle chases the lion, the bald eagle must eat the lion.
+- **Inference-2:** From Fact-1: The bald eagle chases the lion. Applying Rule-2: Since the bald eagle chases the lion, the lion needs the cow (as per Fact-12). Therefore, the lion also needs the dog (since the lion needs the cow).
+- **Inference-3:** From Inference-2: The lion needs the dog. Applying Rule-2 again: Since the lion needs the dog, the dog chases the lion.
+- **Inference-4:** From Fact-1: The bald eagle chases the lion. Applying Rule-1: Since the bald eagle chases the lion, the bald eagle must eat the lion.
+- **Inference-5:** From Inference-3: The dog chases the lion. Applying Rule-3: Since the dog chases the lion, the dog is green (as per Fact-11).
+
+Thus, the final inference is that the dog is green, which contradicts the initial assumption that the dog is blue as stated in Fact-12. Hence, the statement "The bald eagle eats the bald eagle" cannot be conclusively determined to be true or false based on the given facts and rules.

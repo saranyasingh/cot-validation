@@ -1,0 +1,8 @@
+FACT-1: Dave is kind.
+FACT-2: Dave is young.
+RULE-1: If someone is furry and big then they are cold.
+RULE-2: If someone is big then they are furry.
+INF-1: Dave is furry.
+INF-2: Dave is big.
+INF-3: Dave is cold.
+INF-4: Dave is not big.

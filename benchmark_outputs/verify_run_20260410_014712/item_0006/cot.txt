@@ -1,0 +1,30 @@
+EXPLANATION
+To determine how much Kylar needs to pay for 16 glasses, we first need to identify the cost structure of the glasses.
+
+1. **Identify the cost of the first glass:** This is given as $5.
+2. **Determine the cost of subsequent glasses:** Every second glass costs 60% of the original price.
+   - Calculate 60% of $5:
+     \[
+     0.60 \times 5 = 3
+     \]
+   - Therefore, each second glass costs $3.
+   
+Now that we know both the initial cost and the reduced cost for every other glass, let's calculate the total amount Kylar needs to pay for 16 glasses.
+
+**Total Cost Calculation:**
+- For the first glass: $5
+- For the remaining 14 glasses (since every second glass counts): \(14 \times 3\)
+
+First, calculate the cost of the remaining 14 glasses:
+\[
+14 \times 3 = 42
+\]
+
+Next, add this to the cost of the first glass:
+\[
+5 + 42 = 47
+\]
+
+Thus, Kylar needs to pay a total of $47 for the 16 glasses.
+
+THE ANSWER IS: 47

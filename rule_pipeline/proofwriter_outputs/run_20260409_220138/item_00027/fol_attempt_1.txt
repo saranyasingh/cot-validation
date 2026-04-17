@@ -1,0 +1,20 @@
+FACT-1: The bald eagle is blue.
+RULE-1: If someone eats the bald eagle then they are green.
+RULE-2: If someone needs the cow then they need the dog.
+RULE-3: If someone eats the lion then the lion needs the bald eagle.
+RULE-4: If someone needs the cow then they need the dog.
+RULE-5: If someone is rough then they chase the bald eagle.
+RULE-6: If someone chases the lion then they are rough.
+RULE-7: If someone chases the lion then they eat the bald eagle.
+RULE-8: If someone needs the cow then they need the dog.
+RULE-9: If someone is rough and they eat the dog then the dog eats the cow.
+
+### Inferences:
+INF-1: The lion needs the bald eagle.
+INF-2: The lion is rough.
+INF-3: The lion chases the bald eagle.
+INF-4: The lion eats the bald eagle.
+INF-5: The dog eats the cow.
+
+### Conclusion:
+The statement "The cow eats the bald eagle" is **True**.

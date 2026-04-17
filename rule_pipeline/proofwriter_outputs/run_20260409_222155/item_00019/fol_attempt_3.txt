@@ -1,0 +1,29 @@
+### ## FACTS
+- **FACT-1:** Gary is big.
+- **FACT-2:** Dave is fuzzy.
+- **FACT-3:** Dave is cold.
+
+### ## RULES
+- **RULE-1:** If someone is big then they are furry.
+- **RULE-2:** If someone is furry and big then they are cold.
+- **RULE-3:** All furry, kind people are young.
+- **RULE-4:** If someone is big then they are furry.
+- **RULE-5:** All white, kind people are young.
+- **RULE-6:** All cold, smart people are big.
+- **RULE-7:** All young people are smart.
+- **RULE-8:** All cold, young people are white.
+
+### ## INFERENCES
+- **INF-1:** Dave is fuzzy.
+- **INF-2:** Dave is cold.
+
+**LABEL:** No FACT or RULE lines found in the structured FOL.
+
+### ERROR REPORT
+No FACT or RULE lines found in the structured FOL.
+
+### CONSTRAINTS
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTF syntax issues must be corrected.

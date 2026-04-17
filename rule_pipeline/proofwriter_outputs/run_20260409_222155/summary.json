@@ -1,0 +1,29 @@
+{
+  "total": 50,
+  "correct": 16,
+  "accuracy": 0.32,
+  "passed_verify": 3,
+  "verify_rate": 0.06,
+  "passed_tptp": 3,
+  "tptp_rate": 0.06,
+  "needed_retry": 47,
+  "retry_rate": 0.94,
+  "avg_attempts": 2.88,
+  "per_class": {
+    "True": {
+      "correct": 10,
+      "total": 25,
+      "accuracy": 0.4
+    },
+    "False": {
+      "correct": 6,
+      "total": 25,
+      "accuracy": 0.24
+    },
+    "Unknown": {
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    }
+  }
+}

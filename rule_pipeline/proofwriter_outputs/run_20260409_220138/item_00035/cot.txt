@@ -1,0 +1,33 @@
+To determine if the statement "The dog chases the lion" is true based on the given facts and rules, let's analyze the information step-by-step:
+
+1. **Fact 4**: The cow chases the bald eagle.
+2. **Fact 5**: The bald eagle chases the lion.
+3. **Rule 1**: If someone chases the bald eagle then they eat the bald eagle.
+   - This rule connects chasing to eating for the bald eagle but doesn't directly connect chasing to chasing other animals like the dog.
+
+4. **Rule 2**: If someone needs the dog and they are green then the dog chases the lion.
+   - We do not have any information about the color of the dog in this list of facts or rules.
+
+5. **Rule 3**: If someone eats the bald eagle then they are green.
+   - Again, we don't know anything specific about the dog being green or its actions regarding the bald eagle.
+
+6. **Rule 4**: If someone eats the lion then the lion needs the bald eagle.
+   - This implies that if the lion eats something, that thing needs the bald eagle.
+
+7. **Rule 5**: If someone needs the cow then they need the dog.
+   - No direct connection between needing the cow and needing the dog.
+
+8. **Rule 6**: If someone is rough then they chase the bald eagle.
+   - We can see that the lion is described as rough (Rule 5).
+
+9. **Rule 7**: If someone chases the lion then they are rough.
+   - This confirms that the lion is indeed rough.
+
+Given:
+- From Rule 6 and Rule 7, we conclude that the lion is rough.
+- Since the lion is rough, by Rule 6, the dog also needs the lion.
+- By Rule 2, if the dog needs the lion, the dog will chase the lion.
+
+Therefore, according to the provided rules, since the lion is rough and thus needs the dog, the dog must chase the lion.
+
+**Conclusion:** The statement "The dog chases the lion" is True based on the available rules and facts.

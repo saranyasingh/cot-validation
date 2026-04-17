@@ -1,0 +1,29 @@
+EXPLANATION
+1. Let's start by breaking down the information given:
+   - Total number of customers on Tuesday: 8
+   - First 3 customers buy 1 DVD each.
+   - Next 2 customers buy 2 DVDs each.
+   - Last 3 customers do not buy any DVDs.
+
+2. We need to determine how many DVDs were sold overall.
+
+3. For the first 3 customers:
+   - Each buys 1 DVD.
+   - Therefore, 3 DVDs were sold to these customers.
+
+4. For the next 2 customers:
+   - Each buys 2 DVDs.
+   - Therefore, 2 x 2 = 4 DVDs were sold to these customers.
+
+5. For the last 3 customers:
+   - None buy any DVDs.
+   - Therefore, 0 DVDs were sold to these customers.
+
+6. Now we sum up all the DVDs sold:
+   - From the first group: 3 DVDs
+   - From the second group: 4 DVDs
+   - From the third group: 0 DVDs
+
+7. Total DVDs sold = 3 + 4 + 0 = 7 DVDs
+
+Therefore, the answer is: 7

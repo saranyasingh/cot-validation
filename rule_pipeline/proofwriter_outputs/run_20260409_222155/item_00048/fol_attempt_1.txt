@@ -1,0 +1,12 @@
+FACT-1: Erin is furry. :: ∀ x (Furry(x) → Big(x))
+RULE-1: All furry people are big. :: ∀ x (Furry(x) → Big(x))
+RULE-2: Erin is big. :: Big(erin)
+
+**INFERENCES**
+
+- Erin is furry. :: ∀ x (Furry(x) → Big(x)) :: Rule-1
+- Erin is big. :: Big(erin) :: RULE-2
+
+Since Erin is both furry and big, but there is no specific mention of Erin’s color in the given facts, we cannot conclude whether Erin is green or not.
+
+Therefore, the answer is: Unknown

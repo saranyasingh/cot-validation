@@ -1,0 +1,15 @@
+### FACTS
+- The_bald_eagle_chases_the_lion :: (chases(lion))
+- The_bald_eagle_is_blue :: (is_blue(bald_eagle))
+- The_bald_eagle_is_nice :: (is_nice(bald_eagle))
+- The_bald_eagle_is_round :: (is_round(bald_eagle))
+- The_bald_eagle_needs_the_cow :: (needs(cow, bald_eagle))
+- The_bald_eagle_needs_the_lion :: (needs(lion, bald_eagle))
+- The_cow_chases_the_bald_eagle :: (chases(bald_eagle, cow))
+- The_cow_is_round :: (is_round(cow))
+
+### RULES
+- If someone chases the bald eagle then they eat the bald eagle. :: ((chases(a, bald_eagle)) → (eats(a, bald_eagle)))
+
+### INFERENCES
+- Rule 1: If someone chases the lion then they are rough. :: (If someone(chases(lion)), then someone(rough)).

@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: First leg: 3 hours at 60 mph :: Drove(john, leg1, n_60, n_3)
+FACT-2: Return stop: 2 hours in standstill traffic :: Stop(john, n_2)
+FACT-3: Second leg: 0.5 hours at 30 mph :: Drove(john, leg2, n_30, n_0_5)
+FACT-4: Final leg: 2 hours at 80 mph :: Drove(john, leg3, n_80, n_2)
+FACT-5: Started 0 miles away from home :: StartDistance(john, n_0)
+
+## RULES
+RULE-1: ∀p∀L∀S∀T∀D((Drove(p,L,S,T) ∧ Product(S,T,D)) → LegDistance(p,L,D))
+RULE-2: ∀p∀L1∀L2∀D1∀D2∀Dsum((LegDistance(p,L1,D1) ∧ LegDistance(p,L2,D2) ∧ Sum(D1,D2,Dsum)) → TotalDistance(p,Dsum))
+RULE-3: ∀p∀Dstart∀Dsum∀DTotal((StartDistance(p,Dstart) ∧ TotalDistance(p,Dsum) ∧ Sum(Dstart,Dsum,DTotal)) → DistanceFromHome(p,DTotal))
+
+## INFERENCES
+INF-1: 60 × 3 = 180, from FACT-1 by Arithmetic Computation :: LegDistance(john, leg1, n_180)
+INF-2: 30 × 0_5 = 15, from FACT-3 by Arithmetic Computation :: LegDistance(john, leg2, n_15)
+INF-3: 80 × 2 = 160, from FACT-4 by Arithmetic Computation :: LegDistance(john, leg3, n_160)
+INF-4: 180 + 15 = 195, from INF-1 and INF-2 by Arithmetic Computation :: Sum(n_180, n_15, n_195)
+INF-5: TotalDistance(john, 195), from INF-1, INF-2, INF-4 by RULE-2
+INF-6: 195 + 160 = 355, from INF-5 and INF-3 by Arithmetic Computation :: Sum(n_195, n_160, n_355)
+INF-7: TotalDistance(john, 355), from INF-5, INF-3, INF-6 by RULE-2
+INF-8: 0 + 355 = 355, from FACT-5 and INF-7 by Arithmetic Computation :: DistanceFromHome(john, n_355)

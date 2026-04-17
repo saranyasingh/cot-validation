@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: H1 equals 33 :: Price(h1, n_33)
+FACT-2: H2 is twice H1 :: Twice(h2, h1)
+FACT-3: Boots minus sum equals 5 :: BootsMinusSumEquals(boots, h1, h2, n_5)
+FACT-4: 33 plus 66 equals 99 :: Add(n_33, n_66, n_99)
+
+## RULES
+RULE-1: If H1 costs 33 and H2 is twice H1, then H2 costs 66 :: ∀h1∀h2((Price(h1, n_33) ∧ Twice(h2, h1)) → Price(h2, n_66))
+RULE-2: If boots minus (H1 plus H2) equals 5 and H1 costs 33 and H2 costs 66 and 33 plus 66 equals 99, then boots cost 104 :: ∀b∀u∀v((BootsMinusSumEquals(b, u, v, n_5) ∧ Price(u, n_33) ∧ Price(v, n_66) ∧ Add(n_33, n_66, n_99)) → Price(b, n_104))
+RULE-3: If boots cost 104, then the final answer is 104 :: ∀b(Price(b, n_104) → FinalAnswer(n_104))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: Price(h2, n_66)
+INF-2: From INF-1, FACT-3, FACT-4 by RULE-2 (Modus Ponens) :: Price(boots, n_104)
+INF-3: From INF-2 by RULE-3 (Modus Ponens) :: FinalAnswer(n_104)

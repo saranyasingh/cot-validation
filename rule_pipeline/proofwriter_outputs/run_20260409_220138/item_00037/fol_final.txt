@@ -1,0 +1,54 @@
+### ## FACTS
+```plaintext
+FACT-1: Bob is kind.
+```
+
+### ## RULES
+```plaintext
+RULE-1: If Gary is white then Gary is big.
+RULE-2: If Anne is nice then Anne is green.
+RULE-3: If someone is nice then they are green.
+RULE-4: Kind people are nice.
+RULE-5: All nice people are big.
+RULE-6: All rough people are kind.
+```
+
+### ## INFERENCES
+```plaintext
+INF-1: The statement "Bob is kind" remains unknown.
+```
+
+### ERROR REPORT
+No FACT or RULE lines found in the structured FOL.
+
+### CONSTRAINTS
+- FACTS must come only from the problem facts listed below.
+- RULES must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTF syntax issues must be corrected.
+
+### PROBLEM FACTS
+- Anne is big.
+- Anne is green.
+- Anne is nice.
+- Bob is kind.
+- Erin is furry.
+- Erin is white.
+- Gary is furry.
+- Gary is green.
+- Gary is nice.
+- Gary is white.
+- Kind people are nice.
+- Big people are rough.
+- Green people are white.
+- All rough people are kind.
+- All nice people are big.
+- Furry people are big.
+
+### RULESET
+- If Gary is white then Gary is big.
+- If Anne is nice then Anne is green.
+- If someone is nice then they are green.
+
+**Final Corrected Answer:**
+The answer is: Unknown

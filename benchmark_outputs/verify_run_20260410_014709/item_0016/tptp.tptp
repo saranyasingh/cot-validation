@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_value(jewelry, n_5000)).
+fof(fact_2, axiom, growth_rate(jewelry, n_025)).
+fof(fact_3, axiom, initial_value(electronic_gadgets, n_8000)).
+fof(fact_4, axiom, growth_rate(electronic_gadgets, n_012)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, I, G, F] : ((initial_value(X, I) & growth_rate(X, G) & compute_future(I, G, F)) => future_value(X, F))).
+fof(rule_2a, axiom, ! [X, Y, N1, N2] : ((future_value(X, N1) & future_value(Y, N2) & greater_than(N1, N2)) => higher_profit(X))).
+fof(rule_2b, axiom, ! [X, Y, N1, N2] : ((future_value(X, N1) & future_value(Y, N2) & greater_than(N2, N1)) => higher_profit(Y))).
+fof(rule_3, axiom, ! [X, F] : ((higher_profit(X) & future_value(X, F)) => final_answer(F))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by ArithmeticComputation
+fof(inf_1, axiom, compute_future(n_5000, n_025, n_5125)).
+% From INF-1, FACT-1, FACT-2 by RULE-1
+fof(inf_2, axiom, future_value(jewelry, n_5125)).
+% From FACT-3, FACT-4 by ArithmeticComputation
+fof(inf_3, axiom, compute_future(n_8000, n_012, n_8096)).
+% From INF-3 by RULE-1
+fof(inf_4, axiom, future_value(electronic_gadgets, n_8096)).
+% From INF-2, INF-4 by NumericalComparison
+fof(inf_5, axiom, greater_than(n_8096, n_5125)).
+% From INF-2, INF-4, INF-5 by RULE-2B
+fof(inf_6, axiom, higher_profit(electronic_gadgets)).
+% From INF-6, INF-4 by RULE-3
+fof(inf_7, axiom, final_answer(n_8096)).

@@ -1,0 +1,42 @@
+### ## FACTS
+- **Fact-1:** Bob is furry.
+
+### ## RULES
+- **Rule-1:** If someone is nice, then they are green.
+
+### ## INFERENCES
+- **Inference-1:** Bob is green :: (∀x (Nice(x) → Green(x))) ∧ Bob is furry.
+  
+This inference combines the given facts that Bob is furry and applies the rule that if someone is nice, then they are green. The conjunction ensures both conditions are met.
+
+**Error Report:**
+- No FACT or RULE lines found in the structured FOL.
+
+**Constraints:**
+- Facts must come only from the problem facts listed below.
+- Rules must come only from the ruleset listed below.
+- Every INFERENCE must correctly follow from its cited premises.
+- All TPTF syntax issues must be corrected.
+
+**Problem Facts:**
+- Anne is big.
+- Anne is green.
+- Anne is nice.
+- Bob is kind.
+- Erin is furry.
+- Erin is white.
+- Gary is furry.
+- Gary is green.
+- Gary is nice.
+- Gary is white.
+- Kind people are nice.
+- Big people are rough.
+- Green people are white.
+- All rough people are kind.
+- All nice people are big.
+- Furry people are big.
+
+**Rule Set:**
+- If Gary is white then Gary is big.
+- If Anne is nice then Anne is green.
+- If someone is nice then they are green.

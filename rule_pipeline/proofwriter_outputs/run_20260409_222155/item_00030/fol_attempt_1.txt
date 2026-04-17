@@ -1,0 +1,7 @@
+FACT-1: The bald eagle is blue.
+RULE-5: If someone eats the bald eagle then they are green.
+RULE-6: If someone eats the lion then the lion needs the bald eagle.
+RULE-7: If someone needs the cow then they need the dog.
+INF-1: The lion is green.
+INF-2: The lion needs the bald eagle.
+INF-3: The lion is not blue.

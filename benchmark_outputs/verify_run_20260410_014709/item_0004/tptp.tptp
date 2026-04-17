@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, distance_per_sprint(james, n_60)).
+fof(fact_2, axiom, sprints_per_session(james, n_3)).
+fof(fact_3, axiom, sessions_per_week(james, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ((distance_per_sprint(X, n_60) & sprints_per_session(X, n_3)) => total_distance_per_session(X, n_180))).
+fof(rule_2, axiom, ! [X] : ((total_distance_per_session(X, n_180) & sessions_per_week(X, n_3)) => total_distance_per_week(X, n_540))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, and rule_1 by Modus Ponens
+fof(inf_1, axiom, total_distance_per_session(james, n_180)).
+% From inf_1, fact_3, and rule_2 by Modus Ponens
+fof(inf_2, axiom, total_distance_per_week(james, n_540)).

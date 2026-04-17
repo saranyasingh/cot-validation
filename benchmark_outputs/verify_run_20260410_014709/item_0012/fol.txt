@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Toula buys 3 dozen donuts at $68 per dozen :: Bought(toula, donuts, n_3, n_68)
+FACT-2: Toula buys 2 dozen cupcakes at $80 per dozen :: Bought(toula, cupcakes, n_2, n_80)
+FACT-3: Toula buys 6 dozen cheesecakes at $55 per dozen :: Bought(toula, cheesecakes, n_6, n_55)
+
+## RULES
+RULE-1: ∀p(Bought(p, donuts, n_3, n_68) → CostOfDonuts(n_204))
+RULE-2: ∀p(Bought(p, cupcakes, n_2, n_80) → CostOfCupcakes(n_160))
+RULE-3: ∀p(Bought(p, cheesecakes, n_6, n_55) → CostOfCheesecakes(n_330))
+RULE-4: ∀x∀y(CostOfDonuts(x) ∧ CostOfCupcakes(y) → SumTwoCosts(x, y, n_364))
+RULE-5: ∀x∀y∀z(CostOfDonuts(x) ∧ CostOfCupcakes(y) ∧ CostOfCheesecakes(z) → TotalCostAll(x, y, z, n_794))
+RULE-6: ∀x∀y∀z∀w(TotalCostAll(x, y, z, w) → ToulaTotalCost(w))
+
+## INFERENCES
+INF-1: 3 × 68 = 204, from FACT-1 by Arithmetic Computation :: CostOfDonuts(n_204)
+INF-2: 2 × 80 = 160, from FACT-2 by Arithmetic Computation :: CostOfCupcakes(n_160)
+INF-3: 6 × 55 = 330, from FACT-3 by Arithmetic Computation :: CostOfCheesecakes(n_330)
+INF-4: 204 + 160 = 364, from INF-1 and INF-2 by Arithmetic Computation :: SumTwoCosts(n_204, n_160, n_364)
+INF-5: 364 + 330 = 794, from INF-4 and INF-3 by Arithmetic Computation :: TotalCostAll(n_204, n_160, n_330, n_794)
+INF-6: ToulaTotalCost(n_794) from INF-5 by Arithmetic Computation :: ToulaTotalCost(n_794)

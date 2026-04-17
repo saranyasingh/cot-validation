@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: James runs 60 meters per sprint :: DistancePerSprint(james, n_60)
+FACT-2: James runs 3 sprints per session :: SprintsPerSession(james, n_3)
+FACT-3: James runs this routine 3 times a week :: SessionsPerWeek(james, n_3)
+
+## RULES
+RULE-1: If someone runs 60 meters per sprint and does 3 sprints per session, then their total distance per session is 180 meters :: ∀x((DistancePerSprint(x, n_60) ∧ SprintsPerSession(x, n_3)) → TotalDistancePerSession(x, n_180))
+RULE-2: If someone has total distance per session of 180 meters and runs this routine 3 times a week, then their total distance per week is 540 meters :: ∀x((TotalDistancePerSession(x, n_180) ∧ SessionsPerWeek(x, n_3)) → TotalDistancePerWeek(x, n_540))
+
+## INFERENCES
+INF-1: TotalDistancePerSession(james, n_180) :: Modus Ponens using FACT-1, FACT-2, and RULE-1
+INF-2: TotalDistancePerWeek(james, n_540) :: Modus Ponens using INF-1, FACT-3, and RULE-2

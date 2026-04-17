@@ -1,0 +1,6 @@
+  % From FACT-2, FACT-3, FACT-4 by RULE-2
+  inf_1: PROVED
+  % From FACT-1, INF-1, FACT-5 by RULE-1
+  inf_2: PROVED
+  % From INF-2, INF-1, FACT-3, FACT-6 by RULE-3
+  inf_3: PROVED

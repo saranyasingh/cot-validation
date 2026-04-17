@@ -1,0 +1,38 @@
+### ## FACTS
+- The bear is green.
+- The bear likes the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The cow likes the bear.
+- The cow sees the bear.
+- The mouse likes the cow.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone is kind then they need the bear.
+- If someone is round then they like the mouse.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- **Inference 1:** The mouse likes the bear.
+  - From INF-1: The mouse likes the bear.
+
+- **Inference 2:** The mouse does not need the bear.
+  - From INF-2: The mouse does not need the bear.
+
+- **Inference 3:** The mouse sees the rabbit.
+  - From INF-3: If someone is round and they do not need the bear then they see the rabbit,
+    - And from Rule 6: If someone is round and they do not need the bear then they see the rabbit,
+      - Therefore, the mouse is round and does not need the bear, hence the mouse sees the rabbit.
+
+- **Conclusion:** The mouse does not see the rabbit.
+  - From the above inferences, we know the mouse sees the rabbit but does not need the bear, which contradicts the requirement for Rule 6 to apply. Hence, the mouse does not see the rabbit.
+
+**Answer**:
+The answer is: False

@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Number of sprints is 3 :: NumberOfSprints(n_3)
+FACT-2: Running frequency per week is 3 :: RunsPerWeek(n_3)
+FACT-3: Distance per sprint is 60 meters :: DistancePerSprint(n_60)
+
+## RULES
+RULE-1: If the number of sprints is x and the distance per sprint is y and their product is z, then the distance per session is z :: ∀x∀y∀z((NumberOfSprints(x) ∧ DistancePerSprint(y) ∧ Product(x,y,z)) → DistancePerSession(z))
+RULE-2: Arithmetic computation: 3 × 60 = 180 :: ∀x∀y((NumberOfSprints(x) ∧ DistancePerSprint(y)) → Product(n_3, n_60, n_180))
+RULE-3: Arithmetic computation: 180 × 3 = 540 :: ∀a∀b((DistancePerSession(a) ∧ RunsPerWeek(b)) → Product(n_180, n_3, n_540))
+RULE-4: If distance per session is x and runs per week is y and their product is z, then total weekly distance is z :: ∀x∀y∀z((DistancePerSession(x) ∧ RunsPerWeek(y) ∧ Product(x,y,z)) → TotalWeeklyDistance(z))
+
+## INFERENCES
+INF-1: 3 × 60 = 180, from FACT-1 and FACT-3 by ArithmeticComputation :: Product(n_3, n_60, n_180)
+INF-2: Distance per session is 180 meters, from FACT-1, FACT-3, INF-1 by RULE-1 :: DistancePerSession(n_180)
+INF-3: 180 × 3 = 540, from INF-2 and FACT-2 by ArithmeticComputation :: Product(n_180, n_3, n_540)
+INF-4: Total weekly distance is 540 meters, from INF-2, FACT-2, INF-3 by RULE-4 :: TotalWeeklyDistance(n_540)

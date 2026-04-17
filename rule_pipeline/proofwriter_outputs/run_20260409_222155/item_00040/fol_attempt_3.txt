@@ -1,0 +1,19 @@
+### ## FACTS
+- **Fact 7**: "Furry people are big."
+  - Ground: Erin is furry.
+  - Conclusion: Erin is big.
+
+### ## RULES
+- **Rule 3**: "All nice people are big."
+  - Premise: Erin is nice.
+  - Conclusion: Erin is big.
+
+### ## INFERENCES
+- **Inference 1**: "Erin is big."
+  - Premises: Erin is furry (from Fact 7) and Erin is nice (from Rule 3).
+  - Reasoning: Since Erin is furry and all furry people are big, and Erin is nice and all nice people are big, Erin must be big.
+
+Thus, the statement "Erin is not big" is false.
+
+### LABEL: natural language gloss :: FOL formula
+No FACT or RULE lines found in the structured FOL.

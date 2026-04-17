@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(toula, donuts, n_3, n_68)).
+fof(fact_2, axiom, bought(toula, cupcakes, n_2, n_80)).
+fof(fact_3, axiom, bought(toula, cheesecakes, n_6, n_55)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (bought(P, donuts, n_3, n_68) => cost_of_donuts(n_204))).
+fof(rule_2, axiom, ! [P] : (bought(P, cupcakes, n_2, n_80) => cost_of_cupcakes(n_160))).
+fof(rule_3, axiom, ! [P] : (bought(P, cheesecakes, n_6, n_55) => cost_of_cheesecakes(n_330))).
+fof(rule_4, axiom, ! [X, Y] : ((cost_of_donuts(X) & cost_of_cupcakes(Y)) => sum_two_costs(X, Y, n_364))).
+fof(rule_5, axiom, ! [X, Y, Z] : ((cost_of_donuts(X) & cost_of_cupcakes(Y) & cost_of_cheesecakes(Z)) => total_cost_all(X, Y, Z, n_794))).
+fof(rule_6, axiom, ! [X, Y, Z, W] : ((total_cost_all(X, Y, Z, W)) => toula_total_cost(W))).
+
+% --- INFERENCES ---
+% From fact_1 by Arithmetic Computation
+fof(inf_1, axiom, cost_of_donuts(n_204)).
+
+% From fact_2 by Arithmetic Computation
+fof(inf_2, axiom, cost_of_cupcakes(n_160)).
+
+% From fact_3 by Arithmetic Computation
+fof(inf_3, axiom, cost_of_cheesecakes(n_330)).
+
+% From inf_1, inf_2 by Arithmetic Computation
+fof(inf_4, axiom, sum_two_costs(n_204, n_160, n_364)).
+
+% From inf_4, inf_3 by Arithmetic Computation
+fof(inf_5, axiom, total_cost_all(n_204, n_160, n_330, n_794)).
+
+% From inf_5 by Arithmetic Computation
+fof(inf_6, axiom, toula_total_cost(n_794)).

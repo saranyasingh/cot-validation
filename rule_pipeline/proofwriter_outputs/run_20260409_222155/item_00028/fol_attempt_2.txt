@@ -1,0 +1,41 @@
+### ## FACTS
+
+1. The bald eagle chases the lion.
+   - Bald_Eagle_Chases_Lion :: ∃e(Bald_Eagle(e) ∧ Chases(e, Lion()))
+
+2. The dog chases the lion.
+   - Dog_Chases_Lion :: ∃d(Dog(d) ∧ Lion(d))
+
+### ## RULES
+
+1. If someone chases the bald eagle then they eat the bald eagle.
+   - Chase_Bald_Eagle_Eats_Bald_Eagle :: ∀x(Chase(x, Bald_Eagle()) → Eats(x, Bald_Eagle()))
+
+2. If someone needs the dog and they are green then the dog chases the lion.
+   - Needs_Dog_Green_Dog_Chases_Lion :: ∀x(∀y(Needs(x, y) ∧ Green(y) → Dog_Chases(Lion(), y)))
+
+3. If someone eats the bald eagle then they are green.
+   - Eats_Bald_Eagle_Is_Green :: ∀x(Eats(x, Bald_Eagle()) → Green(x))
+
+4. If someone eats the lion then the lion needs the bald eagle.
+   - Eats_Lion_Needs_Bald_Eagle :: ∀x(Eats(x, Lion()) → Needs(x, Bald_Eagle()))
+
+5. If someone needs the cow then they need the dog.
+   - Needs_Cow_Needs_Dog :: ∀x(Needs(x, Cow()) → Needs(x, Dog()))
+
+6. If someone is rough then they chase the bald eagle.
+   - Is_Rough_Then_Chase_Bald_Eagle :: ∀x(Is_Rough(x) → Chase(x, Bald_Eagle()))
+
+7. If someone chases the lion then they are rough.
+   - Chase_Lion_Is_Rough :: ∀x(Chase(x, Lion()) → Is_Rough(x))
+
+### ## INFERENCES
+
+1. The dog chases the lion.
+   - Dog_Chases_Lion :: ∃d(Dog(d) ∧ Lion(d))
+
+2. The dog chases the lion.
+   - Dog_Chases_Lion :: ∃d(Dog(d) ∧ Lion(d))
+
+3. The dog chases the lion.
+   - Dog_Chases_Lion :: ∃d(Dog(d) ∧ Lion(d))

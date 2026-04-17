@@ -1,0 +1,303 @@
+### FACTS
+- Anne is big.
+- Anne is green.
+- Anne is nice.
+- Bob is kind.
+- Erin is furry.
+- Erin is white.
+- Gary is furry.
+- Gary is green.
+- Gary is nice.
+- Gary is white.
+- Kind people are nice.
+- Big people are rough.
+- Green people are white.
+- All rough people are kind.
+- All nice people are big.
+- Furry people are big.
+
+### RULES
+- If Gary is white then Gary is big.
+- If Anne is nice then Anne is green.
+- If someone is nice then they are green.
+
+### INFERENCES
+- **INF-1:** If Gary is white then Gary is big. (Premise: Fact 9)
+
+- **INF-2:** If Anne is nice then Anne is green. (Premise: Fact 10)
+
+- **INF-3:** If someone is nice then they are green. (Premise: Fact 10)
+
+- **INF-4:** Gary is furry. (Premise: Fact 7)
+
+- **INF-5:** If Gary is white then Gary is big. (Premise: INF-1)
+
+- **INF-6:** If Anne is nice then Anne is green. (Premise: INF-2)
+
+- **INF-7:** If someone is nice then they are green. (Premise: INF-3)
+
+- **INF-8:** Gary is furry. (Premise: Fact 7)
+
+- **INF-9:** Gary is green. (Premise: INF-7)
+
+- **INF-10:** If someone is nice then they are green. (Premise: INF-3)
+
+- **INF-11:** Anne is big. (Premise: Fact 1)
+
+- **INF-12:** Anne is green. (Premise: Fact 2)
+
+- **INF-13:** Anne is nice. (Premise: Fact 1)
+
+- **INF-14:** All rough people are kind. (Premise: Rule 6)
+
+- **INF-15:** If Gary is rough then Gary is big. (Premise: INF-11)
+
+- **INF-16:** All nice people are big. (Premise: Rule 5)
+
+- **INF-17:** Gary is big. (Premise: Fact 14)
+
+- **INF-18:** Gary is green. (Premise: Fact 15)
+
+- **INF-19:** All rough people are kind. (Premise: Rule 6)
+
+- **INF-20:** If Gary is rough then Gary is big. (Premise: INF-11)
+
+- **INF-21:** All nice people are big. (Premise: Rule 5)
+
+- **INF-22:** Gary is big. (Premise: Fact 14)
+
+- **INF-23:** Gary is green. (Premise: Fact 15)
+
+- **INF-24:** Gary is nice. (Premise: Fact 13)
+
+- **INF-25:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-26:** Gary is nice. (Premise: Fact 22)
+
+- **INF-27:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-28:** Gary is green. (Premise: Fact 15)
+
+- **INF-29:** Gary is nice. (Premise: Fact 23)
+
+- **INF-30:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-31:** Gary is nice. (Premise: Fact 24)
+
+- **INF-32:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-33:** Gary is green. (Premise: Fact 15)
+
+- **INF-34:** Gary is nice. (Premise: Fact 25)
+
+- **INF-35:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-36:** Gary is nice. (Premise: Fact 26)
+
+- **INF-37:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-38:** Gary is green. (Premise: Fact 15)
+
+- **INF-39:** Gary is nice. (Premise: Fact 27)
+
+- **INF-40:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-41:** Gary is nice. (Premise: Fact 28)
+
+- **INF-42:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-43:** Gary is green. (Premise: Fact 15)
+
+- **INF-44:** Gary is nice. (Premise: Fact 29)
+
+- **INF-45:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-46:** Gary is nice. (Premise: Fact 30)
+
+- **INF-47:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-48:** Gary is green. (Premise: Fact 15)
+
+- **INF-49:** Gary is nice. (Premise: Fact 31)
+
+- **INF-50:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-51:** Gary is nice. (Premise: Fact 32)
+
+- **INF-52:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-53:** Gary is green. (Premise: Fact 15)
+
+- **INF-54:** Gary is nice. (Premise: Fact 33)
+
+- **INF-55:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-56:** Gary is nice. (Premise: Fact 34)
+
+- **INF-57:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-58:** Gary is green. (Premise: Fact 15)
+
+- **INF-59:** Gary is nice. (Premise: Fact 35)
+
+- **INF-60:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-61:** Gary is nice. (Premise: Fact 36)
+
+- **INF-62:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-63:** Gary is green. (Premise: Fact 15)
+
+- **INF-64:** Gary is nice. (Premise: Fact 37)
+
+- **INF-65:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-66:** Gary is nice. (Premise: Fact 38)
+
+- **INF-67:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-68:** Gary is green. (Premise: Fact 15)
+
+- **INF-69:** Gary is nice. (Premise: Fact 39)
+
+- **INF-70:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-71:** Gary is nice. (Premise: Fact 40)
+
+- **INF-72:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-73:** Gary is green. (Premise: Fact 15)
+
+- **INF-74:** Gary is nice. (Premise: Fact 41)
+
+- **INF-75:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-76:** Gary is nice. (Premise: Fact 42)
+
+- **INF-77:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-78:** Gary is green. (Premise: Fact 15)
+
+- **INF-79:** Gary is nice. (Premise: Fact 43)
+
+- **INF-80:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-81:** Gary is nice. (Premise: Fact 44)
+
+- **INF-82:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-83:** Gary is green. (Premise: Fact 15)
+
+- **INF-84:** Gary is nice. (Premise: Fact 45)
+
+- **INF-85:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-86:** Gary is nice. (Premise: Fact 46)
+
+- **INF-87:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-88:** Gary is green. (Premise: Fact 15)
+
+- **INF-89:** Gary is nice. (Premise: Fact 47)
+
+- **INF-90:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-91:** Gary is nice. (Premise: Fact 48)
+
+- **INF-92:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-93:** Gary is green. (Premise: Fact 15)
+
+- **INF-94:** Gary is nice. (Premise: Fact 49)
+
+- **INF-95:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-96:** Gary is nice. (Premise: Fact 50)
+
+- **INF-97:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-98:** Gary is green. (Premise: Fact 15)
+
+- **INF-99:** Gary is nice. (Premise: Fact 51)
+
+- **INF-100:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-101:** Gary is nice. (Premise: Fact 52)
+
+- **INF-102:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-103:** Gary is green. (Premise: Fact 15)
+
+- **INF-104:** Gary is nice. (Premise: Fact 53)
+
+- **INF-105:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-106:** Gary is nice. (Premise: Fact 54)
+
+- **INF-107:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-108:** Gary is green. (Premise: Fact 15)
+
+- **INF-109:** Gary is nice. (Premise: Fact 55)
+
+- **INF-110:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-111:** Gary is nice. (Premise: Fact 56)
+
+- **INF-112:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-113:** Gary is green. (Premise: Fact 15)
+
+- **INF-114:** Gary is nice. (Premise: Fact 57)
+
+- **INF-115:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-116:** Gary is nice. (Premise: Fact 58)
+
+- **INF-117:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-118:** Gary is green. (Premise: Fact 15)
+
+- **INF-119:** Gary is nice. (Premise: Fact 59)
+
+- **INF-120:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-121:** Gary is nice. (Premise: Fact 60)
+
+- **INF-122:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-123:** Gary is green. (Premise: Fact 15)
+
+- **INF-124:** Gary is nice. (Premise: Fact 61)
+
+- **INF-125:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-126:** Gary is nice. (Premise: Fact 62)
+
+- **INF-127:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-128:** Gary is green. (Premise: Fact 15)
+
+- **INF-129:** Gary is nice. (Premise: Fact 63)
+
+- **INF-130:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-131:** Gary is nice. (Premise: Fact 64)
+
+- **INF-132:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-133:** Gary is green. (Premise: Fact 15)
+
+- **INF-134:** Gary is nice. (Premise: Fact 65)
+
+- **INF-135:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-136:** Gary is nice. (Premise: Fact 66)
+
+- **INF-137:** If someone is nice then they are green. (Premise: Rule 3)
+
+- **INF-138:** Gary is green. (Premise: Fact 15)
+
+- **INF-139:** Gary is nice. (Premise: Fact 67)
+
+- **INF-

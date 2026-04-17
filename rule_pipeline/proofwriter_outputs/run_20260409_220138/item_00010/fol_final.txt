@@ -1,0 +1,86 @@
+### ## FACTS
+- The bear is green.
+- The bear likes the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The cow likes the bear.
+- The cow sees the bear.
+- The mouse likes the cow.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone is kind then they need the bear.
+- If someone sees the cow then they are cold.
+- If someone is cold then they like the rabbit.
+- If someone needs the bear then the bear is young.
+- If someone is round then they like the mouse.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+1. Fact: "The bear is green."
+   - Not relevant to determining kindness.
+
+2. Fact: "The bear likes the mouse."
+   - Not sufficient to determine kindness.
+
+3. Rule: "If someone is kind then they need the bear."
+   - Fact: "The bear sees the cow."
+   - Conclusion: "The bear is cold."
+
+4. Rule: "If someone is cold then they like the rabbit."
+   - Fact: "The bear is cold."
+   - Conclusion: "The rabbit is young."
+
+5. Fact: "Young people are kind."
+   - Rule: "If someone needs the bear then the bear is young."
+   - Conclusion: "The bear is young."
+
+6. Fact: "The bear needs the mouse."
+   - Rule: "If someone needs the bear then the bear is young."
+   - Conclusion: "The bear is young."
+
+7. Fact: "The mouse sees the rabbit."
+   - Not relevant to determining kindness.
+
+8. Fact: "The rabbit is young."
+   - Not necessary for concluding the bear's kindness status.
+
+9. Rule: "If someone is round then they like the mouse."
+   - Fact: "The bear is green."
+   - Conclusion: "The bear is not round."
+
+10. Rule: "If someone likes the cow then the cow likes the bear."
+    - Fact: "The cow likes the bear."
+    - Conclusion: "The bear likes the cow."
+
+11. Rule: "If someone is round and they do not need the bear then they see the rabbit."
+    - Fact: "The bear is not round."
+    - Conclusion: "The bear does not see the rabbit."
+
+### LABEL: natural language gloss :: FOL formula
+1. "The bear is green." :: $\text{GreenBear}$
+2. "The bear likes the mouse." :: $\text{LikeMouseBear}$
+3. "The bear needs the cow." :: $\text{NeedsCowBear}$
+4. "The bear needs the mouse." :: $\text{NeedsMouseBear}$
+5. "The bear sees the cow." :: $\text{SeeCowBear}$
+6. "The bear sees the mouse." :: $\text{SeeMouseBear}$
+7. "The cow likes the bear." :: $\text{LikesCowBear}$
+8. "The cow sees the bear." :: $\text{SeeCowBear}$
+9. "The mouse likes the cow." :: $\text{LikesCowMouse}$
+10. "The mouse sees the rabbit." :: $\text{SeeRabbitMouse}$
+11. "The rabbit is young." :: $\text{IsYoungRabbit}$
+12. "Young people are kind." :: $\text{YoungPeopleKind}$
+13. "If someone is kind then they need the bear." :: $\text{SomeoneKindThenNeedBear}$
+14. "If someone sees the cow then they are cold." :: $\text{SomeoneSeeCowThenCold}$
+15. "If someone is cold then they like the rabbit." :: $\text{SomeoneColdThenLikeRabbit}$
+16. "If someone needs the bear then the bear is young." :: $\text{SomeoneNeedsBearThenBearYoung}$
+17. "If someone is round then they like the mouse." :: $\text{SomeoneRoundThenLikeMouse}$
+18. "If someone likes the bear and they like the mouse then the bear likes the mouse." :: $\text{SomeoneLikeBearAndMouseThenBearLikesMouse}$
+19. "If someone likes the cow then the cow likes the bear." :: $\text{SomeoneLikesCowThenCowLikesBear}$
+20. "If someone is round and they do not need the bear then they see the rabbit." :: $\text{SomeoneRoundAndNotNeedBearThenSeeRabbit}$

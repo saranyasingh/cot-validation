@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, ! [X] : (is_green(X) => is_kind(X))).
+fof(fact_2, axiom, ? [Y] : likes(bear, Y)).
+
+% --- RULES ---
+fof(rule_3, axiom, ? [X] : ( cold(X) => likes(rabbit, X) )).
+fof(rule_4, axiom, ? [X] : ( (round(X) & ~needs(bear, X)) => see(rabbit, X) )).
+
+% --- INFERENCES ---
+% From fact_2
+fof(inf_1, axiom, likes(bear, mouse)).
+% From rule_4
+fof(inf_2, axiom, see(bear, mouse)).

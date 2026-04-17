@@ -1,0 +1,23 @@
+### ## FACTS
+- The cow chases the bald eagle.
+- The lion chases the bald eagle.
+- The lion eats the bald eagle.
+- The dog chases the lion.
+- The dog eats the lion.
+- The dog eats the cow.
+
+### ## RULES
+- Rule 1: If someone chases the bald eagle then they eat the bald eagle.
+- Rule 2: If someone needs the dog and they are green then the dog chases the lion.
+- Rule 3: If someone eats the bald eagle then they are green.
+- Rule 4: The cow chases the bald eagle.
+- Rule 5: The lion chases the bald eagle.
+- Rule 6: The dog chases the lion.
+- Rule 7: If someone eats the lion then the lion needs the cow.
+- Fact 1: The cow is green.
+- Fact 2: Therefore, the cow eats the bald eagle.
+
+### ## INFERENCES
+- **Inference 1**: The lion is green (from Rule 3).
+- **Inference 2**: The cow is green (from Fact 1).
+- **Inference 3**: The dog is green (from Inference 1 and Rule 3).

@@ -1,0 +1,8 @@
+FACT-1: UNSUPPORTED — The story says 3 cups per chicken, not total daily feed; the claim states total daily feed of 3 cups.
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — Weekly total 21 cups is not stated in the story.
+FACT-6: UNSUPPORTED — Depends on FACT-5; the calculation cannot be grounded without the weekly total.
+FACT-7: UNSUPPORTED — Derived from FACT-6; since 6 is unsupported, 7 is unsupported.
+RULE-1: PLAUSIBLE — It encodes a reasonable policy: if the weekly total is exceeded, final meal should be 0.

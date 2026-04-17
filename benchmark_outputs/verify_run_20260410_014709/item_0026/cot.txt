@@ -1,0 +1,35 @@
+To determine how many boxes of pizza Marie ordered, we need to first calculate the total amount spent on the items she already knows about.
+
+1. Calculate the total cost of the chicken meal:
+   \[
+   1 \text{ meal} \times \$12 = \$12
+   \]
+
+2. Calculate the total cost of the 5 packs of milk:
+   \[
+   5 \text{ packs} \times \$3 = \$15
+   \]
+
+3. Calculate the total cost of the 4 apples:
+   \[
+   4 \text{ apples} \times \$1.50 = \$6
+   \]
+
+Now, let's sum up these amounts:
+\[
+\$12 + \$15 + \$6 = \$33
+\]
+
+Marie paid a total of $50, so the remaining amount must have been spent on the pizzas:
+\[
+\$50 - \$33 = \$17
+\]
+
+Since each box of pizza costs $8.50, we can find out how many boxes were purchased by dividing the remaining amount by the price per box:
+\[
+\frac{\$17}{\$8.50} = 2
+\]
+
+Therefore, Marie ordered 2 boxes of pizza.
+
+The answer is: 2

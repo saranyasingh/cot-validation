@@ -1,0 +1,36 @@
+% --- FACTS ---
+fof(fact_1, axiom, start_at(train1, san_rafael)).
+fof(fact_2, axiom, start_at(train2, san_rafael)).
+fof(fact_3, axiom, traveled(train1, day1, 80, west)).
+fof(fact_4, axiom, traveled(train2, day1, 80, west)).
+fof(fact_5, axiom, traveled(train1, day2, 150, north)).
+fof(fact_6, axiom, traveled(train2, day2, 150, north)).
+fof(fact_7, axiom, sum(80, 150, 230)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T] : (traveled(T, day1, D, Dir) => day1_distance(T, D))).
+fof(rule_2, axiom, ! [T] : (traveled(T, day2, D, Dir) => day2_distance(T, D))).
+fof(rule_3, axiom, ! [T, D1, D2, Total] : ((day1_distance(T, D1) & day2_distance(T, D2) & sum(D1, D2, Total)) => total_distance(T, Total))).
+fof(rule_4, axiom, ! [T1, T2, D] : ((total_distance(T1, D) & total_distance(T2, D)) => together_distance(T1, T2, D))).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, day1_distance(train1, 80)).
+
+% From fact_4, rule_1 by Modus Ponens
+fof(inf_2, axiom, day1_distance(train2, 80)).
+
+% From fact_5, rule_2 by Modus Ponens
+fof(inf_3, axiom, day2_distance(train1, 150)).
+
+% From fact_6, rule_2 by Modus Ponens
+fof(inf_4, axiom, day2_distance(train2, 150)).
+
+% From inf_1, inf_3, fact_7 by Modus Ponens
+fof(inf_5, axiom, total_distance(train1, 230)).
+
+% From inf_2, inf_4, fact_7 by Modus Ponens
+fof(inf_6, axiom, total_distance(train2, 230)).
+
+% From inf_5, inf_6 by Modus Ponens
+fof(inf_7, axiom, together_distance(train1, train2, 230)).

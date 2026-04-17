@@ -1,0 +1,8 @@
+  % From fact_1, fact_3 by ArithmeticComputation
+  inf_1: PROVED
+  % From fact_1, fact_3, inf_1 by RULE-1
+  inf_2: PROVED
+  % From inf_2, fact_2 by ArithmeticComputation
+  inf_3: PROVED
+  % From inf_2, fact_2, inf_3 by RULE-4
+  inf_4: PROVED

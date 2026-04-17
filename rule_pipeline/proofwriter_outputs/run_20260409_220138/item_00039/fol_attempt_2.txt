@@ -1,0 +1,31 @@
+### FACTS
+- Fact_1: Anne is big.
+- Fact_2: Anne is green.
+- Fact_3: Anne is nice.
+- Fact_4: Bob is kind.
+- Fact_5: Erin is furry.
+- Fact_6: Erin is white.
+- Fact_7: Gary is furry.
+- Fact_8: Gary is green.
+- Fact_9: Gary is nice.
+- Fact_10: Gary is white.
+- Rule_1: If Gary is white then Gary is big.
+- Rule_2: If Anne is nice then Anne is green.
+- Rule_3: If someone is nice then they are green.
+- Rule_4: Big people are rough.
+- Rule_5: All rough people are kind.
+- Rule_6: If someone is nice then they are green.
+- Rule_7: Big people are rough.
+
+### RULES
+- Rule_1: If Gary is white then Gary is big.
+- Rule_2: If Anne is nice then Anne is green.
+- Rule_3: If someone is nice then they are green.
+- Rule_4: Big people are rough.
+- Rule_5: All rough people are kind.
+- Rule_6: If someone is nice then they are green.
+- Rule_7: Big people are rough.
+
+### INFERENCES
+- **INF-1:** Since none of the given facts explicitly state that Gary is big, nor does any rule apply directly to this conclusion, we cannot infer that Gary is big based solely on the provided information. Therefore, the inference is:
+  - INF-1: Unknown.

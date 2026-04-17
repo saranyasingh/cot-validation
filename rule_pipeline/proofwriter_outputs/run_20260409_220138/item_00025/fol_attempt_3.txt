@@ -1,0 +1,19 @@
+### ## FACTS
+- The dog eats the lion. :: (Fact)
+
+### ## RULES
+- If someone eats the lion then the lion needs the bald eagle. :: (Rule 3)
+- If someone needs the dog and they are green then the dog chases the lion. :: (Rule 2)
+- If someone eats the bald eagle then they are green. :: (Rule 4)
+- If someone eats the lion then the lion needs the bald eagle. :: (Rule 3)
+- If someone needs the cow then they need the dog. :: (Rule 6)
+- If someone is rough then they chase the bald eagle. :: (Rule 7)
+- If someone chases the lion then they are rough. :: (Rule 8)
+- If someone is rough and they eat the dog then the dog eats the cow. :: (Rule 9)
+
+### ## INFERENCES
+- The dog eats the lion. :: (Fact)
+- The dog is green. :: (Rule 2)
+- The dog chases the lion. :: (Rule 2)
+
+Therefore, the answer is: True

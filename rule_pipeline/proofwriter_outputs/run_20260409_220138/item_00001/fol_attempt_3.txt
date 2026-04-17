@@ -1,0 +1,34 @@
+### ## FACTS
+- The bear needs the mouse.
+- The bear needs the cow.
+- The bear needs the mouse.
+- The bear sees the cow.
+- The bear sees the mouse.
+- The mouse sees the rabbit.
+- The rabbit is young.
+- Young people are kind.
+
+### ## RULES
+- If someone needs the bear, then the bear is young.
+- If someone is kind then they need the bear.
+- If someone sees the cow then they are cold.
+- If someone is cold then they like the rabbit.
+- If someone likes the bear and they like the mouse then the bear likes the mouse.
+- If someone likes the cow then the cow likes the bear.
+- If someone is round and they do not need the bear then they see the rabbit.
+
+### ## INFERENCES
+- The bear needs the mouse. (Given)
+- The bear needs the cow. (Given)
+- The bear needs the mouse. (Given)
+- The bear sees the cow. (Given)
+- The bear sees the mouse. (Given)
+- The mouse sees the rabbit. (Given)
+- The rabbit is young. (Given)
+
+#### Conclusion:
+Since the bear needs both the mouse and the cow, according to the first given fact, the bear needs the mouse. Therefore, the conclusion drawn from these premises is:
+
+**The bear needs the mouse.**
+
+This matches the initial information provided, confirming the correctness of the inference.

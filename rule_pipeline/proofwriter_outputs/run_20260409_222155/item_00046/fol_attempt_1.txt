@@ -1,0 +1,20 @@
+FACT-1: Erin is furry.
+RULE-1: Furry people are big.
+RULE-2: White people are nice.
+INF-1: Erin is big.
+
+FACT-2: Erin is white.
+INF-2: Erin could potentially be nice.
+
+INF-3: If Erin were nice, she would need to be big as per Rule-3.
+
+Since we do not have explicit information about Erin being nice, we cannot determine the truth value of "Erin is not nice." Therefore, the answer remains Unknown.
+
+**Final Answer:**
+FACT-1: Erin is furry.
+RULE-1: Furry people are big.
+RULE-2: White people are nice.
+INF-1: Erin is big.
+INF-2: Erin could potentially be nice.
+INF-3: If Erin were nice, she would need to be big.
+INF-4: Unknown.

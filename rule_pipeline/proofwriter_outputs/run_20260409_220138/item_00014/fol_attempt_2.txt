@@ -1,0 +1,82 @@
+```plaintext
+## FACTS
+1. Bob is cold.
+2. Dave is kind.
+3. Dave is young.
+4. Gary is big.
+5. Gary is cold.
+6. Gary is white.
+7. Gary is young.
+8. Harry is cold.
+9. Harry is kind.
+10. Harry is white.
+11. Harry is young.
+12. Smart, young people are furry.
+13. All kind, furry people are big.
+14. Smart, big people are furry.
+15. All white, kind people are young.
+16. All cold, smart people are big.
+17. All young people are smart.
+18. All cold, young people are white.
+
+## RULES
+1. If someone is furry and big then they are cold.
+2. If someone is big then they are furry.
+
+## INFERENCES
+1. **Rule 1**: If someone is furry and big then they are cold.
+   - Premises: Dave is kind, Dave is young, Dave is big.
+   - Conclusion: Dave is cold.
+
+2. **Rule 2**: If someone is big then they are furry.
+   - Premises: Dave is kind, Dave is young, Dave is big.
+   - Conclusion: Dave is furry.
+
+3. **Inference**: Since Dave is kind, fuzzy, and young, and all kind, furry people are big, Dave cannot be cold according to Rule 1.
+
+4. **Rule 2**: If someone is big then they are furry.
+   - Premises: Harry is kind, Harry is young, Harry is big.
+   - Conclusion: Harry is furry.
+
+5. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+6. **Universal Instantiation**: Not applicable here since the premise involves specific individuals rather than general statements.
+
+7. **Rule 2**: If someone is big then they are furry.
+   - Premises: Harry is kind, Harry is young, Harry is big.
+   - Conclusion: Harry is furry.
+
+8. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+9. **Rule 2**: If someone is big then they are furry.
+   - Premises: Harry is kind, Harry is young, Harry is big.
+   - Conclusion: Harry is furry.
+
+10. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+11. **Rule 2**: If someone is big then they are furry.
+    - Premises: Harry is kind, Harry is young, Harry is big.
+    - Conclusion: Harry is furry.
+
+12. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+13. **Universal Instantiation**: Not applicable here since the premise involves specific individuals rather than general statements.
+
+14. **Rule 2**: If someone is big then they are furry.
+    - Premises: Harry is kind, Harry is young, Harry is big.
+    - Conclusion: Harry is furry.
+
+15. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+16. **Rule 2**: If someone is big then they are furry.
+    - Premises: Harry is kind, Harry is young, Harry is big.
+    - Conclusion: Harry is furry.
+
+17. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+
+18. **Rule 2**: If someone is big then they are furry.
+    - Premises: Harry is kind, Harry is young, Harry is big.
+    - Conclusion: Harry is furry.
+
+19. **Inference**: Since Harry is kind, fuzzy, and young, and all kind, furry people are big, Harry cannot be cold according to Rule 1.
+```

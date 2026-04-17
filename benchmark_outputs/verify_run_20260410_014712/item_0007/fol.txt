@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepInCity(seattle, n_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: HasTimes(charleston, seattle, n_4)
+FACT-3: Charleston has twice as many sheep as Toulouse :: HasTimes(charleston, toulouse, n_2)
+
+## RULES
+RULE-1: If a city x has f times as many sheep as city y and city y has 20 sheep, then city x has 80 sheep :: ∀x∀y∀f((HasTimes(x, y, f) ∧ SheepInCity(y, n_20)) → SheepInCity(x, n_80))
+RULE-2: If a city x has 80 sheep and x has times relation with y, then city y has 40 sheep :: ∀x∀y((SheepInCity(x, n_80) ∧ HasTimes(x, y, f)) → SheepInCity(y, n_40))
+RULE-3: If Seattle has 20 sheep and Charleston has 80 sheep and Toulouse has 40 sheep, then total sheep is 140 :: ∀x∀y∀z(((SheepInCity(seattle, n_20) ∧ SheepInCity(charleston, n_80)) ∧ SheepInCity(toulouse, n_40)) → TotalSheep(n_140))
+RULE-4: If the total number of sheep is t, then the final answer is t :: ∀t(TotalSheep(t) → FinalAnswer(t))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2 by RULE-1 (Modus Ponens) -> SheepInCity(charleston, n_80)
+INF-2: From INF-1, FACT-3 by RULE-2 (Modus Ponens) -> SheepInCity(toulouse, n_40)
+INF-3: From FACT-1, INF-1, INF-2 by RULE-3 (Rule Application) -> TotalSheep(n_140)
+INF-4: From INF-3 by RULE-4 (Modus Ponens) -> FinalAnswer(n_140)

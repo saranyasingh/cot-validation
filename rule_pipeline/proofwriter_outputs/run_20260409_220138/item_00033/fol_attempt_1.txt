@@ -1,0 +1,295 @@
+FACT-1: all_green(peter) :: green(peter)
+
+RULE-1: chase_lion(alex) -> rough(alex)
+
+RULE-2: rough_and_eats_dog(sam) -> dog_eats_cow(sam)
+
+INF-1: chase_lion(john) -> rough(john)
+
+INF-2: rough_and_eats_dog(lucy) -> dog_eats_cow(lucy)
+
+INF-3: chase_lion(david) -> rough(david)
+
+INF-4: rough_and_eats_dog(mary) -> dog_eats_cow(mary)
+
+INF-5: chase_lion(steve) -> rough(steve)
+
+INF-6: rough_and_eats_dog(bob) -> dog_eats_cow(bob)
+
+INF-7: chase_lion(charlie) -> rough(charlie)
+
+INF-8: rough_and_eats_dog(tom) -> dog_eats_cow(tom)
+
+INF-9: chase_lion(guy) -> rough(guy)
+
+INF-10: rough_and_eats_dog(vinny) -> dog_eats_cow(vinny)
+
+INF-11: chase_lion(harry) -> rough(harry)
+
+INF-12: rough_and_eats_dog(nick) -> dog_eats_cow(nick)
+
+INF-13: chase_lion(kyle) -> rough(kyle)
+
+INF-14: rough_and_eats_dog(jack) -> dog_eats_cow(jack)
+
+INF-15: chase_lion(william) -> rough(William)
+
+INF-16: rough_and_eats_dog(james) -> dog_eats_cow(james)
+
+INF-17: chase_lion(richard) -> rough(richard)
+
+INF-18: rough_and_eats_dog(todd) -> dog_eats_cow(todd)
+
+INF-19: chase_lion(evan) -> rough(evan)
+
+INF-20: rough_and_eats_dog(brian) -> dog_eats_cow(brian)
+
+INF-21: chase_lion(chris) -> rough(chris)
+
+INF-22: rough_and_eats_dog(kevin) -> dog_eats_cow(kevin)
+
+INF-23: chase_lion(cody) -> rough(cody)
+
+INF-24: rough_and_eats_dog(alec) -> dog_eats_cow(alec)
+
+INF-25: chase_lion(dave) -> rough(dave)
+
+INF-26: rough_and_eats_dog(joe) -> dog_eats_cow(joe)
+
+INF-27: chase_lion(george) -> rough(george)
+
+INF-28: rough_and_eats_dog(henry) -> dog_eats_cow(henry)
+
+INF-29: chase_lion(ian) -> rough(ian)
+
+INF-30: rough_and_eats_dog(jay) -> dog_eats_cow(jay)
+
+INF-31: chase_lion(kelvin) -> rough(kelvin)
+
+INF-32: rough_and_eats_dog(travis) -> dog_eats_cow(travis)
+
+INF-33: chase_lion(brandon) -> rough(brandon)
+
+INF-34: rough_and_eats_dog(jordan) -> dog_eats_cow(jordan)
+
+INF-35: chase_lion(ryan) -> rough(ryan)
+
+INF-36: rough_and_eats_dog(luke) -> dog_eats_cow(luke)
+
+INF-37: chase_lion(matt) -> rough(matt)
+
+INF-38: rough_and_eats_dog(ronald) -> dog_eats_cow(ronald)
+
+INF-39: chase_lion(andrew) -> rough(andrew)
+
+INF-40: rough_and_eats_dog(carlos) -> dog_eats_cow(carlos)
+
+INF-41: chase_lion(oliver) -> rough(oliver)
+
+INF-42: rough_and_eats_dog(adam) -> dog_eats_cow(adam)
+
+INF-43: chase_lion(edward) -> rough(edward)
+
+INF-44: rough_and_eats_dog(alberto) -> dog_eats_cow(alberto)
+
+INF-45: chase_lion(fred) -> rough(fred)
+
+INF-46: rough_and_eats_dog(michael) -> dog_eats_cow(michael)
+
+INF-47: chase_lion(jameson) -> rough(jameson)
+
+INF-48: rough_and_eats_dog(dylan) -> dog_eats_cow(dylan)
+
+INF-49: chase_lion(kylee) -> rough(kylee)
+
+INF-50: rough_and_eats_dog(scott) -> dog_eats_cow(scott)
+
+INF-51: chase_lion(timothy) -> rough(timothy)
+
+INF-52: rough_and_eats_dog(robin) -> dog_eats_cow(robin)
+
+INF-53: chase_lion(joshua) -> rough(joshua)
+
+INF-54: rough_and_eats_dog(brett) -> dog_eats_cow(brett)
+
+INF-55: chase_lion(kenny) -> rough(kenny)
+
+INF-56: rough_and_eats_dog(lauren) -> dog_eats_cow(lauren)
+
+INF-57: chase_lion(jessica) -> rough(jessica)
+
+INF-58: rough_and_eats_dog(dean) -> dog_eats_cow(dean)
+
+INF-59: chase_lion(mike) -> rough(mike)
+
+INF-60: rough_and_eats_dog(kelly) -> dog_eats_cow(kelly)
+
+INF-61: chase_lion(anne) -> rough(anne)
+
+INF-62: rough_and_eats_dog(the_bear) -> dog_eats_cow(the_bear)
+
+INF-63: chase_lion(mr_smith) -> rough(mr_smith)
+
+INF-64: rough_and_eats_dog(jane) -> dog_eats_cow(jane)
+
+INF-65: chase_lion(thomas) -> rough(thomas)
+
+INF-66: rough_and_eats_dog(sarah) -> dog_eats_cow(sarah)
+
+INF-67: chase_lion(jennifer) -> rough(jennifer)
+
+INF-68: rough_and_eats_dog(annelee) -> dog_eats_cow(annelee)
+
+INF-69: chase_lion(mrs_schmidt) -> rough(mrs_schmidt)
+
+INF-70: rough_and_eats_dog(julia) -> dog_eats_cow(julia)
+
+INF-71: chase_lion(mrs_harper) -> rough(mrs_harper)
+
+INF-72: rough_and_eats_dog(katherine) -> dog_eats_cow(katherine)
+
+INF-73: chase_lion(mrs_wright) -> rough(mrs_wright)
+
+INF-74: rough_and_eats_dog(elizabeth) -> dog_eats_cow(elizabeth)
+
+INF-75: chase_lion(mrs_king) -> rough(mrs_king)
+
+INF-76: rough_and_eats_dog(jackie) -> dog_eats_cow(jackie)
+
+INF-77: chase_lion(mrs_miller) -> rough(mrs_miller)
+
+INF-78: rough_and_eats_dog(rosemary) -> dog_eats_cow(rosemary)
+
+INF-79: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-80: rough_and_eats_dog(mrs_garcia) -> dog_eats_cow(mrs_garcia)
+
+INF-81: chase_lion(mrs_robertson) -> rough(mrs_robertson)
+
+INF-82: rough_and_eats_dog(karen) -> dog_eats_cow(karen)
+
+INF-83: chase_lion(mrs_thompson) -> rough(mrs_thompson)
+
+INF-84: rough_and_eats_dog(mrs_fox) -> dog_eats_cow(mrs_fox)
+
+INF-85: chase_lion(mrs_taylor) -> rough(mrs_taylor)
+
+INF-86: rough_and_eats_dog(mrs_parker) -> dog_eats_cow(mrs_parker)
+
+INF-87: chase_lion(mrs_harris) -> rough(mrs_harris)
+
+INF-88: rough_and_eats_dog(linda) -> dog_eats_cow(linda)
+
+INF-89: chase_lion(mrs_gordon) -> rough(mrs_gordon)
+
+INF-90: rough_and_eats_dog(kathleen) -> dog_eats_cow(kathleen)
+
+INF-91: chase_lion(mrs_wood) -> rough(mrs_wood)
+
+INF-92: rough_and_eats_dog(karin) -> dog_eats_cow(karin)
+
+INF-93: chase_lion(mrs_christine) -> rough(mrs_christine)
+
+INF-94: rough_and_eats_dog(shirley) -> dog_eats_cow(shirley)
+
+INF-95: chase_lion(mrs_mcdonald) -> rough(mrs_mcdonald)
+
+INF-96: rough_and_eats_dog(annette) -> dog_eats_cow(annette)
+
+INF-97: chase_lion(mrs_vanderbilt) -> rough(mrs_vanderbilt)
+
+INF-98: rough_and_eats_dog(anna) -> dog_eats_cow(anna)
+
+INF-99: chase_lion(mrs_montgomery) -> rough(mrs_montgomery)
+
+INF-100: rough_and_eats_dog(annette) -> dog_eats_cow(annette)
+
+INF-101: chase_lion(mrs_brown) -> rough(mrs_brown)
+
+INF-102: rough_and_eats_dog(mrs_baker) -> dog_eats_cow(mrs_baker)
+
+INF-103: chase_lion(mrs_blackburn) -> rough(mrs_blackburn)
+
+INF-104: rough_and_eats_dog(mrs_white) -> dog_eats_cow(mrs_white)
+
+INF-105: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-106: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-107: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-108: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-109: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-110: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-111: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-112: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-113: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-114: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-115: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-116: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-117: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-118: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-119: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-120: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-121: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-122: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-123: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-124: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-125: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-126: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-127: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-128: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-129: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-130: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-131: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-132: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-133: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-134: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-135: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-136: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-137: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-138: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-139: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-140: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-141: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-142: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-143: chase_lion(mrs_jones) -> rough(mrs_jones)
+
+INF-144: rough_and_eats_dog(mrs_jones) -> dog_eats_cow(mrs_jones)
+
+INF-145:

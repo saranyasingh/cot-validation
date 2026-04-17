@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Jewelry initial value is 5000 :: InitialValue(jewelry, n_5000)
+FACT-2: Jewelry growth rate is 0.025 :: GrowthRate(jewelry, n_025)
+FACT-3: Electronic gadgets initial value is 8000 :: InitialValue(electronic_gadgets, n_8000)
+FACT-4: Electronic gadgets growth rate is 0.012 :: GrowthRate(electronic_gadgets, n_012)
+
+## RULES
+RULE-1: If a quantity x has initial value I and growth rate G and there exists a computation ComputeFuture(I, G, F), then FutureValue(x, F) :: ∀x∀I∀G∀F((InitialValue(x, I) ∧ GrowthRate(x, G) ∧ ComputeFuture(I, G, F)) → FutureValue(x, F))
+RULE-2A: If FutureValue(x, N1) ∧ FutureValue(y, N2) ∧ GreaterThan(N1, N2), then HigherProfit(x) :: ∀x∀y∀N1∀N2((FutureValue(x, N1) ∧ FutureValue(y, N2) ∧ GreaterThan(N1, N2)) → HigherProfit(x))
+RULE-2B: If FutureValue(x, N1) ∧ FutureValue(y, N2) ∧ GreaterThan(N2, N1), then HigherProfit(y) :: ∀x∀y∀N1∀N2((FutureValue(x, N1) ∧ FutureValue(y, N2) ∧ GreaterThan(N2, N1)) → HigherProfit(y))
+RULE-3: If HigherProfit(x) ∧ FutureValue(x, F), then FinalAnswer(F) :: ∀x∀F((HigherProfit(x) ∧ FutureValue(x, F)) → FinalAnswer(F))
+
+## INFERENCES
+INF-1: ComputeFuture(n_5000, n_025, n_5125) :: from FACT-1, FACT-2 by ArithmeticComputation
+INF-2: FutureValue(jewelry, n_5125) :: from INF-1, FACT-1, FACT-2 by RULE-1
+INF-3: ComputeFuture(n_8000, n_012, n_8096) :: from FACT-3, FACT-4 by ArithmeticComputation
+INF-4: FutureValue(electronic_gadgets, n_8096) :: from INF-3 by RULE-1
+INF-5: GreaterThan(n_8096, n_5125) :: from INF-2, INF-4 by NumericalComparison
+INF-6: HigherProfit(electronic_gadgets) :: from INF-2, INF-4, INF-5 by RULE-2B
+INF-7: FinalAnswer(n_8096) :: from INF-6, INF-4 by RULE-3

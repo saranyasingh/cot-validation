@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Train1 starts at San Rafael :: StartAt(train1, san_rafael)
+FACT-2: Train2 starts at San Rafael :: StartAt(train2, san_rafael)
+FACT-3: Train1 travels on day1 80 miles west :: Traveled(train1, day1, 80, west)
+FACT-4: Train2 travels on day1 80 miles west :: Traveled(train2, day1, 80, west)
+FACT-5: Train1 travels on day2 150 miles north :: Traveled(train1, day2, 150, north)
+FACT-6: Train2 travels on day2 150 miles north :: Traveled(train2, day2, 150, north)
+FACT-7: Sum(80,150,230) :: Sum(80,150,230)
+
+## RULES
+RULE-1: If a train travels on day1 a distance d in direction dir, then Day1Distance for that train is d :: ∀t (Traveled(t, day1, d, dir) → Day1Distance(t, d))
+RULE-2: If a train travels on day2 a distance d in direction dir, then Day2Distance for that train is d :: ∀t (Traveled(t, day2, d, dir) → Day2Distance(t, d))
+RULE-3: If Day1Distance(t, d1) ∧ Day2Distance(t, d2) ∧ Sum(d1, d2, total) then TotalDistance(t, total) :: ∀t ∀d1 ∀d2 ∀total ((Day1Distance(t, d1) ∧ Day2Distance(t, d2) ∧ Sum(d1, d2, total)) → TotalDistance(t, total))
+RULE-4: If TotalDistance(t1, d) ∧ TotalDistance(t2, d) then TogetherDistance(t1, t2, d) :: ∀t1 ∀t2 ∀d ((TotalDistance(t1, d) ∧ TotalDistance(t2, d)) → TogetherDistance(t1, t2, d))
+
+## INFERENCES
+INF-1: Day1Distance(train1, 80) from FACT-3 and RULE-1 by Modus Ponens :: Day1Distance(train1, 80)
+INF-2: Day1Distance(train2, 80) from FACT-4 and RULE-1 by Modus Ponens :: Day1Distance(train2, 80)
+INF-3: Day2Distance(train1, 150) from FACT-5 and RULE-2 by Modus Ponens :: Day2Distance(train1, 150)
+INF-4: Day2Distance(train2, 150) from FACT-6 and RULE-2 by Modus Ponens :: Day2Distance(train2, 150)
+INF-5: TotalDistance(train1, 230) from INF-1, INF-3, FACT-7 by RULE-3 :: TotalDistance(train1, 230)
+INF-6: TotalDistance(train2, 230) from INF-2, INF-4, FACT-7 by RULE-3 :: TotalDistance(train2, 230)
+INF-7: TogetherDistance(train1, train2, 230) from INF-5, INF-6 by RULE-4 :: TogetherDistance(train1, train2, 230)
