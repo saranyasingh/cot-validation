@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, feed_in_meal(morning, n_15)).
+fof(fact_2, axiom, feed_in_meal(afternoon, n_25)).
+fof(fact_3, axiom, total_feed(n_40)).
+fof(fact_4, axiom, chickens(n_20)).
+fof(fact_5, axiom, wendi_feeds_each_chicken(n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, C, Z] : ((total_feed(T) & chickens(C) & equal_division(T, C, Z)) => average_per_chicken(Z))).
+
+% --- INFERENCES ---
+% From fact_3, fact_4 by Arithmetic Computation
+fof(inf_1, axiom, equal_division(n_40, n_20, n_2)).
+
+% From fact_3, fact_4, inf_1, and rule_1 by Modus Ponens
+fof(inf_2, axiom, average_per_chicken(n_2)).

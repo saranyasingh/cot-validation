@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Chicken meal costs $12 :: ChickenMealCost(n_12)
+FACT-2: Milk packs total cost $15 :: MilkPacksCost(n_15)
+FACT-3: Apples total cost $6 :: ApplesCost(n_6)
+FACT-4: Marie paid $50 :: MarieTotalSpent(n_50)
+FACT-5: Pizza box price is $8.50 :: PricePerPizzaBox(n_850)
+
+## RULES
+RULE-1: The total cost of known items is the sum of the chicken meal, milk packs, and apples costs :: ∀a∀b∀c∀d((ChickenMealCost(a) ∧ MilkPacksCost(b) ∧ ApplesCost(c) ∧ SumPrices(a,b,c,d)) → KnownItemsTotal(d))
+RULE-2: The remaining amount equals MarieTotalSpent minus KnownItemsTotal :: ∀T∀K∀R((MarieTotalSpent(T) ∧ KnownItemsTotal(K) ∧ Subtract(T,K,R)) → RemainingAmount(R))
+RULE-3: The number of pizza boxes equals RemainingAmount divided by PricePerPizzaBox :: ∀R∀P∀Q((RemainingAmount(R) ∧ PricePerPizzaBox(P) ∧ Divide(R,P,Q)) → BoxesOrdered(Q))
+
+## INFERENCES
+INF-1: 12 + 15 + 6 = 33, from FACT-1, FACT-2, FACT-3 by ArithmeticComputation :: KnownItemsTotal(n_33)
+INF-2: RemainingAmount(n_17), from FACT-4 and INF-1 by Subtraction
+INF-3: BoxesOrdered(n_2), from INF-2 and FACT-5 by Division

@@ -1,0 +1,100 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The price of one glass is 5 dollars",
+      "formula": "OriginalPrice(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The discount rate is 60 percent",
+      "formula": "DiscountRate(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 16 glasses",
+      "formula": "GlassCount(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The discounted price for original price 5 with 60% discount is 2",
+      "formula": "DiscountedPriceForOriginalPrice(n_5, n_60, n_2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "not entailed; the problem\u2019s wording implies the discounted price would be 3 (60% of 5), not 2",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Half of the glasses relation",
+      "formula": "Half(n_16, n_8)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "not present in the problem",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If there is a discounted price for an original price and discount, then the discounted price holds",
+      "formula": "\u2200p\u2200d\u2200q((DiscountedPriceForOriginalPrice(p,d,q)) \u2192 DiscountedPrice(p,d,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are n glasses and Half(n,m), then there are m regular-priced glasses and m discounted glasses",
+      "formula": "\u2200n\u2200m((GlassCount(n) \u2227 Half(n,m)) \u2192 (RegularGlassesCount(m) \u2227 DiscountedGlassesCount(m)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If RegularGlassesCount(a) and OriginalPrice(p) and Multiplication(a,p,c), then CostRegular(c)",
+      "formula": "\u2200a\u2200p\u2200c((RegularGlassesCount(a) \u2227 OriginalPrice(p) \u2227 Multiplication(a,p,c)) \u2192 CostRegular(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If DiscountedGlassesCount(a) and DiscountedPrice(p,d,q) and Multiplication(a,q,c), then CostDiscounted(c)",
+      "formula": "\u2200a\u2200p\u2200d\u2200q\u2200c((DiscountedGlassesCount(a) \u2227 DiscountedPrice(p,d,q) \u2227 Multiplication(a,q,c)) \u2192 CostDiscounted(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If CostRegular(r) and CostDiscounted(s) and Addition(r,s,t), then TotalCost(t)",
+      "formula": "\u2200r\u2200s\u2200t((CostRegular(r) \u2227 CostDiscounted(s) \u2227 Addition(r,s,t)) \u2192 TotalCost(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "not entailed; the problem\u2019s wording implies the discounted price would be 3 (60% of 5), not 2"
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "not present in the problem"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

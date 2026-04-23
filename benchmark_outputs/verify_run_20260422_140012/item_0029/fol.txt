@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Henry's total distance is 60 miles :: TotalDistance(henry, n_60)
+FACT-2: Henry first stopped after traveling 20 miles :: FirstStopDistance(henry, n_20)
+FACT-3: Henry's second stop was 15 miles before the end :: SecondStopBeforeEnd(henry, n_15)
+
+## RULES
+RULE-1: If a person h has TotalDistance(h,E) and SecondStopBeforeEnd(h,D) and Subtract(E,D,R) then SecondStopDistance(h,R) :: ∀h∀E∀D∀R((TotalDistance(h,E) ∧ SecondStopBeforeEnd(h,D) ∧ Subtract(E,D,R)) → SecondStopDistance(h,R))
+RULE-2: If a person h has SecondStopDistance(h,S) and FirstStopDistance(h,F) and Subtract(S,F,G) then DistanceBetweenStops(h,G) :: ∀h∀S∀F∀G((SecondStopDistance(h,S) ∧ FirstStopDistance(h,F) ∧ Subtract(S,F,G)) → DistanceBetweenStops(h,G))
+
+## INFERENCES
+INF-1: 60 minus 15 equals 45, from FACT-1 and FACT-3 by ArithmeticComputation :: Subtract(n_60, n_15, n_45)
+INF-2: SecondStopDistance(henry, n_45) from FACT-1, FACT-3, INF-1 by RULE-1
+INF-3: Subtract(n_45, n_20, n_25) from INF-2 and FACT-2 by ArithmeticComputation :: Subtract(n_45, n_20, n_25)
+INF-4: DistanceBetweenStops(henry, n_25) from INF-2, INF-3, FACT-2 by RULE-2

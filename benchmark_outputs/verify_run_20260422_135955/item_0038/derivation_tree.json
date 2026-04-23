@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John has 13 lego sets",
+      "formula": "LegoSets(john, n_13)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Lego set price is 15",
+      "formula": "LegoSetPrice(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "John buys 8 video games",
+      "formula": "VideoGamesBought(john, n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Video game price is 20",
+      "formula": "VideoGamePrice(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "John has 5 dollars left",
+      "formula": "LeftoverMoney(john, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If John has l lego sets and the price per lego set is p, then the lego revenue is 195",
+      "formula": "\u2200l\u2200p((LegoSets(john, l) \u2227 LegoSetPrice(p)) \u2192 RevenueLego(john, l, p, n_195))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes lego revenue as a fixed 195 rather than a general l*p relation",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If John buys g video games at price q, then the video game cost is 160",
+      "formula": "\u2200g\u2200q((VideoGamesBought(john, g) \u2227 VideoGamePrice(q)) \u2192 CostVideoGames(john, g, q, n_160))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes video game cost as fixed 160 instead of g*q",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If revenue from lego sales is 195 and cost of video games is 160, then remaining money is 35",
+      "formula": "\u2200l\u2200p\u2200g\u2200q((RevenueLego(john, l, p, n_195) \u2227 CostVideoGames(john, g, q, n_160)) \u2192 RemainingMoney(john, n_195, n_160, n_35))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes remaining money as fixed 35 given 195 and 160; uses embedded arithmetic",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If leftover money is 5 and remaining money is 35, then there is a discrepancy",
+      "formula": "\u2200j((LeftoverMoney(john, n_5) \u2227 RemainingMoney(john, n_195, n_160, n_35)) \u2192 Discrepancy(john, n_35, n_5))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "a reasonable consistency-check rule; if both leftover money values hold, then a discrepancy",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RevenueLego(john, n_13, n_15, n_195) from FACT-1 and FACT-2 by RULE-1 (Modus Ponens)",
+      "formula": "RevenueLego(john, n_13, n_15, n_195)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "CostVideoGames(john, n_8, n_20, n_160) from FACT-3 and FACT-4 by RULE-2 (Modus Ponens)",
+      "formula": "CostVideoGames(john, n_8, n_20, n_160)",
+      "premises": [
+        "FACT-3",
+        "FACT-4"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RemainingMoney(john, n_195, n_160, n_35) from INF-1 and INF-2 by RULE-3 (Conjunction + Modus Ponens)",
+      "formula": "RemainingMoney(john, n_195, n_160, n_35)",
+      "premises": [
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "RULE-3 (Conjunction + Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Discrepancy(john, n_35, n_5) from INF-3 and FACT-5 by RULE-4 (Modus Ponens)",
+      "formula": "Discrepancy(john, n_35, n_5)",
+      "premises": [
+        "INF-3",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-4 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "encodes lego revenue as a fixed 195 rather than a general l*p relation"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "encodes video game cost as fixed 160 instead of g*q"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "encodes remaining money as fixed 35 given 195 and 160; uses embedded arithmetic"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

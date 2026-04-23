@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, WalkingSpeed(dana, w_1_5)).
+
+fof(fact_2, axiom, RunningSpeed(dana, r_6)).
+
+fof(fact_3, axiom, SkippingSpeed(dana, s_3)).
+
+fof(fact_4, axiom, TotalTime(dana, t_6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,W,T] : ((WalkingSpeed(X,W) & TotalTime(X,T)) => ? [D] : (DistWalk(X,D) & Mul(W,T,D)))).
+
+fof(rule_2, axiom, ! [X,R,T] : ((RunningSpeed(X,R) & TotalTime(X,T)) => ? [D] : (DistRun(X,D) & Mul(R,T,D)))).
+
+fof(rule_3, axiom, ! [X,D1,D2] : ((DistWalk(X,D1) & DistRun(X,D2)) => DistTotal(X, Add(D1,D2)))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-4 by RULE-1
+fof(inf_1, axiom, DistWalk(dana, d_9)).
+
+% From FACT-2, FACT-4 by RULE-2
+fof(inf_2, axiom, DistRun(dana, d_36)).
+
+% From INF-1, INF-2 by RULE-3
+fof(inf_3, axiom, DistTotal(dana, d_45)).
+
+% From INF-3
+fof(inf_4, axiom, DistTotal(dana, d_45)).

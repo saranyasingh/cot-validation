@@ -1,0 +1,7 @@
+  % From fact_3, fact_4 by Arithmetic Computation
+  inf_1: NOT PROVED
+  % From fact_3, fact_4, inf_1, and rule_1 by Modus Ponens
+  inf_2: PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms

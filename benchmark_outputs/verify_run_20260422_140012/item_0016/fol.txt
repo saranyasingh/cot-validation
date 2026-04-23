@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The initial value of jewelry is 5000 :: InitialValue(jewelry, n_5000)
+FACT-2: The increase in jewelry value due to growth is 125 :: Increase(jewelry, n_125)
+FACT-3: Jewelry total value after 1 month is 5125 :: TotalValueAfter(jewelry, month_one, n_5125)
+FACT-4: The initial value of electronics is 8000 :: InitialValue(electronics, n_8000)
+FACT-5: The increase in electronics value due to growth is 96 :: Increase(electronics, n_96)
+FACT-6: Electronics total value after 1 month is 8096 :: TotalValueAfter(electronics, month_one, n_8096)
+FACT-7: 8096 is greater than 5125 :: GreaterThan(n_8096, n_5125)
+FACT-8: The final answer is 2971 :: FinalAnswer(n_2971)
+
+## RULES
+RULE-1: If plan P2 has a higher total value than plan P1 after month M, then P2 has higher value than P1 :: ∀P2∀P1∀M∀V2∀V1((TotalValueAfter(P2,M,V2) ∧ TotalValueAfter(P1,M,V1) ∧ GreaterThan(V2,V1)) → HigherValueBetweenPlans(P2,P1,M))
+
+## INFERENCES
+INF-1: Electronics has higher value than jewelry after month_one :: HigherValueBetweenPlans(electronics, jewelry, month_one) :: from FACT-6, FACT-3, FACT-7 by RULE-1
+INF-2: The final answer is 2971 :: FinalAnswer(n_2971) :: from FACT-8 by Direct Assertion

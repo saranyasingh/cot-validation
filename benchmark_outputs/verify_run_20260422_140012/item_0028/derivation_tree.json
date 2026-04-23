@@ -1,0 +1,121 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Cynthia eats 1 serving per night",
+      "formula": "ServingsPerNight(cynthia, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 60 nights in 60 days",
+      "formula": "NightsInDays(n_60, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The total number of servings is 60",
+      "formula": "TotalServings(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each carton contains 15 servings",
+      "formula": "ServingsPerCarton(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Each carton costs 4 dollars",
+      "formula": "PricePerCarton(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "60 \u00f7 15 = 4",
+      "formula": "Division(n_60, n_15, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "4 \u00d7 4 = 16",
+      "formula": "Multiply(n_4, n_4, n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Total cost is 16 dollars",
+      "formula": "TotalCost(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a division predicate holds, then the product relation with the divisor and quotient holds",
+      "formula": "\u2200x\u2200y\u2200z((Division(x,y,z)) \u2192 Product(y,z,x))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a division predicate holds, then the number of cartons needed is the quotient",
+      "formula": "\u2200x\u2200y\u2200z((Division(x,y,z)) \u2192 CartonsNeeded(z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If CartonsNeeded(x) \u2227 PricePerCarton(y) \u2227 Multiply(x,y,z) then TotalCost(z)",
+      "formula": "\u2200x\u2200y\u2200z((CartonsNeeded(x) \u2227 PricePerCarton(y) \u2227 Multiply(x,y,z)) \u2192 TotalCost(z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "CartonsNeeded(n_4) from Division(n_60, n_15, n_4) and RULE-2 by Modus Ponens",
+      "formula": "Division(n_60, n_15, n_4) , RULE-2 \u2192 CartonsNeeded(n_4)",
+      "premises": [
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalCost(n_16) from CartonsNeeded(n_4) (INF-1), PricePerCarton(n_4) (FACT-5), Multiply(n_4, n_4, n_16) (FACT-7) by RULE-3",
+      "formula": "CartonsNeeded(n_4) \u2227 PricePerCarton(n_4) \u2227 Multiply(n_4, n_4, n_16) \u2192 TotalCost(n_16)",
+      "premises": [
+        "INF-1",
+        "FACT-5",
+        "FACT-7"
+      ],
+      "inference_rule": "RULE-3",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

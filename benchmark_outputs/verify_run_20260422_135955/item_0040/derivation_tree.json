@@ -1,0 +1,121 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Dana's walking speed is 1.5 mph",
+      "formula": "WalkingSpeed(dana, w_1_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Dana's running speed is 6 mph",
+      "formula": "RunningSpeed(dana, r_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Dana's skipping speed is 3 mph",
+      "formula": "SkippingSpeed(dana, s_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Dana's total time is 6 hours",
+      "formula": "TotalTime(dana, t_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Walking distance from speed and time",
+      "formula": "\u2200x\u2200w\u2200t((WalkingSpeed(x, w) \u2227 TotalTime(x, t)) \u2192 \u2203d(DistWalk(x, d) \u2227 Mul(w, t, d)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Running distance from speed and time",
+      "formula": "\u2200x\u2200r\u2200t((RunningSpeed(x, r) \u2227 TotalTime(x, t)) \u2192 \u2203d(DistRun(x, d) \u2227 Mul(r, t, d)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Total distance from walking and running distances",
+      "formula": "\u2200x\u2200d1\u2200d2((DistWalk(x, d1) \u2227 DistRun(x, d2)) \u2192 DistTotal(x, Add(d1, d2)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "DistWalk(dana, d_9)",
+      "formula": "from FACT-1, FACT-4 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "DistRun(dana, d_36)",
+      "formula": "from FACT-2, FACT-4 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "DistTotal(dana, d_45)",
+      "formula": "from INF-1, INF-2 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Therefore, the total distance Dana can travel in six hours is 45 miles",
+      "formula": "from INF-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

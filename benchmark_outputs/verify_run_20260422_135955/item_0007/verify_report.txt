@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Explicitly stated in the problem.
+FACT-2: SUPPORTED — Deduced from Charleston = 4 × Seattle and Seattle = 20.
+FACT-3: SUPPORTED — Deduced from Toulouse = 2 × Charleston; Charleston = 80.
+RULE-1: IMPLAUSIBLE — The total is not fixed at 260 for arbitrary s, c, t; with the given relations the sum is 13s, which equals 260 only when s=20.

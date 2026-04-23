@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — hardcodes RedTiePrice to 60, ignoring p, so not a general encoding of the relation
+RULE-3: IMPLAUSIBLE — cross-relates blue total cost, red price, and count in a way not justified by problem
+RULE-4: IMPLAUSIBLE — fixes red total cost to 180 irrespective of actual prices/counts; not valid

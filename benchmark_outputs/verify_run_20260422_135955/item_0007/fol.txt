@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SeattlePopulation(n_20)
+FACT-2: Charleston has 80 sheep :: CharlestonPopulation(n_80)
+FACT-3: Toulouse has 160 sheep :: ToulousePopulation(n_160)
+
+## RULES
+RULE-1: If Seattle has s sheep, Charleston has c sheep, and Toulouse has t sheep, then the total is 260 :: ∀s∀c∀t((SeattlePopulation(s) ∧ CharlestonPopulation(c) ∧ ToulousePopulation(t)) → TotalPopulation(n_260))
+
+## INFERENCES
+INF-0: RULE-1 instantiated with s = n_20, c = n_80, t = n_160 :: (SeattlePopulation(n_20) ∧ CharlestonPopulation(n_80) ∧ ToulousePopulation(n_160)) → TotalPopulation(n_260)
+INF-1: TotalPopulation(n_260) from INF-0 and FACT-1, FACT-2, FACT-3 by Modus Ponens

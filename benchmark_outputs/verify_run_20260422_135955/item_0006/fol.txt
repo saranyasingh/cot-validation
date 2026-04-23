@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: The original price per glass is 5 dollars :: OriginalPricePerGlass(n_5)
+FACT-2: There are 16 glasses in total :: TotalGlasses(n_16)
+FACT-3: The discount rate is 0.6 (60%) :: DiscountRate(n_0_6)
+FACT-4: 5 times 0.6 equals 3 :: Multiply(n_5, n_0_6, n_3)
+FACT-5: 16 halves to 8 :: Half(n_16, n_8)
+
+## RULES
+RULE-1: If the original price per glass is p and the discount rate is d and p times d equals q, then the discounted price per glass is q :: ∀p∀d∀q((OriginalPricePerGlass(p) ∧ DiscountRate(d) ∧ Multiply(p,d,q)) → DiscountedPricePerGlass(q))
+RULE-2: If total glasses is t and t halves to h, then there are h discounted glasses :: ∀t∀h((TotalGlasses(t) ∧ Half(t,h)) → DiscountedCount(h))
+RULE-3: If total glasses is t and t halves to h, then there are h original glasses :: ∀t∀h((TotalGlasses(t) ∧ Half(t,h)) → OriginalCount(h))
+RULE-4: If there are h discounted glasses with price p, and h × p = c, then the discounted cost is c :: ∀h∀p∀c((DiscountedCount(h) ∧ DiscountedPricePerGlass(p) ∧ Multiply(h,p,c)) → DiscountCost(c))
+RULE-5: If there are h original glasses with price p, and h × p = c, then the original cost is c :: ∀h∀p∀c((OriginalCount(h) ∧ OriginalPricePerGlass(p) ∧ Multiply(h,p,c)) → OriginalCost(c))
+RULE-6: If DiscountCost(a) and OriginalCost(b) and Add(a,b,c), then TotalCost(c) :: ∀a∀b∀c((DiscountCost(a) ∧ OriginalCost(b) ∧ Add(a,b,c)) → TotalCost(c))
+
+## INFERENCES
+INF-1: Discounted price per glass is 3 dollars, from OriginalPricePerGlass(n_5), DiscountRate(n_0_6), and Multiply(n_5, n_0_6, n_3) by Arithmetic Computation :: DiscountedPricePerGlass(n_3)
+INF-2: There are 8 discounted glasses, from TotalGlasses(n_16) and Half(n_16, n_8) by Rule-2 (Universal Instantiation) :: DiscountedCount(n_8)
+INF-3: There are 8 original glasses, from TotalGlasses(n_16) and Half(n_16, n_8) by Rule-3 (Universal Instantiation) :: OriginalCount(n_8)
+INF-4: The cost of discounted glasses is 24 dollars, from DiscountedCount(n_8) and DiscountedPricePerGlass(n_3) by Arithmetic Computation and Multiply(n_8, n_3, n_24) via Rule-4 :: DiscountCost(n_24)
+INF-5: The cost of original glasses is 40 dollars, from OriginalCount(n_8) and OriginalPricePerGlass(n_5) by Arithmetic Computation and Multiply(n_8, n_5, n_40) via Rule-5 :: OriginalCost(n_40)
+INF-6: 24 + 40 = 64, via Arithmetic Computation Add(n_24, n_40, n_64) :: Add(n_24, n_40, n_64)
+INF-7: Total cost is 64 dollars, from DiscountCost(n_24) and OriginalCost(n_40) and Add(n_24, n_40, n_64) by Rule-6 (Addition) :: TotalCost(n_64)

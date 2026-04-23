@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Ratio(darrell, allen, n_7, n_11) :: The ratio of Darrell's age to Allen's age is 7:11
+FACT-2: SumAges(darrell, allen, n_162) :: The sum of Darrell's and Allen's ages is 162
+
+## RULES
+RULE-1: ∀x∀y∀m∀n∀S((Ratio(x,y,m,n) ∧ SumAges(x,y,S)) → ∃ax∃ay(Age(x,ax) ∧ Age(y,ay) ∧ ax = (m*S)/(m+n) ∧ ay = (n*S)/(m+n))) :: If two people have ages in ratio m:n and sum S, then their ages are ax and ay with ax = (m*S)/(m+n) and ay = (n*S)/(m+n)
+RULE-2: ∀p∀a((Age(p,a)) → FutureAge(p, Add(a, n_10))) :: If a person is age a now, their age after 10 years is Add(a, n_10)
+
+## INFERENCES
+INF-1: Age(darrell, n_63) :: from FACT-1, FACT-2 by ArithmeticComputation
+INF-2: Age(allen, n_99) :: from FACT-1, FACT-2 by ArithmeticComputation
+INF-3: FutureAge(allen, Add(n_99, n_10)) :: from INF-2 and RULE-2 by Modus Ponens
+INF-4: FutureAge(allen, n_109) :: from INF-3 by ArithmeticComputation

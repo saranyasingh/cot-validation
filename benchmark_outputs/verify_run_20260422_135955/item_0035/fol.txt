@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Raymond has 40 jewels :: HasJewels(raymond, n_40)
+
+## RULES
+RULE-1: Half of 40 is 20 :: ∀x(HasJewels(raymond, n_40) → HalfOf(n_40, n_20))
+RULE-2: 20 plus 5 equals 25 :: ∀x(HalfOf(n_40, n_20) → Add(n_20, n_5, n_25))
+RULE-3: If Raymond has 40 and 20+5=25 then Aaron has 25 :: ∀x((HasJewels(raymond, n_40) ∧ Add(n_20, n_5, n_25)) → HasJewels(aaron, n_25))
+RULE-4: If Aaron has 25 then 25-2 equals 23 :: ∀x(HasJewels(aaron, n_25) → Subtract(n_25, n_2, n_23))
+RULE-5: If 25-2 equals 23 then Siobhan has 23 :: ∀x(Subtract(n_25, n_2, n_23) → HasJewels(siobhan, n_23))
+
+## INFERENCES
+INF-1: HalfOf(n_40, n_20) inferred from FACT-1 and RULE-1 by Modus Ponens :: HalfOf(n_40, n_20)
+INF-2: Add(n_20, n_5, n_25) inferred from INF-1 and RULE-2 by Modus Ponens :: Add(n_20, n_5, n_25)
+INF-3: HasJewels(aaron, n_25) inferred from FACT-1, INF-2, and RULE-3 by Modus Ponens :: HasJewels(aaron, n_25)
+INF-4: Subtract(n_25, n_2, n_23) inferred from INF-3 and RULE-4 by Modus Ponens :: Subtract(n_25, n_2, n_23)
+INF-5: HasJewels(siobhan, n_23) inferred from INF-4 and RULE-5 by Modus Ponens :: HasJewels(siobhan, n_23)

@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, purchase_price(josh, n_80000)).
+fof(fact_2, axiom, repairs_cost(josh, n_50000)).
+fof(fact_3, axiom, value_increase_percent(josh, n_150)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,P,R] : ((purchase_price(X,P) & repairs_cost(X,R)) => ? [S] : (sum(P,R,S) & initial_investment(X,S)))).
+fof(rule_2, axiom, ! [X,P,M] : ((value_increase_percent(X,M) & purchase_price(X,P)) => ? [S] : (product(P,M,S) & increase_value_amount(X,S)))).
+fof(rule_3, axiom, ! [X,P,S,V] : ((purchase_price(X,P) & increase_value_amount(X,S) & sum(P,S,V)) => new_market_value(X,V))).
+fof(rule_4, axiom, ! [X,A,B] : ((initial_investment(X,A) & repairs_cost(X,B)) => ? [C] : (plus(A,B,C) & total_investment_after_flip(X,C)))).
+fof(rule_5, axiom, ! [X,V,P] : ((new_market_value(X,V) & purchase_price(X,P)) => ? [Q] : (subtract(V,P,Q) & profit(X,Q)))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by ArithmeticComputation
+fof(inf_1, axiom, initial_investment(josh, n_130000)).
+% From fact_3, rule_2 by ArithmeticComputation
+fof(inf_2, axiom, increase_value_amount(josh, n_120000)).
+% From fact_1, inf_2 by ArithmeticComputation
+fof(inf_3, axiom, new_market_value(josh, n_200000)).
+% From inf_1, fact_2 by ArithmeticComputation
+fof(inf_4, axiom, total_investment_after_flip(josh, n_180000)).
+% From inf_3, fact_1 by Subtraction
+fof(inf_5, axiom, profit(josh, n_120000)).

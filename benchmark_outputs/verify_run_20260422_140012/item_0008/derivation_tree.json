@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The file size is two_hundred_gb",
+      "formula": "FileSize(two_hundred_gb)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The download rate is two_gb_per_min",
+      "formula": "DownloadRate(two_gb_per_min)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the file size is S and the download rate is R, then the time required to download is time_100_minutes",
+      "formula": "\u2200S\u2200R((FileSize(S) \u2227 DownloadRate(R)) \u2192 TimeForDownload(S, R, time_100_minutes))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It fixes time to 100 minutes for any S and R, ignoring the actual S/R relation.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the time for download of S at rate R is time_100_minutes and S is half downloaded, then the time for the first half is time_50_minutes",
+      "formula": "\u2200S\u2200R((TimeForDownload(S, R, time_100_minutes) \u2227 HalfDownloaded(S)) \u2192 TimeForFirstHalf(time_50_minutes))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the first half time is time_50_minutes and there is a restart due to update, then the total time for both halves is time_70_minutes",
+      "formula": "\u2200(TimeForFirstHalf(time_50_minutes) \u2227 RestartDueToUpdate) \u2192 TimeForBothHalves(time_70_minutes))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The stated total 70 minutes is incorrect for two halves with a restart.",
+      "error": true
+    }
+  },
+  "root": null,
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "It fixes time to 100 minutes for any S and R, ignoring the actual S/R relation."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "The stated total 70 minutes is incorrect for two halves with a restart."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

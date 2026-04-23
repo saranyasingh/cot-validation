@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, calories_per_serving(bag_300g, n_250)).
+fof(fact_2, axiom, bag_weight(bag_300g, n_300)).
+fof(fact_3, axiom, servings_in_bag(bag_300g, n_5)).
+fof(fact_4, axiom, daily_calorie_target(n_2000)).
+fof(fact_5, axiom, calories_consumed(n_1800)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, C] : (( daily_calorie_target(T) & calories_consumed(C)) => ? [R] remaining_calories_value(T, C, R))).
+fof(rule_2, axiom, ! [T, C, R, Bag, P] : (( remaining_calories_value(T, C, R) & calories_per_serving(Bag, P)) => ? [S] remaining_servings_value(T, C, R, P, S))).
+fof(rule_3, axiom, ! [T, C, R, P, S, Bag] : (( remaining_servings_value(T, C, R, P, S) & approximately_equals(S, n_0_8)) => ? [G] maximum_grams_value(Bag, G))).
+
+% --- INFERENCES ---
+fof(inf_1, axiom, remaining_calories_value(n_2000, n_1800, r_1)).
+fof(inf_2, axiom, remaining_servings_value(n_2000, n_1800, r_1, n_250, s_1)).
+fof(inf_3, axiom, maximum_grams_value(bag_300g, n_60)).
+fof(inf_4, axiom, maximum_grams_value(bag_300g, n_60)).

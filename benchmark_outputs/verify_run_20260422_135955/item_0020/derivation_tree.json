@@ -1,0 +1,183 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TotalDistance(n_12)",
+      "formula": "TotalDistance(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "First4MilesIn1Hour(n_4, n_1)",
+      "formula": "First4MilesIn1Hour(n_4, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Next2MilesIn1Hour(n_2, n_1)",
+      "formula": "Next2MilesIn1Hour(n_2, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "TargetAverageSpeed(n_4)",
+      "formula": "TargetAverageSpeed(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Quotient(n_6, n_2, n_3)",
+      "formula": "Quotient(n_6, n_2, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Sum(n_1, n_1, n_2)",
+      "formula": "Sum(n_1, n_1, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Sum(n_4, n_2, n_6)",
+      "formula": "Sum(n_4, n_2, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Sum(n_6, n_6, n_12)",
+      "formula": "Sum(n_6, n_6, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a total distance D is known and a time T is known and EqualDivision(D, T, V) holds, then AverageSpeed(D, T, V)",
+      "formula": "\u2200D\u2200T\u2200V((TotalDistance(D) \u2227 TimeTaken(T) \u2227 EqualDivision(D, T, V)) \u2192 AverageSpeed(D, T, V))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Time1 = t1 and Time2 = t2 and Sum(t1, t2, T) then TimeTaken(T)",
+      "formula": "\u2200t1\u2200t2\u2200T((TimeSegment1(t1) \u2227 TimeSegment2(t2) \u2227 Sum(t1, t2, T)) \u2192 TimeTaken(T))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Dist1 = d1 and Dist2 = d2 and Sum(d1, d2, D) then DistanceCovered(D)",
+      "formula": "\u2200d1\u2200d2\u2200D((DistanceSegment1(d1) \u2227 DistanceSegment2(d2) \u2227 Sum(d1, d2, D)) \u2192 DistanceCovered(D))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If DistanceCovered(C) and TotalDistance(D) and Sum(C, R, D) then RemainingDistance(R)",
+      "formula": "\u2200C\u2200D\u2200R((DistanceCovered(C) \u2227 TotalDistance(D) \u2227 Sum(C, R, D)) \u2192 RemainingDistance(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If Quotient(a, b, c) then EqualDivision(a, b, c)",
+      "formula": "\u2200a\u2200b\u2200c((Quotient(a, b, c)) \u2192 EqualDivision(a, b, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If EqualDivision(D, T, V) and TargetAverageSpeed(V) then FinalAnswer(V)",
+      "formula": "\u2200D\u2200T\u2200V((EqualDivision(D, T, V) \u2227 TargetAverageSpeed(V)) \u2192 FinalAnswer(V))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TimeTaken(n_2) from FACT-2, FACT-3 by RULE-2 (TimeSumFromSegments)",
+      "formula": "TimeTaken(n_2)",
+      "premises": [
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-2 (TimeSumFromSegments)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "DistanceCovered(n_6) from FACT-2, FACT-3 by RULE-3 (DistanceSumFromSegments)",
+      "formula": "DistanceCovered(n_6)",
+      "premises": [
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-3 (DistanceSumFromSegments)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RemainingDistance(n_6) from FACT-1 (TotalDistance) and INF-2 by RULE-4 (SubtractDistances)",
+      "formula": "RemainingDistance(n_6)",
+      "premises": [
+        "FACT-1",
+        "INF-2"
+      ],
+      "inference_rule": "RULE-4 (SubtractDistances)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "EqualDivision(n_6, n_2, n_3) from FACT-5 (Quotient) by RULE-5 (QuotientToEqualDivision)",
+      "formula": "EqualDivision(n_6, n_2, n_3)",
+      "premises": [
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-5 (QuotientToEqualDivision)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "FinalAnswer(n_4) from INF-4 and FACT-4 by RULE-6 (ConcludeTarget)",
+      "formula": "FinalAnswer(n_4)",
+      "premises": [
+        "INF-4",
+        "FACT-4"
+      ],
+      "inference_rule": "RULE-6 (ConcludeTarget)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

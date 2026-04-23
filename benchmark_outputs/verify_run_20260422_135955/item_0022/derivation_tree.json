@@ -1,0 +1,176 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BornBefore(raymond, samantha, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Samantha is 31 years old",
+      "formula": "Age(samantha, n_31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond had a son at age 23",
+      "formula": "HadSonAtAge(raymond, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Subtract(23, 25, n_minus_2)",
+      "formula": "Subtract(n_23, n_25, n_minus_2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not stated or entailed; introduces Subtract(23,25,n_minus_2) with numbers not in the problem.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Add(25, 23, 48)",
+      "formula": "Add(n_25, n_23, n_48)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not stated or entailed; introduces Add(25,23,48) with unrelated numbers.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x is born n_6 years before y and y is n_31 years old, then x was born n_25 years ago",
+      "formula": "\u2200x\u2200y((BornBefore(x, y, n_6) \u2227 Age(y, n_31)) \u2192 BornAgo(x, n_25))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The conclusion that x was born 25 years ago is incorrect given x is 6 years older than y who is 31 now.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x had a son at age n_23 and x was born n_25 years ago, then the son was born n_minus_2 years ago",
+      "formula": "\u2200x((HadSonAtAge(x, n_23) \u2227 BornAgo(x, n_25)) \u2192 SonBornAgo(x, n_minus_2))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It would imply the son was born -2 years ago, inconsistent with the problem.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x had a son at age b and x was born at a, then the son was born after birth by b",
+      "formula": "\u2200x\u2200b\u2200a((HadSonAtAge(x, b) \u2227 BornAgo(x, a)) \u2192 SonBornAfterBirth(x, b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x was born at a and the son was born after birth by b and Add(a, b, c), then the son was born c years ago",
+      "formula": "\u2200x\u2200a\u2200b\u2200c((BornAgo(x, a) \u2227 SonBornAfterBirth(x, b) \u2227 Add(a, b, c)) \u2192 SonBornAgo(x, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If SonBornAgo(x, c) then FinalAnswer(c)",
+      "formula": "\u2200x\u2200c(SonBornAgo(x, c) \u2192 FinalAnswer(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "BornAgo(raymond, n_25) from FACT-1 and FACT-2 by RULE-1 (Modus Ponens)",
+      "formula": "BornAgo(raymond, n_25)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SonBornAgo(raymond, n_minus_2) from FACT-3, FACT-4, and INF-1 by RULE-2 (Modus Ponens)",
+      "formula": "SonBornAgo(raymond, n_minus_2)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "INF-1"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "SonBornAfterBirth(raymond, n_23) from FACT-3 and INF-1 by RULE-3 (Universal Instantiation)",
+      "formula": "SonBornAfterBirth(raymond, n_23)",
+      "premises": [
+        "FACT-3",
+        "INF-1"
+      ],
+      "inference_rule": "RULE-3 (Universal Instantiation)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "SonBornAgo(raymond, n_48) from INF-1, INF-3, and FACT-5 by RULE-4 (Modus Ponens)",
+      "formula": "SonBornAgo(raymond, n_48)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-4 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "FinalAnswer(n_48) from INF-4 by RULE-5 (Modus Ponens)",
+      "formula": "FinalAnswer(n_48)",
+      "premises": [
+        "INF-4"
+      ],
+      "inference_rule": "RULE-5 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "Not stated or entailed; introduces Subtract(23,25,n_minus_2) with numbers not in the problem."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "Not stated or entailed; introduces Add(25,23,48) with unrelated numbers."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The conclusion that x was born 25 years ago is incorrect given x is 6 years older than y who is 31 now."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It would imply the son was born -2 years ago, inconsistent with the problem."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

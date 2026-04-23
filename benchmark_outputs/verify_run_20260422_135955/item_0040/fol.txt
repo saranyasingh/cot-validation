@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Dana's walking speed is 1.5 mph :: WalkingSpeed(dana, w_1_5)
+FACT-2: Dana's running speed is 6 mph :: RunningSpeed(dana, r_6)
+FACT-3: Dana's skipping speed is 3 mph :: SkippingSpeed(dana, s_3)
+FACT-4: Dana's total time is 6 hours :: TotalTime(dana, t_6)
+
+## RULES
+RULE-1: Walking distance from speed and time :: ∀x∀w∀t((WalkingSpeed(x, w) ∧ TotalTime(x, t)) → ∃d(DistWalk(x, d) ∧ Mul(w, t, d)))
+RULE-2: Running distance from speed and time :: ∀x∀r∀t((RunningSpeed(x, r) ∧ TotalTime(x, t)) → ∃d(DistRun(x, d) ∧ Mul(r, t, d)))
+RULE-3: Total distance from walking and running distances :: ∀x∀d1∀d2((DistWalk(x, d1) ∧ DistRun(x, d2)) → DistTotal(x, Add(d1, d2)))
+
+## INFERENCES
+INF-1: DistWalk(dana, d_9) :: from FACT-1, FACT-4 by RULE-1
+INF-2: DistRun(dana, d_36) :: from FACT-2, FACT-4 by RULE-2
+INF-3: DistTotal(dana, d_45) :: from INF-1, INF-2 by RULE-3
+INF-4: Therefore, the total distance Dana can travel in six hours is 45 miles :: from INF-3

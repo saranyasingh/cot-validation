@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: EggsLaidPerDay(janets_ducks, n_16) :: Janet's ducks lay 16 eggs per day
+FACT-2: EggsEatenForBreakfast(janet, n_3) :: Janet eats 3 eggs for breakfast
+FACT-3: EggsUsedForBaking(janet, n_4) :: Janet uses 4 eggs for baking muffins
+FACT-4: PricePerEggAtMarket(n_2) :: Price per egg at market is 2 dollars
+
+## RULES
+RULE-1: ∀d∀p∀e∀k∀r1 ((EggsLaidPerDay(d, e) ∧ EggsEatenForBreakfast(p, k) ∧ Subtract(e, k, r1)) → RemainingAfterBreakfast(p, r1)) :: If e eggs are laid and k eggs are eaten, then r1 = e − k remain after breakfast
+RULE-2: ∀p∀e∀m∀r2 ((RemainingAfterBreakfast(p, e) ∧ EggsUsedForBaking(p, m) ∧ Subtract(e, m, r2)) → RemainingAfterMuffins(p, r2)) :: If remaining after breakfast is e and m eggs are used for baking, then r2 = e − m remain after muffins
+RULE-3: ∀p∀r2∀pp∀r3 ((RemainingAfterMuffins(p, r2) ∧ PricePerEggAtMarket(pp) ∧ Product(r2, pp, r3)) → EarningsTotal(p, r3)) :: If r2 eggs remain and price per egg is pp and r3 = r2 * pp, then earnings total is r3
+
+## INFERENCES
+INF-1: RemainingAfterBreakfast(janet, n_13) :: from FACT-1, FACT-2 by Arithmetic Computation
+INF-2: RemainingAfterMuffins(janet, n_9) :: from INF-1, FACT-3 by Arithmetic Computation
+INF-3: Product(n_9, n_2, n_18) :: from INF-2, FACT-4 by Arithmetic Computation
+INF-4: EarningsTotal(janet, n_18) :: from INF-3, INF-2, FACT-4 and RULE-3 by Modus Ponens

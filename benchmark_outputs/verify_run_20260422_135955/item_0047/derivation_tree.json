@@ -1,0 +1,128 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "T_Equals_80_plus_P",
+      "formula": "T = 80 + P",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "After_Store_Left",
+      "formula": "(80 + P) - x",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Cups_Used_220",
+      "formula": "CupsUsed = 220",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Remaining_After_Usage",
+      "formula": "Remaining = 23",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Equation_5",
+      "formula": "(80 + P - x) - 220 = 23",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not stated in the problem",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If A = B and B = C then A = C",
+      "formula": "\u2200a\u2200b\u2200c((Eq(a,b) \u2227 Eq(b,c)) \u2192 Eq(a,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If A = B + C then B = A - C",
+      "formula": "\u2200a\u2200b\u2200c((Add(a,b,c)) \u2192 (Subtract(a,c,b)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If A - B = C and B = D then A - D = C",
+      "formula": "\u2200a\u2200b\u2200c((Sub(a,b,c) \u2227 Eq(b,d)) \u2192 Sub(a,d,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and RULE-2 using Add and Sub inverses, infer T - P = 80",
+      "formula": "(From AddEq and SubEq reasoning labeled by RULE-2)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and FACT-2 by substitution, infer (80 + P) - x =  ???",
+      "formula": "(Application of RULE-1 with transitive steps; explicit intermediate is not shown)",
+      "premises": [
+        "INF-1",
+        "FACT-2"
+      ],
+      "inference_rule": "substitution, infer (80 + P) - x =  ???",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 and FACT-3 by arithmetic substitution, infer (80 + P - x) - 220 = 23",
+      "formula": "(MODUS PONENS/Arithmetic reasoning)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "arithmetic substitution, infer (80 + P - x) - 220 = 23",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 and FACT-4 by simplification, infer x = 0",
+      "formula": "(Arithmetic simplification)",
+      "premises": [
+        "INF-3",
+        "FACT-4"
+      ],
+      "inference_rule": "simplification, infer x = 0",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "Not stated in the problem"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

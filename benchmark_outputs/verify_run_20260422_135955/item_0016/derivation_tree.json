@@ -1,0 +1,97 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "InitialCost(jewelry, n_5000)",
+      "formula": "The initial cost of jewelry is 5000",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "IncreaseRate(jewelry, n_025)",
+      "formula": "The expected increase in jewelry price is 0.025",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "FinalPrice(jewelry, n_5125)",
+      "formula": "The final price of jewelry is 5125",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "InitialCost(electronic_gadgets, n_8000)",
+      "formula": "The initial cost of electronics is 8000",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "IncreaseRate(electronic_gadgets, n_012)",
+      "formula": "The expected increase in electronics price is 0.012",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "FinalPrice(electronic_gadgets, n_8096)",
+      "formula": "The final price of electronics is 8096",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "JewelryProfit(n_125)",
+      "formula": "Jewelry profit is 125",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "GadgetsProfit(n_96)",
+      "formula": "Gadgets profit is 96",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "GreaterThan(n_125, n_96)",
+      "formula": "125 is greater than 96",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p1\u2200p2((JewelryProfit(p1) \u2227 GadgetsProfit(p2) \u2227 GreaterThan(p1, p2)) \u2192 FinalAnswer(p1))",
+      "formula": "If jewelry profit is p1 and gadgets profit is p2 and p1 > p2, then FinalAnswer(p1)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FinalAnswer(n_125)",
+      "formula": "Derived from JewelryProfit(n_125), GadgetsProfit(n_96), GreaterThan(n_125, n_96) via RULE-1 (Modus Ponens / Universal Instantiation)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

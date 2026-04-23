@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: The file size is 200 GB :: FileSize(n_200_gb)
+FACT-2: 40 percent of the download is completed during the forced restart :: PercentDownloadedDuringRestart(n_40)
+FACT-3: 120 GB remains after the restart :: RemainingGB(n_120_gb)
+FACT-4: The normal download speed is 2 GB per minute :: DownloadSpeed(n_2_gb_per_min)
+FACT-5: Restart duration is 20 minutes :: RestartDuration(n_20_min)
+
+## RULES
+RULE-1: If the remaining GB is a and the download speed is b and the time to download minutes is c, then the total minutes to download is c :: ∀a∀b∀c((RemainingGB(a) ∧ DownloadSpeed(b) ∧ TimeToDownloadMinutes(a,b,c)) → TimeMinutes(c))
+RULE-2: If the total time is x and the restart duration is y and TimePlus(x,y,z), then the total minutes is z :: ∀x∀y∀z((TimeMinutes(x) ∧ RestartDuration(y) ∧ TimePlus(x,y,z)) → TimeMinutes(z))
+
+## INFERENCES
+INF-1: TimeToDownloadMinutes(n_120_gb, n_2_gb_per_min, n_60_min) :: Time to download 120 GB at 2 GB/min is 60 minutes, from RemainingGB(n_120_gb) and DownloadSpeed(n_2_gb_per_min) by Arithmetic Computation
+INF-2: TimeMinutes(n_60_min) :: from RemainingGB(n_120_gb) ∧ DownloadSpeed(n_2_gb_per_min) ∧ TimeToDownloadMinutes(n_120_gb, n_2_gb_per_min, n_60_min) by RULE-1
+INF-3: TimePlus(n_60_min, n_20_min, n_80_min) :: 60 + 20 = 80 by Arithmetic Computation from TimeMinutes(n_60_min) and RestartDuration(n_20_min)
+INF-4: TimeMinutes(n_80_min) :: from TimeMinutes(n_60_min) ∧ RestartDuration(n_20_min) ∧ TimePlus(n_60_min, n_20_min, n_80_min) by RULE-2
+INF-5: TimePlus(n_80_min, n_20_min, n_100_min) :: 80 + 20 = 100 by Arithmetic Computation from TimeMinutes(n_80_min) and RestartDuration(n_20_min)
+INF-6: TimeMinutes(n_100_min) :: from TimeMinutes(n_80_min) ∧ RestartDuration(n_20_min) ∧ TimePlus(n_80_min, n_20_min, n_100_min) by RULE-2
+

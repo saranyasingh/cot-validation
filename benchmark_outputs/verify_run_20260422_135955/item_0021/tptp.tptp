@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, volume(orange_drink, n_10)).
+fof(fact_2, axiom, water_in(orange_drink, n_20_over_3)).
+fof(fact_3, axiom, volume(pineapple_drink, n_15)).
+fof(fact_4, axiom, water_in(pineapple_drink, n_9)).
+fof(fact_5, axiom, add(n_20_over_3, n_9, n_47_over_3)).
+fof(fact_6, axiom, subtract(n_20_over_3, n_2_over_3, n_6)).
+fof(fact_7, axiom, water_lost_from_orange(n_2_over_3)).
+fof(fact_8, axiom, add(n_6, n_9, n_15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [O, P, W1, W2, W3] : ((water_in(O, W1) & water_in(P, W2) & add(W1, W2, W3)) => water_in(orange_and_pineapple_mixture, W3))).
+fof(rule_3, axiom, ! [W, W_lost, W_remain] : ((water_in(orange_drink, W) & water_lost_from_orange(W_lost) & subtract(W, W_lost, W_remain)) => water_in_after_spill(orange_drink, W_remain))).
+fof(rule_4, axiom, ! [W1, W2, W3] : ((water_in_after_spill(orange_drink, W1) & water_in(pineapple_drink, W2) & add(W1, W2, W3)) => water_in_total_after_spill(total_water_after_spill, W3))).
+fof(rule_5, axiom, ! [T, W] : ( (water_in_total_after_spill(T, W)) => final_water_total(W) )).
+
+% --- INFERENCES ---
+% From fact_2, fact_4, and fact_5 by RULE-1
+fof(inf_1, axiom, water_in(orange_and_pineapple_mixture, n_47_over_3)).
+% From fact_2, fact_7, fact_6 by RULE-3
+fof(inf_2, axiom, water_in_after_spill(orange_drink, n_6)).
+% From inf_2, fact_4, and fact_8 by RULE-4
+fof(inf_3, axiom, water_in_total_after_spill(total_water_after_spill, n_15)).
+% From inf_3 by RULE-5
+fof(inf_4, axiom, final_water_total(n_15)).

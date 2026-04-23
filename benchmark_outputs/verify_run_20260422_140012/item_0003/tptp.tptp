@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, original_price(n_80000)).
+
+fof(fact_2, axiom, repair_cost(n_50000)).
+
+fof(fact_3, axiom, increase_rate(n_150)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,Q] : ((original_price(P) & repair_cost(Q)) => ? [R] : sum_costs(P,Q,R))).
+
+fof(rule_2, axiom, ! [V,I] : ((value_after_repairs(V) & total_investment(I)) => ? [P] : (profit(P) & P = V - I))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, total_investment(n_130000)).
+
+% From FACT-1, FACT-3 by Arithmetic Computation
+fof(inf_2, axiom, value_after_repairs(n_200000)).
+
+% From inf_1, inf_2 by Arithmetic Computation
+fof(inf_3, axiom, profit(n_70000)).

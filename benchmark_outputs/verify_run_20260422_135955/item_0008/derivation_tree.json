@@ -1,0 +1,136 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The file size is 200 GB",
+      "formula": "FileSize(n_200_gb)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "40 percent of the download is completed during the forced restart",
+      "formula": "PercentDownloadedDuringRestart(n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "120 GB remains after the restart",
+      "formula": "RemainingGB(n_120_gb)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "after a restart you must download the entire 200 GB again; 120 GB remaining is incorrect under the problem\u2019s description",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The normal download speed is 2 GB per minute",
+      "formula": "DownloadSpeed(n_2_gb_per_min)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Restart duration is 20 minutes",
+      "formula": "RestartDuration(n_20_min)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the remaining GB is a and the download speed is b and the time to download minutes is c, then the total minutes to download is c",
+      "formula": "\u2200a\u2200b\u2200c((RemainingGB(a) \u2227 DownloadSpeed(b) \u2227 TimeToDownloadMinutes(a,b,c)) \u2192 TimeMinutes(c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "does not encode the actual relationship between remaining data, speed, and time (lacks a concrete formula like time = remaining/speed)",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the total time is x and the restart duration is y and TimePlus(x,y,z), then the total minutes is z",
+      "formula": "\u2200x\u2200y\u2200z((TimeMinutes(x) \u2227 RestartDuration(y) \u2227 TimePlus(x,y,z)) \u2192 TimeMinutes(z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TimeToDownloadMinutes(n_120_gb, n_2_gb_per_min, n_60_min)",
+      "formula": "Time to download 120 GB at 2 GB/min is 60 minutes, from RemainingGB(n_120_gb) and DownloadSpeed(n_2_gb_per_min) by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TimeMinutes(n_60_min)",
+      "formula": "from RemainingGB(n_120_gb) \u2227 DownloadSpeed(n_2_gb_per_min) \u2227 TimeToDownloadMinutes(n_120_gb, n_2_gb_per_min, n_60_min) by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TimePlus(n_60_min, n_20_min, n_80_min)",
+      "formula": "60 + 20 = 80 by Arithmetic Computation from TimeMinutes(n_60_min) and RestartDuration(n_20_min)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TimeMinutes(n_80_min)",
+      "formula": "from TimeMinutes(n_60_min) \u2227 RestartDuration(n_20_min) \u2227 TimePlus(n_60_min, n_20_min, n_80_min) by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "TimePlus(n_80_min, n_20_min, n_100_min)",
+      "formula": "80 + 20 = 100 by Arithmetic Computation from TimeMinutes(n_80_min) and RestartDuration(n_20_min)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "TimeMinutes(n_100_min)",
+      "formula": "from TimeMinutes(n_80_min) \u2227 RestartDuration(n_20_min) \u2227 TimePlus(n_80_min, n_20_min, n_100_min) by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "after a restart you must download the entire 200 GB again; 120 GB remaining is incorrect under the problem\u2019s description"
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "does not encode the actual relationship between remaining data, speed, and time (lacks a concrete formula like time = remaining/speed)"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

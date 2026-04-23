@@ -1,0 +1,21 @@
+## FACTS
+The orange drink has volume 10 liters :: Volume(orange_drink, n_10)
+The orange drink contains water 20/3 liters :: WaterIn(orange_drink, n_20_over_3)
+The pineapple drink has volume 15 liters :: Volume(pineapple_drink, n_15)
+The pineapple drink contains water 9 liters :: WaterIn(pineapple_drink, n_9)
+Water added totals: 20/3 + 9 = 47/3 liters :: Add(n_20_over_3, n_9, n_47_over_3)
+Subtract 20/3 - 2/3 = 6 :: Subtract(n_20_over_3, n_2_over_3, n_6)
+Water lost from orange due to spill: 2/3 liters :: WaterLostFromOrange(n_2_over_3)
+Sum after spill: 6 + 9 = 15 :: Add(n_6, n_9, n_15)
+
+## RULES
+RULE-1: If WaterIn(o, w1) ∧ WaterIn(p, w2) ∧ Add(w1, w2, w3) then WaterIn(orange_and_pineapple_mixture, w3) :: ∀o∀p∀w1∀w2∀w3((WaterIn(o, w1) ∧ WaterIn(p, w2) ∧ Add(w1, w2, w3)) → WaterIn(orange_and_pineapple_mixture, w3))
+RULE-3: If WaterIn(orange_drink, w) ∧ WaterLostFromOrange(w_lost) ∧ Subtract(w, w_lost, w_remain) then WaterInAfterSpill(orange_drink, w_remain) :: ∀w∀w_lost∀w_remain((WaterIn(orange_drink, w) ∧ WaterLostFromOrange(w_lost) ∧ Subtract(w, w_lost, w_remain)) → WaterInAfterSpill(orange_drink, w_remain))
+RULE-4: If WaterInAfterSpill(orange_drink, w1) ∧ WaterIn(pineapple_drink, w2) ∧ Add(w1, w2, w3) then WaterInTotalAfterSpill(total_water_after_spill, w3) :: ∀w1∀w2∀w3((WaterInAfterSpill(orange_drink, w1) ∧ WaterIn(pineapple_drink, w2) ∧ Add(w1, w2, w3)) → WaterInTotalAfterSpill(total_water_after_spill, w3))
+RULE-5: If WaterInTotalAfterSpill(T, w) then FinalWaterTotal(w) :: ∀T∀w(WaterInTotalAfterSpill(T, w) → FinalWaterTotal(w))
+
+## INFERENCES
+INF-1: Water in orange_and_pineapple_mixture equals 47/3 liters from FACT-2, FACT-4, and FACT-5 by RULE-1 :: WaterIn(orange_and_pineapple_mixture, n_47_over_3)
+INF-2: Water in orange after spill equals 6 liters from FACT-2, FACT-7, FACT-6 by RULE-3 :: WaterInAfterSpill(orange_drink, n_6)
+INF-3: Water total after spill equals 15 liters from INF-2, FACT-4, and FACT-8 by RULE-4 :: WaterInTotalAfterSpill(total_water_after_spill, n_15)
+INF-4: Final water total equals 15 liters from INF-3 by RULE-5 :: FinalWaterTotal(n_15)

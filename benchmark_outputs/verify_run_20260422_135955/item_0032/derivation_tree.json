@@ -1,0 +1,100 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "First friend guessed 80",
+      "formula": "FirstFriendGuess(n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Second friend guessed 60",
+      "formula": "SecondFriendGuess(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Third friend guessed 100",
+      "formula": "ThirdFriendGuess(n_100)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Number of friends is 3",
+      "formula": "NumberOfFriends(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If mean value holds, then it is the average guess",
+      "formula": "\u2200A\u2200S\u2200N((MeanValue(A,S,N)) \u2192 AverageGuess(A))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Sum of the guesses equals 240, from FACT-1, FACT-2, FACT-3 by Arithmetic Computation",
+      "formula": "SumOfGuesses(n_240)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Mean value equals 80, from INF-1 and FACT-4 by Arithmetic Computation",
+      "formula": "MeanValue(n_80, n_240, n_3)",
+      "premises": [
+        "INF-1",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Average guess equals 80, from INF-2 and RULE-1 by Modus Ponens",
+      "formula": "AverageGuess(n_80)",
+      "premises": [
+        "INF-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — after a restart you must download the entire 200 GB again; 120 GB remaining is incorrect under the problem’s description
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: IMPLAUSIBLE — does not encode the actual relationship between remaining data, speed, and time (lacks a concrete formula like time = remaining/speed)
+RULE-2: PLAUSIBLE

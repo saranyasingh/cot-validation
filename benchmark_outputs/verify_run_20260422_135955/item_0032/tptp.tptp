@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_friend_guess(n_80)).
+fof(fact_2, axiom, second_friend_guess(n_60)).
+fof(fact_3, axiom, third_friend_guess(n_100)).
+fof(fact_4, axiom, number_of_friends(n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,S,N] : (mean_value(A,S,N) => average_guess(A))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Arithmetic Computation
+fof(inf_1, axiom, sum_of_guesses(n_240)).
+% From inf_1, fact_4 by Arithmetic Computation
+fof(inf_2, axiom, mean_value(n_80, n_240, n_3)).
+% From inf_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, average_guess(n_80)).

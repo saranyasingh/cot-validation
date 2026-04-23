@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, weekly_distance(john, miles_60)).
+fof(fact_2, axiom, days_per_week(john, days_3)).
+fof(fact_3, axiom, first_day_hours(john, hours_3)).
+fof(fact_4, axiom, second_day_hours(john, hours_1_5)).
+fof(fact_5, axiom, third_day_hours(john, hours_1_5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, D, T, S] : ((weekly_distance(P, D) & total_time(P, T) & speed_value(P, D, T, S)) => average_speed(P, S))).
+
+% --- INFERENCES ---
+% From fact_3, fact_4, fact_5 by Arithmetic Computation
+fof(inf_1, axiom, total_time(john, hours_6)).
+
+% From fact_1, inf_1 by Arithmetic Computation
+fof(inf_2, axiom, speed_value(john, miles_60, hours_6, mph_10)).
+
+% From fact_1, inf_1, inf_2 by Modus Ponens using rule_1
+fof(inf_3, axiom, average_speed(john, mph_10)).

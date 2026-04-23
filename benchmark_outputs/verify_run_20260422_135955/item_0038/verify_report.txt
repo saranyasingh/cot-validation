@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: IMPLAUSIBLE — encodes lego revenue as a fixed 195 rather than a general l*p relation
+RULE-2: IMPLAUSIBLE — encodes video game cost as fixed 160 instead of g*q
+RULE-3: IMPLAUSIBLE — encodes remaining money as fixed 35 given 195 and 160; uses embedded arithmetic
+RULE-4: PLAUSIBLE — a reasonable consistency-check rule; if both leftover money values hold, then a discrepancy

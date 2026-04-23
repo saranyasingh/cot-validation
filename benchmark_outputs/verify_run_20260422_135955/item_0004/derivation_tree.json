@@ -1,0 +1,90 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints per session",
+      "formula": "SprintsPerSession(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint is 60 meters long",
+      "formula": "SprintLength(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "James has sessions 3 times a week",
+      "formula": "SessionsPerWeek(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "3 * 60 = 180, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Product(n_3, n_60, n_180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Distance per session for james is 180 meters",
+      "formula": "DistancePerSession(james, n_180) from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "3 * 180 = 540, from FACT-3 and INF-2 by Arithmetic Computation",
+      "formula": "Product(n_3, n_180, n_540)",
+      "premises": [
+        "FACT-3",
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Weekly distance for james is 540 meters",
+      "formula": "WeeklyDistance(james, n_540) from FACT-3, INF-2, INF-3, and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

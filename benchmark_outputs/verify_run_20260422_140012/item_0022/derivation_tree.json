@@ -1,0 +1,178 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "BornBefore(raymond, samantha, n_6)",
+      "formula": "BornBefore(raymond, samantha, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Age(samantha, n_31)",
+      "formula": "Age(samantha, n_31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "HasSon(raymond, raymonds_son)",
+      "formula": "HasSon(raymond, raymonds_son)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Age(raymonds_son, n_23)",
+      "formula": "Age(raymonds_son, n_23)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states Raymond had a son at age 23 but does not state the son's current age.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Subtraction(n_31, n_6, n_25)",
+      "formula": "Subtraction(n_31, n_6, n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Subtraction(n_25, n_23, n_2)",
+      "formula": "Subtraction(n_25, n_23, n_2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "depends on FACT-4 (the son's age), which is not established.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Add(n_6, n_2, n_8)",
+      "formula": "Add(n_6, n_2, n_8)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "requires 2, which depends on 6 and thus on an unavailable value.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If BornBefore(x,y,d) \u2227 Age(y,n_y) \u2227 Subtraction(n_y,d,n_r) then Age(x,n_r)",
+      "formula": "\u2200x\u2200y\u2200d\u2200n_y\u2200n_r((BornBefore(x,y,d) \u2227 Age(y,n_y) \u2227 Subtraction(n_y,d,n_r)) \u2192 Age(x,n_r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Age(x,n_x) \u2227 Age(y,n_y) \u2227 Subtraction(n_x,n_y,dr) \u2227 HasSon(x,z) then AgeDifference(x,z,dr)",
+      "formula": "\u2200x\u2200y\u2200z\u2200n_x\u2200n_y\u2200dr((Age(x,n_x) \u2227 Age(y,n_y) \u2227 Subtraction(n_x,n_y,dr) \u2227 HasSon(x,z)) \u2192 AgeDifference(x,z,dr))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "dr = Age(x) \u2212 Age(y) is not related to the actual age difference between x and z; y is not linked to z.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If BornBefore(x,y,d) \u2227 AgeDifference(x,z,dr) \u2227 Add(d,dr,ra) then BornAgo(z,ra)",
+      "formula": "\u2200x\u2200y\u2200z\u2200d\u2200dr\u2200ra((BornBefore(x,y,d) \u2227 AgeDifference(x,z,dr) \u2227 Add(d,dr,ra)) \u2192 BornAgo(z,ra))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "cannot conclude BornAgo(z, ra) from these premises; ra is not guaranteed to equal z's age.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If BornAgo(z,ra) then Answer(ra)",
+      "formula": "\u2200z\u2200ra(BornAgo(z,ra) \u2192 Answer(ra))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Age(raymond, n_25) from FACT-1, FACT-2, FACT-5 by RULE-1",
+      "formula": "Age(raymond, n_25)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "AgeDifference(raymond, raymonds_son, n_2) from INF-1, FACT-4, FACT-6, FACT-3 by RULE-2",
+      "formula": "AgeDifference(raymond, raymonds_son, n_2)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "FACT-6",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-2",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "BornAgo(raymonds_son, n_8) from FACT-1, INF-2, FACT-7 by RULE-3",
+      "formula": "BornAgo(raymonds_son, n_8)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "FACT-7"
+      ],
+      "inference_rule": "RULE-3",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Answer(n_8) from INF-3 by RULE-4",
+      "formula": "Answer(n_8)",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "RULE-4",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem states Raymond had a son at age 23 but does not state the son's current age."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "depends on FACT-4 (the son's age), which is not established."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "requires 2, which depends on 6 and thus on an unavailable value."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "dr = Age(x) \u2212 Age(y) is not related to the actual age difference between x and z; y is not linked to z."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "cannot conclude BornAgo(z, ra) from these premises; ra is not guaranteed to equal z's age."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

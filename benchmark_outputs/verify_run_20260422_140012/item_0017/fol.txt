@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: DistanceTraveledOnDay(train_a, day_one, miles_80) :: DistanceTraveledOnDay(train_a, day_one, miles_80)
+FACT-2: DistanceTraveledOnDay(train_b, day_one, miles_80) :: DistanceTraveledOnDay(train_b, day_one, miles_80)
+FACT-3: DistanceTraveledOnDay(train_a, day_two, miles_150) :: DistanceTraveledOnDay(train_a, day_two, miles_150)
+FACT-4: DistanceTraveledOnDay(train_b, day_two, miles_150) :: DistanceTraveledOnDay(train_b, day_two, miles_150)
+
+## RULES
+RULE-1: If a train travels 80 miles on day one (as two occurrences), then its first-day total is 160 miles :: ∀t(DistanceTraveledOnDay(t, day_one, miles_80) ∧ DistanceTraveledOnDay(t, day_one, miles_80) → FirstDayTotal(t, miles_160))
+RULE-2: If a train's first-day total is 160 and it travels 150 miles on day two, then its second-day total is 310 miles :: ∀t(FirstDayTotal(t, miles_160) ∧ DistanceTraveledOnDay(t, day_two, miles_150) → SecondDayTotal(t, miles_310))
+RULE-3: If SecondDayTotal(t1, miles_310) ∧ SecondDayTotal(t2, miles_310) then CombinedTotal(two_trains, miles_310) :: ∀t1∀t2(SecondDayTotal(t1, miles_310) ∧ SecondDayTotal(t2, miles_310) → CombinedTotal(two_trains, miles_310))
+
+## INFERENCES
+INF-1: FirstDayTotal(train_a, miles_160) from FACT-1 and RULE-1 by Modus Ponens :: Modus Ponens
+INF-2: FirstDayTotal(train_b, miles_160) from FACT-2 and RULE-1 by Modus Ponens :: Modus Ponens
+INF-3: SecondDayTotal(train_a, miles_310) from INF-1, FACT-3, RULE-2 by Modus Ponens :: Modus Ponens
+INF-4: SecondDayTotal(train_b, miles_310) from INF-2, FACT-4, RULE-2 by Modus Ponens :: Modus Ponens
+INF-5: CombinedTotal(two_trains, miles_310) from INF-3, INF-4, RULE-3 by Modus Ponens :: Modus Ponens

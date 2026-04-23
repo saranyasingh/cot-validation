@@ -1,0 +1,19 @@
+  % From fact_1, fact_3, and Multiply(n_5, n_0_6, n_3) by Arithmetic Computation
+  inf_1: PROVED
+  % From fact_2 and fact_5 by Rule-2 (Universal Instantiation)
+  inf_2: PROVED
+  % From fact_2 and fact_5 by Rule-3 (Universal Instantiation)
+  inf_3: PROVED
+  % From inf_2 and inf_1 by Rule-4 (Arithmetic Computation)
+  inf_4: NOT PROVED
+  % From inf_3 and fact_1 by Rule-5 (Arithmetic Computation)
+  inf_5: NOT PROVED
+  % From inf_4 and inf_5 by Arithmetic Computation
+  inf_6: NOT PROVED
+  % From inf_4, inf_5, and inf_6 by Rule-6 (Addition)
+  inf_7: PROVED
+
+Prover errors:
+inf_4: NOT PROVED — inference does not follow from axioms
+inf_5: NOT PROVED — inference does not follow from axioms
+inf_6: NOT PROVED — inference does not follow from axioms

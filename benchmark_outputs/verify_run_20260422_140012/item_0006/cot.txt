@@ -1,0 +1,25 @@
+EXPLANATION
+
+To determine how much Kylar needs to pay for 16 glasses, we first identify the cost structure provided.
+
+Step 1: Identify the base price and discount.
+- The price of one glass is $5.
+- Every second glass has a 60% discount on its original price.
+
+Step 2: Calculate the discounted price for one glass.
+- Since it's every second glass that gets the discount, half of the glasses will have their prices reduced.
+- Discounted price = Original price * (1 - Discount rate)
+- Discounted price = $5 * (1 - 0.6) = $5 * 0.4 = $2
+
+Step 3: Determine the total cost for all 16 glasses.
+- There are 8 glasses at the regular price ($5 each).
+- There are 8 glasses at the discounted price ($2 each).
+
+Total cost calculation:
+- Cost for regular-priced glasses = 8 * $5 = $40
+- Cost for discounted-priced glasses = 8 * $2 = $16
+
+Total amount paid = Cost for regular-priced glasses + Cost for discounted-priced glasses
+= $40 + $16 = $56
+
+The answer is: 56

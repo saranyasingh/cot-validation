@@ -1,0 +1,27 @@
+EXPLANATION
+To determine how far John is from home after 4 hours, we need to calculate his total distance traveled.
+
+1. **First Leg:** John drives for 3 hours at a speed of 60 mph.
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. **Second Leg (Turnaround):** After realizing he needs to return home, he stops for 2 hours in traffic.
+   - No additional distance covered during this stop.
+
+3. **Third Leg:** John drives for the next half hour at a speed of 30 mph.
+   - Distance = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+4. **Fourth Leg:** John drives for the remaining part of the 4 hours at a speed of 80 mph.
+   - Total time spent driving = 4 hours - 2 hours (traffic) - 0.5 hours (half an hour) = 1.5 hours.
+   - Distance = Speed × Time = 80 mph × 1.5 hours = 120 miles.
+
+Now, let's sum up all the distances:
+- First leg: 180 miles
+- Second leg: 0 miles
+- Third leg: 15 miles
+- Fourth leg: 120 miles
+
+Total distance traveled = 180 + 0 + 15 + 120 = 315 miles.
+
+Since John started at home and drove away until he was 315 miles away, he must have been 315 miles from home when he turned around.
+
+Therefore, the answer is: 315.

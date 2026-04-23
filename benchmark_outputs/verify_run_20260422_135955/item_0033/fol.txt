@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Each dog takes 0.5 hours per day :: HoursPerDogPerDay(n_0_5)
+FACT-2: There are 10 dogs :: NumberOfDogs(n_10)
+FACT-3: A week has 7 days :: DaysInWeek(n_7)
+
+## RULES
+RULE-1: If there are N dogs and each dog takes H hours per day, then the total hours per day for all dogs is T where Product(N, H, T) :: ∀N∀H∀T((NumberOfDogs(N) ∧ HoursPerDogPerDay(H) ∧ Product(N, H, T)) → TotalHoursPerDayForAllDogs(T))
+RULE-2: If the total hours per day for all dogs is T and there are D days in a week, then the total hours per week is W where Product(T, D, W) :: ∀T∀D∀W((TotalHoursPerDayForAllDogs(T) ∧ DaysInWeek(D) ∧ Product(T, D, W)) → TotalHoursPerWeek(W))
+
+## INFERENCES
+INF-1: Product(n_10, n_0_5, n_5) :: from FACT-2, FACT-1 by Arithmetic Computation
+INF-2: TotalHoursPerDayForAllDogs(n_5) :: from FACT-1, FACT-2, INF-1 using RULE-1 by Modus Ponens (after Universal Instantiation)
+INF-3: Product(n_5, n_7, n_35) :: from INF-2, FACT-3 by Arithmetic Computation
+INF-4: TotalHoursPerWeek(n_35) :: from INF-2, FACT-3, INF-3 using RULE-2 by Modus Ponens

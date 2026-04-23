@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Jill earns $20 per hour for teaching :: HourlyRate(jill, teaching, n_20)
+FACT-2: Jill teaches 35 hours per week :: HoursPerWeek(jill, teaching, n_35)
+FACT-3: Jill earns $30 per hour for coaching :: HourlyRate(jill, coaching, n_30)
+FACT-4: Jill coaches 15 hours per week :: HoursPerWeek(jill, coaching, n_15)
+FACT-5: 20 × 35 = 700 :: Product(n_20, n_35, n_700)
+FACT-6: 30 × 15 = 450 :: Product(n_30, n_15, n_450)
+FACT-7: 700 + 450 = 1150 :: Add(n_700, n_450, n_1150)
+FACT-8: 1150 × 50 = 57500 :: Multiply(n_1150, n_50, n_57500)
+FACT-9: 50 weeks in a year :: WeeksPerYear(n_50)
+
+## RULES
+RULE-1: If p has hourly teaching rate r and hours per week h and Product(r, h, e), then WeeklyEarnings(p, teaching, e) :: ∀p∀r∀h∀e((HourlyRate(p, teaching, r) ∧ HoursPerWeek(p, teaching, h) ∧ Product(r, h, e)) → WeeklyEarnings(p, teaching, e))
+RULE-2: If p has hourly coaching rate r and hours per week h and Product(r, h, e), then WeeklyEarnings(p, coaching, e) :: ∀p∀r∀h∀e((HourlyRate(p, coaching, r) ∧ HoursPerWeek(p, coaching, h) ∧ Product(r, h, e)) → WeeklyEarnings(p, coaching, e))
+RULE-3: If WeeklyEarnings(p, teaching, t1) ∧ WeeklyEarnings(p, coaching, t2) ∧ Add(t1, t2, s) then TotalWeeklyEarnings(p, s) :: ∀p∀t1∀t2∀s((WeeklyEarnings(p, teaching, t1) ∧ WeeklyEarnings(p, coaching, t2) ∧ Add(t1, t2, s)) → TotalWeeklyEarnings(p, s))
+RULE-4: If TotalWeeklyEarnings(p, s) ∧ WeeksPerYear(w) ∧ Multiply(s, w, a) then AnnualSalary(p, a) :: ∀p∀s∀w∀a((TotalWeeklyEarnings(p, s) ∧ WeeksPerYear(w) ∧ Multiply(s, w, a)) → AnnualSalary(p, a))
+
+## INFERENCES
+INF-1: WeeklyEarnings(jill, teaching, n_700), from FACT-1, FACT-2, FACT-5 by Modus Ponens using RULE-1
+INF-2: WeeklyEarnings(jill, coaching, n_450), from FACT-3, FACT-4, FACT-6 by Modus Ponens using RULE-2
+INF-3: TotalWeeklyEarnings(jill, n_1150), from INF-1, INF-2, FACT-7 by Modus Ponens using RULE-3
+INF-4: AnnualSalary(jill, n_57500), from INF-3, FACT-9, FACT-8 by Modus Ponens using RULE-4

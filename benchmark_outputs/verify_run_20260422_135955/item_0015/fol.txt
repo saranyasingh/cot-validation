@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Total students :: TotalStudents(n_20)
+FACT-2: Contemporary dance percentage :: ContemporaryPercent(n_20)
+FACT-3: Jazz percentage :: JazzPercent(n_25)
+
+## RULES
+RULE-1: If TotalStudents(x) and ContemporaryPercent(x) then ContemporaryDancers(n_4) :: ∀x((TotalStudents(x) ∧ ContemporaryPercent(x)) → ContemporaryDancers(n_4))
+RULE-2: If TotalStudents(x) and ContemporaryDancers(n_4) then Remaining(n_16) :: ∀x((TotalStudents(x) ∧ ContemporaryDancers(n_4)) → Remaining(n_16))
+RULE-3: If Remaining(n_16) and JazzPercent(n_25) then JazzDancers(n_4) :: ∀x((Remaining(n_16) ∧ JazzPercent(n_25)) → JazzDancers(n_4))
+RULE-4: If Remaining(n_16) and JazzDancers(n_4) then Remaining(n_12) :: ∀x((Remaining(n_16) ∧ JazzDancers(n_4)) → Remaining(n_12))
+RULE-5: If Remaining(n_12) then HipHopDancers(n_12) :: ∀x((Remaining(n_12)) → HipHopDancers(n_12))
+RULE-6: If HipHopDancers(n_12) and TotalStudents(x) then HipHopPercent(n_60) :: ∀x((HipHopDancers(n_12) ∧ TotalStudents(x)) → HipHopPercent(n_60))
+
+## INFERENCES
+INF-1: ContemporaryDancers(n_4) :: from FACT-1, FACT-2 by RULE-1
+INF-2: Remaining(n_16) :: from INF-1, FACT-1 by RULE-2
+INF-3: JazzDancers(n_4) :: from INF-2, FACT-3 by RULE-3
+INF-4: Remaining(n_12) :: from INF-2, INF-3 by RULE-4
+INF-5: HipHopDancers(n_12) :: from INF-4 by RULE-5
+INF-6: HipHopPercent(n_60) :: from INF-5, FACT-1 by RULE-6

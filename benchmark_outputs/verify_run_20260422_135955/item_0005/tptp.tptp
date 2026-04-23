@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, morning_feed(n_15)).
+fof(fact_2, axiom, afternoon_feed(n_25)).
+fof(fact_3, axiom, total_chickens(n_20)).
+fof(fact_4, axiom, sum_feeds(n_15, n_25, n_40)).
+fof(fact_5, axiom, cups_per_chicken_per_meal(n_0_75)).
+fof(fact_6, axiom, times(n_0_75, n_20, n_15)).
+fof(fact_7, axiom, cups_per_chicken_per_meal(n_1_25)).
+fof(fact_8, axiom, times(n_1_25, n_20, n_25)).
+fof(fact_9, axiom, subtract(n_40, n_40, n_0)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [M,A,T] : ((morning_feed(M) & afternoon_feed(A) & sum_feeds(M,A,T)) => total_daily_feed(T))).
+fof(rule_2, axiom, ! [P,Q,R] : ((times(P,Q,R) & cups_per_chicken_per_meal(P)) => morning_total_from_chickens(R))).
+fof(rule_3, axiom, ! [P,Q,R] : ((times(P,Q,R) & cups_per_chicken_per_meal(P)) => afternoon_total_from_chickens(R))).
+fof(rule_4, axiom, ! [T,M,A,S,F] : ((total_daily_feed(T) & morning_total_from_chickens(M) & afternoon_total_from_chickens(A) & sum_feeds(M,A,S) & subtract(T,S,F)) => final_meal_feed(F))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_4, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_daily_feed(n_40)).
+% From fact_6, fact_5, rule_2 by Modus Ponens
+fof(inf_2, axiom, morning_total_from_chickens(n_15)).
+% From fact_8, fact_7, rule_3 by Modus Ponens
+fof(inf_3, axiom, afternoon_total_from_chickens(n_25)).
+% From inf_1, inf_2, inf_3, fact_4, fact_9 by Modus Ponens
+fof(inf_4, axiom, final_meal_feed(n_0)).

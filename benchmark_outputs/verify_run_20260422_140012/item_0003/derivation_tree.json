@@ -1,0 +1,86 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The cost of the house is 80,000",
+      "formula": "OriginalPrice(n_80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The amount spent on repairs is 50,000",
+      "formula": "RepairCost(n_50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The renovation increases value by 150%",
+      "formula": "IncreaseRate(n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the house costs p and repairs cost q, then there exists r such that SumCosts(p,q,r)",
+      "formula": "\u2200p\u2200q((OriginalPrice(p) \u2227 RepairCost(q)) \u2192 \u2203r SumCosts(p,q,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Profit is the difference between final value and initial investment",
+      "formula": "\u2200v\u2200i((ValueAfterRepairs(v) \u2227 TotalInvestment(i)) \u2192 \u2203p(Profit(p) \u2227 p = v - i))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalInvestment(n_130000) from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "TotalInvestment(n_130000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "ValueAfterRepairs(n_200000) from FACT-1 and FACT-3 by Arithmetic Computation",
+      "formula": "ValueAfterRepairs(n_200000)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Profit(n_70000) from INF-1 and INF-2 by Arithmetic Computation",
+      "formula": "Profit(n_70000)",
+      "premises": [
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

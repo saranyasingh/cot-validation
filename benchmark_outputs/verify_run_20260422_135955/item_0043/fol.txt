@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Grandma Jones baked 5 apple pies :: BakedPies(grandma_jones, n_5)
+FACT-2: Each pie was cut into 8 pieces :: PiecesPerPie(n_8)
+FACT-3: There were 14 pieces remaining :: RemainingPieces(n_14)
+
+## RULES
+RULE-1: If a person p baked a pies a and each pie has b pieces, then there exists a t such that Multiplication(a, b, t) :: ∀p∀a∀b((BakedPies(p, a) ∧ PiecesPerPie(b)) → ∃t Multiplication(a, b, t))
+RULE-2: If Subtraction(a, b, c) then TakenPieces(c) :: ∀a∀b∀c((Subtraction(a, b, c)) → TakenPieces(c))
+
+## INFERENCES
+INF-1: 5 × 8 equals 40, from FACT-1 and FACT-2 by Arithmetic Computation :: Multiplication(n_5, n_8, n_40)
+INF-2: 40 − 14 equals 26, from INF-1 and FACT-3 by Arithmetic Computation :: Subtraction(n_40, n_14, n_26)
+INF-3: TakenPieces(26), from INF-2 and RULE-2 by Modus Ponens :: TakenPieces(n_26)

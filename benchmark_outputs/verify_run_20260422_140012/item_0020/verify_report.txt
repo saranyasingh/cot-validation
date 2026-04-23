@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED — Directly stated: Marissa walked 4 miles in 1 hour.
+FACT-2: SUPPORTED — Directly stated: Marissa walked 2 miles in 1 hour.
+FACT-3: SUPPORTED — Directly given: 12-mile trail.
+FACT-4: SUPPORTED — Covered distance is 6 miles (4+2).
+FACT-5: SUPPORTED — Remaining distance is 6 miles (12−6).
+FACT-6: UNSUPPORTED — The problem does not specify RequiredTimeForRemaining; the intended value would be 1 hour, not 3.
+FACT-7: UNSUPPORTED — No statement of HoursLeft in the problem.
+FACT-8: SUPPORTED — Speed goal is 4 mph.
+FACT-9: UNSUPPORTED — The answer is 6 mph, not 4 mph.
+RULE-1: IMPLAUSIBLE — The rule incorrectly derives TrailTotalDistance and SpeedGoal solely from a division relation; not a valid universal encoding.

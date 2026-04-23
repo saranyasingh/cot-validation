@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Mishka bought 3 pairs of shorts :: ShortsBought(n_3)
+FACT-2: Price per shorts pair is 1650 cents :: ShortsPriceCents(n_1650)
+FACT-3: Mishka bought 3 pairs of pants :: PantsBought(n_3)
+FACT-4: Price per pants pair is 2250 cents :: PantsPriceCents(n_2250)
+FACT-5: Mishka bought 3 pairs of shoes :: ShoesBought(n_3)
+FACT-6: Price per shoes pair is 4200 cents :: ShoesPriceCents(n_4200)
+
+## RULES
+RULE-1: ∀c∀p∀t((ShortsBought(c) ∧ ShortsPriceCents(p) ∧ ProductMulShorts(c,p,t)) → ShortsTotalCents(t))
+RULE-2: ∀c∀p∀t((PantsBought(c) ∧ PantsPriceCents(p) ∧ ProductMulPants(c,p,t)) → PantsTotalCents(t))
+RULE-3: ∀c∀p∀t((ShoesBought(c) ∧ ShoesPriceCents(p) ∧ ProductMulShoes(c,p,t)) → ShoesTotalCents(t))
+
+## INFERENCES
+INF-1: Shorts total cost in cents is 4950, from FACT-1 and FACT-2 by Arithmetic Computation :: ShortsTotalCents(n_4950)
+INF-2: Pants total cost in cents is 6750, from FACT-3 and FACT-4 by Arithmetic Computation :: PantsTotalCents(n_6750)
+INF-3: Shoes total cost in cents is 12600, from FACT-5 and FACT-6 by Arithmetic Computation :: ShoesTotalCents(n_12600)
+INF-4: Sum of 4950 and 6750 is 11700, from INF-1 and INF-2 by Arithmetic Computation :: SumCents(n_11700)
+INF-5: Sum of 11700 and 12600 is 24300, from INF-4 and INF-3 by Arithmetic Computation :: SumCents(n_24300)
+INF-6: Total spent in dollars is 243, from INF-5 by Arithmetic Computation :: TotalSpentDollars(n_243)

@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Claire makes a 3-egg omelet each morning :: OmeletEggsPerDay(claire, n_3)
+FACT-2: There are 7 days in a week :: DaysInWeek(n_7)
+FACT-3: There are 4 weeks in the period :: Weeks(n_4)
+FACT-4: There are 12 eggs per dozen :: DozenSize(n_12)
+
+## RULES
+RULE-1: If someone makes a 3-egg omelet each morning and there are 7 days in a week and Product(3,7,z), then EggsPerWeek(someone,z) :: ∀p∀d∀y∀z((OmeletEggsPerDay(p,d) ∧ DaysInWeek(y) ∧ Product(d,y,z)) → EggsPerWeek(p,z))
+RULE-2: If EggsPerWeek(p,w) and Weeks(k) and Product(w,k,z), then TotalEggs(p,z) :: ∀p∀w∀k∀z((EggsPerWeek(p,w) ∧ Weeks(k) ∧ Product(w,k,z)) → TotalEggs(p,z))
+RULE-3: If TotalEggs(p,t) and Division(t, n_12, d), then Dozens(p,d) :: ∀p∀t∀d((TotalEggs(p,t) ∧ Division(t, n_12, d)) → Dozens(p,d))
+
+## INFERENCES
+INF-1: Product(n_3, n_7, n_21) :: Arithmetic Computation from FACT-1 and FACT-2
+INF-2: Product(n_21, n_4, n_84) :: Arithmetic Computation from INF-1 and FACT-3
+INF-3: EggsPerWeek(claire, n_21) :: Modus Ponens from FACT-1, FACT-2, INF-1 using RULE-1
+INF-4: TotalEggs(claire, n_84) :: Modus Ponens from INF-3, FACT-3, INF-2 using RULE-2
+INF-5: Division(n_84, n_12, n_7) :: Arithmetic Computation from INF-4 and FACT-4
+INF-6: Dozens(claire, n_7) :: Modus Ponens from INF-4 and INF-5 using RULE-3

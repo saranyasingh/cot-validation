@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Cynthia eats 1 serving per night :: ServingsPerNight(cynthia, n_1)
+FACT-2: There are 60 nights in 60 days :: NightsInDays(n_60, n_60)
+FACT-3: The total number of servings is 60 :: TotalServings(n_60)
+FACT-4: Each carton contains 15 servings :: ServingsPerCarton(n_15)
+FACT-5: Each carton costs 4 dollars :: PricePerCarton(n_4)
+FACT-6: 60 ÷ 15 = 4 :: Division(n_60, n_15, n_4)
+FACT-7: 4 × 4 = 16 :: Multiply(n_4, n_4, n_16)
+FACT-8: Total cost is 16 dollars :: TotalCost(n_16)
+
+## RULES
+RULE-1: If a division predicate holds, then the product relation with the divisor and quotient holds :: ∀x∀y∀z((Division(x,y,z)) → Product(y,z,x))
+RULE-2: If a division predicate holds, then the number of cartons needed is the quotient :: ∀x∀y∀z((Division(x,y,z)) → CartonsNeeded(z))
+RULE-3: If CartonsNeeded(x) ∧ PricePerCarton(y) ∧ Multiply(x,y,z) then TotalCost(z) :: ∀x∀y∀z((CartonsNeeded(x) ∧ PricePerCarton(y) ∧ Multiply(x,y,z)) → TotalCost(z))
+
+## INFERENCES
+INF-1: CartonsNeeded(n_4) from Division(n_60, n_15, n_4) and RULE-2 by Modus Ponens :: Division(n_60, n_15, n_4) , RULE-2 → CartonsNeeded(n_4)
+INF-2: TotalCost(n_16) from CartonsNeeded(n_4) (INF-1), PricePerCarton(n_4) (FACT-5), Multiply(n_4, n_4, n_16) (FACT-7) by RULE-3 :: CartonsNeeded(n_4) ∧ PricePerCarton(n_4) ∧ Multiply(n_4, n_4, n_16) → TotalCost(n_16)

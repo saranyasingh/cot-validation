@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED — The problem specifies a 1:00 PM to 5:00 PM span, i.e., 4 hours (n_4).
+FACT-2: SUPPORTED — The melting rate is 2 cm per hour (n_2).
+FACT-3: SUPPORTED — 4 hours × 2 cm/hour = 8 cm melted (Mul(n_4, n_2, n_8)).
+FACT-4: SUPPORTED — The problem implies there is an original candle length (OriginalLength(l_cm)).
+RULE-1: PLAUSIBLE — Encodes M = H × R leading to MeltedAmountOverSpan(s,e,M).
+RULE-2: PLAUSIBLE — Encodes that if OriginalLength(L) and MeltedAmountOverSpan(one_pm, five_pm, M), then ShorterBy(L,M).

@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Toula bought 3 dozen donuts :: BoughtDozens(toula, donuts, n_3)
+FACT-2: Price per dozen for donuts is 68 :: PricePerDozen(donuts, n_68)
+FACT-3: Product of 3 and 68 is 204 :: Product(n_3, n_68, n_204)
+FACT-4: Toula bought 2 dozen cupcakes :: BoughtDozens(toula, cupcakes, n_2)
+FACT-5: Price per dozen for cupcakes is 80 :: PricePerDozen(cupcakes, n_80)
+FACT-6: Product of 2 and 80 is 160 :: Product(n_2, n_80, n_160)
+FACT-7: Toula bought 6 dozen cheesecakes :: BoughtDozens(toula, cheesecakes, n_6)
+FACT-8: Price per dozen for cheesecakes is 55 :: PricePerDozen(cheesecakes, n_55)
+FACT-9: Product of 6 and 55 is 330 :: Product(n_6, n_55, n_330)
+
+## RULES
+RULE-1: If someone buys d dozens of item i and price per dozen for i is b with product r, then CostForItem(person, item, r) :: ∀p∀i∀d∀b∀r((BoughtDozens(p,i,d) ∧ PricePerDozen(i,b) ∧ Product(d,b,r)) → CostForItem(p,i,r))
+RULE-2: If CostForItem(p, donuts, d1) and CostForItem(p, cupcakes, d2) and CostForItem(p, cheesecakes, d3) then ∃s SumThree(d1,d2,d3,s) :: ∀p∀d1∀d2∀d3((CostForItem(p, donuts, d1) ∧ CostForItem(p, cupcakes, d2) ∧ CostForItem(p, cheesecakes, d3)) → ∃s SumThree(d1,d2,d3,s))
+RULE-3: If CostForItem(p, donuts, d1) and CostForItem(p, cupcakes, d2) and CostForItem(p, cheesecakes, d3) and SumThree(d1,d2,d3,s) then TotalSpent(p,s) :: ∀p∀d1∀d2∀d3∀s((CostForItem(p, donuts, d1) ∧ CostForItem(p, cupcakes, d2) ∧ CostForItem(p, cheesecakes, d3) ∧ SumThree(d1,d2,d3,s)) → TotalSpent(p,s))
+
+## INFERENCES
+INF-1: CostForItem(toula, donuts, n_204) from FACT-1, FACT-2, FACT-3 by RULE-1 (Multiplication) :: CostForItem(toula, donuts, n_204)
+INF-2: CostForItem(toula, cupcakes, n_160) from FACT-4, FACT-5, FACT-6 by RULE-1 (Multiplication) :: CostForItem(toula, cupcakes, n_160)
+INF-3: CostForItem(toula, cheesecakes, n_330) from FACT-7, FACT-8, FACT-9 by RULE-1 (Multiplication) :: CostForItem(toula, cheesecakes, n_330)
+INF-4: SumThree(n_204, n_160, n_330, n_794) from INF-1, INF-2, INF-3 by RULE-2 (Arithmetic) :: SumThree(n_204, n_160, n_330, n_794)
+INF-5: TotalSpent(toula, n_794) from INF-1, INF-2, INF-3, INF-4 by RULE-3 (Arithmetic) :: TotalSpent(toula, n_794)

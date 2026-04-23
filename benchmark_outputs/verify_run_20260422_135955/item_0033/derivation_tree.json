@@ -1,0 +1,100 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each dog takes 0.5 hours per day",
+      "formula": "HoursPerDogPerDay(n_0_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 10 dogs",
+      "formula": "NumberOfDogs(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "A week has 7 days",
+      "formula": "DaysInWeek(n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If there are N dogs and each dog takes H hours per day, then the total hours per day for all dogs is T where Product(N, H, T)",
+      "formula": "\u2200N\u2200H\u2200T((NumberOfDogs(N) \u2227 HoursPerDogPerDay(H) \u2227 Product(N, H, T)) \u2192 TotalHoursPerDayForAllDogs(T))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the total hours per day for all dogs is T and there are D days in a week, then the total hours per week is W where Product(T, D, W)",
+      "formula": "\u2200T\u2200D\u2200W((TotalHoursPerDayForAllDogs(T) \u2227 DaysInWeek(D) \u2227 Product(T, D, W)) \u2192 TotalHoursPerWeek(W))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Product(n_10, n_0_5, n_5)",
+      "formula": "from FACT-2, FACT-1 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalHoursPerDayForAllDogs(n_5)",
+      "formula": "from FACT-1, FACT-2, INF-1 using RULE-1 by Modus Ponens (after Universal Instantiation)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Product(n_5, n_7, n_35)",
+      "formula": "from INF-2, FACT-3 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalHoursPerWeek(n_35)",
+      "formula": "from INF-2, FACT-3, INF-3 using RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

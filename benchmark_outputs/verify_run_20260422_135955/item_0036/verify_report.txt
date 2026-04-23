@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — Directly stated: Mike plays ping pong.
+FACT-2: SUPPORTED — Directly stated: total duration is 40 minutes.
+FACT-3: SUPPORTED — Directly stated: first-half score is 4.
+RULE-1: PLAUSIBLE — Encodes a valid additive relation using FirstHalfScore, SecondHalfTotalPoints, and Sum to derive TotalPoints.
+RULE-2: PLAUSIBLE — If TotalPoints holds, then FinalScore holds; a reasonable equivalence between total points and final score.

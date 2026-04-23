@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: GroupSize(first_three, n_3) :: First three customers count is 3
+FACT-2: PerPerson(first_three, n_1) :: Each of the first three buys 1
+FACT-3: Product(n_3, n_1, n_3) :: 3 × 1 = 3
+FACT-4: GroupSize(next_two, n_2) :: Next two customers count is 2
+FACT-5: PerPerson(next_two, n_2) :: Each of the next two buys 2
+FACT-6: Product(n_2, n_2, n_4) :: 2 × 2 = 4
+FACT-7: GroupSize(last_three, n_3) :: Last three customers count is 3
+FACT-8: PerPerson(last_three, n_0) :: Each of the last three buys 0
+FACT-9: Product(n_3, n_0, n_0) :: 3 × 0 = 0
+FACT-10: Sum(n_3, n_4, n_0, n_7) :: 3 + 4 + 0 = 7
+
+## RULES
+RULE-1: ∀G∀m∀p∀t((GroupSize(G, m) ∧ PerPerson(G, p) ∧ Product(m, p, t)) → GroupTotal(G, t)) :: If a group G has size m, and each member buys p, with Product(m,p,t), then GroupTotal(G,t)
+
+RULE-2: ∀a∀b∀c∀d((GroupTotal(first_three, a) ∧ GroupTotal(next_two, b) ∧ GroupTotal(last_three, c) ∧ Sum(a,b,c,d)) → DvdSoldOnTuesday(d)) :: If the three group totals are a, b, c and Sum(a,b,c,d) holds, then DvdSoldOnTuesday(d)
+
+## INFERENCES
+INF-1: GroupTotal(first_three, n_3) :: Derived from FACT-1, FACT-2, FACT-3 and RULE-1 by Modus Ponens
+INF-2: GroupTotal(next_two, n_4) :: Derived from FACT-4, FACT-5, FACT-6 and RULE-1 by Modus Ponens
+INF-3: GroupTotal(last_three, n_0) :: Derived from FACT-7, FACT-8, FACT-9 and RULE-1 by Modus Ponens
+INF-4: DvdSoldOnTuesday(n_7) :: Derived from INF-1, INF-2, INF-3, FACT-10, RULE-2 by Modus Ponens

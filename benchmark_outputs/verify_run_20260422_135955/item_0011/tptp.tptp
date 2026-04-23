@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_month_downloads(n_60)).
+fof(fact_2, axiom, multiplier(n_3)).
+fof(fact_3, axiom, percent(n_30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C] : ((product(A,B,C) & first_month_downloads(A) & multiplier(B)) => second_month_downloads(C))).
+fof(rule_2, axiom, ! [A,B,C] : (subtract(A,B,C) => third_month_downloads(C))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, product(n_60,n_3,n_180)).
+% From inf_1, fact_1, and fact_2 by RULE-1
+fof(inf_2, axiom, second_month_downloads(n_180)).
+% From inf_2, fact_3 by Arithmetic Computation
+fof(inf_3, axiom, percent_of(n_30,n_180,n_54)).
+% From inf_3 by Arithmetic Computation
+fof(inf_4, axiom, subtract(n_180,n_54,n_126)).
+% From inf_4 by RULE-2
+fof(inf_5, axiom, third_month_downloads(n_126)).
+% From fact_1 by Arithmetic Computation
+fof(inf_6, axiom, sum_two(n_60,n_180,n_240)).
+% From inf_6 and inf_5 by Arithmetic Computation
+fof(inf_7, axiom, sum_two(n_240,n_126,n_366)).
+% From inf_7 by Arithmetic Computation
+fof(inf_8, axiom, total_downloads(n_366)).

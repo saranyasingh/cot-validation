@@ -1,0 +1,34 @@
+To determine the total number of unoccupied units in Richard's apartment building, we need to follow these steps:
+
+**Premise 1:** There are 15 floors in the apartment building.
+- Premise Explanation: This establishes the base structure of the building.
+
+**Premise 2:** Each floor has 8 units.
+- Premise Explanation: This provides the unit count per floor.
+
+**Premise 3:** 3/4 of the building is occupied.
+- Premise Explanation: This indicates the proportion of the building that is not empty.
+
+**Step-by-step Logical Reasoning:**
+
+1. Calculate the total number of units in the entire building.
+   - Total units = Floors × Units per floor
+     \[
+     \text{Total units} = 15 \times 8 = 120
+     \]
+
+2. Determine how many units are occupied.
+   - Occupied units = Total units × (Fraction occupied)
+     \[
+     \text{Occupied units} = 120 \times \frac{3}{4} = 90
+     \]
+
+3. Find out how many units are unoccupied.
+   - Unoccupied units = Total units − Occupied units
+     \[
+     \text{Unoccupied units} = 120 - 90 = 30
+     \]
+
+Therefore, the total number of unoccupied units in the building is **30**.
+
+The answer is: 30

@@ -1,0 +1,110 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Multiply(n_35, n_20, n_700)",
+      "formula": "from FACT-1, FACT-2 by ArithmeticMultiplication",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Multiply(n_15, n_30, n_450)",
+      "formula": "from FACT-3, FACT-4 by ArithmeticMultiplication",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Add(n_700, n_450, n_1150)",
+      "formula": "from INF-1, INF-2 by ArithmeticAddition",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WeeklyTeachingEarnings(jill, n_700)",
+      "formula": "from FACT-1, FACT-2, INF-1 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "WeeklyCoachingEarnings(jill, n_450)",
+      "formula": "from FACT-3, FACT-4, INF-2 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "WeeklyTotalEarnings(jill, n_1150)",
+      "formula": "from INF-4, INF-5 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Multiply(n_1150, n_50, n_57500)",
+      "formula": "from INF-6 by ArithmeticMultiplication",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "AnnualSalary(jill, n_57500)",
+      "formula": "from INF-6, INF-7 by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-7",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

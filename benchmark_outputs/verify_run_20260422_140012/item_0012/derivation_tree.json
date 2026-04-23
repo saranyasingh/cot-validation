@@ -1,0 +1,182 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Toula bought 3 dozen donuts",
+      "formula": "BoughtDozens(toula, donuts, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Price per dozen for donuts is 68",
+      "formula": "PricePerDozen(donuts, n_68)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Product of 3 and 68 is 204",
+      "formula": "Product(n_3, n_68, n_204)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Toula bought 2 dozen cupcakes",
+      "formula": "BoughtDozens(toula, cupcakes, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Price per dozen for cupcakes is 80",
+      "formula": "PricePerDozen(cupcakes, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Product of 2 and 80 is 160",
+      "formula": "Product(n_2, n_80, n_160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Toula bought 6 dozen cheesecakes",
+      "formula": "BoughtDozens(toula, cheesecakes, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Price per dozen for cheesecakes is 55",
+      "formula": "PricePerDozen(cheesecakes, n_55)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Product of 6 and 55 is 330",
+      "formula": "Product(n_6, n_55, n_330)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone buys d dozens of item i and price per dozen for i is b with product r, then CostForItem(person, item, r)",
+      "formula": "\u2200p\u2200i\u2200d\u2200b\u2200r((BoughtDozens(p,i,d) \u2227 PricePerDozen(i,b) \u2227 Product(d,b,r)) \u2192 CostForItem(p,i,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If CostForItem(p, donuts, d1) and CostForItem(p, cupcakes, d2) and CostForItem(p, cheesecakes, d3) then \u2203s SumThree(d1,d2,d3,s)",
+      "formula": "\u2200p\u2200d1\u2200d2\u2200d3((CostForItem(p, donuts, d1) \u2227 CostForItem(p, cupcakes, d2) \u2227 CostForItem(p, cheesecakes, d3)) \u2192 \u2203s SumThree(d1,d2,d3,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If CostForItem(p, donuts, d1) and CostForItem(p, cupcakes, d2) and CostForItem(p, cheesecakes, d3) and SumThree(d1,d2,d3,s) then TotalSpent(p,s)",
+      "formula": "\u2200p\u2200d1\u2200d2\u2200d3\u2200s((CostForItem(p, donuts, d1) \u2227 CostForItem(p, cupcakes, d2) \u2227 CostForItem(p, cheesecakes, d3) \u2227 SumThree(d1,d2,d3,s)) \u2192 TotalSpent(p,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "CostForItem(toula, donuts, n_204) from FACT-1, FACT-2, FACT-3 by RULE-1 (Multiplication)",
+      "formula": "CostForItem(toula, donuts, n_204)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1 (Multiplication)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "CostForItem(toula, cupcakes, n_160) from FACT-4, FACT-5, FACT-6 by RULE-1 (Multiplication)",
+      "formula": "CostForItem(toula, cupcakes, n_160)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-1 (Multiplication)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "CostForItem(toula, cheesecakes, n_330) from FACT-7, FACT-8, FACT-9 by RULE-1 (Multiplication)",
+      "formula": "CostForItem(toula, cheesecakes, n_330)",
+      "premises": [
+        "FACT-7",
+        "FACT-8",
+        "FACT-9"
+      ],
+      "inference_rule": "RULE-1 (Multiplication)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "SumThree(n_204, n_160, n_330, n_794) from INF-1, INF-2, INF-3 by RULE-2 (Arithmetic)",
+      "formula": "SumThree(n_204, n_160, n_330, n_794)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3"
+      ],
+      "inference_rule": "RULE-2 (Arithmetic)",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "TotalSpent(toula, n_794) from INF-1, INF-2, INF-3, INF-4 by RULE-3 (Arithmetic)",
+      "formula": "TotalSpent(toula, n_794)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "INF-4"
+      ],
+      "inference_rule": "RULE-3 (Arithmetic)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

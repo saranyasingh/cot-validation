@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_value(jewelry, n_5000)).
+fof(fact_2, axiom, increase(jewelry, n_125)).
+fof(fact_3, axiom, total_value_after(jewelry, month_one, n_5125)).
+fof(fact_4, axiom, initial_value(electronics, n_8000)).
+fof(fact_5, axiom, increase(electronics, n_96)).
+fof(fact_6, axiom, total_value_after(electronics, month_one, n_8096)).
+fof(fact_7, axiom, greater_than(n_8096, n_5125)).
+fof(fact_8, axiom, final_answer(n_2971)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P2, P1, M, V2, V1] : ((total_value_after(P2, M, V2) & total_value_after(P1, M, V1) & greater_than(V2, V1)) => higher_value_between_plans(P2, P1, M))).
+
+% --- INFERENCES ---
+% From FACT-6, FACT-3, FACT-7 by RULE-1
+fof(inf_1, axiom, higher_value_between_plans(electronics, jewelry, month_one)).
+% From FACT-8 by Direct Assertion
+fof(inf_2, axiom, final_answer(n_2971)).

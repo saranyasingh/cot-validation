@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED — Jazz percentage of total derivable from problem (20%)
+
+RULE-1: IMPLAUSIBLE — Encodes a specific numeric outcome (n_4) without a general principle
+RULE-2: IMPLAUSIBLE — Encodes a specific numeric outcome (n_16) without a general principle
+RULE-3: IMPLAUSIBLE — Encodes a specific arithmetic with fixed constants instead of a general rule
+RULE-4: IMPLAUSIBLE — Encodes a specific arithmetic step with fixed constants
+RULE-5: IMPLAUSIBLE — Encodes a fixed mapping rather than a general relation
+RULE-6: IMPLAUSIBLE — Encodes a fixed percentage using constants rather than a general rule

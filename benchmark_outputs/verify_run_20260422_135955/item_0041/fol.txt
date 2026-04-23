@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Suzy's iPhone age is 1 year :: SuzyPhoneAge(suzy, n_1)
+FACT-2: Ben's iPhone is two times Suzy's :: BenIsTwoTimesSuzy(ben, suzy)
+FACT-3: Brandon's iPhone is four times Ben's :: BrandonIsFourTimesBen(brandon, ben)
+
+## RULES
+RULE-1: ∀b (BenIsTwoTimesSuzy(b, suzy) ∧ SuzyPhoneAge(suzy, n_1) → BenPhoneAge(b, n_2)) :: If Ben's iPhone is two times Suzy's and Suzy's iPhone is 1 year old, then Ben's iPhone is 2 years old
+RULE-2: ∀x (BrandonIsFourTimesBen(brandon, x) ∧ BenPhoneAge(x, n_2) → BrandonPhoneAge(brandon, n_8)) :: If Brandon's iPhone is four times Ben's and Ben's iPhone is 2 years old, then Brandon's iPhone is 8 years old
+
+## INFERENCES
+INF-1: SuzyPhoneAge(suzy, n_1) ∧ BenIsTwoTimesSuzy(ben, suzy) :: Derived from FACT-1 and FACT-2 by ConjunctionIntroduction
+INF-2: BenPhoneAge(ben, n_2) :: Derived from INF-1 and RULE-1 by Modus Ponens
+INF-3: BenPhoneAge(ben, n_2) ∧ BrandonIsFourTimesBen(brandon, ben) :: Derived from INF-2 and FACT-3 by ConjunctionIntroduction
+INF-4: BrandonPhoneAge(brandon, n_8) :: Derived from INF-3 and RULE-2 by Modus Ponens

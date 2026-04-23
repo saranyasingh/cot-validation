@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: TimeSpan(one_pm, five_pm, n_4) :: TimeSpan(one_pm, five_pm, n_4)
+FACT-2: MeltingRate(n_2) :: MeltingRate(n_2)
+FACT-3: Mul(n_4, n_2, n_8) :: Mul(n_4, n_2, n_8)
+FACT-4: OriginalLength(l_cm) :: OriginalLength(l_cm)
+
+## RULES
+RULE-1: If there is a time span from s to e with H hours, and a melting rate of R, and M = H × R, then MeltedAmountOverSpan(s,e,M) :: ∀s∀e∀H∀R∀M((TimeSpan(s,e,H) ∧ MeltingRate(R) ∧ Mul(H,R,M)) → MeltedAmountOverSpan(s,e,M))
+RULE-2: If OriginalLength(L) and MeltedAmountOverSpan(one_pm, five_pm, M), then ShorterBy(L,M) :: ∀L∀M((OriginalLength(L) ∧ MeltedAmountOverSpan(one_pm, five_pm, M)) → ShorterBy(L,M))
+
+## INFERENCES
+INF-1: MeltedAmountOverSpan(one_pm, five_pm, n_8) :: MeltedAmountOverSpan(one_pm, five_pm, n_8) from FACT-1, FACT-2, FACT-3 by RULE-1 (Universal Instantiation) and Modus Ponens
+INF-2: ShorterBy(l_cm, n_8) :: ShorterBy(l_cm, n_8) from FACT-4 and INF-1 by RULE-2 (Modus Ponens)

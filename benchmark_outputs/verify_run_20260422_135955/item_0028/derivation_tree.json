@@ -1,0 +1,159 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Cynthia eats one serving of ice cream nightly",
+      "formula": "NightlyIceCreamServing(cynthia, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "60 days duration",
+      "formula": "DurationDaysForCynthia(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "30 nights per month",
+      "formula": "NightsInMonth(n_30)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state (or imply) any 30 nights-per-month assumption; it only specifies 60 days.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "15 servings per carton",
+      "formula": "ServingsPerCarton(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "4 dollars per carton",
+      "formula": "CostPerCarton(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If NightlyIceCreamServing(c, s) and DurationDaysForCynthia(d) and NightsInMonth(n) then TotalServings(c, d, n, s, n_1800)",
+      "formula": "\u2200c\u2200d\u2200n\u2200s((NightlyIceCreamServing(c, s) \u2227 DurationDaysForCynthia(d) \u2227 NightsInMonth(n)) \u2192 TotalServings(c, d, n, s, n_1800))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a specific 60 days \u00d7 30 nights computation (1800) rather than a general, unit-consistent relation; the arithmetic is baked into the rule.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalServings(cynthia, n_60, n_30, n_1, t) and ServingsPerCarton(n_15) then Divide(t, n_15, n_120)",
+      "formula": "\u2200t((TotalServings(cynthia, n_60, n_30, n_1, t) \u2227 ServingsPerCarton(n_15)) \u2192 Divide(t, n_15, n_120))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Hard-codes the division result (120) instead of deriving the correct carton count (4) from total servings; arithmetic is embedded in the rule.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Divide(n_1800, n_15, q) and CostPerCarton(n_4) then Multiply(q, n_4, n_480)",
+      "formula": "\u2200q((Divide(n_1800, n_15, q) \u2227 CostPerCarton(n_4)) \u2192 Multiply(q, n_4, n_480))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Continues embedding numeric computations (1800 \u00f7 15 = 120, then \u00d7 4 = 480) into the rule rather than using abstract relations.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If Multiply(n_120, n_4, n_480) then TotalCost(n_480)",
+      "formula": "\u2200z((Multiply(n_120, n_4, z)) \u2192 TotalCost(z))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Infers a fixed TotalCost from predetermined arithmetic (120 \u00d7 4 = 480) rather than a general cost relation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalServings(cynthia, n_60, n_30, n_1, n_1800) from FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens)",
+      "formula": "TotalServings(cynthia, n_60, n_30, n_1, n_1800)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Divide(n_1800, n_15, n_120) from INF-1 and FACT-4 by Arithmetic Computation (Division)",
+      "formula": "Divide(n_1800, n_15, n_120)",
+      "premises": [
+        "INF-1",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation (Division)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Multiply(n_120, n_4, n_480) from INF-2 and FACT-5 by Arithmetic Computation (Multiplication)",
+      "formula": "Multiply(n_120, n_4, n_480)",
+      "premises": [
+        "INF-2",
+        "FACT-5"
+      ],
+      "inference_rule": "Arithmetic Computation (Multiplication)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalCost(n_480) from INF-3 by RULE-4 (Modus Ponens)",
+      "formula": "TotalCost(n_480)",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "RULE-4 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "The problem does not state (or imply) any 30 nights-per-month assumption; it only specifies 60 days."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "Encodes a specific 60 days \u00d7 30 nights computation (1800) rather than a general, unit-consistent relation; the arithmetic is baked into the rule."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Hard-codes the division result (120) instead of deriving the correct carton count (4) from total servings; arithmetic is embedded in the rule."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Continues embedding numeric computations (1800 \u00f7 15 = 120, then \u00d7 4 = 480) into the rule rather than using abstract relations."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Infers a fixed TotalCost from predetermined arithmetic (120 \u00d7 4 = 480) rather than a general cost relation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

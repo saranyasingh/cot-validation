@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, donuts(n_3, n_68)).
+fof(fact_2, axiom, cupcakes(n_2, n_80)).
+fof(fact_3, axiom, cheesecakes(n_6, n_55)).
+fof(fact_4, axiom, multiply(n_3, n_68, n_204)).
+fof(fact_5, axiom, multiply(n_2, n_80, n_160)).
+fof(fact_6, axiom, multiply(n_6, n_55, n_330)).
+fof(fact_7, axiom, sum_three(n_204, n_160, n_330, n_694)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,P,C] : ((donuts(D,P) & multiply(D,P,C)) => donuts_cost(C))).
+fof(rule_2, axiom, ! [D,P,C] : ((cupcakes(D,P) & multiply(D,P,C)) => cupcakes_cost(C))).
+fof(rule_3, axiom, ! [D,P,C] : ((cheesecakes(D,P) & multiply(D,P,C)) => cheesecakes_cost(C))).
+fof(rule_4, axiom, ! [A,B,C,D] : ((sum_three(A,B,C,D) & donuts_cost(A) & cupcakes_cost(B) & cheesecakes_cost(C)) => total_cost(D))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, donuts_cost(n_204)).
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_2, axiom, cupcakes_cost(n_160)).
+% From fact_3, rule_3 by Modus Ponens
+fof(inf_3, axiom, cheesecakes_cost(n_330)).
+% From inf_1, inf_2, inf_3, and fact_7 by Multi-premise Modus Ponens
+fof(inf_4, axiom, total_cost(n_694)).

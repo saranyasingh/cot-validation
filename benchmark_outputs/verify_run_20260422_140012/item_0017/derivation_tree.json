@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "DistanceTraveledOnDay(train_a, day_one, miles_80)",
+      "formula": "DistanceTraveledOnDay(train_a, day_one, miles_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "DistanceTraveledOnDay(train_b, day_one, miles_80)",
+      "formula": "DistanceTraveledOnDay(train_b, day_one, miles_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "DistanceTraveledOnDay(train_a, day_two, miles_150)",
+      "formula": "DistanceTraveledOnDay(train_a, day_two, miles_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "DistanceTraveledOnDay(train_b, day_two, miles_150)",
+      "formula": "DistanceTraveledOnDay(train_b, day_two, miles_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a train travels 80 miles on day one (as two occurrences), then its first-day total is 160 miles",
+      "formula": "\u2200t(DistanceTraveledOnDay(t, day_one, miles_80) \u2227 DistanceTraveledOnDay(t, day_one, miles_80) \u2192 FirstDayTotal(t, miles_160))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "A single train's first-day total should be 80 miles, not 160.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a train's first-day total is 160 and it travels 150 miles on day two, then its second-day total is 310 miles",
+      "formula": "\u2200t(FirstDayTotal(t, miles_160) \u2227 DistanceTraveledOnDay(t, day_two, miles_150) \u2192 SecondDayTotal(t, miles_310))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "If first-day total were 160, second-day total would be 150, not 310.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If SecondDayTotal(t1, miles_310) \u2227 SecondDayTotal(t2, miles_310) then CombinedTotal(two_trains, miles_310)",
+      "formula": "\u2200t1\u2200t2(SecondDayTotal(t1, miles_310) \u2227 SecondDayTotal(t2, miles_310) \u2192 CombinedTotal(two_trains, miles_310))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The combined total should be the sum of both trains' second-day totals, not 310.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FirstDayTotal(train_a, miles_160) from FACT-1 and RULE-1 by Modus Ponens",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "FirstDayTotal(train_b, miles_160) from FACT-2 and RULE-1 by Modus Ponens",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "SecondDayTotal(train_a, miles_310) from INF-1, FACT-3, RULE-2 by Modus Ponens",
+      "formula": "Modus Ponens",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "SecondDayTotal(train_b, miles_310) from INF-2, FACT-4, RULE-2 by Modus Ponens",
+      "formula": "Modus Ponens",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "CombinedTotal(two_trains, miles_310) from INF-3, INF-4, RULE-3 by Modus Ponens",
+      "formula": "Modus Ponens",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "A single train's first-day total should be 80 miles, not 160."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "If first-day total were 160, second-day total would be 150, not 310."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "The combined total should be the sum of both trains' second-day totals, not 310."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

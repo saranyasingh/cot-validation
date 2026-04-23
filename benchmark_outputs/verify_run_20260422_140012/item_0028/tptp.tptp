@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, servings_per_night(cynthia, n_1)).
+fof(fact_2, axiom, nights_in_days(n_60, n_60)).
+fof(fact_3, axiom, total_servings(n_60)).
+fof(fact_4, axiom, servings_per_carton(n_15)).
+fof(fact_5, axiom, price_per_carton(n_4)).
+fof(fact_6, axiom, division(n_60, n_15, n_4)).
+fof(fact_7, axiom, multiply(n_4, n_4, n_16)).
+fof(fact_8, axiom, total_cost(n_16)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [Z] : (division(X,Y,Z) => product(Y,Z,X))).
+fof(rule_2, axiom, ! [X] : ! [Y] : ! [Z] : (division(X,Y,Z) => cartons_needed(Z))).
+fof(rule_3, axiom, ! [X] : ! [Y] : ! [Z] : ((cartons_needed(X) & price_per_carton(Y) & multiply(X,Y,Z)) => total_cost(Z))).
+
+% --- INFERENCES ---
+% From division(n_60, n_15, n_4) and rule_2 by Modus Ponens
+fof(inf_1, axiom, cartons_needed(n_4)).
+% From inf_1, fact_5, fact_7 by Modus Ponens
+fof(inf_2, axiom, total_cost(n_16)).

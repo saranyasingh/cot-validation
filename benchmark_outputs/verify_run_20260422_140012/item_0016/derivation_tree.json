@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The initial value of jewelry is 5000",
+      "formula": "InitialValue(jewelry, n_5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The increase in jewelry value due to growth is 125",
+      "formula": "Increase(jewelry, n_125)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jewelry total value after 1 month is 5125",
+      "formula": "TotalValueAfter(jewelry, month_one, n_5125)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The initial value of electronics is 8000",
+      "formula": "InitialValue(electronics, n_8000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The increase in electronics value due to growth is 96",
+      "formula": "Increase(electronics, n_96)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Electronics total value after 1 month is 8096",
+      "formula": "TotalValueAfter(electronics, month_one, n_8096)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "8096 is greater than 5125",
+      "formula": "GreaterThan(n_8096, n_5125)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The final answer is 2971",
+      "formula": "FinalAnswer(n_2971)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If plan P2 has a higher total value than plan P1 after month M, then P2 has higher value than P1",
+      "formula": "\u2200P2\u2200P1\u2200M\u2200V2\u2200V1((TotalValueAfter(P2,M,V2) \u2227 TotalValueAfter(P1,M,V1) \u2227 GreaterThan(V2,V1)) \u2192 HigherValueBetweenPlans(P2,P1,M))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Electronics has higher value than jewelry after month_one",
+      "formula": "HigherValueBetweenPlans(electronics, jewelry, month_one) :: from FACT-6, FACT-3, FACT-7 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The final answer is 2971",
+      "formula": "FinalAnswer(n_2971) :: from FACT-8 by Direct Assertion",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

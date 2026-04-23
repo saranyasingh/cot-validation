@@ -1,0 +1,76 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Blue bolts required for robe",
+      "formula": "BlueBolts(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "White fiber is half the blue fiber amount",
+      "formula": "HalfOf(n_1, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Sum relation holds for blue and white to total",
+      "formula": "Sum(n_2, n_1, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If blue bolts amount b and white amount w are such that White is half of b, then WhiteBolts(w)",
+      "formula": "\u2200w\u2200b((BlueBolts(b) \u2227 HalfOf(w,b)) \u2192 WhiteBolts(w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The total bolts equal the sum of blue bolts and white bolts",
+      "formula": "\u2200a\u2200b\u2200c((BlueBolts(a) \u2227 WhiteBolts(b) \u2227 Sum(a,b,c)) \u2192 TotalBolts(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "WhiteBolts(n_1) from FACT-1, FACT-2 via RULE-1 by Modus Ponens after Universal Instantiation",
+      "formula": "WhiteBolts(n_1)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens after Universal Instantiation",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalBolts(n_3) from FACT-1, INF-1, FACT-3 via RULE-2 by Modus Ponens",
+      "formula": "TotalBolts(n_3)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

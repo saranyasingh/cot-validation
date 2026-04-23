@@ -1,0 +1,109 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 15 floors in the building",
+      "formula": "FloorsInBuilding(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each floor has 8 units",
+      "formula": "UnitsPerFloor(n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "3/4 of the building is occupied",
+      "formula": "OccupiedFraction(n_3_over_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the product of floors and units per floor equals t, then total units is t",
+      "formula": "\u2200f\u2200u\u2200t((Product(f,u,t)) \u2192 TotalUnits(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "120 is the product of 15 and 8, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Product(n_15, n_8, n_120)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalUnits(n_120) from INF-1 and RULE-1 by Modus Ponens",
+      "formula": "TotalUnits(n_120)",
+      "premises": [
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "OccupiedUnits(n_90) from INF-2 and FACT-3 by Arithmetic Computation",
+      "formula": "OccupiedUnits(n_90)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "UnoccupiedUnits(n_30) from INF-2 and INF-3 by Arithmetic Computation",
+      "formula": "UnoccupiedUnits(n_30)",
+      "premises": [
+        "INF-2",
+        "INF-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Seattle has 20 sheep",
+      "formula": "SheepCountInCity(seattle, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charleston has four times as many sheep as Seattle",
+      "formula": "FourTimesAsMany(seattle, charleston)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toulouse has twice as many sheep as Charleston",
+      "formula": "TwiceAsMany(charleston, toulouse)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If an entity A has four times as many sheep as B and A has N sheep, then B has N_4N sheep",
+      "formula": "\u2200A\u2200B\u2200N((FourTimesAsMany(A,B) \u2227 SheepCountInCity(A,N)) \u2192 SheepCountInCity(B,N_4N))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If an entity A has twice as many sheep as B and A has N sheep, then B has N_2N sheep",
+      "formula": "\u2200A\u2200B\u2200N((TwiceAsMany(A,B) \u2227 SheepCountInCity(A,N)) \u2192 SheepCountInCity(B,N_2N))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Charleston has 80 sheep, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "SheepCountInCity(charleston, n_80)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Toulouse has 160 sheep, from INF-1 and FACT-3 by Arithmetic Computation",
+      "formula": "SheepCountInCity(toulouse, n_160)",
+      "premises": [
+        "INF-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total number of sheep across Seattle, Charleston, and Toulouse is 260, from FACT-1, INF-1, INF-2 by Arithmetic Computation",
+      "formula": "TotalSheep(n_260)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

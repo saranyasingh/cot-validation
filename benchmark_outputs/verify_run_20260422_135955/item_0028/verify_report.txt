@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The problem does not state (or imply) any 30 nights-per-month assumption; it only specifies 60 days.
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: IMPLAUSIBLE — Encodes a specific 60 days × 30 nights computation (1800) rather than a general, unit-consistent relation; the arithmetic is baked into the rule.
+RULE-2: IMPLAUSIBLE — Hard-codes the division result (120) instead of deriving the correct carton count (4) from total servings; arithmetic is embedded in the rule.
+RULE-3: IMPLAUSIBLE — Continues embedding numeric computations (1800 ÷ 15 = 120, then × 4 = 480) into the rule rather than using abstract relations.
+RULE-4: IMPLAUSIBLE — Infers a fixed TotalCost from predetermined arithmetic (120 × 4 = 480) rather than a general cost relation.

@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: The bag has 250 calories per serving :: CaloriesPerServing(bag_300g, n_250)
+FACT-2: The bag weighs 300 grams :: BagWeight(bag_300g, n_300)
+FACT-3: The bag contains 5 servings :: ServingsInBag(bag_300g, n_5)
+FACT-4: The daily calorie target is 2000 calories :: DailyCalorieTarget(n_2000)
+FACT-5: We have consumed 1800 calories so far :: CaloriesConsumed(n_1800)
+
+## RULES
+RULE-1: If the daily target is T and calories consumed is C, then there exists R such that RemainingCaloriesValue(T, C, R) :: ∀T∀C((DailyCalorieTarget(T) ∧ CaloriesConsumed(C)) → ∃R RemainingCaloriesValue(T, C, R))
+RULE-2: If RemainingCaloriesValue(T, C, R) and CaloriesPerServing(Bag, P) then there exists S such that RemainingServingsValue(T, C, R, P, S) :: ∀T∀C∀R∀P((RemainingCaloriesValue(T, C, R) ∧ CaloriesPerServing(Bag, P)) → ∃S RemainingServingsValue(T, C, R, P, S))
+RULE-3: If RemainingServingsValue(T, C, R, P, S) and ApproximatelyEquals(S, n_0_8) then there exists G such that MaximumGramsValue(Bag, G) :: ∀T∀C∀R∀P∀S((RemainingServingsValue(T, C, R, P, S) ∧ ApproximatelyEquals(S, n_0_8)) → ∃G MaximumGramsValue(Bag, G))
+
+## INFERENCES
+INF-1: RemainingCaloriesValue(n_2000, n_1800, r_1) :: from FACT-4, FACT-5 by RULE-1 via Universal Instantiation
+INF-2: RemainingServingsValue(n_2000, n_1800, r_1, n_250, s_1) :: from INF-1 and FACT-1 by RULE-2 via Universal Instantiation
+INF-3: MaximumGramsValue(bag_300g, n_60) :: from INF-2 and ApproximatelyEquals(s_1, n_0_8) by RULE-3 via Arithmetic/Approximation
+INF-4: Maximum grams allowed is 60 grams :: MaximumGramsValue(bag_300g, n_60)

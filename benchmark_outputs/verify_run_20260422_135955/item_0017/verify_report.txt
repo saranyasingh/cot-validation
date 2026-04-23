@@ -1,0 +1,13 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: SUPPORTED
+FACT-9: UNSUPPORTED — Not stated or entailed by the problem; the 160/150/230 relation is an encoding artifact, not given in the text.
+
+RULE-1: IMPLAUSIBLE — The rule assigns Day1TotalDistance(t, 160) from a Day1 distance of 80, which misstates the per-train distance.
+RULE-2: PLAUSIBLE — Directly encodes that if Day 2 distance is 150, then Day2TotalDistance(t, 150).
+RULE-3: IMPLAUSIBLE — Uses fixed constants and encodes a false arithmetic (160 + 150 = 230); also not a properly quantified general rule.

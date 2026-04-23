@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED — Directly stated in the problem (Raymond has 40 jewels)
+
+RULE-1: IMPLAUSIBLE — Encodes a concrete arithmetic computation (half of 40) inside the rule rather than a general relation
+
+RULE-2: IMPLAUSIBLE — Encodes a concrete arithmetic computation (20+5) inside the rule rather than a general relation
+
+RULE-3: IMPLAUSIBLE — Depends on a derived arithmetic fact (20+5=25) inside the rule; not a general relation
+
+RULE-4: IMPLAUSIBLE — Encodes a concrete arithmetic computation (25-2) inside the rule rather than a general relation
+
+RULE-5: IMPLAUSIBLE — Encodes a concrete arithmetic computation (25-2=23) inside the rule rather than a general relation

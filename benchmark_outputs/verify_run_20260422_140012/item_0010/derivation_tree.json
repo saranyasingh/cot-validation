@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's regular rate is 10 per hour",
+      "formula": "RegularRate(eliza, n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza's regular hours are 40",
+      "formula": "RegularHours(eliza, n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza's total hours are 45",
+      "formula": "TotalHours(eliza, n_45)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "40 * 10 = 400",
+      "formula": "MultipliesTo(n_40, n_10, n_400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "45 - 40 = 5",
+      "formula": "Subtracts(n_45, n_40, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Overtime rate per hour is 12",
+      "formula": "OvertimeRatePerHour(eliza, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "5 * 12 = 60",
+      "formula": "MultipliesTo(n_5, n_12, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "400 + 60 = 460",
+      "formula": "Add(n_400, n_60, n_460)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "EarningsRegular(eliza, n_400) from RegularRate(eliza, n_10) \u2227 RegularHours(eliza, n_40) \u2227 MultipliesTo(n_40, n_10, n_400) by RULE-1 (Modus Ponens for RULE-1)",
+      "formula": "EarningsRegular(eliza, n_400)",
+      "premises": [],
+      "inference_rule": "RULE-1 (Modus Ponens for RULE-1)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "OvertimeHours(eliza, n_5) from TotalHours(eliza, n_45) \u2227 RegularHours(eliza, n_40) \u2227 Subtracts(n_45, n_40, n_5) by RULE-2 (Modus Ponens for RULE-2)",
+      "formula": "OvertimeHours(eliza, n_5)",
+      "premises": [],
+      "inference_rule": "RULE-2 (Modus Ponens for RULE-2)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "OvertimeEarnings(eliza, n_60) from OvertimeHours(eliza, n_5) \u2227 OvertimeRatePerHour(eliza, n_12) \u2227 MultipliesTo(n_5, n_12, n_60) by RULE-3 (Modus Ponens for RULE-3)",
+      "formula": "OvertimeEarnings(eliza, n_60)",
+      "premises": [],
+      "inference_rule": "RULE-3 (Modus Ponens for RULE-3)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalEarnings(eliza, n_460) from EarningsRegular(eliza, n_400) \u2227 OvertimeEarnings(eliza, n_60) \u2227 Add(n_400, n_60, n_460) by RULE-4 (Modus Ponens for RULE-4)",
+      "formula": "TotalEarnings(eliza, n_460)",
+      "premises": [],
+      "inference_rule": "RULE-4 (Modus Ponens for RULE-4)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

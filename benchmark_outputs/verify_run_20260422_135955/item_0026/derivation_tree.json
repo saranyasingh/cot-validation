@@ -1,0 +1,153 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total cost of chicken meals is 12 dollars",
+      "formula": "ChickenTotalCost(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are five milk packs",
+      "formula": "MilkPacks(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The milk pack unit price is 3 dollars",
+      "formula": "MilkPackUnitPrice(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "There are four apples",
+      "formula": "AppleCount(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The apple unit price is 1.50 dollars",
+      "formula": "AppleUnitPrice(n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The total payment is 50 dollars",
+      "formula": "TotalPayment(n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The price per pizza box is 8.50 dollars",
+      "formula": "BoxPrice(n_850)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The total milk cost equals MilkPacks times MilkPackUnitPrice",
+      "formula": "\u2200x\u2200y((MilkPacks(x) \u2227 MilkPackUnitPrice(y)) \u2192 MilkTotalCost(n_15))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The total apples cost equals AppleCount times AppleUnitPrice",
+      "formula": "\u2200x\u2200y((AppleCount(x) \u2227 AppleUnitPrice(y)) \u2192 ApplesTotalCost(n_6))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The total cost excluding pizzas equals ChickenTotalCost + MilkTotalCost + ApplesTotalCost",
+      "formula": "\u2200x\u2200y\u2200z((ChickenTotalCost(x) \u2227 MilkTotalCost(y) \u2227 ApplesTotalCost(z)) \u2192 TotalCostExcludingPizzas(n_33))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The pizza cost equals TotalPayment minus TotalCostExcludingPizzas",
+      "formula": "\u2200p\u2200q((TotalPayment(p) \u2227 TotalCostExcludingPizzas(q)) \u2192 PizzaCost(n_17))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "The number of pizza boxes equals PizzaCost divided by BoxPrice",
+      "formula": "\u2200a\u2200b((PizzaCost(a) \u2227 BoxPrice(b)) \u2192 BoxesOfPizza(n_2))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Milk total cost derived from MilkPacks(n_5) and MilkPackUnitPrice(n_3) via RULE-1 using Modus Ponens",
+      "formula": "MilkTotalCost(n_15)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Apples total cost derived from AppleCount(n_4) and AppleUnitPrice(n_150) via RULE-2 using Modus Ponens",
+      "formula": "ApplesTotalCost(n_6)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total cost excluding pizzas derived from ChickenTotalCost(n_12), MilkTotalCost(n_15), and ApplesTotalCost(n_6) via RULE-3 using Modus Ponens",
+      "formula": "TotalCostExcludingPizzas(n_33)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Pizza cost derived from TotalPayment(n_50) and TotalCostExcludingPizzas(n_33) via RULE-4 using Modus Ponens",
+      "formula": "PizzaCost(n_17)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Number of pizza boxes derived from PizzaCost(n_17) and BoxPrice(n_850) via RULE-5 using Modus Ponens",
+      "formula": "BoxesOfPizza(n_2)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

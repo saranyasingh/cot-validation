@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: First month downloads are 60 :: Month1Downloads(n_60)
+
+## RULES
+RULE-1: If the first month downloads are 60, then the second month downloads are 180 :: ∀x((Month1Downloads(x) ∧ x = n_60) → Month2Downloads(n_180))
+RULE-2: If the second month downloads are 180, then the third month downloads are 126 :: ∀x((Month2Downloads(x) ∧ x = n_180) → Month3Downloads(n_126))
+RULE-3: If the first, second, and third month downloads are 60, 180, and 126 respectively, then the total downloads are 366 :: ∀a∀b∀c((Month1Downloads(a) ∧ Month2Downloads(b) ∧ Month3Downloads(c)) → TotalDownloads(n_366))
+
+## INFERENCES
+INF-1: Month2Downloads(n_180), from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Month2Downloads(n_180)
+INF-2: Month3Downloads(n_126), from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Month3Downloads(n_126)
+INF-3: TotalDownloads(n_366), from FACT-1, INF-1, INF-2 and RULE-3 by Universal Instantiation and Modus Ponens :: TotalDownloads(n_366)

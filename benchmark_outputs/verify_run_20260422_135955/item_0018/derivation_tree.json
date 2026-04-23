@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jill earns $20 per hour for teaching",
+      "formula": "HourlyRate(jill, teaching, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jill teaches 35 hours per week",
+      "formula": "HoursPerWeek(jill, teaching, n_35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jill earns $30 per hour for coaching",
+      "formula": "HourlyRate(jill, coaching, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Jill coaches 15 hours per week",
+      "formula": "HoursPerWeek(jill, coaching, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "20 \u00d7 35 = 700",
+      "formula": "Product(n_20, n_35, n_700)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "30 \u00d7 15 = 450",
+      "formula": "Product(n_30, n_15, n_450)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "700 + 450 = 1150",
+      "formula": "Add(n_700, n_450, n_1150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "1150 \u00d7 50 = 57500",
+      "formula": "Multiply(n_1150, n_50, n_57500)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "50 weeks in a year",
+      "formula": "WeeksPerYear(n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If p has hourly teaching rate r and hours per week h and Product(r, h, e), then WeeklyEarnings(p, teaching, e)",
+      "formula": "\u2200p\u2200r\u2200h\u2200e((HourlyRate(p, teaching, r) \u2227 HoursPerWeek(p, teaching, h) \u2227 Product(r, h, e)) \u2192 WeeklyEarnings(p, teaching, e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If p has hourly coaching rate r and hours per week h and Product(r, h, e), then WeeklyEarnings(p, coaching, e)",
+      "formula": "\u2200p\u2200r\u2200h\u2200e((HourlyRate(p, coaching, r) \u2227 HoursPerWeek(p, coaching, h) \u2227 Product(r, h, e)) \u2192 WeeklyEarnings(p, coaching, e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If WeeklyEarnings(p, teaching, t1) \u2227 WeeklyEarnings(p, coaching, t2) \u2227 Add(t1, t2, s) then TotalWeeklyEarnings(p, s)",
+      "formula": "\u2200p\u2200t1\u2200t2\u2200s((WeeklyEarnings(p, teaching, t1) \u2227 WeeklyEarnings(p, coaching, t2) \u2227 Add(t1, t2, s)) \u2192 TotalWeeklyEarnings(p, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If TotalWeeklyEarnings(p, s) \u2227 WeeksPerYear(w) \u2227 Multiply(s, w, a) then AnnualSalary(p, a)",
+      "formula": "\u2200p\u2200s\u2200w\u2200a((TotalWeeklyEarnings(p, s) \u2227 WeeksPerYear(w) \u2227 Multiply(s, w, a)) \u2192 AnnualSalary(p, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

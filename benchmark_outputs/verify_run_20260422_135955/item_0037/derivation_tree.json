@@ -1,0 +1,75 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Terry consumes 2 yogurts per day",
+      "formula": "YogurtsPerDay(terry, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Terry would need 60 yogurts",
+      "formula": "YogurtsNeeded(terry, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Yogurt comes in packs of 4",
+      "formula": "PackSize(yogurt, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Price per yogurt pack is 5",
+      "formula": "PricePerPack(yogurt, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If 60 yogurts are needed and packs contain 4 yogurts, then 15 packs are needed",
+      "formula": "\u2200t((YogurtsNeeded(t, n_60) \u2227 PackSize(yogurt, n_4)) \u2192 PacksNeeded(t, n_15))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If 15 packs are needed and price per pack is 5, then the total cost is 75",
+      "formula": "\u2200t((PacksNeeded(t, n_15) \u2227 PricePerPack(yogurt, n_5)) \u2192 TotalCost(t, n_75))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 yogurts needed and packs of 4 yield 15 packs, from FACT-2, FACT-3 via RULE-1 (Modus Ponens)",
+      "formula": "PacksNeeded(terry, n_15)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "15 packs and price 5 yield total cost 75, from INF-1 and FACT-4 via RULE-2 (Modus Ponens)",
+      "formula": "TotalCost(terry, n_75)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

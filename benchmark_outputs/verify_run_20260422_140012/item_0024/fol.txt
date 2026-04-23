@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Start time is 1:00 PM :: StartTime(n_13)
+FACT-2: End time is 5:00 PM :: EndTime(n_17)
+FACT-3: Rate of melting is 2 cm/hour :: RateOfMelting(n_2)
+FACT-4: Duration is 4 hours :: Duration(n_4)
+FACT-5: Rate × Time equals 8 cm :: Product(n_2, n_4, n_8)
+
+## RULES
+RULE-1: If rate r and duration d and product m = r × d then TotalMelt(m) :: ∀r∀d∀m((RateOfMelting(r) ∧ Duration(d) ∧ Product(r,d,m)) → TotalMelt(m))
+RULE-2: If TotalMelt(m) then Answer(m) :: ∀m((TotalMelt(m)) → Answer(m))
+
+## INFERENCES
+INF-1: Total melted is 8 cm from RateOfMelting(n_2), Duration(n_4), and Product(n_2, n_4, n_8) by RULE-1 (Modus Ponens) :: TotalMelt(n_8)
+INF-2: The candle will be 8 cm shorter, from TotalMelt(n_8) by RULE-2 (Modus Ponens) :: Answer(n_8)

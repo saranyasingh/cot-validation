@@ -1,0 +1,183 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The original price per glass is 5 dollars",
+      "formula": "OriginalPricePerGlass(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 16 glasses in total",
+      "formula": "TotalGlasses(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The discount rate is 0.6 (60%)",
+      "formula": "DiscountRate(n_0_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "5 times 0.6 equals 3",
+      "formula": "Multiply(n_5, n_0_6, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "16 halves to 8",
+      "formula": "Half(n_16, n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the original price per glass is p and the discount rate is d and p times d equals q, then the discounted price per glass is q",
+      "formula": "\u2200p\u2200d\u2200q((OriginalPricePerGlass(p) \u2227 DiscountRate(d) \u2227 Multiply(p,d,q)) \u2192 DiscountedPricePerGlass(q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If total glasses is t and t halves to h, then there are h discounted glasses",
+      "formula": "\u2200t\u2200h((TotalGlasses(t) \u2227 Half(t,h)) \u2192 DiscountedCount(h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If total glasses is t and t halves to h, then there are h original glasses",
+      "formula": "\u2200t\u2200h((TotalGlasses(t) \u2227 Half(t,h)) \u2192 OriginalCount(h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If there are h discounted glasses with price p, and h \u00d7 p = c, then the discounted cost is c",
+      "formula": "\u2200h\u2200p\u2200c((DiscountedCount(h) \u2227 DiscountedPricePerGlass(p) \u2227 Multiply(h,p,c)) \u2192 DiscountCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If there are h original glasses with price p, and h \u00d7 p = c, then the original cost is c",
+      "formula": "\u2200h\u2200p\u2200c((OriginalCount(h) \u2227 OriginalPricePerGlass(p) \u2227 Multiply(h,p,c)) \u2192 OriginalCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If DiscountCost(a) and OriginalCost(b) and Add(a,b,c), then TotalCost(c)",
+      "formula": "\u2200a\u2200b\u2200c((DiscountCost(a) \u2227 OriginalCost(b) \u2227 Add(a,b,c)) \u2192 TotalCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Discounted price per glass is 3 dollars, from OriginalPricePerGlass(n_5), DiscountRate(n_0_6), and Multiply(n_5, n_0_6, n_3) by Arithmetic Computation",
+      "formula": "DiscountedPricePerGlass(n_3)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "There are 8 discounted glasses, from TotalGlasses(n_16) and Half(n_16, n_8) by Rule-2 (Universal Instantiation)",
+      "formula": "DiscountedCount(n_8)",
+      "premises": [],
+      "inference_rule": "Rule-2 (Universal Instantiation)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "There are 8 original glasses, from TotalGlasses(n_16) and Half(n_16, n_8) by Rule-3 (Universal Instantiation)",
+      "formula": "OriginalCount(n_8)",
+      "premises": [],
+      "inference_rule": "Rule-3 (Universal Instantiation)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The cost of discounted glasses is 24 dollars, from DiscountedCount(n_8) and DiscountedPricePerGlass(n_3) by Arithmetic Computation and Multiply(n_8, n_3, n_24) via Rule-4",
+      "formula": "DiscountCost(n_24)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation and Multiply(n_8, n_3, n_24) via Rule-4",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The cost of original glasses is 40 dollars, from OriginalCount(n_8) and OriginalPricePerGlass(n_5) by Arithmetic Computation and Multiply(n_8, n_5, n_40) via Rule-5",
+      "formula": "OriginalCost(n_40)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation and Multiply(n_8, n_5, n_40) via Rule-5",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "24 + 40 = 64, via Arithmetic Computation Add(n_24, n_40, n_64)",
+      "formula": "Add(n_24, n_40, n_64)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Total cost is 64 dollars, from DiscountCost(n_24) and OriginalCost(n_40) and Add(n_24, n_40, n_64) by Rule-6 (Addition)",
+      "formula": "TotalCost(n_64)",
+      "premises": [],
+      "inference_rule": "Rule-6 (Addition)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-6",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

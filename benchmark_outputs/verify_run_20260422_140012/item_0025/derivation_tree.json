@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "BoughtForPrice(kyle, book, n_19_50)",
+      "formula": "BoughtForPrice(kyle, book, n_19_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "directly stated in the problem",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "DiscountPercent(kyle, book, n_25_percent)",
+      "formula": "DiscountPercent(kyle, book, n_25_percent)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "directly stated in the problem",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A 25% discount means that the paid ratio is 0.75 of the original price",
+      "formula": "\u2200x\u2200y( DiscountPercent(x,y,n_25_percent) \u2192 PriceFactor(x,y,n_0_75) )",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "correctly encodes that paying price is 0.75 of the original price for a 25% discount",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "PriceFactor(kyle, book, n_0_75)",
+      "formula": "PriceFactor(kyle, book, n_0_75) from FACT-2 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "EqualDivision(n_19_50, n_0_75, n_26_00)",
+      "formula": "EqualDivision(n_19_50, n_0_75, n_26_00) from FACT-1 and INF-1 by Arithmetic Division",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "OriginalPrice(kyle, book, n_26_00)",
+      "formula": "OriginalPrice(kyle, book, n_26_00) from INF-2 by From Division to Original Price",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

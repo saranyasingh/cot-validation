@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Chicken meal costs $12",
+      "formula": "ChickenMealCost(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Milk packs total cost $15",
+      "formula": "MilkPacksCost(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Apples total cost $6",
+      "formula": "ApplesCost(n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Marie paid $50",
+      "formula": "MarieTotalSpent(n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Pizza box price is $8.50",
+      "formula": "PricePerPizzaBox(n_850)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The total cost of known items is the sum of the chicken meal, milk packs, and apples costs",
+      "formula": "\u2200a\u2200b\u2200c\u2200d((ChickenMealCost(a) \u2227 MilkPacksCost(b) \u2227 ApplesCost(c) \u2227 SumPrices(a,b,c,d)) \u2192 KnownItemsTotal(d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The remaining amount equals MarieTotalSpent minus KnownItemsTotal",
+      "formula": "\u2200T\u2200K\u2200R((MarieTotalSpent(T) \u2227 KnownItemsTotal(K) \u2227 Subtract(T,K,R)) \u2192 RemainingAmount(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The number of pizza boxes equals RemainingAmount divided by PricePerPizzaBox",
+      "formula": "\u2200R\u2200P\u2200Q((RemainingAmount(R) \u2227 PricePerPizzaBox(P) \u2227 Divide(R,P,Q)) \u2192 BoxesOrdered(Q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "12 + 15 + 6 = 33, from FACT-1, FACT-2, FACT-3 by ArithmeticComputation",
+      "formula": "KnownItemsTotal(n_33)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

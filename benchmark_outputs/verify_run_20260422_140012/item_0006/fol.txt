@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: The price of one glass is 5 dollars :: OriginalPrice(n_5)
+FACT-2: The discount rate is 60 percent :: DiscountRate(n_60)
+FACT-3: There are 16 glasses :: GlassCount(n_16)
+FACT-4: The discounted price for original price 5 with 60% discount is 2 :: DiscountedPriceForOriginalPrice(n_5, n_60, n_2)
+FACT-5: Half of the glasses relation :: Half(n_16, n_8)
+
+## RULES
+RULE-1: If there is a discounted price for an original price and discount, then the discounted price holds :: ∀p∀d∀q((DiscountedPriceForOriginalPrice(p,d,q)) → DiscountedPrice(p,d,q))
+RULE-2: If there are n glasses and Half(n,m), then there are m regular-priced glasses and m discounted glasses :: ∀n∀m((GlassCount(n) ∧ Half(n,m)) → (RegularGlassesCount(m) ∧ DiscountedGlassesCount(m)))
+RULE-3: If RegularGlassesCount(a) and OriginalPrice(p) and Multiplication(a,p,c), then CostRegular(c) :: ∀a∀p∀c((RegularGlassesCount(a) ∧ OriginalPrice(p) ∧ Multiplication(a,p,c)) → CostRegular(c))
+RULE-4: If DiscountedGlassesCount(a) and DiscountedPrice(p,d,q) and Multiplication(a,q,c), then CostDiscounted(c) :: ∀a∀p∀d∀q∀c((DiscountedGlassesCount(a) ∧ DiscountedPrice(p,d,q) ∧ Multiplication(a,q,c)) → CostDiscounted(c))
+RULE-5: If CostRegular(r) and CostDiscounted(s) and Addition(r,s,t), then TotalCost(t) :: ∀r∀s∀t((CostRegular(r) ∧ CostDiscounted(s) ∧ Addition(r,s,t)) → TotalCost(t))
+
+## INFERENCES
+INF-1: DiscountedPrice(n_5, n_60, n_2) from FACT-4 by RULE-1 (ArithmeticComputation)
+INF-2: RegularGlassesCount(n_8) from FACT-3 and HALF(n_16, n_8) by RULE-2
+INF-3: DiscountedGlassesCount(n_8) from FACT-3 and HALF(n_16, n_8) by RULE-2
+INF-4: CostRegular(n_40) from INF-2 and FACT-1 by RULE-3
+INF-5: CostDiscounted(n_16) from INF-3 and INF-1 by RULE-4
+INF-6: TotalCost(n_56) from INF-4 and INF-5 by RULE-5

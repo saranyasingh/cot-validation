@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Eliza's regular rate is 10 per hour :: RegularRate(eliza, n_10)
+FACT-2: Eliza's regular hours are 40 :: RegularHours(eliza, n_40)
+FACT-3: Eliza's total hours are 45 :: TotalHours(eliza, n_45)
+FACT-4: 40 * 10 = 400 :: MultipliesTo(n_40, n_10, n_400)
+FACT-5: 45 - 40 = 5 :: Subtracts(n_45, n_40, n_5)
+FACT-6: Overtime rate per hour is 12 :: OvertimeRatePerHour(eliza, n_12)
+FACT-7: 5 * 12 = 60 :: MultipliesTo(n_5, n_12, n_60)
+FACT-8: 400 + 60 = 460 :: Add(n_400, n_60, n_460)
+
+## RULES
+RULE-1: ∀x∀h∀r∀e((RegularHours(x,h) ∧ RegularRate(x,r) ∧ MultipliesTo(h,r,e)) → EarningsRegular(x,e))
+RULE-2: ∀x∀t∀r∀o((TotalHours(x,t) ∧ RegularHours(x,r) ∧ Subtracts(t,r,o)) → OvertimeHours(x,o))
+RULE-3: ∀x∀o∀r∀eo((OvertimeHours(x,o) ∧ OvertimeRatePerHour(x,r) ∧ MultipliesTo(o,r,eo)) → OvertimeEarnings(x,eo))
+RULE-4: ∀x∀e1∀e2∀e3((EarningsRegular(x,e1) ∧ OvertimeEarnings(x,e2) ∧ Add(e1,e2,e3)) → TotalEarnings(x,e3))
+
+## INFERENCES
+INF-1: EarningsRegular(eliza, n_400) from RegularRate(eliza, n_10) ∧ RegularHours(eliza, n_40) ∧ MultipliesTo(n_40, n_10, n_400) by RULE-1 (Modus Ponens for RULE-1) :: EarningsRegular(eliza, n_400)
+INF-2: OvertimeHours(eliza, n_5) from TotalHours(eliza, n_45) ∧ RegularHours(eliza, n_40) ∧ Subtracts(n_45, n_40, n_5) by RULE-2 (Modus Ponens for RULE-2) :: OvertimeHours(eliza, n_5)
+INF-3: OvertimeEarnings(eliza, n_60) from OvertimeHours(eliza, n_5) ∧ OvertimeRatePerHour(eliza, n_12) ∧ MultipliesTo(n_5, n_12, n_60) by RULE-3 (Modus Ponens for RULE-3) :: OvertimeEarnings(eliza, n_60)
+INF-4: TotalEarnings(eliza, n_460) from EarningsRegular(eliza, n_400) ∧ OvertimeEarnings(eliza, n_60) ∧ Add(n_400, n_60, n_460) by RULE-4 (Modus Ponens for RULE-4) :: TotalEarnings(eliza, n_460)

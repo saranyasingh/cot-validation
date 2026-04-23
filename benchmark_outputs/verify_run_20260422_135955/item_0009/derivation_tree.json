@@ -1,0 +1,139 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Distance(first_segment, 180)",
+      "formula": "Distance(first_segment, 180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states 3 hours at 60 mph, giving distance 180.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Time(first_segment, 3)",
+      "formula": "Time(first_segment, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Time(first_segment) is 3 hours as described.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Speed(first_segment, 60)",
+      "formula": "Speed(first_segment, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Speed(first_segment) is 60 mph as described.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Distance(second_segment, 0)",
+      "formula": "Distance(second_segment, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The standstill segment has distance 0.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Time(second_segment, 2)",
+      "formula": "Time(second_segment, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Time(second_segment) is 2 hours (standstill).",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Distance(third_segment, 15)",
+      "formula": "Distance(third_segment, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "0.5 hours at 30 mph yields 15 miles.",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Time(third_segment, 0.5)",
+      "formula": "Time(third_segment, 0.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Time(third_segment) is 0.5 hours.",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Speed(third_segment, 30)",
+      "formula": "Speed(third_segment, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Speed(third_segment) is 30 mph.",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Distance(fourth_segment, 80)",
+      "formula": "Distance(fourth_segment, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "1 hour at 80 mph yields 80 miles.",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Time(fourth_segment, 1)",
+      "formula": "Time(fourth_segment, 1)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The remaining time after 2h standstill and 0.5h at 30 mph should be 1.5 h, not 1 h.",
+      "error": true
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Speed(fourth_segment, 80)",
+      "formula": "Speed(fourth_segment, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Speed(fourth_segment) is 80 mph.",
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "SumDistances(180, 0, 15, 80, 275)",
+      "formula": "SumDistances(180, 0, 15, 80, 275)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "180 + 0 + 15 + 80 = 275, so the sum is correct.",
+      "error": false
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "StartedAtHome(john)",
+      "formula": "StartedAtHome(john)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The scenario presumes John starts at home.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalDistance(275)",
+      "formula": "From FACT-12 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "DistanceFromHome(john, 275)",
+      "formula": "From FACT-13, INF-1, RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "The remaining time after 2h standstill and 0.5h at 30 mph should be 1.5 h, not 1 h."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

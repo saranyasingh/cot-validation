@@ -1,0 +1,26 @@
+EXPLANATION
+Let's break down the problem step-by-step using logical reasoning.
+
+1. **Initial Conditions**:
+   - We start with 10 liters of orange drink.
+   - This orange drink is made up of two-thirds water and one-third other ingredients (let's call this "other").
+   - Therefore, the amount of water in the initial orange drink is \( \frac{2}{3} \times 10 = \frac{20}{3} \) liters.
+   - The rest is not water but other ingredients, which we don't need to consider here.
+
+2. **Adding Pineapple Drink**:
+   - We then add 15 liters of pineapple drink.
+   - This pineapple drink has three-fifths water, so the amount of water in the pineapple drink is \( \frac{3}{5} \times 15 = 9 \) liters.
+   - Therefore, the total amount of water after adding pineapple drink is \( \frac{20}{3} + 9 \).
+
+3. **Spilling Orange Drink**:
+   - One liter of the orange drink is spilled, so we lose \( \frac{1}{10} \) of its water content.
+   - Since the orange drink initially contained \( \frac{20}{3} \) liters of water, losing one liter means we lose \( \frac{1}{10} \times \frac{20}{3} = \frac{2}{3} \) liters of water.
+   - After spilling, the amount of water left in the orange drink is \( \frac{20}{3} - \frac{2}{3} = \frac{18}{3} = 6 \) liters.
+
+4. **Total Water Calculation**:
+   - Now, we combine the remaining water from the orange drink with the water from the pineapple drink.
+   - Total water now is \( 6 + 9 = 15 \) liters.
+
+Therefore, the total amount of water in the remaining 24 liters (after accounting for the spillage) is 15 liters.
+
+The answer is: 15

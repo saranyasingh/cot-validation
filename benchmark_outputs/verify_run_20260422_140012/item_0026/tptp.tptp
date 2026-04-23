@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, chicken_meal_cost(n_12)).
+fof(fact_2, axiom, milk_packs_cost(n_15)).
+fof(fact_3, axiom, apples_cost(n_6)).
+fof(fact_4, axiom, marie_total_spent(n_50)).
+fof(fact_5, axiom, price_per_pizza_box(n_850)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,D] : ((chicken_meal_cost(A) & milk_packs_cost(B) & apples_cost(C) & sum_prices(A,B,C,D)) => known_items_total(D))).
+fof(rule_2, axiom, ! [T,K,R] : ((marie_total_spent(T) & known_items_total(K) & subtract(T,K,R)) => remaining_amount(R))).
+fof(rule_3, axiom, ! [R,P,Q] : ((remaining_amount(R) & price_per_pizza_box(P) & divide(R,P,Q)) => boxes_ordered(Q))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3 by ArithmeticComputation
+fof(inf_1, axiom, known_items_total(n_33)).
+% From FACT-4 and INF-1 by Subtraction
+fof(inf_2, axiom, remaining_amount(n_17)).
+% From INF-2 and FACT-5 by Division
+fof(inf_3, axiom, boxes_ordered(n_2)).

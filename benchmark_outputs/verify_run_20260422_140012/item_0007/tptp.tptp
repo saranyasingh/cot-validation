@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, sheep_count_in_city(seattle, n_20)).
+fof(fact_2, axiom, four_times_as_many(seattle, charleston)).
+fof(fact_3, axiom, twice_as_many(charleston, toulouse)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,N] : ((four_times_as_many(A,B) & sheep_count_in_city(A,N)) => sheep_count_in_city(B, n_4n))).
+fof(rule_2, axiom, ! [A,B,N] : ((twice_as_many(A,B) & sheep_count_in_city(A,N)) => sheep_count_in_city(B, n_2n))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, sheep_count_in_city(charleston, n_80)).
+% From INF-1, FACT-3 by Arithmetic Computation
+fof(inf_2, axiom, sheep_count_in_city(toulouse, n_160)).
+% From FACT-1, INF-1, INF-2 by Arithmetic Computation
+fof(inf_3, axiom, total_sheep(n_260)).

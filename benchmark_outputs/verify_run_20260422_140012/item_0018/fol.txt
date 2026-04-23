@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: TeachingHoursPerWeek(jill, n_35) :: 
+FACT-2: TeachingHourlyRate(jill, n_20) :: 
+FACT-3: CoachingHoursPerWeek(jill, n_15) :: 
+FACT-4: CoachingHourlyRate(jill, n_30) :: 
+
+## RULES
+RULE-1: ∀p∀h∀r∀w((TeachingHoursPerWeek(p,h) ∧ TeachingHourlyRate(p,r) ∧ Multiply(h, r, w)) → WeeklyTeachingEarnings(p, w)) :: 
+RULE-2: ∀p∀h∀r∀w((CoachingHoursPerWeek(p,h) ∧ CoachingHourlyRate(p,r) ∧ Multiply(h, r, w)) → WeeklyCoachingEarnings(p, w)) :: 
+RULE-3: ∀p∀w1∀w2∀w((WeeklyTeachingEarnings(p,w1) ∧ WeeklyCoachingEarnings(p,w2) ∧ Add(w1, w2, w)) → WeeklyTotalEarnings(p,w)) :: 
+RULE-4: ∀p∀w∀a((WeeklyTotalEarnings(p,w) ∧ Multiply(w, n_50, a)) → AnnualSalary(p, a)) :: 
+
+## INFERENCES
+INF-1: Multiply(n_35, n_20, n_700) :: from FACT-1, FACT-2 by ArithmeticMultiplication
+INF-2: Multiply(n_15, n_30, n_450) :: from FACT-3, FACT-4 by ArithmeticMultiplication
+INF-3: Add(n_700, n_450, n_1150) :: from INF-1, INF-2 by ArithmeticAddition
+INF-4: WeeklyTeachingEarnings(jill, n_700) :: from FACT-1, FACT-2, INF-1 by RULE-1
+INF-5: WeeklyCoachingEarnings(jill, n_450) :: from FACT-3, FACT-4, INF-2 by RULE-2
+INF-6: WeeklyTotalEarnings(jill, n_1150) :: from INF-4, INF-5 by RULE-3
+INF-7: Multiply(n_1150, n_50, n_57500) :: from INF-6 by ArithmeticMultiplication
+INF-8: AnnualSalary(jill, n_57500) :: from INF-6, INF-7 by RULE-4

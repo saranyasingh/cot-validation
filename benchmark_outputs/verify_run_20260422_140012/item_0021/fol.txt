@@ -1,0 +1,30 @@
+## FACTS
+FACT-1: 10 liters orange drink :: OrangeDrink(orange_10)
+FACT-2: orange_10 is two_thirds_water :: WaterFraction(orange_10, two_thirds)
+FACT-3: 15 liters pineapple drink :: PineappleDrink(pineapple_15)
+FACT-4: pineapple_15 is three_fifths_water :: WaterFraction(pineapple_15, three_fifths)
+FACT-5: spill orange_10 by one_liter :: Spilled(orange_10, one)
+FACT-6: remaining_orange_after_spill = 9_liters :: RemainingOrange(orange_9)
+FACT-7: remaining_orange_contains_water = twenty_over_three :: WaterInOrange(orange_9, twenty_over_three)
+FACT-8: pineapple_after_pour_has_only_water :: PineappleWaterOnly(pineapple_15)
+FACT-9: total_after_mix = twenty_four_liters :: TotalVolume(remaining_orange_and_pineapple, twenty_four)
+FACT-10: water_in_mixture_after_mix :: WaterInMixture(remaining_orange_and_pineapple, twenty_over_three)
+FACT-11: final_answer :: FinalAnswer(six_point_six_seven)
+
+## RULES
+RULE-1: If an object is an orange drink with a known volume and a known water fraction, then its water amount is that volume times that fraction :: ∀o ∀V ∀F ((OrangeDrink(o) ∧ Volume(o,V) ∧ WaterFraction(o,F)) → WaterLiters(o, product(V,F)))
+RULE-2: If a pineapple drink has a water fraction, then the water amount in it is volume times that fraction :: ∀p ∀V ∀F ((PineappleDrink(p) ∧ Volume(p,V) ∧ WaterFraction(p,F)) → WaterLiters(p, product(V,F)))
+RULE-3: If one liter spills from an orange drink, the remaining orange volume is reduced by one :: ∀o ∀L ((Spilled(o, one) ∧ RemainingOrange(o, L)) → L = PreviousVolume(o) − 1)
+RULE-4: If two portions are combined, the total volume is the sum of the portions :: ∀a ∀b ∀A ∀B ((Remaining(a) ∧ Pineapple(b)) → TotalVolume(Combined(a,b), SumVolume(A,B)))
+RULE-5: If the orange drink is pure water and the pineapple drink is pure water, then the mixture is pure water :: ∀o ∀p ((WaterOnly(o) ∧ WaterOnly(p)) → WaterOnly(Mixed(o,p)))
+RULE-6: If the total water in a mixture equals the water amount computed from its components, then the final amount of water is that value :: ∀M ∀W ((WaterInMixture(M,W)) → WaterAmount(M,W))
+RULE-7: The numerical facts in the premises are admitted as given, to be used by arithmetic-based inferences :: True
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Arithmetic Computation (water in orange) :: WaterLiters(orange_10, twenty_over_three)
+INF-2: From FACT-3 and RULE-2 by Arithmetic Computation (water in pineapple) :: WaterLiters(pineapple_15, nine)
+INF-3: From FACT-5 and RULE-3 by Spill Reduction (orange) :: RemainingOrange(orange_9)
+INF-4: From INF-3 and FACT-1 and FACT-3 via RULE-4 (mixing remaining orange with pineapple) :: TotalVolume(remaining_orange_and_pineapple, twenty_four)
+INF-5: From FACT-8 and RULE-5 (assumption used in reasoning) :: WaterOnly(Mixture)
+INF-6: From INF-1, INF-2, and INF-5 via RULE-6 (water in mixture) :: WaterAmount(remaining_orange_and_pineapple, twenty_over_three)
+INF-7: From INF-6 and FACT-11 via RULE-7 (conclude final numeric) :: FinalAnswer(six_point_six_seven)

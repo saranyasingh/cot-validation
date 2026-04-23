@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, group_size(first_three, n_3)).
+fof(fact_2, axiom, per_person(first_three, n_1)).
+fof(fact_3, axiom, product(n_3, n_1, n_3)).
+fof(fact_4, axiom, group_size(next_two, n_2)).
+fof(fact_5, axiom, per_person(next_two, n_2)).
+fof(fact_6, axiom, product(n_2, n_2, n_4)).
+fof(fact_7, axiom, group_size(last_three, n_3)).
+fof(fact_8, axiom, per_person(last_three, n_0)).
+fof(fact_9, axiom, product(n_3, n_0, n_0)).
+fof(fact_10, axiom, sum(n_3, n_4, n_0, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [G] : ! [M] : ! [P] : ! [T] : ((group_size(G, M) & per_person(G, P) & product(M, P, T)) => group_total(G, T))).
+fof(rule_2, axiom, ! [A] : ! [B] : ! [C] : ! [D] : ((group_total(first_three, A) & group_total(next_two, B) & group_total(last_three, C) & sum(A, B, C, D)) => dvd_sold_on_tuesday(D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, group_total(first_three, n_3)).
+% From fact_4, fact_5, fact_6, rule_1 by Modus Ponens
+fof(inf_2, axiom, group_total(next_two, n_4)).
+% From fact_7, fact_8, fact_9, rule_1 by Modus Ponens
+fof(inf_3, axiom, group_total(last_three, n_0)).
+% From inf_1, inf_2, inf_3, fact_10, rule_2 by Modus Ponens
+fof(inf_4, axiom, dvd_sold_on_tuesday(n_7)).

@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: There are 15 floors in the building :: FloorsInBuilding(n_15)
+FACT-2: Each floor has 8 units :: UnitsPerFloor(n_8)
+FACT-3: 3/4 of the building is occupied :: OccupiedFraction(n_3_over_4)
+
+## RULES
+RULE-1: If the product of floors and units per floor equals t, then total units is t :: ∀f∀u∀t((Product(f,u,t)) → TotalUnits(t))
+
+## INFERENCES
+INF-1: 120 is the product of 15 and 8, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_15, n_8, n_120)
+INF-2: TotalUnits(n_120) from INF-1 and RULE-1 by Modus Ponens :: TotalUnits(n_120)
+INF-3: OccupiedUnits(n_90) from INF-2 and FACT-3 by Arithmetic Computation :: OccupiedUnits(n_90)
+INF-4: UnoccupiedUnits(n_30) from INF-2 and INF-3 by Arithmetic Computation :: UnoccupiedUnits(n_30)

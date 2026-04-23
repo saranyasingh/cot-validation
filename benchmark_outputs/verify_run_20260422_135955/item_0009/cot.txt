@@ -1,0 +1,29 @@
+EXPLANATION
+To determine how far John is from home after 4 hours, we need to break down his journey into segments and calculate the distance traveled during each segment.
+
+1. **First Segment (Driving for 3 hours):**
+   - Speed = 60 mph
+   - Time = 3 hours
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles
+
+2. **Second Segment (Traveling in Standstill Traffic):**
+   - Time = 2 hours
+   - Distance = 0 miles (since he's not moving)
+
+3. **Third Segment (Driving at 30 mph for 30 minutes):**
+   - Time = 30 minutes = 0.5 hours
+   - Distance = Speed × Time = 30 mph × 0.5 hours = 15 miles
+
+4. **Fourth Segment (Driving at 80 mph for 1 hour):**
+   - Time = 1 hour
+   - Distance = Speed × Time = 80 mph × 1 hour = 80 miles
+
+Now, let's sum up all the distances to find out how far John has traveled in total after 4 hours:
+
+Total Distance Traveled = First Segment + Second Segment + Third Segment + Fourth Segment
+= 180 miles + 0 miles + 15 miles + 80 miles
+= 275 miles
+
+Since John starts at home and travels away from it, this means he is now 275 miles from home when he stops for 4 hours.
+
+Therefore, the answer is: 275

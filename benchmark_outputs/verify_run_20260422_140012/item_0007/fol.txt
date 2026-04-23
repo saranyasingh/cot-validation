@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCountInCity(seattle, n_20)
+FACT-2: Charleston has four times as many sheep as Seattle :: FourTimesAsMany(seattle, charleston)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TwiceAsMany(charleston, toulouse)
+
+## RULES
+RULE-1: If an entity A has four times as many sheep as B and A has N sheep, then B has N_4N sheep :: ∀A∀B∀N((FourTimesAsMany(A,B) ∧ SheepCountInCity(A,N)) → SheepCountInCity(B,N_4N))
+RULE-2: If an entity A has twice as many sheep as B and A has N sheep, then B has N_2N sheep :: ∀A∀B∀N((TwiceAsMany(A,B) ∧ SheepCountInCity(A,N)) → SheepCountInCity(B,N_2N))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep, from FACT-1 and FACT-2 by Arithmetic Computation :: SheepCountInCity(charleston, n_80)
+INF-2: Toulouse has 160 sheep, from INF-1 and FACT-3 by Arithmetic Computation :: SheepCountInCity(toulouse, n_160)
+INF-3: Total number of sheep across Seattle, Charleston, and Toulouse is 260, from FACT-1, INF-1, INF-2 by Arithmetic Computation :: TotalSheep(n_260)

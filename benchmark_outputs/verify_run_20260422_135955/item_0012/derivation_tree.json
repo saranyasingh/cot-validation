@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "3 dozen donuts at 68 dollars per dozen",
+      "formula": "Donuts(n_3, n_68)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "2 dozen mini cupcakes at 80 dollars per dozen",
+      "formula": "Cupcakes(n_2, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "6 dozen mini cheesecakes at 55 dollars per dozen",
+      "formula": "Cheesecakes(n_6, n_55)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "3 \u00d7 68 = 204",
+      "formula": "Multiply(n_3, n_68, n_204)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "2 \u00d7 80 = 160",
+      "formula": "Multiply(n_2, n_80, n_160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "6 \u00d7 55 = 330",
+      "formula": "Multiply(n_6, n_55, n_330)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "204 + 160 + 330 = 694",
+      "formula": "SumThree(n_204, n_160, n_330, n_694)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If donuts are described by (d, p) and Multiply(d, p, c) then DonutsCost(c)",
+      "formula": "\u2200d\u2200p\u2200c((Donuts(d,p) \u2227 Multiply(d,p,c)) \u2192 DonutsCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If cupcakes are described by (d, p) and Multiply(d, p, c) then CupcakesCost(c)",
+      "formula": "\u2200d\u2200p\u2200c((Cupcakes(d,p) \u2227 Multiply(d,p,c)) \u2192 CupcakesCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If cheesecakes are described by (d, p) and Multiply(d, p, c) then CheesecakesCost(c)",
+      "formula": "\u2200d\u2200p\u2200c((Cheesecakes(d,p) \u2227 Multiply(d,p,c)) \u2192 CheesecakesCost(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If SumThree(a,b,c,d) and DonutsCost(a) and CupcakesCost(b) and CheesecakesCost(c) then TotalCost(d)",
+      "formula": "\u2200a\u2200b\u2200c\u2200d((SumThree(a,b,c,d) \u2227 DonutsCost(a) \u2227 CupcakesCost(b) \u2227 CheesecakesCost(c)) \u2192 TotalCost(d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "DonutsCost(n_204) from FACT-1 and FACT-4 by RULE-1 (Modus Ponens)",
+      "formula": "DonutsCost(n_204)",
+      "premises": [
+        "FACT-1",
+        "FACT-4"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "CupcakesCost(n_160) from FACT-2 and FACT-5 by RULE-2 (Modus Ponens)",
+      "formula": "CupcakesCost(n_160)",
+      "premises": [
+        "FACT-2",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "CheesecakesCost(n_330) from FACT-3 and FACT-6 by RULE-3 (Modus Ponens)",
+      "formula": "CheesecakesCost(n_330)",
+      "premises": [
+        "FACT-3",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-3 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalCost(n_694) from INF-1, INF-2, INF-3, and FACT-7 by RULE-4 (Multi-premise Modus Ponens)",
+      "formula": "TotalCost(n_694)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "FACT-7"
+      ],
+      "inference_rule": "RULE-4 (Multi-premise Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

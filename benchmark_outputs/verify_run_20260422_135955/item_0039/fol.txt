@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: WeeklyDistance(john, miles_60) :: John runs 60 miles per week
+FACT-2: DaysPerWeek(john, days_3) :: John runs 3 days a week
+FACT-3: FirstDayHours(john, hours_3) :: On the first day, John runs 3 hours
+FACT-4: SecondDayHours(john, hours_1_5) :: On the second day, John runs 1.5 hours
+FACT-5: ThirdDayHours(john, hours_1_5) :: On the third day, John runs 1.5 hours
+
+## RULES
+RULE-1: If a person has a weekly distance D, a total time T, and a speed value S for that distance and time, then the person has average speed S :: ∀p∀D∀T∀S((WeeklyDistance(p,D) ∧ TotalTime(p,T) ∧ SpeedValue(p,D,T,S)) → AverageSpeed(p,S))
+
+## INFERENCES
+INF-1: Sum of day times equals 6 hours from per-day times by Arithmetic Computation :: TotalTime(john, hours_6)
+# Premises used: FACT-3, FACT-4, FACT-5
+
+INF-2: SpeedValue for 60 miles in 6 hours equals 10 mph by Arithmetic Computation :: SpeedValue(john, miles_60, hours_6, mph_10)
+# Premises used: FACT-1, INF-1
+
+INF-3: AverageSpeed(john, mph_10) from FACT-1, INF-1, INF-2 by Modus Ponens using RULE-1 :: AverageSpeed(john, mph_10)

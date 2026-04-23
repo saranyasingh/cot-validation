@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shorts",
+      "formula": "Bought(mishka, shorts, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Shorts unit price is 1650 cents",
+      "formula": "Price(shorts, n_1650)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of pants",
+      "formula": "Bought(mishka, pants, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Pants unit price is 2250 cents",
+      "formula": "Price(pants, n_2250)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shoes",
+      "formula": "Bought(mishka, shoes, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Shoes unit price is 4200 cents",
+      "formula": "Price(shoes, n_4200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone bought 3 shorts and the price per shorts is 1650, then the subtotal for shorts is 4950",
+      "formula": "\u2200x((Bought(x, shorts, n_3) \u2227 Price(shorts, n_1650)) \u2192 Subtotal(x, shorts, n_4950))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If someone bought 3 pants and the price per pants is 2250, then the subtotal for pants is 6750",
+      "formula": "\u2200x((Bought(x, pants, n_3) \u2227 Price(pants, n_2250)) \u2192 Subtotal(x, pants, n_6750))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If someone bought 3 shoes and the price per shoes is 4200, then the subtotal for shoes is 12600",
+      "formula": "\u2200x((Bought(x, shoes, n_3) \u2227 Price(shoes, n_4200)) \u2192 Subtotal(x, shoes, n_12600))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If Subtotal(x, shorts, 4950) \u2227 Subtotal(x, pants, 6750) \u2227 Subtotal(x, shoes, 12600) then TotalSpent(x, 24300)",
+      "formula": "\u2200x((Subtotal(x, shorts, n_4950) \u2227 Subtotal(x, pants, n_6750) \u2227 Subtotal(x, shoes, n_12600)) \u2192 TotalSpent(x, n_24300))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

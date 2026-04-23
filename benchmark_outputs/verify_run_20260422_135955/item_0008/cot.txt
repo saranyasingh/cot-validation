@@ -1,0 +1,26 @@
+EXPLANATION
+
+1. First, we need to determine how much of the 200 GB file Carla can download before the restart occurs.
+   - Since 40% of the way through the download happens during the forced restart, this means that 60% of the file remains undownloaded after the restart.
+
+2. Calculate the amount of data remaining after the restart:
+   \[
+   200 \text{ GB} \times (1 - 0.40) = 200 \text{ GB} \times 0.60 = 120 \text{ GB}
+   \]
+
+3. Determine how long it would normally take Carla to download these remaining 120 GB at her normal speed of 2 GB per minute:
+   \[
+   \frac{120 \text{ GB}}{2 \text{ GB/min}} = 60 \text{ minutes}
+   \]
+
+4. Add the time taken for the forced restart to the time required to complete the remaining download:
+   \[
+   20 \text{ minutes} + 60 \text{ minutes} = 80 \text{ minutes}
+   \]
+
+5. Calculate the total time to download the entire file considering both the normal download time and the additional time due to the restart:
+   \[
+   80 \text{ minutes} + 20 \text{ minutes} = 100 \text{ minutes}
+   \]
+
+The answer is: 100

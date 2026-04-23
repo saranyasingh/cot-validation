@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, played(mike, ping_pong)).
+fof(fact_2, axiom, total_minutes(mike, t_40)).
+fof(fact_3, axiom, first_half_score(mike, n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, A, B, C] : ((first_half_score(X, A) & second_half_total_points(X, B) & sum(A, B, C)) => total_points(X, C))).
+fof(rule_2, axiom, ! [X, S] : ((total_points(X, S)) => final_score(X, S))).
+
+% --- INFERENCES ---
+% From FACT-3 by ArithmeticComputation
+fof(inf_1, axiom, sum(n_4, n_24, n_28)).
+% From FACT-3, INF-1, RULE-1 by Modus Ponens
+fof(inf_2, axiom, total_points(mike, n_28)).
+% From INF-2, RULE-2 by Modus Ponens
+fof(inf_3, axiom, final_score(mike, n_28)).

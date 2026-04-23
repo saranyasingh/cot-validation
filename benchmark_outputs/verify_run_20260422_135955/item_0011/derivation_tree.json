@@ -1,0 +1,181 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "FirstMonthDownloads(n_60)",
+      "formula": "FirstMonthDownloads(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Multiplier(n_3)",
+      "formula": "Multiplier(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Percent(n_30)",
+      "formula": "Percent(n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200b\u2200c((Product(a,b,c) \u2227 FirstMonthDownloads(a) \u2227 Multiplier(b)) \u2192 SecondMonthDownloads(c))",
+      "formula": "\u2200a\u2200b\u2200c((Product(a,b,c) \u2227 FirstMonthDownloads(a) \u2227 Multiplier(b)) \u2192 SecondMonthDownloads(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200b\u2200c((Subtract(a,b,c)) \u2192 ThirdMonthDownloads(c))",
+      "formula": "\u2200a\u2200b\u2200c((Subtract(a,b,c)) \u2192 ThirdMonthDownloads(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 \u00d7 3 = 180, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Product(n_60,n_3,n_180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Second month downloads equal 180, from INF-1, FACT-1, and FACT-2 by RULE-1",
+      "formula": "SecondMonthDownloads(n_180)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "30% of 180 is 54, from INF-2 and FACT-3 by Arithmetic Computation",
+      "formula": "PercentOf(n_30,n_180,n_54)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "180 - 54 = 126, from INF-3 by Arithmetic Computation",
+      "formula": "Subtract(n_180,n_54,n_126)",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Third month downloads equal 126, from INF-4 by RULE-2",
+      "formula": "ThirdMonthDownloads(n_126)",
+      "premises": [
+        "INF-4"
+      ],
+      "inference_rule": "RULE-2",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "60 + 180 = 240, from FACT-1 by Arithmetic Computation",
+      "formula": "SumTwo(n_60,n_180,n_240)",
+      "premises": [
+        "FACT-1"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "240 + 126 = 366, from INF-6 and INF-5 by Arithmetic Computation",
+      "formula": "SumTwo(n_240,n_126,n_366)",
+      "premises": [
+        "INF-6",
+        "INF-5"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "TotalDownloads(n_366), from INF-7 by Arithmetic Computation",
+      "formula": "TotalDownloads(n_366)",
+      "premises": [
+        "INF-7"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-6",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-7",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-8",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

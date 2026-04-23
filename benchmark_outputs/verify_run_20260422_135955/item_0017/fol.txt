@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: Train 1 travels westward on Day 1 :: Westward(train_1, day_1)
+FACT-2: Train 2 travels westward on Day 1 :: Westward(train_2, day_1)
+FACT-3: Distance of Train 1 on Day 1 is 80 miles :: Distance(train_1, day_1, n_80)
+FACT-4: Distance of Train 2 on Day 1 is 80 miles :: Distance(train_2, day_1, n_80)
+FACT-5: Train 1 travels northward on Day 2 :: Northward(train_1, day_2)
+FACT-6: Train 2 travels northward on Day 2 :: Northward(train_2, day_2)
+FACT-7: Distance of Train 1 on Day 2 is 150 miles :: Distance(train_1, day_2, n_150)
+FACT-8: Distance of Train 2 on Day 2 is 150 miles :: Distance(train_2, day_2, n_150)
+FACT-9: Sum(n_160, n_150, n_230) :: Sum(n_160, n_150, n_230)
+
+## RULES
+RULE-1: If a train t travels westward on Day 1 and has distance 80 on Day 1, then Day1TotalDistance(t, 160) :: ∀t((Westward(t, day_1) ∧ Distance(t, day_1, n_80)) → Day1TotalDistance(t, n_160))
+RULE-2: If a train t travels northward on Day 2 and has distance 150 on Day 2, then Day2TotalDistance(t, 150) :: ∀t((Northward(t, day_2) ∧ Distance(t, day_2, n_150)) → Day2TotalDistance(t, n_150))
+RULE-3: If Day1TotalDistance(t, 160) and Day2TotalDistance(t, 150) and Sum(160, 150, 230) then TotalDistanceAllDays(t, 230) :: ∀t((Day1TotalDistance(t, n_160) ∧ Day2TotalDistance(t, n_150) ∧ Sum(n_160, n_150, n_230)) → TotalDistanceAllDays(t, n_230))
+
+## INFERENCES
+INF-1: Day1TotalDistance(train_1, n_160) :: from FACT-1, FACT-3 by RULE-1 using Modus Ponens
+INF-2: Day1TotalDistance(train_2, n_160) :: from FACT-2, FACT-4 by RULE-1 using Modus Ponens
+INF-3: Day2TotalDistance(train_1, n_150) :: from FACT-5, FACT-7 by RULE-2 using Modus Ponens
+INF-4: Day2TotalDistance(train_2, n_150) :: from FACT-6, FACT-8 by RULE-2 using Modus Ponens
+INF-5: TotalDistanceAllDays(train_1, n_230) :: from INF-1, INF-3, FACT-9 by RULE-3 using Modus Ponens
+INF-6: TotalDistanceAllDays(train_2, n_230) :: from INF-2, INF-4, FACT-9 by RULE-3 using Modus Ponens
+INF-7: Therefore, the total distance covered by each train over the two days is 230 miles :: from INF-5 and INF-6 by conjunction/identity

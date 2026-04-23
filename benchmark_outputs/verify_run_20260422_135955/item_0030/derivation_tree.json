@@ -1,0 +1,142 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "OnePairHighHeelCost33",
+      "formula": "HeelOneCost(n_33)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "OtherPairHighHeelCost66",
+      "formula": "HeelTwoCost(n_66)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "TotalCostTwoHighHeelsIs99",
+      "formula": "HeelsTotalCost(n_99)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "HeelsTotalIsFiveDollarsLessThanBoots",
+      "formula": "HeelsTotalCost(n_99) < BootsPrice(n_boots) \u2227 FiveDollars(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y((HeelOneCost(x) \u2227 HeelTwoCost(y)) \u2192 HeelsTotalCost(n_99))",
+      "formula": "If one pair costs 33 and the other costs 66, then the two-pair total costs 99",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "fixes heels total to 99 irrespective of actual costs; not a generally valid encoding.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200a((HeelsTotalCost(a) \u2227 FiveDollars(n_5)) \u2192 BootsPrice(n_boots))",
+      "formula": "If the heels total equals 99 and boots exceed that total by 5, then BootsPrice is the Boots value",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "conclusion BootsPrice(n_boots) is not properly derived from numeric relations; lacks correct linkage.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y((HeelsTotalCost(x) \u2227 BootsPrice(n_boots) \u2227 FiveDollars(n_5)) \u2192 (BootsPrice(n_boots) = x + n_5))",
+      "formula": "Boots price equals heels total plus 5",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes arithmetic inside the rule and equates a predicate to a number; not a well-formed encoding.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "HeelsSum33Plus66(n_99)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From FACT-3 and INF-1 by Substitution (occurs in chain)",
+      "formula": "HeelsTotalCost(n_99) (reaffirmed)",
+      "premises": [
+        "FACT-3",
+        "INF-1"
+      ],
+      "inference_rule": "Substitution (occurs in chain)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 and FACT-4 by Modus Ponens",
+      "formula": "BootsPrice(n_boots) = n_99 + n_5",
+      "premises": [
+        "INF-2",
+        "FACT-4"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 by Simplification",
+      "formula": "BootsPrice(n_boots) = n_104",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "Simplification",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "From INF-4 and the chain\u2019s corrective reasoning (contradiction)",
+      "formula": "Contradiction (99 < 0) arises (as per the chain\u2019s steps)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "fixes heels total to 99 irrespective of actual costs; not a generally valid encoding."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "conclusion BootsPrice(n_boots) is not properly derived from numeric relations; lacks correct linkage."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "encodes arithmetic inside the rule and equates a predicate to a number; not a well-formed encoding."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

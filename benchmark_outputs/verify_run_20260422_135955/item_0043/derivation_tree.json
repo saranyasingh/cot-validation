@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Grandma Jones baked 5 apple pies",
+      "formula": "BakedPies(grandma_jones, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each pie was cut into 8 pieces",
+      "formula": "PiecesPerPie(n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There were 14 pieces remaining",
+      "formula": "RemainingPieces(n_14)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p baked a pies a and each pie has b pieces, then there exists a t such that Multiplication(a, b, t)",
+      "formula": "\u2200p\u2200a\u2200b((BakedPies(p, a) \u2227 PiecesPerPie(b)) \u2192 \u2203t Multiplication(a, b, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Subtraction(a, b, c) then TakenPieces(c)",
+      "formula": "\u2200a\u2200b\u2200c((Subtraction(a, b, c)) \u2192 TakenPieces(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "5 \u00d7 8 equals 40, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Multiplication(n_5, n_8, n_40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "40 \u2212 14 equals 26, from INF-1 and FACT-3 by Arithmetic Computation",
+      "formula": "Subtraction(n_40, n_14, n_26)",
+      "premises": [
+        "INF-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TakenPieces(26), from INF-2 and RULE-2 by Modus Ponens",
+      "formula": "TakenPieces(n_26)",
+      "premises": [
+        "INF-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

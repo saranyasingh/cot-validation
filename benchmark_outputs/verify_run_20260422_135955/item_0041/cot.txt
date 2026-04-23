@@ -1,0 +1,28 @@
+Explanation:
+
+Let's denote the ages of the iPhones as follows:
+- \( B \) = age of Ben's iPhone
+- \( S \) = age of Suzy's iPhone
+- \( R \) = age of Brandon's iPhone
+
+From the problem statement, we have the following relationships:
+1. Brandon's iPhone is four times as old as Ben's iPhone.
+   This translates to: \( R = 4B \)
+
+2. Ben's iPhone is two times older than Suzy's iPhone.
+   This translates to: \( B = 2S \)
+
+We are given that Suzy’s iPhone is 1 year old, so:
+\[ S = 1 \]
+
+Now, substituting \( S = 1 \) into the equation \( B = 2S \):
+\[ B = 2 \times 1 \]
+\[ B = 2 \]
+
+Next, using \( B = 2 \) in the first relationship \( R = 4B \):
+\[ R = 4 \times 2 \]
+\[ R = 8 \]
+
+Therefore, Brandon’s iPhone is 8 years old.
+
+The answer is: 8

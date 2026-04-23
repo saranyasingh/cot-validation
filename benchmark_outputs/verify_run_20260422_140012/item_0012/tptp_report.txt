@@ -1,0 +1,13 @@
+  % From FACT-1, FACT-2, FACT-3 by RULE-1 (Multiplication)
+  inf_1: PROVED
+  % From FACT-4, FACT-5, FACT-6 by RULE-1 (Multiplication)
+  inf_2: PROVED
+  % From FACT-7, FACT-8, FACT-9 by RULE-1 (Multiplication)
+  inf_3: PROVED
+  % From inf_1, inf_2, inf_3 by RULE-2 (Arithmetic)
+  inf_4: NOT PROVED
+  % From inf_1, inf_2, inf_3, inf_4 by RULE-3 (Arithmetic)
+  inf_5: PROVED
+
+Prover errors:
+inf_4: NOT PROVED — inference does not follow from axioms

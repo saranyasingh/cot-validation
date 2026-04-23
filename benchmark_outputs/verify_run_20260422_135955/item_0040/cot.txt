@@ -1,0 +1,31 @@
+EXPLANATION
+
+1. Let's denote Dana's walking speed as \( W \) mph.
+2. According to the problem, her running speed \( R \) is four times her walking speed, so we have \( R = 4W \).
+3. Her skipping speed \( S \) is half her running speed, which means \( S = \frac{R}{2} = \frac{4W}{2} = 2W \).
+4. We know from the problem statement that her skipping speed \( S \) is given as 3 mph. Therefore, we can set up the equation \( 2W = 3 \), solving for \( W \):
+   \[
+   2W = 3 \\
+   W = \frac{3}{2} = 1.5 \text{ mph}
+   \]
+5. Now, using \( W \), we can find her running speed \( R \):
+   \[
+   R = 4W = 4 \times 1.5 = 6 \text{ mph}
+   \]
+
+6. Next, let's calculate the distances she covers during each activity:
+   - Walking distance: \( D_{walk} = W \times T = 1.5 \times 6 = 9 \text{ miles} \)
+   - Running distance: \( D_{run} = R \times T = 6 \times 6 = 36 \text{ miles} \)
+
+7. She spends one-third of the total time (six hours) running and two-thirds walking:
+   - Time spent running: \( T_{run} = \frac{1}{3} \times 6 = 2 \text{ hours} \)
+   - Time spent walking: \( T_{walk} = \frac{2}{3} \times 6 = 4 \text{ hours} \)
+
+8. Now, we sum the distances covered during these activities to get the total distance traveled:
+   \[
+   D_{total} = D_{walk} + D_{run} = 9 + 36 = 45 \text{ miles}
+   \]
+
+Therefore, the total distance Dana can travel in six hours is 45 miles.
+
+The answer is: 45

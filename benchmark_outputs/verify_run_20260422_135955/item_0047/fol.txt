@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: T_Equals_80_plus_P :: T = 80 + P
+FACT-2: After_Store_Left :: (80 + P) - x
+FACT-3: Cups_Used_220 :: CupsUsed = 220
+FACT-4: Remaining_After_Usage :: Remaining = 23
+FACT-5: Equation_5 :: (80 + P - x) - 220 = 23
+
+## RULES
+RULE-1: If A = B and B = C then A = C :: ∀a∀b∀c((Eq(a,b) ∧ Eq(b,c)) → Eq(a,c))
+RULE-2: If A = B + C then B = A - C :: ∀a∀b∀c((Add(a,b,c)) → (Subtract(a,c,b)))
+RULE-3: If A - B = C and B = D then A - D = C :: ∀a∀b∀c((Sub(a,b,c) ∧ Eq(b,d)) → Sub(a,d,c))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-2 using Add and Sub inverses, infer T - P = 80 :: (From AddEq and SubEq reasoning labeled by RULE-2)
+INF-2: From INF-1 and FACT-2 by substitution, infer (80 + P) - x =  ??? :: (Application of RULE-1 with transitive steps; explicit intermediate is not shown)
+INF-3: From INF-2 and FACT-3 by arithmetic substitution, infer (80 + P - x) - 220 = 23 :: (MODUS PONENS/Arithmetic reasoning)
+INF-4: From INF-3 and FACT-4 by simplification, infer x = 0 :: (Arithmetic simplification)

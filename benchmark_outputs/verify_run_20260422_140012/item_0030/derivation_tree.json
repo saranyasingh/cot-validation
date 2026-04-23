@@ -1,0 +1,98 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "One pair of heels costs 33",
+      "formula": "HeelsCost(one_pair, n_33)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The second pair of heels costs 33",
+      "formula": "HeelsCost(second_pair, n_33)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states the second heels costs twice as much; if the first is 33, the second should be 66, not 33.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The cost of the two pairs of heels is 66",
+      "formula": "TwoHeelsCost(n_66)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem implies heels total is 99; 66 is not entailed by the problem.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Boots cost five more than the heels total",
+      "formula": "BootsIsFiveMoreThanHeelsTotal(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total cost of two heels is h and boots cost is five more than that total, then BootsTotalCost71",
+      "formula": "\u2200h((TwoHeelsCost(h) \u2227 BootsIsFiveMoreThanHeelsTotal(n_5)) \u2192 BootsTotalCost71)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule uses a fixed identifier (BootsTotalCost71) and does not express a general relation BootsTotalCost = HeelsTotalCost + 5 with universal quantification.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If BootsTotalCost71 then BootsPrice71",
+      "formula": "BootsTotalCost71 \u2192 BootsPrice71",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Uses fixed identifiers and does not encode a general relation between BootsTotalCost and BootsPrice.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "BootsTotalCost71, from FACT-3 and FACT-4 via RULE-1 (Modus Ponens)",
+      "formula": "TwoHeelsCost(n_66) \u2227 BootsIsFiveMoreThanHeelsTotal(n_5) \u2192 BootsTotalCost71",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "BootsPrice71, from INF-1 via RULE-2 (Modus Ponens)",
+      "formula": "BootsTotalCost71 \u2192 BootsPrice71",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "The problem states the second heels costs twice as much; if the first is 33, the second should be 66, not 33."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "The problem implies heels total is 99; 66 is not entailed by the problem."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule uses a fixed identifier (BootsTotalCost71) and does not express a general relation BootsTotalCost = HeelsTotalCost + 5 with universal quantification."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Uses fixed identifiers and does not encode a general relation between BootsTotalCost and BootsPrice."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

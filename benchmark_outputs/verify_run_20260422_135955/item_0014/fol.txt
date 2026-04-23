@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: InitialAmount(melanie, x)
+FACT-2: SoldThirdAtGreenHouse(melanie)
+FACT-3: RemainingAfterGreenHouse(melanie, x_minus_x_over_3)
+FACT-4: SoldTwoAtRedHouse(melanie)
+FACT-5: RemainingAfterRedHouse(melanie, x_minus_x_over_3_minus_2)
+FACT-6: HalfOfRemainingAtOrangeHouse(melanie, (x_minus_x_over_3_minus_2)/2)
+FACT-7: LeftWith(melanie, n_5)
+
+## RULES
+RULE-1: If InitialAmount(m, x) and SoldThirdAtGreenHouse(m) then RemainingAfterGreenHouse(m, x_minus_x_over_3) :: ∀m∀x((InitialAmount(m, x) ∧ SoldThirdAtGreenHouse(m)) → RemainingAfterGreenHouse(m, x_minus_x_over_3))
+RULE-2: If RemainingAfterGreenHouse(m, r1) and SoldTwoAtRedHouse(m) then RemainingAfterRedHouse(m, r1_minus_2) :: ∀m∀r1((RemainingAfterGreenHouse(m, r1) ∧ SoldTwoAtRedHouse(m)) → RemainingAfterRedHouse(m, r1_minus_2))
+RULE-3: If RemainingAfterRedHouse(m, r2) then HalfOfRemainingAtOrangeHouse(m, r3) and r3 = r2/2 :: ∀m∀r2((RemainingAfterRedHouse(m, r2)) → HalfOfRemainingAtOrangeHouse(m, r3) ∧ r3 = r2/2)
+RULE-4: If LeftWith(m, L) and HalfOfRemainingAtOrangeHouse(m, r3) then L = 5 :: ∀m((LeftWith(m, 5)) ∧ (HalfOfRemainingAtOrangeHouse(m, r3)) → True)
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1, derive RemainingAfterGreenHouse(melanie, x_minus_x_over_3) :: Modus Ponens
+INF-2: From INF-1 and RULE-2, derive RemainingAfterRedHouse(melanie, x_minus_x_over_3_minus_2) :: Modus Ponens
+INF-3: From INF-2 and RULE-3, derive HalfOfRemainingAtOrangeHouse(melanie, (x_minus_x_over_3_minus_2)/2) :: Modus Ponens
+INF-4: From INF-3 and RULE-4, derive LeftWith(melanie, 5) :: Modus Ponens

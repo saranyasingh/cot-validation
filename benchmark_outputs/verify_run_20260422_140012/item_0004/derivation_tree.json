@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints per session",
+      "formula": "SprintsPerTime(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint is 60 meters",
+      "formula": "DistancePerSprint(james, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "3 \u00d7 60 = 180",
+      "formula": "Prod(n_3, n_60, n_180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "James runs this session 3 times per week",
+      "formula": "SessionsPerWeek(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "180 \u00d7 3 = 540",
+      "formula": "Prod(n_180, n_3, n_540)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalDistancePerSession(james, n_180) from FACT-1, FACT-2, FACT-3 by Modus Ponens using RULE-1",
+      "formula": "TotalDistancePerSession(james, n_180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Modus Ponens using RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalDistancePerWeek(james, n_540) from INF-1, FACT-4, FACT-5 by Modus Ponens using RULE-2",
+      "formula": "TotalDistancePerWeek(james, n_540)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "FACT-5"
+      ],
+      "inference_rule": "Modus Ponens using RULE-2",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Answer(n_540) from INF-2 by Modus Ponens using RULE-3",
+      "formula": "Answer(n_540)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Modus Ponens using RULE-3",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

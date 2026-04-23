@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: TotalDistance(henry_trip, n_60)
+FACT-2: StopsCount(henry_trip, n_2)
+FACT-3: FirstStopLocation(henry_trip, n_20)
+FACT-4: SecondStopBeforeEnd(henry_trip, n_15)
+
+## RULES
+RULE-1: If the distance between stops for a trip is d, then the final answer for that trip is d :: ∀t∀d(DistanceBetweenStops(t, d) → AnswerDistance(t, d))
+
+## INFERENCES
+INF-1: Subtract 15 from 60 to get 45, from FACT-1 and FACT-4 by Arithmetic Computation :: Stop2Location(henry_trip, n_45)
+INF-2: Subtract 20 from 45 to get 25, from INF-1 and FACT-3 by Arithmetic Computation :: DistanceBetweenStops(henry_trip, n_25)
+INF-3: The final answer is 25 miles, from INF-2 by RULE-1 (Modus Ponens) :: AnswerDistance(henry_trip, n_25)

@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: First friend guessed 80 :: FirstFriendGuess(n_80)
+FACT-2: Second friend guessed 60 :: SecondFriendGuess(n_60)
+FACT-3: Third friend guessed 100 :: ThirdFriendGuess(n_100)
+FACT-4: Number of friends is 3 :: NumberOfFriends(n_3)
+
+## RULES
+RULE-1: If mean value holds, then it is the average guess :: ∀A∀S∀N((MeanValue(A,S,N)) → AverageGuess(A))
+
+## INFERENCES
+INF-1: Sum of the guesses equals 240, from FACT-1, FACT-2, FACT-3 by Arithmetic Computation :: SumOfGuesses(n_240)
+INF-2: Mean value equals 80, from INF-1 and FACT-4 by Arithmetic Computation :: MeanValue(n_80, n_240, n_3)
+INF-3: Average guess equals 80, from INF-2 and RULE-1 by Modus Ponens :: AverageGuess(n_80)

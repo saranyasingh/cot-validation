@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_cost(jewelry, n_5000)).
+
+fof(fact_2, axiom, increase_rate(jewelry, n_025)).
+
+fof(fact_3, axiom, final_price(jewelry, n_5125)).
+
+fof(fact_4, axiom, initial_cost(electronic_gadgets, n_8000)).
+
+fof(fact_5, axiom, increase_rate(electronic_gadgets, n_012)).
+
+fof(fact_6, axiom, final_price(electronic_gadgets, n_8096)).
+
+fof(fact_7, axiom, jewelry_profit(n_125)).
+
+fof(fact_8, axiom, gadgets_profit(n_96)).
+
+fof(fact_9, axiom, greater_than(n_125, n_96)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P1, P2] : ((jewelry_profit(P1) & gadgets_profit(P2) & greater_than(P1, P2)) => final_answer(P1))).
+
+% --- INFERENCES ---
+% From fact_7, fact_8, fact_9 by Modus Ponens
+fof(inf_1, axiom, final_answer(n_125)).

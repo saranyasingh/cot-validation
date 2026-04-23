@@ -1,0 +1,91 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "FeedInMeal(morning, n_15)",
+      "formula": "Ground atomic formula",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "morning 15 cups is directly stated.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "FeedInMeal(afternoon, n_25)",
+      "formula": "Ground atomic formula",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "afternoon 25 cups is directly stated.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "TotalFeed(n_40)",
+      "formula": "Ground atomic formula",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "15 + 25 = 40, so total feed is 40 (derived from FACT-1 and FACT-2).",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Chickens(n_20)",
+      "formula": "Ground atomic formula",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "flock size is 20 chickens.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "WendiFeedsEachChicken(n_3)",
+      "formula": "Ground atomic formula",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "each chicken gets 3 cups per meal.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200t\u2200c\u2200z((TotalFeed(t) \u2227 Chickens(c) \u2227 EqualDivision(t, c, z)) \u2192 AveragePerChicken(z))",
+      "formula": "Universal rule about deriving per-chicken average from total and count",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "encodes a valid division-average relationship using TotalFeed, Chickens, EqualDivision, and AveragePerChicken predicates without embedding arithmetic.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "40 divided by 20 equals 2, from FACT-3 and FACT-4 by Arithmetic Computation",
+      "formula": "EqualDivision(n_40, n_20, n_2)",
+      "premises": [
+        "FACT-3",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Average feed per chicken is 2 cups, from FACT-3, FACT-4, INF-1, and RULE-1 by Modus Ponens",
+      "formula": "AveragePerChicken(n_2)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: After selling some vacuums Melanie had 5 left :: AfterSellingSome(melanie, n_5)
+FACT-2: Before selling half to the orange house, Melanie had 10 vacuums :: BeforeOrangeSaleCount(melanie, n_10)
+FACT-3: Before selling to the red house, Melanie had 12 vacuums :: BeforeRedSaleCount(melanie, n_12)
+FACT-4: Before selling to the green house, Melanie had 24 vacuums :: BeforeGreenSaleCount(melanie, n_24)
+
+## RULES
+RULE-1: If someone had 24 vacuums before selling to the green house, then they started with 24 vacuums :: ∀x(BeforeGreenSaleCount(x, n_24) → StartedWith(x, n_24))
+
+## INFERENCES
+INF-1: Melanie started with 24 vacuums, from FACT-4 and RULE-1 by Modus Ponens :: StartedWith(melanie, n_24)

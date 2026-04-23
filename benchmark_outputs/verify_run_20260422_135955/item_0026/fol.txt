@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: The total cost of chicken meals is 12 dollars :: ChickenTotalCost(n_12)
+FACT-2: There are five milk packs :: MilkPacks(n_5)
+FACT-3: The milk pack unit price is 3 dollars :: MilkPackUnitPrice(n_3)
+FACT-4: There are four apples :: AppleCount(n_4)
+FACT-5: The apple unit price is 1.50 dollars :: AppleUnitPrice(n_150)
+FACT-6: The total payment is 50 dollars :: TotalPayment(n_50)
+FACT-7: The price per pizza box is 8.50 dollars :: BoxPrice(n_850)
+
+## RULES
+RULE-1: The total milk cost equals MilkPacks times MilkPackUnitPrice :: ∀x∀y((MilkPacks(x) ∧ MilkPackUnitPrice(y)) → MilkTotalCost(n_15))
+RULE-2: The total apples cost equals AppleCount times AppleUnitPrice :: ∀x∀y((AppleCount(x) ∧ AppleUnitPrice(y)) → ApplesTotalCost(n_6))
+RULE-3: The total cost excluding pizzas equals ChickenTotalCost + MilkTotalCost + ApplesTotalCost :: ∀x∀y∀z((ChickenTotalCost(x) ∧ MilkTotalCost(y) ∧ ApplesTotalCost(z)) → TotalCostExcludingPizzas(n_33))
+RULE-4: The pizza cost equals TotalPayment minus TotalCostExcludingPizzas :: ∀p∀q((TotalPayment(p) ∧ TotalCostExcludingPizzas(q)) → PizzaCost(n_17))
+RULE-5: The number of pizza boxes equals PizzaCost divided by BoxPrice :: ∀a∀b((PizzaCost(a) ∧ BoxPrice(b)) → BoxesOfPizza(n_2))
+
+## INFERENCES
+INF-1: Milk total cost derived from MilkPacks(n_5) and MilkPackUnitPrice(n_3) via RULE-1 using Modus Ponens :: MilkTotalCost(n_15)
+INF-2: Apples total cost derived from AppleCount(n_4) and AppleUnitPrice(n_150) via RULE-2 using Modus Ponens :: ApplesTotalCost(n_6)
+INF-3: Total cost excluding pizzas derived from ChickenTotalCost(n_12), MilkTotalCost(n_15), and ApplesTotalCost(n_6) via RULE-3 using Modus Ponens :: TotalCostExcludingPizzas(n_33)
+INF-4: Pizza cost derived from TotalPayment(n_50) and TotalCostExcludingPizzas(n_33) via RULE-4 using Modus Ponens :: PizzaCost(n_17)
+INF-5: Number of pizza boxes derived from PizzaCost(n_17) and BoxPrice(n_850) via RULE-5 using Modus Ponens :: BoxesOfPizza(n_2)

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Blue bolts required for robe :: BlueBolts(n_2)
+FACT-2: White fiber is half the blue fiber amount :: HalfOf(n_1, n_2)
+FACT-3: Sum relation holds for blue and white to total :: Sum(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If blue bolts amount b and white amount w are such that White is half of b, then WhiteBolts(w) :: ∀w∀b((BlueBolts(b) ∧ HalfOf(w,b)) → WhiteBolts(w))
+RULE-2: The total bolts equal the sum of blue bolts and white bolts :: ∀a∀b∀c((BlueBolts(a) ∧ WhiteBolts(b) ∧ Sum(a,b,c)) → TotalBolts(c))
+
+## INFERENCES
+INF-1: WhiteBolts(n_1) from FACT-1, FACT-2 via RULE-1 by Modus Ponens after Universal Instantiation :: WhiteBolts(n_1)
+INF-2: TotalBolts(n_3) from FACT-1, INF-1, FACT-3 via RULE-2 by Modus Ponens :: TotalBolts(n_3)

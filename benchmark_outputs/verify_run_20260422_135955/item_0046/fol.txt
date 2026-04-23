@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Meredith wrote 5 articles on Monday :: ArticlesWritten(meredith, monday, n_5)
+FACT-2: Meredith wrote 7 articles on Tuesday :: ArticlesWritten(meredith, tuesday, n_7)
+FACT-3: Meredith wrote 14 articles on Wednesday :: ArticlesWritten(meredith, wednesday, n_14)
+FACT-4: Hours per article is 4 :: HoursPerArticle(n_4)
+FACT-5: 5 × 4 = 20 hours for Monday :: Multiply(n_5, n_4, n_20)
+FACT-6: 7 × 4 = 28 hours for Tuesday :: Multiply(n_7, n_4, n_28)
+FACT-7: 14 × 4 = 56 hours for Wednesday :: Multiply(n_14, n_4, n_56)
+FACT-8: 20 + 28 = 48 hours by end of Tuesday :: Add(n_20, n_28, n_48)
+FACT-9: 48 + 56 = 104 hours total :: Add(n_48, n_56, n_104)
+
+## RULES
+RULE-1: ∀p∀d∀n_a∀n_h∀n_total((ArticlesWritten(p,d,n_a) ∧ HoursPerArticle(n_h) ∧ Multiply(n_a, n_h, n_total)) → HoursSpent(p,d,n_total))
+RULE-2: ∀p∀d1∀d2∀d3∀n1∀n2∀n3∀n4∀n5∀n_total((HoursSpent(p,d1,n1) ∧ HoursSpent(p,d2,n2) ∧ HoursSpent(p,d3,n3) ∧ Add(n1,n4,n5) ∧ Add(n5,n3,n_total)) → TotalHours(p,n_total))
+
+## INFERENCES
+INF-1: HoursSpent(meredith, monday, n_20) from FACT-1, FACT-4, FACT-5 by RULE-1 (Multiplication)
+INF-2: HoursSpent(meredith, tuesday, n_28) from FACT-2, FACT-4, FACT-6 by RULE-1 (Multiplication)
+INF-3: HoursSpent(meredith, wednesday, n_56) from FACT-3, FACT-4, FACT-7 by RULE-1 (Multiplication)
+INF-4: TotalHours(meredith, n_104) from INF-1, INF-2, INF-3, FACT-8, FACT-9 by RULE-2

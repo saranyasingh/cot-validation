@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_coins(gretchen, n_110)).
+fof(fact_2, axiom, gold_equals_silver_plus(gretchen, n_30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ((total_coins(X, n_110) & gold_equals_silver_plus(X, n_30)) => ? [N_S, N_G] : (silver_coins(X, N_S) & gold_coins(X, N_G) & plus(N_S, N_G, n_110) & plus(N_S, n_30, N_G)))).
+fof(rule_2, axiom, ! [X, N_S, N_G] : ((silver_coins(X, N_S) & gold_coins(X, N_G) & plus(N_S, N_G, n_110) & plus(N_S, n_30, N_G)) => silver_coins(X, n_40) & gold_coins(X, n_70))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, ? [N_S, N_G] : (silver_coins(gretchen, N_S) & gold_coins(gretchen, N_G) & plus(N_S, N_G, n_110) & plus(N_S, n_30, N_G))).
+
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, silver_coins(gretchen, n_40) & gold_coins(gretchen, n_70)).
+
+% From inf_2 by Conjunction Elimination
+fof(inf_3, axiom, gold_coins(gretchen, n_70)).

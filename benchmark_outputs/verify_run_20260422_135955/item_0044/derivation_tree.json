@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The bag has 250 calories per serving",
+      "formula": "CaloriesPerServing(bag_300g, n_250)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The bag weighs 300 grams",
+      "formula": "BagWeight(bag_300g, n_300)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The bag contains 5 servings",
+      "formula": "ServingsInBag(bag_300g, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The daily calorie target is 2000 calories",
+      "formula": "DailyCalorieTarget(n_2000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "We have consumed 1800 calories so far",
+      "formula": "CaloriesConsumed(n_1800)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the daily target is T and calories consumed is C, then there exists R such that RemainingCaloriesValue(T, C, R)",
+      "formula": "\u2200T\u2200C((DailyCalorieTarget(T) \u2227 CaloriesConsumed(C)) \u2192 \u2203R RemainingCaloriesValue(T, C, R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If RemainingCaloriesValue(T, C, R) and CaloriesPerServing(Bag, P) then there exists S such that RemainingServingsValue(T, C, R, P, S)",
+      "formula": "\u2200T\u2200C\u2200R\u2200P((RemainingCaloriesValue(T, C, R) \u2227 CaloriesPerServing(Bag, P)) \u2192 \u2203S RemainingServingsValue(T, C, R, P, S))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If RemainingServingsValue(T, C, R, P, S) and ApproximatelyEquals(S, n_0_8) then there exists G such that MaximumGramsValue(Bag, G)",
+      "formula": "\u2200T\u2200C\u2200R\u2200P\u2200S((RemainingServingsValue(T, C, R, P, S) \u2227 ApproximatelyEquals(S, n_0_8)) \u2192 \u2203G MaximumGramsValue(Bag, G))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RemainingCaloriesValue(n_2000, n_1800, r_1)",
+      "formula": "from FACT-4, FACT-5 by RULE-1 via Universal Instantiation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingServingsValue(n_2000, n_1800, r_1, n_250, s_1)",
+      "formula": "from INF-1 and FACT-1 by RULE-2 via Universal Instantiation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "MaximumGramsValue(bag_300g, n_60)",
+      "formula": "from INF-2 and ApproximatelyEquals(s_1, n_0_8) by RULE-3 via Arithmetic/Approximation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Maximum grams allowed is 60 grams",
+      "formula": "MaximumGramsValue(bag_300g, n_60)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

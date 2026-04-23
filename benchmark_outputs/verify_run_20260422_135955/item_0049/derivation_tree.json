@@ -1,0 +1,98 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 12 inches in a foot",
+      "formula": "InchesPerFoot(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The wire is originally 4 feet long",
+      "formula": "OriginalLengthFeet(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The length per piece is 6 inches",
+      "formula": "PieceLengthInches(n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If 12 inches per foot and the original length is 4 feet, then the total inches is 48",
+      "formula": "\u2200x((InchesPerFoot(n_12) \u2227 OriginalLengthFeet(n_4)) \u2192 TotalInches(n_48))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds a specific arithmetic result (48) rather than deriving it via a general predicate.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the total inches is 48 and the piece length is 6 inches, then the number of pieces is 8",
+      "formula": "\u2200x((TotalInches(n_48) \u2227 PieceLengthInches(n_6)) \u2192 NumberOfPieces(n_8))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds a specific arithmetic result (8) rather than deriving it via a general predicate.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the number of pieces is 8, then Tracy obtained 8 pieces",
+      "formula": "\u2200x((NumberOfPieces(n_8)) \u2192 TracyObtainedPieces(tracy, n_8))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and FACT-2 via RULE-1 (Modus Ponens)",
+      "formula": "TotalInches(n_48)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and FACT-3 via RULE-2 (Modus Ponens)",
+      "formula": "NumberOfPieces(n_8)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 via RULE-3 (Modus Ponens)",
+      "formula": "TracyObtainedPieces(tracy, n_8)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "embeds a specific arithmetic result (48) rather than deriving it via a general predicate."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "embeds a specific arithmetic result (8) rather than deriving it via a general predicate."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

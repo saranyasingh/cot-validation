@@ -1,0 +1,151 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "MorningFeed(n_15)",
+      "formula": "MorningFeed(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "AfternoonFeed(n_25)",
+      "formula": "AfternoonFeed(n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "TotalChickens(n_20)",
+      "formula": "TotalChickens(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "SumFeeds(n_15, n_25, n_40)",
+      "formula": "SumFeeds(n_15, n_25, n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "CupsPerChickenPerMeal(n_0_75)",
+      "formula": "CupsPerChickenPerMeal(n_0_75)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Times(n_0_75, n_20, n_15)",
+      "formula": "Times(n_0_75, n_20, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "CupsPerChickenPerMeal(n_1_25)",
+      "formula": "CupsPerChickenPerMeal(n_1_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Times(n_1_25, n_20, n_25)",
+      "formula": "Times(n_1_25, n_20, n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Subtract(n_40, n_40, n_0)",
+      "formula": "Subtract(n_40, n_40, n_0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If MorningFeed(m) \u2227 AfternoonFeed(a) \u2227 SumFeeds(m,a,t), then TotalDailyFeed(t)",
+      "formula": "\u2200m\u2200a\u2200t((MorningFeed(m) \u2227 AfternoonFeed(a) \u2227 SumFeeds(m,a,t)) \u2192 TotalDailyFeed(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Times(p,q,r) \u2227 CupsPerChickenPerMeal(p), then MorningTotalFromChickens(r)",
+      "formula": "\u2200p\u2200q\u2200r((Times(p,q,r) \u2227 CupsPerChickenPerMeal(p)) \u2192 MorningTotalFromChickens(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Times(p,q,r) \u2227 CupsPerChickenPerMeal(p), then AfternoonTotalFromChickens(r)",
+      "formula": "\u2200p\u2200q\u2200r((Times(p,q,r) \u2227 CupsPerChickenPerMeal(p)) \u2192 AfternoonTotalFromChickens(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If TotalDailyFeed(T) \u2227 MorningTotalFromChickens(M) \u2227 AfternoonTotalFromChickens(A) \u2227 SumFeeds(M,A,S) \u2227 Subtract(T,S,F), then FinalMealFeed(F)",
+      "formula": "\u2200T\u2200M\u2200A\u2200S\u2200F((TotalDailyFeed(T) \u2227 MorningTotalFromChickens(M) \u2227 AfternoonTotalFromChickens(A) \u2227 SumFeeds(M,A,S) \u2227 Subtract(T,S,F)) \u2192 FinalMealFeed(F))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalDailyFeed(n_40) from MorningFeed(n_15), AfternoonFeed(n_25), and SumFeeds(n_15, n_25, n_40) by RULE-1",
+      "formula": "TotalDailyFeed(n_40)",
+      "premises": [],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "MorningTotalFromChickens(n_15) from Times(n_0_75, n_20, n_15) \u2227 CupsPerChickenPerMeal(n_0_75) by RULE-2",
+      "formula": "MorningTotalFromChickens(n_15)",
+      "premises": [],
+      "inference_rule": "RULE-2",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "AfternoonTotalFromChickens(n_25) from Times(n_1_25, n_20, n_25) \u2227 CupsPerChickenPerMeal(n_1_25) by RULE-3",
+      "formula": "AfternoonTotalFromChickens(n_25)",
+      "premises": [],
+      "inference_rule": "RULE-3",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "FinalMealFeed(n_0) from TotalDailyFeed(n_40) \u2227 MorningTotalFromChickens(n_15) \u2227 AfternoonTotalFromChickens(n_25) \u2227 SumFeeds(n_15, n_25, n_40) \u2227 Subtract(n_40, n_40, n_0) by RULE-4",
+      "formula": "FinalMealFeed(n_0)",
+      "premises": [],
+      "inference_rule": "RULE-4",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought_for_price(kyle, book, n_19_50)).
+
+fof(fact_2, axiom, discount_percent(kyle, book, n_25_percent)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : (discount_percent(X, Y, n_25_percent) => price_factor(X, Y, n_0_75))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, price_factor(kyle, book, n_0_75)).
+
+% From fact_1, inf_1 by Arithmetic Division
+fof(inf_2, axiom, equal_division(n_19_50, n_0_75, n_26_00)).
+
+% From inf_2 by From Division to Original Price
+fof(inf_3, axiom, original_price(kyle, book, n_26_00)).

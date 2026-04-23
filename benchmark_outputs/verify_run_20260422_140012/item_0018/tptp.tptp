@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, teaching_hours_per_week(jill, n_35)).
+fof(fact_2, axiom, teaching_hourly_rate(jill, n_20)).
+fof(fact_3, axiom, coaching_hours_per_week(jill, n_15)).
+fof(fact_4, axiom, coaching_hourly_rate(jill, n_30)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, H, R, W] : ((teaching_hours_per_week(P, H) & teaching_hourly_rate(P, R) & multiply(H, R, W)) => weekly_teaching_earnings(P, W))).
+fof(rule_2, axiom, ! [P, H, R, W] : ((coaching_hours_per_week(P, H) & coaching_hourly_rate(P, R) & multiply(H, R, W)) => weekly_coaching_earnings(P, W))).
+fof(rule_3, axiom, ! [P, W1, W2, W] : ((weekly_teaching_earnings(P, W1) & weekly_coaching_earnings(P, W2) & add(W1, W2, W)) => weekly_total_earnings(P, W))).
+fof(rule_4, axiom, ! [P, W, A] : ((weekly_total_earnings(P, W) & multiply(W, n_50, A)) => annual_salary(P, A))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by ArithmeticMultiplication
+fof(inf_1, axiom, multiply(n_35, n_20, n_700)).
+% From fact_3, fact_4 by ArithmeticMultiplication
+fof(inf_2, axiom, multiply(n_15, n_30, n_450)).
+% From inf_1, inf_2 by ArithmeticAddition
+fof(inf_3, axiom, add(n_700, n_450, n_1150)).
+% From fact_1, fact_2, inf_1 by RULE-1
+fof(inf_4, axiom, weekly_teaching_earnings(jill, n_700)).
+% From fact_3, fact_4, inf_2 by RULE-2
+fof(inf_5, axiom, weekly_coaching_earnings(jill, n_450)).
+% From inf_4, inf_5 by RULE-3
+fof(inf_6, axiom, weekly_total_earnings(jill, n_1150)).
+% From inf_6 by ArithmeticMultiplication
+fof(inf_7, axiom, multiply(n_1150, n_50, n_57500)).
+% From inf_6, inf_7 by RULE-4
+fof(inf_8, axiom, annual_salary(jill, n_57500)).

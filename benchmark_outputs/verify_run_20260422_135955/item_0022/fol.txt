@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Raymond was born 6 years before Samantha :: BornBefore(raymond, samantha, n_6)
+FACT-2: Samantha is 31 years old :: Age(samantha, n_31)
+FACT-3: Raymond had a son at age 23 :: HadSonAtAge(raymond, n_23)
+FACT-4: Subtract(23, 25, n_minus_2) :: Subtract(n_23, n_25, n_minus_2)
+FACT-5: Add(25, 23, 48) :: Add(n_25, n_23, n_48)
+
+## RULES
+RULE-1: If x is born n_6 years before y and y is n_31 years old, then x was born n_25 years ago :: ∀x∀y((BornBefore(x, y, n_6) ∧ Age(y, n_31)) → BornAgo(x, n_25))
+RULE-2: If x had a son at age n_23 and x was born n_25 years ago, then the son was born n_minus_2 years ago :: ∀x((HadSonAtAge(x, n_23) ∧ BornAgo(x, n_25)) → SonBornAgo(x, n_minus_2))
+RULE-3: If x had a son at age b and x was born at a, then the son was born after birth by b :: ∀x∀b∀a((HadSonAtAge(x, b) ∧ BornAgo(x, a)) → SonBornAfterBirth(x, b))
+RULE-4: If x was born at a and the son was born after birth by b and Add(a, b, c), then the son was born c years ago :: ∀x∀a∀b∀c((BornAgo(x, a) ∧ SonBornAfterBirth(x, b) ∧ Add(a, b, c)) → SonBornAgo(x, c))
+RULE-5: If SonBornAgo(x, c) then FinalAnswer(c) :: ∀x∀c(SonBornAgo(x, c) → FinalAnswer(c))
+
+## INFERENCES
+INF-1: BornAgo(raymond, n_25) from FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: BornAgo(raymond, n_25)
+INF-2: SonBornAgo(raymond, n_minus_2) from FACT-3, FACT-4, and INF-1 by RULE-2 (Modus Ponens) :: SonBornAgo(raymond, n_minus_2)
+INF-3: SonBornAfterBirth(raymond, n_23) from FACT-3 and INF-1 by RULE-3 (Universal Instantiation) :: SonBornAfterBirth(raymond, n_23)
+INF-4: SonBornAgo(raymond, n_48) from INF-1, INF-3, and FACT-5 by RULE-4 (Modus Ponens) :: SonBornAgo(raymond, n_48)
+INF-5: FinalAnswer(n_48) from INF-4 by RULE-5 (Modus Ponens) :: FinalAnswer(n_48)

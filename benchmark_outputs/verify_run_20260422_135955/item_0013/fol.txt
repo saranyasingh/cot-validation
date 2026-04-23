@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Carlos's initial investment is 90 dollars :: InitialInvestment(carlos, n_90)
+FACT-2: Carlos's annual revenue is 10.5 dollars :: AnnualRevenue(carlos, n_10_5)
+FACT-3: Carlos's annual expenses are 3 dollars :: AnnualExpenses(carlos, n_3)
+FACT-4: Carlos's net annual profit per year is 7.5 dollars :: NetAnnualProfit(carlos, n_7_5)
+FACT-5: Break-even inequality: 7.5 n ≥ 90 :: BreakEvenInequality(carlos, n_7_5, n_90)
+
+## RULES
+RULE-1: If NetAnnualProfit(C, P) ∧ InitialInvestment(C, I) ∧ BreakEvenInequality(C, P, I) then BreakEvenYear(C, n_12) :: ∀C∀P∀I((NetAnnualProfit(C, P) ∧ InitialInvestment(C, I) ∧ BreakEvenInequality(C, P, I)) → BreakEvenYear(C, n_12))
+RULE-2: If BreakEvenYear(C, n) then StartEarning(C, n) :: ∀C∀n(BreakEvenYear(C, n) → StartEarning(C, n))
+RULE-3: If StartEarning(C, n) then Answer(C, n) :: ∀C∀n(StartEarning(C, n) → Answer(C, n))
+
+## INFERENCES
+INF-1: Carlos's break-even year 12, derived from FACT-4, FACT-1, FACT-5 by RULE-1 (Universal Instantiation, Modus Ponens) :: BreakEvenYear(carlos, n_12)
+INF-2: Carlos starts earning money in year 12, from INF-1 by RULE-2 (Modus Ponens) :: StartEarning(carlos, n_12)
+INF-3: The answer is 12 years, from INF-2 by RULE-3 (Modus Ponens) :: Answer(carlos, n_12)

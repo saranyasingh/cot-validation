@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Josh's house purchase price was 80,000 :: PurchasePrice(josh, n_80000)
+FACT-2: Josh's repairs cost is 50,000 :: RepairsCost(josh, n_50000)
+FACT-3: Value increases by 150 percent :: ValueIncreasePercent(josh, n_150)
+
+## RULES
+RULE-1: If a person has a PurchasePrice p and RepairsCost r, then there exists s such that Sum(p,r,s) and InitialInvestment(person,s) :: ∀x∀p∀r((PurchasePrice(x,p) ∧ RepairsCost(x,r)) → ∃s(Sum(p,r,s) ∧ InitialInvestment(x,s)))
+RULE-2: If a person has ValueIncreasePercent m and PurchasePrice p, then there exists s such that Product(p,m,s) and IncreaseValueAmount(person,s) :: ∀x∀p∀m((ValueIncreasePercent(x,m) ∧ PurchasePrice(x,p)) → ∃s(Product(p,m,s) ∧ IncreaseValueAmount(x,s)))
+RULE-3: If a person has PurchasePrice p and IncreaseValueAmount s and Sum(p,s,v), then NewMarketValue(person,v) :: ∀x∀p∀s∀v((PurchasePrice(x,p) ∧ IncreaseValueAmount(x,s) ∧ Sum(p,s,v)) → NewMarketValue(x,v))
+RULE-4: IfInitialInvestment(x,a) and RepairsCost(x,b) then TotalInvestmentAfterFlip(x,c) where Plus(a,b,c) :: ∀x∀a∀b((InitialInvestment(x,a) ∧ RepairsCost(x,b)) → ∃c(Plus(a,b,c) ∧ TotalInvestmentAfterFlip(x,c)))
+RULE-5: If NewMarketValue x v and PurchasePrice x p, then Profit(x,q) where Subtract(v,p,q) :: ∀x∀v∀p((NewMarketValue(x,v) ∧ PurchasePrice(x,p)) → ∃q(Subtract(v,p,q) ∧ Profit(x,q)))
+
+## INFERENCES
+INF-1: Initial investment of 130000 from PurchasePrice and RepairsCost by ArithmeticComputation :: InitialInvestment(josh, n_130000)
+INF-2: Increase in value amount of 120000 from ValueIncreasePercent and PurchasePrice by ArithmeticComputation :: IncreaseValueAmount(josh, n_120000)
+INF-3: New market value of 200000 from PurchasePrice, IncreaseValueAmount and Sum by ArithmeticComputation :: NewMarketValue(josh, n_200000)
+INF-4: Total investment after flip of 180000 from InitialInvestment and RepairsCost by ArithmeticComputation :: TotalInvestmentAfterFlip(josh, n_180000)
+INF-5: Profit of 120000 from NewMarketValue and PurchasePrice by Subtraction :: Profit(josh, n_120000)

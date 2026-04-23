@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_distance(henry_trip, n_60)).
+fof(fact_2, axiom, stops_count(henry_trip, n_2)).
+fof(fact_3, axiom, first_stop_location(henry_trip, n_20)).
+fof(fact_4, axiom, second_stop_before_end(henry_trip, n_15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, D] : (distance_between_stops(T, D) => answer_distance(T, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_4 by Arithmetic Computation
+fof(inf_1, axiom, stop_2_location(henry_trip, n_45)).
+% From inf_1, fact_3 by Arithmetic Computation
+fof(inf_2, axiom, distance_between_stops(henry_trip, n_25)).
+% From inf_2, rule_1 by Modus Ponens
+fof(inf_3, axiom, answer_distance(henry_trip, n_25)).

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: FirstGroupTotal(n_3) :: 3 DVDs in first group
+FACT-2: SecondGroupTotal(n_6) :: 6 DVDs in second group
+FACT-3: ThirdGroupTotal(n_0) :: 0 DVDs in third group
+FACT-4: Add(n_3, n_6, n_0, n_9) :: 3 + 6 + 0 = 9
+
+## RULES
+RULE-1: ∀a∀b∀c∀d((FirstGroupTotal(a) ∧ SecondGroupTotal(b) ∧ ThirdGroupTotal(c) ∧ Add(a,b,c,d)) → FinalTotal(d))
+
+## INFERENCES
+INF-1: FinalTotal(n_9) :: from FACT-1, FACT-2, FACT-3, FACT-4 and RULE-1 by Modus Ponens

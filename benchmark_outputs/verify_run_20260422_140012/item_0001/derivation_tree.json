@@ -1,0 +1,121 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "EggsLaidPerDay(janets_ducks, n_16)",
+      "formula": "Janet's ducks lay 16 eggs per day",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "EggsEatenForBreakfast(janet, n_3)",
+      "formula": "Janet eats 3 eggs for breakfast",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "EggsUsedForBaking(janet, n_4)",
+      "formula": "Janet uses 4 eggs for baking muffins",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "PricePerEggAtMarket(n_2)",
+      "formula": "Price per egg at market is 2 dollars",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200d\u2200p\u2200e\u2200k\u2200r1 ((EggsLaidPerDay(d, e) \u2227 EggsEatenForBreakfast(p, k) \u2227 Subtract(e, k, r1)) \u2192 RemainingAfterBreakfast(p, r1))",
+      "formula": "If e eggs are laid and k eggs are eaten, then r1 = e \u2212 k remain after breakfast",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200e\u2200m\u2200r2 ((RemainingAfterBreakfast(p, e) \u2227 EggsUsedForBaking(p, m) \u2227 Subtract(e, m, r2)) \u2192 RemainingAfterMuffins(p, r2))",
+      "formula": "If remaining after breakfast is e and m eggs are used for baking, then r2 = e \u2212 m remain after muffins",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200r2\u2200pp\u2200r3 ((RemainingAfterMuffins(p, r2) \u2227 PricePerEggAtMarket(pp) \u2227 Product(r2, pp, r3)) \u2192 EarningsTotal(p, r3))",
+      "formula": "If r2 eggs remain and price per egg is pp and r3 = r2 * pp, then earnings total is r3",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RemainingAfterBreakfast(janet, n_13)",
+      "formula": "from FACT-1, FACT-2 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingAfterMuffins(janet, n_9)",
+      "formula": "from INF-1, FACT-3 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Product(n_9, n_2, n_18)",
+      "formula": "from INF-2, FACT-4 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "EarningsTotal(janet, n_18)",
+      "formula": "from INF-3, INF-2, FACT-4 and RULE-3 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

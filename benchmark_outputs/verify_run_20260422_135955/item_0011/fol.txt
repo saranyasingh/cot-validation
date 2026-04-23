@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: FirstMonthDownloads(n_60) :: FirstMonthDownloads(n_60)
+
+FACT-2: Multiplier(n_3) :: Multiplier(n_3)
+
+FACT-3: Percent(n_30) :: Percent(n_30)
+
+## RULES
+RULE-1: ∀a∀b∀c((Product(a,b,c) ∧ FirstMonthDownloads(a) ∧ Multiplier(b)) → SecondMonthDownloads(c)) :: ∀a∀b∀c((Product(a,b,c) ∧ FirstMonthDownloads(a) ∧ Multiplier(b)) → SecondMonthDownloads(c))
+
+RULE-2: ∀a∀b∀c((Subtract(a,b,c)) → ThirdMonthDownloads(c)) :: ∀a∀b∀c((Subtract(a,b,c)) → ThirdMonthDownloads(c))
+
+## INFERENCES
+# INF-1: 60 × 3 = 180, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_60,n_3,n_180)
+# INF-2: Second month downloads equal 180, from INF-1, FACT-1, and FACT-2 by RULE-1 :: SecondMonthDownloads(n_180)
+# INF-3: 30% of 180 is 54, from INF-2 and FACT-3 by Arithmetic Computation :: PercentOf(n_30,n_180,n_54)
+# INF-4: 180 - 54 = 126, from INF-3 by Arithmetic Computation :: Subtract(n_180,n_54,n_126)
+# INF-5: Third month downloads equal 126, from INF-4 by RULE-2 :: ThirdMonthDownloads(n_126)
+# INF-6: 60 + 180 = 240, from FACT-1 by Arithmetic Computation :: SumTwo(n_60,n_180,n_240)
+# INF-7: 240 + 126 = 366, from INF-6 and INF-5 by Arithmetic Computation :: SumTwo(n_240,n_126,n_366)
+# INF-8: TotalDownloads(n_366), from INF-7 by Arithmetic Computation :: TotalDownloads(n_366)

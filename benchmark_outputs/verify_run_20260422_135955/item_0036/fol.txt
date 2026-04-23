@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Played(mike, ping_pong) :: Played(mike, ping_pong)
+FACT-2: TotalMinutes(mike, t_40) :: TotalMinutes(mike, t_40)
+FACT-3: FirstHalfScore(mike, n_4) :: FirstHalfScore(mike, n_4)
+
+## RULES
+RULE-1: ∀x∀a∀b∀c((FirstHalfScore(x,a) ∧ SecondHalfTotalPoints(x,b) ∧ Sum(a,b,c)) → TotalPoints(x,c)) :: ∀x∀a∀b∀c((FirstHalfScore(x,a) ∧ SecondHalfTotalPoints(x,b) ∧ Sum(a,b,c)) → TotalPoints(x,c))
+RULE-2: ∀x∀s((TotalPoints(x,s)) → FinalScore(x,s)) :: ∀x∀s((TotalPoints(x,s)) → FinalScore(x,s))
+
+## INFERENCES
+INF-1: Sum(n_4, n_24, n_28) :: Sum(n_4, n_24, n_28) from FACT-3 by ArithmeticComputation
+INF-2: TotalPoints(mike, n_28) :: TotalPoints(mike, n_28) from FACT-3, INF-1, RULE-1 by Modus Ponens
+INF-3: FinalScore(mike, n_28) :: FinalScore(mike, n_28) from INF-2, RULE-2 by Modus Ponens

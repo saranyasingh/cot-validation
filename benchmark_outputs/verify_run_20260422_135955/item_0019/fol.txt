@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: OmeletPerDay(claire, n_3) :: OmeletPerDay(claire, n_3)
+FACT-2: DaysInWeek(n_7) :: DaysInWeek(n_7)
+FACT-3: WeeksPerMonthFactor(n_4_345) :: WeeksPerMonthFactor(n_4_345)
+FACT-4: WeeksPerYearFactor(n_52) :: WeeksPerYearFactor(n_52)
+FACT-5: DozenSize(n_12) :: DozenSize(n_12)
+FACT-6: TimeFrame(n_4_weeks) :: TimeFrame(n_4_weeks)
+FACT-7: Multiply(n_3, n_7, n_21) :: Multiply(n_3, n_7, n_21)
+FACT-8: Multiply(n_21, n_4_345, n_90_895) :: Multiply(n_21, n_4_345, n_90_895)
+FACT-9: Multiply(n_90_895, n_52, n_4716_34) :: Multiply(n_90_895, n_52, n_4716_34)
+FACT-10: Divide(n_4716_34, n_12, n_393_03) :: Divide(n_4716_34, n_12, n_393_03)
+
+## RULES
+RULE-1: If someone has an omelet-per-day amount and there are a certain number of days in a week, then their weekly eggs equal the product of those numbers :: ∀p∀a∀d∀w((OmeletPerDay(p, a) ∧ DaysInWeek(d) ∧ Multiply(a, d, w)) → WeeklyEggs(p, w))
+RULE-2: If weekly eggs exist and there is a monthly-factor for weeks, and their product yields monthly eggs, then MonthlyEggs hold :: ∀p∀w∀f∀m((WeeklyEggs(p, w) ∧ WeeksPerMonthFactor(f) ∧ Multiply(w, f, m)) → MonthlyEggs(p, m))
+RULE-3: If monthly eggs exist and there is a yearly-factor for weeks, and their product yields yearly eggs, then YearlyEggs hold :: ∀p∀m∀f∀y((MonthlyEggs(p, m) ∧ WeeksPerYearFactor(f) ∧ Multiply(m, f, y)) → YearlyEggs(p, y))
+RULE-4: If yearly eggs exist and there is a dozen-size, and division yields dozens, then DozensYear holds :: ∀p∀y∀d∀z((YearlyEggs(p, y) ∧ DozenSize(d) ∧ Divide(y, d, z)) → DozensYear(p, z))
+RULE-5: If dozens-in-time-frame exist and there is a TimeFrame, then DozensInTimeFrame holds :: ∀p∀z∀t((DozensYear(p, z) ∧ TimeFrame(t)) → DozensInTimeFrame(p, z, t))
+
+## INFERENCES
+INF-1: WeeklyEggs(claire, n_21) from FACT-1, FACT-2, FACT-7 by RULE-1 (Modus Ponens)
+INF-2: MonthlyEggs(claire, n_90_895) from INF-1, FACT-3, FACT-8 by RULE-2 (Modus Ponens)
+INF-3: YearlyEggs(claire, n_4716_34) from INF-2, FACT-4, FACT-9 by RULE-3 (Modus Ponens)
+INF-4: DozensYear(claire, n_393_03) from INF-3, FACT-5, FACT-10 by RULE-4 (Modus Ponens)
+INF-5: DozensInTimeFrame(claire, n_393_03, n_4_weeks) from INF-4, FACT-6 by RULE-5 (Modus Ponens)

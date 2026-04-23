@@ -1,0 +1,33 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought_dozens(toula, donuts, n_3)).
+fof(fact_2, axiom, price_per_dozen(donuts, n_68)).
+fof(fact_3, axiom, product(n_3, n_68, n_204)).
+fof(fact_4, axiom, bought_dozens(toula, cupcakes, n_2)).
+fof(fact_5, axiom, price_per_dozen(cupcakes, n_80)).
+fof(fact_6, axiom, product(n_2, n_80, n_160)).
+fof(fact_7, axiom, bought_dozens(toula, cheesecakes, n_6)).
+fof(fact_8, axiom, price_per_dozen(cheesecakes, n_55)).
+fof(fact_9, axiom, product(n_6, n_55, n_330)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, I, D, B, R] : ((bought_dozens(P, I, D) & price_per_dozen(I, B) & product(D, B, R)) => cost_for_item(P, I, R))).
+
+fof(rule_2, axiom, ! [P, D1, D2, D3] : ((cost_for_item(P, donuts, D1) & cost_for_item(P, cupcakes, D2) & cost_for_item(P, cheesecakes, D3)) => ? [S] : sum_three(D1, D2, D3, S))).
+
+fof(rule_3, axiom, ! [P, D1, D2, D3, S] : ((cost_for_item(P, donuts, D1) & cost_for_item(P, cupcakes, D2) & cost_for_item(P, cheesecakes, D3) & sum_three(D1, D2, D3, S)) => total_spent(P, S))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3 by RULE-1 (Multiplication)
+fof(inf_1, axiom, cost_for_item(toula, donuts, n_204)).
+
+% From FACT-4, FACT-5, FACT-6 by RULE-1 (Multiplication)
+fof(inf_2, axiom, cost_for_item(toula, cupcakes, n_160)).
+
+% From FACT-7, FACT-8, FACT-9 by RULE-1 (Multiplication)
+fof(inf_3, axiom, cost_for_item(toula, cheesecakes, n_330)).
+
+% From inf_1, inf_2, inf_3 by RULE-2 (Arithmetic)
+fof(inf_4, axiom, sum_three(n_204, n_160, n_330, n_794)).
+
+% From inf_1, inf_2, inf_3, inf_4 by RULE-3 (Arithmetic)
+fof(inf_5, axiom, total_spent(toula, n_794)).

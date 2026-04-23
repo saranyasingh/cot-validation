@@ -1,0 +1,91 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Start time is 1:00 PM",
+      "formula": "StartTime(n_13)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "End time is 5:00 PM",
+      "formula": "EndTime(n_17)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Rate of melting is 2 cm/hour",
+      "formula": "RateOfMelting(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Duration is 4 hours",
+      "formula": "Duration(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Rate \u00d7 Time equals 8 cm",
+      "formula": "Product(n_2, n_4, n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If rate r and duration d and product m = r \u00d7 d then TotalMelt(m)",
+      "formula": "\u2200r\u2200d\u2200m((RateOfMelting(r) \u2227 Duration(d) \u2227 Product(r,d,m)) \u2192 TotalMelt(m))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule encodes m = r \u00d7 d inside the rule; arithmetic should be abstracted via a separate predicate rather than computed directly in the rule.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalMelt(m) then Answer(m)",
+      "formula": "\u2200m((TotalMelt(m)) \u2192 Answer(m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Total melted is 8 cm from RateOfMelting(n_2), Duration(n_4), and Product(n_2, n_4, n_8) by RULE-1 (Modus Ponens)",
+      "formula": "TotalMelt(n_8)",
+      "premises": [],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The candle will be 8 cm shorter, from TotalMelt(n_8) by RULE-2 (Modus Ponens)",
+      "formula": "Answer(n_8)",
+      "premises": [],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule encodes m = r \u00d7 d inside the rule; arithmetic should be abstracted via a separate predicate rather than computed directly in the rule."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

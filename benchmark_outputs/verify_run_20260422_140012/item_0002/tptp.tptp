@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, blue_bolts(n_2)).
+
+fof(fact_2, axiom, half_of(n_1, n_2)).
+
+fof(fact_3, axiom, sum(n_2, n_1, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [W] : ! [B] : ((blue_bolts(B) & half_of(W,B)) => white_bolts(W))).
+
+fof(rule_2, axiom, ! [A] : ! [B] : ! [C] : ((blue_bolts(A) & white_bolts(B) & sum(A,B,C)) => total_bolts(C))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 via RULE-1 by Modus Ponens
+fof(inf_1, axiom, white_bolts(n_1)).
+
+% From FACT-1, INF-1, FACT-3 via RULE-2 by Modus Ponens
+fof(inf_2, axiom, total_bolts(n_3)).

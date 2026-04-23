@@ -1,0 +1,73 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Initial cost to plant the tree is $90",
+      "formula": "InitialCost(n_90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Annual revenue from selling lemons is $10.50",
+      "formula": "AnnualRevenue(n_10_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Annual cost to water and feed the tree is $3",
+      "formula": "AnnualExpense(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Profit equals revenue minus expenses",
+      "formula": "\u2200R\u2200E\u2200P((AnnualRevenue(R) \u2227 AnnualExpense(E) \u2227 P = R - E) \u2192 Profit(P))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Years to recoup equals initial cost divided by profit",
+      "formula": "\u2200I\u2200N\u2200Y((InitialCost(I) \u2227 Profit(N) \u2227 Y = I / N) \u2192 YearsToRecoup(Y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Annual profit computed as 10.50 minus 3 equals 7.50 from FACT-2 and FACT-3 by Arithmetic Computation",
+      "formula": "Profit(n_7_50)",
+      "premises": [
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Number of years needed to recoup = 90 / 7.50 = 12 from FACT-1 and INF-1 by Modus Ponens using RULE-2",
+      "formula": "YearsToRecoup(n_12)",
+      "premises": [
+        "FACT-1",
+        "INF-1"
+      ],
+      "inference_rule": "Modus Ponens using RULE-2",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

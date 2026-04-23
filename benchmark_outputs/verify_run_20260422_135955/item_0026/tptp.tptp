@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, chicken_total_cost(n_12)).
+fof(fact_2, axiom, milk_packs(n_5)).
+fof(fact_3, axiom, milk_pack_unit_price(n_3)).
+fof(fact_4, axiom, apple_count(n_4)).
+fof(fact_5, axiom, apple_unit_price(n_150)).
+fof(fact_6, axiom, total_payment(n_50)).
+fof(fact_7, axiom, box_price(n_850)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ((milk_packs(X) & milk_pack_unit_price(Y)) => milk_total_cost(n_15))).
+fof(rule_2, axiom, ! [X] : ! [Y] : ((apple_count(X) & apple_unit_price(Y)) => apples_total_cost(n_6))).
+fof(rule_3, axiom, ! [X] : ! [Y] : ! [Z] : ((chicken_total_cost(X) & milk_total_cost(Y) & apples_total_cost(Z)) => total_cost_excluding_pizzas(n_33))).
+fof(rule_4, axiom, ! [P] : ! [Q] : ((total_payment(P) & total_cost_excluding_pizzas(Q)) => pizza_cost(n_17))).
+fof(rule_5, axiom, ! [A] : ! [B] : ((pizza_cost(A) & box_price(B)) => boxes_of_pizza(n_2))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_1, axiom, milk_total_cost(n_15)).
+% From fact_4, rule_2 by Modus Ponens
+fof(inf_2, axiom, apples_total_cost(n_6)).
+% From fact_1, rule_3 by Modus Ponens
+fof(inf_3, axiom, total_cost_excluding_pizzas(n_33)).
+% From fact_6, rule_4 by Modus Ponens
+fof(inf_4, axiom, pizza_cost(n_17)).
+% From fact_7, rule_5 by Modus Ponens
+fof(inf_5, axiom, boxes_of_pizza(n_2)).

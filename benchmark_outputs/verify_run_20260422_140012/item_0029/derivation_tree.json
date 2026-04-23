@@ -1,0 +1,86 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Henry's total distance is 60 miles",
+      "formula": "TotalDistance(henry, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Henry first stopped after traveling 20 miles",
+      "formula": "FirstStopDistance(henry, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Henry's second stop was 15 miles before the end",
+      "formula": "SecondStopBeforeEnd(henry, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person h has TotalDistance(h,E) and SecondStopBeforeEnd(h,D) and Subtract(E,D,R) then SecondStopDistance(h,R)",
+      "formula": "\u2200h\u2200E\u2200D\u2200R((TotalDistance(h,E) \u2227 SecondStopBeforeEnd(h,D) \u2227 Subtract(E,D,R)) \u2192 SecondStopDistance(h,R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person h has SecondStopDistance(h,S) and FirstStopDistance(h,F) and Subtract(S,F,G) then DistanceBetweenStops(h,G)",
+      "formula": "\u2200h\u2200S\u2200F\u2200G((SecondStopDistance(h,S) \u2227 FirstStopDistance(h,F) \u2227 Subtract(S,F,G)) \u2192 DistanceBetweenStops(h,G))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 minus 15 equals 45, from FACT-1 and FACT-3 by ArithmeticComputation",
+      "formula": "Subtract(n_60, n_15, n_45)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract(n_45, n_20, n_25) from INF-2 and FACT-2 by ArithmeticComputation",
+      "formula": "Subtract(n_45, n_20, n_25)",
+      "premises": [
+        "INF-2",
+        "FACT-2"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

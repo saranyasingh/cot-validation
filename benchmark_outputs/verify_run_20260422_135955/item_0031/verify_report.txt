@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+RULE-1: IMPLAUSIBLE — embeds arithmetic computation (ax = (m*S)/(m+n)) inside the rule rather than using separate ground predicates
+RULE-2: IMPLAUSIBLE — embeds arithmetic operation Add(a, n_10) inside the rule rather than using a separate arithmetic predicate

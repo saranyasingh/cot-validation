@@ -1,0 +1,75 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TimeSpan(one_pm, five_pm, n_4)",
+      "formula": "TimeSpan(one_pm, five_pm, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem specifies a 1:00 PM to 5:00 PM span, i.e., 4 hours (n_4).",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "MeltingRate(n_2)",
+      "formula": "MeltingRate(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The melting rate is 2 cm per hour (n_2).",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Mul(n_4, n_2, n_8)",
+      "formula": "Mul(n_4, n_2, n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "4 hours \u00d7 2 cm/hour = 8 cm melted (Mul(n_4, n_2, n_8)).",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "OriginalLength(l_cm)",
+      "formula": "OriginalLength(l_cm)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem implies there is an original candle length (OriginalLength(l_cm)).",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If there is a time span from s to e with H hours, and a melting rate of R, and M = H \u00d7 R, then MeltedAmountOverSpan(s,e,M)",
+      "formula": "\u2200s\u2200e\u2200H\u2200R\u2200M((TimeSpan(s,e,H) \u2227 MeltingRate(R) \u2227 Mul(H,R,M)) \u2192 MeltedAmountOverSpan(s,e,M))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes M = H \u00d7 R leading to MeltedAmountOverSpan(s,e,M).",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If OriginalLength(L) and MeltedAmountOverSpan(one_pm, five_pm, M), then ShorterBy(L,M)",
+      "formula": "\u2200L\u2200M((OriginalLength(L) \u2227 MeltedAmountOverSpan(one_pm, five_pm, M)) \u2192 ShorterBy(L,M))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes that if OriginalLength(L) and MeltedAmountOverSpan(one_pm, five_pm, M), then ShorterBy(L,M).",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "MeltedAmountOverSpan(one_pm, five_pm, n_8)",
+      "formula": "MeltedAmountOverSpan(one_pm, five_pm, n_8) from FACT-1, FACT-2, FACT-3 by RULE-1 (Universal Instantiation) and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "ShorterBy(l_cm, n_8)",
+      "formula": "ShorterBy(l_cm, n_8) from FACT-4 and INF-1 by RULE-2 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

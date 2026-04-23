@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Distance(first_segment, 180) :: Distance(first_segment, 180)
+FACT-2: Time(first_segment, 3) :: Time(first_segment, 3)
+FACT-3: Speed(first_segment, 60) :: Speed(first_segment, 60)
+FACT-4: Distance(second_segment, 0) :: Distance(second_segment, 0)
+FACT-5: Time(second_segment, 2) :: Time(second_segment, 2)
+FACT-6: Distance(third_segment, 15) :: Distance(third_segment, 15)
+FACT-7: Time(third_segment, 0.5) :: Time(third_segment, 0.5)
+FACT-8: Speed(third_segment, 30) :: Speed(third_segment, 30)
+FACT-9: Distance(fourth_segment, 80) :: Distance(fourth_segment, 80)
+FACT-10: Time(fourth_segment, 1) :: Time(fourth_segment, 1)
+FACT-11: Speed(fourth_segment, 80) :: Speed(fourth_segment, 80)
+FACT-12: SumDistances(180, 0, 15, 80, 275) :: SumDistances(180, 0, 15, 80, 275)
+FACT-13: StartedAtHome(john) :: StartedAtHome(john)
+
+## RULES
+RULE-1: ∀d1∀d2∀d3∀d4∀t((Distance(first_segment, d1) ∧ Distance(second_segment, d2) ∧ Distance(third_segment, d3) ∧ Distance(fourth_segment, d4) ∧ SumDistances(d1, d2, d3, d4, t)) → TotalDistance(t))
+RULE-2: ∀x∀t((StartedAtHome(x) ∧ TotalDistance(t)) → DistanceFromHome(x, t))
+
+## INFERENCES
+INF-1: TotalDistance(275) :: From FACT-12 and RULE-1 by Modus Ponens
+INF-2: DistanceFromHome(john, 275) :: From FACT-13, INF-1, RULE-2 by Modus Ponens

@@ -1,0 +1,141 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "DucksLayPerDay(janet, n_16)",
+      "formula": "DucksLayPerDay(janet, n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "EggsEatenForBreakfast(janet, n_3)",
+      "formula": "EggsEatenForBreakfast(janet, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "EggsUsedForMuffins(janet, n_4)",
+      "formula": "EggsUsedForMuffins(janet, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "PricePerEgg(n_2)",
+      "formula": "PricePerEgg(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200x\u2200y\u2200z((DucksLayPerDay(p, x) \u2227 EggsEatenForBreakfast(p, y) \u2227 Subtract(x, y, z)) \u2192 RemainingAfterBreakfast(p, z))",
+      "formula": "\u2200p\u2200x\u2200y\u2200z((DucksLayPerDay(p, x) \u2227 EggsEatenForBreakfast(p, y) \u2227 Subtract(x, y, z)) \u2192 RemainingAfterBreakfast(p, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200x\u2200y\u2200z((RemainingAfterBreakfast(p, x) \u2227 EggsUsedForMuffins(p, y) \u2227 Subtract(x, y, z)) \u2192 RemainingAfterMuffins(p, z))",
+      "formula": "\u2200p\u2200x\u2200y\u2200z((RemainingAfterBreakfast(p, x) \u2227 EggsUsedForMuffins(p, y) \u2227 Subtract(x, y, z)) \u2192 RemainingAfterMuffins(p, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200x\u2200y\u2200z((RemainingAfterMuffins(p, x) \u2227 PricePerEgg(y) \u2227 Multiply(x, y, z)) \u2192 DailyRevenue(p, z))",
+      "formula": "\u2200p\u2200x\u2200y\u2200z((RemainingAfterMuffins(p, x) \u2227 PricePerEgg(y) \u2227 Multiply(x, y, z)) \u2192 DailyRevenue(p, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Subtract(n_16, n_3, n_13)",
+      "formula": "16 - 3 = 13, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingAfterBreakfast(janet, n_13)",
+      "formula": "from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract(n_13, n_4, n_9)",
+      "formula": "13 - 4 = 9, from INF-2 and FACT-3 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "RemainingAfterMuffins(janet, n_9)",
+      "formula": "from INF-2, INF-3, FACT-3 by Modus Ponens using RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Multiply(n_9, n_2, n_18)",
+      "formula": "9 * 2 = 18, from INF-4 and FACT-4 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "DailyRevenue(janet, n_18)",
+      "formula": "from INF-4, INF-5, and RULE-3 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

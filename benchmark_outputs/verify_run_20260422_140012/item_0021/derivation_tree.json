@@ -1,0 +1,248 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "10 liters orange drink",
+      "formula": "OrangeDrink(orange_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "orange_10 is two_thirds_water",
+      "formula": "WaterFraction(orange_10, two_thirds)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "15 liters pineapple drink",
+      "formula": "PineappleDrink(pineapple_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "pineapple_15 is three_fifths_water",
+      "formula": "WaterFraction(pineapple_15, three_fifths)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "spill orange_10 by one_liter",
+      "formula": "Spilled(orange_10, one)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "remaining_orange_after_spill = 9_liters",
+      "formula": "RemainingOrange(orange_9)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "remaining_orange_contains_water = twenty_over_three",
+      "formula": "WaterInOrange(orange_9, twenty_over_three)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "remaining orange water would be 6 liters, not 20/3",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "pineapple_after_pour_has_only_water",
+      "formula": "PineappleWaterOnly(pineapple_15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "pineapple is not pure water (fraction 3/5), so not \"has_only_water\"",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "total_after_mix = twenty_four_liters",
+      "formula": "TotalVolume(remaining_orange_and_pineapple, twenty_four)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "water_in_mixture_after_mix",
+      "formula": "WaterInMixture(remaining_orange_and_pineapple, twenty_over_three)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "final_answer",
+      "formula": "FinalAnswer(six_point_six_seven)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "no numeric final value provided",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If an object is an orange drink with a known volume and a known water fraction, then its water amount is that volume times that fraction",
+      "formula": "\u2200o \u2200V \u2200F ((OrangeDrink(o) \u2227 Volume(o,V) \u2227 WaterFraction(o,F)) \u2192 WaterLiters(o, product(V,F)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a pineapple drink has a water fraction, then the water amount in it is volume times that fraction",
+      "formula": "\u2200p \u2200V \u2200F ((PineappleDrink(p) \u2227 Volume(p,V) \u2227 WaterFraction(p,F)) \u2192 WaterLiters(p, product(V,F)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If one liter spills from an orange drink, the remaining orange volume is reduced by one",
+      "formula": "\u2200o \u2200L ((Spilled(o, one) \u2227 RemainingOrange(o, L)) \u2192 L = PreviousVolume(o) \u2212 1)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If two portions are combined, the total volume is the sum of the portions",
+      "formula": "\u2200a \u2200b \u2200A \u2200B ((Remaining(a) \u2227 Pineapple(b)) \u2192 TotalVolume(Combined(a,b), SumVolume(A,B)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If the orange drink is pure water and the pineapple drink is pure water, then the mixture is pure water",
+      "formula": "\u2200o \u2200p ((WaterOnly(o) \u2227 WaterOnly(p)) \u2192 WaterOnly(Mixed(o,p)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If the total water in a mixture equals the water amount computed from its components, then the final amount of water is that value",
+      "formula": "\u2200M \u2200W ((WaterInMixture(M,W)) \u2192 WaterAmount(M,W))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-7": {
+      "type": "rule",
+      "gloss": "The numerical facts in the premises are admitted as given, to be used by arithmetic-based inferences",
+      "formula": "True",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and RULE-1 by Arithmetic Computation (water in orange)",
+      "formula": "WaterLiters(orange_10, twenty_over_three)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Arithmetic Computation (water in orange)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From FACT-3 and RULE-2 by Arithmetic Computation (water in pineapple)",
+      "formula": "WaterLiters(pineapple_15, nine)",
+      "premises": [
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Arithmetic Computation (water in pineapple)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From FACT-5 and RULE-3 by Spill Reduction (orange)",
+      "formula": "RemainingOrange(orange_9)",
+      "premises": [
+        "FACT-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Spill Reduction (orange)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 and FACT-1 and FACT-3 via RULE-4 (mixing remaining orange with pineapple)",
+      "formula": "TotalVolume(remaining_orange_and_pineapple, twenty_four)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "From FACT-8 and RULE-5 (assumption used in reasoning)",
+      "formula": "WaterOnly(Mixture)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "From INF-1, INF-2, and INF-5 via RULE-6 (water in mixture)",
+      "formula": "WaterAmount(remaining_orange_and_pineapple, twenty_over_three)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "From INF-6 and FACT-11 via RULE-7 (conclude final numeric)",
+      "formula": "FinalAnswer(six_point_six_seven)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "remaining orange water would be 6 liters, not 20/3"
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "pineapple is not pure water (fraction 3/5), so not \"has_only_water\""
+    },
+    {
+      "node": "FACT-11",
+      "stage": "verify",
+      "message": "no numeric final value provided"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

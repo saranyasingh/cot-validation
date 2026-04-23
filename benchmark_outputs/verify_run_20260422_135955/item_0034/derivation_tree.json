@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Gretchen has a total of 110 coins",
+      "formula": "TotalCoins(gretchen, n_110)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 30 more gold coins than silver coins",
+      "formula": "GoldEqualsSilverPlus(gretchen, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has a total coin count of 110 and the gold coins equal the silver coins plus 30, then there exist silver and gold coin counts that satisfy the two sum equations",
+      "formula": "\u2200x((TotalCoins(x, n_110) \u2227 GoldEqualsSilverPlus(x, n_30)) \u2192 \u2203n_S \u2203n_G(SilverCoins(x, n_S) \u2227 GoldCoins(x, n_G) \u2227 Plus(n_S, n_G, n_110) \u2227 Plus(n_S, n_30, n_G)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If silver and gold counts satisfy G+S=110 and G=S+30, then silver is 40 and gold is 70",
+      "formula": "\u2200x\u2200n_S\u2200n_G((SilverCoins(x, n_S) \u2227 GoldCoins(x, n_G) \u2227 Plus(n_S, n_G, n_110) \u2227 Plus(n_S, n_30, n_G)) \u2192 SilverCoins(x, n_40) \u2227 GoldCoins(x, n_70))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Gretchen's silver and gold counts exist from TOTAL and relation by RULE-1",
+      "formula": "\u2203n_S \u2203n_G (SilverCoins(gretchen, n_S) \u2227 GoldCoins(gretchen, n_G) \u2227 Plus(n_S, n_G, n_110) \u2227 Plus(n_S, n_30, n_G))",
+      "premises": [],
+      "inference_rule": "RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-2 by Modus Ponens",
+      "formula": "SilverCoins(gretchen, n_40) \u2227 GoldCoins(gretchen, n_70)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 by Conjunction Elimination",
+      "formula": "GoldCoins(gretchen, n_70)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Conjunction Elimination",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

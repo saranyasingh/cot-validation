@@ -1,0 +1,141 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Claire makes a 3-egg omelet each morning",
+      "formula": "OmeletEggsPerDay(claire, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 7 days in a week",
+      "formula": "DaysInWeek(n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 4 weeks in the period",
+      "formula": "Weeks(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "There are 12 eggs per dozen",
+      "formula": "DozenSize(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone makes a 3-egg omelet each morning and there are 7 days in a week and Product(3,7,z), then EggsPerWeek(someone,z)",
+      "formula": "\u2200p\u2200d\u2200y\u2200z((OmeletEggsPerDay(p,d) \u2227 DaysInWeek(y) \u2227 Product(d,y,z)) \u2192 EggsPerWeek(p,z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If EggsPerWeek(p,w) and Weeks(k) and Product(w,k,z), then TotalEggs(p,z)",
+      "formula": "\u2200p\u2200w\u2200k\u2200z((EggsPerWeek(p,w) \u2227 Weeks(k) \u2227 Product(w,k,z)) \u2192 TotalEggs(p,z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If TotalEggs(p,t) and Division(t, n_12, d), then Dozens(p,d)",
+      "formula": "\u2200p\u2200t\u2200d((TotalEggs(p,t) \u2227 Division(t, n_12, d)) \u2192 Dozens(p,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Product(n_3, n_7, n_21)",
+      "formula": "Arithmetic Computation from FACT-1 and FACT-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Product(n_21, n_4, n_84)",
+      "formula": "Arithmetic Computation from INF-1 and FACT-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "EggsPerWeek(claire, n_21)",
+      "formula": "Modus Ponens from FACT-1, FACT-2, INF-1 using RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalEggs(claire, n_84)",
+      "formula": "Modus Ponens from INF-3, FACT-3, INF-2 using RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Division(n_84, n_12, n_7)",
+      "formula": "Arithmetic Computation from INF-4 and FACT-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Dozens(claire, n_7)",
+      "formula": "Modus Ponens from INF-4 and INF-5 using RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

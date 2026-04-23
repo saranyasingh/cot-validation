@@ -1,0 +1,90 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Played(mike, ping_pong)",
+      "formula": "Played(mike, ping_pong)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Mike plays ping pong.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "TotalMinutes(mike, t_40)",
+      "formula": "TotalMinutes(mike, t_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: total duration is 40 minutes.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "FirstHalfScore(mike, n_4)",
+      "formula": "FirstHalfScore(mike, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: first-half score is 4.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200a\u2200b\u2200c((FirstHalfScore(x,a) \u2227 SecondHalfTotalPoints(x,b) \u2227 Sum(a,b,c)) \u2192 TotalPoints(x,c))",
+      "formula": "\u2200x\u2200a\u2200b\u2200c((FirstHalfScore(x,a) \u2227 SecondHalfTotalPoints(x,b) \u2227 Sum(a,b,c)) \u2192 TotalPoints(x,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes a valid additive relation using FirstHalfScore, SecondHalfTotalPoints, and Sum to derive TotalPoints.",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200s((TotalPoints(x,s)) \u2192 FinalScore(x,s))",
+      "formula": "\u2200x\u2200s((TotalPoints(x,s)) \u2192 FinalScore(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "If TotalPoints holds, then FinalScore holds; a reasonable equivalence between total points and final score.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Sum(n_4, n_24, n_28)",
+      "formula": "Sum(n_4, n_24, n_28) from FACT-3 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalPoints(mike, n_28)",
+      "formula": "TotalPoints(mike, n_28) from FACT-3, INF-1, RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "FinalScore(mike, n_28)",
+      "formula": "FinalScore(mike, n_28) from INF-2, RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

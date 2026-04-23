@@ -1,0 +1,100 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Suzy's iPhone age is 1 year",
+      "formula": "SuzyPhoneAge(suzy, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Ben's iPhone is two times Suzy's",
+      "formula": "BenIsTwoTimesSuzy(ben, suzy)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Brandon's iPhone is four times Ben's",
+      "formula": "BrandonIsFourTimesBen(brandon, ben)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200b (BenIsTwoTimesSuzy(b, suzy) \u2227 SuzyPhoneAge(suzy, n_1) \u2192 BenPhoneAge(b, n_2))",
+      "formula": "If Ben's iPhone is two times Suzy's and Suzy's iPhone is 1 year old, then Ben's iPhone is 2 years old",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "does not encode the numeric relation n2 = 2 \u00d7 n1; leaves Ben's age unconstrained relative to Suzy's.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200x (BrandonIsFourTimesBen(brandon, x) \u2227 BenPhoneAge(x, n_2) \u2192 BrandonPhoneAge(brandon, n_8))",
+      "formula": "If Brandon's iPhone is four times Ben's and Ben's iPhone is 2 years old, then Brandon's iPhone is 8 years old",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "does not enforce Brandon's age = 4 \u00d7 Ben's; uses an unconstrained n8 without tying to Ben's age.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SuzyPhoneAge(suzy, n_1) \u2227 BenIsTwoTimesSuzy(ben, suzy)",
+      "formula": "Derived from FACT-1 and FACT-2 by ConjunctionIntroduction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "BenPhoneAge(ben, n_2)",
+      "formula": "Derived from INF-1 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "BenPhoneAge(ben, n_2) \u2227 BrandonIsFourTimesBen(brandon, ben)",
+      "formula": "Derived from INF-2 and FACT-3 by ConjunctionIntroduction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "BrandonPhoneAge(brandon, n_8)",
+      "formula": "Derived from INF-3 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "does not encode the numeric relation n2 = 2 \u00d7 n1; leaves Ben's age unconstrained relative to Suzy's."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "does not enforce Brandon's age = 4 \u00d7 Ben's; uses an unconstrained n8 without tying to Ben's age."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

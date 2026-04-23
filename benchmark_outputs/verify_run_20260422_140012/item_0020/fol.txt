@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: MarissaWalked(marissa, n_4, n_1) :: Marissa walked 4 miles in 1 hour
+FACT-2: MarissaWalked(marissa, n_2, n_1) :: Marissa walked another 2 miles in 1 hour
+FACT-3: TrailTotalDistance(trail, n_12) :: The total distance of the trail is 12 miles
+FACT-4: CoveredDistance(marissa, n_6) :: Already covered 6 miles
+FACT-5: RemainingDistance(trail, n_6) :: Remaining distance is 6 miles
+FACT-6: RequiredTimeForRemaining(n_3) :: Required time for remaining distance is 3 hours
+FACT-7: HoursLeft(marissa, n_3) :: Marissa has 3 hours left
+FACT-8: SpeedGoal(trail, n_4) :: Desired average speed is 4 mph
+FACT-9: Answer(n_4) :: The answer is 4
+
+## RULES
+RULE-1: ∀trail ∀D ∀S ∀T((Divide(D, S, T)) → (TrailTotalDistance(trail, D) ∧ SpeedGoal(trail, S) ∧ TotalTimeNeeded(trail, T))) :: If D divided by S equals T, then for the (any) trail the total distance is D, the speed goal is S, and the total time needed is T
+
+## INFERENCES

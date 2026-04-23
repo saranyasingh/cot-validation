@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — A single train's first-day total should be 80 miles, not 160.
+RULE-2: IMPLAUSIBLE — If first-day total were 160, second-day total would be 150, not 310.
+RULE-3: IMPLAUSIBLE — The combined total should be the sum of both trains' second-day totals, not 310.

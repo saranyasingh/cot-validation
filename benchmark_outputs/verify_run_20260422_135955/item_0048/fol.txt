@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: BlueTiePrice(n_40) :: The blue tie costs 40
+FACT-2: BlueTiesTotalCost(n_200) :: Total spent on blue ties is 200
+FACT-3: RedTiesCostMoreThanBlue :: Red ties cost 50% more than blue ones
+
+## RULES
+RULE-1: ∀p (BlueTiePrice(p) → RedTiesPriceIs1_5TimesBlue(p)) :: If blue tie price is p, red ties cost 1.5 times p
+RULE-2: ∀p (RedTiesPriceIs1_5TimesBlue(p) → RedTiePrice(n_60)) :: If red price is 1.5 times blue price and blue price matches, then red tie price is 60
+RULE-3: ∀a∀r∀q ((BlueTiesTotalCost(a) ∧ RedTiePrice(r) ∧ a = r * q) → RedTiesCount(q)) :: If total blue expenditure equals red price times a count, then that count of red ties can be bought
+RULE-4: ∀r∀q ((RedTiePrice(r) ∧ RedTiesCount(q)) → RedTiesTotalCost(n_180)) :: If red tie price is r and count q is bought, total red cost is 180
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Modus Ponens -> RedTiesPriceIs1_5TimesBlue(n_40) :: 60 is 1.5 * 40
+INF-2: From INF-1 and RULE-2 by Modus Ponens -> RedTiePrice(n_60) :: Red tie price is 60
+INF-3: From FACT-2 and INF-2 by (some arithmetic-based) reasoning -> RedTiesCount(n_3) :: Budget of 200 at price 60 yields 3 red ties
+INF-4: From INF-3 and INF-2 by Rule-4 -> RedTiesTotalCost(n_180) :: 3 red ties at 60 each cost 180

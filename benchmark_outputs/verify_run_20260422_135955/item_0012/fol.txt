@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: 3 dozen donuts at 68 dollars per dozen :: Donuts(n_3, n_68)
+FACT-2: 2 dozen mini cupcakes at 80 dollars per dozen :: Cupcakes(n_2, n_80)
+FACT-3: 6 dozen mini cheesecakes at 55 dollars per dozen :: Cheesecakes(n_6, n_55)
+FACT-4: 3 × 68 = 204 :: Multiply(n_3, n_68, n_204)
+FACT-5: 2 × 80 = 160 :: Multiply(n_2, n_80, n_160)
+FACT-6: 6 × 55 = 330 :: Multiply(n_6, n_55, n_330)
+FACT-7: 204 + 160 + 330 = 694 :: SumThree(n_204, n_160, n_330, n_694)
+
+## RULES
+RULE-1: If donuts are described by (d, p) and Multiply(d, p, c) then DonutsCost(c) :: ∀d∀p∀c((Donuts(d,p) ∧ Multiply(d,p,c)) → DonutsCost(c))
+RULE-2: If cupcakes are described by (d, p) and Multiply(d, p, c) then CupcakesCost(c) :: ∀d∀p∀c((Cupcakes(d,p) ∧ Multiply(d,p,c)) → CupcakesCost(c))
+RULE-3: If cheesecakes are described by (d, p) and Multiply(d, p, c) then CheesecakesCost(c) :: ∀d∀p∀c((Cheesecakes(d,p) ∧ Multiply(d,p,c)) → CheesecakesCost(c))
+RULE-4: If SumThree(a,b,c,d) and DonutsCost(a) and CupcakesCost(b) and CheesecakesCost(c) then TotalCost(d) :: ∀a∀b∀c∀d((SumThree(a,b,c,d) ∧ DonutsCost(a) ∧ CupcakesCost(b) ∧ CheesecakesCost(c)) → TotalCost(d))
+
+## INFERENCES
+INF-1: DonutsCost(n_204) from FACT-1 and FACT-4 by RULE-1 (Modus Ponens) :: DonutsCost(n_204)
+INF-2: CupcakesCost(n_160) from FACT-2 and FACT-5 by RULE-2 (Modus Ponens) :: CupcakesCost(n_160)
+INF-3: CheesecakesCost(n_330) from FACT-3 and FACT-6 by RULE-3 (Modus Ponens) :: CheesecakesCost(n_330)
+INF-4: TotalCost(n_694) from INF-1, INF-2, INF-3, and FACT-7 by RULE-4 (Multi-premise Modus Ponens) :: TotalCost(n_694)

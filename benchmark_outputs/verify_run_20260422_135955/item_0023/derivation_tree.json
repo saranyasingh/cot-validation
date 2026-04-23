@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "FirstGroupTotal(n_3)",
+      "formula": "3 DVDs in first group",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states the first 3 customers buy one DVD each, so their total is 3",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "SecondGroupTotal(n_6)",
+      "formula": "6 DVDs in second group",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem indicates the second group total should be 4 (2 customers \u00d7 2 DVDs), not 6",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "ThirdGroupTotal(n_0)",
+      "formula": "0 DVDs in third group",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states the third group buys 0 DVDs, so their total is 0",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Add(n_3, n_6, n_0, n_9)",
+      "formula": "3 + 6 + 0 = 9",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Add(3,6,0,9) asserts a total of 9, which does not match the problem\u2019s totals (3,4,0 \u2192 7)",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FinalTotal(n_9)",
+      "formula": "from FACT-1, FACT-2, FACT-3, FACT-4 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "The problem indicates the second group total should be 4 (2 customers \u00d7 2 DVDs), not 6"
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "Add(3,6,0,9) asserts a total of 9, which does not match the problem\u2019s totals (3,4,0 \u2192 7)"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,45 @@
+EXPLANATION
+
+To solve this problem, we need to use the information given about the ratio of Darrell and Allen's ages and then determine how much time has passed (which is 10 years) during which both individuals' ages change.
+
+Firstly, let's set up our initial conditions using variables for their ages:
+- Let \( D \) represent Darrell's current age.
+- Let \( A \) represent Allen's current age.
+
+According to the problem, Darrell and Allen's ages are in the ratio of 7:11. This means that if we divide their ages by 18 (the sum of the parts of the ratio), we get the fraction representing their relative sizes. Therefore, we have:
+
+\[ \frac{D}{A} = \frac{7}{11} \]
+
+This implies:
+
+\[ D = \frac{7}{11}A \]
+
+We also know their combined age is 162:
+
+\[ D + A = 162 \]
+
+Substituting \( D = \frac{7}{11}A \) into the equation \( D + A = 162 \):
+
+\[ \frac{7}{11}A + A = 162 \]
+
+Combining like terms gives us:
+
+\[ \left(\frac{7}{11} + 1\right)A = 162 \]
+\[ \left(\frac{7}{11} + \frac{11}{11}\right)A = 162 \]
+\[ \frac{18}{11}A = 162 \]
+
+Now, solving for \( A \):
+
+\[ A = \frac{162 \times 11}{18} \]
+\[ A = 9 \times 11 \]
+\[ A = 99 \]
+
+So, currently, Allen is 99 years old.
+
+Next, we need to find out what Allen's age will be 10 years from now:
+
+\[ \text{Allen's future age} = A + 10 \]
+\[ \text{Allen's future age} = 99 + 10 \]
+\[ \text{Allen's future age} = 109 \]
+
+Therefore, Allen's age 10 years from now will be **109** years old.

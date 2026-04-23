@@ -1,0 +1,8 @@
+  % From fact_1, fact_2, fact_3, rule_1 by Modus Ponens
+  inf_1: PROVED
+  % From fact_4, fact_5, fact_6, rule_1 by Modus Ponens
+  inf_2: PROVED
+  % From fact_7, fact_8, fact_9, rule_1 by Modus Ponens
+  inf_3: PROVED
+  % From inf_1, inf_2, inf_3, fact_10, rule_2 by Modus Ponens
+  inf_4: PROVED

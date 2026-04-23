@@ -1,0 +1,29 @@
+## FACTS
+FACT-1: TotalDistance(n_12) :: TotalDistance(n_12)
+FACT-2: First4MilesIn1Hour(n_4, n_1) :: First4MilesIn1Hour(n_4, n_1)
+FACT-3: Next2MilesIn1Hour(n_2, n_1) :: Next2MilesIn1Hour(n_2, n_1)
+FACT-4: TargetAverageSpeed(n_4) :: TargetAverageSpeed(n_4)
+FACT-5: Quotient(n_6, n_2, n_3) :: Quotient(n_6, n_2, n_3)
+FACT-6: Sum(n_1, n_1, n_2) :: Sum(n_1, n_1, n_2)
+FACT-7: Sum(n_4, n_2, n_6) :: Sum(n_4, n_2, n_6)
+FACT-8: Sum(n_6, n_6, n_12) :: Sum(n_6, n_6, n_12)
+
+## RULES
+RULE-1: If a total distance D is known and a time T is known and EqualDivision(D, T, V) holds, then AverageSpeed(D, T, V) :: ∀D∀T∀V((TotalDistance(D) ∧ TimeTaken(T) ∧ EqualDivision(D, T, V)) → AverageSpeed(D, T, V))
+
+RULE-2: If Time1 = t1 and Time2 = t2 and Sum(t1, t2, T) then TimeTaken(T) :: ∀t1∀t2∀T((TimeSegment1(t1) ∧ TimeSegment2(t2) ∧ Sum(t1, t2, T)) → TimeTaken(T))
+
+RULE-3: If Dist1 = d1 and Dist2 = d2 and Sum(d1, d2, D) then DistanceCovered(D) :: ∀d1∀d2∀D((DistanceSegment1(d1) ∧ DistanceSegment2(d2) ∧ Sum(d1, d2, D)) → DistanceCovered(D))
+
+RULE-4: If DistanceCovered(C) and TotalDistance(D) and Sum(C, R, D) then RemainingDistance(R) :: ∀C∀D∀R((DistanceCovered(C) ∧ TotalDistance(D) ∧ Sum(C, R, D)) → RemainingDistance(R))
+
+RULE-5: If Quotient(a, b, c) then EqualDivision(a, b, c) :: ∀a∀b∀c((Quotient(a, b, c)) → EqualDivision(a, b, c))
+
+RULE-6: If EqualDivision(D, T, V) and TargetAverageSpeed(V) then FinalAnswer(V) :: ∀D∀T∀V((EqualDivision(D, T, V) ∧ TargetAverageSpeed(V)) → FinalAnswer(V))
+
+## INFERENCES
+INF-1: TimeTaken(n_2) from FACT-2, FACT-3 by RULE-2 (TimeSumFromSegments) :: TimeTaken(n_2)
+INF-2: DistanceCovered(n_6) from FACT-2, FACT-3 by RULE-3 (DistanceSumFromSegments) :: DistanceCovered(n_6)
+INF-3: RemainingDistance(n_6) from FACT-1 (TotalDistance) and INF-2 by RULE-4 (SubtractDistances) :: RemainingDistance(n_6)
+INF-4: EqualDivision(n_6, n_2, n_3) from FACT-5 (Quotient) by RULE-5 (QuotientToEqualDivision) :: EqualDivision(n_6, n_2, n_3)
+INF-5: FinalAnswer(n_4) from INF-4 and FACT-4 by RULE-6 (ConcludeTarget) :: FinalAnswer(n_4)

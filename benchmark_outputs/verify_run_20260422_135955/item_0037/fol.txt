@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Terry consumes 2 yogurts per day :: YogurtsPerDay(terry, n_2)
+FACT-2: Terry would need 60 yogurts :: YogurtsNeeded(terry, n_60)
+FACT-3: Yogurt comes in packs of 4 :: PackSize(yogurt, n_4)
+FACT-4: Price per yogurt pack is 5 :: PricePerPack(yogurt, n_5)
+
+## RULES
+RULE-1: If 60 yogurts are needed and packs contain 4 yogurts, then 15 packs are needed :: ∀t((YogurtsNeeded(t, n_60) ∧ PackSize(yogurt, n_4)) → PacksNeeded(t, n_15))
+RULE-2: If 15 packs are needed and price per pack is 5, then the total cost is 75 :: ∀t((PacksNeeded(t, n_15) ∧ PricePerPack(yogurt, n_5)) → TotalCost(t, n_75))
+
+## INFERENCES
+INF-1: 60 yogurts needed and packs of 4 yield 15 packs, from FACT-2, FACT-3 via RULE-1 (Modus Ponens) :: PacksNeeded(terry, n_15)
+INF-2: 15 packs and price 5 yield total cost 75, from INF-1 and FACT-4 via RULE-2 (Modus Ponens) :: TotalCost(terry, n_75)

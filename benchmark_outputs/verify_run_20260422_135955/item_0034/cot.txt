@@ -1,0 +1,40 @@
+To determine how many gold coins Gretchen has, we need to set up an equation based on the information given.
+
+**Premise 1:** Gretchen has 110 coins in total.
+- This tells us that if we add all the coins together, they equal 110.
+
+Let's define variables for the unknown quantities:
+- Let \( G \) represent the number of gold coins.
+- Let \( S \) represent the number of silver coins.
+
+From Premise 2, we know there are 30 more gold coins than silver coins:
+\[ G = S + 30 \]
+
+We also know the total number of coins is 110:
+\[ G + S = 110 \]
+
+Now, substitute the expression for \( G \) from Premise 2 into the second equation:
+\[ (S + 30) + S = 110 \]
+
+Combine like terms:
+\[ 2S + 30 = 110 \]
+
+Subtract 30 from both sides:
+\[ 2S = 80 \]
+
+Divide by 2:
+\[ S = 40 \]
+
+Now that we have the number of silver coins (\( S = 40 \)), we can find the number of gold coins using the first equation:
+\[ G = S + 30 \]
+\[ G = 40 + 30 \]
+\[ G = 70 \]
+
+So, Gretchen has 70 gold coins.
+
+**Explanation:**
+1. We started by defining the variables for the unknown quantities.
+2. Using the information provided about the relationship between gold and silver coins, we set up two equations: one representing the total number of coins and another representing the difference between the number of gold and silver coins.
+3. Solving these equations sequentially allowed us to isolate the value of \( S \), which was then used to calculate \( G \).
+
+The answer is: 70

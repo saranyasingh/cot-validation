@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Charlie makes 20 candles :: CandlesToMake(charlie, n_20)
+FACT-2: 1 pound of beeswax per candle :: BeeswaxPerCandle(n_1)
+FACT-3: 10 dollars per pound of beeswax :: PricePerPoundBeeswax(n_10)
+FACT-4: 20 wicks are needed :: WicksNeeded(n_20)
+FACT-5: 10 dollars per wick :: PricePerWick(n_10)
+FACT-6: 2 dollars per candle :: PricePerCandle(n_2)
+FACT-7: Charlie sells 20 candles :: CandlesSold(charlie, n_20)
+
+## RULES
+RULE-1: Revenue is price times quantity :: ∀s∀a∀b∀r((CandlesSold(s, a) ∧ PricePerCandle(b) ∧ Mult(a, b, r)) → Revenue(s, r))
+RULE-2: Beeswax cost is the product of candles and price per unit :: ∀a∀b∀c((Mult(a, b, c)) → BeeswaxCost(a, c))
+RULE-3: NetProfit is Revenue minus Cost :: ∀s∀r∀c∀z((Revenue(s, r) ∧ BeeswaxCost(c) ∧ Subtraction(r, c, z)) → NetProfit(s, z))
+
+## INFERENCES
+INF-1: Mult(n_20, n_2, n_40) :: 20 × 2 = 40, from FACT-7 and FACT-6 by Arithmetic Computation
+INF-2: Revenue(charlie, n_40) :: Revenue from selling 20 candles at $2 each, from FACT-7, FACT-6, INF-1 by RULE-1
+INF-3: Mult(n_20, n_10, n_200) :: 20 × 10 = 200, from FACT-1 and FACT-3 by Arithmetic Computation
+INF-4: BeeswaxCost(charlie, n_200) :: Beeswax cost from INF-3 by RULE-2
+INF-5: Subtraction(n_40, n_200, n_minus_160) :: 40 − 200 = -160, by Arithmetic Computation
+INF-6: NetProfit(charlie, n_minus_160) :: Net profit from INF-2, INF-4 via RULE-3 (using Subtraction in INF-5)

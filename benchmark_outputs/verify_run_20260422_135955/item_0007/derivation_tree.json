@@ -1,0 +1,57 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Seattle has 20 sheep",
+      "formula": "SeattlePopulation(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Explicitly stated in the problem.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charleston has 80 sheep",
+      "formula": "CharlestonPopulation(n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Deduced from Charleston = 4 \u00d7 Seattle and Seattle = 20.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toulouse has 160 sheep",
+      "formula": "ToulousePopulation(n_160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Deduced from Toulouse = 2 \u00d7 Charleston; Charleston = 80.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If Seattle has s sheep, Charleston has c sheep, and Toulouse has t sheep, then the total is 260",
+      "formula": "\u2200s\u2200c\u2200t((SeattlePopulation(s) \u2227 CharlestonPopulation(c) \u2227 ToulousePopulation(t)) \u2192 TotalPopulation(n_260))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The total is not fixed at 260 for arbitrary s, c, t; with the given relations the sum is 13s, which equals 260 only when s=20.",
+      "error": true
+    },
+    "INF-0": {
+      "type": "inference",
+      "gloss": "RULE-1 instantiated with s = n_20, c = n_80, t = n_160",
+      "formula": "(SeattlePopulation(n_20) \u2227 CharlestonPopulation(n_80) \u2227 ToulousePopulation(n_160)) \u2192 TotalPopulation(n_260)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-0",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The total is not fixed at 260 for arbitrary s, c, t; with the given relations the sum is 13s, which equals 260 only when s=20."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

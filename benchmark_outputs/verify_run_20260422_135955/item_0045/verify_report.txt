@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — contradicts the problem's ratio: 10 candles per pound, so 20 candles require 2 pounds.
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — price per wick is not given; only total cost for 1 lb of beeswax and wicks is specified.
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — encodes beeswax cost as candles × price per unit instead of pounds × price per pound; mixes units incorrectly.
+RULE-3: PLAUSIBLE

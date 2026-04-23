@@ -1,0 +1,10 @@
+  % From fact_2, rule_1 by Modus Ponens
+  inf_1: PROVED
+  % From fact_1, inf_1 by Arithmetic Division
+  inf_2: NOT PROVED
+  % From inf_2 by From Division to Original Price
+  inf_3: NOT PROVED
+
+Prover errors:
+inf_2: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms

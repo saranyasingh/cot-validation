@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, InitialCost(n_90)).
+fof(fact_2, axiom, AnnualRevenue(n_10_50)).
+fof(fact_3, axiom, AnnualExpense(n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [R] : ! [E] : ! [P] : ((AnnualRevenue(R) & AnnualExpense(E) & P = R - E) => Profit(P))).
+fof(rule_2, axiom, ! [I] : ! [N] : ! [Y] : ((InitialCost(I) & Profit(N) & Y = I / N) => YearsToRecoup(Y))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Arithmetic Computation
+fof(inf_1, axiom, Profit(n_7_50)).
+% From fact_1, inf_1 by Modus Ponens using rule_2
+fof(inf_2, axiom, YearsToRecoup(n_12)).

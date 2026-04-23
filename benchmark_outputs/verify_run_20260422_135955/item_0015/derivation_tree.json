@@ -1,0 +1,172 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Total students",
+      "formula": "TotalStudents(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Contemporary dance percentage",
+      "formula": "ContemporaryPercent(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jazz percentage",
+      "formula": "JazzPercent(n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Jazz percentage of total derivable from problem (20%)",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If TotalStudents(x) and ContemporaryPercent(x) then ContemporaryDancers(n_4)",
+      "formula": "\u2200x((TotalStudents(x) \u2227 ContemporaryPercent(x)) \u2192 ContemporaryDancers(n_4))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a specific numeric outcome (n_4) without a general principle",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalStudents(x) and ContemporaryDancers(n_4) then Remaining(n_16)",
+      "formula": "\u2200x((TotalStudents(x) \u2227 ContemporaryDancers(n_4)) \u2192 Remaining(n_16))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a specific numeric outcome (n_16) without a general principle",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Remaining(n_16) and JazzPercent(n_25) then JazzDancers(n_4)",
+      "formula": "\u2200x((Remaining(n_16) \u2227 JazzPercent(n_25)) \u2192 JazzDancers(n_4))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a specific arithmetic with fixed constants instead of a general rule",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If Remaining(n_16) and JazzDancers(n_4) then Remaining(n_12)",
+      "formula": "\u2200x((Remaining(n_16) \u2227 JazzDancers(n_4)) \u2192 Remaining(n_12))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a specific arithmetic step with fixed constants",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If Remaining(n_12) then HipHopDancers(n_12)",
+      "formula": "\u2200x((Remaining(n_12)) \u2192 HipHopDancers(n_12))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a fixed mapping rather than a general relation",
+      "error": true
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If HipHopDancers(n_12) and TotalStudents(x) then HipHopPercent(n_60)",
+      "formula": "\u2200x((HipHopDancers(n_12) \u2227 TotalStudents(x)) \u2192 HipHopPercent(n_60))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a fixed percentage using constants rather than a general rule",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "ContemporaryDancers(n_4)",
+      "formula": "from FACT-1, FACT-2 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Remaining(n_16)",
+      "formula": "from INF-1, FACT-1 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "JazzDancers(n_4)",
+      "formula": "from INF-2, FACT-3 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Remaining(n_12)",
+      "formula": "from INF-2, INF-3 by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "HipHopDancers(n_12)",
+      "formula": "from INF-4 by RULE-5",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "HipHopPercent(n_60)",
+      "formula": "from INF-5, FACT-1 by RULE-6",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "Encodes a specific numeric outcome (n_4) without a general principle"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Encodes a specific numeric outcome (n_16) without a general principle"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Encodes a specific arithmetic with fixed constants instead of a general rule"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Encodes a specific arithmetic step with fixed constants"
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "Encodes a fixed mapping rather than a general relation"
+    },
+    {
+      "node": "RULE-6",
+      "stage": "verify",
+      "message": "Encodes a fixed percentage using constants rather than a general rule"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

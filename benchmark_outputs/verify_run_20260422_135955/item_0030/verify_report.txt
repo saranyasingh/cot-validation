@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — fixes heels total to 99 irrespective of actual costs; not a generally valid encoding.
+RULE-2: IMPLAUSIBLE — conclusion BootsPrice(n_boots) is not properly derived from numeric relations; lacks correct linkage.
+RULE-3: IMPLAUSIBLE — encodes arithmetic inside the rule and equates a predicate to a number; not a well-formed encoding.

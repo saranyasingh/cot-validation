@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: MorningFeed(n_15) :: MorningFeed(n_15)
+FACT-2: AfternoonFeed(n_25) :: AfternoonFeed(n_25)
+FACT-3: TotalChickens(n_20) :: TotalChickens(n_20)
+FACT-4: SumFeeds(n_15, n_25, n_40) :: SumFeeds(n_15, n_25, n_40)
+FACT-5: CupsPerChickenPerMeal(n_0_75) :: CupsPerChickenPerMeal(n_0_75)
+FACT-6: Times(n_0_75, n_20, n_15) :: Times(n_0_75, n_20, n_15)
+FACT-7: CupsPerChickenPerMeal(n_1_25) :: CupsPerChickenPerMeal(n_1_25)
+FACT-8: Times(n_1_25, n_20, n_25) :: Times(n_1_25, n_20, n_25)
+FACT-9: Subtract(n_40, n_40, n_0) :: Subtract(n_40, n_40, n_0)
+
+## RULES
+RULE-1: If MorningFeed(m) ∧ AfternoonFeed(a) ∧ SumFeeds(m,a,t), then TotalDailyFeed(t) :: ∀m∀a∀t((MorningFeed(m) ∧ AfternoonFeed(a) ∧ SumFeeds(m,a,t)) → TotalDailyFeed(t))
+RULE-2: If Times(p,q,r) ∧ CupsPerChickenPerMeal(p), then MorningTotalFromChickens(r) :: ∀p∀q∀r((Times(p,q,r) ∧ CupsPerChickenPerMeal(p)) → MorningTotalFromChickens(r))
+RULE-3: If Times(p,q,r) ∧ CupsPerChickenPerMeal(p), then AfternoonTotalFromChickens(r) :: ∀p∀q∀r((Times(p,q,r) ∧ CupsPerChickenPerMeal(p)) → AfternoonTotalFromChickens(r))
+RULE-4: If TotalDailyFeed(T) ∧ MorningTotalFromChickens(M) ∧ AfternoonTotalFromChickens(A) ∧ SumFeeds(M,A,S) ∧ Subtract(T,S,F), then FinalMealFeed(F) :: ∀T∀M∀A∀S∀F((TotalDailyFeed(T) ∧ MorningTotalFromChickens(M) ∧ AfternoonTotalFromChickens(A) ∧ SumFeeds(M,A,S) ∧ Subtract(T,S,F)) → FinalMealFeed(F))
+
+## INFERENCES
+INF-1: TotalDailyFeed(n_40) from MorningFeed(n_15), AfternoonFeed(n_25), and SumFeeds(n_15, n_25, n_40) by RULE-1 :: TotalDailyFeed(n_40)
+INF-2: MorningTotalFromChickens(n_15) from Times(n_0_75, n_20, n_15) ∧ CupsPerChickenPerMeal(n_0_75) by RULE-2 :: MorningTotalFromChickens(n_15)
+INF-3: AfternoonTotalFromChickens(n_25) from Times(n_1_25, n_20, n_25) ∧ CupsPerChickenPerMeal(n_1_25) by RULE-3 :: AfternoonTotalFromChickens(n_25)
+INF-4: FinalMealFeed(n_0) from TotalDailyFeed(n_40) ∧ MorningTotalFromChickens(n_15) ∧ AfternoonTotalFromChickens(n_25) ∧ SumFeeds(n_15, n_25, n_40) ∧ Subtract(n_40, n_40, n_0) by RULE-4 :: FinalMealFeed(n_0)

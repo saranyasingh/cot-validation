@@ -1,0 +1,71 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's regular hourly rate is 10",
+      "formula": "Rate(eliza, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza's overtime rate multiplier is 1.2",
+      "formula": "OvertimeRatio(eliza, 1.2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza's total hours worked is 45",
+      "formula": "TotalHours(eliza, 45)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Eliza's regular hours cap is 40",
+      "formula": "RegularHours(eliza, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p has rate r and regular hours h and CalcProduct(r, h, q), then RegularEarnings(p, q)",
+      "formula": "\u2200p\u2200r\u2200h\u2200q((Rate(p, r) \u2227 RegularHours(p, h) \u2227 CalcProduct(r, h, q)) \u2192 RegularEarnings(p, q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person p has rate r and overtime hours oh and CalcProduct(r, oh, t) and OvertimeRatio(p, ratio) and CalcProduct(t, ratio, q), then OvertimePay(p, q)",
+      "formula": "\u2200p\u2200r\u2200oh\u2200t\u2200q\u2200ratio((Rate(p, r) \u2227 OvertimeHours(p, oh) \u2227 CalcProduct(r, oh, t) \u2227 OvertimeRatio(p, ratio) \u2227 CalcProduct(t, ratio, q)) \u2192 OvertimePay(p, q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If RegularEarnings(p, e1) and OvertimePay(p, e2) and CalcSum(e1, e2, t), then TotalEarnings(p, t)",
+      "formula": "\u2200p\u2200e1\u2200e2\u2200t((RegularEarnings(p, e1) \u2227 OvertimePay(p, e2) \u2227 CalcSum(e1, e2, t)) \u2192 TotalEarnings(p, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If CalcDifference(a, b, c) and TotalHours(p, a) and RegularHours(p, b), then OvertimeHours(p, c)",
+      "formula": "\u2200p\u2200a\u2200b\u2200c((CalcDifference(a, b, c) \u2227 TotalHours(p, a) \u2227 RegularHours(p, b)) \u2192 OvertimeHours(p, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

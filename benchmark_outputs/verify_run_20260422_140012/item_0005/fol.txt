@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: MorningFeed(n_15) :: Morning feed amount is 15 cups
+FACT-2: AfternoonFeed(n_25) :: Afternoon feed amount is 25 cups
+FACT-3: Chickens(n_20) :: There are 20 chickens
+
+## RULES
+RULE-1: Sum of morning feed a and afternoon feed b equals n_40 :: ∀a∀b((MorningFeed(a) ∧ AfternoonFeed(b)) → EqualSum(a,b,n_40))
+RULE-2: Total feed given equals c :: ∀a∀b∀c((MorningFeed(a) ∧ AfternoonFeed(b) ∧ EqualSum(a,b,c)) → TotalFeedGiven(c))
+RULE-3: If total feed given is x cups, then the final meal amount is x :: ∀x((TotalFeedGiven(x)) → FinalMealRequired(x))
+
+## INFERENCES
+INF-1: EqualSum(n_15, n_25, n_40) from FACT-1, FACT-2 by RULE-1 :: Modus Ponens
+INF-2: TotalFeedGiven(n_40) from INF-1 by RULE-2 :: Modus Ponens
+INF-3: FinalMealRequired(n_40) from INF-2 by RULE-3 :: Modus Ponens

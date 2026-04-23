@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Gretchen has a total of 110 coins :: TotalCoins(gretchen, n_110)
+FACT-2: There are 30 more gold coins than silver coins :: GoldEqualsSilverPlus(gretchen, n_30)
+
+## RULES
+RULE-1: If a person has a total coin count of 110 and the gold coins equal the silver coins plus 30, then there exist silver and gold coin counts that satisfy the two sum equations :: ∀x((TotalCoins(x, n_110) ∧ GoldEqualsSilverPlus(x, n_30)) → ∃n_S ∃n_G(SilverCoins(x, n_S) ∧ GoldCoins(x, n_G) ∧ Plus(n_S, n_G, n_110) ∧ Plus(n_S, n_30, n_G)))
+RULE-2: If silver and gold counts satisfy G+S=110 and G=S+30, then silver is 40 and gold is 70 :: ∀x∀n_S∀n_G((SilverCoins(x, n_S) ∧ GoldCoins(x, n_G) ∧ Plus(n_S, n_G, n_110) ∧ Plus(n_S, n_30, n_G)) → SilverCoins(x, n_40) ∧ GoldCoins(x, n_70))
+
+## INFERENCES
+INF-1: Gretchen's silver and gold counts exist from TOTAL and relation by RULE-1 :: ∃n_S ∃n_G (SilverCoins(gretchen, n_S) ∧ GoldCoins(gretchen, n_G) ∧ Plus(n_S, n_G, n_110) ∧ Plus(n_S, n_30, n_G))
+INF-2: From INF-1 and RULE-2 by Modus Ponens :: SilverCoins(gretchen, n_40) ∧ GoldCoins(gretchen, n_70)
+INF-3: From INF-2 by Conjunction Elimination :: GoldCoins(gretchen, n_70)

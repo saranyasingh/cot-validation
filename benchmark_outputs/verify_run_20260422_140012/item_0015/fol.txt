@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: The total number of students is 20 :: TotalStudents(n_20)
+FACT-2: The percentage enrolled in contemporary dance is 20% :: ContemporaryPercent(n_20)
+FACT-3: The percentage enrolled in jazz dance is 25% :: JazzPercent(n_25)
+FACT-4: The number of students in contemporary dance is 4 :: ContemporaryCount(n_4)
+FACT-5: The remaining after contemporary is 16 :: RemainingAfterContemporary(n_16)
+FACT-6: The number of students in jazz dance is 4 :: JazzCount(n_4)
+FACT-7: The remaining after jazz is 12 :: RemainingAfterJazz(n_12)
+FACT-8: The hip-hop percentage is 60% :: HipHopPercent(n_60)
+
+## RULES
+RULE-1: If a total T with contemporary percent P yields count C, then ContemporaryCount(C) :: ∀T∀P∀C((TotalStudents(T) ∧ ContemporaryPercent(P) ∧ ComputePercentOfTotal(T,P,C)) → ContemporaryCount(C))
+RULE-2: If a total T with jazz percent P yields count J, then JazzCount(J) :: ∀T∀P∀J((TotalStudents(T) ∧ JazzPercent(P) ∧ ComputePercentOfTotal(T,P,J)) → JazzCount(J))
+RULE-3: If total T with contemporary count C and a subtraction relation yields R, then RemainingAfterContemporary(R) :: ∀T∀C∀R((TotalStudents(T) ∧ ContemporaryCount(C) ∧ Subtract(T,C,R)) → RemainingAfterContemporary(R))
+RULE-4: If the remaining after contemporary is R and jazz count J, and subtraction yields the remaining after jazz, then RemainingAfterJazz(R) :: ∀T∀R∀J((TotalStudents(T) ∧ RemainingAfterContemporary(R) ∧ JazzCount(J) ∧ Subtract(R,J,RemainingAfterJazz)) → RemainingAfterJazz(RemainingAfterJazz))
+RULE-5: If total T, remaining after jazz R, and hip-hop percent H, then HipHopPercent(H) :: ∀T∀R∀H((TotalStudents(T) ∧ RemainingAfterJazz(R) ∧ HipHopPercent(H)) → HipHopPercent(H))
+
+## INFERENCES
+INF-1: ContemporaryCount(4) from FACT-1, FACT-2, and RULE-1 by Modus Ponens :: ContemporaryCount(n_4)
+INF-2: RemainingAfterContemporary(16) from FACT-1, INF-1, and RULE-3 by Substitution/Modus Ponens :: RemainingAfterContemporary(n_16)
+INF-3: JazzCount(4) from FACT-3, FACT-6, and RULE-2 by Modus Ponens :: JazzCount(n_4)
+INF-4: RemainingAfterJazz(12) from INF-2, INF-3, and RULE-4 by Substitution/Modus Ponens :: RemainingAfterJazz(n_12)
+INF-5: HipHopPercent(60) from INF-4, FACT-1, and RULE-5 by Substitution/Modus Ponens :: HipHopPercent(n_60)
+INF-6: HipHopPercentageIs60 from INF-5 by Identity (treated as a simple derivation step) :: HipHopPercent(n_60)

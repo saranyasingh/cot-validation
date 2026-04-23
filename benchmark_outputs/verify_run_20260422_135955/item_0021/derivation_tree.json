@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If WaterIn(o, w1) \u2227 WaterIn(p, w2) \u2227 Add(w1, w2, w3) then WaterIn(orange_and_pineapple_mixture, w3)",
+      "formula": "\u2200o\u2200p\u2200w1\u2200w2\u2200w3((WaterIn(o, w1) \u2227 WaterIn(p, w2) \u2227 Add(w1, w2, w3)) \u2192 WaterIn(orange_and_pineapple_mixture, w3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If WaterIn(orange_drink, w) \u2227 WaterLostFromOrange(w_lost) \u2227 Subtract(w, w_lost, w_remain) then WaterInAfterSpill(orange_drink, w_remain)",
+      "formula": "\u2200w\u2200w_lost\u2200w_remain((WaterIn(orange_drink, w) \u2227 WaterLostFromOrange(w_lost) \u2227 Subtract(w, w_lost, w_remain)) \u2192 WaterInAfterSpill(orange_drink, w_remain))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If WaterInAfterSpill(orange_drink, w1) \u2227 WaterIn(pineapple_drink, w2) \u2227 Add(w1, w2, w3) then WaterInTotalAfterSpill(total_water_after_spill, w3)",
+      "formula": "\u2200w1\u2200w2\u2200w3((WaterInAfterSpill(orange_drink, w1) \u2227 WaterIn(pineapple_drink, w2) \u2227 Add(w1, w2, w3)) \u2192 WaterInTotalAfterSpill(total_water_after_spill, w3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If WaterInTotalAfterSpill(T, w) then FinalWaterTotal(w)",
+      "formula": "\u2200T\u2200w(WaterInTotalAfterSpill(T, w) \u2192 FinalWaterTotal(w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Water in orange_and_pineapple_mixture equals 47/3 liters from FACT-2, FACT-4, and FACT-5 by RULE-1",
+      "formula": "WaterIn(orange_and_pineapple_mixture, n_47_over_3)",
+      "premises": [
+        "FACT-2",
+        "FACT-4",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Water in orange after spill equals 6 liters from FACT-2, FACT-7, FACT-6 by RULE-3",
+      "formula": "WaterInAfterSpill(orange_drink, n_6)",
+      "premises": [
+        "FACT-2",
+        "FACT-7",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-3",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Water total after spill equals 15 liters from INF-2, FACT-4, and FACT-8 by RULE-4",
+      "formula": "WaterInTotalAfterSpill(total_water_after_spill, n_15)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "FACT-8"
+      ],
+      "inference_rule": "RULE-4",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Final water total equals 15 liters from INF-3 by RULE-5",
+      "formula": "FinalWaterTotal(n_15)",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "RULE-5",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

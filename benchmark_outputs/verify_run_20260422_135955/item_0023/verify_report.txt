@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — The problem states the first 3 customers buy one DVD each, so their total is 3
+FACT-2: UNSUPPORTED — The problem indicates the second group total should be 4 (2 customers × 2 DVDs), not 6
+FACT-3: SUPPORTED — The problem states the third group buys 0 DVDs, so their total is 0
+FACT-4: UNSUPPORTED — Add(3,6,0,9) asserts a total of 9, which does not match the problem’s totals (3,4,0 → 7)
+RULE-1: PLAUSIBLE — It encodes a valid relation that FirstGroupTotal corresponds to the sum of the first group's purchases
+RULE-2: PLAUSIBLE — It encodes a valid relation for the SecondGroupTotal
+RULE-3: PLAUSIBLE — It encodes a valid relation for the ThirdGroupTotal
+RULE-4: PLAUSIBLE — It encodes the standard addition relation Add(a,b,c,d) meaning a+b+c=d

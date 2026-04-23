@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Eliza's regular hourly rate is 10 :: Rate(eliza, 10)
+FACT-2: Eliza's overtime rate multiplier is 1.2 :: OvertimeRatio(eliza, 1.2)
+FACT-3: Eliza's total hours worked is 45 :: TotalHours(eliza, 45)
+FACT-4: Eliza's regular hours cap is 40 :: RegularHours(eliza, 40)
+
+## RULES
+RULE-1: If a person p has rate r and regular hours h and CalcProduct(r, h, q), then RegularEarnings(p, q) :: ∀p∀r∀h∀q((Rate(p, r) ∧ RegularHours(p, h) ∧ CalcProduct(r, h, q)) → RegularEarnings(p, q))
+RULE-2: If a person p has rate r and overtime hours oh and CalcProduct(r, oh, t) and OvertimeRatio(p, ratio) and CalcProduct(t, ratio, q), then OvertimePay(p, q) :: ∀p∀r∀oh∀t∀q∀ratio((Rate(p, r) ∧ OvertimeHours(p, oh) ∧ CalcProduct(r, oh, t) ∧ OvertimeRatio(p, ratio) ∧ CalcProduct(t, ratio, q)) → OvertimePay(p, q))
+RULE-3: If RegularEarnings(p, e1) and OvertimePay(p, e2) and CalcSum(e1, e2, t), then TotalEarnings(p, t) :: ∀p∀e1∀e2∀t((RegularEarnings(p, e1) ∧ OvertimePay(p, e2) ∧ CalcSum(e1, e2, t)) → TotalEarnings(p, t))
+RULE-4: If CalcDifference(a, b, c) and TotalHours(p, a) and RegularHours(p, b), then OvertimeHours(p, c) :: ∀p∀a∀b∀c((CalcDifference(a, b, c) ∧ TotalHours(p, a) ∧ RegularHours(p, b)) → OvertimeHours(p, c))
+
+## INFERENCES
+INF-1: CalcProduct(10, 40, 400) from FACT-1 and FACT-4 by Arithmetic Computation
+INF-2: RegularEarnings(eliza, 400) from INF-1, FACT-1, FACT-4 by Modus Ponens (RULE-1)
+INF-3: CalcDifference(45, 40, 5) from FACT-3 and FACT-4 by Arithmetic Computation
+INF-4: OvertimeHours(eliza, 5) from INF-3, FACT-3, FACT-4 by Modus Ponens (RULE-4)
+INF-5: OvertimePay(eliza, 300) from INF-4, FACT-2, FACT-1 by Arithmetic Computation
+INF-6: CalcSum(400, 300, 700) from INF-2, INF-5 by Arithmetic Computation
+INF-7: TotalEarnings(eliza, 700) from INF-6 by Modus Ponens (RULE-3)

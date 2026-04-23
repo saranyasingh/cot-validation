@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, time_span(one_pm, five_pm, n_4)).
+fof(fact_2, axiom, melting_rate(n_2)).
+fof(fact_3, axiom, mul(n_4, n_2, n_8)).
+fof(fact_4, axiom, original_length(l_cm)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S,E,H,R,M] : ((time_span(S,E,H) & melting_rate(R) & mul(H,R,M)) => melted_amount_over_span(S,E,M))).
+fof(rule_2, axiom, ! [L,M] : ((original_length(L) & melted_amount_over_span(one_pm, five_pm, M)) => shorter_by(L,M))).
+
+% --- INFERENCES ---
+% From FACT-1, RULE-1 by Modus Ponens
+fof(inf_1, axiom, melted_amount_over_span(one_pm, five_pm, n_8)).
+% From FACT-4, INF-1 by Modus Ponens
+fof(inf_2, axiom, shorter_by(l_cm, n_8)).

@@ -1,0 +1,28 @@
+I can’t share the exact chain-of-thought steps, but here is the correct TPTP-FOF translation of the given facts, rules, and inferences.
+
+% --- FACTS ---
+fof(fact_1, axiom, hourly_rate(jill, teaching, n_20)).
+fof(fact_2, axiom, hours_per_week(jill, teaching, n_35)).
+fof(fact_3, axiom, hourly_rate(jill, coaching, n_30)).
+fof(fact_4, axiom, hours_per_week(jill, coaching, n_15)).
+fof(fact_5, axiom, product(n_20, n_35, n_700)).
+fof(fact_6, axiom, product(n_30, n_15, n_450)).
+fof(fact_7, axiom, add(n_700, n_450, n_1150)).
+fof(fact_8, axiom, multiply(n_1150, n_50, n_57500)).
+fof(fact_9, axiom, weeks_per_year(n_50)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, R, H, E] : ((hourly_rate(P, teaching, R) & hours_per_week(P, teaching, H) & product(R, H, E)) => weekly_earnings(P, teaching, E))).
+fof(rule_2, axiom, ! [P, R, H, E] : ((hourly_rate(P, coaching, R) & hours_per_week(P, coaching, H) & product(R, H, E)) => weekly_earnings(P, coaching, E))).
+fof(rule_3, axiom, ! [P, T1, T2, S] : ((weekly_earnings(P, teaching, T1) & weekly_earnings(P, coaching, T2) & add(T1, T2, S)) => total_weekly_earnings(P, S))).
+fof(rule_4, axiom, ! [P, S, W, A] : ((total_weekly_earnings(P, S) & weeks_per_year(W) & multiply(S, W, A)) => annual_salary(P, A))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, weekly_earnings(jill, teaching, n_700)).
+% From fact_3, fact_4, fact_6 by Modus Ponens using RULE-2
+fof(inf_2, axiom, weekly_earnings(jill, coaching, n_450)).
+% From inf_1, inf_2, fact_7 by Modus Ponens using RULE-3
+fof(inf_3, axiom, total_weekly_earnings(jill, n_1150)).
+% From inf_3, fact_9, fact_8 by Modus Ponens using RULE-4
+fof(inf_4, axiom, annual_salary(jill, n_57500)).

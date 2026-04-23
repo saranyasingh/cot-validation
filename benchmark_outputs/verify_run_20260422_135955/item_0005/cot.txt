@@ -1,0 +1,49 @@
+EXPLANATION
+
+To determine how many cups of feed Wendi needs for her chickens in the final meal of the day, we can break down the problem into several steps.
+
+1. **Total Feed Calculation**:
+   - We know that there are 3 meals per day.
+   - In the morning, she gives 15 cups of feed.
+   - In the afternoon, she gives 25 cups of feed.
+   
+   Therefore, the total amount of feed given throughout the day is:
+   \[
+   15 \text{ cups (morning)} + 25 \text{ cups (afternoon)} = 40 \text{ cups}
+   \]
+
+2. **Feed Distribution Per Chicken**:
+   - There are 20 chickens in total.
+   - Each chicken receives 3 cups of feed per meal.
+
+3. **Cups Given in Morning Meal**:
+   - Since she distributes the feed evenly over the three meals, the first meal (morning) would be shared among all 20 chickens.
+   - Thus, the total feed for the morning meal is:
+   \[
+   \frac{15 \text{ cups}}{20 \text{ chickens}} = 0.75 \text{ cups/chicken}
+   \]
+   This means each chicken gets approximately \(0.75\) cups of feed in the morning.
+
+4. **Cups Given in Afternoon Meal**:
+   - Similarly, the afternoon meal also consists of 20 chickens.
+   - Each chicken receives 3 cups of feed in the afternoon.
+   - Hence, the total feed for the afternoon meal is:
+   \[
+   \frac{25 \text{ cups}}{20 \text{ chickens}} = 1.25 \text{ cups/chicken}
+   \]
+   This means each chicken gets approximately \(1.25\) cups of feed in the afternoon.
+
+5. **Final Meal Calculation**:
+   - The remaining feed after distributing it equally between the morning and afternoon meals must go towards the final meal.
+   - From the total daily feed calculation (40 cups), subtracting the amounts already accounted for in the morning and afternoon:
+   \[
+   40 \text{ cups} - (0.75 \text{ cups/chicken} \times 20 \text{ chickens}) - (1.25 \text{ cups/chicken} \times 20 \text{ chickens})
+   \]
+   Simplifying this:
+   \[
+   40 - 15 - 25 = 0 \text{ cups}
+   \]
+
+Therefore, Wendi needs to give her chickens zero cups of feed in the final meal of the day as all the feed has been distributed across the morning and afternoon meals.
+
+The answer is: 0

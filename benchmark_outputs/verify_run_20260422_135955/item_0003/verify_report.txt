@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED — The problem states Josh buys the house for $80,000.
+FACT-2: SUPPORTED — The problem states repairs cost $50,000.
+FACT-3: SUPPORTED — The problem states the value increases by 150%.
+
+RULE-1: PLAUSIBLE — Encodes initial investment as the sum of PurchasePrice and RepairsCost via Sum and InitialInvestment.
+RULE-2: PLAUSIBLE — Encodes increase amount as Product(p,m,s); plausible if m is the decimal multiplier (e.g., 1.5 for 150%).
+RULE-3: PLAUSIBLE — Encodes NewMarketValue from PurchasePrice and IncreaseValueAmount via Sum.
+RULE-4: PLAUSIBLE — Encodes TotalInvestmentAfterFlip as the sum of InitialInvestment and RepairsCost via Plus.
+RULE-5: PLAUSIBLE — Encodes Profit as v - p via Subtract.

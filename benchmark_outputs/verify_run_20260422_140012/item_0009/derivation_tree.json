@@ -1,0 +1,137 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Speed(John, leg1, n_60)",
+      "formula": "John travels leg1 at speed 60",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Time(John, leg1, n_3)",
+      "formula": "John spends 3 hours on leg1",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "DistanceTraveled(John, leg1, n_180)",
+      "formula": "John covers 180 miles on leg1",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Time(John, leg2, n_2)",
+      "formula": "John spends 2 hours in traffic on leg2",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "DistanceTraveled(John, leg2, n_0)",
+      "formula": "John covers 0 miles on leg2",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Speed(John, leg3, n_30)",
+      "formula": "John travels leg3 at speed 30",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Time(John, leg3, n_0_5)",
+      "formula": "John spends 0.5 hours on leg3",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "DistanceTraveled(John, leg3, n_15)",
+      "formula": "John covers 15 miles on leg3",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Speed(John, leg4, n_80)",
+      "formula": "John travels leg4 at speed 80",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Time(John, leg4, n_1_5)",
+      "formula": "John spends 1.5 hours on leg4",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "DistanceTraveled(John, leg4, n_120)",
+      "formula": "John covers 120 miles on leg4",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "TotalDistance(John, n_315)",
+      "formula": "John\u2019s total distance traveled is 315",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "StartedAtHome(John)",
+      "formula": "John started at home",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p \u2200d (TotalDistance(p, d) \u2192 DistanceFromHome(p, d))",
+      "formula": "If total distance is d, then distance from home is d",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule incorrectly equates total distance traveled with distance from home; total distance is path length, not net displacement.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "DistanceFromHome(John, n_315)",
+      "formula": "From FACT-12 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule incorrectly equates total distance traveled with distance from home; total distance is path length, not net displacement."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

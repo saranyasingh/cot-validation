@@ -1,0 +1,133 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "BlueTiePrice(n_40)",
+      "formula": "The blue tie costs 40",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "BlueTiesTotalCost(n_200)",
+      "formula": "Total spent on blue ties is 200",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "RedTiesCostMoreThanBlue",
+      "formula": "Red ties cost 50% more than blue ones",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p (BlueTiePrice(p) \u2192 RedTiesPriceIs1_5TimesBlue(p))",
+      "formula": "If blue tie price is p, red ties cost 1.5 times p",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p (RedTiesPriceIs1_5TimesBlue(p) \u2192 RedTiePrice(n_60))",
+      "formula": "If red price is 1.5 times blue price and blue price matches, then red tie price is 60",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "hardcodes RedTiePrice to 60, ignoring p, so not a general encoding of the relation",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200r\u2200q ((BlueTiesTotalCost(a) \u2227 RedTiePrice(r) \u2227 a = r * q) \u2192 RedTiesCount(q))",
+      "formula": "If total blue expenditure equals red price times a count, then that count of red ties can be bought",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "cross-relates blue total cost, red price, and count in a way not justified by problem",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "\u2200r\u2200q ((RedTiePrice(r) \u2227 RedTiesCount(q)) \u2192 RedTiesTotalCost(n_180))",
+      "formula": "If red tie price is r and count q is bought, total red cost is 180",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "fixes red total cost to 180 irrespective of actual prices/counts; not valid",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and RULE-1 by Modus Ponens -> RedTiesPriceIs1_5TimesBlue(n_40)",
+      "formula": "60 is 1.5 * 40",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens -> RedTiesPriceIs1_5TimesBlue(n_40)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-2 by Modus Ponens -> RedTiePrice(n_60)",
+      "formula": "Red tie price is 60",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens -> RedTiePrice(n_60)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From FACT-2 and INF-2 by (some arithmetic-based) reasoning -> RedTiesCount(n_3)",
+      "formula": "Budget of 200 at price 60 yields 3 red ties",
+      "premises": [
+        "FACT-2",
+        "INF-2"
+      ],
+      "inference_rule": "(some arithmetic-based) reasoning -> RedTiesCount(n_3)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 and INF-2 by Rule-4 -> RedTiesTotalCost(n_180)",
+      "formula": "3 red ties at 60 each cost 180",
+      "premises": [
+        "INF-3",
+        "INF-2"
+      ],
+      "inference_rule": "Rule-4 -> RedTiesTotalCost(n_180)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "hardcodes RedTiePrice to 60, ignoring p, so not a general encoding of the relation"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "cross-relates blue total cost, red price, and count in a way not justified by problem"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "fixes red total cost to 180 irrespective of actual prices/counts; not valid"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

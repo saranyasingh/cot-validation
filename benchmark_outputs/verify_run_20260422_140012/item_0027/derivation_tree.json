@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shorts",
+      "formula": "ShortsBought(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Price per shorts pair is 1650 cents",
+      "formula": "ShortsPriceCents(n_1650)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of pants",
+      "formula": "PantsBought(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Price per pants pair is 2250 cents",
+      "formula": "PantsPriceCents(n_2250)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shoes",
+      "formula": "ShoesBought(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Price per shoes pair is 4200 cents",
+      "formula": "ShoesPriceCents(n_4200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Shorts total cost in cents is 4950, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "ShortsTotalCents(n_4950)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Pants total cost in cents is 6750, from FACT-3 and FACT-4 by Arithmetic Computation",
+      "formula": "PantsTotalCents(n_6750)",
+      "premises": [
+        "FACT-3",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Shoes total cost in cents is 12600, from FACT-5 and FACT-6 by Arithmetic Computation",
+      "formula": "ShoesTotalCents(n_12600)",
+      "premises": [
+        "FACT-5",
+        "FACT-6"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Sum of 4950 and 6750 is 11700, from INF-1 and INF-2 by Arithmetic Computation",
+      "formula": "SumCents(n_11700)",
+      "premises": [
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Sum of 11700 and 12600 is 24300, from INF-4 and INF-3 by Arithmetic Computation",
+      "formula": "SumCents(n_24300)",
+      "premises": [
+        "INF-4",
+        "INF-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Total spent in dollars is 243, from INF-5 by Arithmetic Computation",
+      "formula": "TotalSpentDollars(n_243)",
+      "premises": [
+        "INF-5"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-6",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

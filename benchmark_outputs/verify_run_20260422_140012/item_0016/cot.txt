@@ -1,0 +1,26 @@
+EXPLANATION
+
+Let's break down the problem into two parts: calculating the expected value of the jewelry purchase plan and then comparing it to the expected value of the electronic gadgets purchase plan.
+
+1. **Expected Value Calculation for Jewelry Purchase Plan**:
+   - Initial value of jewelry = $5,000
+   - Expected increase in value due to market growth = $5,000 * 2.5% = $5,000 * 0.025 = $125
+   - Expected total value after 1 month = Initial value + Increase = $5,000 + $125 = $5,125
+
+2. **Expected Value Calculation for Electronic Gadgets Purchase Plan**:
+   - Initial value of electronic gadgets = $8,000
+   - Expected increase in value due to market growth = $8,000 * 1.2% = $8,000 * 0.012 = $96
+   - Expected total value after 1 month = Initial value + Increase = $8,000 + $96 = $8,096
+
+3. **Comparison and Profit Maximization**:
+   - Expected value of jewelry purchase plan = $5,125
+   - Expected value of electronic gadgets purchase plan = $8,096
+   - Since $8,096 > $5,125, the electronic gadgets purchase plan has a higher expected value.
+   
+4. **Profit Calculation**:
+   - Difference in values = Expected value of electronic gadgets - Expected value of jewelry
+   - Difference in values = $8,096 - $5,125 = $2,971
+   
+Therefore, if the merchant chooses to invest in the electronic gadgets purchase plan, he would expect to achieve a profit of $2,971 at the end of the month.
+
+The answer is: 2971

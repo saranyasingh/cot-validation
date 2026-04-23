@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: InitialCost(jewelry, n_5000) :: The initial cost of jewelry is 5000
+FACT-2: IncreaseRate(jewelry, n_025) :: The expected increase in jewelry price is 0.025
+FACT-3: FinalPrice(jewelry, n_5125) :: The final price of jewelry is 5125
+FACT-4: InitialCost(electronic_gadgets, n_8000) :: The initial cost of electronics is 8000
+FACT-5: IncreaseRate(electronic_gadgets, n_012) :: The expected increase in electronics price is 0.012
+FACT-6: FinalPrice(electronic_gadgets, n_8096) :: The final price of electronics is 8096
+FACT-7: JewelryProfit(n_125) :: Jewelry profit is 125
+FACT-8: GadgetsProfit(n_96) :: Gadgets profit is 96
+FACT-9: GreaterThan(n_125, n_96) :: 125 is greater than 96
+
+## RULES
+RULE-1: ∀p1∀p2((JewelryProfit(p1) ∧ GadgetsProfit(p2) ∧ GreaterThan(p1, p2)) → FinalAnswer(p1)) :: If jewelry profit is p1 and gadgets profit is p2 and p1 > p2, then FinalAnswer(p1)
+
+## INFERENCES
+INF-1: FinalAnswer(n_125) :: Derived from JewelryProfit(n_125), GadgetsProfit(n_96), GreaterThan(n_125, n_96) via RULE-1 (Modus Ponens / Universal Instantiation)

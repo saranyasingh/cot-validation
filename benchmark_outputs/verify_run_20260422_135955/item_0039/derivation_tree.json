@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "WeeklyDistance(john, miles_60)",
+      "formula": "John runs 60 miles per week",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "DaysPerWeek(john, days_3)",
+      "formula": "John runs 3 days a week",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "FirstDayHours(john, hours_3)",
+      "formula": "On the first day, John runs 3 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "SecondDayHours(john, hours_1_5)",
+      "formula": "On the second day, John runs 1.5 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "ThirdDayHours(john, hours_1_5)",
+      "formula": "On the third day, John runs 1.5 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has a weekly distance D, a total time T, and a speed value S for that distance and time, then the person has average speed S",
+      "formula": "\u2200p\u2200D\u2200T\u2200S((WeeklyDistance(p,D) \u2227 TotalTime(p,T) \u2227 SpeedValue(p,D,T,S)) \u2192 AverageSpeed(p,S))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Sum of day times equals 6 hours from per-day times by Arithmetic Computation",
+      "formula": "TotalTime(john, hours_6)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SpeedValue for 60 miles in 6 hours equals 10 mph by Arithmetic Computation",
+      "formula": "SpeedValue(john, miles_60, hours_6, mph_10)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "AverageSpeed(john, mph_10) from FACT-1, INF-1, INF-2 by Modus Ponens using RULE-1",
+      "formula": "AverageSpeed(john, mph_10)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "Modus Ponens using RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

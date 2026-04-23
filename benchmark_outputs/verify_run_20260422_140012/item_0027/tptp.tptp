@@ -1,0 +1,38 @@
+% --- FACTS ---
+fof(fact_1, axiom, shorts_bought(n_3)).
+
+fof(fact_2, axiom, shorts_price_cents(n_1650)).
+
+fof(fact_3, axiom, pants_bought(n_3)).
+
+fof(fact_4, axiom, pants_price_cents(n_2250)).
+
+fof(fact_5, axiom, shoes_bought(n_3)).
+
+fof(fact_6, axiom, shoes_price_cents(n_4200)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C,P,T] : ((shorts_bought(C) & shorts_price_cents(P) & product_mul_shorts(C,P,T)) => shorts_total_cents(T))).
+
+fof(rule_2, axiom, ! [C,P,T] : ((pants_bought(C) & pants_price_cents(P) & product_mul_pants(C,P,T)) => pants_total_cents(T))).
+
+fof(rule_3, axiom, ! [C,P,T] : ((shoes_bought(C) & shoes_price_cents(P) & product_mul_shoes(C,P,T)) => shoes_total_cents(T))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, shorts_total_cents(n_4950)).
+
+% From FACT-3, FACT-4 by Arithmetic Computation
+fof(inf_2, axiom, pants_total_cents(n_6750)).
+
+% From FACT-5, FACT-6 by Arithmetic Computation
+fof(inf_3, axiom, shoes_total_cents(n_12600)).
+
+% From INF-1, INF-2 by Arithmetic Computation
+fof(inf_4, axiom, sum_cents(n_11700)).
+
+% From INF-4, INF-3 by Arithmetic Computation
+fof(inf_5, axiom, sum_cents(n_24300)).
+
+% From INF-5 by Arithmetic Computation
+fof(inf_6, axiom, total_spent_dollars(n_243)).

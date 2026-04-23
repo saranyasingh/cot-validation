@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: James runs 3 sprints per session :: SprintsPerSession(james, n_3)
+FACT-2: Each sprint is 60 meters long :: SprintLength(james, n_60)
+FACT-3: 3 × 60 = 180 :: Product(n_3, n_60, n_180)
+FACT-4: James runs 3 times a week :: SessionsPerWeek(james, n_3)
+FACT-5: 3 × 180 = 900 :: Product(n_3, n_180, n_900)
+
+## RULES
+RULE-1: Distance per session equals product of sprints per session and sprint length :: ∀p∀s∀d∀z((SprintsPerSession(p, s) ∧ SprintLength(p, d) ∧ Product(s, d, z)) → DistancePerSession(p, z))
+RULE-2: Weekly distance equals product of sessions per week and distance per session :: ∀p∀s∀d∀w((SessionsPerWeek(p, s) ∧ DistancePerSession(p, d) ∧ Product(s, d, w)) → WeeklyDistance(p, w))
+
+## INFERENCES
+INF-1: DistancePerSession(james, n_180) from FACT-1, FACT-2, FACT-3 by RULE-1
+INF-2: WeeklyDistance(james, n_900) from FACT-4, INF-1, FACT-5 by RULE-2

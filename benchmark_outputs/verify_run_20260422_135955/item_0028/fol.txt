@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Cynthia eats one serving of ice cream nightly :: NightlyIceCreamServing(cynthia, n_1)
+FACT-2: 60 days duration :: DurationDaysForCynthia(n_60)
+FACT-3: 30 nights per month :: NightsInMonth(n_30)
+FACT-4: 15 servings per carton :: ServingsPerCarton(n_15)
+FACT-5: 4 dollars per carton :: CostPerCarton(n_4)
+
+## RULES
+RULE-1: If NightlyIceCreamServing(c, s) and DurationDaysForCynthia(d) and NightsInMonth(n) then TotalServings(c, d, n, s, n_1800) :: ∀c∀d∀n∀s((NightlyIceCreamServing(c, s) ∧ DurationDaysForCynthia(d) ∧ NightsInMonth(n)) → TotalServings(c, d, n, s, n_1800))
+RULE-2: If TotalServings(cynthia, n_60, n_30, n_1, t) and ServingsPerCarton(n_15) then Divide(t, n_15, n_120) :: ∀t((TotalServings(cynthia, n_60, n_30, n_1, t) ∧ ServingsPerCarton(n_15)) → Divide(t, n_15, n_120))
+RULE-3: If Divide(n_1800, n_15, q) and CostPerCarton(n_4) then Multiply(q, n_4, n_480) :: ∀q((Divide(n_1800, n_15, q) ∧ CostPerCarton(n_4)) → Multiply(q, n_4, n_480))
+RULE-4: If Multiply(n_120, n_4, n_480) then TotalCost(n_480) :: ∀z((Multiply(n_120, n_4, z)) → TotalCost(z))
+
+## INFERENCES
+INF-1: TotalServings(cynthia, n_60, n_30, n_1, n_1800) from FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens) :: TotalServings(cynthia, n_60, n_30, n_1, n_1800)
+INF-2: Divide(n_1800, n_15, n_120) from INF-1 and FACT-4 by Arithmetic Computation (Division) :: Divide(n_1800, n_15, n_120)
+INF-3: Multiply(n_120, n_4, n_480) from INF-2 and FACT-5 by Arithmetic Computation (Multiplication) :: Multiply(n_120, n_4, n_480)
+INF-4: TotalCost(n_480) from INF-3 by RULE-4 (Modus Ponens) :: TotalCost(n_480)

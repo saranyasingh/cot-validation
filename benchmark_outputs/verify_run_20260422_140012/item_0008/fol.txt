@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: The file size is two_hundred_gb :: FileSize(two_hundred_gb)
+FACT-2: The download rate is two_gb_per_min :: DownloadRate(two_gb_per_min)
+
+## RULES
+RULE-1: If the file size is S and the download rate is R, then the time required to download is time_100_minutes :: ∀S∀R((FileSize(S) ∧ DownloadRate(R)) → TimeForDownload(S, R, time_100_minutes))
+RULE-2: If the time for download of S at rate R is time_100_minutes and S is half downloaded, then the time for the first half is time_50_minutes :: ∀S∀R((TimeForDownload(S, R, time_100_minutes) ∧ HalfDownloaded(S)) → TimeForFirstHalf(time_50_minutes))
+RULE-3: If the first half time is time_50_minutes and there is a restart due to update, then the total time for both halves is time_70_minutes :: ∀(TimeForFirstHalf(time_50_minutes) ∧ RestartDueToUpdate) → TimeForBothHalves(time_70_minutes))
+
+## INFERENCES
+INF-1: TimeForDownload(two_hundred_gb, two_gb_per_min, time_100_minutes) from FACT-1 and FACT-2 by RULE-1
+INF-2: TimeForFirstHalf(time_50_minutes) from INF-1 by RULE-2
+INF-3: TimeForBothHalves(time_70_minutes) from INF-2 by RULE-3

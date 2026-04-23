@@ -1,0 +1,68 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "After selling some vacuums Melanie had 5 left",
+      "formula": "AfterSellingSome(melanie, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Before selling half to the orange house, Melanie had 10 vacuums",
+      "formula": "BeforeOrangeSaleCount(melanie, n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Before selling to the red house, Melanie had 12 vacuums",
+      "formula": "BeforeRedSaleCount(melanie, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Before selling to the green house, Melanie had 24 vacuums",
+      "formula": "BeforeGreenSaleCount(melanie, n_24)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem implies the starting amount is 18, not 24, so 24 is not entailed.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone had 24 vacuums before selling to the green house, then they started with 24 vacuums",
+      "formula": "\u2200x(BeforeGreenSaleCount(x, n_24) \u2192 StartedWith(x, n_24))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Melanie started with 24 vacuums, from FACT-4 and RULE-1 by Modus Ponens",
+      "formula": "StartedWith(melanie, n_24)",
+      "premises": [
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem implies the starting amount is 18, not 24, so 24 is not entailed."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

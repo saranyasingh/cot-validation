@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: A robe requires 2 bolts of blue fiber :: BlueBoltFor(robe, n_2)
+FACT-2: Half as much white fiber as blue fiber is required :: Half(n_2, n_1)
+FACT-3: Blue bolts plus white bolts equal total bolts :: Sum(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If a robe has B blue bolts and W is half of B, then the robe has W white bolts :: ∀O∀B∀W((BlueBoltFor(O,B) ∧ Half(B,W)) → WhiteBoltFor(O,W))
+RULE-2: If a robe has B blue bolts and W white bolts and Sum(B,W,S), then the total bolts is S :: ∀O∀B∀W∀S((BlueBoltFor(O,B) ∧ WhiteBoltFor(O,W) ∧ Sum(B,W,S)) → TotalBoltFor(O,S))
+
+## INFERENCES
+INF-1: White bolt amount for robe is n_1, from FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: WhiteBoltFor(robe, n_1)
+INF-2: Total bolts for robe is n_3, from FACT-1, INF-1, and FACT-3 by RULE-2 (Modus Ponens) :: TotalBoltFor(robe, n_3)

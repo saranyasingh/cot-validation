@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, DucksLayPerDay(janet, n_16)).
+fof(fact_2, axiom, EggsEatenForBreakfast(janet, n_3)).
+fof(fact_3, axiom, EggsUsedForMuffins(janet, n_4)).
+fof(fact_4, axiom, PricePerEgg(n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, X, Y, Z] : ((DucksLayPerDay(P, X) & EggsEatenForBreakfast(P, Y) & Subtract(X, Y, Z)) => RemainingAfterBreakfast(P, Z))).
+fof(rule_2, axiom, ! [P, X, Y, Z] : ((RemainingAfterBreakfast(P, X) & EggsUsedForMuffins(P, Y) & Subtract(X, Y, Z)) => RemainingAfterMuffins(P, Z))).
+fof(rule_3, axiom, ! [P, X, Y, Z] : ((RemainingAfterMuffins(P, X) & PricePerEgg(Y) & Multiply(X, Y, Z)) => DailyRevenue(P, Z))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, Subtract(n_16, n_3, n_13)).
+% From FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens
+fof(inf_2, axiom, RemainingAfterBreakfast(janet, n_13)).
+% From INF-2 and FACT-3 by Arithmetic Computation
+fof(inf_3, axiom, Subtract(n_13, n_4, n_9)).
+% From INF-2, INF-3, FACT-3 by Modus Ponens using RULE-2
+fof(inf_4, axiom, RemainingAfterMuffins(janet, n_9)).
+% From INF-4 and FACT-4 by Arithmetic Computation
+fof(inf_5, axiom, Multiply(n_9, n_2, n_18)).
+% From INF-4, INF-5, and RULE-3 by Modus Ponens
+fof(inf_6, axiom, DailyRevenue(janet, n_18)).

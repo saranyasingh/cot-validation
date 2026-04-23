@@ -1,0 +1,92 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Ratio(darrell, allen, n_7, n_11)",
+      "formula": "The ratio of Darrell's age to Allen's age is 7:11",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "SumAges(darrell, allen, n_162)",
+      "formula": "The sum of Darrell's and Allen's ages is 162",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y\u2200m\u2200n\u2200S((Ratio(x,y,m,n) \u2227 SumAges(x,y,S)) \u2192 \u2203ax\u2203ay(Age(x,ax) \u2227 Age(y,ay) \u2227 ax = (m*S)/(m+n) \u2227 ay = (n*S)/(m+n)))",
+      "formula": "If two people have ages in ratio m:n and sum S, then their ages are ax and ay with ax = (m*S)/(m+n) and ay = (n*S)/(m+n)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds arithmetic computation (ax = (m*S)/(m+n)) inside the rule rather than using separate ground predicates",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200a((Age(p,a)) \u2192 FutureAge(p, Add(a, n_10)))",
+      "formula": "If a person is age a now, their age after 10 years is Add(a, n_10)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds arithmetic operation Add(a, n_10) inside the rule rather than using a separate arithmetic predicate",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Age(darrell, n_63)",
+      "formula": "from FACT-1, FACT-2 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Age(allen, n_99)",
+      "formula": "from FACT-1, FACT-2 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "FutureAge(allen, Add(n_99, n_10))",
+      "formula": "from INF-2 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "FutureAge(allen, n_109)",
+      "formula": "from INF-3 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "embeds arithmetic computation (ax = (m*S)/(m+n)) inside the rule rather than using separate ground predicates"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "embeds arithmetic operation Add(a, n_10) inside the rule rather than using a separate arithmetic predicate"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: OnePairHighHeelCost33 :: HeelOneCost(n_33)
+FACT-2: OtherPairHighHeelCost66 :: HeelTwoCost(n_66)
+FACT-3: TotalCostTwoHighHeelsIs99 :: HeelsTotalCost(n_99)
+FACT-4: HeelsTotalIsFiveDollarsLessThanBoots :: HeelsTotalCost(n_99) < BootsPrice(n_boots) ∧ FiveDollars(n_5)
+
+## RULES
+RULE-1: ∀x∀y((HeelOneCost(x) ∧ HeelTwoCost(y)) → HeelsTotalCost(n_99)) :: If one pair costs 33 and the other costs 66, then the two-pair total costs 99
+RULE-2: ∀a((HeelsTotalCost(a) ∧ FiveDollars(n_5)) → BootsPrice(n_boots)) :: If the heels total equals 99 and boots exceed that total by 5, then BootsPrice is the Boots value
+RULE-3: ∀x∀y((HeelsTotalCost(x) ∧ BootsPrice(n_boots) ∧ FiveDollars(n_5)) → (BootsPrice(n_boots) = x + n_5)) :: Boots price equals heels total plus 5
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by Arithmetic Computation :: HeelsSum33Plus66(n_99)
+INF-2: From FACT-3 and INF-1 by Substitution (occurs in chain) :: HeelsTotalCost(n_99) (reaffirmed)
+INF-3: From INF-2 and FACT-4 by Modus Ponens :: BootsPrice(n_boots) = n_99 + n_5
+INF-4: From INF-3 by Simplification :: BootsPrice(n_boots) = n_104
+INF-5: From INF-4 and the chain’s corrective reasoning (contradiction) :: Contradiction (99 < 0) arises (as per the chain’s steps)

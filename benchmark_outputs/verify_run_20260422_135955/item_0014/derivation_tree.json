@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If InitialAmount(m, x) and SoldThirdAtGreenHouse(m) then RemainingAfterGreenHouse(m, x_minus_x_over_3)",
+      "formula": "\u2200m\u2200x((InitialAmount(m, x) \u2227 SoldThirdAtGreenHouse(m)) \u2192 RemainingAfterGreenHouse(m, x_minus_x_over_3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If RemainingAfterGreenHouse(m, r1) and SoldTwoAtRedHouse(m) then RemainingAfterRedHouse(m, r1_minus_2)",
+      "formula": "\u2200m\u2200r1((RemainingAfterGreenHouse(m, r1) \u2227 SoldTwoAtRedHouse(m)) \u2192 RemainingAfterRedHouse(m, r1_minus_2))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If RemainingAfterRedHouse(m, r2) then HalfOfRemainingAtOrangeHouse(m, r3) and r3 = r2/2",
+      "formula": "\u2200m\u2200r2((RemainingAfterRedHouse(m, r2)) \u2192 HalfOfRemainingAtOrangeHouse(m, r3) \u2227 r3 = r2/2)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If LeftWith(m, L) and HalfOfRemainingAtOrangeHouse(m, r3) then L = 5",
+      "formula": "\u2200m((LeftWith(m, 5)) \u2227 (HalfOfRemainingAtOrangeHouse(m, r3)) \u2192 True)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It asserts a fixed numeric conclusion (L = 5) that is not a general principle; the final amount should equal the remaining amount after the orange step (r3), not necessarily 5.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and RULE-1, derive RemainingAfterGreenHouse(melanie, x_minus_x_over_3)",
+      "formula": "Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-2, derive RemainingAfterRedHouse(melanie, x_minus_x_over_3_minus_2)",
+      "formula": "Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 and RULE-3, derive HalfOfRemainingAtOrangeHouse(melanie, (x_minus_x_over_3_minus_2)/2)",
+      "formula": "Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 and RULE-4, derive LeftWith(melanie, 5)",
+      "formula": "Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "It asserts a fixed numeric conclusion (L = 5) that is not a general principle; the final amount should equal the remaining amount after the orange step (r3), not necessarily 5."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

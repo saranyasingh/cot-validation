@@ -1,0 +1,42 @@
+% --- FACTS ---
+fof(fact_1, axiom, OriginalPricePerGlass(n_5)).
+fof(fact_2, axiom, TotalGlasses(n_16)).
+fof(fact_3, axiom, DiscountRate(n_0_6)).
+fof(fact_4, axiom, Multiply(n_5, n_0_6, n_3)).
+fof(fact_5, axiom, Half(n_16, n_8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (! [D] : (! [Q] : ((OriginalPricePerGlass(P) & DiscountRate(D) & Multiply(P, D, Q)) => DiscountedPricePerGlass(Q))))).
+fof(rule_2, axiom, ! [T] : (! [H] : ((TotalGlasses(T) & Half(T, H)) => DiscountedCount(H)))).
+fof(rule_3, axiom, ! [T] : (! [H] : ((TotalGlasses(T) & Half(T, H)) => OriginalCount(H)))).
+fof(rule_4, axiom, ! [H] : (! [P] : (! [C] : ((DiscountedCount(H) & DiscountedPricePerGlass(P) & Multiply(H, P, C)) => DiscountCost(C))))) .
+fof(rule_5, axiom, ! [H] : (! [P] : (! [C] : ((OriginalCount(H) & OriginalPricePerGlass(P) & Multiply(H, P, C)) => OriginalCost(C))))) .
+fof(rule_6, axiom, ! [A] : (! [B] : (! [C] : ((DiscountCost(A) & OriginalCost(B) & Add(A, B, C)) => TotalCost(C))))) .
+
+% --- INFERENCES ---
+% From fact_1, fact_3, and Multiply(n_5, n_0_6, n_3) by Arithmetic Computation
+fof(inf_1, axiom, DiscountedPricePerGlass(n_3)).
+
+% From fact_2 and fact_5 by Rule-2 (Universal Instantiation)
+% There are 8 discounted glasses
+fof(inf_2, axiom, DiscountedCount(n_8)).
+
+% From fact_2 and fact_5 by Rule-3 (Universal Instantiation)
+% There are 8 original glasses
+fof(inf_3, axiom, OriginalCount(n_8)).
+
+% From inf_2 and inf_1 by Rule-4 (Arithmetic Computation)
+% The cost of discounted glasses is 24 dollars
+fof(inf_4, axiom, DiscountCost(n_24)).
+
+% From inf_3 and fact_1 by Rule-5 (Arithmetic Computation)
+% The cost of original glasses is 40 dollars
+fof(inf_5, axiom, OriginalCost(n_40)).
+
+% From inf_4 and inf_5 by Arithmetic Computation
+% 24 + 40 = 64
+fof(inf_6, axiom, Add(n_24, n_40, n_64)).
+
+% From inf_4, inf_5, and inf_6 by Rule-6 (Addition)
+% Total cost is 64 dollars
+fof(inf_7, axiom, TotalCost(n_64)).

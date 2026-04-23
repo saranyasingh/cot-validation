@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "A robe requires 2 bolts of blue fiber",
+      "formula": "BlueBoltFor(robe, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Half as much white fiber as blue fiber is required",
+      "formula": "Half(n_2, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Blue bolts plus white bolts equal total bolts",
+      "formula": "Sum(n_2, n_1, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a robe has B blue bolts and W is half of B, then the robe has W white bolts",
+      "formula": "\u2200O\u2200B\u2200W((BlueBoltFor(O,B) \u2227 Half(B,W)) \u2192 WhiteBoltFor(O,W))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a robe has B blue bolts and W white bolts and Sum(B,W,S), then the total bolts is S",
+      "formula": "\u2200O\u2200B\u2200W\u2200S((BlueBoltFor(O,B) \u2227 WhiteBoltFor(O,W) \u2227 Sum(B,W,S)) \u2192 TotalBoltFor(O,S))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "White bolt amount for robe is n_1, from FACT-1 and FACT-2 by RULE-1 (Modus Ponens)",
+      "formula": "WhiteBoltFor(robe, n_1)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Total bolts for robe is n_3, from FACT-1, INF-1, and FACT-3 by RULE-2 (Modus Ponens)",
+      "formula": "TotalBoltFor(robe, n_3)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,22 @@
+EXPLANATION
+1. First, we need to determine how much of the file Carla has downloaded before the restart.
+   - Since the entire file is 200 GB and she normally downloads at 2 GB per minute,
+     \[
+     \text{Time before restart} = \frac{\text{Total File Size}}{\text{Download Rate}} = \frac{200\ \text{GB}}{2\ \text{GB/min}} = 100\ \text{minutes}
+     \]
+   - This means she had completed 50% (half) of the file before the restart.
+
+2. Next, we calculate the time taken to complete this half of the file:
+   - She would have taken another 50 minutes to download the remaining half of the file because her normal speed remains unchanged.
+
+3. Now we add up all the times involved:
+   - Time spent downloading the first half: 50 minutes
+   - Time spent restarting due to update issues: 20 minutes
+   - Total time for both halves: \(50 + 20 = 70\) minutes
+
+4. Finally, we add the total time to the time already spent downloading the second half:
+   - Total time including the second half: \(70 + 50 = 120\) minutes
+
+Therefore, the total time it took Carla to download the file is 120 minutes. 
+
+The answer is: 120

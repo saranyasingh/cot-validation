@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — The problem states the second heels costs twice as much; if the first is 33, the second should be 66, not 33.
+FACT-3: UNSUPPORTED — The problem implies heels total is 99; 66 is not entailed by the problem.
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — The rule uses a fixed identifier (BootsTotalCost71) and does not express a general relation BootsTotalCost = HeelsTotalCost + 5 with universal quantification.
+RULE-2: IMPLAUSIBLE — Uses fixed identifiers and does not encode a general relation between BootsTotalCost and BootsPrice.

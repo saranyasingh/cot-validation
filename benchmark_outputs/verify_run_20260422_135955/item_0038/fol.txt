@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: John has 13 lego sets :: LegoSets(john, n_13)
+FACT-2: Lego set price is 15 :: LegoSetPrice(n_15)
+FACT-3: John buys 8 video games :: VideoGamesBought(john, n_8)
+FACT-4: Video game price is 20 :: VideoGamePrice(n_20)
+FACT-5: John has 5 dollars left :: LeftoverMoney(john, n_5)
+
+## RULES
+RULE-1: If John has l lego sets and the price per lego set is p, then the lego revenue is 195 :: ∀l∀p((LegoSets(john, l) ∧ LegoSetPrice(p)) → RevenueLego(john, l, p, n_195))
+RULE-2: If John buys g video games at price q, then the video game cost is 160 :: ∀g∀q((VideoGamesBought(john, g) ∧ VideoGamePrice(q)) → CostVideoGames(john, g, q, n_160))
+RULE-3: If revenue from lego sales is 195 and cost of video games is 160, then remaining money is 35 :: ∀l∀p∀g∀q((RevenueLego(john, l, p, n_195) ∧ CostVideoGames(john, g, q, n_160)) → RemainingMoney(john, n_195, n_160, n_35))
+RULE-4: If leftover money is 5 and remaining money is 35, then there is a discrepancy :: ∀j((LeftoverMoney(john, n_5) ∧ RemainingMoney(john, n_195, n_160, n_35)) → Discrepancy(john, n_35, n_5))
+
+## INFERENCES
+INF-1: RevenueLego(john, n_13, n_15, n_195) from FACT-1 and FACT-2 by RULE-1 (Modus Ponens) :: RevenueLego(john, n_13, n_15, n_195)
+INF-2: CostVideoGames(john, n_8, n_20, n_160) from FACT-3 and FACT-4 by RULE-2 (Modus Ponens) :: CostVideoGames(john, n_8, n_20, n_160)
+INF-3: RemainingMoney(john, n_195, n_160, n_35) from INF-1 and INF-2 by RULE-3 (Conjunction + Modus Ponens) :: RemainingMoney(john, n_195, n_160, n_35)
+INF-4: Discrepancy(john, n_35, n_5) from INF-3 and FACT-5 by RULE-4 (Modus Ponens) :: Discrepancy(john, n_35, n_5)

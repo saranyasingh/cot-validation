@@ -1,0 +1,110 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "MarissaWalked(marissa, n_4, n_1)",
+      "formula": "Marissa walked 4 miles in 1 hour",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Marissa walked 4 miles in 1 hour.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "MarissaWalked(marissa, n_2, n_1)",
+      "formula": "Marissa walked another 2 miles in 1 hour",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Marissa walked 2 miles in 1 hour.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "TrailTotalDistance(trail, n_12)",
+      "formula": "The total distance of the trail is 12 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly given: 12-mile trail.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "CoveredDistance(marissa, n_6)",
+      "formula": "Already covered 6 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Covered distance is 6 miles (4+2).",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "RemainingDistance(trail, n_6)",
+      "formula": "Remaining distance is 6 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Remaining distance is 6 miles (12\u22126).",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "RequiredTimeForRemaining(n_3)",
+      "formula": "Required time for remaining distance is 3 hours",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not specify RequiredTimeForRemaining; the intended value would be 1 hour, not 3.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "HoursLeft(marissa, n_3)",
+      "formula": "Marissa has 3 hours left",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "No statement of HoursLeft in the problem.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "SpeedGoal(trail, n_4)",
+      "formula": "Desired average speed is 4 mph",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Speed goal is 4 mph.",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Answer(n_4)",
+      "formula": "The answer is 4",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The answer is 6 mph, not 4 mph.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200trail \u2200D \u2200S \u2200T((Divide(D, S, T)) \u2192 (TrailTotalDistance(trail, D) \u2227 SpeedGoal(trail, S) \u2227 TotalTimeNeeded(trail, T)))",
+      "formula": "If D divided by S equals T, then for the (any) trail the total distance is D, the speed goal is S, and the total time needed is T",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule incorrectly derives TrailTotalDistance and SpeedGoal solely from a division relation; not a valid universal encoding.",
+      "error": true
+    }
+  },
+  "root": null,
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "The problem does not specify RequiredTimeForRemaining; the intended value would be 1 hour, not 3."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "No statement of HoursLeft in the problem."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "The answer is 6 mph, not 4 mph."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule incorrectly derives TrailTotalDistance and SpeedGoal solely from a division relation; not a valid universal encoding."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

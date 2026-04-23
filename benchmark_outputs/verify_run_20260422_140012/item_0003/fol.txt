@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: BoughtFor(josh, house, n_80000)
+FACT-2: He spent $50,000 on repairs :: SpentOn(josh, repairs, n_50000)
+FACT-3: Percent of value: PercentOfValue(n_80000, n_150, n_120000) :: PercentOfValue(n_80000, n_150, n_120000)
+
+## RULES
+RULE-1: If a person p buys a house h for amount a and p spends amount b on repairs, and there is Sum(a, b, c), then TotalInvestment(p, c) :: ∀p∀h∀a∀b∀c((BoughtFor(p,h,a) ∧ SpentOn(p, repairs, b) ∧ Sum(a,b,c)) → TotalInvestment(p,c))
+RULE-2: If BoughtFor(p,h,a) then OriginalCost(h,a) :: ∀p∀h∀a(BoughtFor(p,h,a) → OriginalCost(h,a))
+RULE-3: If OriginalCost(h,a) and PercentOfValue(a, p, s) then IncreaseInValue(h, s) :: ∀h∀a∀p∀s((OriginalCost(h,a) ∧ PercentOfValue(a,p,s)) → IncreaseInValue(h,s))
+RULE-4: If TotalInvestment(p,r) and IncreaseInValue(h,s) and Subtract(r,s,c) then Profit(p,c) :: ∀p∀h∀r∀s∀c((TotalInvestment(p,r) ∧ IncreaseInValue(h,s) ∧ Subtract(r,s,c)) → Profit(p,c))
+
+## INFERENCES
+INF-1: Sum of 80,000 and 50,000 equals 130,000, from FACT-1 and FACT-2 by ArithmeticComputation :: Sum(n_80000, n_50000, n_130000)
+INF-2: TotalInvestment(josh, 130000), from FACT-1, FACT-2, INF-1 by RULE-1 (TotalInvestmentFromSum) :: TotalInvestment(josh, n_130000)
+INF-3: OriginalCost(house, 80000), from FACT-1 by RULE-2 :: OriginalCost(house, n_80000)
+INF-4: IncreaseInValue(house, 120000), from INF-3 and FACT-3 by RULE-3 :: IncreaseInValue(house, n_120000)
+INF-5: Subtract(130000, 120000, 10000), from INF-2 and INF-4 by ArithmeticComputation :: Subtract(n_130000, n_120000, n_10000)
+INF-6: Profit(josh, 10000), from INF-2, INF-4, INF-5 by RULE-4 :: Profit(josh, n_10000)

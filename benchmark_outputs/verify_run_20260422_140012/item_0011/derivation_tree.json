@@ -1,0 +1,98 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "First month downloads are 60",
+      "formula": "Month1Downloads(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: first month downloads are 60.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the first month downloads are 60, then the second month downloads are 180",
+      "formula": "\u2200x((Month1Downloads(x) \u2227 x = n_60) \u2192 Month2Downloads(n_180))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Embeds a specific arithmetic result (60 \u2192 180) rather than a general relation.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the second month downloads are 180, then the third month downloads are 126",
+      "formula": "\u2200x((Month2Downloads(x) \u2227 x = n_180) \u2192 Month3Downloads(n_126))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Embeds a specific arithmetic result (180 \u2192 126) via a 30% reduction rather than a general rule.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the first, second, and third month downloads are 60, 180, and 126 respectively, then the total downloads are 366",
+      "formula": "\u2200a\u2200b\u2200c((Month1Downloads(a) \u2227 Month2Downloads(b) \u2227 Month3Downloads(c)) \u2192 TotalDownloads(n_366))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Encodes a concrete sum (60+180+126=366) rather than a generalized addition relation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Month2Downloads(n_180), from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Month2Downloads(n_180)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Month3Downloads(n_126), from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Month3Downloads(n_126)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TotalDownloads(n_366), from FACT-1, INF-1, INF-2 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDownloads(n_366)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "Embeds a specific arithmetic result (60 \u2192 180) rather than a general relation."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Embeds a specific arithmetic result (180 \u2192 126) via a 30% reduction rather than a general rule."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Encodes a concrete sum (60+180+126=366) rather than a generalized addition relation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

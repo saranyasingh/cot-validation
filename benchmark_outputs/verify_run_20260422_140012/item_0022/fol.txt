@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: BornBefore(raymond, samantha, n_6) :: BornBefore(raymond, samantha, n_6)
+FACT-2: Age(samantha, n_31) :: Age(samantha, n_31)
+FACT-3: HasSon(raymond, raymonds_son) :: HasSon(raymond, raymonds_son)
+FACT-4: Age(raymonds_son, n_23) :: Age(raymonds_son, n_23)
+FACT-5: Subtraction(n_31, n_6, n_25) :: Subtraction(n_31, n_6, n_25)
+FACT-6: Subtraction(n_25, n_23, n_2) :: Subtraction(n_25, n_23, n_2)
+FACT-7: Add(n_6, n_2, n_8) :: Add(n_6, n_2, n_8)
+
+## RULES
+RULE-1: If BornBefore(x,y,d) ∧ Age(y,n_y) ∧ Subtraction(n_y,d,n_r) then Age(x,n_r) :: ∀x∀y∀d∀n_y∀n_r((BornBefore(x,y,d) ∧ Age(y,n_y) ∧ Subtraction(n_y,d,n_r)) → Age(x,n_r))
+RULE-2: If Age(x,n_x) ∧ Age(y,n_y) ∧ Subtraction(n_x,n_y,dr) ∧ HasSon(x,z) then AgeDifference(x,z,dr) :: ∀x∀y∀z∀n_x∀n_y∀dr((Age(x,n_x) ∧ Age(y,n_y) ∧ Subtraction(n_x,n_y,dr) ∧ HasSon(x,z)) → AgeDifference(x,z,dr))
+RULE-3: If BornBefore(x,y,d) ∧ AgeDifference(x,z,dr) ∧ Add(d,dr,ra) then BornAgo(z,ra) :: ∀x∀y∀z∀d∀dr∀ra((BornBefore(x,y,d) ∧ AgeDifference(x,z,dr) ∧ Add(d,dr,ra)) → BornAgo(z,ra))
+RULE-4: If BornAgo(z,ra) then Answer(ra) :: ∀z∀ra(BornAgo(z,ra) → Answer(ra))
+
+## INFERENCES
+INF-1: Age(raymond, n_25) from FACT-1, FACT-2, FACT-5 by RULE-1 :: Age(raymond, n_25)
+INF-2: AgeDifference(raymond, raymonds_son, n_2) from INF-1, FACT-4, FACT-6, FACT-3 by RULE-2 :: AgeDifference(raymond, raymonds_son, n_2)
+INF-3: BornAgo(raymonds_son, n_8) from FACT-1, INF-2, FACT-7 by RULE-3 :: BornAgo(raymonds_son, n_8)
+INF-4: Answer(n_8) from INF-3 by RULE-4 :: Answer(n_8)

@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Speed(John, leg1, n_60) :: John travels leg1 at speed 60
+FACT-2: Time(John, leg1, n_3) :: John spends 3 hours on leg1
+FACT-3: DistanceTraveled(John, leg1, n_180) :: John covers 180 miles on leg1
+FACT-4: Time(John, leg2, n_2) :: John spends 2 hours in traffic on leg2
+FACT-5: DistanceTraveled(John, leg2, n_0) :: John covers 0 miles on leg2
+FACT-6: Speed(John, leg3, n_30) :: John travels leg3 at speed 30
+FACT-7: Time(John, leg3, n_0_5) :: John spends 0.5 hours on leg3
+FACT-8: DistanceTraveled(John, leg3, n_15) :: John covers 15 miles on leg3
+FACT-9: Speed(John, leg4, n_80) :: John travels leg4 at speed 80
+FACT-10: Time(John, leg4, n_1_5) :: John spends 1.5 hours on leg4
+FACT-11: DistanceTraveled(John, leg4, n_120) :: John covers 120 miles on leg4
+FACT-12: TotalDistance(John, n_315) :: John’s total distance traveled is 315
+FACT-13: StartedAtHome(John) :: John started at home
+
+## RULES
+RULE-1: ∀p ∀d (TotalDistance(p, d) → DistanceFromHome(p, d)) :: If total distance is d, then distance from home is d
+
+## INFERENCES
+INF-1: DistanceFromHome(John, n_315) :: From FACT-12 and RULE-1 by Modus Ponens

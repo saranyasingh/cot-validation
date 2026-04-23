@@ -1,0 +1,29 @@
+To determine Gunter's average guess, we need to calculate the guesses of all three friends and then find their arithmetic mean.
+
+1. **First friend's guess**: This person guessed that there are 80 jelly beans.
+   - Calculation: \( \text{Guess}_1 = 80 \)
+
+2. **Second friend's guess**: This person said there are 20 more than half the amount guessed by the first friend.
+   - First, calculate half of the first friend's guess: \( \frac{80}{2} = 40 \)
+   - Then add 20 to this value: \( 40 + 20 = 60 \)
+   - Calculation: \( \text{Guess}_2 = 60 \)
+
+3. **Third friend's guess**: This person claimed it was 25% more than the first friend's guess.
+   - Calculate 25% of the first friend's guess: \( 0.25 \times 80 = 20 \)
+   - Add this value to the first friend's guess: \( 80 + 20 = 100 \)
+   - Calculation: \( \text{Guess}_3 = 100 \)
+
+Now, we have calculated the individual guesses:
+- \( \text{Guess}_1 = 80 \)
+- \( \text{Guess}_2 = 60 \)
+- \( \text{Guess}_3 = 100 \)
+
+Next, we find the sum of these guesses:
+\[ \text{Sum} = \text{Guess}_1 + \text{Guess}_2 + \text{Guess}_3 = 80 + 60 + 100 = 240 \]
+
+Finally, we calculate the average (mean) guess by dividing the total sum by the number of friends (which is 3):
+\[ \text{Average Guess} = \frac{\text{Sum}}{\text{Number of Friends}} = \frac{240}{3} = 80 \]
+
+Therefore, the average guess is 80.
+
+**The answer is:** 80

@@ -1,0 +1,201 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total number of students is 20",
+      "formula": "TotalStudents(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The percentage enrolled in contemporary dance is 20%",
+      "formula": "ContemporaryPercent(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The percentage enrolled in jazz dance is 25%",
+      "formula": "JazzPercent(n_25)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Jazz percentage is 25% of the remaining, not of the total.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The number of students in contemporary dance is 4",
+      "formula": "ContemporaryCount(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The remaining after contemporary is 16",
+      "formula": "RemainingAfterContemporary(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The number of students in jazz dance is 4",
+      "formula": "JazzCount(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The remaining after jazz is 12",
+      "formula": "RemainingAfterJazz(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The hip-hop percentage is 60%",
+      "formula": "HipHopPercent(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a total T with contemporary percent P yields count C, then ContemporaryCount(C)",
+      "formula": "\u2200T\u2200P\u2200C((TotalStudents(T) \u2227 ContemporaryPercent(P) \u2227 ComputePercentOfTotal(T,P,C)) \u2192 ContemporaryCount(C))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a total T with jazz percent P yields count J, then JazzCount(J)",
+      "formula": "\u2200T\u2200P\u2200J((TotalStudents(T) \u2227 JazzPercent(P) \u2227 ComputePercentOfTotal(T,P,J)) \u2192 JazzCount(J))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If total T with contemporary count C and a subtraction relation yields R, then RemainingAfterContemporary(R)",
+      "formula": "\u2200T\u2200C\u2200R((TotalStudents(T) \u2227 ContemporaryCount(C) \u2227 Subtract(T,C,R)) \u2192 RemainingAfterContemporary(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the remaining after contemporary is R and jazz count J, and subtraction yields the remaining after jazz, then RemainingAfterJazz(R)",
+      "formula": "\u2200T\u2200R\u2200J((TotalStudents(T) \u2227 RemainingAfterContemporary(R) \u2227 JazzCount(J) \u2227 Subtract(R,J,RemainingAfterJazz)) \u2192 RemainingAfterJazz(RemainingAfterJazz))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If total T, remaining after jazz R, and hip-hop percent H, then HipHopPercent(H)",
+      "formula": "\u2200T\u2200R\u2200H((TotalStudents(T) \u2227 RemainingAfterJazz(R) \u2227 HipHopPercent(H)) \u2192 HipHopPercent(H))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "ContemporaryCount(4) from FACT-1, FACT-2, and RULE-1 by Modus Ponens",
+      "formula": "ContemporaryCount(n_4)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingAfterContemporary(16) from FACT-1, INF-1, and RULE-3 by Substitution/Modus Ponens",
+      "formula": "RemainingAfterContemporary(n_16)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Substitution/Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "JazzCount(4) from FACT-3, FACT-6, and RULE-2 by Modus Ponens",
+      "formula": "JazzCount(n_4)",
+      "premises": [
+        "FACT-3",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "RemainingAfterJazz(12) from INF-2, INF-3, and RULE-4 by Substitution/Modus Ponens",
+      "formula": "RemainingAfterJazz(n_12)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Substitution/Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "HipHopPercent(60) from INF-4, FACT-1, and RULE-5 by Substitution/Modus Ponens",
+      "formula": "HipHopPercent(n_60)",
+      "premises": [
+        "INF-4",
+        "FACT-1",
+        "RULE-5"
+      ],
+      "inference_rule": "Substitution/Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "HipHopPercentageIs60 from INF-5 by Identity (treated as a simple derivation step)",
+      "formula": "HipHopPercent(n_60)",
+      "premises": [
+        "INF-5"
+      ],
+      "inference_rule": "Identity (treated as a simple derivation step)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "Jazz percentage is 25% of the remaining, not of the total."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

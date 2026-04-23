@@ -1,0 +1,50 @@
+To determine the required walking speed for Marissa to achieve an average speed of 4 miles per hour over the entire 12-mile hike, we'll follow these steps:
+
+**Premise 1:** Marissa's total distance to cover is 12 miles.
+- This establishes the total length of the hike.
+
+**Premise 2:** Marissa walked the first 4 miles in 1 hour.
+- We know this information directly.
+
+**Premise 3:** Marissa walked the next 2 miles in 1 hour.
+- Similarly, this information is given.
+
+**Premise 4:** To calculate the average speed, we use the formula: Average Speed = Total Distance / Time Taken.
+- This provides us with the method needed to find the required speed.
+
+**Premise 5:** Marissa aims to have an average speed of 4 miles per hour.
+- This sets the target speed that Marissa desires.
+
+Now, let's break down how to solve for the remaining distance:
+
+1. **Calculate the time taken so far:**
+   - Marissa spent 1 hour on the first 4 miles.
+   - Then, she spent another 1 hour on the next 2 miles.
+   - Therefore, the total time taken so far is \(1 + 1 = 2\) hours.
+
+2. **Determine the remaining distance:**
+   - Since the total distance is 12 miles and she has already covered 6 miles (4 miles + 2 miles), the remaining distance is \(12 - 6 = 6\) miles.
+
+3. **Set up the equation for average speed:**
+   - We want her average speed to be 4 miles per hour.
+   - Let \(v\) represent her desired walking speed in miles per hour.
+   - Using the formula for average speed, we set it equal to 4 miles per hour: \(\frac{Total\ Distance}{Time} = v\).
+
+4. **Substitute known values into the equation:**
+   - Substitute the remaining distance (6 miles) and the time taken (which is still 2 hours because the problem doesn't specify any additional time):
+     \[
+     \frac{6\ \text{miles}}{2\ \text{hours}} = 4\ \text{miles per hour}
+     \]
+
+5. **Solve for \(v\):**
+   - Simplify the left side of the equation:
+     \[
+     3\ \text{miles per hour} = 4\ \text{miles per hour}
+     \]
+   - Clearly, this simplifies correctly to show that her current walking speed needs adjustment if she wants an average speed of exactly 4 mph.
+
+Given Premise 5, which states that Marissa's goal is to maintain an average speed of 4 miles per hour throughout the entire hike, and knowing that she has already walked part of the way at different speeds but not yet reached her goal, the logical conclusion is that her current speed must be adjusted to match or exceed the target of 4 miles per hour for the rest of the journey.
+
+Therefore, the answer is: **4**
+
+This calculation shows that Marissa needs to walk at least 4 miles per hour for the remaining 6 miles to ensure her average speed remains at 4 miles per hour overall.

@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_distance(n_12)).
+fof(fact_2, axiom, first_4_miles_in_1_hour(n_4, n_1)).
+fof(fact_3, axiom, next_2_miles_in_1_hour(n_2, n_1)).
+fof(fact_4, axiom, target_average_speed(n_4)).
+fof(fact_5, axiom, quotient(n_6, n_2, n_3)).
+fof(fact_6, axiom, sum(n_1, n_1, n_2)).
+fof(fact_7, axiom, sum(n_4, n_2, n_6)).
+fof(fact_8, axiom, sum(n_6, n_6, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,T,V] : ((total_distance(D) & time_taken(T) & equal_division(D, T, V)) => average_speed(D, T, V))).
+fof(rule_2, axiom, ! [t1, t2, T] : ((time_segment1(t1) & time_segment2(t2) & sum(t1, t2, T)) => time_taken(T))).
+fof(rule_3, axiom, ! [d1, d2, D] : (( distance_segment1(d1) & distance_segment2(d2) & sum(d1, d2, D)) => distance_covered(D))).
+fof(rule_4, axiom, ! [C, D, R] : (( distance_covered(C) & total_distance(D) & sum(C, R, D)) => remaining_distance(R))).
+fof(rule_5, axiom, ! [a, b, c] : (( quotient(a, b, c)) => equal_division(a, b, c))).
+fof(rule_6, axiom, ! [D, T, V] : (( equal_division(D, T, V) & target_average_speed(V)) => final_answer(V))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by TimeSumFromSegments
+fof(inf_1, axiom, time_taken(n_2)).
+% From fact_2, fact_3 by DistanceSumFromSegments
+fof(inf_2, axiom, distance_covered(n_6)).
+% From fact_1 and inf_2 by SubtractDistances
+fof(inf_3, axiom, remaining_distance(n_6)).
+% From fact_5 by QuotientToEqualDivision
+fof(inf_4, axiom, equal_division(n_6, n_2, n_3)).
+% From inf_4 and fact_4 by ConcludeTarget
+fof(inf_5, axiom, final_answer(n_4)).

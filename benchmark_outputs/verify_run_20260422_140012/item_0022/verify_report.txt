@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The problem states Raymond had a son at age 23 but does not state the son's current age.
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — depends on FACT-4 (the son's age), which is not established.
+FACT-7: UNSUPPORTED — requires 2, which depends on 6 and thus on an unavailable value.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — dr = Age(x) − Age(y) is not related to the actual age difference between x and z; y is not linked to z.
+RULE-3: IMPLAUSIBLE — cannot conclude BornAgo(z, ra) from these premises; ra is not guaranteed to equal z's age.
+RULE-4: PLAUSIBLE

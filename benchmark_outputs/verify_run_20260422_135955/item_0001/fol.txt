@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: DucksLayPerDay(janet, n_16) :: DucksLayPerDay(janet, n_16)
+FACT-2: EggsEatenForBreakfast(janet, n_3) :: EggsEatenForBreakfast(janet, n_3)
+FACT-3: EggsUsedForMuffins(janet, n_4) :: EggsUsedForMuffins(janet, n_4)
+FACT-4: PricePerEgg(n_2) :: PricePerEgg(n_2)
+
+## RULES
+RULE-1: ∀p∀x∀y∀z((DucksLayPerDay(p, x) ∧ EggsEatenForBreakfast(p, y) ∧ Subtract(x, y, z)) → RemainingAfterBreakfast(p, z)) :: ∀p∀x∀y∀z((DucksLayPerDay(p, x) ∧ EggsEatenForBreakfast(p, y) ∧ Subtract(x, y, z)) → RemainingAfterBreakfast(p, z))
+RULE-2: ∀p∀x∀y∀z((RemainingAfterBreakfast(p, x) ∧ EggsUsedForMuffins(p, y) ∧ Subtract(x, y, z)) → RemainingAfterMuffins(p, z)) :: ∀p∀x∀y∀z((RemainingAfterBreakfast(p, x) ∧ EggsUsedForMuffins(p, y) ∧ Subtract(x, y, z)) → RemainingAfterMuffins(p, z))
+RULE-3: ∀p∀x∀y∀z((RemainingAfterMuffins(p, x) ∧ PricePerEgg(y) ∧ Multiply(x, y, z)) → DailyRevenue(p, z)) :: ∀p∀x∀y∀z((RemainingAfterMuffins(p, x) ∧ PricePerEgg(y) ∧ Multiply(x, y, z)) → DailyRevenue(p, z))
+
+## INFERENCES
+INF-1: Subtract(n_16, n_3, n_13) :: 16 - 3 = 13, from FACT-1 and FACT-2 by Arithmetic Computation
+INF-2: RemainingAfterBreakfast(janet, n_13) :: from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens
+INF-3: Subtract(n_13, n_4, n_9) :: 13 - 4 = 9, from INF-2 and FACT-3 by Arithmetic Computation
+INF-4: RemainingAfterMuffins(janet, n_9) :: from INF-2, INF-3, FACT-3 by Modus Ponens using RULE-2
+INF-5: Multiply(n_9, n_2, n_18) :: 9 * 2 = 18, from INF-4 and FACT-4 by Arithmetic Computation
+INF-6: DailyRevenue(janet, n_18) :: from INF-4, INF-5, and RULE-3 by Modus Ponens

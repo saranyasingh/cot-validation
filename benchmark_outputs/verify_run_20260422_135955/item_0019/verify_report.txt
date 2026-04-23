@@ -1,0 +1,15 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The problem does not mention a monthly factor or WeeksPerMonth conversion.
+FACT-4: UNSUPPORTED — The problem does not mention WeeksPerYearFactor or a yearly conversion.
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: UNSUPPORTED — 21 × 4_345 ≠ 90_895; calculation is incorrect.
+FACT-9: UNSUPPORTED — The chain relies on incorrect prior fact; not entailed.
+FACT-10: UNSUPPORTED — The division by 12 to yield dozens is not given by the problem.
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE
+RULE-5: PLAUSIBLE

@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Initial cost to plant the tree is $90 :: InitialCost(n_90)
+FACT-2: Annual revenue from selling lemons is $10.50 :: AnnualRevenue(n_10_50)
+FACT-3: Annual cost to water and feed the tree is $3 :: AnnualExpense(n_3)
+
+## RULES
+RULE-1: Profit equals revenue minus expenses :: ∀R∀E∀P((AnnualRevenue(R) ∧ AnnualExpense(E) ∧ P = R - E) → Profit(P))
+RULE-2: Years to recoup equals initial cost divided by profit :: ∀I∀N∀Y((InitialCost(I) ∧ Profit(N) ∧ Y = I / N) → YearsToRecoup(Y))
+
+## INFERENCES
+INF-1: Annual profit computed as 10.50 minus 3 equals 7.50 from FACT-2 and FACT-3 by Arithmetic Computation :: Profit(n_7_50)
+INF-2: Number of years needed to recoup = 90 / 7.50 = 12 from FACT-1 and INF-1 by Modus Ponens using RULE-2 :: YearsToRecoup(n_12)

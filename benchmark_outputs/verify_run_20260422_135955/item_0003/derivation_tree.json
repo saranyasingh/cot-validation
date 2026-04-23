@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Josh's house purchase price was 80,000",
+      "formula": "PurchasePrice(josh, n_80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states Josh buys the house for $80,000.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Josh's repairs cost is 50,000",
+      "formula": "RepairsCost(josh, n_50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states repairs cost $50,000.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Value increases by 150 percent",
+      "formula": "ValueIncreasePercent(josh, n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states the value increases by 150%.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has a PurchasePrice p and RepairsCost r, then there exists s such that Sum(p,r,s) and InitialInvestment(person,s)",
+      "formula": "\u2200x\u2200p\u2200r((PurchasePrice(x,p) \u2227 RepairsCost(x,r)) \u2192 \u2203s(Sum(p,r,s) \u2227 InitialInvestment(x,s)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes initial investment as the sum of PurchasePrice and RepairsCost via Sum and InitialInvestment.",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person has ValueIncreasePercent m and PurchasePrice p, then there exists s such that Product(p,m,s) and IncreaseValueAmount(person,s)",
+      "formula": "\u2200x\u2200p\u2200m((ValueIncreasePercent(x,m) \u2227 PurchasePrice(x,p)) \u2192 \u2203s(Product(p,m,s) \u2227 IncreaseValueAmount(x,s)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes increase amount as Product(p,m,s); plausible if m is the decimal multiplier (e.g., 1.5 for 150%).",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If a person has PurchasePrice p and IncreaseValueAmount s and Sum(p,s,v), then NewMarketValue(person,v)",
+      "formula": "\u2200x\u2200p\u2200s\u2200v((PurchasePrice(x,p) \u2227 IncreaseValueAmount(x,s) \u2227 Sum(p,s,v)) \u2192 NewMarketValue(x,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes NewMarketValue from PurchasePrice and IncreaseValueAmount via Sum.",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "IfInitialInvestment(x,a) and RepairsCost(x,b) then TotalInvestmentAfterFlip(x,c) where Plus(a,b,c)",
+      "formula": "\u2200x\u2200a\u2200b((InitialInvestment(x,a) \u2227 RepairsCost(x,b)) \u2192 \u2203c(Plus(a,b,c) \u2227 TotalInvestmentAfterFlip(x,c)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes TotalInvestmentAfterFlip as the sum of InitialInvestment and RepairsCost via Plus.",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If NewMarketValue x v and PurchasePrice x p, then Profit(x,q) where Subtract(v,p,q)",
+      "formula": "\u2200x\u2200v\u2200p((NewMarketValue(x,v) \u2227 PurchasePrice(x,p)) \u2192 \u2203q(Subtract(v,p,q) \u2227 Profit(x,q)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes Profit as v - p via Subtract.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Initial investment of 130000 from PurchasePrice and RepairsCost by ArithmeticComputation",
+      "formula": "InitialInvestment(josh, n_130000)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Increase in value amount of 120000 from ValueIncreasePercent and PurchasePrice by ArithmeticComputation",
+      "formula": "IncreaseValueAmount(josh, n_120000)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "New market value of 200000 from PurchasePrice, IncreaseValueAmount and Sum by ArithmeticComputation",
+      "formula": "NewMarketValue(josh, n_200000)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Total investment after flip of 180000 from InitialInvestment and RepairsCost by ArithmeticComputation",
+      "formula": "TotalInvestmentAfterFlip(josh, n_180000)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Profit of 120000 from NewMarketValue and PurchasePrice by Subtraction",
+      "formula": "Profit(josh, n_120000)",
+      "premises": [],
+      "inference_rule": "Subtraction",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

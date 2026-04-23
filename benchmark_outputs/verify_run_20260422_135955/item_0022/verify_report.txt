@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — Not stated or entailed; introduces Subtract(23,25,n_minus_2) with numbers not in the problem.
+FACT-5: UNSUPPORTED — Not stated or entailed; introduces Add(25,23,48) with unrelated numbers.
+RULE-1: IMPLAUSIBLE — The conclusion that x was born 25 years ago is incorrect given x is 6 years older than y who is 31 now.
+RULE-2: IMPLAUSIBLE — It would imply the son was born -2 years ago, inconsistent with the problem.
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE
+RULE-5: PLAUSIBLE
