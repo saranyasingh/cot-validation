@@ -1,0 +1,75 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Polly throws the javelin 400 feet away",
+      "formula": "Distance(polly, javelin, distance_400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Polly holds sapphire gemstone",
+      "formula": "Holds(polly, sapphire_gemstone)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Dragon can reach 1000 feet",
+      "formula": "DragonReach(dragon, distance_1000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person holds sapphire gemstone and distance to javelin is 400, then distance to javelin is 1200",
+      "formula": "\u2200p((Distance(p, javelin, distance_400) \u2227 Holds(p, sapphire_gemstone)) \u2192 Distance(p, javelin, distance_1200))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If distance to javelin is 1200, dragon reach is 1000, and person holds sapphire gemstone, then the person can stand between 1000 and 1200 feet from the dragon",
+      "formula": "\u2200p((Distance(p, javelin, distance_1200) \u2227 DragonReach(dragon, distance_1000) \u2227 Holds(p, sapphire_gemstone)) \u2192 CanStandBetween(p, dragon, distance_1000, distance_1200))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Distance(polly, javelin, distance_1200) from FACT-1 and RULE-1 by Modus Ponens",
+      "formula": "Distance(polly, javelin, distance_1200)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "CanStandBetween(polly, dragon, distance_1000, distance_1200) from INF-1, FACT-2, FACT-3, and RULE-2 by Modus Ponens",
+      "formula": "CanStandBetween(polly, dragon, distance_1000, distance_1200)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

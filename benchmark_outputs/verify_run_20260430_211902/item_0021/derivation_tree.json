@@ -1,0 +1,188 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The orange drink has 10 liters",
+      "formula": "OrangeLiters(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The orange drink contains two-thirds water",
+      "formula": "WaterFractionInOrange(n_2_over_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "One liter was spilled",
+      "formula": "SpilledLiters(n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "After spilling, 9 liters remain in the orange drink",
+      "formula": "OrangeLitersRemaining(n_9)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The pineapple juice volume is 15 liters",
+      "formula": "PineappleLiters(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The mixed drink total is 24 liters",
+      "formula": "MixedTotalLiters(n_24)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The original total is 10 liters",
+      "formula": "OriginalTotalLiters(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The removed fraction is 1/9 of the original 10 liters",
+      "formula": "FractionRemovedFromOriginal(n_1_over_9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "1 liter spilled is 1/10 of 10 liters, not 1/9",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "The remaining water in the orange drink after Step 4 is 59/9 liters",
+      "formula": "RemainingWaterInOrangeStep4(n_59_over_9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "actual remaining water in orange after Step 4 is 6 L (not 59/9)",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "The total water in the remaining 24 liters is 119/9 liters",
+      "formula": "WaterInTotalRemaining(n_119_over_9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "total water in remaining 24 L is 15 L (not 119/9)",
+      "error": true
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "The product of 10 and 2/3 is 20/3",
+      "formula": "Product(n_10, n_2_over_3, n_20_over_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "59/9 plus 60/9 equals 119/9",
+      "formula": "Sum(n_59_over_9, n_60_over_9, n_119_over_9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "relies on numbers not given by the problem",
+      "error": true
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "60/9 equals 20/3",
+      "formula": "Equivalent(n_60_over_9, n_20_over_3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "60/9 = 20/3 is a general identity, not grounded in the problem facts",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If OrangeLiters(a) and WaterFractionInOrange(b) and Product(a,b,c) then WaterInOrangeLiters(c)",
+      "formula": "\u2200a\u2200b\u2200c((OrangeLiters(a) \u2227 WaterFractionInOrange(b) \u2227 Product(a,b,c)) \u2192 WaterInOrangeLiters(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If RemainingWaterInOrangeStep4(a) and WaterInOrangeLiters(b) and Sum(a,b,c) then WaterInTotalRemaining(c)",
+      "formula": "\u2200a\u2200b\u2200c((RemainingWaterInOrangeStep4(a) \u2227 WaterInOrangeLiters(b) \u2227 Sum(a,b,c)) \u2192 WaterInTotalRemaining(c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "the encoding does not correctly capture how total water after mixing should be computed; it misuses the variables and relation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "WaterInOrangeLiters(n_20_over_3) from FACT-1, FACT-2, FACT-11 by Arithmetic Computation",
+      "formula": "WaterInOrangeLiters(n_20_over_3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-11"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "WaterInTotalRemaining(n_119_over_9) from FACT-9, FACT-12, FACT-13 by Arithmetic Computation",
+      "formula": "WaterInTotalRemaining(n_119_over_9)",
+      "premises": [
+        "FACT-9",
+        "FACT-12",
+        "FACT-13"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "1 liter spilled is 1/10 of 10 liters, not 1/9"
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "actual remaining water in orange after Step 4 is 6 L (not 59/9)"
+    },
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "total water in remaining 24 L is 15 L (not 119/9)"
+    },
+    {
+      "node": "FACT-12",
+      "stage": "verify",
+      "message": "relies on numbers not given by the problem"
+    },
+    {
+      "node": "FACT-13",
+      "stage": "verify",
+      "message": "60/9 = 20/3 is a general identity, not grounded in the problem facts"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "the encoding does not correctly capture how total water after mixing should be computed; it misuses the variables and relation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

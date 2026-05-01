@@ -1,0 +1,40 @@
+To determine how much John spent on ties, we need to break down the problem into smaller parts and analyze each part logically.
+
+### Step 1: Calculate the total amount spent on blue ties.
+- John bought blue ties at $40 each.
+- He spent a total of $200 on blue ties.
+
+\[ \text{Total cost of blue ties} = \$200 \]
+
+### Step 2: Determine the cost per tie.
+- Since John spends all his money ($200) on blue ties, and there were 50 blue ties (because \( \frac{\$200}{\$40} = 50 \)), let's denote the cost of each blue tie as \( C_b \).
+
+\[ C_b = \$40 \]
+
+### Step 3: Establish the relationship between red and blue ties.
+- John buys twice as many red ties as blue ties.
+- Therefore, if he has 50 blue ties, he must have \( 2 \times 50 = 100 \) red ties.
+
+### Step 4: Define the cost per red tie.
+- Let the cost of each red tie be denoted as \( C_r \).
+- According to the problem, the cost of a red tie is 50% more than the cost of a blue tie.
+
+\[ C_r = C_b + 0.5 \times C_b \]
+\[ C_r = \$40 + 0.5 \times \$40 \]
+\[ C_r = \$40 + \$20 \]
+\[ C_r = \$60 \]
+
+### Step 5: Calculate the total cost of red ties.
+- With 100 red ties costing $60 each, the total cost of red ties is:
+
+\[ \text{Total cost of red ties} = 100 \times \$60 \]
+\[ \text{Total cost of red ties} = \$6000 \]
+
+### Step 6: Sum up the costs to find the total expenditure.
+- Total expenditure is the sum of the costs of both types of ties.
+
+\[ \text{Total expenditure} = (\text{Cost of blue ties}) + (\text{Cost of red ties}) \]
+\[ \text{Total expenditure} = \$200 + \$6000 \]
+\[ \text{Total expenditure} = \$6200 \]
+
+Therefore, the answer is: 6200

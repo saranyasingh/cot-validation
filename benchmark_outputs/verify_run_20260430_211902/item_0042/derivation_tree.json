@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Polly throws the gold_javelin for a distance of 400 feet",
+      "formula": "ThrowDistance(polly, gold_javelin, n_400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states Polly throws the gold_javelin for 400 feet.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Polly is holding the sapphire gem",
+      "formula": "Holding(polly, sapphire_gem)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The scenario involves Polly holding the sapphire gem, which is required for the triple distance.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone holds sapphire gem and throws the gold_javelin 400 feet, then they can throw the gold_javelin 1200 feet when holding gem",
+      "formula": "\u2200p((Holding(p, sapphire_gem) \u2227 ThrowDistance(p, gold_javelin, n_400)) \u2192 ThrowDistanceWithGem(p, gold_javelin, n_1200))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule encodes a specific numeric computation (400 to 1200) with fixed constants, rather than a general, universally quantified relation; arithmetic should be left as a ground predicate, not baked into the rule.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and FACT-2 by Conjunction Introduction",
+      "formula": "Holding(polly, sapphire_gem) \u2227 ThrowDistance(polly, gold_javelin, n_400)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Conjunction Introduction",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-1 by Modus Ponens",
+      "formula": "ThrowDistanceWithGem(polly, gold_javelin, n_1200)",
+      "premises": [
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule encodes a specific numeric computation (400 to 1200) with fixed constants, rather than a general, universally quantified relation; arithmetic should be left as a ground predicate, not baked into the rule."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

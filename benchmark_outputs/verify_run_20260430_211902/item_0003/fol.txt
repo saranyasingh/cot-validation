@@ -1,0 +1,29 @@
+## FACTS
+FACT-1: Purchase price of the house :: PurchasePrice(house, n_80000)
+FACT-2: Amount spent on repairs :: RepairCost(house, n_50000)
+FACT-3: Increase in value percentage :: IncreasePercent(house, n_150)
+FACT-4: Selling multiplier used for price :: SellingFactor(house, n_3)
+
+## RULES
+RULE-1: If a house has a purchase price p and repair cost r and their sum is t, then the total cost is t :: ∀h∀p∀r∀t((PurchasePrice(h, p) ∧ RepairCost(h, r) ∧ Sum(p, r, t)) → TotalCost(h, t))
+
+## INFERENCES
+INF-1: The sum of 80,000 and 50,000 is 130,000 :: Sum(n_80000, n_50000, n_130000)
+  Premises: FACT-1, FACT-2
+  Justification: Arithmetic Computation
+
+INF-2: Total cost for the house is 130,000 :: TotalCost(house, n_130000)
+  Premises: FACT-1, FACT-2, INF-1, RULE-1
+  Justification: Modus Ponens (apply RULE-1 with the sums from INF-1 and the purchase/repair facts)
+
+INF-3: Value after increase from 80,000 by 150% is 200,000 :: ValueAfterIncrease(house, n_80000, n_150, n_200000)
+  Premises: FACT-1, FACT-3
+  Justification: Arithmetic Computation
+
+INF-4: Selling price is 600,000 :: SellingPrice(house, n_600000)
+  Premises: INF-3, FACT-4
+  Justification: Arithmetic Computation
+
+INF-5: Profit is 470,000 :: Profit(house, n_470000)
+  Premises: INF-4, INF-2
+  Justification: Arithmetic Computation

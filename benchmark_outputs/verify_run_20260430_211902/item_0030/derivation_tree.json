@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The first pair of heels costs 33 dollars",
+      "formula": "FirstHeelCost(n_33)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The second pair of heels costs 66 dollars",
+      "formula": "SecondHeelCost(n_66)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The sum 66 + 33 equals 99 dollars",
+      "formula": "EqualSum(n_66, n_33, n_99)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the first heel costs a, the second heel costs b, and a+b=c, then boots cost c",
+      "formula": "\u2200a\u2200b\u2200c((FirstHeelCost(a) \u2227 SecondHeelCost(b) \u2227 EqualSum(a,b,c)) \u2192 BootsCost(c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule asserts boots cost equal to the sum of the two heel prices, but the problem states boots cost five dollars more than the heels total.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "BootsCost(n_99) from FACT-1, FACT-2, FACT-3 and RULE-1 by Modus Ponens",
+      "formula": "BootsCost(n_99)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule asserts boots cost equal to the sum of the two heel prices, but the problem states boots cost five dollars more than the heels total."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

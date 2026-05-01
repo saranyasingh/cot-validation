@@ -1,0 +1,58 @@
+{
+  "nodes": {
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If ProfitDiff(v1, v2, d) and Negative(d) then NoOptimalChoice",
+      "formula": "\u2200v1\u2200v2\u2200d((ProfitDiff(v1, v2, d) \u2227 Negative(d)) \u2192 NoOptimalChoice)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The condition Negative(d) implying NoOptimalChoice is incorrect; a negative profit difference merely indicates which option is worse, not the absence of an optimal choice.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If NoOptimalChoice then Answer(n_0)",
+      "formula": "\u2200x(NoOptimalChoice \u2192 Answer(n_0))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "It encodes a standard fallback rule: if there is no optimal choice, output a default answer.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "NoOptimalChoice, derived from FACT-3, FACT-4, and RULE-1 by Modus Ponens",
+      "formula": "(ProfitDiff(n_5125, n_8096, n_3041) \u2227 Negative(n_3041)) \u2192 NoOptimalChoice [instantiated from RULE-1] using FACT-3 and FACT-4",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Answer(n_0), derived from INF-1 and RULE-2 by Modus Ponens",
+      "formula": "NoOptimalChoice \u2192 Answer(n_0)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The condition Negative(d) implying NoOptimalChoice is incorrect; a negative profit difference merely indicates which option is worse, not the absence of an optimal choice."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

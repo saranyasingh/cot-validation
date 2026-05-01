@@ -1,0 +1,144 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jill's teaching hourly wage is 20",
+      "formula": "TeachingHourlyWage(jill, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jill teaches for 50 weeks per year",
+      "formula": "TeachingWeeksPerYear(jill, n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jill teaches 35 hours per week",
+      "formula": "TeachingHoursPerWeek(jill, n_35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Jill's coaching hourly wage is 30",
+      "formula": "CoachingHourlyWage(jill, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Jill coaches for 15 hours per week",
+      "formula": "CoachingHoursPerWeek(jill, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has a teaching hourly wage and teaches for a number of weeks, and their hourly wage times weeks equals p, then their teaching earnings equal p",
+      "formula": "\u2200x\u2200h\u2200w\u2200p((TeachingHourlyWage(x,h) \u2227 TeachingWeeksPerYear(x,w) \u2227 Product(h,w,p)) \u2192 TeachingEarnings(x,p))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "it omits hours-per-week in computing teaching earnings; earnings should be wage * hours_per_week * weeks.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person has a coaching hourly wage and coaches for a number of hours per week, and their hourly wage times hours per week equals p, then their coaching earnings equal p",
+      "formula": "\u2200x\u2200h\u2200w\u2200p((CoachingHourlyWage(x,h) \u2227 CoachingHoursPerWeek(x,w) \u2227 Product(h,w,p)) \u2192 CoachingEarnings(x,p))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "it omits weeks in computing coaching earnings; earnings should be wage * hours_per_week * weeks.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If a person has teaching earnings a and coaching earnings b and a sum relation holds for a and b producing c, then their annual salary is c",
+      "formula": "\u2200x\u2200a\u2200b\u2200c((TeachingEarnings(x,a) \u2227 CoachingEarnings(x,b) \u2227 Sum(a,b,c)) \u2192 AnnualSalary(x,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Product(n_20, n_50, n_1000)",
+      "formula": "20 \u00d7 50 = 1000, from FACT-1 and FACT-2 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Product(n_30, n_15, n_450)",
+      "formula": "30 \u00d7 15 = 450, from FACT-4 and FACT-5 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TeachingEarnings(jill, n_1000)",
+      "formula": "TeachingHourlyWage(jill, n_20) \u2227 TeachingWeeksPerYear(jill, n_50) \u2227 Product(n_20, n_50, n_1000) via RULE-1 (Generalized Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "CoachingEarnings(jill, n_450)",
+      "formula": "CoachingHourlyWage(jill, n_30) \u2227 CoachingHoursPerWeek(jill, n_15) \u2227 Product(n_30, n_15, n_450) via RULE-2 (Generalized Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Sum(n_1000, n_450, n_1450)",
+      "formula": "1000 + 450 = 1450, from INF-3 and INF-4 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "AnnualSalary(jill, n_1450)",
+      "formula": "TeachingEarnings(jill, n_1000) \u2227 CoachingEarnings(jill, n_450) \u2227 Sum(n_1000, n_450, n_1450) via RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "it omits hours-per-week in computing teaching earnings; earnings should be wage * hours_per_week * weeks."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "it omits weeks in computing coaching earnings; earnings should be wage * hours_per_week * weeks."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: The candle starts burning at 1:00 PM :: StartTime(candle, start_1pm)
+FACT-2: The candle stops burning at 5:00 PM :: EndTime(candle, end_5pm)
+FACT-3: The duration from 1:00 PM to 5:00 PM is four hours :: Duration(start_1pm, end_5pm, four_hours)
+FACT-4: The candle melts at two centimeters per hour :: MeltingRatePerHour(candle, two_cm_per_hour)
+FACT-5: The product of the melting rate and the duration is eight centimeters :: Product(two_cm_per_hour, four_hours, eight_cm)
+
+## RULES
+RULE-1: If a candle has melting rate r and a duration d from 1:00 PM to 5:00 PM, and the product r × d equals m, then the total melting is m :: ∀c∀r∀d∀m((MeltingRatePerHour(c, r) ∧ Duration(start_1pm, end_5pm, d) ∧ Product(r, d, m)) → TotalMelting(c, m))
+RULE-2: If the total melting is m, then the candle becomes shorter by m :: ∀c∀m((TotalMelting(c, m)) → ShorterBy(c, m))
+
+## INFERENCES
+INF-1: The candle's total melting is eight centimeters, from FACT-4, FACT-3, FACT-5 and RULE-1 by Modus Ponens :: TotalMelting(candle, eight_cm)
+INF-2: The candle is eight centimeters shorter, from INF-1 and RULE-2 by Modus Ponens :: ShorterBy(candle, eight_cm)

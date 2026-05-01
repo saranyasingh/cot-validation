@@ -1,0 +1,139 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "300g bag contains 5 servings",
+      "formula": "ServingsPerBag(bag_300g, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated that a 300g bag contains 5 servings.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each serving has 250 calories",
+      "formula": "CaloriesPerServing(n_250)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated that each serving has 250 calories.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Daily calorie target is 2000 calories",
+      "formula": "DailyTarget(n_2000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated that the daily target is 2000 calories.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "You have consumed 1800 calories",
+      "formula": "CaloriesConsumed(n_1800)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated that 1800 calories have been consumed.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Bag weight is 300g",
+      "formula": "BagWeight(bag_300g, n_300)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Bag weight is given as 300g in the problem (bag description).",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the daily target is T and C calories have been consumed, and Subtract(T, C, R) holds, then R is the remaining calories",
+      "formula": "\u2200T\u2200C\u2200R((DailyTarget(T) \u2227 CaloriesConsumed(C) \u2227 Subtract(T, C, R)) \u2192 RemainingCalories(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are remaining calories R and calories per serving P, and Divide(R, P, A) holds, then A is the number of additional servings",
+      "formula": "\u2200R\u2200P\u2200A((RemainingCalories(R) \u2227 CaloriesPerServing(P) \u2227 Divide(R, P, A)) \u2192 AdditionalServings(A))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If there are additional servings A and a bag with weight W, and Multiply(A, W, G) holds, then G is the weight of chips that can be consumed from that bag",
+      "formula": "\u2200Bag\u2200W\u2200A\u2200G((AdditionalServings(A) \u2227 BagWeight(Bag, W) \u2227 Multiply(A, W, G)) \u2192 WeightConsumedForBag(Bag, G))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It encodes G = A * W; should be G = A * (W / S) with S the total servings.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "2000 - 1800 = 200",
+      "formula": "Subtract(n_2000, n_1800, n_200) from FACT-3 and FACT-4 by ArithmeticSubtraction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingCalories(n_200)",
+      "formula": "from RULE-1 applied to DAILY TARGET n_2000, CALORIES CONSUMED n_1800, and Subtract(n_2000, n_1800, n_200) (MODUS PONENS)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Divide(n_200, n_250, n_0_8)",
+      "formula": "200 / 250 = 0.8 from INF-2 and FACT-2 by ArithmeticDivision",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "AdditionalServings(n_0_8)",
+      "formula": "from RULE-2 using RemainingCalories(n_200), CaloriesPerServing(n_250), and Divide(n_200, n_250, n_0_8) (MODUS PONENS)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Multiply(n_0_8, n_300, n_240)",
+      "formula": "0.8 \u00d7 300 = 240 from INF-4 and FACT-5 by ArithmeticMultiplication",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "WeightConsumedForBag(bag_300g, n_240)",
+      "formula": "from RULE-3 using AdditionalServings(n_0_8) and BagWeight(bag_300g, n_300) and Multiply(n_0_8, n_300, n_240) (MODUS PONENS)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "It encodes G = A * W; should be G = A * (W / S) with S the total servings."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: John's initial distance segment is 180 miles :: DistanceSegment(john, initial, n_180)
+FACT-2: John spends 2 hours in standstill :: DistanceSegment(john, standstill, n_0)
+FACT-3: John travels 15 miles in the first post-delay segment :: DistanceSegment(john, first_half, n_15)
+FACT-4: John travels 160 miles in the final segment :: DistanceSegment(john, final_leg, n_160)
+
+## RULES
+RULE-1: If a is the sum of b and c and e is the sum of a and d, then e is the total distance :: ∀a∀b∀c∀d∀e((Sum(a,b,c) ∧ Sum(c,d,e)) → TotalDistance(e))
+
+## INFERENCES
+INF-1: 195 is the sum of 180 and 15, from FACT-1 and FACT-3 by Arithmetic Computation :: Sum(n_180, n_15, n_195)
+INF-2: 355 is the sum of 195 and 160, from INF-1 and FACT-4 by Arithmetic Computation :: Sum(n_195, n_160, n_355)
+INF-3: Total distance is 355 miles, from INF-1, INF-2, and RULE-1 by Modus Ponens :: TotalDistance(n_355)

@@ -1,0 +1,34 @@
+To solve this problem, we need to set up an equation based on the information given.
+
+Let's denote:
+- \( G \) as the number of gold coins.
+- \( S \) as the number of silver coins.
+
+From the problem statement, we know two things:
+1. Gretchen has a total of 110 coins.
+2. There are 30 more gold coins than silver coins.
+
+We can express these facts mathematically:
+1. \( G + S = 110 \)
+2. \( G = S + 30 \)
+
+Now, let's use substitution to find the values of \( G \) and \( S \).
+
+First, substitute the expression for \( G \) from the second equation into the first equation:
+\[ (S + 30) + S = 110 \]
+
+Next, simplify and solve for \( S \):
+\[ 2S + 30 = 110 \]
+Subtract 30 from both sides:
+\[ 2S = 80 \]
+Divide by 2:
+\[ S = 40 \]
+
+So, Gretchen has 40 silver coins. Now, using the second equation to find the number of gold coins:
+\[ G = S + 30 \]
+\[ G = 40 + 30 \]
+\[ G = 70 \]
+
+Therefore, Gretchen has 70 gold coins.
+
+The answer is: 70

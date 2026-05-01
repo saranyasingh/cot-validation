@@ -1,0 +1,2 @@
+RULE-1: IMPLAUSIBLE — The condition Negative(d) implying NoOptimalChoice is incorrect; a negative profit difference merely indicates which option is worse, not the absence of an optimal choice.
+RULE-2: PLAUSIBLE — It encodes a standard fallback rule: if there is no optimal choice, output a default answer.

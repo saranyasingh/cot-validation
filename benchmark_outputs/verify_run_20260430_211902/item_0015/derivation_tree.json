@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TotalStudents(n_20)",
+      "formula": "There are 20 students total.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "ContemporaryPercentOfTotal(n_20, n_20)",
+      "formula": "20% of the total enroll in contemporary dance.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states total 20 and 20% ContemporaryOfTotal.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200T\u2200P\u2200R((TotalStudents(T) \u2227 ContemporaryPercentOfTotal(T,P) \u2227 ArithmeticComputation(T,P,R)) \u2192 ContemporaryDancers(R))",
+      "formula": "From total and percent by arithmetic computation, infer number of contemporary dancers.",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200T\u2200A((TotalStudents(T) \u2227 ContemporaryDancers(A)) \u2192 RemainingAfterContemporary(R)) \u2227 R = T \u2212 A",
+      "formula": "Subtraction step to get remaining students after contemporary.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "R is not properly bound (free variable) and the form is not a well-quantified rule.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200R\u2200Q((RemainingAfterContemporary(R) \u2227 JazzDancers(Q)) \u2192 RemainingAfterJazz(S)) \u2227 S = R \u2212 Q",
+      "formula": "Subtraction step to get remaining after jazz.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "S is unbound and the rule lacks proper universal quantification.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "\u2200R\u2200P((RemainingAfterContemporary(R) \u2227 JazzDancers(Q) \u2227 ArithmeticComputation(R,Q,P)) \u2192 JazzDancers(P))",
+      "formula": "Arithmetic step to get jazz count from remaining.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Conclusion uses JazzDancers(P) where P denotes a hip-hop quantity; mis-encoded.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "\u2200T\u2200R((TotalStudents(T) \u2227 RemainingAfterJazz(R)) \u2192 HipHopPercentage(P)) \u2227 P = (R / T) * 100",
+      "formula": "Arithmetic computation to get hip-hop percentage from original total.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The quantification and binding of P/T/R are ill-formed; arithmetic is not properly encapsulated in a predicate.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "ContemporaryDancers(n_4)",
+      "formula": "FACT-1, FACT-2 and RULE-1 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingAfterContemporary(n_16)",
+      "formula": "FACT-1 and INF-1 by Subtraction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "JazzDancers(n_4)",
+      "formula": "INF-2 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "RemainingAfterJazz(n_12)",
+      "formula": "INF-2 and INF-3 by Subtraction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "HipHopPercentage(n_60)",
+      "formula": "INF-4 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "HipHopPercentageFromOriginalGroup(n_60)",
+      "formula": "INF-5 by Alignment with original total (60%)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "R is not properly bound (free variable) and the form is not a well-quantified rule."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "S is unbound and the rule lacks proper universal quantification."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Conclusion uses JazzDancers(P) where P denotes a hip-hop quantity; mis-encoded."
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "The quantification and binding of P/T/R are ill-formed; arithmetic is not properly encapsulated in a predicate."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

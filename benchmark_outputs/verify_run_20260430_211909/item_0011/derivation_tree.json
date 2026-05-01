@@ -1,0 +1,80 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "D1 equals 60",
+      "formula": "D1Equals(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "D2 equals 180",
+      "formula": "D2Equals(n_180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "D3 equals 126",
+      "formula": "D3Equals(n_126)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Total downloads equals 366",
+      "formula": "TotalDownloads(n_366)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If D1 equals 60 and D2 equals 180 and D3 equals 126, then TotalDownloads(n_366)",
+      "formula": "\u2200x\u2200y\u2200z((D1Equals(x) \u2227 D2Equals(y) \u2227 D3Equals(z)) \u2192 TotalDownloads(n_366))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds a specific arithmetic computation inside the rule rather than abstracting it into a predicate relation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Instantiate RULE-1 with x = n_60, y = n_180, z = n_126",
+      "formula": "(D1Equals(n_60) \u2227 D2Equals(n_180) \u2227 D3Equals(n_126)) \u2192 TotalDownloads(n_366)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From FACT-1, FACT-2, FACT-3 and INF-1 by Modus Ponens",
+      "formula": "TotalDownloads(n_366)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "INF-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "embeds a specific arithmetic computation inside the rule rather than abstracting it into a predicate relation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,25 @@
+Explanation:
+
+To determine which purchase plan maximizes profit, we need to compare the future values of both purchases after accounting for their respective growth rates.
+
+Firstly, let's calculate the future value of the jewelry purchase if it goes up by 2.5%:
+
+Future Value (FV) = Present Value * (1 + Growth Rate)
+FV_Jewelry = $5,000 * (1 + 0.025)
+FV_Jewelry ≈ $5,125
+
+Now, let's calculate the future value of the electronic gadgets purchase if they go up by 1.2%:
+
+Future Value (FV) = Present Value * (1 + Growth Rate)
+FV_Gadgets = $8,000 * (1 + 0.012)
+FV_Gadgets ≈ $8,169
+
+Next, we find out how much more money the merchant will have by choosing the electronics over the jewelry:
+
+Profit Difference = FV_Gadgets - FV_Jewelry
+Profit Difference ≈ $8,169 - $5,125
+Profit Difference ≈ $3,044
+
+Therefore, by choosing the electronic gadgets purchase plan, the merchant would gain approximately $3,044 more than choosing the jewelry plan.
+
+The answer is: 3

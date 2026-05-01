@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, yogurts_per_day(terry, n_2)).
+fof(fact_2, axiom, days(n_30)).
+fof(fact_3, axiom, set_size(n_4)).
+fof(fact_4, axiom, price_per_set(n_5)).
+fof(fact_5, axiom, multiply(n_2, n_30, n_60)).
+fof(fact_6, axiom, divide(n_60, n_4, n_15)).
+fof(fact_7, axiom, multiply(n_15, n_5, n_75)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A, X, D, T] : ((yogurts_per_day(A, X) & days(D) & multiply(X, D, T)) => total_yogurts(A, T))).
+fof(rule_2, axiom, ! [A, T, S, U] : ((total_yogurts(A, T) & set_size(S) & divide(T, S, U)) => total_sets(A, U))).
+fof(rule_3, axiom, ! [A, U, P, C] : ((total_sets(A, U) & price_per_set(P) & multiply(U, P, C)) => total_cost(A, C))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-5, RULE-1 by Modus Ponens
+fof(inf_1, axiom, total_yogurts(terry, n_60)).
+
+% From INF-1, FACT-3, FACT-6, RULE-2 by Modus Ponens
+fof(inf_2, axiom, total_sets(terry, n_15)).
+
+% From INF-2, FACT-4, FACT-7, RULE-3 by Modus Ponens
+fof(inf_3, axiom, total_cost(terry, n_75)).

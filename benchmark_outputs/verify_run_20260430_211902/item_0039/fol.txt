@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: John runs 60 miles per week :: MilesPerWeek(john, n_60)
+FACT-2: He runs 3 days a week :: DaysPerWeek(john, n_3)
+FACT-3: First day: 3 hours :: HoursOnDay(john, day_1, n_3)
+FACT-4: Second day: 3/2 hours :: HoursOnDay(john, day_2, n_3_over_2)
+FACT-5: Third day: 3/2 hours :: HoursOnDay(john, day_3, n_3_over_2)
+FACT-6: 60 divided by 6 equals 10 :: Divide(n_60, n_6, n_10)
+
+## RULES
+RULE-1: If a person has HoursOnDay(p, day_1, n_3) and HoursOnDay(p, day_2, n_3_over_2) and HoursOnDay(p, day_3, n_3_over_2), then HoursPerWeek(p, n_6) :: ∀p((HoursOnDay(p, day_1, n_3) ∧ HoursOnDay(p, day_2, n_3_over_2) ∧ HoursOnDay(p, day_3, n_3_over_2)) → HoursPerWeek(p, n_6))
+RULE-2: If MilesPerWeek(p, m) and HoursPerWeek(p, h) and Divide(m, h, s), then MilesPerHour(p, s) :: ∀p∀m∀h∀s((MilesPerWeek(p, m) ∧ HoursPerWeek(p, h) ∧ Divide(m, h, s)) → MilesPerHour(p, s))
+
+## INFERENCES
+INF-1: HoursPerWeek(john, n_6) from FACT-3, FACT-4, FACT-5 by RULE-1 using Modus Ponens :: HoursPerWeek(john, n_6)
+INF-2: MilesPerHour(john, n_10) from FACT-1, INF-1, FACT-6 by RULE-2 using Modus Ponens :: MilesPerHour(john, n_10)

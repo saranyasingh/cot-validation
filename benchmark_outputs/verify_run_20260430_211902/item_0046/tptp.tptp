@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, day_count(meredith, monday, n_5)).
+fof(fact_2, axiom, day_count(meredith, tuesday, n_7)).
+fof(fact_3, axiom, day_count(meredith, wednesday, n_14)).
+fof(fact_4, axiom, sum(n_5, n_7, n_14, n_26)).
+fof(fact_5, axiom, hours_per_article(meredith, n_4)).
+fof(fact_6, axiom, product(n_4, n_26, n_104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,A,B,C,D] : (day_count(P, monday, A) & day_count(P, tuesday, B) & day_count(P, wednesday, C) & sum(A,B,C,D) => total_articles(P, D))).
+fof(rule_2, axiom, ! [P,H,T,R] : ((hours_per_article(P,H) & total_articles(P,T) & product(H,T,R)) => total_hours(P,R))).
+fof(rule_3, axiom, ! [P] : ((total_hours(P, n_104)) => final_answer(P, n_104))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3, FACT-4 by RULE-1
+fof(inf_1, axiom, total_articles(meredith, n_26)).
+
+% From FACT-5, INF-1, FACT-6 by RULE-2
+fof(inf_2, axiom, total_hours(meredith, n_104)).
+
+% From INF-2 by RULE-3
+fof(inf_3, axiom, final_answer(meredith, n_104)).

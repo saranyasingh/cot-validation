@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Raymond has 40 jewels :: Jewels(raymond, n_40)
+FACT-2: Half of Raymond's jewels is 20 :: Half(raymond, n_20)
+FACT-3: 20 plus 5 equals 25 :: Add(n_20, n_5, n_25)
+FACT-4: 25 minus 2 equals 23 :: Subtract(n_25, n_2, n_23)
+
+## RULES
+RULE-1: Aaron has 5 more jewels than half of Raymond's jewels :: ∀h∀a((Half(raymond, h) ∧ Add(h, n_5, a)) → Jewels(aaron, a))
+RULE-2: Siobhan has 2 fewer jewels than Aaron :: ∀a∀b((Jewels(aaron, a) ∧ Subtract(a, n_2, b)) → Jewels(siobhan, b))
+
+## INFERENCES
+INF-1: Aaron has 25 jewels, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Jewels(aaron, n_25)
+INF-2: Siobhan has 23 jewels, from INF-1, FACT-4, and RULE-2 by Modus Ponens :: Jewels(siobhan, n_23)

@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED — Directly stated that a 300g bag contains 5 servings.
+FACT-2: SUPPORTED — Directly stated that each serving has 250 calories.
+FACT-3: SUPPORTED — Directly stated that the daily target is 2000 calories.
+FACT-4: SUPPORTED — Directly stated that 1800 calories have been consumed.
+FACT-5: SUPPORTED — Bag weight is given as 300g in the problem (bag description).
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — It encodes G = A * W; should be G = A * (W / S) with S the total servings.

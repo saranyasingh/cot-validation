@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — Direct statement: John runs 60 miles per week.
+FACT-2: SUPPORTED — Direct statement: He runs 3 days per week.
+FACT-3: SUPPORTED — Direct statement: First day is 3 hours.
+FACT-4: SUPPORTED — Direct statement: Other two days are 3/2 hours each.
+FACT-5: SUPPORTED — Direct statement: Third day is 3/2 hours.
+FACT-6: SUPPORTED — Direct statement: Total time is 6 hours.
+RULE-1: PLAUSIBLE — Encodes the standard speed = distance/time relationship via EqualDivision; valid general principle.

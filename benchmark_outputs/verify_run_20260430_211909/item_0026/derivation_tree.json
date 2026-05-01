@@ -1,0 +1,57 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SpentOn(marie, milk_pack, n_15)",
+      "formula": "from FACT-5, FACT-9, FACT-2 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SpentOn(marie, apple, n_6)",
+      "formula": "from FACT-6, FACT-10, FACT-3 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Difference(n_50, n_21, n_29)",
+      "formula": "from FACT-7, FACT-8 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "SpentOnPizza(marie, n_29)",
+      "formula": "from INF-3, FACT-7, FACT-8 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "BoxesBought(marie, n_3)",
+      "formula": "from INF-4, FACT-4, FACT-11 by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

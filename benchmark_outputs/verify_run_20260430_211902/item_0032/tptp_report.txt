@@ -1,0 +1,6 @@
+  % From FACT-1, FACT-2, FACT-3 via RULE-1
+  inf_1: PROVED
+  % From INF-1 via RULE-2 by Modus Ponens
+  inf_2: PROVED
+  % From INF-2 via RULE-3 by Modus Ponens
+  inf_3: PROVED

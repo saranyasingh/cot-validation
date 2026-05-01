@@ -1,0 +1,109 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Meredith writes 5 articles on Monday",
+      "formula": "DayCount(meredith, monday, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Meredith writes 7 articles on Tuesday",
+      "formula": "DayCount(meredith, tuesday, n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Meredith writes 14 articles on Wednesday",
+      "formula": "DayCount(meredith, wednesday, n_14)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Sum(n_5, n_7, n_14, n_26)",
+      "formula": "Sum(n_5, n_7, n_14, n_26)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Meredith's hours per article is 4",
+      "formula": "HoursPerArticle(meredith, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Product(n_4, n_26, n_104)",
+      "formula": "Product(n_4, n_26, n_104)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the counts on Monday, Tuesday, and Wednesday are a, b, c and Sum(a,b,c,d) holds, then TotalArticles(p, d).",
+      "formula": "\u2200p\u2200a\u2200b\u2200c\u2200d((DayCount(p, monday, a) \u2227 DayCount(p, tuesday, b) \u2227 DayCount(p, wednesday, c) \u2227 Sum(a,b,c,d)) \u2192 TotalArticles(p, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If HoursPerArticle(p,h) and TotalArticles(p,t) and Product(h,t,r) hold, then TotalHours(p, r).",
+      "formula": "\u2200p\u2200h\u2200t\u2200r((HoursPerArticle(p,h) \u2227 TotalArticles(p,t) \u2227 Product(h,t,r)) \u2192 TotalHours(p, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If TotalHours(p, n_104) holds, then FinalAnswer(p, n_104).",
+      "formula": "\u2200p((TotalHours(p, n_104)) \u2192 FinalAnswer(p, n_104))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalArticles(meredith, n_26)",
+      "formula": "from FACT-1, FACT-2, FACT-3, FACT-4 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalHours(meredith, n_104)",
+      "formula": "from FACT-5, INF-1, FACT-6 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "FinalAnswer(meredith, n_104)",
+      "formula": "from INF-2 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

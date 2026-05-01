@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Dana's walking speed is v_w :: WalkingSpeed(dana, v_w)
+FACT-2: Dana runs at speed four_times_v_w :: RunningSpeed(dana, four_times_v_w)
+FACT-3: Dana's skipping speed is half_of_running :: SkippingSpeed(dana, half_of_running)
+FACT-4: Dana's skipping speed is 3 mph :: SkippingSpeedActual(dana, n_3)
+FACT-5: Time spent running is 2 hours :: TimeRunning(dana, n_2)
+FACT-6: Distance run is 12 miles :: DistanceRunning(dana, n_12)
+FACT-7: Time spent walking is 4 hours :: TimeWalking(dana, n_4)
+FACT-8: Distance walked is 6 miles :: DistanceWalking(dana, n_6)
+FACT-9: Add(n_12, n_6, n_18) :: Add(n_12, n_6, n_18)
+FACT-10: Multiply(v_w, n_4, n_6) :: Multiply(v_w, n_4, n_6)
+FACT-11: Multiply(four_times_v_w, n_2, n_12) :: Multiply(four_times_v_w, n_2, n_12)
+
+## RULES
+RULE-1: Distance running equals speed times time :: ∀x∀r∀t∀d((RunningSpeed(x, r) ∧ TimeRunning(x, t) ∧ Multiply(r, t, d)) → DistanceRunning(x, d))
+RULE-2: Distance walking equals speed times time :: ∀x∀v∀t∀d((WalkingSpeed(x, v) ∧ TimeWalking(x, t) ∧ Multiply(v, t, d)) → DistanceWalking(x, d))
+RULE-3: Total distance equals sum of distances :: ∀x∀d1∀d2∀d3((DistanceRunning(x, d1) ∧ DistanceWalking(x, d2) ∧ Add(d1, d2, d3)) → TotalDistance(x, d3))
+
+## INFERENCES
+INF-1: DistanceRunning(dana, n_12) from RunningSpeed(dana, four_times_v_w) [FACT-2], TimeRunning(dana, n_2) [FACT-5], Multiply(four_times_v_w, n_2, n_12) [FACT-11] using RULE-1 via Modus Ponens
+INF-2: DistanceWalking(dana, n_6) from WalkingSpeed(dana, v_w) [FACT-1], TimeWalking(dana, n_4) [FACT-7], Multiply(v_w, n_4, n_6) [FACT-10] using RULE-2 via Modus Ponens
+INF-3: TotalDistance(dana, n_18) from DistanceRunning(dana, n_12) [INF-1], DistanceWalking(dana, n_6) [INF-2], Add(n_12, n_6, n_18) [FACT-9] using RULE-3 via Modus Ponens
+INF-4: The total distance Dana travels in 6 hours is 18 miles :: 18 miles, from TotalDistance(dana, n_18) [INF-3] by direct fact-based conclusion

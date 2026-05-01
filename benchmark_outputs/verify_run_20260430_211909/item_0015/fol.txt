@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: TotalStudents(n_20) :: There are 20 students
+FACT-2: ContemporaryDancers(n_4) :: There are 4 contemporary dancers
+FACT-3: RemainingStudents(n_16) :: There are 16 remaining after contemporary dancers
+FACT-4: JazzDancers(n_4) :: There are 4 jazz dancers
+FACT-5: HipHopDancers(n_12) :: There are 12 hip-hop dancers
+FACT-6: HipHopPercent(n_60) :: The hip-hop percentage is 60%
+
+## RULES
+RULE-1: If the hip-hop percent is p, then the final answer is p :: ∀p(HipHopPercent(p) → FinalAnswer(p))
+RULE-2: If the final answer is p, then the numerical answer is p :: ∀p(FinalAnswer(p) → AnswerValue(p))
+
+## INFERENCES
+INF-1: FinalAnswer(n_60) :: From FACT-6 and RULE-1 by Modus Ponens
+INF-2: AnswerValue(n_60) :: From INF-1 and RULE-2 by Modus Ponens

@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: NumberOfSheepIn(seattle, n_20)
+FACT-2: Charleston has four times as many sheep as Seattle :: FourTimesAsMany(charleston, seattle)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TwiceAsMany(toulouse, charleston)
+
+## RULES
+RULE-1: If a city x has four times as many sheep as city y, and city y has 20 sheep, then city x has 80 sheep :: ∀x∀y((FourTimesAsMany(x, y) ∧ NumberOfSheepIn(y, n_20)) → NumberOfSheepIn(x, n_80))
+RULE-2: If a city x has twice as many sheep as city y, and city y has 80 sheep, then city x has 160 sheep :: ∀x∀y((TwiceAsMany(x, y) ∧ NumberOfSheepIn(y, n_80)) → NumberOfSheepIn(x, n_160))
+RULE-3: If a city a has 20 sheep and a city b has 80 sheep and a city c has 160 sheep, then the total is 260 :: ∀a∀b∀c((NumberOfSheepIn(a, n_20) ∧ NumberOfSheepIn(b, n_80) ∧ NumberOfSheepIn(c, n_160)) → TotalAcross(n_260))
+
+## INFERENCES
+INF-1: NumberOfSheepIn(charleston, n_80) from FACT-1 and FACT-2 by RULE-1 (Modus Ponens)
+INF-2: NumberOfSheepIn(toulouse, n_160) from INF-1 and FACT-3 by RULE-2 (Modus Ponens)
+INF-3: TotalAcross(n_260) from FACT-1, INF-1, INF-2 by RULE-3 (Modus Ponens)

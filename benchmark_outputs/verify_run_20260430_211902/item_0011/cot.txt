@@ -1,0 +1,27 @@
+To solve this problem, we need to break it down into steps and use basic arithmetic operations.
+
+**Premise 1:** In the first month, the program had 60 downloads.
+- **Explanation:** This is given directly in the problem statement.
+
+**Premise 2:** The number of downloads in the second month was three times as many as the downloads in the first month.
+- **Explanation:** Let's denote the number of downloads in the first month as \( D_1 \). According to Premise 1, \( D_1 = 60 \).
+- Therefore, the number of downloads in the second month (\( D_2 \)) would be \( D_2 = 3 \times D_1 = 3 \times 60 = 180 \).
+
+**Premise 3:** The number of downloads in the third month was reduced by 30% compared to the number of downloads in the second month.
+- **Explanation:** First, let's calculate the reduction amount on the second month’s downloads. A 30% reduction means the program retained 70% of its second-month downloads.
+- If the second-month downloads were 180, the remaining percentage after the reduction is \( 1 - 0.30 = 0.70 \) or 70%.
+- To find out how many downloads remained after the reduction, we multiply the second-month downloads by 0.70: \( 180 \times 0.70 = 126 \).
+- **Explanation:** After calculating that, we know there were 126 downloads in the third month.
+
+**Conclusion:** Now we add up all the downloads from each month to get the total number of downloads over the three months.
+- Total downloads = Downloads in the first month + Downloads in the second month + Downloads in the third month
+- Total downloads = \( 60 + 180 + 126 \)
+
+Let's perform the addition:
+
+\[ 60 + 180 = 240 \]
+\[ 240 + 126 = 366 \]
+
+Therefore, the total number of downloads over the three months is 366.
+
+**Answer:** The answer is: 366

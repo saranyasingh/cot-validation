@@ -1,0 +1,137 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Carlos plants a lemon tree",
+      "formula": "Plant(carlos, lemon_tree)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The lemon tree has initial investment of 90",
+      "formula": "InitialInvestment(lemon_tree, n_90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The lemon tree yields 7 lemons per year",
+      "formula": "LemonsPerYear(lemon_tree, n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The price per lemon is 1.50",
+      "formula": "PricePerLemon(n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Watering cost per year is 3",
+      "formula": "WateringCostPerYear(lemon_tree, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Annual revenue equals the product of lemons per year and price per lemon when those values and their product are known",
+      "formula": "\u2200t\u2200l\u2200p\u2200r((LemonsPerYear(t, l) \u2227 PricePerLemon(p) \u2227 Product(l, p, r)) \u2192 AnnualRevenue(t, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Net profit per year is the difference between AnnualRevenue and WateringCostPerYear when those values are known",
+      "formula": "\u2200t\u2200r\u2200c\u2200n((AnnualRevenue(t, r) \u2227 WateringCostPerYear(t, c) \u2227 Difference(r, c, n)) \u2192 NetProfitPerYear(t, n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Years to profit is the quotient of InitialInvestment and NetProfitPerYear when those values are known",
+      "formula": "\u2200t\u2200i\u2200n\u2200y((InitialInvestment(t, i) \u2227 NetProfitPerYear(t, n) \u2227 Quotient(i, n, y)) \u2192 YearsToProfit(t, y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If lemons per year and price per lemon are known, then there exists a Product representing their product",
+      "formula": "\u2200t\u2200l\u2200p((LemonsPerYear(t, l) \u2227 PricePerLemon(p)) \u2192 \u2203r Product(l, p, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Product(n_7, n_150, n_1050)",
+      "formula": "derived from FACT-3, FACT-4 by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "AnnualRevenue(lemon_tree, n_1050)",
+      "formula": "derived from INF-1, FACT-3, FACT-4 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Quotient(n_90, n_750, n_12)",
+      "formula": "derived from FACT-2 and INF-3b by ArithmeticDivision",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "YearsToProfit(lemon_tree, n_12)",
+      "formula": "derived from FACT-2, INF-3b, INF-4 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

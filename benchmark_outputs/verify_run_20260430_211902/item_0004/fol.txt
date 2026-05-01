@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: James runs 3 sprints :: SprintsPerSession(james, n_3)
+FACT-2: Each sprint distance is 60 meters :: DistancePerSprint(james, n_60)
+FACT-3: James runs this routine 3 times a week :: SessionsPerWeek(james, n_3)
+FACT-4: 3 * 60 = 180 :: Product(n_3, n_60, n_180)
+FACT-5: 3 * 180 = 540 :: Product(n_3, n_180, n_540)
+
+## RULES
+RULE-1: If someone has SprintsPerSession(j, s) and DistancePerSprint(j, d) and Product(s, d, p), then DistancePerSession(j, p) :: ∀j∀s∀d∀p((SprintsPerSession(j, s) ∧ DistancePerSprint(j, d) ∧ Product(s, d, p)) → DistancePerSession(j, p))
+RULE-2: If DistancePerSession(j, p) and SessionsPerWeek(j, s) and Product(s, p, w), then WeeklyDistance(j, w) :: ∀j∀p∀s∀w((DistancePerSession(j, p) ∧ SessionsPerWeek(j, s) ∧ Product(s, p, w)) → WeeklyDistance(j, w))
+
+## INFERENCES
+INF-1: DistancePerSession(james, n_180) from FACT-1, FACT-2, FACT-4 by Modus Ponens on RULE-1
+INF-2: WeeklyDistance(james, n_540) from INF-1, FACT-3, FACT-5 by Modus Ponens on RULE-2

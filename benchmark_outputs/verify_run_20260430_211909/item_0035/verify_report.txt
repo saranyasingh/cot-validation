@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — Raymond's jewels count is given as 40.
+FACT-2: SUPPORTED — Half of Raymond's jewels is 20, derived from 40.
+FACT-3: SUPPORTED — 20 plus 5 equals 25, derived from half of Raymond's jewels.
+FACT-4: SUPPORTED — Siobhan has 2 fewer than Aaron, so 25 − 2 = 23.
+
+RULE-1: IMPLAUSIBLE — The conclusion AaronJewels(c) does not logically follow from HalfOf(h,a) and Sum(a,b,c) without linking a to Aaron and identifying c as Aaron's value.
+RULE-2: IMPLAUSIBLE — It allows deriving SiobhanJewels(z) from Diff(x,y,z) without fixing y to 2, which is required by the problem's specific relation 2 fewer.

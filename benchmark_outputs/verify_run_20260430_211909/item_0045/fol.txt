@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: 20 candles sold :: CandlesSold(n_20)
+FACT-2: Price per candle is $2 :: PricePerCandle(n_2)
+FACT-3: Total costs are $10 :: CostsTotal(n_10)
+
+## RULES
+RULE-1: Total revenue is 40 when there are candles sold and a price per candle :: ∀x∀y((CandlesSold(x) ∧ PricePerCandle(y)) → RevenueValue(n_40))
+RULE-2: Gross profit is 30 from revenue and costs :: ∀r∀c((RevenueValue(r) ∧ CostsTotal(c)) → GrossProfitValue(n_30))
+RULE-3: Net profit equals gross profit :: ∀g((GrossProfitValue(g)) → NetProfitValue(g))
+
+## INFERENCES
+INF-1: RevenueValue(n_40) derived from FACT-1, FACT-2 via RULE-1 using Modus Ponens :: RevenueValue(n_40)
+INF-2: GrossProfitValue(n_30) derived from INF-1 and FACT-3 via RULE-2 using Modus Ponens :: GrossProfitValue(n_30)
+INF-3: NetProfitValue(n_30) derived from INF-2 via RULE-3 using Modus Ponens :: NetProfitValue(n_30)

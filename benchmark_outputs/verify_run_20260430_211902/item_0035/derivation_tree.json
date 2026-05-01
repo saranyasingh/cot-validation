@@ -1,0 +1,83 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Raymond has 40 jewels",
+      "formula": "Jewels(raymond, n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Half of Raymond's jewels is 20",
+      "formula": "Half(raymond, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "20 plus 5 equals 25",
+      "formula": "Add(n_20, n_5, n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "25 minus 2 equals 23",
+      "formula": "Subtract(n_25, n_2, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Aaron has 5 more jewels than half of Raymond's jewels",
+      "formula": "\u2200h\u2200a((Half(raymond, h) \u2227 Add(h, n_5, a)) \u2192 Jewels(aaron, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Siobhan has 2 fewer jewels than Aaron",
+      "formula": "\u2200a\u2200b((Jewels(aaron, a) \u2227 Subtract(a, n_2, b)) \u2192 Jewels(siobhan, b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Aaron has 25 jewels, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Jewels(aaron, n_25)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Siobhan has 23 jewels, from INF-1, FACT-4, and RULE-2 by Modus Ponens",
+      "formula": "Jewels(siobhan, n_23)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

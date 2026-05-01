@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Meredith writes 5 articles on Monday :: DayCount(meredith, monday, n_5)
+FACT-2: Meredith writes 7 articles on Tuesday :: DayCount(meredith, tuesday, n_7)
+FACT-3: Meredith writes 14 articles on Wednesday :: DayCount(meredith, wednesday, n_14)
+FACT-4: Sum(n_5, n_7, n_14, n_26) :: Sum(n_5, n_7, n_14, n_26)
+FACT-5: Meredith's hours per article is 4 :: HoursPerArticle(meredith, n_4)
+FACT-6: Product(n_4, n_26, n_104) :: Product(n_4, n_26, n_104)
+
+## RULES
+RULE-1: If the counts on Monday, Tuesday, and Wednesday are a, b, c and Sum(a,b,c,d) holds, then TotalArticles(p, d). :: ∀p∀a∀b∀c∀d((DayCount(p, monday, a) ∧ DayCount(p, tuesday, b) ∧ DayCount(p, wednesday, c) ∧ Sum(a,b,c,d)) → TotalArticles(p, d))
+RULE-2: If HoursPerArticle(p,h) and TotalArticles(p,t) and Product(h,t,r) hold, then TotalHours(p, r). :: ∀p∀h∀t∀r((HoursPerArticle(p,h) ∧ TotalArticles(p,t) ∧ Product(h,t,r)) → TotalHours(p, r))
+RULE-3: If TotalHours(p, n_104) holds, then FinalAnswer(p, n_104). :: ∀p((TotalHours(p, n_104)) → FinalAnswer(p, n_104))
+
+## INFERENCES
+INF-1: TotalArticles(meredith, n_26) :: from FACT-1, FACT-2, FACT-3, FACT-4 by RULE-1
+INF-2: TotalHours(meredith, n_104) :: from FACT-5, INF-1, FACT-6 by RULE-2
+INF-3: FinalAnswer(meredith, n_104) :: from INF-2 by RULE-3

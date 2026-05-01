@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: MilesPerWeek(john, n_60) :: John runs 60 miles a week
+FACT-2: DaysPerWeek(john, n_3) :: John runs 3 days a week
+FACT-3: TimeOnDay(john, day1, n_3) :: On the first day, he runs 3 hours
+FACT-4: TimeOnDay(john, day2, n_3_over_2) :: On the second day, he runs 1.5 hours
+FACT-5: TimeOnDay(john, day3, n_3_over_2) :: On the third day, he runs 1.5 hours
+FACT-6: TotalTime(john, n_6) :: Total time is 6 hours
+
+## RULES
+RULE-1: ∀x∀d∀t∀s((MilesPerWeek(x, d) ∧ TotalTime(x, t) ∧ EqualDivision(d, t, s)) → Speed(x, s)) :: If a weekly distance and total time relate by an equal division, then the speed is s
+
+## INFERENCES
+INF-1: EqualDivision(n_60, n_6, n_10) :: from FACT-1, FACT-6 by Arithmetic Computation
+INF-2: Speed(john, n_10) :: from FACT-1, FACT-6, INF-1, RULE-1 by Modus Ponens

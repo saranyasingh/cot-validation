@@ -1,0 +1,30 @@
+## FACTS
+FACT-1: Dana has a skip speed of 3 mph :: SkipSpeed(dana, n_3)
+FACT-2: Dana's skip speed is half the run speed :: HalfOfRunSpeed(dana)
+FACT-3: 2 × 3 = 6 :: Double(n_3, n_6)
+FACT-4: Run speed is 4 times the skip speed :: RunIsFourTimesSkip(dana)
+FACT-5: Total time is 6 hours :: TotalTime(dana, n_6)
+FACT-6: Time spent running is 1/3 of total time :: TimeSpentRunningIsFraction(dana, n_1, n_3)
+FACT-7: Time spent walking is 2/3 of total time :: TimeSpentWalkingIsFraction(dana, n_2, n_3)
+FACT-8: Distance running is 6 × 2 = 12 :: Product(dana, n_6, n_2, n_12)
+FACT-9: Walking distance is 1.5 × 4 = 6 :: Product(dana, n_3_2, n_4, n_6)
+FACT-10: 6 ÷ 4 = 1.5 :: Divide(dana, n_6, n_4, n_3_2)
+FACT-11: 12 + 6 = 18 :: Sum(dana, n_12, n_6, n_18)
+
+## RULES
+RULE-1: If a skip speed is given and half-of-run-speed relation holds and a double relation holds, then the run speed is the doubled value :: ∀p∀s∀r((SkipSpeed(p, s) ∧ HalfOfRunSpeed(p) ∧ Double(s, r)) → RunSpeed(p, r))
+RULE-2: If a run speed is known and the run-is-four-times-skip relation holds and skip speed is known and a division relation divides by 4 yields w, then walking speed is w :: ∀p∀r∀s∀w((RunSpeed(p, r) ∧ RunIsFourTimesSkip(p) ∧ SkipSpeed(p, s) ∧ Divide(p, r, n_4, w)) → WalkingSpeed(p, w))
+RULE-3: If time spent running is a fraction of total time and total time is known, then running time is the corresponding integer hour :: ∀p((TimeSpentRunningIsFraction(p, n_1, n_3) ∧ TotalTime(p, n_6)) → RunningTime(p, n_2))
+RULE-4: If time spent walking is a fraction of total time and total time is known, then walking time is the corresponding hour :: ∀p((TimeSpentWalkingIsFraction(p, n_2, n_3) ∧ TotalTime(p, n_6)) → WalkingTime(p, n_4))
+RULE-5: If running speed and running time are known and a product relation holds, then running distance is given by the product :: ∀p∀r∀t∀d((RunSpeed(p, r) ∧ RunningTime(p, t) ∧ Product(p, r, t, d)) → RunningDistance(p, d))
+RULE-6: If walking speed and walking time are known and a product relation holds, then walking distance is given by the product :: ∀p∀r∀t∀d((WalkingSpeed(p, r) ∧ WalkingTime(p, t) ∧ Product(p, r, t, d)) → WalkingDistance(p, d))
+RULE-7: If running distance and walking distance are known and their sum is known, then total distance is given :: ∀p∀d1∀d2∀d((RunningDistance(p, d1) ∧ WalkingDistance(p, d2) ∧ Sum(p, d1, d2, d)) → TotalDistance(p, d))
+
+## INFERENCES
+INF-1: RunSpeed(dana, n_6) :: From FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens)
+INF-2: WalkingSpeed(dana, n_3_2) :: From INF-1, FACT-4, FACT-1, FACT-10 by RULE-2 (Modus Ponens)
+INF-3: RunningTime(dana, n_2) :: From FACT-6, FACT-5 by RULE-3 (Universal Instantiation)
+INF-4: WalkingTime(dana, n_4) :: From FACT-7, FACT-5 by RULE-4 (Universal Instantiation)
+INF-5: RunningDistance(dana, n_12) :: From INF-1, INF-3, FACT-8 by RULE-5 (Modus Ponens)
+INF-6: WalkingDistance(dana, n_6) :: From INF-2, INF-4, FACT-9 by RULE-6 (Modus Ponens)
+INF-7: TotalDistance(dana, n_18) :: From INF-5, INF-6, FACT-11 by RULE-7 (Modus Ponens)

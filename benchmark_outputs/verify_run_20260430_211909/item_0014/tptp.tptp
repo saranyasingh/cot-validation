@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, start_with(melanie, x)).
+fof(fact_2, axiom, after_green(melanie, x, n_2_over_3_x)).
+fof(fact_3, axiom, after_red(melanie, n_2_over_3_x, n_2_over_3_x_minus_2)).
+fof(fact_4, axiom, after_orange(melanie, n_2_over_3_x_minus_2, n_1_over_3_x_minus_1)).
+fof(fact_5, axiom, final_left(melanie, n_5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, A, B, C] : (((after_green(melanie, X, A) & after_red(melanie, A, B) & after_orange(melanie, B, C) & final_left(melanie, n_5)) => start_with(melanie, n_18))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-3, FACT-4, FACT-5 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, start_with(melanie, n_18)).

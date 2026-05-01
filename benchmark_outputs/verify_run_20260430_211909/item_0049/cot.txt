@@ -1,0 +1,21 @@
+EXPLANATION
+1. Tracy has a total length of wire available.
+2. She uses this entire length to create smaller segments (pieces).
+3. Each segment is 6 inches long.
+4. To find out how many such segments she can get from her initial piece of wire, we need to divide the total length of the wire by the length of each segment.
+
+Let's perform the calculation:
+Total length of wire = 4 feet
+Length of each segment = 6 inches
+
+First, convert both measurements to the same unit. We'll use inches since 1 foot equals 12 inches.
+Total length of wire in inches = 4 feet * 12 inches/foot = 48 inches
+Length of each segment in inches = 6 inches
+
+Now, calculate the number of segments:
+Number of segments = Total length of wire / Length of each segment
+Number of segments = 48 inches / 6 inches/segment = 8 segments
+
+Therefore, Tracy obtained 8 pieces of wire that were 6 inches long.
+
+The answer is: 8

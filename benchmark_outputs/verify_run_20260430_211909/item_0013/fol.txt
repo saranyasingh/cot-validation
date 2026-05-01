@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Carlos plants a lemon tree :: Plant(carlos, lemon_tree)
+FACT-2: The lemon tree has initial investment of 90 :: InitialInvestment(lemon_tree, n_90)
+FACT-3: The lemon tree yields 7 lemons per year :: LemonsPerYear(lemon_tree, n_7)
+FACT-4: The price per lemon is 1.50 :: PricePerLemon(n_150)
+FACT-5: Watering cost per year is 3 :: WateringCostPerYear(lemon_tree, n_3)
+
+## RULES
+RULE-1: Annual revenue equals the product of lemons per year and price per lemon when those values and their product are known :: ∀t∀l∀p∀r((LemonsPerYear(t, l) ∧ PricePerLemon(p) ∧ Product(l, p, r)) → AnnualRevenue(t, r))
+RULE-2: Net profit per year is the difference between AnnualRevenue and WateringCostPerYear when those values are known :: ∀t∀r∀c∀n((AnnualRevenue(t, r) ∧ WateringCostPerYear(t, c) ∧ Difference(r, c, n)) → NetProfitPerYear(t, n))
+RULE-3: Years to profit is the quotient of InitialInvestment and NetProfitPerYear when those values are known :: ∀t∀i∀n∀y((InitialInvestment(t, i) ∧ NetProfitPerYear(t, n) ∧ Quotient(i, n, y)) → YearsToProfit(t, y))
+RULE-4: If lemons per year and price per lemon are known, then there exists a Product representing their product :: ∀t∀l∀p((LemonsPerYear(t, l) ∧ PricePerLemon(p)) → ∃r Product(l, p, r))
+
+## INFERENCES
+INF-1: Product(n_7, n_150, n_1050) :: derived from FACT-3, FACT-4 by RULE-4
+INF-2: AnnualRevenue(lemon_tree, n_1050) :: derived from INF-1, FACT-3, FACT-4 by RULE-1
+INF-3a: Difference(n_1050, n_3, n_750) :: derived from INF-2 and FACT-5 by ArithmeticSubtraction
+INF-3b: NetProfitPerYear(lemon_tree, n_750) :: derived from INF-2, INF-3a, FACT-5 by RULE-2
+INF-4: Quotient(n_90, n_750, n_12) :: derived from FACT-2 and INF-3b by ArithmeticDivision
+INF-5: YearsToProfit(lemon_tree, n_12) :: derived from FACT-2, INF-3b, INF-4 by RULE-3

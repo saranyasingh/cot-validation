@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total length of wire is four feet",
+      "formula": "TotalLength(tracy, wire, four_feet)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each segment is six inches long",
+      "formula": "SegmentLength(six_inches)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Four feet converts to forty_eight_inches",
+      "formula": "FeetToInches(four_feet, forty_eight_inches)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a division of an inches-total by inches-per-segment yields a number, then that number is the number of segments",
+      "formula": "\u2200i\u2200s\u2200n(Division(i, s, n) \u2192 NumberOfSegments(n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a number of segments is n, then the answer is n",
+      "formula": "\u2200n(NumberOfSegments(n) \u2192 AnswerIs(n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Division(forty_eight_inches, six_inches, eight_segments)",
+      "formula": "from FACT-2 and FACT-3 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "NumberOfSegments(eight_segments)",
+      "formula": "from INF-1 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "AnswerIs(eight_segments)",
+      "formula": "from INF-2 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

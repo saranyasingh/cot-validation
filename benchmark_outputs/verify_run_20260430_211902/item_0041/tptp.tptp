@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, iphone_age(suzy, 1)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A] : (iphone_age(suzy, 1) => iphone_age(ben, 2))).
+fof(rule_2, axiom, ! [A] : (iphone_age(ben, 2) => iphone_age(brandon, 8))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, iphone_age(ben, 2)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, iphone_age(brandon, 8)).

@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, nightly_serving(cynthia, n_1)).
+fof(fact_2, axiom, nights_in_month(n_30)).
+fof(fact_3, axiom, total_servings(n_30)).
+fof(fact_4, axiom, servings_per_carton(n_15)).
+fof(fact_5, axiom, price_per_carton(n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [Z] : ((total_servings(X) & servings_per_carton(Y) & equal_division(X,Y,Z)) => cartons(Z))).
+fof(rule_2, axiom, ! [Z] : ! [P] : ! [Q] : ((cartons(Z) & price_per_carton(P) & multiply(Z, P, Q)) => total_cost(Q))).
+
+% --- INFERENCES ---
+% From FACT-3, FACT-4 by Arithmetic Computation
+fof(inf_1, axiom, equal_division(n_30, n_15, n_2)).
+
+% From FACT-3, FACT-4, INF-1, and RULE-1 by Modus Ponens
+fof(inf_2, axiom, cartons(n_2)).
+
+% From INF-2 and FACT-5 by Arithmetic Computation
+fof(inf_3, axiom, multiply(n_2, n_4, n_8)).
+
+% From INF-3 and RULE-2 by Modus Ponens
+fof(inf_4, axiom, total_cost(n_8)).

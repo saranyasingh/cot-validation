@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: AgeRatio(darrell, allen, n_7, n_11) :: AgeRatio(darrell, allen, n_7, n_11)
+FACT-2: SumAges(darrell, allen, n_162) :: SumAges(darrell, allen, n_162)
+
+## RULES
+RULE-1: If AgeRatio(d,a,n_7,n_11) ∧ SumAges(d,a,n_162) then AllenAgeIs(n_99) :: ∀d∀a(((AgeRatio(d,a,n_7,n_11) ∧ SumAges(d,a,n_162)) → AllenAgeIs(n_99)))
+RULE-2: If AllenAgeIs(x) then FinalAnswerIs(n_109) :: ∀x((AllenAgeIs(x)) → FinalAnswerIs(n_109))
+RULE-3: If FinalAnswerIs(t) then AnswerValue(t) :: ∀t((FinalAnswerIs(t)) → AnswerValue(t))
+
+## INFERENCES
+INF-1: Allen age 99 from FACT-1, FACT-2, and RULE-1 by Modus Ponens :: AllenAgeIs(n_99)
+INF-2: Final answer 109 from INF-1 and RULE-2 by Modus Ponens :: FinalAnswerIs(n_109)
+INF-3: Answer value 109 from INF-2 and RULE-3 by Modus Ponens :: AnswerValue(n_109)

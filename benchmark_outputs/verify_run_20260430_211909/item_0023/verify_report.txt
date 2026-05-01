@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED — Directly stated: there are 8 Tuesday customers.
+FACT-2: SUPPORTED — Directly corresponds to the first three customers buying 1 each, totaling 3.
+FACT-3: SUPPORTED — Directly corresponds to the next two customers buying 2 each, totaling 4.
+FACT-4: SUPPORTED — Directly corresponds to the last three customers buying 0.
+FACT-5: SUPPORTED — 3 + 4 = 7 matches Add3(n_3, n_4, n_7).
+
+RULE-1: IMPLAUSIBLE — The rule asserts TotalDVDs = FirstThreeDVDs + NextTwoDVDs without accounting for LastThreeDVDs (0 in this problem but not guaranteed generally).

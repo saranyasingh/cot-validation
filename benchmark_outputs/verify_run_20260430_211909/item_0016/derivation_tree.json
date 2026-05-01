@@ -1,0 +1,163 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "PresentValue(jewelry, n_5000)",
+      "formula": "PresentValue(jewelry, n_5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "GrowthRate(jewelry, n_0_025)",
+      "formula": "GrowthRate(jewelry, n_0_025)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "ComputedFV(jewelry, n_5000, n_0_025, n_5125)",
+      "formula": "ComputedFV(jewelry, n_5000, n_0_025, n_5125)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "PresentValue(gadgets, n_8000)",
+      "formula": "PresentValue(gadgets, n_8000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "GrowthRate(gadgets, n_0_012)",
+      "formula": "GrowthRate(gadgets, n_0_012)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "ComputedFV(gadgets, n_8000, n_0_012, n_8169)",
+      "formula": "ComputedFV(gadgets, n_8000, n_0_012, n_8169)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "8000 \u00d7 (1 + 0.012) = 8096, not 8169",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "ComputedDifference(n_8169, n_5125, n_3044)",
+      "formula": "ComputedDifference(n_8169, n_5125, n_3044)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "not entailed by the problem and relies on an incorrect premise from FACT-6",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a product p has present value pv and growth rate gr, and the computed future value FV(p, pv, gr, fv) holds, then FutureValue(p, fv)",
+      "formula": "\u2200p\u2200pv\u2200gr\u2200fv((PresentValue(p, pv) \u2227 GrowthRate(p, gr) \u2227 ComputedFV(p, pv, gr, fv)) \u2192 FutureValue(p, fv))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are two products p1 and p2 with future values fvJ and fvG, and ComputedDifference(fvG, fvJ, diff) holds, then ProfitDifference(diff)",
+      "formula": "\u2200p1\u2200fvJ\u2200p2\u2200fvG\u2200diff((FutureValue(p1, fvJ) \u2227 FutureValue(p2, fvG) \u2227 ComputedDifference(fvG, fvJ, diff)) \u2192 ProfitDifference(diff))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If ProfitDifference(diff) holds, then Recommend(gadgets)",
+      "formula": "\u2200diff(ProfitDifference(diff) \u2192 Recommend(gadgets))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If ProfitDifference(diff) holds, then AnswerValue(n_3)",
+      "formula": "\u2200diff(ProfitDifference(diff) \u2192 AnswerValue(n_3))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "would yield 3, whereas the correct profit is 125",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FutureValue(jewelry, n_5125)",
+      "formula": "FutureValue(jewelry, n_5125) inferred from PresentValue(jewelry, n_5000) and GrowthRate(jewelry, n_0_025) and ComputedFV(jewelry, n_5000, n_0_025, n_5125) by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "FutureValue(gadgets, n_8169)",
+      "formula": "FutureValue(gadgets, n_8169) inferred from PresentValue(gadgets, n_8000) and GrowthRate(gadgets, n_0_012) and ComputedFV(gadgets, n_8000, n_0_012, n_8169) by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "ProfitDifference(n_3044)",
+      "formula": "ProfitDifference(n_3044) inferred from FutureValue(jewelry, n_5125) and FutureValue(gadgets, n_8169) and ComputedDifference(n_8169, n_5125, n_3044) by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Recommend(gadgets)",
+      "formula": "Recommend(gadgets) inferred from ProfitDifference(n_3044) by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "AnswerValue(n_3)",
+      "formula": "AnswerValue(n_3) inferred from ProfitDifference(n_3044) by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "8000 \u00d7 (1 + 0.012) = 8096, not 8169"
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "not entailed by the problem and relies on an incorrect premise from FACT-6"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "would yield 3, whereas the correct profit is 125"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

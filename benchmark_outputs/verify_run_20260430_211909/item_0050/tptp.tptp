@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, floors(richards_apartment_building, floors_15)).
+fof(fact_2, axiom, units_per_floor(richards_apartment_building, units_8)).
+fof(fact_3, axiom, total_units(richards_apartment_building, total_120)).
+fof(fact_4, axiom, occupied_fraction(richards_apartment_building, fraction_3_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B,T,F,P] : ((total_units(B,T) & occupied_fraction(B,F) & product_total_fraction(T,F,P)) => occupied_units(B,P))).
+fof(rule_2, axiom, ! [B,T,P,U] : ((total_units(B,T) & occupied_units(B,P) & subtract(T,P,U)) => unoccupied_units(B,U))).
+
+% --- INFERENCES ---
+% From fact_3, fact_4 by Arithmetic Computation
+fof(inf_1, axiom, product_total_fraction(total_120, fraction_3_4, occupied_90)).
+% From fact_3, fact_4, inf_1 by Modus Ponens
+fof(inf_2, axiom, occupied_units(richards_apartment_building, occupied_90)).
+% From fact_3, inf_2 by Arithmetic Computation
+fof(inf_3, axiom, subtract(total_120, occupied_90, unoccupied_30)).
+% From fact_3, inf_2, inf_3 by Modus Ponens
+fof(inf_4, axiom, unoccupied_units(richards_apartment_building, unoccupied_30)).

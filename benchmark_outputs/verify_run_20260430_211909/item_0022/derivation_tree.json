@@ -1,0 +1,52 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Samantha is currently 31 years old",
+      "formula": "CurrentAge(samantha, n_31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Samantha is currently 31.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BirthYearDifference(raymond, samantha, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Raymond was born 6 years before Samantha.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond had a son at age 23",
+      "formula": "HadSonAtAge(raymond, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: Raymond had a son at age 23.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone had a son at age a, then their son was born a years after them",
+      "formula": "\u2200p\u2200a(HadSonAtAge(p, a) \u2192 BirthGap(p, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "It encodes a valid general relationship (son birth occurs a years after the parent\u2019s birth) without performing arithmetic inside the rule.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The son was born 23 years after Raymond's birth, from FACT-3 and RULE-1 by Modus Ponens",
+      "formula": "BirthGap(raymond, n_23)",
+      "premises": [
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

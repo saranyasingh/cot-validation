@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, current_age(samantha, n_31)).
+fof(fact_2, axiom, birth_year_difference(raymond, samantha, n_6)).
+fof(fact_3, axiom, had_son_at_age(raymond, n_23)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, A] : (had_son_at_age(P, A) => birth_gap(P, A))).
+
+% --- INFERENCES ---
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_1, axiom, birth_gap(raymond, n_23)).

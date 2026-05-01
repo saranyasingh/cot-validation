@@ -1,0 +1,122 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Josh's initial purchase price is $80,000",
+      "formula": "InitialPurchasePrice(josh, n_80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Repairs cost is $50,000",
+      "formula": "RepairsCost(josh, n_50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Increase in value is 150%",
+      "formula": "ValueIncreasePercent(josh, n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has an initial purchase price and a repairs cost, then there exists a sum of those two amounts",
+      "formula": "\u2200p\u2200A\u2200B((InitialPurchasePrice(p,A) \u2227 RepairsCost(p,B)) \u2192 \u2203C Add(A,B,C))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person has a value increase percentage and an initial purchase price, then there exists an increased value",
+      "formula": "\u2200p\u2200A\u2200B((ValueIncreasePercent(p,B) \u2227 InitialPurchasePrice(p,A)) \u2192 \u2203D IncreasedValue(p,D))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Increase in value due to repairs is 120000 from FACT-1 and FACT-3 by Arithmetic Computation",
+      "formula": "InferredIncreaseFromRepairs(josh, n_120000)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Sum of initial price and repairs is 130000 from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "SumInitialAndRepairs(josh, n_130000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "New value after renovations is 210000 from INF-2 and FACT-1 by Arithmetic Computation",
+      "formula": "NewValue(josh, n_210000)",
+      "premises": [
+        "INF-2",
+        "FACT-1"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Profit is 130000 from INF-3 and FACT-1 by Arithmetic Computation",
+      "formula": "Profit(josh, n_130000)",
+      "premises": [
+        "INF-3",
+        "FACT-1"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-2",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-4",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

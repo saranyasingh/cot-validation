@@ -1,0 +1,21 @@
+  % From fact_1, fact_2 by Arithmetic Computation
+  inf_1: NOT PROVED
+  % From fact_2, inf_1, rule_1 by Rule 1
+  inf_2: PROVED
+  % From inf_2, fact_3 by Arithmetic Computation
+  inf_3: NOT PROVED
+  % From inf_3, fact_3, and rule_1 by Rule 1
+  inf_4: PROVED
+  % From fact_1, inf_2 by Arithmetic Computation
+  inf_5: NOT PROVED
+  % From inf_5, inf_3 by Arithmetic Computation
+  inf_6: NOT PROVED
+  % From inf_6 by Arithmetic Computation
+  inf_7: NOT PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms
+inf_5: NOT PROVED — inference does not follow from axioms
+inf_6: NOT PROVED — inference does not follow from axioms
+inf_7: NOT PROVED — inference does not follow from axioms

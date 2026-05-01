@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: PriceOf(chicken_meal, n_12)
+FACT-2: PriceOf(milk_pack, n_3)
+FACT-3: PriceOf(apple, n_150)
+FACT-4: PriceOf(pizza_box, n_850)
+FACT-5: AmountPurchased(marie, milk_pack, n_5)
+FACT-6: AmountPurchased(marie, apple, n_4)
+FACT-7: TotalPaid(marie, n_50)
+FACT-8: SpentOnNonPizza(marie, n_21)
+FACT-9: Product(n_5, n_3, n_15)
+FACT-10: Product(n_4, n_150, n_6)
+FACT-11: Quotient(n_29, n_850, n_3)
+
+## RULES
+RULE-1: ∀p∀i∀q∀r∀s((AmountPurchased(p,i,q) ∧ PriceOf(i,r) ∧ Product(q,r,s)) → SpentOn(p,i,s))
+RULE-2: ∀p((TotalPaid(p, n_50) ∧ SpentOnNonPizza(p, n_21)) → Difference(n_50, n_21, n_29))
+RULE-3: ∀p∀t∀o∀c((TotalPaid(p,t) ∧ SpentOnNonPizza(p,o) ∧ Difference(t,o,c)) → SpentOnPizza(p,c))
+RULE-4: ∀p∀c∀price∀b((SpentOnPizza(p,c) ∧ PriceOf(pizza_box, price) ∧ Quotient(c, price, b)) → BoxesBought(p,b))
+
+## INFERENCES
+INF-1: SpentOn(marie, milk_pack, n_15) :: from FACT-5, FACT-9, FACT-2 by RULE-1
+INF-2: SpentOn(marie, apple, n_6) :: from FACT-6, FACT-10, FACT-3 by RULE-1
+INF-3: Difference(n_50, n_21, n_29) :: from FACT-7, FACT-8 by RULE-2
+INF-4: SpentOnPizza(marie, n_29) :: from INF-3, FACT-7, FACT-8 by RULE-3
+INF-5: BoxesBought(marie, n_3) :: from INF-4, FACT-4, FACT-11 by RULE-4

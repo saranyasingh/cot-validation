@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — RemainingDistance(n_8) is not consistent with the problem (the remaining distance is 6 miles).
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — It asserts a general inference (LastHourDistance) from RemainingTime and RemainingDistance, which is not a valid universal relation.
+RULE-3: IMPLAUSIBLE — It equates the final answer with a distance rather than a speed; mis-encoded.

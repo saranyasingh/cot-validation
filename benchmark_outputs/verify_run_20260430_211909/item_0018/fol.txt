@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: Jill's teaching hourly rate is 20 dollars :: HourlyRateTeaching(jill, n_20)
+FACT-2: Jill teaches 35 hours per week :: TeachingHoursPerWeek(jill, n_35)
+FACT-3: Jill's coaching hourly rate is 30 dollars :: HourlyRateCoaching(jill, n_30)
+FACT-4: Jill coaches 15 hours per week :: CoachingHoursPerWeek(jill, n_15)
+FACT-5: There are 50 weeks per year :: WeeksPerYear(n_50)
+
+## RULES
+RULE-1: If a person p has teaching hourly rate r and teaching hours per week h, and Product(r, h, e) then WeeklyTeachingEarnings(p, e) :: ∀p∀r∀h∀e((HourlyRateTeaching(p, r) ∧ TeachingHoursPerWeek(p, h) ∧ Product(r, h, e)) → WeeklyTeachingEarnings(p, e))
+RULE-2: If a person p has coaching hourly rate r and coaching hours per week h, and Product(r, h, e) then WeeklyCoachingEarnings(p, e) :: ∀p∀r∀h∀e((HourlyRateCoaching(p, r) ∧ CoachingHoursPerWeek(p, h) ∧ Product(r, h, e)) → WeeklyCoachingEarnings(p, e))
+RULE-3: If WeeklyTeachingEarnings(p, e1) and WeeklyCoachingEarnings(p, e2) and Sum(e1, e2, e) then WeeklyTotalEarnings(p, e) :: ∀p∀e1∀e2∀e((WeeklyTeachingEarnings(p, e1) ∧ WeeklyCoachingEarnings(p, e2) ∧ Sum(e1, e2, e)) → WeeklyTotalEarnings(p, e))
+RULE-4: If WeeklyTotalEarnings(p, w) and WeeksPerYear(n_50) and Product(w, n_50, a) then AnnualEarnings(p, a) :: ∀p∀w∀a((WeeklyTotalEarnings(p, w) ∧ WeeksPerYear(n_50) ∧ Product(w, n_50, a)) → AnnualEarnings(p, a))
+
+## INFERENCES
+INF-1: 700 from 20 and 35 by Arithmetic Computation :: Product(n_20, n_35, n_700)
+INF-2: WeeklyTeachingEarnings(jill, n_700) from FACT-1, FACT-2, INF-1 by Modus Ponens :: RULE-1
+INF-3: 450 from 30 and 15 by Arithmetic Computation :: Product(n_30, n_15, n_450)
+INF-4: WeeklyCoachingEarnings(jill, n_450) from FACT-3, FACT-4, INF-3 by Modus Ponens :: RULE-2
+INF-5: Sum(n_700, n_450, n_1150) from INF-2, INF-4 by Arithmetic Computation :: Sum(n_700, n_450, n_1150)
+INF-6: WeeklyTotalEarnings(jill, n_1150) from INF-2, INF-4, INF-5 by Modus Ponens :: RULE-3
+INF-7: Product(n_1150, n_50, n_57500) from INF-6, FACT-5 by Arithmetic Computation :: Product(n_1150, n_50, n_57500)
+INF-8: AnnualEarnings(jill, n_57500) from INF-6, FACT-5, INF-7 by Modus Ponens :: RULE-4

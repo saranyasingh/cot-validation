@@ -1,0 +1,28 @@
+## FACTS
+FACT-1: CostPerPoundBeeswaxWicks(ten_dollars) :: cost per pound of beeswax and wicks is ten dollars
+FACT-2: SellingPricePerCandle(two_dollars) :: selling price per candle is two dollars
+FACT-3: EqualDifference(two_dollars, ten_dollars, negative_eight_dollars) :: difference between selling price and cost equals negative eight dollars
+FACT-4: CandlesSold(twenty) :: number of candles sold is twenty
+FACT-5: TotalRevenue(two_dollars, twenty, forty_dollars) :: total revenue is forty dollars for twenty candles at two dollars each
+FACT-6: TotalCost(ten_dollars) :: total cost is ten dollars
+FACT-7: Subtract(forty_dollars, ten_dollars, thirty_dollars) :: forty_dollars minus ten_dollars equals thirty_dollars
+FACT-8: Multiply(negative_eight_dollars, twenty, negative_one_hundred_sixty_dollars) :: (-8) dollars per candle times twenty candles equals -160 dollars
+FACT-9: TotalLossFromSales(negative_one_hundred_sixty_dollars) :: total loss from sales is negative one hundred sixty dollars
+
+## RULES
+RULE-1: ∀sp ∀cp ∀pp ((SellingPricePerCandle(sp) ∧ CostPerPoundBeeswaxWicks(cp) ∧ EqualDifference(sp, cp, pp)) → ProfitPerCandle(pp)) :: If selling price, cost, and their difference are known, then profit per candle is that difference
+RULE-2: ∀pp ∀n ∀T ((ProfitPerCandle(pp) ∧ CandlesSold(n) ∧ Multiply(pp, n, T)) → TotalLossFromSales(T)) :: If profit per candle, number of candles, and their product are known, then total loss from sales is that product
+RULE-3: ∀p ∀n ∀r ∀c ∀np ((TotalRevenue(p, n, r) ∧ TotalCost(c) ∧ Subtract(r, c, np)) → NetProfit(np)) :: If revenue, cost, and their difference are known, then net profit is that difference
+
+## INFERENCES
+INF-1: ProfitPerCandle(negative_eight_dollars) :: from RULE-1 using FACT-2, FACT-1, FACT-3 by Modus Ponens
+  Premises: SellingPricePerCandle(two_dollars), CostPerPoundBeeswaxWicks(ten_dollars), EqualDifference(two_dollars, ten_dollars, negative_eight_dollars)
+
+INF-2: TotalLossFromSales(negative_one_hundred_sixty_dollars) :: from RULE-2 using INF-1, CandlesSold(twenty), Multiply(negative_eight_dollars, twenty, negative_one_hundred_sixty_dollars) by Modus Ponens
+  Premises: ProfitPerCandle(negative_eight_dollars), CandlesSold(twenty), Multiply(negative_eight_dollars, twenty, negative_one_hundred_sixty_dollars)
+
+INF-3: NetProfit(thirty_dollars) :: from RULE-3 using TotalRevenue(two_dollars, twenty, forty_dollars), TotalCost(ten_dollars), Subtract(forty_dollars, ten_dollars, thirty_dollars) by Modus Ponens
+  Premises: TotalRevenue(two_dollars, twenty, forty_dollars), TotalCost(ten_dollars), Subtract(forty_dollars, ten_dollars, thirty_dollars)
+
+INF-4: NetProfit(thirty_dollars) :: from INF-3 by Reiteration
+  Premise: NetProfit(thirty_dollars)

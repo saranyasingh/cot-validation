@@ -1,0 +1,159 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Meredith wrote 5 articles on Monday",
+      "formula": "ArticlesWrittenOn(meredith, monday, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Time taken per article is 4 hours",
+      "formula": "HoursPerArticle(meredith, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Monday total time is 20 hours",
+      "formula": "TimeOnDay(meredith, monday, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Meredith wrote 7 articles on Tuesday",
+      "formula": "ArticlesWrittenOn(meredith, tuesday, n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Meredith wrote 14 articles on Wednesday",
+      "formula": "ArticlesWrittenOn(meredith, wednesday, n_14)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Tuesday total time is 28 hours",
+      "formula": "TimeOnDay(meredith, tuesday, n_28)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Wednesday total time is 56 hours",
+      "formula": "TimeOnDay(meredith, wednesday, n_56)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Product(5,4,20)",
+      "formula": "Product(n_5, n_4, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Product(7,4,28)",
+      "formula": "Product(n_7, n_4, n_28)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Product(14,4,56)",
+      "formula": "Product(n_14, n_4, n_56)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Sum3(20,28,56,104)",
+      "formula": "Sum3(n_20, n_28, n_56, n_104)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "Total time over three days is 104 hours",
+      "formula": "TotalTime(meredith, n_104)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If articles-written and hours-per-article and product hold, then time-on-day equals the product",
+      "formula": "\u2200x\u2200d\u2200a\u2200h\u2200t((ArticlesWrittenOn(x,d,a) \u2227 HoursPerArticle(x,h) \u2227 Product(a,h,t)) \u2192 TimeOnDay(x,d,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TimeOnDay for Monday, Tuesday, and Wednesday and Sum3 relation hold, then total time is the summed value",
+      "formula": "\u2200x\u2200p\u2200q\u2200r\u2200s((TimeOnDay(x, monday, p) \u2227 TimeOnDay(x, tuesday, q) \u2227 TimeOnDay(x, wednesday, r) \u2227 Sum3(p,q,r,s)) \u2192 TotalTime(x, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Time spent on Monday is 20 hours from Monday's articles, hours per article, and product",
+      "formula": "From FACT-1, FACT-2, FACT-8 via RULE-1 -> TimeOnDay(meredith, monday, n_20)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Time spent on Tuesday is 28 hours from Tuesday's articles, hours per article, and product",
+      "formula": "From FACT-4, FACT-9 via RULE-1 -> TimeOnDay(meredith, tuesday, n_28)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Time spent on Wednesday is 56 hours from Wednesday's articles, hours per article, and product",
+      "formula": "From FACT-5, FACT-10 via RULE-1 -> TimeOnDay(meredith, wednesday, n_56)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Total time over three days is 104 hours from the daily times and Sum3",
+      "formula": "From INF-1, INF-2, INF-3 and FACT-11 via RULE-2 -> TotalTime(meredith, n_104)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

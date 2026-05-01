@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, inches_to_feet(n_6, n_0_5)).
+fof(fact_2, axiom, division(n_4, n_0_5, n_8)).
+fof(fact_3, axiom, person(tracy)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ! [N] : ((person(P) & pieces(N)) => obtained_pieces(P, N))).
+fof(rule_2, axiom, ! [L] : ! [P] : ! [N] : (division(L, P, N) => pieces(N))).
+
+% --- INFERENCES ---
+% From fact_2, rule_2 by Modus Ponens
+fof(inf_1, axiom, pieces(n_8)).
+
+% From fact_3, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, obtained_pieces(tracy, n_8)).

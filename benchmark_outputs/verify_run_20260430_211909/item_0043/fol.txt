@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Grandma Jones baked 5 apple pies :: Baked(grandma_jones, apple_pies, n_5)
+FACT-2: Each pie was cut into 8 pieces :: PiecesPerPie(n_8)
+FACT-3: There were 5 pies originally :: PiesOriginally(n_5)
+FACT-4: The pies were set out on the buffet table :: PiesOnBuffet(n_5)
+FACT-5: After serving themselves, there were 14 pieces left :: LeftoverPieces(n_14)
+
+## RULES
+RULE-1: If someone baked apple_pies p and each pie has q pieces and p*q = n, then there are n total pieces :: ∀x∀p∀q∀n((Baked(x, apple_pies, p) ∧ PiecesPerPie(q) ∧ Multiply(p, q, n)) → TotalPieces(n))
+RULE-2: If there are TotalPieces t and LeftoverPieces l and t - l = r, then PiecesTaken r :: ∀t∀l∀r((TotalPieces(t) ∧ LeftoverPieces(l) ∧ Subtract(t, l, r)) → PiecesTaken(r))
+
+## INFERENCES
+INF-1: Multiply(n_5, n_8, n_40) :: from FACT-1, FACT-2 by Arithmetic Computation
+INF-2: TotalPieces(n_40) :: from FACT-1, FACT-2, INF-1 and RULE-1 by Universal Instantiation and Modus Ponens
+INF-3: Subtract(n_40, n_14, n_26) :: from INF-2 and FACT-5 by Arithmetic Computation
+INF-4: PiecesTaken(n_26) :: from INF-2, INF-3, and RULE-2 by Modus Ponens

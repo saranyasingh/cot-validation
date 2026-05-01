@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Train_alpha travels eighty miles on day_one :: DistOnDay(train_alpha, day_one, eighty)
+FACT-2: Train_beta travels eighty miles on day_one :: DistOnDay(train_beta, day_one, eighty)
+FACT-3: Train_alpha travels one_hundred_fifty miles on day_two :: DistOnDay(train_alpha, day_two, one_hundred_fifty)
+FACT-4: Train_beta travels one_hundred_fifty miles on day_two :: DistOnDay(train_beta, day_two, one_hundred_fifty)
+FACT-5: Sum(eighty, one_hundred_fifty, two_hundred_thirty) :: Sum(eighty, one_hundred_fifty, two_hundred_thirty)
+
+## RULES
+RULE-1: If a train t travels d1 on day_one and d2 on day_two, and ds is the sum of d1 and d2, then the total distance over two days is ds :: ∀t∀d1∀d2∀ds((DistOnDay(t, day_one, d1) ∧ DistOnDay(t, day_two, d2) ∧ Sum(d1, d2, ds)) → TotalDistance(t, ds))
+
+## INFERENCES
+INF-1: Train_alpha's total distance over two days is two_hundred_thirty, derived from FACT-1, FACT-3, FACT-5 using RULE-1 (Modus Ponens) :: TotalDistance(train_alpha, two_hundred_thirty)
+INF-2: Train_beta's total distance over two days is two_hundred_thirty, derived from FACT-2, FACT-4, FACT-5 using RULE-1 (Modus Ponens) :: TotalDistance(train_beta, two_hundred_thirty)

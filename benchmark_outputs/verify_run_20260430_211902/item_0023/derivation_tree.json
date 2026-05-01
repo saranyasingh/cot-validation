@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total for the first group of customers is 3",
+      "formula": "FirstGroupTotal(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct consequence of \"first 3 customers buy one DVD each.\"",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The total for the second group of customers is 4",
+      "formula": "SecondGroupTotal(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct consequence of \"next 2 customers buy 2 DVDs each.\"",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The total for the third group of customers is 0",
+      "formula": "ThirdGroupTotal(n_0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct consequence of \"last 3 customers don't buy any DVDs.\"",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "3 plus 4 equals 7",
+      "formula": "Add(n_3, n_4, n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Derived from FACT-1 and FACT-2 by addition.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "7 plus 0 equals 7",
+      "formula": "Add(n_7, n_0, n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Derived from FACT-4 and FACT-3 by addition.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200b\u2200c((FirstGroupTotal(a) \u2227 SecondGroupTotal(b) \u2227 Add(a,b,c)) \u2192 SumFirstTwo(c))",
+      "formula": "If the totals for the first and second groups are a and b, and Add(a,b,c), then the sum of the first two groups is c",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Valid encoding of addition: if a and b are first and second group totals and Add(a,b,c) holds, then SumFirstTwo(c) holds.",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y\u2200z((SumFirstTwo(x) \u2227 ThirdGroupTotal(y) \u2227 Add(x,y,z)) \u2192 TotalDVDs(z))",
+      "formula": "If the sum of the first two groups is x, the third group total is y, and Add(x,y,z), then TotalDVDs(z)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Valid: if SumFirstTwo(x) and ThirdGroupTotal(y) and Add(x,y,z), then TotalDVDs(z).",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200t((TotalDVDs(t)) \u2192 TuesdayTotal(t))",
+      "formula": "If TotalDVDs(t), then TuesdayTotal(t)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Reasonable: if something is a Total, then it is the TuesdayTotal.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SumFirstTwo(n_7) is inferred from FACT-1, FACT-2, FACT-4 by RULE-1 (Modus Ponens)",
+      "formula": "SumFirstTwo(n_7)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalDVDs(n_7) is inferred from INF-1, FACT-3, FACT-5 by RULE-2 (Modus Ponens)",
+      "formula": "TotalDVDs(n_7)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TuesdayTotal(n_7) is inferred from INF-2 by RULE-3 (Modus Ponens)",
+      "formula": "TuesdayTotal(n_7)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "RULE-3 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

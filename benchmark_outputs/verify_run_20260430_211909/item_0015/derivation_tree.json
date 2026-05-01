@@ -1,0 +1,91 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TotalStudents(n_20)",
+      "formula": "There are 20 students",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "ContemporaryDancers(n_4)",
+      "formula": "There are 4 contemporary dancers",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "RemainingStudents(n_16)",
+      "formula": "There are 16 remaining after contemporary dancers",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "JazzDancers(n_4)",
+      "formula": "There are 4 jazz dancers",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "HipHopDancers(n_12)",
+      "formula": "There are 12 hip-hop dancers",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "HipHopPercent(n_60)",
+      "formula": "The hip-hop percentage is 60%",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the hip-hop percent is p, then the final answer is p",
+      "formula": "\u2200p(HipHopPercent(p) \u2192 FinalAnswer(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the final answer is p, then the numerical answer is p",
+      "formula": "\u2200p(FinalAnswer(p) \u2192 AnswerValue(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FinalAnswer(n_60)",
+      "formula": "From FACT-6 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "AnswerValue(n_60)",
+      "formula": "From INF-1 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

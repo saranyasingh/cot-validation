@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_month_downloads(n_60)). 
+
+fof(fact_2, axiom, second_month_downloads(n_180)). 
+
+fof(fact_3, axiom, third_month_downloads(n_126)). 
+
+fof(fact_4, axiom, sum_is(n_60, n_180, n_126, n_366)). 
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,D] : ( sum_is(A,B,C,D) => total_downloads(D))).
+
+% --- INFERENCES ---
+% From fact_4, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_downloads(n_366)).

@@ -1,0 +1,15 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: UNSUPPORTED — 1 liter spilled is 1/10 of 10 liters, not 1/9
+FACT-9: UNSUPPORTED — actual remaining water in orange after Step 4 is 6 L (not 59/9)
+FACT-10: UNSUPPORTED — total water in remaining 24 L is 15 L (not 119/9)
+FACT-11: SUPPORTED
+FACT-12: UNSUPPORTED — relies on numbers not given by the problem
+FACT-13: UNSUPPORTED — 60/9 = 20/3 is a general identity, not grounded in the problem facts
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — the encoding does not correctly capture how total water after mixing should be computed; it misuses the variables and relation.

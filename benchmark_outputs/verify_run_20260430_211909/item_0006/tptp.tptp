@@ -1,0 +1,37 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_price_per_glass(n_5)).
+
+fof(fact_2, axiom, glasses_at_price(n_8, n_5)).
+
+fof(fact_3, axiom, glasses_at_price(n_8, n_3)).
+
+fof(fact_4, axiom, second_glass_cost(n_3)).
+
+fof(fact_5, axiom, glasses_total_count(n_16)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( ! [Y] : ( glasses_at_price(n_8, n_5) => mul(n_8, n_5, n_40) ) ) ).
+
+fof(rule_2, axiom, ! [X] : ( ! [Y] : ( glasses_at_price(n_8, n_3) => mul(n_8, n_3, n_24) ) ) ).
+
+fof(rule_3, axiom, ! [X] : ( ! [Y] : ( ( mul(n_8, n_5, n_40) & mul(n_8, n_3, n_24) ) => sum(n_40, n_24, n_64) ) ) ).
+
+fof(rule_4, axiom, ! [X] : ( sum(n_40, n_24, n_64) => total_cost(n_64) ) ).
+
+fof(rule_5, axiom, ! [Z] : ( total_cost(Z) => final_answer(Z) ) ).
+
+% --- INFERENCES ---
+% From FACT-2, RULE-1 by Modus Ponens
+fof(inf_1, axiom, mul(n_8, n_5, n_40)).
+
+% From FACT-3, RULE-2 by Modus Ponens
+fof(inf_2, axiom, mul(n_8, n_3, n_24)).
+
+% From INF-1, INF-2 and RULE-3 by Modus Ponens
+fof(inf_3, axiom, sum(n_40, n_24, n_64)).
+
+% From INF-3 and RULE-4 by Modus Ponens
+fof(inf_4, axiom, total_cost(n_64)).
+
+% From INF-4 and RULE-5 by Modus Ponens
+fof(inf_5, axiom, final_answer(n_64)).

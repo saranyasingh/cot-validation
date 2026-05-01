@@ -1,0 +1,38 @@
+To determine how many miles Henry traveled between his first and second stops, we need to follow these steps:
+
+**Premise 1:** Henry's total distance traveled on the bike trip is 60 miles.
+- This establishes the total distance as a known fact.
+
+**Premise 2:** Henry's first stop occurs at 20 miles into his journey.
+- This specifies the location of his first stop.
+
+**Premise 3:** His second stop is 15 miles before the end of the trip.
+- This indicates the position of his second stop relative to the start of the trip.
+
+Let's break down the information provided:
+
+1. **Total Distance (D):**
+   - \( D = 60 \) miles
+
+2. **First Stop Location (F):**
+   - \( F = 20 \) miles
+
+3. **Second Stop Location (S):**
+   - Since it is stated that "his second stop is 15 miles before the end of the trip," this means:
+     - \( S = D - 15 \)
+     - Substituting \( D = 60 \):
+       - \( S = 60 - 15 \)
+       - \( S = 45 \) miles
+
+Now, we need to find out how far he traveled between the first and second stops.
+
+**Calculation:**
+- Distance between the first and second stops (\( L \)):
+  - \( L = S - F \)
+  - Substituting the values:
+    - \( L = 45 - 20 \)
+    - \( L = 25 \) miles
+
+Therefore, Henry traveled 25 miles between his first and second stops.
+
+The answer is: 25

@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Polly throws the gold_javelin for a distance of 400 feet :: ThrowDistance(polly, gold_javelin, n_400)
+FACT-2: Polly is holding the sapphire gem :: Holding(polly, sapphire_gem)
+
+## RULES
+RULE-1: If someone holds sapphire gem and throws the gold_javelin 400 feet, then they can throw the gold_javelin 1200 feet when holding gem :: ∀p((Holding(p, sapphire_gem) ∧ ThrowDistance(p, gold_javelin, n_400)) → ThrowDistanceWithGem(p, gold_javelin, n_1200))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by Conjunction Introduction :: Holding(polly, sapphire_gem) ∧ ThrowDistance(polly, gold_javelin, n_400)
+INF-2: From INF-1 and RULE-1 by Modus Ponens :: ThrowDistanceWithGem(polly, gold_javelin, n_1200)

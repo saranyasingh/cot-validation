@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_purchase_price(josh, n_80000)).
+fof(fact_2, axiom, repairs_cost(josh, n_50000)).
+fof(fact_3, axiom, value_increase_percent(josh, n_150)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, A, B] : ((initial_purchase_price(P,A) & repairs_cost(P,B)) => ? [C] : add(A,B,C))).
+fof(rule_2, axiom, ! [P, A, B] : ((value_increase_percent(P,B) & initial_purchase_price(P,A)) => ? [D] : increased_value(P,D))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Arithmetic Computation
+fof(inf_1, axiom, inferred_increase_from_repairs(josh, n_120000)).
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_2, axiom, sum_initial_and_repairs(josh, n_130000)).
+% From inf_2 and fact_1 by Arithmetic Computation
+fof(inf_3, axiom, new_value(josh, n_210000)).
+% From inf_3 and fact_1 by Arithmetic Computation
+fof(inf_4, axiom, profit(josh, n_130000)).

@@ -1,0 +1,67 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The amount of blue bolts is 2",
+      "formula": "BlueBoltAmount(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The white bolts amount is half of the blue bolts amount",
+      "formula": "WhiteBoltIsHalfBlue(n_2, n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the amount of blue bolts is b and the white bolts are half of the blue bolts, and the sum of b and w is t, then the total bolts equals t",
+      "formula": "\u2200b\u2200w\u2200t((BlueBoltAmount(b) \u2227 WhiteBoltIsHalfBlue(b,w) \u2227 Sum(b,w,t)) \u2192 TotalBolt(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The sum of 2 and 1 is 3, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Sum(n_2, n_1, n_3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The total bolts are 3, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens",
+      "formula": "TotalBolt(n_3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TrailLength(n_12)",
+      "formula": "The total trail length is 12 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "DistanceCoveredInFirstHour(n_4)",
+      "formula": "The distance covered in the first hour is 4 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "RemainingDistance(n_8)",
+      "formula": "The remaining distance is 8 miles",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "RemainingDistance(n_8) is not consistent with the problem (the remaining distance is 6 miles).",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "TimeTakenForFirstFourMiles(n_1)",
+      "formula": "Time taken for the first four miles is 1 hour",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "TimeTakenForNextTwoMiles(n_1)",
+      "formula": "Time taken for the next two miles is 1 hour",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "AverageSpeedGoal(n_4)",
+      "formula": "The average speed goal is 4 miles per hour",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200D\u2200S((TrailLength(D) \u2227 AverageSpeedGoal(S)) \u2192 \u2203T(ArithmeticDivision(D,S,T) \u2227 TotalTimeNeededAtAverageSpeed(T)))",
+      "formula": "If total distance is D and average speed goal is S, then total time needed at average speed is T",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200T\u2200D((RemainingTime(T) \u2227 RemainingDistance(D)) \u2192 LastHourDistance(D))",
+      "formula": "If there is remaining time T and remaining distance D, then the last hour distance required is D",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It asserts a general inference (LastHourDistance) from RemainingTime and RemainingDistance, which is not a valid universal relation.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200D((LastHourDistance(D)) \u2192 AnswerIs(D))",
+      "formula": "If the last hour distance is D, then the answer is D",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It equates the final answer with a distance rather than a speed; mis-encoded.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalTimeNeededAtAverageSpeed(n_3)",
+      "formula": "12 divided by 4 equals 3, from FACT-1 and FACT-6 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalTimeSoFar(n_2)",
+      "formula": "1 plus 1 equals 2, from FACT-4 and FACT-5 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RemainingTime(n_1)",
+      "formula": "3 minus 2 equals 1, from INF-1 and INF-2 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "LastHourDistance(n_8)",
+      "formula": "From RemainingTime(n_1) and RemainingDistance(n_8) by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "AnswerIs(n_8)",
+      "formula": "From LastHourDistance(n_8) by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "RemainingDistance(n_8) is not consistent with the problem (the remaining distance is 6 miles)."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It asserts a general inference (LastHourDistance) from RemainingTime and RemainingDistance, which is not a valid universal relation."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "It equates the final answer with a distance rather than a speed; mis-encoded."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

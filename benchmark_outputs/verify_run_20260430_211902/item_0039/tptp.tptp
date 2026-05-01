@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, miles_per_week(john, n_60)).
+fof(fact_2, axiom, days_per_week(john, n_3)).
+fof(fact_3, axiom, hours_on_day(john, day_1, n_3)).
+fof(fact_4, axiom, hours_on_day(john, day_2, n_3_over_2)).
+fof(fact_5, axiom, hours_on_day(john, day_3, n_3_over_2)).
+fof(fact_6, axiom, divide(n_60, n_6, n_10)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ((hours_on_day(P, day_1, n_3) & hours_on_day(P, day_2, n_3_over_2) & hours_on_day(P, day_3, n_3_over_2)) => hours_per_week(P, n_6))).
+fof(rule_2, axiom, ! [P] : ! [M] : ! [H] : ! [S] : ((miles_per_week(P, M) & hours_per_week(P, H) & divide(M, H, S)) => miles_per_hour(P, S))).
+
+% --- INFERENCES ---
+% From FACT-3, FACT-4, FACT-5 by Modus Ponens
+fof(inf_1, axiom, hours_per_week(john, n_6)).
+
+% From FACT-1, INF-1, FACT-6 by Modus Ponens
+fof(inf_2, axiom, miles_per_hour(john, n_10)).

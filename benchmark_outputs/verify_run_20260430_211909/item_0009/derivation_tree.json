@@ -1,0 +1,95 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John's initial distance segment is 180 miles",
+      "formula": "DistanceSegment(john, initial, n_180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "John spends 2 hours in standstill",
+      "formula": "DistanceSegment(john, standstill, n_0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "John travels 15 miles in the first post-delay segment",
+      "formula": "DistanceSegment(john, first_half, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "John travels 160 miles in the final segment",
+      "formula": "DistanceSegment(john, final_leg, n_160)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The final segment distance should be 120 miles (1.5 hours \u00d7 80 mph), not 160.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a is the sum of b and c and e is the sum of a and d, then e is the total distance",
+      "formula": "\u2200a\u2200b\u2200c\u2200d\u2200e((Sum(a,b,c) \u2227 Sum(c,d,e)) \u2192 TotalDistance(e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Correctly encodes that if a = b + c and e = a + d, then e = b + c + d (the total distance).",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "195 is the sum of 180 and 15, from FACT-1 and FACT-3 by Arithmetic Computation",
+      "formula": "Sum(n_180, n_15, n_195)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "355 is the sum of 195 and 160, from INF-1 and FACT-4 by Arithmetic Computation",
+      "formula": "Sum(n_195, n_160, n_355)",
+      "premises": [
+        "INF-1",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total distance is 355 miles, from INF-1, INF-2, and RULE-1 by Modus Ponens",
+      "formula": "TotalDistance(n_355)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The final segment distance should be 120 miles (1.5 hours \u00d7 80 mph), not 160."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

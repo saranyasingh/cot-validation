@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, start_time(candle, start_1pm)).
+fof(fact_2, axiom, end_time(candle, end_5pm)).
+fof(fact_3, axiom, duration(start_1pm, end_5pm, four_hours)).
+fof(fact_4, axiom, melting_rate_per_hour(candle, two_cm_per_hour)).
+fof(fact_5, axiom, product(two_cm_per_hour, four_hours, eight_cm)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [C, R, D, M] : ((melting_rate_per_hour(C, R) & duration(start_1pm, end_5pm, D) & product(R, D, M)) => total_melting(C, M))).
+
+% --- INFERENCES ---
+% From fact_4, fact_3, fact_5, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_melting(candle, eight_cm)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, shorter_by(candle, eight_cm)).

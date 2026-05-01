@@ -1,0 +1,208 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The price for the first glass is 5",
+      "formula": "FirstGlassPrice(glass_1, val_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The next relation between the first and second glass exists",
+      "formula": "NextGlass(glass_1, glass_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "5 times 0.6 equals 3",
+      "formula": "Mult(val_5, val_0_6, val_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The price for the second glass is 3",
+      "formula": "SecondGlassPrice(glass_2, val_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The next relation between the second and third glass exists",
+      "formula": "NextGlass(glass_2, glass_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "3 times 0.6 equals 1.8",
+      "formula": "Mult(val_3, val_0_6, val_1_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The price for the third glass is 1.8",
+      "formula": "ThirdGlassPrice(glass_3, val_1_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The next relation between the third and fourth glass exists",
+      "formula": "NextGlass(glass_3, glass_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "1.8 times 0.6 equals 1.08",
+      "formula": "Mult(val_1_8, val_0_6, val_1_08)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "The price for the fourth glass is 1.08",
+      "formula": "FourthGlassPrice(glass_4, val_1_08)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "SumFormulaArithmetic(n_16, a_5, d_neg_0_6, S_16)",
+      "formula": "SumFormulaArithmetic(n_16, a_5, d_neg_0_6, S_16)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not stated or entailed; misuses arithmetic-sum encoding for geometric progression",
+      "error": true
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "The sum for 16 terms equals 8",
+      "formula": "SumValue(S_16, val_8)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The actual total is about 12.496, not 8",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Price propagation from previous glass to next",
+      "formula": "\u2200g\u2200p\u2200ng\u2200q((Price(g, p) \u2227 NextGlass(g, ng) \u2227 Mult(p, val_0_6, q)) \u2192 Price(ng, q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Specialized arithmetic-sum evaluation for n=16 with a=5 and d=-0.6",
+      "formula": "\u2200n\u2200a\u2200d\u2200S((SumFormulaArithmetic(n, a, d, S) \u2227 n = n_16 \u2227 a = a_5 \u2227 d = d_neg_0_6) \u2192 S = val_8)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "From SumValue(S_16, val_8) infer TotalPayment16(val_8)",
+      "formula": "(SumValue(S_16, val_8) \u2192 TotalPayment16(val_8))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The price of the second glass is 3, from FACT-1, FACT-2, and FACT-3 by RULE-1 (PriceNextFromPrev)",
+      "formula": "Price(glass_2, val_3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1 (PriceNextFromPrev)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The price of the third glass is 1.8, from INF-1, FACT-5, and FACT-6 by RULE-1 (PriceNextFromPrev)",
+      "formula": "Price(glass_3, val_1_8)",
+      "premises": [
+        "INF-1",
+        "FACT-5",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-1 (PriceNextFromPrev)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The price of the fourth glass is 1.08, from INF-2, FACT-8, and FACT-9 by RULE-1 (PriceNextFromPrev)",
+      "formula": "Price(glass_4, val_1_08)",
+      "premises": [
+        "INF-2",
+        "FACT-8",
+        "FACT-9"
+      ],
+      "inference_rule": "RULE-1 (PriceNextFromPrev)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "S16 equals 8, from FACT-11 and RULE-2 by arithmetic-sum evaluation",
+      "formula": "S_16 = val_8",
+      "premises": [
+        "FACT-11",
+        "RULE-2"
+      ],
+      "inference_rule": "arithmetic-sum evaluation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The total payment for 16 glasses is 8, from INF-4 and RULE-3 by deriving TotalPayment16(val_8)",
+      "formula": "TotalPayment16(val_8)",
+      "premises": [
+        "INF-4",
+        "RULE-3"
+      ],
+      "inference_rule": "deriving TotalPayment16(val_8)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-11",
+      "stage": "verify",
+      "message": "Not stated or entailed; misuses arithmetic-sum encoding for geometric progression"
+    },
+    {
+      "node": "FACT-12",
+      "stage": "verify",
+      "message": "The actual total is about 12.496, not 8"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

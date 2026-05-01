@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, feeds_per_meal(wendi, flock_of_chickens, n_3)).
+
+fof(fact_2, axiom, three_meals_per_day(flock_of_chickens)).
+
+fof(fact_3, axiom, morning_feed(flock_of_chickens, n_15)).
+
+fof(fact_4, axiom, afternoon_feed(flock_of_chickens, n_25)).
+
+fof(fact_5, axiom, chickens_count(flock_of_chickens, n_20)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [F, M, A, C, Z] : ((three_meals_per_day(F) & morning_feed(F, M) & afternoon_feed(F, A) & chickens_count(F, C) & sum(M, A, Z)) => feed_so_far(F, Z))).
+
+fof(rule_2, axiom, ! [X, Y, Z] : (sum(X, Y, Z) => Z = X + Y)).
+
+% --- INFERENCES ---
+% From FACT-3, FACT-4, RULE-1, RULE-2 by Arithmetic Sum
+fof(inf_1, axiom, feed_so_far(flock_of_chickens, n_40)).

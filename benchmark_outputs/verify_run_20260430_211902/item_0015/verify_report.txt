@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED — The problem states total 20 and 20% ContemporaryOfTotal.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — R is not properly bound (free variable) and the form is not a well-quantified rule.
+RULE-3: IMPLAUSIBLE — S is unbound and the rule lacks proper universal quantification.
+RULE-4: IMPLAUSIBLE — Conclusion uses JazzDancers(P) where P denotes a hip-hop quantity; mis-encoded.
+RULE-5: IMPLAUSIBLE — The quantification and binding of P/T/R are ill-formed; arithmetic is not properly encapsulated in a predicate.

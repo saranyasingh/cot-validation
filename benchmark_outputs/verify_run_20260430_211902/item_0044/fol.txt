@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: BagContainsServings(bag_300g, n_5) :: The 300g bag contains 5 servings
+FACT-2: CaloriesPerServing(cal_250) :: Each serving is 250 calories
+FACT-3: DailyCalorieTarget(cal_2000) :: Daily target is 2000 calories
+FACT-4: ConsumedCalories(cal_1800) :: 1800 calories have been consumed
+
+## RULES
+RULE-1: If a bag contains 5 servings and each serving is 250 calories, then the bag total calories are 1250 :: ∀b((BagContainsServings(b, n_5) ∧ CaloriesPerServing(cal_250)) → BagTotalCalories(b, cal_1250))
+RULE-2: If daily target A and consumed B and Subtraction(A,B,C), then RemainingCalories(C) :: ∀A∀B∀C((DailyCalorieTarget(A) ∧ ConsumedCalories(B) ∧ Subtraction(A,B,C)) → RemainingCalories(C))
+RULE-3: ArithmeticSubtractionFromTargetAndConsumed :: DailyCalorieTarget(cal_2000) ∧ ConsumedCalories(cal_1800) → Subtraction(cal_2000, cal_1800, cal_200)
+RULE-4: VolumeFromCaloriesFromRemaining :: RemainingCalories(cal_200) ∧ CaloriesPerGram(cal_per_g_4186_8) → VolumeFromCalories(cal_200, cal_per_g_4186_8, vol_0_0479)
+RULE-5: MassFromVolumeAndDensity :: VolumeFromCalories(vol_0_0479, density_0_9) ∧ Density(density_0_9) ∧ MassFromVolume(vol_0_0479, density_0_9, mass_0_0431) → FinalMassInGrams(mass_0_0431)
+RULE-6: FinalMassToAnswer :: MassFromVolumeAndDensity(vol_0_0479, density_0_9) → FinalAnswerMass(mass_0_0431)
+
+## INFERENCES
+INF-1: Subtraction(cal_2000, cal_1800, cal_200) :: ArithmeticSubtractionFromTargetAndConsumed based on FACT-3, FACT-4
+INF-2: RemainingCalories(cal_200) :: from INF-1, FACT-3, FACT-4 by RULE-2 (Modus Ponens / Universal Instantiation)
+INF-3: BagTotalCalories(bag_300g, cal_1250) :: from FACT-1, FACT-2 by RULE-1
+INF-4: VolumeFromCalories(cal_200, cal_per_g_4186_8, vol_0_0479) :: from INF-2 and the implicit knowledge/calculation rule (Division) by RULE-4
+INF-5: MassFromVolume(vol_0_0479, density_0_9) :: from INF-4 and the implicit density constant by RULE-5
+INF-6: FinalMassInGrams(mass_0_0431) :: from INF-5 by RULE-5
+INF-7: FinalAnswerMass(mass_0_0431) :: from INF-6 by RULE-6

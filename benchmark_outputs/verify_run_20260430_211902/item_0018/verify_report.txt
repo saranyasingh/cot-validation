@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: IMPLAUSIBLE — it omits hours-per-week in computing teaching earnings; earnings should be wage * hours_per_week * weeks.
+RULE-2: IMPLAUSIBLE — it omits weeks in computing coaching earnings; earnings should be wage * hours_per_week * weeks.
+RULE-3: PLAUSIBLE

@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Meredith wrote 5 articles on Monday :: ArticlesWrittenOn(meredith, monday, n_5)
+FACT-2: Time taken per article is 4 hours :: HoursPerArticle(meredith, n_4)
+FACT-3: Monday total time is 20 hours :: TimeOnDay(meredith, monday, n_20)
+FACT-4: Meredith wrote 7 articles on Tuesday :: ArticlesWrittenOn(meredith, tuesday, n_7)
+FACT-5: Meredith wrote 14 articles on Wednesday :: ArticlesWrittenOn(meredith, wednesday, n_14)
+FACT-6: Tuesday total time is 28 hours :: TimeOnDay(meredith, tuesday, n_28)
+FACT-7: Wednesday total time is 56 hours :: TimeOnDay(meredith, wednesday, n_56)
+FACT-8: Product(5,4,20) :: Product(n_5, n_4, n_20)
+FACT-9: Product(7,4,28) :: Product(n_7, n_4, n_28)
+FACT-10: Product(14,4,56) :: Product(n_14, n_4, n_56)
+FACT-11: Sum3(20,28,56,104) :: Sum3(n_20, n_28, n_56, n_104)
+FACT-12: Total time over three days is 104 hours :: TotalTime(meredith, n_104)
+
+## RULES
+RULE-1: If articles-written and hours-per-article and product hold, then time-on-day equals the product :: ∀x∀d∀a∀h∀t((ArticlesWrittenOn(x,d,a) ∧ HoursPerArticle(x,h) ∧ Product(a,h,t)) → TimeOnDay(x,d,t))
+RULE-2: If TimeOnDay for Monday, Tuesday, and Wednesday and Sum3 relation hold, then total time is the summed value :: ∀x∀p∀q∀r∀s((TimeOnDay(x, monday, p) ∧ TimeOnDay(x, tuesday, q) ∧ TimeOnDay(x, wednesday, r) ∧ Sum3(p,q,r,s)) → TotalTime(x, s))
+
+## INFERENCES
+INF-1: Time spent on Monday is 20 hours from Monday's articles, hours per article, and product :: From FACT-1, FACT-2, FACT-8 via RULE-1 -> TimeOnDay(meredith, monday, n_20)
+INF-2: Time spent on Tuesday is 28 hours from Tuesday's articles, hours per article, and product :: From FACT-4, FACT-9 via RULE-1 -> TimeOnDay(meredith, tuesday, n_28)
+INF-3: Time spent on Wednesday is 56 hours from Wednesday's articles, hours per article, and product :: From FACT-5, FACT-10 via RULE-1 -> TimeOnDay(meredith, wednesday, n_56)
+INF-4: Total time over three days is 104 hours from the daily times and Sum3 :: From INF-1, INF-2, INF-3 and FACT-11 via RULE-2 -> TotalTime(meredith, n_104)

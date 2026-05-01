@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(mishka, shorts, n_3, n_16_50)).
+fof(fact_2, axiom, bought(mishka, pants, n_3, n_22_50)).
+fof(fact_3, axiom, bought(mishka, shoes, n_3, n_42_00)).
+fof(fact_4, axiom, multiply(n_3, n_16_50, n_49_50)).
+fof(fact_5, axiom, multiply(n_3, n_22_50, n_67_50)).
+fof(fact_6, axiom, multiply(n_3, n_42_00, n_126_00)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, It, Q, P] : ((bought(X, It, Q, P)) => ? [T] : (multiply(Q, P, T) & item_subtotal(X, It, T)))).
+fof(rule_2, axiom, ! [X, t1, t2, t3] : ((item_subtotal(X, shorts, t1) & item_subtotal(X, pants, t2) & item_subtotal(X, shoes, t3)) => ? [T] : (sum_three(t1, t2, t3, T) & total_spent(X, T))).).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, item_subtotal(mishka, shorts, n_49_50)).
+% From fact_2, rule_1 by Modus Ponens
+fof(inf_2, axiom, item_subtotal(mishka, pants, n_67_50)).
+% From fact_3, rule_1 by Modus Ponens
+fof(inf_3, axiom, item_subtotal(mishka, shoes, n_126_00)).
+% From inf_1, inf_2, inf_3 by Modus Ponens
+fof(inf_4, axiom, total_spent(mishka, n_243_00)).

@@ -1,0 +1,175 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "BagContainsServings(bag_300g, n_5)",
+      "formula": "The 300g bag contains 5 servings",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "CaloriesPerServing(cal_250)",
+      "formula": "Each serving is 250 calories",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "DailyCalorieTarget(cal_2000)",
+      "formula": "Daily target is 2000 calories",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "ConsumedCalories(cal_1800)",
+      "formula": "1800 calories have been consumed",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a bag contains 5 servings and each serving is 250 calories, then the bag total calories are 1250",
+      "formula": "\u2200b((BagContainsServings(b, n_5) \u2227 CaloriesPerServing(cal_250)) \u2192 BagTotalCalories(b, cal_1250))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If daily target A and consumed B and Subtraction(A,B,C), then RemainingCalories(C)",
+      "formula": "\u2200A\u2200B\u2200C((DailyCalorieTarget(A) \u2227 ConsumedCalories(B) \u2227 Subtraction(A,B,C)) \u2192 RemainingCalories(C))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "ArithmeticSubtractionFromTargetAndConsumed",
+      "formula": "DailyCalorieTarget(cal_2000) \u2227 ConsumedCalories(cal_1800) \u2192 Subtraction(cal_2000, cal_1800, cal_200)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "not encoded as a formal, universally quantified predicate",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "VolumeFromCaloriesFromRemaining",
+      "formula": "RemainingCalories(cal_200) \u2227 CaloriesPerGram(cal_per_g_4186_8) \u2192 VolumeFromCalories(cal_200, cal_per_g_4186_8, vol_0_0479)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "not encoded as a formal, universally quantified predicate",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "MassFromVolumeAndDensity",
+      "formula": "VolumeFromCalories(vol_0_0479, density_0_9) \u2227 Density(density_0_9) \u2227 MassFromVolume(vol_0_0479, density_0_9, mass_0_0431) \u2192 FinalMassInGrams(mass_0_0431)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "FinalMassToAnswer",
+      "formula": "MassFromVolumeAndDensity(vol_0_0479, density_0_9) \u2192 FinalAnswerMass(mass_0_0431)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "not a formal mathematical principle, but a procedural final step",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Subtraction(cal_2000, cal_1800, cal_200)",
+      "formula": "ArithmeticSubtractionFromTargetAndConsumed based on FACT-3, FACT-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingCalories(cal_200)",
+      "formula": "from INF-1, FACT-3, FACT-4 by RULE-2 (Modus Ponens / Universal Instantiation)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "BagTotalCalories(bag_300g, cal_1250)",
+      "formula": "from FACT-1, FACT-2 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "VolumeFromCalories(cal_200, cal_per_g_4186_8, vol_0_0479)",
+      "formula": "from INF-2 and the implicit knowledge/calculation rule (Division) by RULE-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "MassFromVolume(vol_0_0479, density_0_9)",
+      "formula": "from INF-4 and the implicit density constant by RULE-5",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "FinalMassInGrams(mass_0_0431)",
+      "formula": "from INF-5 by RULE-5",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "FinalAnswerMass(mass_0_0431)",
+      "formula": "from INF-6 by RULE-6",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "not encoded as a formal, universally quantified predicate"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "not encoded as a formal, universally quantified predicate"
+    },
+    {
+      "node": "RULE-6",
+      "stage": "verify",
+      "message": "not a formal mathematical principle, but a procedural final step"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

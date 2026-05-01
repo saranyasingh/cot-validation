@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCount(seattle, n_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: Times(seattle, n_4, charleston)
+FACT-3: Toulouse has twice as many sheep as Charleston :: Times(charleston, n_2, toulouse)
+
+## RULES
+RULE-1: If x has n sheep and y has m times as many sheep as x, and p is the product of n and m, then y has p sheep :: ∀x∀n∀m∀y∀p((SheepCount(x, n) ∧ Times(x, m, y) ∧ Multiply(n, m, p)) → SheepCount(y, p))
+
+## INFERENCES
+INF-1: Multiply 20 and 4 to get 80 from FACT-1 and FACT-2 by Arithmetic Computation :: Multiply(n_20, n_4, n_80)
+INF-2: Charleston has 80 sheep from FACT-2, INF-1, and RULE-1 :: SheepCount(charleston, n_80)
+INF-3: Multiply 80 and 2 to get 160 from INF-2 and FACT-3 by Arithmetic Computation :: Multiply(n_80, n_2, n_160)
+INF-4: Toulouse has 160 sheep from INF-3, FACT-3, and RULE-1 :: SheepCount(toulouse, n_160)
+INF-5: Add 20 and 80 to get 100 from FACT-1 and INF-2 by Arithmetic Computation :: Add(n_20, n_80, n_100)
+INF-6: Add 100 and 160 to get 260 from INF-5 and INF-3 by Arithmetic Computation :: Add(n_100, n_160, n_260)
+INF-7: Total number of sheep Toulouse+Charleston+Seattle is 260 :: TotalSheep(n_260)

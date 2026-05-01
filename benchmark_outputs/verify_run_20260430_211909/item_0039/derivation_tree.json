@@ -1,0 +1,91 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "MilesPerWeek(john, n_60)",
+      "formula": "John runs 60 miles a week",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: John runs 60 miles per week.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "DaysPerWeek(john, n_3)",
+      "formula": "John runs 3 days a week",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: He runs 3 days per week.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "TimeOnDay(john, day1, n_3)",
+      "formula": "On the first day, he runs 3 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: First day is 3 hours.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "TimeOnDay(john, day2, n_3_over_2)",
+      "formula": "On the second day, he runs 1.5 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: Other two days are 3/2 hours each.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "TimeOnDay(john, day3, n_3_over_2)",
+      "formula": "On the third day, he runs 1.5 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: Third day is 3/2 hours.",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "TotalTime(john, n_6)",
+      "formula": "Total time is 6 hours",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Direct statement: Total time is 6 hours.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200d\u2200t\u2200s((MilesPerWeek(x, d) \u2227 TotalTime(x, t) \u2227 EqualDivision(d, t, s)) \u2192 Speed(x, s))",
+      "formula": "If a weekly distance and total time relate by an equal division, then the speed is s",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes the standard speed = distance/time relationship via EqualDivision; valid general principle.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "EqualDivision(n_60, n_6, n_10)",
+      "formula": "from FACT-1, FACT-6 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Speed(john, n_10)",
+      "formula": "from FACT-1, FACT-6, INF-1, RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Dana has a skip speed of 3 mph",
+      "formula": "SkipSpeed(dana, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Dana's skip speed is half the run speed",
+      "formula": "HalfOfRunSpeed(dana)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "2 \u00d7 3 = 6",
+      "formula": "Double(n_3, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Run speed is 4 times the skip speed",
+      "formula": "RunIsFourTimesSkip(dana)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not entailed: problem implies run is 2\u00d7 skip, not 4\u00d7 skip.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Total time is 6 hours",
+      "formula": "TotalTime(dana, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Time spent running is 1/3 of total time",
+      "formula": "TimeSpentRunningIsFraction(dana, n_1, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Time spent walking is 2/3 of total time",
+      "formula": "TimeSpentWalkingIsFraction(dana, n_2, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Distance running is 6 \u00d7 2 = 12",
+      "formula": "Product(dana, n_6, n_2, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Walking distance is 1.5 \u00d7 4 = 6",
+      "formula": "Product(dana, n_3_2, n_4, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "6 \u00f7 4 = 1.5",
+      "formula": "Divide(dana, n_6, n_4, n_3_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "12 + 6 = 18",
+      "formula": "Sum(dana, n_12, n_6, n_18)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a skip speed is given and half-of-run-speed relation holds and a double relation holds, then the run speed is the doubled value",
+      "formula": "\u2200p\u2200s\u2200r((SkipSpeed(p, s) \u2227 HalfOfRunSpeed(p) \u2227 Double(s, r)) \u2192 RunSpeed(p, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a run speed is known and the run-is-four-times-skip relation holds and skip speed is known and a division relation divides by 4 yields w, then walking speed is w",
+      "formula": "\u2200p\u2200r\u2200s\u2200w((RunSpeed(p, r) \u2227 RunIsFourTimesSkip(p) \u2227 SkipSpeed(p, s) \u2227 Divide(p, r, n_4, w)) \u2192 WalkingSpeed(p, w))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Misencoded: uses run-is-four-times-skip and yields walking speed via division by 4, which would correspond to skip, not walking.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If time spent running is a fraction of total time and total time is known, then running time is the corresponding integer hour",
+      "formula": "\u2200p((TimeSpentRunningIsFraction(p, n_1, n_3) \u2227 TotalTime(p, n_6)) \u2192 RunningTime(p, n_2))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Not universally valid; running time need not be an integer number of hours.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If time spent walking is a fraction of total time and total time is known, then walking time is the corresponding hour",
+      "formula": "\u2200p((TimeSpentWalkingIsFraction(p, n_2, n_3) \u2227 TotalTime(p, n_6)) \u2192 WalkingTime(p, n_4))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Not universally valid; walking time need not be an integer number of hours.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If running speed and running time are known and a product relation holds, then running distance is given by the product",
+      "formula": "\u2200p\u2200r\u2200t\u2200d((RunSpeed(p, r) \u2227 RunningTime(p, t) \u2227 Product(p, r, t, d)) \u2192 RunningDistance(p, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If walking speed and walking time are known and a product relation holds, then walking distance is given by the product",
+      "formula": "\u2200p\u2200r\u2200t\u2200d((WalkingSpeed(p, r) \u2227 WalkingTime(p, t) \u2227 Product(p, r, t, d)) \u2192 WalkingDistance(p, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-7": {
+      "type": "rule",
+      "gloss": "If running distance and walking distance are known and their sum is known, then total distance is given",
+      "formula": "\u2200p\u2200d1\u2200d2\u2200d((RunningDistance(p, d1) \u2227 WalkingDistance(p, d2) \u2227 Sum(p, d1, d2, d)) \u2192 TotalDistance(p, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RunSpeed(dana, n_6)",
+      "formula": "From FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "WalkingSpeed(dana, n_3_2)",
+      "formula": "From INF-1, FACT-4, FACT-1, FACT-10 by RULE-2 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RunningTime(dana, n_2)",
+      "formula": "From FACT-6, FACT-5 by RULE-3 (Universal Instantiation)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WalkingTime(dana, n_4)",
+      "formula": "From FACT-7, FACT-5 by RULE-4 (Universal Instantiation)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "RunningDistance(dana, n_12)",
+      "formula": "From INF-1, INF-3, FACT-8 by RULE-5 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "WalkingDistance(dana, n_6)",
+      "formula": "From INF-2, INF-4, FACT-9 by RULE-6 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "TotalDistance(dana, n_18)",
+      "formula": "From INF-5, INF-6, FACT-11 by RULE-7 (Modus Ponens)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "Not entailed: problem implies run is 2\u00d7 skip, not 4\u00d7 skip."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Misencoded: uses run-is-four-times-skip and yields walking speed via division by 4, which would correspond to skip, not walking."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Not universally valid; running time need not be an integer number of hours."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Not universally valid; walking time need not be an integer number of hours."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

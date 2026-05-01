@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — Not stated and not entailed; cost per pound vs per-candle profit involves a unit mismatch.
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — TotalCost should reflect 2 pounds at $10 each for 20 candles, i.e., $20.
+FACT-7: UNSUPPORTED — Net profit is not 30; with correct cost it is 20.
+FACT-8: UNSUPPORTED — Not derived from the problem data.
+FACT-9: UNSUPPORTED — No net loss value is given in the problem.
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — It treats total loss as the product of per-item profit and quantity; mislabels the final quantity.
+RULE-3: PLAUSIBLE

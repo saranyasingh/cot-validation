@@ -1,0 +1,46 @@
+EXPLANATION
+To determine how much Kylar needs to pay for 16 glasses, we first identify the cost structure described in the problem. Specifically, the price for the first glass is $5, and each subsequent glass costs 60% of the price of the preceding glass.
+
+Let's break this down step-by-step:
+
+1. **Identify the base cost**: The cost of the first glass is $5.
+2. **Calculate the cost of the second glass**: Since it costs 60% of the first glass, the cost of the second glass is \(5 \times 0.6 = \$3\).
+3. **Generalize the pattern**: Each subsequent glass will have its price calculated as 60% of the previous glass’s price. This means that if the nth glass has a price of P_n, then P_{n+1} = P_n * 0.6.
+
+Now let's calculate the total cost:
+
+4. **Sum up all the costs**:
+   - Cost of the first glass: $5
+   - Cost of the second glass: $3
+   - Cost of the third glass: \(3 \times 0.6 = \$1.80\)
+   - Cost of the fourth glass: \(1.80 \times 0.6 = \$1.08\)
+
+We continue this process until we reach the 16th glass. However, instead of manually calculating each individual glass price, we can use an arithmetic progression formula to find the sum easily.
+
+5. **Use the arithmetic series sum formula**:
+   For an arithmetic sequence, the sum S_n of the first n terms is given by:
+   \[
+   S_n = \frac{n}{2} [2a + (n-1)d]
+   \]
+   Here,
+   - \(n = 16\) (number of terms),
+   - \(a = 5\) (first term),
+   - \(d = -0.6\) (common difference).
+
+Plugging these values into the formula gives us:
+\[
+S_{16} = \frac{16}{2} [2(5) + (16-1)(-0.6)]
+\]
+
+Calculating inside the brackets:
+\[
+= 8 [10 + 15(-0.6)]
+\]
+\[
+= 8 [10 - 9]
+\]
+\[
+= 8[1] = 8
+\]
+
+Therefore, the total amount Kylar needs to pay for 16 glasses is $\boxed{8}.

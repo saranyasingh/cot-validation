@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED — derived from FACT-1 and FACT-2 (15×8 = 120)
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — lacks explicit link that o equals the number of occupied units; would need Subtract(t, OccupiedUnits, UnoccupiedUnits) to be unambiguous

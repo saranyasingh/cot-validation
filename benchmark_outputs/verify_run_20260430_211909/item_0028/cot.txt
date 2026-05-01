@@ -1,0 +1,29 @@
+EXPLANATION
+
+To determine how much Cynthia will spend on ice cream after 60 days, we need to follow these steps:
+
+1. **Determine the total number of servings consumed over 60 days**:
+   - Cynthia eats 1 serving of ice cream every night.
+   - There are 30 nights in a month (assuming an average of 30 days per month).
+   - Over 60 days, there are \( \frac{60}{30} = 2 \) months.
+
+   Therefore, the total number of servings consumed in 60 days is:
+   \[
+   1 \text{ serving/night} \times 2 \text{ months} = 2 \times 15 \text{ servings/carton} = 30 \text{ servings}
+   \]
+
+2. **Calculate the number of cartons needed**:
+   - Each carton contains 15 servings.
+   - To find out how many cartons are required, divide the total number of servings by the number of servings per carton:
+   \[
+   \frac{30 \text{ servings}}{15 \text{ servings/carton}} = 2 \text{ cartons}
+   \]
+
+3. **Calculate the total cost**:
+   - Each carton costs $4.00.
+   - Multiply the number of cartons by the price per carton to get the total cost:
+   \[
+   2 \text{ cartons} \times \$4.00/\text{carton} = \$8.00
+   \]
+
+Therefore, Cynthia will spend a total of $8.00 on ice cream after 60 days. The answer is: 8

@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED — Entailed by FACT-1 and FACT-2
+FACT-4: SUPPORTED — Directly stated
+
+RULE-1: PLAUSIBLE — Encodes p = t × f using a ProductTotalFraction predicate; a valid general arithmetic relation
+RULE-2: PLAUSIBLE — Encodes unoccupied = total − occupied with Subtract(t,p,u); a standard arithmetic rule

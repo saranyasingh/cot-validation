@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Total distance of the trip is 60 miles :: TotalDistance(n_60)
+FACT-2: First stop occurred at 20 miles :: FirstStopDistance(n_20)
+FACT-3: Second stop occurred at 15 miles :: SecondStopDistance(n_15)
+
+## RULES
+RULE-1: If the total distance is T and the first stop distance is F and there exists a D such that Subtract(T, F, D), then the distance between stops is D :: ∀T∀F∀D((TotalDistance(T) ∧ FirstStopDistance(F) ∧ Subtract(T,F,D)) → DistanceBetweenStops(D))
+RULE-2: If there exists T, F, D such that Subtract(T,F,D), then Stop2AtDistance(D) :: ∀T∀F∀D((Subtract(T,F,D)) → Stop2AtDistance(D))
+
+## INFERENCES
+INF-1: 60 minus 20 equals 40, from FACT-1 and FACT-2 by Arithmetic Computation :: Subtract(n_60, n_20, n_40)
+INF-2: Distance between stops equals 40, from INF-1 and RULE-1 by Modus Ponens :: DistanceBetweenStops(n_40)
+INF-3: 60 minus 15 equals 45, from FACT-1 and FACT-3 by Arithmetic Computation :: Subtract(n_60, n_15, n_45)
+INF-4: Stop2 at distance 45, from INF-3 and RULE-2 by Modus Ponens :: Stop2AtDistance(n_45)

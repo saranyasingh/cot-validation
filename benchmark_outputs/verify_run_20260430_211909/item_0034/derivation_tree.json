@@ -1,0 +1,41 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "G = S + 30",
+      "formula": "Equals(gold, Add(silver, n_30))",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: G = S + 30",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "S + G = 110",
+      "formula": "Sum(silver, gold, n_110)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: S + G = 110",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Substitution in linear equations: If G = S + 30 and S + G = 110, then S + (S + 30) = 110",
+      "formula": "\u2200S\u2200G[(Equals(G, Add(S, n_30)) \u2227 Sum(S, G, n_110)) \u2192 Sum(S, Add(S, n_30), n_110)]",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Valid algebraic substitution: from G = S + 30 and S + G = 110 infer S + (S + 30) = 110",
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Equals(gold, n_70)",
+      "formula": "from INF-3 by EqualityElimination",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: Mike played ping pong for 40 minutes :: PlayedPingPongForMinutes(mike, n_40)
+FACT-2: In the first 20 minutes, he scored 4 points :: ScoredInFirstTwentyMinutes(mike, n_4)
+FACT-3: In the second 20 minutes, he scored 5 points :: ScoredInSecondTwentyMinutes(mike, n_5)
+FACT-4: Total points scored :: TotalPoints(mike, n_9)
+
+## RULES
+RULE-1: If a person scored a points in the first twenty minutes and b points in the second twenty minutes, then the total points are a + b :: ∀p∀a∀b((ScoredInFirstTwentyMinutes(p, a) ∧ ScoredInSecondTwentyMinutes(p, b)) → TotalPoints(p, a + b))
+
+## INFERENCES
+INF-1: The total number of points is 9, from FACT-2, FACT-3, and RULE-1 by Modus Ponens :: TotalPoints(mike, n_9)

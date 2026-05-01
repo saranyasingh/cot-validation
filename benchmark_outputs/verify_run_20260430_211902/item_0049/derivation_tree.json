@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "6 inches equals 0.5 feet",
+      "formula": "InchesToFeet(n_6, n_0_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "4 feet divided by 0.5 feet yields 8 pieces",
+      "formula": "Division(n_4, n_0_5, n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Tracy is a person",
+      "formula": "Person(tracy)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p has n pieces, then p obtained n pieces",
+      "formula": "\u2200p\u2200n((Person(p) \u2227 Pieces(n)) \u2192 ObtainedPieces(p, n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a division of L by P yields N, then there are N pieces",
+      "formula": "\u2200L\u2200P\u2200N((Division(L, P, N)) \u2192 Pieces(N))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Pieces(n_8), from FACT-2 and RULE-2 by Modus Ponens",
+      "formula": "Pieces(n_8)",
+      "premises": [
+        "FACT-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "ObtainedPieces(tracy, n_8), from FACT-3, INF-1, and RULE-1 by Modus Ponens",
+      "formula": "ObtainedPieces(tracy, n_8)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

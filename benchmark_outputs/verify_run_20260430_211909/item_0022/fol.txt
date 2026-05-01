@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Samantha is currently 31 years old :: CurrentAge(samantha, n_31)
+FACT-2: Raymond was born 6 years before Samantha :: BirthYearDifference(raymond, samantha, n_6)
+FACT-3: Raymond had a son at age 23 :: HadSonAtAge(raymond, n_23)
+
+## RULES
+RULE-1: If someone had a son at age a, then their son was born a years after them :: ∀p∀a(HadSonAtAge(p, a) → BirthGap(p, a))
+
+## INFERENCES
+INF-1: The son was born 23 years after Raymond's birth, from FACT-3 and RULE-1 by Modus Ponens :: BirthGap(raymond, n_23)

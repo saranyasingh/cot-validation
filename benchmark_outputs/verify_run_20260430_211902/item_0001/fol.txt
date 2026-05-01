@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Total eggs laid per day :: TotalEggs(n_16)
+FACT-2: Eggs eaten for breakfast :: EggsEatenForBreakfast(n_3)
+FACT-3: Eggs used for muffins :: EggsUsedForMuffins(n_4)
+FACT-4: Price per egg :: PricePerEgg(n_2)
+
+## RULES
+RULE-1: If the total eggs x and eggs eaten y and Subtract(x,y,z) then RemainingAfterBreakfast(z) :: ∀x∀y∀z((TotalEggs(x) ∧ EggsEatenForBreakfast(y) ∧ Subtract(x,y,z)) → RemainingAfterBreakfast(z))
+RULE-2: If RemainingAfterBreakfast(a) and EggsUsedForMuffins(b) and Subtract(a,b,c) then RemainingAfterMuffins(c) :: ∀a∀b∀c((RemainingAfterBreakfast(a) ∧ EggsUsedForMuffins(b) ∧ Subtract(a,b,c)) → RemainingAfterMuffins(c))
+RULE-3: If Multiply(a,b,c) then Earnings(c) :: ∀a∀b∀c((Multiply(a,b,c)) → Earnings(c))
+
+## INFERENCES
+INF-1: Subtract 16 and 3 to get 13, from FACT-1 and FACT-2 by Arithmetic Computation :: Subtract(n_16, n_3, n_13)
+INF-2: RemainingAfterBreakfast(n_13) from FACT-1, FACT-2, INF-1, RULE-1 by Modus Ponens :: RemainingAfterBreakfast(n_13)
+INF-3: Subtract 13 and 4 to get 9, from INF-2 and FACT-3 by Arithmetic Computation :: Subtract(n_13, n_4, n_9)
+INF-4: RemainingAfterMuffins(n_9) from INF-2, FACT-3, INF-3, RULE-2 by Modus Ponens :: RemainingAfterMuffins(n_9)
+INF-5: Multiply 9 and 2 to get 18, from INF-4 and FACT-4 by Arithmetic Computation :: Multiply(n_9, n_2, n_18)
+INF-6: Earnings(n_18) from INF-5 and RULE-3 by Modus Ponens :: Earnings(n_18)

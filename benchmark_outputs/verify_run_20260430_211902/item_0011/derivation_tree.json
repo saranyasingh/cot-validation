@@ -1,0 +1,60 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "FirstMonthDownloads(n_60)",
+      "formula": "The first month downloads were 60",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "directly stated: first month downloads = 60.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "SecondMonthDownloads(n_180)",
+      "formula": "The second month downloads were 180",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "derived: second month = 3 \u00d7 60 = 180.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "ThirdMonthDownloads(n_126)",
+      "formula": "The third month downloads were 126",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "derived: third month = 70% of 180 = 126.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "SumIs(n_60, n_180, n_126, n_366)",
+      "formula": "The sum of the three monthly downloads is 366",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "derived: total = 60 + 180 + 126 = 366; SumIs encodes this.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the sum is of the form SumIs(a, b, c, d), then the total downloads is d",
+      "formula": "\u2200a\u2200b\u2200c\u2200d((SumIs(a,b,c,d)) \u2192 TotalDownloads(d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "the form SumIs(a, b, c, d) encodes a + b + c = d, so d is the total.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalDownloads(n_366), from FACT-4 and RULE-1 by Modus Ponens",
+      "formula": "TotalDownloads(n_366)",
+      "premises": [
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

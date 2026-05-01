@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Volume(orange_drink, n_10)",
+      "formula": "10 liters of orange drink",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "WaterFraction(orange_drink, n_2, n_3)",
+      "formula": "orange_drink is 2/3 water",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Volume(pineapple_drink, n_15)",
+      "formula": "15 liters of pineapple drink",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "WaterFraction(pineapple_drink, n_3, n_5)",
+      "formula": "pineapple_drink is 3/5 water",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200D\u2200N\u2200Dn\u2200V((WaterFraction(D,N,Dn) \u2227 Volume(D,V)) \u2192 WaterAmount(D, FracProd(N,Dn,V)))",
+      "formula": "If a drink D has water fraction N/Dn and volume V, then WaterAmount(D, FracProd(N,Dn,V))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200A\u2200B((Sum(A,B)) \u2192 Total(A,B))",
+      "formula": "If A and B sum to something, then Total",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule uses a two-argument Sum and a two-argument Total without a clear output; it does not properly encode a standard arithmetic relation (missing a resulting quantity).",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "WaterAmount(orange_drink, n_20_3)",
+      "formula": "From FACT-1, FACT-2 by ArithmeticComputation (via RULE-1)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "WaterAmount(pineapple_drink, n_9)",
+      "formula": "From FACT-3, FACT-4 by ArithmeticComputation (via RULE-1)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TotalWater(n_50_3)",
+      "formula": "From INF-1, INF-2 by ArithmeticComputation (via RULE-2)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WaterInRemaining(n_50_3, n_24)",
+      "formula": "From INF-3 and RemainingVolume(n_24) by Rule-4 (Final conclusion)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The rule uses a two-argument Sum and a two-argument Total without a clear output; it does not properly encode a standard arithmetic relation (missing a resulting quantity)."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

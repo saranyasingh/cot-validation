@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The problem states 5 pies baked by Grandma Jones, which matches PiesBaked(grandma_jones, n_5).
+FACT-2: SUPPORTED — The problem states each pie is cut into 8 pieces, giving 5 pies with 8 pieces per pie as PiecesPerPie(n_5, n_8).
+FACT-3: SUPPORTED — The problem states there were 14 pieces remaining, i.e., PiecesLeft(14).
+RULE-1: PLAUSIBLE — Encodes total pieces as the product of number of pies and pieces per pie via Product(n,k,t) and TotalPieces(p,t).
+RULE-2: PLAUSIBLE — Encodes taken pieces as the difference between total pieces and left pieces via Diff(t,l,m) and PiecesTaken(p,m).

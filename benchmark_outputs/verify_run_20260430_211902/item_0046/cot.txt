@@ -1,0 +1,20 @@
+Explanation:
+1. Meredith writes 5 articles on Monday.
+   Premise: She writes 5 articles.
+
+2. On Tuesday, she writes \( \frac{2}{5} \) times more articles than on Monday.
+   Calculation: \( 5 + \left( \frac{2}{5} \times 5 \right) = 5 + 2 = 7 \) articles.
+
+3. On Wednesday, she writes twice the number of articles she wrote on Tuesday.
+   Calculation: \( 2 \times 7 = 14 \) articles.
+
+4. In total over the three days, she wrote \( 5 + 7 + 14 = 26 \) articles.
+   Summation: 5 (Monday) + 7 (Tuesday) + 14 (Wednesday).
+
+5. Each article takes an average of 4 hours to research and write.
+   Premise: Each article takes 4 hours.
+
+6. Therefore, the total time spent writing articles over the three days is \( 26 \times 4 = 104 \) hours.
+   Multiplication: Total articles x Time per article.
+
+The answer is: 104

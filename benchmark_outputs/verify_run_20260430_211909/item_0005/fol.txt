@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Morning feed is 15 cups :: MorningFeed(wendi, chickens, n_15)
+FACT-2: Afternoon feed is 25 cups :: AfternoonFeed(wendi, chickens, n_25)
+FACT-3: There are three meals per day :: ThreeMealsPerDay(wendi)
+FACT-4: There are 20 chickens in the flock :: ChickensInFlock(wendi, n_20)
+
+## RULES
+RULE-1: Sum of morning and afternoon feed equals 40 cups :: ∀x∀y∀a∀b((MorningFeed(x,y,a) ∧ AfternoonFeed(x,y,b)) → SumTwoMeals(a,b,n_40))
+RULE-2: Even distribution of total across three meals yields per-chicken-per-meal amount :: ∀x∀a∀b∀c((SumTwoMeals(a,b,n_40) ∧ ChickensInFlock(x,c) ∧ ThreeMealsPerDay(x)) → PerChickenPerMealEstimate(x,c,n_2))
+
+## INFERENCES
+INF-1: SumTwoMeals(n_15, n_25, n_40) :: from FACT-1, FACT-2 by ArithmeticComputation
+INF-2: PerChickenPerMealEstimate(wendi, n_20, n_2) :: from INF-1 and FACT-3 by ArithmeticComputation
+INF-3: FinalMealCupsForFinalMeal(wendi, n_20) :: from INF-2 and RULE-2 by Modus Ponens

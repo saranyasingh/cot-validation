@@ -1,0 +1,28 @@
+EXPLANATION
+
+1. John drives for 3 hours at a speed of 60 mph.
+   - Distance covered = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. John turns around after realizing he forgot something important at home.
+   - This implies that his total distance traveled so far is 180 miles (to the point of turning around) + some additional distance (which we need to find).
+
+3. John spends the first 2 hours in standstill traffic.
+   - During this time, he does not cover any distance since he is stationary.
+
+4. After the initial delay, John starts driving again.
+   - He initially drives at 30 mph for the next half hour.
+     - Distance covered = Speed × Time = 30 mph × 0.5 hours = 15 miles.
+
+5. Finally, John drives the remaining 2 hours at 80 mph.
+   - Distance covered = Speed × Time = 80 mph × 2 hours = 160 miles.
+
+6. Total distance driven = Initial distance + Additional distance + Remaining distance
+   - Total distance = 180 miles (initial trip) + 15 miles (first half-hour) + 160 miles (remaining trip)
+   - Total distance = 355 miles.
+
+7. Since John turned around when he was already 180 miles away from home,
+   - He has traveled further than the original 180-mile mark on his return journey.
+
+Therefore, at the end of the 4 hours, John is still more than 180 miles away from home.
+
+THE ANSWER IS: 355

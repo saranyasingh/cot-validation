@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, g1(n_80)).
+
+fof(fact_2, axiom, g2(n_60)).
+
+fof(fact_3, axiom, g3(n_100)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,S,T] : ((g1(A) & g2(B) & g3(C) & sum(A,B,C,S) & div(S, n_3, T)) => avg(A,B,C,T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Arithmetic Computation
+fof(inf_1, axiom, avg(n_80, n_60, n_100, n_80)).

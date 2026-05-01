@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, omelet(claire, n_3)).
+fof(fact_2, axiom, days_in_week(n_7)).
+fof(fact_3, axiom, multiply(n_3, n_7, n_21)).
+fof(fact_4, axiom, multiply(n_21, n_4, n_84)).
+fof(fact_5, axiom, divide(n_84, n_12, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,A,B,C] : ((omelet(P,A) & days_in_week(B) & multiply(A,B,C)) => eggs_per_week(P,C))).
+fof(rule_2, axiom, ! [P,A,C] : ((eggs_per_week(P,A) & multiply(A, n_4, C)) => total_eggs(P,C))).
+fof(rule_3, axiom, ! [P,A,B] : ((total_eggs(P,A) & divide(A, n_12, B)) => dozens(P,B))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3 by RULE-1
+fof(inf_1, axiom, eggs_per_week(claire, n_21)).
+% From INF-1, FACT-4, RULE-2 by Modus Ponens
+fof(inf_2, axiom, total_eggs(claire, n_84)).
+% From INF-2, FACT-5, RULE-3 by Modus Ponens
+fof(inf_3, axiom, dozens(claire, n_7)).

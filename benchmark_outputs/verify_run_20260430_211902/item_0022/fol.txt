@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Raymond and Samantha are cousins :: Cousins(raymond, samantha)
+FACT-2: Raymond was born 6 years before Samantha :: BornBeforeYears(raymond, samantha, n_6)
+FACT-3: Samantha is currently 31 years old :: Age(samantha, n_31)
+FACT-4: Raymond had a son at the age of 23 :: HadChildAtAge(raymond, n_23)
+
+## RULES
+RULE-1: From Samantha is 31 and X was born 6 years before Samantha, then X was born 25 years ago :: ∀x((Age(samantha, n_31) ∧ BornBeforeYears(x, samantha, n_6)) → BornYearsAgo(x, n_25))
+RULE-2: From X had a child at age 23 and X was born 6 years before Samantha, then X's child was born 17 years ago :: ∀x((HadChildAtAge(x, n_23) ∧ BornBeforeYears(x, samantha, n_6)) → ChildBirthYearsAgo(x, n_17))
+
+## INFERENCES
+INF-1: BornYearsAgo(raymond, n_25) from Age(samantha, n_31) [FACT-3], BornBeforeYears(raymond, samantha, n_6) [FACT-2] by RULE-1 (Modus Ponens) :: BornYearsAgo(raymond, n_25)
+INF-2: ChildBirthYearsAgo(raymond, n_17) from HadChildAtAge(raymond, n_23) [FACT-4], BornBeforeYears(raymond, samantha, n_6) [FACT-2] by RULE-2 (Modus Ponens) :: ChildBirthYearsAgo(raymond, n_17)
+INF-3: AnswerIs(n_17) from ChildBirthYearsAgo(raymond, n_17) [INF-2] by Identity Rule :: AnswerIs(n_17)

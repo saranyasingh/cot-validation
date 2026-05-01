@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Grandma Jones baked 5 apple pies",
+      "formula": "Baked(grandma_jones, apple_pies, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each pie was cut into 8 pieces",
+      "formula": "PiecesPerPie(n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There were 5 pies originally",
+      "formula": "PiesOriginally(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The pies were set out on the buffet table",
+      "formula": "PiesOnBuffet(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "After serving themselves, there were 14 pieces left",
+      "formula": "LeftoverPieces(n_14)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone baked apple_pies p and each pie has q pieces and p*q = n, then there are n total pieces",
+      "formula": "\u2200x\u2200p\u2200q\u2200n((Baked(x, apple_pies, p) \u2227 PiecesPerPie(q) \u2227 Multiply(p, q, n)) \u2192 TotalPieces(n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are TotalPieces t and LeftoverPieces l and t - l = r, then PiecesTaken r",
+      "formula": "\u2200t\u2200l\u2200r((TotalPieces(t) \u2227 LeftoverPieces(l) \u2227 Subtract(t, l, r)) \u2192 PiecesTaken(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Multiply(n_5, n_8, n_40)",
+      "formula": "from FACT-1, FACT-2 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalPieces(n_40)",
+      "formula": "from FACT-1, FACT-2, INF-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract(n_40, n_14, n_26)",
+      "formula": "from INF-2 and FACT-5 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "PiecesTaken(n_26)",
+      "formula": "from INF-2, INF-3, and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

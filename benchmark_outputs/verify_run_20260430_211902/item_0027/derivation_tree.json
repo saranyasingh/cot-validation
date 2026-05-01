@@ -1,0 +1,151 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shorts",
+      "formula": "Bought(mishka, shorts, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each pair of shorts costs 16.50",
+      "formula": "PricePerPair(shorts, n_16_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Total cost for shorts is 49.50",
+      "formula": "ShortsTotal(n_49_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of pants",
+      "formula": "Bought(mishka, pants, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Each pair of pants costs 22.50",
+      "formula": "PricePerPair(pants, n_22_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Total cost for pants is 67.50",
+      "formula": "PantsTotal(n_67_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shoes",
+      "formula": "Bought(mishka, shoes, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Each pair of shoes costs 42",
+      "formula": "PricePerPair(shoes, n_42)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Total cost for shoes is 126",
+      "formula": "ShoesTotal(n_126)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Sum3(n_49_50, n_67_50, n_117_00)",
+      "formula": "Sum3(n_49_50, n_67_50, n_117_00)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Sum3(n_117_00, n_126, n_243_00)",
+      "formula": "Sum3(n_117_00, n_126, n_243_00)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If ShortsTotal(a) \u2227 PantsTotal(b) \u2227 ShoesTotal(c) \u2227 Sum3(a,b,d) \u2227 Sum3(d,c,e) then TotalSpending(e)",
+      "formula": "\u2200a\u2200b\u2200c\u2200d\u2200e((ShortsTotal(a) \u2227 PantsTotal(b) \u2227 ShoesTotal(c) \u2227 Sum3(a,b,d) \u2227 Sum3(d,c,e)) \u2192 TotalSpending(e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Sum3(a,b,c) encodes a+b=c",
+      "formula": "\u2200a\u2200b\u2200c(Sum3(a,b,c) \u2192 ArithmeticSum(a,b,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "117_00 is the sum of 49_50 and 67_50, from FACT-10 by Sum3-Compute",
+      "formula": "Sum3(n_49_50, n_67_50, n_117_00)",
+      "premises": [
+        "FACT-10"
+      ],
+      "inference_rule": "Sum3-Compute",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "243_00 is the sum of 117_00 and 126, from FACT-11 by Sum3-Compute",
+      "formula": "Sum3(n_117_00, n_126, n_243_00)",
+      "premises": [
+        "FACT-11"
+      ],
+      "inference_rule": "Sum3-Compute",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TotalSpending(243_00) from FACT-3, FACT-6, FACT-9, INF-1, INF-2 by RULE-1",
+      "formula": "TotalSpending(n_243_00)",
+      "premises": [
+        "FACT-3",
+        "FACT-6",
+        "FACT-9",
+        "INF-1",
+        "INF-2"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

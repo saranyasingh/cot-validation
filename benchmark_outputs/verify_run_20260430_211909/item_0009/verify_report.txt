@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The final segment distance should be 120 miles (1.5 hours × 80 mph), not 160.
+
+RULE-1: PLAUSIBLE — Correctly encodes that if a = b + c and e = a + d, then e = b + c + d (the total distance).

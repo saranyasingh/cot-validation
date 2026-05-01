@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, NumberOfSheepIn(seattle, n_20)).
+fof(fact_2, axiom, FourTimesAsMany(charleston, seattle)).
+fof(fact_3, axiom, TwiceAsMany(toulouse, charleston)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ( ! [Y] : ((FourTimesAsMany(X, Y) & NumberOfSheepIn(Y, n_20)) => NumberOfSheepIn(X, n_80)) )).
+fof(rule_2, axiom, ! [X] : ( ! [Y] : ((TwiceAsMany(X, Y) & NumberOfSheepIn(Y, n_80)) => NumberOfSheepIn(X, n_160)) )).
+fof(rule_3, axiom, ! [A] : ( ! [B] : ( ! [C] : (( NumberOfSheepIn(A, n_20) & NumberOfSheepIn(B, n_80) & NumberOfSheepIn(C, n_160) ) => TotalAcross(n_260) ) ))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Modus Ponens
+fof(inf_1, axiom, NumberOfSheepIn(charleston, n_80)).
+
+% From INF-1 and FACT-3 by Modus Ponens
+fof(inf_2, axiom, NumberOfSheepIn(toulouse, n_160)).
+
+% From FACT-1, INF-1, INF-2 by Modus Ponens
+fof(inf_3, axiom, TotalAcross(n_260)).

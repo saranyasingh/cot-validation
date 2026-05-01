@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, travel(train_a, day_1, west, n_80)).
+
+fof(fact_2, axiom, travel(train_b, day_1, west, n_80)).
+
+fof(fact_3, axiom, travel(train_a, day_2, north, n_150)).
+
+fof(fact_4, axiom, travel(train_b, day_2, north, n_150)).
+
+fof(fact_5, axiom, add(n_80, n_150, n_230)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, D1, D2, DTot] : ((travel(T, day_1, west, D1) & travel(T, day_2, north, D2) & add(D1, D2, DTot)) => total_distance(T, DTot))).
+
+% --- INFERENCES ---
+% From fact_1, fact_3, fact_5, rule_1 by Modus Ponens
+fof(inf_1, axiom, total_distance(train_a, n_230)).
+
+% From fact_2, fact_4, fact_5, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_distance(train_b, n_230)).
+
+% From inf_1, inf_2 by Conjunction Introduction
+fof(inf_3, axiom, total_distance(train_a, n_230) & total_distance(train_b, n_230)).

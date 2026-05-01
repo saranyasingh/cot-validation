@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, plant(carlos, lemon_tree)).
+fof(fact_2, axiom, initial_investment(lemon_tree, n_90)).
+fof(fact_3, axiom, lemons_per_year(lemon_tree, n_7)).
+fof(fact_4, axiom, price_per_lemon(n_150)).
+fof(fact_5, axiom, watering_cost_per_year(lemon_tree, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, L, P, R] : ((lemons_per_year(T, L) & price_per_lemon(P) & product(L, P, R)) => annual_revenue(T, R))).
+fof(rule_2, axiom, ! [T, R, C, N] : ((annual_revenue(T, R) & watering_cost_per_year(T, C) & difference(R, C, N)) => net_profit_per_year(T, N))).
+fof(rule_3, axiom, ! [T, I, N, Y] : ((initial_investment(T, I) & net_profit_per_year(T, N) & quotient(I, N, Y)) => years_to_profit(T, Y))).
+fof(rule_4, axiom, ! [T, L, P] : ((lemons_per_year(T, L) & price_per_lemon(P)) => ? [R] : product(L, P, R))).
+
+% --- INFERENCES ---
+% From fact_3, fact_4 by RULE-4
+fof(inf_1, axiom, product(n_7, n_150, n_1050)).
+% From inf_1, fact_3, fact_4 by RULE-1
+fof(inf_2, axiom, annual_revenue(lemon_tree, n_1050)).
+% From inf_2 and fact_5 by ArithmeticSubtraction
+fof(inf_3a, axiom, difference(n_1050, n_3, n_750)).
+% From inf_2, inf_3a, fact_5 by RULE-2
+fof(inf_3b, axiom, net_profit_per_year(lemon_tree, n_750)).
+% From fact_2, inf_3b by ArithmeticDivision
+fof(inf_4, axiom, quotient(n_90, n_750, n_12)).
+% From fact_2, inf_3b, inf_4 by RULE-3
+fof(inf_5, axiom, years_to_profit(lemon_tree, n_12)).

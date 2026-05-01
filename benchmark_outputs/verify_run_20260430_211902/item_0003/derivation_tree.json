@@ -1,0 +1,105 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Purchase price of the house",
+      "formula": "PurchasePrice(house, n_80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Amount spent on repairs",
+      "formula": "RepairCost(house, n_50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Increase in value percentage",
+      "formula": "IncreasePercent(house, n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Selling multiplier used for price",
+      "formula": "SellingFactor(house, n_3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "not stated; problem does not mention a selling multiplier",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a house has a purchase price p and repair cost r and their sum is t, then the total cost is t",
+      "formula": "\u2200h\u2200p\u2200r\u2200t((PurchasePrice(h, p) \u2227 RepairCost(h, r) \u2227 Sum(p, r, t)) \u2192 TotalCost(h, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "total cost equals the sum of purchase price and repair cost (t)",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The sum of 80,000 and 50,000 is 130,000",
+      "formula": "Sum(n_80000, n_50000, n_130000)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Total cost for the house is 130,000",
+      "formula": "TotalCost(house, n_130000)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Value after increase from 80,000 by 150% is 200,000",
+      "formula": "ValueAfterIncrease(house, n_80000, n_150, n_200000)",
+      "premises": [],
+      "inference_rule": "150% is 200,000",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Selling price is 600,000",
+      "formula": "SellingPrice(house, n_600000)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Profit is 470,000",
+      "formula": "Profit(house, n_470000)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "not stated; problem does not mention a selling multiplier"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

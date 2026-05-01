@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: The total for the first group of customers is 3 :: FirstGroupTotal(n_3)
+FACT-2: The total for the second group of customers is 4 :: SecondGroupTotal(n_4)
+FACT-3: The total for the third group of customers is 0 :: ThirdGroupTotal(n_0)
+FACT-4: 3 plus 4 equals 7 :: Add(n_3, n_4, n_7)
+FACT-5: 7 plus 0 equals 7 :: Add(n_7, n_0, n_7)
+
+## RULES
+RULE-1: ∀a∀b∀c((FirstGroupTotal(a) ∧ SecondGroupTotal(b) ∧ Add(a,b,c)) → SumFirstTwo(c)) :: If the totals for the first and second groups are a and b, and Add(a,b,c), then the sum of the first two groups is c
+RULE-2: ∀x∀y∀z((SumFirstTwo(x) ∧ ThirdGroupTotal(y) ∧ Add(x,y,z)) → TotalDVDs(z)) :: If the sum of the first two groups is x, the third group total is y, and Add(x,y,z), then TotalDVDs(z)
+RULE-3: ∀t((TotalDVDs(t)) → TuesdayTotal(t)) :: If TotalDVDs(t), then TuesdayTotal(t)
+
+## INFERENCES
+INF-1: SumFirstTwo(n_7) is inferred from FACT-1, FACT-2, FACT-4 by RULE-1 (Modus Ponens) :: SumFirstTwo(n_7)
+INF-2: TotalDVDs(n_7) is inferred from INF-1, FACT-3, FACT-5 by RULE-2 (Modus Ponens) :: TotalDVDs(n_7)
+INF-3: TuesdayTotal(n_7) is inferred from INF-2 by RULE-3 (Modus Ponens) :: TuesdayTotal(n_7)

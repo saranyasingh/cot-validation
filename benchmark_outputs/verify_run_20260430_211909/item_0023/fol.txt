@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: TuesdayCustomers(billy, tuesday, n_8) :: There are 8 customers on Tuesday
+FACT-2: FirstThreeDVDs(billy, tuesday, n_3) :: The first three customers buy 3 DVDs
+FACT-3: NextTwoDVDs(billy, tuesday, n_4) :: The next two customers buy 4 DVDs
+FACT-4: LastThreeDVDs(billy, tuesday, n_0) :: The last three customers buy 0 DVDs
+FACT-5: Add3(n_3, n_4, n_7) :: 3 + 4 = 7
+
+## RULES
+RULE-1: ∀a∀b∀c∀d∀e((FirstThreeDVDs(a,b,c) ∧ NextTwoDVDs(a,b,d) ∧ Add3(c,d,e)) → TotalDVDs(a,b,e)) :: If the DVDs from the first three and from the next two sum to e, then the total DVDs sold to that person on that day is e
+
+## INFERENCES
+INF-1: TotalDVDs(billy, tuesday, n_7) :: From FACT-2, FACT-3, FACT-5 and RULE-1 by Modus Ponens after Universal Instantiation

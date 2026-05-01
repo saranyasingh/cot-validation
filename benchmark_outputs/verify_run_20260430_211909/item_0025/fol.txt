@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: PaidAfterDiscount(kyle, n_1950, n_25)
+FACT-2: OriginalPrice(p_26)
+
+## RULES
+RULE-1: ∀x∀a∀d((PaidAfterDiscount(x,a,d) ∧ OriginalPrice(p)) → ThreeQuartersOf(p, a))
+RULE-2: ∀p∀a(ThreeQuartersOf(p, a) → OriginalPriceValue(p))
+
+## INFERENCES
+INF-1: From FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: ThreeQuartersOf(p_26, n_1950)
+INF-2: From INF-1 and RULE-2 by Modus Ponens :: OriginalPriceValue(p_26)
+INF-3: From INF-2 by Arithmetic Computation :: OriginalPrice(p_26)

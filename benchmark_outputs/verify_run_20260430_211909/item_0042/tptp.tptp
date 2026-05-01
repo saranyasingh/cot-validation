@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, distance(polly, javelin, distance_400)).
+fof(fact_2, axiom, holds(polly, sapphire_gemstone)).
+fof(fact_3, axiom, dragon_reach(dragon, distance_1000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : ((distance(P, javelin, distance_400) & holds(P, sapphire_gemstone)) => distance(P, javelin, distance_1200))).
+fof(rule_2, axiom, ! [P] : ((distance(P, javelin, distance_1200) & dragon_reach(dragon, distance_1000) & holds(P, sapphire_gemstone)) => can_stand_between(P, dragon, distance_1000, distance_1200))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, distance(polly, javelin, distance_1200)).
+
+% From inf_1, fact_2, fact_3, rule_2 by Modus Ponens
+fof(inf_2, axiom, can_stand_between(polly, dragon, distance_1000, distance_1200)).

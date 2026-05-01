@@ -1,0 +1,34 @@
+EXPLANATION
+To determine how far John is from home at the end of his journey, we need to break down the problem into smaller parts and calculate the distance covered in each segment.
+
+1. **First Segment (3 hours):**
+   - Speed = 60 mph
+   - Time = 3 hours
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles
+
+2. **Second Segment (2 hours in traffic):**
+   - Since there's no movement during this period, the distance covered is 0 miles.
+
+3. **Third Segment (half-hour at 30 mph):**
+   - Speed = 30 mph
+   - Time = 0.5 hours
+   - Distance = Speed × Time = 30 mph × 0.5 hours = 15 miles
+
+4. **Fourth Segment (remaining time of 4 hours at 80 mph):**
+   - Total time available after accounting for the first two segments is 4 hours.
+   - Time spent at 30 mph was 0.5 hours.
+   - Remaining time = 4 hours - 0.5 hours = 3.5 hours
+   - Speed = 80 mph
+   - Distance = Speed × Time = 80 mph × 3.5 hours = 280 miles
+
+Now, sum up all the distances covered:
+- First segment: 180 miles
+- Second segment: 0 miles
+- Third segment: 15 miles
+- Fourth segment: 280 miles
+
+Total distance covered = 180 + 0 + 15 + 280 = 475 miles
+
+Therefore, John is 475 miles away from home at the end of these 4 hours.
+
+The answer is: 475

@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, hours_per_dog_per_day(n_0_5)).
+
+fof(fact_2, axiom, dogs(n_10)).
+
+fof(fact_3, axiom, days_per_week(n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [H, D, P] : ((hours_per_dog_per_day(H) & dogs(D) & product_hours_per_day(H, D, P)) => daily_hours_per_day(P))).
+
+fof(rule_2, axiom, ! [Q, T, W] : ((daily_hours_per_day(Q) & days_per_week(T) & product_daily_hours_per_week(Q, T, W)) => weekly_hours_per_week(W))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, product_hours_per_day(n_0_5, n_10, n_5)).
+
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, daily_hours_per_day(n_5)).
+
+% From inf_2, fact_3 by Arithmetic Computation
+fof(inf_3, axiom, product_daily_hours_per_week(n_5, n_7, n_35)).
+
+% From inf_2, fact_3, inf_3, rule_2 by Modus Ponens
+fof(inf_4, axiom, weekly_hours_per_week(n_35)).

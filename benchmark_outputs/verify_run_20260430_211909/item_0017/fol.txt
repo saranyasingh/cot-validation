@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Train A travels 80 miles west on day_1 :: Travel(train_a, day_1, west, n_80)
+FACT-2: Train B travels 80 miles west on day_1 :: Travel(train_b, day_1, west, n_80)
+FACT-3: Train A travels 150 miles north on day_2 :: Travel(train_a, day_2, north, n_150)
+FACT-4: Train B travels 150 miles north on day_2 :: Travel(train_b, day_2, north, n_150)
+FACT-5: 80 plus 150 equals 230 :: Add(n_80, n_150, n_230)
+
+## RULES
+RULE-1: If a train travels on day_1 west distance d1 and on day_2 north distance d2 and Add(d1, d2, d_tot), then TotalDistance(t, d_tot) :: ∀t∀d1∀d2∀d_tot ((Travel(t, day_1, west, d1) ∧ Travel(t, day_2, north, d2) ∧ Add(d1, d2, d_tot)) → TotalDistance(t, d_tot))
+
+## INFERENCES
+INF-1: Train A total distance is 230 miles :: TotalDistance(train_a, n_230)
+Reason: from FACT-1, FACT-3, FACT-5 by RULE-1 (Modus Ponens)
+
+INF-2: Train B total distance is 230 miles :: TotalDistance(train_b, n_230)
+Reason: from FACT-2, FACT-4, FACT-5 by RULE-1 (Modus Ponens)
+
+INF-3: Both trains total distance 230 miles :: TotalDistance(train_a, n_230) ∧ TotalDistance(train_b, n_230)
+Reason: from INF-1 and INF-2 by Conjunction Introduction

@@ -1,0 +1,14 @@
+Explanation:
+
+1. Let's denote the number of downloads in the first month as D1.
+2. According to the problem statement, D1 = 60.
+3. In the second month, the number of downloads was three times that of the first month. Therefore, D2 = 3 * D1 = 3 * 60 = 180.
+4. However, we need to account for the reduction in the third month. This means the number of downloads in the third month (D3) would be D2 - 30% of D2.
+5. To calculate this, we first find out what 30% of D2 is: 30/100 * 180 = 54.
+6. Subtracting this from D2 gives us the actual number of downloads in the third month: D3 = 180 - 54 = 126.
+
+Now let's sum up all the downloads over the three months:
+
+Total Downloads = D1 + D2 + D3 = 60 + 180 + 126 = 366.
+
+Therefore, the total number of downloads over the three months is 366. The answer is: 366.

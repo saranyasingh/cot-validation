@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, segment_speed(john, segment1, n_60)).
+fof(fact_2, axiom, segment_time(john, segment1, n_3)).
+fof(fact_3, axiom, multiply(n_60, n_3, n_180)).
+fof(fact_4, axiom, segment_speed(john, segment3, n_30)).
+fof(fact_5, axiom, segment_time(john, segment3, n_0_5)).
+fof(fact_6, axiom, multiply(n_30, n_0_5, n_15)).
+fof(fact_7, axiom, segment_speed(john, segment4, n_80)).
+fof(fact_8, axiom, segment_time(john, segment4, n_3_5)).
+fof(fact_9, axiom, multiply(n_80, n_3_5, n_280)).
+fof(fact_10, axiom, segment_time(john, segment2, n_2)).
+fof(fact_11, axiom, segment_distance(john, segment2, n_0)).
+fof(fact_12, axiom, add4(n_180, n_0, n_15, n_280, n_475)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [J, Seg, S, T, D] : ((segment_speed(J, Seg, S) & segment_time(J, Seg, T) & multiply(S, T, D)) => segment_distance(J, Seg, D))).
+
+fof(rule_2, axiom, ! [J, A1, A2, A3, A4, T] : ((segment_distance(J, segment1, A1) & segment_distance(J, segment2, A2) & segment_distance(J, segment3, A3) & segment_distance(J, segment4, A4) & add4(A1, A2, A3, A4, T)) => total_distance(J, T))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3, RULE-1 by Modus Ponens
+fof(inf_1, axiom, segment_distance(john, segment1, n_180)).
+
+% From FACT-4, FACT-5, FACT-6, RULE-1 by Modus Ponens
+fof(inf_2, axiom, segment_distance(john, segment3, n_15)).
+
+% From FACT-7, FACT-8, FACT-9, RULE-1 by Modus Ponens
+fof(inf_3, axiom, segment_distance(john, segment4, n_280)).
+
+% From INF-1, FACT-11, INF-2, INF-3, FACT-12, RULE-2 by Modus Ponens
+fof(inf_4, axiom, total_distance(john, n_475)).

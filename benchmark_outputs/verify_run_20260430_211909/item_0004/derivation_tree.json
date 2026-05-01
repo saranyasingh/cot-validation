@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints per day",
+      "formula": "SprintsPerDay(james, n_3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "problem states 3 sprints 3 times a week, not per day",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint is 60 meters long",
+      "formula": "SprintLength(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p has s sprints per day and each sprint is d meters long and the product is pd then the daily distance is pd",
+      "formula": "\u2200p\u2200s\u2200d\u2200pd((SprintsPerDay(p,s) \u2227 SprintLength(d) \u2227 EqualProduct(s,d,pd)) \u2192 DailyDistance(p,pd))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes daily distance as pd but the product should be s*d; uses p (person) incorrectly in the product",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person p has daily distance pd and the product of pd and 7 is w then WeeklyDistance(p,w)",
+      "formula": "\u2200p\u2200pd\u2200w((DailyDistance(p,pd) \u2227 EqualProduct(pd, n_7, w)) \u2192 WeeklyDistance(p,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "3 \u00d7 60 = 180, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "EqualProduct(n_3, n_60, n_180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "DailyDistance(james, n_180), from FACT-1, FACT-2, INF-1 by RULE-1",
+      "formula": "DailyDistance(james, n_180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "INF-1"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "180 \u00d7 7 = 1260, by Arithmetic Computation",
+      "formula": "EqualProduct(n_180, n_7, n_1260)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WeeklyDistance(james, n_1260), from INF-2 and INF-3 by RULE-2",
+      "formula": "WeeklyDistance(james, n_1260)",
+      "premises": [
+        "INF-2",
+        "INF-3"
+      ],
+      "inference_rule": "RULE-2",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "problem states 3 sprints 3 times a week, not per day"
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "encodes daily distance as pd but the product should be s*d; uses p (person) incorrectly in the product"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

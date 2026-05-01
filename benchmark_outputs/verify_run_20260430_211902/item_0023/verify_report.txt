@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED — Direct consequence of "first 3 customers buy one DVD each."
+FACT-2: SUPPORTED — Direct consequence of "next 2 customers buy 2 DVDs each."
+FACT-3: SUPPORTED — Direct consequence of "last 3 customers don't buy any DVDs."
+FACT-4: SUPPORTED — Derived from FACT-1 and FACT-2 by addition.
+FACT-5: SUPPORTED — Derived from FACT-4 and FACT-3 by addition.
+RULE-1: PLAUSIBLE — Valid encoding of addition: if a and b are first and second group totals and Add(a,b,c) holds, then SumFirstTwo(c) holds.
+RULE-2: PLAUSIBLE — Valid: if SumFirstTwo(x) and ThirdGroupTotal(y) and Add(x,y,z), then TotalDVDs(z).
+RULE-3: PLAUSIBLE — Reasonable: if something is a Total, then it is the TuesdayTotal.

@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: Raymond's jewels count is 40 :: RaymondJewels(n_40)
+FACT-2: Half of Raymond's jewels is 20 :: HalfOf(n_40, n_20)
+FACT-3: 20 plus 5 equals 25 :: Sum(n_20, n_5, n_25)
+FACT-4: 25 minus 2 equals 23 :: Diff(n_25, n_2, n_23)
+
+## RULES
+RULE-1: If HalfOf(h,a) and Sum(a,b,c) then AaronJewels(c) :: ∀h∀a∀b∀c((HalfOf(h,a) ∧ Sum(a,b,c)) → AaronJewels(c))
+RULE-2: If AaronJewels(x) and Diff(x,y,z) then SiobhanJewels(z) :: ∀x∀y∀z((AaronJewels(x) ∧ Diff(x,y,z)) → SiobhanJewels(z))
+
+## INFERENCES
+INF-1: AaronJewels(n_25) from FACT-2 and FACT-3 by ArithmeticComputation :: AaronJewels(n_25)
+INF-2: SiobhanJewels(n_23) from INF-1 and FACT-4 by ArithmeticComputation :: SiobhanJewels(n_23)

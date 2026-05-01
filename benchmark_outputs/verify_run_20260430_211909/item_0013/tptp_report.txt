@@ -1,0 +1,15 @@
+  % From fact_3, fact_4 by RULE-4
+  inf_1: NOT PROVED
+  % From inf_1, fact_3, fact_4 by RULE-1
+  inf_2: PROVED
+  % From fact_2, inf_3b by ArithmeticDivision
+  inf_4: NOT PROVED
+  % From fact_2, inf_3b, inf_4 by RULE-3
+  inf_5: NOT PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms
+Could not parse inference line: fof(inf_3a, axiom, difference(n_1050, n_3, n_750)).
+Could not parse inference line: fof(inf_3b, axiom, net_profit_per_year(lemon_tree, n_750)).
+inf_4: NOT PROVED — inference does not follow from axioms
+inf_5: NOT PROVED — inference does not follow from axioms

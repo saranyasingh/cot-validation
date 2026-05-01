@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, days(n_60)).
+fof(fact_2, axiom, servings_per_day(n_1)).
+fof(fact_3, axiom, servings_per_carton(n_15)).
+fof(fact_4, axiom, cost_per_carton(n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D, S, T] : ((days(D) & servings_per_day(S) & multiply(D, S, T)) => total_servings(T))).
+fof(rule_2, axiom, ! [TS, PC, CN] : ((total_servings(TS) & servings_per_carton(PC) & divide(TS, PC, CN)) => cartons(TS, PC, CN))).
+fof(rule_3, axiom, ! [TS, PC, CN] : ((cartons(TS, PC, CN) & cost_per_carton(n_4) & multiply(CN, n_4, TOT)) => total_cost(TOT))).
+fof(rule_4, axiom, ! [T] : ((total_cost(T)) => final_answer(T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, multiply(n_60, n_1, n_60)).
+% From inf_1, fact_3 by Arithmetic Computation
+fof(inf_2, axiom, divide(n_60, n_15, n_4)).
+% From inf_2, fact_4 by Arithmetic Computation
+fof(inf_3, axiom, multiply(n_4, n_4, n_16)).
+% From inf_3, rule_4 by RULE-4
+fof(inf_4, axiom, final_answer(n_16)).

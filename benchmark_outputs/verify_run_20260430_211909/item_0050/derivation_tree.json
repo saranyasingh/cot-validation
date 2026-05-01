@@ -1,0 +1,116 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 15 floors in the building",
+      "formula": "Floors(richards_apartment_building, floors_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each floor has 8 units",
+      "formula": "UnitsPerFloor(richards_apartment_building, units_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The total number of units is 120",
+      "formula": "TotalUnits(richards_apartment_building, total_120)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Entailed by FACT-1 and FACT-2",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The building is occupied at three quarters",
+      "formula": "OccupiedFraction(richards_apartment_building, fraction_3_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total number of units is t and the occupied fraction is f and ProductTotalFraction(t,f,p) then OccupiedUnits(b,p)",
+      "formula": "\u2200b\u2200t\u2200f\u2200p((TotalUnits(b,t) \u2227 OccupiedFraction(b,f) \u2227 ProductTotalFraction(t,f,p)) \u2192 OccupiedUnits(b,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes p = t \u00d7 f using a ProductTotalFraction predicate; a valid general arithmetic relation",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalUnits(b,t) \u2227 OccupiedUnits(b,p) \u2227 Subtract(t,p,u) then UnoccupiedUnits(b,u)",
+      "formula": "\u2200b\u2200t\u2200p\u2200u((TotalUnits(b,t) \u2227 OccupiedUnits(b,p) \u2227 Subtract(t,p,u)) \u2192 UnoccupiedUnits(b,u))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes unoccupied = total \u2212 occupied with Subtract(t,p,u); a standard arithmetic rule",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "120 \u00d7 3/4 = 90, by Arithmetic Computation from FACT-3 and FACT-4",
+      "formula": "ProductTotalFraction(total_120, fraction_3_4, occupied_90)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "OccupiedUnits(richards_apartment_building, occupied_90) from FACT-3, FACT-4, INF-1 by RULE-1 (Modus Ponens)",
+      "formula": "OccupiedUnits(richards_apartment_building, occupied_90)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "INF-1"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract(120, 90, 30) = 30, by Arithmetic Computation from FACT-3 and INF-2",
+      "formula": "Subtract(total_120, occupied_90, unoccupied_30)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "UnoccupiedUnits(richards_apartment_building, unoccupied_30) from FACT-3, INF-2, INF-3 by RULE-2 (Modus Ponens)",
+      "formula": "UnoccupiedUnits(richards_apartment_building, unoccupied_30)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "INF-3"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

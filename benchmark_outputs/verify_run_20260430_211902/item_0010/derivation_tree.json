@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's rate per hour for the first 40 hours is $10",
+      "formula": "RateForFirstHours(eliza, n_40, n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza's overtime pay multiplier is 1.2",
+      "formula": "OvertimeMultiplier(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza worked 45 hours",
+      "formula": "WorkedHours(eliza, n_45)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If RateForFirstHours(e, h, r) then FirstHoursEarnings(e, h, Product(r, h))",
+      "formula": "\u2200e\u2200h\u2200r((RateForFirstHours(e, h, r)) \u2192 FirstHoursEarnings(e, h, Product(r, h)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If OvertimeMultiplier(m) then OvertimePay(e, m)",
+      "formula": "\u2200e\u2200m((OvertimeMultiplier(m)) \u2192 OvertimePay(e, m))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It encodes OvertimePay as the multiplier value rather than the actual overtime amount depending on hours and the regular rate.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If FirstHoursEarnings(e, h, a) \u2227 OvertimePay(e, b) then TotalEarnings(e, Sum(a, b))",
+      "formula": "\u2200e\u2200h\u2200a\u2200b((FirstHoursEarnings(e, h, a) \u2227 OvertimePay(e, b)) \u2192 TotalEarnings(e, Sum(a, b)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FirstHoursEarnings(eliza, n_40, Product(n_10, n_40))",
+      "formula": "from FACT-1 by Modus Ponens with RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "OvertimePay(eliza, n_12)",
+      "formula": "from FACT-2 by Modus Ponens with RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TotalEarnings(eliza, Sum(Product(n_10, n_40), n_12))",
+      "formula": "from INF-1 and INF-2 by Modus Ponens with RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Eliza's earnings for this week are 412",
+      "formula": "TotalEarnings(eliza, n_412)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It encodes OvertimePay as the multiplier value rather than the actual overtime amount depending on hours and the regular rate."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

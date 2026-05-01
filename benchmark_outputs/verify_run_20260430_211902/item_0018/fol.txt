@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Jill's teaching hourly wage is 20 :: TeachingHourlyWage(jill, n_20)
+FACT-2: Jill teaches for 50 weeks per year :: TeachingWeeksPerYear(jill, n_50)
+FACT-3: Jill teaches 35 hours per week :: TeachingHoursPerWeek(jill, n_35)
+FACT-4: Jill's coaching hourly wage is 30 :: CoachingHourlyWage(jill, n_30)
+FACT-5: Jill coaches for 15 hours per week :: CoachingHoursPerWeek(jill, n_15)
+
+## RULES
+RULE-1: If a person has a teaching hourly wage and teaches for a number of weeks, and their hourly wage times weeks equals p, then their teaching earnings equal p :: ∀x∀h∀w∀p((TeachingHourlyWage(x,h) ∧ TeachingWeeksPerYear(x,w) ∧ Product(h,w,p)) → TeachingEarnings(x,p))
+RULE-2: If a person has a coaching hourly wage and coaches for a number of hours per week, and their hourly wage times hours per week equals p, then their coaching earnings equal p :: ∀x∀h∀w∀p((CoachingHourlyWage(x,h) ∧ CoachingHoursPerWeek(x,w) ∧ Product(h,w,p)) → CoachingEarnings(x,p))
+RULE-3: If a person has teaching earnings a and coaching earnings b and a sum relation holds for a and b producing c, then their annual salary is c :: ∀x∀a∀b∀c((TeachingEarnings(x,a) ∧ CoachingEarnings(x,b) ∧ Sum(a,b,c)) → AnnualSalary(x,c))
+
+## INFERENCES
+INF-1: Product(n_20, n_50, n_1000) :: 20 × 50 = 1000, from FACT-1 and FACT-2 by ArithmeticComputation
+INF-2: Product(n_30, n_15, n_450) :: 30 × 15 = 450, from FACT-4 and FACT-5 by ArithmeticComputation
+INF-3: TeachingEarnings(jill, n_1000) :: TeachingHourlyWage(jill, n_20) ∧ TeachingWeeksPerYear(jill, n_50) ∧ Product(n_20, n_50, n_1000) via RULE-1 (Generalized Modus Ponens)
+INF-4: CoachingEarnings(jill, n_450) :: CoachingHourlyWage(jill, n_30) ∧ CoachingHoursPerWeek(jill, n_15) ∧ Product(n_30, n_15, n_450) via RULE-2 (Generalized Modus Ponens)
+INF-5: Sum(n_1000, n_450, n_1450) :: 1000 + 450 = 1450, from INF-3 and INF-4 by ArithmeticComputation
+INF-6: AnnualSalary(jill, n_1450) :: TeachingEarnings(jill, n_1000) ∧ CoachingEarnings(jill, n_450) ∧ Sum(n_1000, n_450, n_1450) via RULE-3

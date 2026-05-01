@@ -1,0 +1,12 @@
+  % From fact_1, fact_2 by RULE-1
+  inf_1: PROVED
+  % From inf_1 by ArithmeticDivideTwo
+  inf_2: NOT PROVED
+  % From inf_2 and fact_1 by ArithmeticSubstitution
+  inf_3: NOT PROVED
+  % From inf_3 by EqualityElimination
+  inf_4: PROVED
+
+Prover errors:
+inf_2: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms

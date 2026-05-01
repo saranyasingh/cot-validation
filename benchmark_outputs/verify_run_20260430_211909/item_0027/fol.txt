@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Mishka bought 3 shorts at price 16.50 :: Bought(mishka, shorts, n_3, n_16_50)
+FACT-2: Mishka bought 3 pants at price 22.50 :: Bought(mishka, pants, n_3, n_22_50)
+FACT-3: Mishka bought 3 shoes at price 42.00 :: Bought(mishka, shoes, n_3, n_42_00)
+FACT-4: Multiply 3 by 16.50 equals 49.50 :: Multiply(n_3, n_16_50, n_49_50)
+FACT-5: Multiply 3 by 22.50 equals 67.50 :: Multiply(n_3, n_22_50, n_67_50)
+FACT-6: Multiply 3 by 42.00 equals 126.00 :: Multiply(n_3, n_42_00, n_126_00)
+
+## RULES
+RULE-1: If Bought(x, it, q, p) then there exists t with Multiply(q, p, t) and ItemSubtotal(x, it, t) :: ∀x∀it∀q∀p((Bought(x,it,q,p)) → ∃t(Multiply(q,p,t) ∧ ItemSubtotal(x,it,t)))
+RULE-2: If ItemSubtotal(x, shorts, t1) ∧ ItemSubtotal(x, pants, t2) ∧ ItemSubtotal(x, shoes, t3) then there exists T with SumThree(t1,t2,t3,T) and TotalSpent(x,T) :: ∀x∀t1∀t2∀t3((ItemSubtotal(x, shorts, t1) ∧ ItemSubtotal(x, pants, t2) ∧ ItemSubtotal(x, shoes, t3)) → ∃T(SumThree(t1,t2,t3,T) ∧ TotalSpent(x,T)))
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-4 by RULE-1 (Modus Ponens) derive ItemSubtotal(mishka, shorts, n_49_50) :: ItemSubtotal(mishka, shorts, n_49_50)
+INF-2: From FACT-2 and FACT-5 by RULE-1 (Modus Ponens) derive ItemSubtotal(mishka, pants, n_67_50) :: ItemSubtotal(mishka, pants, n_67_50)
+INF-3: From FACT-3 and FACT-6 by RULE-1 (Modus Ponens) derive ItemSubtotal(mishka, shoes, n_126_00) :: ItemSubtotal(mishka, shoes, n_126_00)
+INF-4: From INF-1, INF-2, INF-3 by RULE-2 (Modus Ponens) derive TotalSpent(mishka, n_243_00) :: TotalSpent(mishka, n_243_00)

@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The tree costs $90 to plant",
+      "formula": "InitialInvestment(n_90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 7 lemons per year",
+      "formula": "LemonsPerYear(n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each lemon costs $1.5",
+      "formula": "PricePerLemon(n_1_5)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem specifies revenue per lemon ($1.5), not a cost per lemon",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Annual expense is $3 on watering and feeding",
+      "formula": "AnnualExpense(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Revenue per year equals lemons per year times price per lemon",
+      "formula": "\u2200L\u2200P\u2200R((LemonsPerYear(L) \u2227 PricePerLemon(P) \u2227 Mult(L,P,R)) \u2192 RevenuePerYear(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Break-even year is the investment divided by net profit per year",
+      "formula": "\u2200I\u2200N\u2200Y((InitialInvestment(I) \u2227 NetProfitPerYear(N) \u2227 Divides(I,N,Y)) \u2192 BreakEvenYear(Y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "the problem specifies revenue per lemon ($1.5), not a cost per lemon"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

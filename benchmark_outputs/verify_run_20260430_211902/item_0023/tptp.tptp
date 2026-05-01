@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, first_group_total(n_3)).
+fof(fact_2, axiom, second_group_total(n_4)).
+fof(fact_3, axiom, third_group_total(n_0)).
+fof(fact_4, axiom, add(n_3, n_4, n_7)).
+fof(fact_5, axiom, add(n_7, n_0, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C] : ( first_group_total(A) & second_group_total(B) & add(A,B,C) => sum_first_two(C) )).
+fof(rule_2, axiom, ! [X,Y,Z] : ( sum_first_two(X) & third_group_total(Y) & add(X,Y,Z) => total_dvds(Z) )).
+fof(rule_3, axiom, ! [T] : ( total_dvds(T) => tuesday_total(T) )).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_4 by Modus Ponens
+fof(inf_1, axiom, sum_first_two(n_7)).
+% From inf_1, fact_3, fact_5 by Modus Ponens
+fof(inf_2, axiom, total_dvds(n_7)).
+% From inf_2 by Modus Ponens
+fof(inf_3, axiom, tuesday_total(n_7)).

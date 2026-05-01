@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The regular hourly rate is 10",
+      "formula": "RegularRate(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The regular hours worked are 40",
+      "formula": "RegularHours(n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The overtime hourly rate is 12",
+      "formula": "OvertimeRate(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The overtime hours worked are 5",
+      "formula": "OvertimeHours(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Regular rate times regular hours equals 400",
+      "formula": "Multiply(n_10, n_40, n_400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Overtime rate times overtime hours equals 60",
+      "formula": "Multiply(n_12, n_5, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "400 plus 60 equals 460",
+      "formula": "Add(n_400, n_60, n_460)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the regular rate is r and regular hours is h and r \u00d7 h = e, then earnings for regular hours equal e",
+      "formula": "\u2200r\u2200h\u2200e((RegularRate(r) \u2227 RegularHours(h) \u2227 Multiply(r,h,e)) \u2192 EarningsRegular(e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the overtime rate is ro and overtime hours is ho and ro \u00d7 ho = eo, then earnings for overtime equal eo",
+      "formula": "\u2200ro\u2200ho\u2200eo((OvertimeRate(ro) \u2227 OvertimeHours(ho) \u2227 Multiply(ro,ho,eo)) \u2192 EarningsOvertime(eo))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If earnings for regular are er and earnings for overtime are eo and er + eo = t, then total earnings equal t",
+      "formula": "\u2200er\u2200eo\u2200t((EarningsRegular(er) \u2227 EarningsOvertime(eo) \u2227 Add(er,eo,t)) \u2192 TotalEarnings(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

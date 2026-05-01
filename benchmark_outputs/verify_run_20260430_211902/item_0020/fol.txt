@@ -1,0 +1,15 @@
+## FACTS
+The total length of the trail is twelve miles :: TrailTotalLength(twelve_miles)
+The distance of the first segment is four miles :: FirstSegmentDistance(four_miles)
+The distance of the second segment is two miles :: SecondSegmentDistance(two_miles)
+The remaining distance is six miles :: RemainingDistance(six_miles)
+The time taken so far is two hours :: TimeTaken(two_hours)
+The desired average speed is four mph :: DesiredAverageSpeed(four_mph)
+
+## RULES
+If the total length of the trail is D, the time taken is T, the remaining distance is R, and the desired average speed is S, then the required speed for the remaining distance is S :: ∀D∀T∀R∀S((TrailTotalLength(D) ∧ TimeTaken(T) ∧ RemainingDistance(R) ∧ DesiredAverageSpeed(S)) → RequiredSpeedForRemainingDistance(S))
+If the required speed for the remaining distance is S, then the answer speed is S :: ∀S((RequiredSpeedForRemainingDistance(S)) → AnswerSpeed(S))
+
+## INFERENCES
+RequiredSpeedForRemainingDistance(four_mph) is inferred from FACT-1, FACT-4, FACT-5, FACT-6 using RULE-1 (Modus Ponens) :: RequiredSpeedForRemainingDistance(four_mph)
+The final answer is four mph, inferred from INF-1 and RULE-2 by Modus Ponens :: AnswerSpeed(four_mph)

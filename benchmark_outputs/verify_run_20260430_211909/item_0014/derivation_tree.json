@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Melanie starts with an unknown number x",
+      "formula": "StartWith(melanie, x)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "After selling a third at the green house, left is two-thirds of x",
+      "formula": "AfterGreen(melanie, x, n_2_over_3_x)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "After selling 2 more to the red house, left is (2/3)x - 2",
+      "formula": "AfterRed(melanie, n_2_over_3_x, n_2_over_3_x_minus_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "After selling half at the orange house, left is (1/3)x - 1",
+      "formula": "AfterOrange(melanie, n_2_over_3_x_minus_2, n_1_over_3_x_minus_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "After all transactions, left 5",
+      "formula": "FinalLeft(melanie, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200a\u2200b\u2200c((AfterGreen(melanie, x, a) \u2227 AfterRed(melanie, a, b) \u2227 AfterOrange(melanie, b, c) \u2227 FinalLeft(melanie, n_5)) \u2192 StartWith(melanie, n_18))",
+      "formula": "If the sequence of intermediateLefts ends with 5, then the initial amount is 18",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "The rule encodes a valid chain of after-sale relations leading to a unique initial value (18) given the final left is 5, using only predicates without embedding arithmetic.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "StartWith(melanie, n_18)",
+      "formula": "from RULE-1 instantiated with FACT-2, FACT-3, FACT-4, FACT-5 by Universal Instantiation and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

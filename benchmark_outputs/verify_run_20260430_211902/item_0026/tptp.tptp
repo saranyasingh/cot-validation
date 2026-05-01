@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, chicken_meal_cost(n_12)).
+fof(fact_2, axiom, milk_total_cost(n_15)).
+fof(fact_3, axiom, apples_total_cost(n_6)).
+fof(fact_4, axiom, subtotal(n_33)).
+fof(fact_5, axiom, total_payment(n_50)).
+fof(fact_6, axiom, pizzas_cost(n_17)).
+fof(fact_7, axiom, box_price(n_8_50)).
+fof(fact_8, axiom, division_result(n_17, n_8_50, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,B,N] : ((pizzas_cost(D) & box_price(B) & division_result(D,B,N)) => number_of_boxes_approx(N))).
+fof(rule_2, axiom, ! [N] : (number_of_boxes_approx(N) => boxes_ordered(N))).
+
+% --- INFERENCES ---
+% From fact_6, fact_7, fact_8 by Modus Ponens
+fof(inf_1, axiom, number_of_boxes_approx(n_2)).
+% From number_of_boxes_approx(n_2) by Modus Ponens
+fof(inf_2, axiom, boxes_ordered(n_2)).

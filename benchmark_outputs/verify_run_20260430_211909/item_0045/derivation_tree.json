@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "20 candles sold",
+      "formula": "CandlesSold(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Price per candle is $2",
+      "formula": "PricePerCandle(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Total costs are $10",
+      "formula": "CostsTotal(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Total revenue is 40 when there are candles sold and a price per candle",
+      "formula": "\u2200x\u2200y((CandlesSold(x) \u2227 PricePerCandle(y)) \u2192 RevenueValue(n_40))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "not a universal revenue formula; it fixes revenue to 40 regardless of quantity/price.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Gross profit is 30 from revenue and costs",
+      "formula": "\u2200r\u2200c((RevenueValue(r) \u2227 CostsTotal(c)) \u2192 GrossProfitValue(n_30))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes a fixed value 30 instead of a general relation grossProfit = revenue \u2212 costs.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Net profit equals gross profit",
+      "formula": "\u2200g((GrossProfitValue(g)) \u2192 NetProfitValue(g))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "net profit generally equals gross profit minus other expenses; not always equal.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RevenueValue(n_40) derived from FACT-1, FACT-2 via RULE-1 using Modus Ponens",
+      "formula": "RevenueValue(n_40)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "GrossProfitValue(n_30) derived from INF-1 and FACT-3 via RULE-2 using Modus Ponens",
+      "formula": "GrossProfitValue(n_30)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "NetProfitValue(n_30) derived from INF-2 via RULE-3 using Modus Ponens",
+      "formula": "NetProfitValue(n_30)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "not a universal revenue formula; it fixes revenue to 40 regardless of quantity/price."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "encodes a fixed value 30 instead of a general relation grossProfit = revenue \u2212 costs."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "net profit generally equals gross profit minus other expenses; not always equal."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

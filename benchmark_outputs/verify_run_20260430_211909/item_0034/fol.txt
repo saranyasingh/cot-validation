@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: G = S + 30 :: Equals(gold, Add(silver, n_30))
+FACT-2: S + G = 110 :: Sum(silver, gold, n_110)
+
+## RULES
+RULE-1: Substitution in linear equations: If G = S + 30 and S + G = 110, then S + (S + 30) = 110 :: ∀S∀G[(Equals(G, Add(S, n_30)) ∧ Sum(S, G, n_110)) → Sum(S, Add(S, n_30), n_110)]
+
+## INFERENCES
+INF-1: Sum(silver, Add(silver, n_30), n_110) from FACT-1 and FACT-2 by RULE-1
+INF-2: silver = n_40 from INF-1 by ArithmeticDivideTwo
+INF-3: gold = Add(silver, n_30) implies gold = n_70 from INF-2 and FACT-1 by ArithmeticSubstitution
+INF-4: Equals(gold, n_70) :: from INF-3 by EqualityElimination

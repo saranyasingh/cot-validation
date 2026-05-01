@@ -1,0 +1,30 @@
+Explanation:
+1. Let's denote the total number of vacuum cleaners Melanie started with as \( N \).
+2. According to the problem, after selling some vacuums, she had 5 remaining.
+3. First, we need to determine how many vacuums were sold at the green house. Since this was a third of all the vacuums, let's call this amount \( V_{green} \). Therefore, \( V_{green} = \frac{N}{3} \).
+4. Next, we know that she sold 2 more vacuums to the red house, so the equation becomes \( \frac{N}{3} + 2 \) vacuums were sold before reaching the orange house.
+5. At the orange house, she sold half of what was left, which means \( \frac{1}{2} \left( \frac{N}{3} + 2 \right) \) vacuums were sold there.
+6. After these three stages, she had 5 vacuums left. This means the sum of the vacuums sold minus the ones left equals zero:
+   \[
+   \frac{N}{3} + 2 - \frac{1}{2} \left( \frac{N}{3} + 2 \right) = 5
+   \]
+7. Simplifying the right side gives us:
+   \[
+   \frac{N}{3} + 2 - \frac{N}{6} - 1 = 5
+   \]
+8. Combining like terms yields:
+   \[
+   \frac{2N}{6} + 1 = 5
+   \]
+9. Subtracting 1 from both sides results in:
+   \[
+   \frac{2N}{6} = 4
+   \]
+10. Multiplying both sides by 6/2 simplifies it to:
+    \[
+    N = 12
+    \]
+
+Therefore, Melanie originally had 12 vacuum cleaners.
+
+The answer is: 12

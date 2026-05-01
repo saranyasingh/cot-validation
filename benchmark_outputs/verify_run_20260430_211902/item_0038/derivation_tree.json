@@ -1,0 +1,175 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "LegoSetsOwned(john, n_13)",
+      "formula": "John starts with 13 Lego sets",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "LegoSetPrice(n_15)",
+      "formula": "Each Lego set is sold for $15",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "RevenueFromLegoSales(john, n_195)",
+      "formula": "Total revenue from selling Lego sets is 195",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "VideoGamesBought(john, n_8)",
+      "formula": "John buys 8 video games",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "VideoGamePrice(n_20)",
+      "formula": "Price per video game is $20",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "VideoGamesCost(john, n_160)",
+      "formula": "Cost of buying 8 video games is 160",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "RemainingMoney(john, n_5)",
+      "formula": "John has $5 left",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "MoneySpent(john, n_190)",
+      "formula": "Money spent on video games is 190",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Subtract(n_13, n_8, n_5)",
+      "formula": "13 - 8 = 5",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state that 8 lego sets were sold; 8 pertains to video games bought",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Mult(n_13, n_15, n_195)",
+      "formula": "13 * 15 = 195",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Mult(n_8, n_20, n_160)",
+      "formula": "8 * 20 = 160",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "RemainingLegoSets(john, n_5)",
+      "formula": "Remaining Lego sets = 5",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not specify remaining lego sets; no basis for 5",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200a\u2200b\u2200r((LegoSetsOwned(p, a) \u2227 LegoSetPrice(b) \u2227 Mult(a, b, r)) \u2192 RevenueFromLegoSales(p, r))",
+      "formula": "If someone has A Lego sets and the price per Lego set is B and A*B = R, then RevenueFromLegoSales(p, R)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200k\u2200price\u2200cost((VideoGamesBought(p, k) \u2227 VideoGamePrice(price) \u2227 Mult(k, price, cost)) \u2192 VideoGamesCost(p, cost))",
+      "formula": "If someone buys k video games at price price, then the total cost is cost where k*price = cost",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200a\u2200b\u2200c((LegoSetsOwned(p, a) \u2227 VideoGamesBought(p, b) \u2227 Subtract(a,b,c)) \u2192 RemainingLegoSets(p,c))",
+      "formula": "If you subtract the number of video games from Lego sets, the remaining Lego sets are c",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule assumes remaining lego sets equal a - b with b = video games bought, which is not established",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RevenueFromLegoSales(john, n_195)",
+      "formula": "from FACT-1, FACT-12, FACT-2 by RULE-1 using Universal Instantiation and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "VideoGamesCost(john, n_160)",
+      "formula": "from FACT-4, FACT-11, FACT-5 by RULE-2 using Universal Instantiation and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RemainingLegoSets(john, n_5)",
+      "formula": "from FACT-1, FACT-9, FACT-4 by RULE-3 using Substitution/Universal Instantiation and Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "The problem does not state that 8 lego sets were sold; 8 pertains to video games bought"
+    },
+    {
+      "node": "FACT-12",
+      "stage": "verify",
+      "message": "The problem does not specify remaining lego sets; no basis for 5"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "The rule assumes remaining lego sets equal a - b with b = video games bought, which is not established"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

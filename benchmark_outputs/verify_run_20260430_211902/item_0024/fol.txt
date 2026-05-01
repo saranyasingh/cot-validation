@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: The candle melts 2 cm per hour :: MeltsPerHour(candle, n_2)
+FACT-2: The burn time is 4 hours :: BurnTime(candle, n_4)
+
+## RULES
+RULE-1: Height loss equals rate times time for a burning candle :: ∀x∀r∀t∀h((MeltsPerHour(x, r) ∧ BurnTime(x, t) ∧ Multiply(r, t, h)) → HeightLoss(x, h))
+
+## INFERENCES
+INF-1: 2 × 4 = 8 :: Multiply(n_2, n_4, n_8)
+INF-2: Height loss of candle is 8 cm :: HeightLoss(candle, n_8)

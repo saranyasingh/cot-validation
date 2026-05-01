@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: TotalStudents(n_20) :: There are 20 students total.
+FACT-2: ContemporaryPercentOfTotal(n_20, n_20) :: 20% of the total enroll in contemporary dance.
+
+## RULES
+RULE-1: ∀T∀P∀R((TotalStudents(T) ∧ ContemporaryPercentOfTotal(T,P) ∧ ArithmeticComputation(T,P,R)) → ContemporaryDancers(R)) :: From total and percent by arithmetic computation, infer number of contemporary dancers.
+RULE-2: ∀T∀A((TotalStudents(T) ∧ ContemporaryDancers(A)) → RemainingAfterContemporary(R)) ∧ R = T − A :: Subtraction step to get remaining students after contemporary.
+RULE-3: ∀R∀Q((RemainingAfterContemporary(R) ∧ JazzDancers(Q)) → RemainingAfterJazz(S)) ∧ S = R − Q :: Subtraction step to get remaining after jazz.
+RULE-4: ∀R∀P((RemainingAfterContemporary(R) ∧ JazzDancers(Q) ∧ ArithmeticComputation(R,Q,P)) → JazzDancers(P)) :: Arithmetic step to get jazz count from remaining.
+RULE-5: ∀T∀R((TotalStudents(T) ∧ RemainingAfterJazz(R)) → HipHopPercentage(P)) ∧ P = (R / T) * 100 :: Arithmetic computation to get hip-hop percentage from original total.
+
+## INFERENCES
+INF-1: ContemporaryDancers(n_4) :: FACT-1, FACT-2 and RULE-1 by ArithmeticComputation
+INF-2: RemainingAfterContemporary(n_16) :: FACT-1 and INF-1 by Subtraction
+INF-3: JazzDancers(n_4) :: INF-2 by ArithmeticComputation
+INF-4: RemainingAfterJazz(n_12) :: INF-2 and INF-3 by Subtraction
+INF-5: HipHopPercentage(n_60) :: INF-4 by ArithmeticComputation
+INF-6: HipHopPercentageFromOriginalGroup(n_60) :: INF-5 by Alignment with original total (60%)

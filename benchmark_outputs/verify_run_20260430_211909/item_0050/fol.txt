@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: There are 15 floors in the building :: Floors(richards_apartment_building, floors_15)
+FACT-2: Each floor has 8 units :: UnitsPerFloor(richards_apartment_building, units_8)
+FACT-3: The total number of units is 120 :: TotalUnits(richards_apartment_building, total_120)
+FACT-4: The building is occupied at three quarters :: OccupiedFraction(richards_apartment_building, fraction_3_4)
+
+## RULES
+RULE-1: If the total number of units is t and the occupied fraction is f and ProductTotalFraction(t,f,p) then OccupiedUnits(b,p) :: ∀b∀t∀f∀p((TotalUnits(b,t) ∧ OccupiedFraction(b,f) ∧ ProductTotalFraction(t,f,p)) → OccupiedUnits(b,p))
+RULE-2: If TotalUnits(b,t) ∧ OccupiedUnits(b,p) ∧ Subtract(t,p,u) then UnoccupiedUnits(b,u) :: ∀b∀t∀p∀u((TotalUnits(b,t) ∧ OccupiedUnits(b,p) ∧ Subtract(t,p,u)) → UnoccupiedUnits(b,u))
+
+## INFERENCES
+INF-1: 120 × 3/4 = 90, by Arithmetic Computation from FACT-3 and FACT-4 :: ProductTotalFraction(total_120, fraction_3_4, occupied_90)
+INF-2: OccupiedUnits(richards_apartment_building, occupied_90) from FACT-3, FACT-4, INF-1 by RULE-1 (Modus Ponens) :: OccupiedUnits(richards_apartment_building, occupied_90)
+INF-3: Subtract(120, 90, 30) = 30, by Arithmetic Computation from FACT-3 and INF-2 :: Subtract(total_120, occupied_90, unoccupied_30)
+INF-4: UnoccupiedUnits(richards_apartment_building, unoccupied_30) from FACT-3, INF-2, INF-3 by RULE-2 (Modus Ponens) :: UnoccupiedUnits(richards_apartment_building, unoccupied_30)

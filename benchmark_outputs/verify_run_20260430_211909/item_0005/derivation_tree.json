@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Morning feed is 15 cups",
+      "formula": "MorningFeed(wendi, chickens, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Afternoon feed is 25 cups",
+      "formula": "AfternoonFeed(wendi, chickens, n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are three meals per day",
+      "formula": "ThreeMealsPerDay(wendi)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "There are 20 chickens in the flock",
+      "formula": "ChickensInFlock(wendi, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Sum of morning and afternoon feed equals 40 cups",
+      "formula": "\u2200x\u2200y\u2200a\u2200b((MorningFeed(x,y,a) \u2227 AfternoonFeed(x,y,b)) \u2192 SumTwoMeals(a,b,n_40))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Even distribution of total across three meals yields per-chicken-per-meal amount",
+      "formula": "\u2200x\u2200a\u2200b\u2200c((SumTwoMeals(a,b,n_40) \u2227 ChickensInFlock(x,c) \u2227 ThreeMealsPerDay(x)) \u2192 PerChickenPerMealEstimate(x,c,n_2))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SumTwoMeals(n_15, n_25, n_40)",
+      "formula": "from FACT-1, FACT-2 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "PerChickenPerMealEstimate(wendi, n_20, n_2)",
+      "formula": "from INF-1 and FACT-3 by ArithmeticComputation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "FinalMealCupsForFinalMeal(wendi, n_20)",
+      "formula": "from INF-2 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

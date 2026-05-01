@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+RULE-1: IMPLAUSIBLE — fixes donuts total to 204 regardless of d and p, instead of deriving from d and p
+RULE-2: IMPLAUSIBLE — fixes cupcakes total to 160 regardless of d and p
+RULE-3: IMPLAUSIBLE — fixes cheesecakes total to 330 regardless of d and p
+RULE-4: IMPLAUSIBLE — fixes grand total to 694 regardless of a, b, c; should be a + b + c

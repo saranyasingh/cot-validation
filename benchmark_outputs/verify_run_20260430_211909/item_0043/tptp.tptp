@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, Baked(grandma_jones, apple_pies, n_5)).
+
+fof(fact_2, axiom, PiecesPerPie(n_8)).
+
+fof(fact_3, axiom, PiesOriginally(n_5)).
+
+fof(fact_4, axiom, PiesOnBuffet(n_5)).
+
+fof(fact_5, axiom, LeftoverPieces(n_14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X P Q N] : ((Baked(X, apple_pies, P) & PiecesPerPie(Q) & Multiply(P, Q, N)) => TotalPieces(N))).
+
+fof(rule_2, axiom, ! [T L R] : ((TotalPieces(T) & LeftoverPieces(L) & Subtract(T, L, R)) => PiecesTaken(R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, Multiply(n_5, n_8, n_40)).
+
+% From fact_1, fact_2, inf_1 and rule_1 by Universal Instantiation and Modus Ponens
+% From fact_1, fact_2, inf_1 and rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, TotalPieces(n_40)).
+
+% From inf_2 and fact_5 by Arithmetic Computation
+% From inf_2, fact_5 by Arithmetic Computation
+fof(inf_3, axiom, Subtract(n_40, n_14, n_26)).
+
+% From inf_2, inf_3, and rule_2 by Modus Ponens
+% From inf_2, inf_3, and rule_2 by Modus Ponens
+fof(inf_4, axiom, PiecesTaken(n_26)).

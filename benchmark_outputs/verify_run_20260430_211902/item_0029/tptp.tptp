@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, distance_total(henry_trip, n_60)).
+fof(fact_2, axiom, first_stop_at(henry_trip, n_20)).
+fof(fact_3, axiom, second_stop_from_end(henry_trip, n_15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, D, O, R] : ((distance_total(T, D) & second_stop_from_end(T, O) & subtract(D, O, R)) => second_stop_position(T, R))).
+fof(rule_2, axiom, ! [T, S, F, R] : ((second_stop_position(T, S) & first_stop_at(T, F) & subtract(S, F, R)) => distance_between_stops(T, R))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-3 by Arithmetic Subtraction
+fof(inf_1, axiom, subtract(n_60, n_15, n_45)).
+% From FACT-1, FACT-3, INF-1 by Modus Ponens on RULE-1
+fof(inf_2, axiom, second_stop_position(henry_trip, n_45)).
+% From FACT-2, INF-2 by Arithmetic Subtraction
+fof(inf_3, axiom, subtract(n_45, n_20, n_25)).
+% From INF-2 and INF-3 by Modus Ponens on RULE-2
+fof(inf_4, axiom, distance_between_stops(henry_trip, n_25)).

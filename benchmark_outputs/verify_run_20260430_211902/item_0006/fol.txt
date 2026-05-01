@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: The price for the first glass is 5 :: FirstGlassPrice(glass_1, val_5)
+FACT-2: The next relation between the first and second glass exists :: NextGlass(glass_1, glass_2)
+FACT-3: 5 times 0.6 equals 3 :: Mult(val_5, val_0_6, val_3)
+FACT-4: The price for the second glass is 3 :: SecondGlassPrice(glass_2, val_3)
+FACT-5: The next relation between the second and third glass exists :: NextGlass(glass_2, glass_3)
+FACT-6: 3 times 0.6 equals 1.8 :: Mult(val_3, val_0_6, val_1_8)
+FACT-7: The price for the third glass is 1.8 :: ThirdGlassPrice(glass_3, val_1_8)
+FACT-8: The next relation between the third and fourth glass exists :: NextGlass(glass_3, glass_4)
+FACT-9: 1.8 times 0.6 equals 1.08 :: Mult(val_1_8, val_0_6, val_1_08)
+FACT-10: The price for the fourth glass is 1.08 :: FourthGlassPrice(glass_4, val_1_08)
+FACT-11: SumFormulaArithmetic(n_16, a_5, d_neg_0_6, S_16) :: SumFormulaArithmetic(n_16, a_5, d_neg_0_6, S_16)
+FACT-12: The sum for 16 terms equals 8 :: SumValue(S_16, val_8)
+
+## RULES
+RULE-1: Price propagation from previous glass to next :: ∀g∀p∀ng∀q((Price(g, p) ∧ NextGlass(g, ng) ∧ Mult(p, val_0_6, q)) → Price(ng, q))
+RULE-2: Specialized arithmetic-sum evaluation for n=16 with a=5 and d=-0.6 :: ∀n∀a∀d∀S((SumFormulaArithmetic(n, a, d, S) ∧ n = n_16 ∧ a = a_5 ∧ d = d_neg_0_6) → S = val_8)
+RULE-3: From SumValue(S_16, val_8) infer TotalPayment16(val_8) :: (SumValue(S_16, val_8) → TotalPayment16(val_8))
+
+## INFERENCES
+INF-1: The price of the second glass is 3, from FACT-1, FACT-2, and FACT-3 by RULE-1 (PriceNextFromPrev) :: Price(glass_2, val_3)
+INF-2: The price of the third glass is 1.8, from INF-1, FACT-5, and FACT-6 by RULE-1 (PriceNextFromPrev) :: Price(glass_3, val_1_8)
+INF-3: The price of the fourth glass is 1.08, from INF-2, FACT-8, and FACT-9 by RULE-1 (PriceNextFromPrev) :: Price(glass_4, val_1_08)
+INF-4: S16 equals 8, from FACT-11 and RULE-2 by arithmetic-sum evaluation :: S_16 = val_8
+INF-5: The total payment for 16 glasses is 8, from INF-4 and RULE-3 by deriving TotalPayment16(val_8) :: TotalPayment16(val_8)

@@ -1,0 +1,129 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Dana's walking speed is v_w",
+      "formula": "WalkingSpeed(dana, v_w)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Dana runs at speed four_times_v_w",
+      "formula": "RunningSpeed(dana, four_times_v_w)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Dana's skipping speed is half_of_running",
+      "formula": "SkippingSpeed(dana, half_of_running)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Dana's skipping speed is 3 mph",
+      "formula": "SkippingSpeedActual(dana, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Time spent running is 2 hours",
+      "formula": "TimeRunning(dana, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Distance run is 12 miles",
+      "formula": "DistanceRunning(dana, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Time spent walking is 4 hours",
+      "formula": "TimeWalking(dana, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Distance walked is 6 miles",
+      "formula": "DistanceWalking(dana, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Add(n_12, n_6, n_18)",
+      "formula": "Add(n_12, n_6, n_18)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Multiply(v_w, n_4, n_6)",
+      "formula": "Multiply(v_w, n_4, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Multiply(four_times_v_w, n_2, n_12)",
+      "formula": "Multiply(four_times_v_w, n_2, n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Distance running equals speed times time",
+      "formula": "\u2200x\u2200r\u2200t\u2200d((RunningSpeed(x, r) \u2227 TimeRunning(x, t) \u2227 Multiply(r, t, d)) \u2192 DistanceRunning(x, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Distance walking equals speed times time",
+      "formula": "\u2200x\u2200v\u2200t\u2200d((WalkingSpeed(x, v) \u2227 TimeWalking(x, t) \u2227 Multiply(v, t, d)) \u2192 DistanceWalking(x, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Total distance equals sum of distances",
+      "formula": "\u2200x\u2200d1\u2200d2\u2200d3((DistanceRunning(x, d1) \u2227 DistanceWalking(x, d2) \u2227 Add(d1, d2, d3)) \u2192 TotalDistance(x, d3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total distance Dana travels in 6 hours is 18 miles",
+      "formula": "18 miles, from TotalDistance(dana, n_18) [INF-3] by direct fact-based conclusion",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

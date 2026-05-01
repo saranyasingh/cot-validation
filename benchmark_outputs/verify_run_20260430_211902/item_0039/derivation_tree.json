@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John runs 60 miles per week",
+      "formula": "MilesPerWeek(john, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "He runs 3 days a week",
+      "formula": "DaysPerWeek(john, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "First day: 3 hours",
+      "formula": "HoursOnDay(john, day_1, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Second day: 3/2 hours",
+      "formula": "HoursOnDay(john, day_2, n_3_over_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Third day: 3/2 hours",
+      "formula": "HoursOnDay(john, day_3, n_3_over_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "60 divided by 6 equals 10",
+      "formula": "Divide(n_60, n_6, n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has HoursOnDay(p, day_1, n_3) and HoursOnDay(p, day_2, n_3_over_2) and HoursOnDay(p, day_3, n_3_over_2), then HoursPerWeek(p, n_6)",
+      "formula": "\u2200p((HoursOnDay(p, day_1, n_3) \u2227 HoursOnDay(p, day_2, n_3_over_2) \u2227 HoursOnDay(p, day_3, n_3_over_2)) \u2192 HoursPerWeek(p, n_6))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If MilesPerWeek(p, m) and HoursPerWeek(p, h) and Divide(m, h, s), then MilesPerHour(p, s)",
+      "formula": "\u2200p\u2200m\u2200h\u2200s((MilesPerWeek(p, m) \u2227 HoursPerWeek(p, h) \u2227 Divide(m, h, s)) \u2192 MilesPerHour(p, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "HoursPerWeek(john, n_6) from FACT-3, FACT-4, FACT-5 by RULE-1 using Modus Ponens",
+      "formula": "HoursPerWeek(john, n_6)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-1 using Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "MilesPerHour(john, n_10) from FACT-1, INF-1, FACT-6 by RULE-2 using Modus Ponens",
+      "formula": "MilesPerHour(john, n_10)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-2 using Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

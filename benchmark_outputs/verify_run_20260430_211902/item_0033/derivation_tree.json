@@ -1,0 +1,86 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 10 dogs",
+      "formula": "DogCount(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each dog takes 0.5 hours a day",
+      "formula": "HoursPerDogPerDay(n_half)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 7 days in a week",
+      "formula": "DaysInWeek(n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If there are d dogs and each dog takes h hours per day and Multiply(d,h,t) then DailyTotalHoursPerDay(t)",
+      "formula": "\u2200d\u2200h\u2200t((DogCount(d) \u2227 HoursPerDogPerDay(h) \u2227 Multiply(d,h,t)) \u2192 DailyTotalHoursPerDay(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If DailyTotalHoursPerDay(t) \u2227 DaysInWeek(w) \u2227 Multiply(t,w,u) then WeeklyTotalHours(u)",
+      "formula": "\u2200t\u2200w\u2200u((DailyTotalHoursPerDay(t) \u2227 DaysInWeek(w) \u2227 Multiply(t,w,u)) \u2192 WeeklyTotalHours(u))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Multiplying 10 by 0.5 gives 5, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Multiply(n_10, n_half, n_5)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Multiply(n_5, n_7, n_35) from INF-2 and FACT-3 by Arithmetic Computation",
+      "formula": "Multiply(n_5, n_7, n_35)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

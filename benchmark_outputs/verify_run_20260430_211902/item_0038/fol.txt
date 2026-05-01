@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: LegoSetsOwned(john, n_13) :: John starts with 13 Lego sets
+FACT-2: LegoSetPrice(n_15) :: Each Lego set is sold for $15
+FACT-3: RevenueFromLegoSales(john, n_195) :: Total revenue from selling Lego sets is 195
+FACT-4: VideoGamesBought(john, n_8) :: John buys 8 video games
+FACT-5: VideoGamePrice(n_20) :: Price per video game is $20
+FACT-6: VideoGamesCost(john, n_160) :: Cost of buying 8 video games is 160
+FACT-7: RemainingMoney(john, n_5) :: John has $5 left
+FACT-8: MoneySpent(john, n_190) :: Money spent on video games is 190
+FACT-9: Subtract(n_13, n_8, n_5) :: 13 - 8 = 5
+FACT-10: Mult(n_13, n_15, n_195) :: 13 * 15 = 195
+FACT-11: Mult(n_8, n_20, n_160) :: 8 * 20 = 160
+FACT-12: RemainingLegoSets(john, n_5) :: Remaining Lego sets = 5
+
+## RULES
+RULE-1: ∀p∀a∀b∀r((LegoSetsOwned(p, a) ∧ LegoSetPrice(b) ∧ Mult(a, b, r)) → RevenueFromLegoSales(p, r)) :: If someone has A Lego sets and the price per Lego set is B and A*B = R, then RevenueFromLegoSales(p, R)
+RULE-2: ∀p∀k∀price∀cost((VideoGamesBought(p, k) ∧ VideoGamePrice(price) ∧ Mult(k, price, cost)) → VideoGamesCost(p, cost)) :: If someone buys k video games at price price, then the total cost is cost where k*price = cost
+RULE-3: ∀p∀a∀b∀c((LegoSetsOwned(p, a) ∧ VideoGamesBought(p, b) ∧ Subtract(a,b,c)) → RemainingLegoSets(p,c)) :: If you subtract the number of video games from Lego sets, the remaining Lego sets are c
+
+## INFERENCES
+INF-1: RevenueFromLegoSales(john, n_195) :: from FACT-1, FACT-12, FACT-2 by RULE-1 using Universal Instantiation and Modus Ponens
+INF-2: VideoGamesCost(john, n_160) :: from FACT-4, FACT-11, FACT-5 by RULE-2 using Universal Instantiation and Modus Ponens
+INF-3: RemainingLegoSets(john, n_5) :: from FACT-1, FACT-9, FACT-4 by RULE-3 using Substitution/Universal Instantiation and Modus Ponens

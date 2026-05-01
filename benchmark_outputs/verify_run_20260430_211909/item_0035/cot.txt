@@ -1,0 +1,13 @@
+EXPLANATION
+
+1. Let R represent Raymond's jewels.
+   - Given that R = 40.
+
+2. Aaron has 5 more jewels than half of Raymond's jewels.
+   - Therefore, we calculate half of Raymond's jewels first: \( \frac{R}{2} = \frac{40}{2} = 20 \).
+   - Then add 5 to this amount: \( \text{Aaron's jewels} = 20 + 5 = 25 \).
+
+3. Siobhan has 2 fewer jewels than Aaron.
+   - This means Siobhan's jewels are: \( \text{Siobhan's jewels} = \text{Aaron's jewels} - 2 = 25 - 2 = 23 \).
+
+The answer is: 23

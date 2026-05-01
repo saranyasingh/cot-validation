@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, blue_bolt_amount(n_2)).
+fof(fact_2, axiom, white_bolt_is_half_blue(n_2, n_1)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [B] : ! [W] : ! [T] : ((blue_bolt_amount(B) & white_bolt_is_half_blue(B, W) & sum(B, W, T)) => total_bolt(T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, sum(n_2, n_1, n_3)).
+% From fact_1, fact_2, inf_1, and rule_1 by Modus Ponens
+fof(inf_2, axiom, total_bolt(n_3)).

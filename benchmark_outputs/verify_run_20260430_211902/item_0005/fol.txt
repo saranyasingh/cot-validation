@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: FeedsPerMeal(wendi, flock_of_chickens, n_3) :: Wendi feeds each chicken three cups per feeding
+FACT-2: ThreeMealsPerDay(flock_of_chickens) :: The flock has three separate meals per day
+FACT-3: MorningFeed(flock_of_chickens, n_15) :: Morning feed is 15 cups
+FACT-4: AfternoonFeed(flock_of_chickens, n_25) :: Afternoon feed is 25 cups
+FACT-5: ChickensCount(flock_of_chickens, n_20) :: There are 20 chickens
+
+## RULES
+RULE-1: ∀f∀m∀a∀c((ThreeMealsPerDay(f) ∧ MorningFeed(f,m) ∧ AfternoonFeed(f,a) ∧ ChickensCount(f,c)) → FeedSoFar(f, Sum(m,a))) :: If a flock has three meals, morning feed m, afternoon feed a, and c chickens, then the feed so far is the sum of morning and afternoon feeds
+RULE-2: ∀x∀y∀z(Sum(x,y,z) → z = x + y) :: Sum is the arithmetic sum
+
+## INFERENCES
+INF-1: FeedSoFar(flock_of_chickens, n_40) :: from FACT-3, FACT-4, RULE-1 via instantiation with f=flock_of_chickens, m=n_15, a=n_25, c=n_20 and RULE-2 to interpret Sum(n_15, n_25, n_40) as n_40

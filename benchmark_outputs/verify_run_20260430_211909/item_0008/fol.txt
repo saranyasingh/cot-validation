@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: RestartForcedPercent(carla, n_40)
+FACT-2: CompletedBeforeRestart(carla, n_60)
+FACT-3: TotalGB(n_200)
+FACT-4: SpeedPerMinute(carla, n_2)
+FACT-5: RemainingAfterRestartPart1(carla, n_80)
+FACT-6: AlreadyDownloadedBeforeRestart(carla, n_120)
+FACT-7: RestartDowntime(carla, n_20)
+FACT-8: TotalRemainingAfterRestartGB(carla, n_200)
+
+## RULES
+RULE-1: ∀x∀v∀s∀t((TotalGB(v) ∧ SpeedPerMinute(x, s) ∧ Divide(v, s, t)) → TimeToFinishRemaining(x, t))
+RULE-2: ∀x∀t1∀t2∀tSum((TimeToFinishRemaining(x, t1) ∧ RestartDowntime(x, t2) ∧ Sum(t1, t2, tSum)) → TotalTimeMinutes(x, tSum))
+
+## INFERENCES
+INF-1: 120 GB downloaded before restart, from CompletedBeforeRestart and TotalGB by ArithmeticComputation :: AlreadyDownloadedBeforeRestart(carla, n_120)
+INF-2: TotalRemainingAfterRestartGB(carla, n_200) from RemainingAfterRestartPart1 and AlreadyDownloadedBeforeRestart by ArithmeticAddition :: TotalRemainingAfterRestartGB(carla, n_200)
+INF-3: TimeToFinishRemainingMinutes(carla, n_100) from INF-2 and SpeedPerMinute by ArithmeticComputation :: TimeToFinishRemainingMinutes(carla, n_100)
+INF-4: TotalTimeMinutes(carla, n_120) from INF-3 and RestartDowntime by ArithmeticAddition :: TotalTimeMinutes(carla, n_120)

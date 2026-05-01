@@ -1,0 +1,4 @@
+FACT-1: UNSUPPORTED — problem states 3 sprints 3 times a week, not per day
+FACT-2: SUPPORTED
+RULE-1: IMPLAUSIBLE — encodes daily distance as pd but the product should be s*d; uses p (person) incorrectly in the product
+RULE-2: PLAUSIBLE

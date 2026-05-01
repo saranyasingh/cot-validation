@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The problem states 16 eggs per day, so TotalEggs is 16.
+FACT-2: SUPPORTED — The problem states she eats three eggs for breakfast, so BreakfastEggs is 3.
+FACT-3: SUPPORTED — The problem indicates muffins use four eggs, so MuffinsEggs is 4.
+FACT-4: SUPPORTED — The problem states eggs are sold at $2 each, so PricePerEgg is 2.
+RULE-1: PLAUSIBLE — The rule encodes a valid computation relation (final earnings derived from total, breakfast, muffins, and price) without performing numbers inside the rule.

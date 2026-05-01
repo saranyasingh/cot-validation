@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Eliza's rate per hour for the first 40 hours is $10 :: RateForFirstHours(eliza, n_40, n_10)
+FACT-2: Eliza's overtime pay multiplier is 1.2 :: OvertimeMultiplier(n_12)
+FACT-3: Eliza worked 45 hours :: WorkedHours(eliza, n_45)
+
+## RULES
+RULE-1: If RateForFirstHours(e, h, r) then FirstHoursEarnings(e, h, Product(r, h)) :: ∀e∀h∀r((RateForFirstHours(e, h, r)) → FirstHoursEarnings(e, h, Product(r, h)))
+RULE-2: If OvertimeMultiplier(m) then OvertimePay(e, m) :: ∀e∀m((OvertimeMultiplier(m)) → OvertimePay(e, m))
+RULE-3: If FirstHoursEarnings(e, h, a) ∧ OvertimePay(e, b) then TotalEarnings(e, Sum(a, b)) :: ∀e∀h∀a∀b((FirstHoursEarnings(e, h, a) ∧ OvertimePay(e, b)) → TotalEarnings(e, Sum(a, b)))
+
+## INFERENCES
+INF-1: FirstHoursEarnings(eliza, n_40, Product(n_10, n_40)) :: from FACT-1 by Modus Ponens with RULE-1
+INF-2: OvertimePay(eliza, n_12) :: from FACT-2 by Modus Ponens with RULE-2
+INF-3: TotalEarnings(eliza, Sum(Product(n_10, n_40), n_12)) :: from INF-1 and INF-2 by Modus Ponens with RULE-3
+INF-4: Eliza's earnings for this week are 412 :: TotalEarnings(eliza, n_412)

@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Candice started with 80 post-it notes :: CandiceStartedWithNotes(candice, n_80)
+FACT-2: Candice purchased a package of unknown quantity :: CandicePurchasedNotesPackage(candice, n_x)
+FACT-3: Candice added the purchased notes to her original 80 :: CandiceAddedNotesToOriginal(candice, n_80, n_x)
+FACT-4: Candice used 220 notes at work :: CandiceUsedNotesAtWork(candice, n_220)
+FACT-5: Candice left 23 notes :: CandiceLeftNotes(candice, n_23)
+FACT-6: 80 + x - 220 = 23 :: EquationHolds(n_80, n_x, n_220, n_23)
+
+## RULES
+RULE-1: If a + b - c = d, then XMinus140Equals23(b, d, a, c) :: ∀a∀b∀c∀d((EquationHolds(a,b,c,d)) → XMinus140Equals23(b, d, a, c))
+RULE-2: If XMinus140Equals23(a,b,c,d) then XEquals(a, n_163) :: ∀a∀b∀c∀d((XMinus140Equals23(a,b,c,d)) → XEquals(a, n_163))
+RULE-3: If XEquals(a,b) then PackageNotesInNewPackage(candice, b) :: ∀a∀b((XEquals(a,b)) → PackageNotesInNewPackage(candice, b))
+
+## INFERENCES
+INF-1: 80 + x - 220 = 23, from FACT-1, FACT-2, FACT-4, FACT-5 by ArithmeticComputation :: EquationHolds(n_80, n_x, n_220, n_23)
+INF-2: XMinus140Equals23(n_x, n_23, n_80, n_220) from INF-1 by RULE-1
+INF-3: XEquals(n_x, n_163) from INF-2 by RULE-2
+INF-4: PackageNotesInNewPackage(candice, n_163) from INF-3 by RULE-3

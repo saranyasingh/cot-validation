@@ -1,0 +1,65 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TotalEggs(n_16)",
+      "formula": "The ducks lay 16 eggs per day",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states 16 eggs per day, so TotalEggs is 16.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "BreakfastEggs(n_3)",
+      "formula": "She eats three eggs for breakfast",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states she eats three eggs for breakfast, so BreakfastEggs is 3.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "MuffinsEggs(n_4)",
+      "formula": "She bakes muffins using four eggs",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem indicates muffins use four eggs, so MuffinsEggs is 4.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "PricePerEgg(n_2)",
+      "formula": "Price per egg is $2",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The problem states eggs are sold at $2 each, so PricePerEgg is 2.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If TotalEggs(E) \u2227 BreakfastEggs(B) \u2227 MuffinsEggs(M) \u2227 PricePerEgg(P) \u2227 ExprCompute(E,B,M,P,R) then FinalEarnings(R)",
+      "formula": "\u2200E\u2200B\u2200M\u2200P\u2200R((TotalEggs(E) \u2227 BreakfastEggs(B) \u2227 MuffinsEggs(M) \u2227 PricePerEgg(P) \u2227 ExprCompute(E,B,M,P,R)) \u2192 FinalEarnings(R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "The rule encodes a valid computation relation (final earnings derived from total, breakfast, muffins, and price) without performing numbers inside the rule.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1, FACT-2, FACT-3, FACT-4 using RULE-1 via arithmetic computation",
+      "formula": "FinalEarnings(n_2)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

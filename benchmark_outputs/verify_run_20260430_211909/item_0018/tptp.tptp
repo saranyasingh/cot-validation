@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, hourly_rate_teaching(jill, n_20)).
+fof(fact_2, axiom, teaching_hours_per_week(jill, n_35)).
+fof(fact_3, axiom, hourly_rate_coaching(jill, n_30)).
+fof(fact_4, axiom, coaching_hours_per_week(jill, n_15)).
+fof(fact_5, axiom, weeks_per_year(n_50)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, R, H, E] : ((hourly_rate_teaching(P, R) & teaching_hours_per_week(P, H) & product(R, H, E)) => weekly_teaching_earnings(P, E))).
+fof(rule_2, axiom, ! [P, R, H, E] : ((hourly_rate_coaching(P, R) & coaching_hours_per_week(P, H) & product(R, H, E)) => weekly_coaching_earnings(P, E))).
+fof(rule_3, axiom, ! [P, E1, E2, E] : ((weekly_teaching_earnings(P, E1) & weekly_coaching_earnings(P, E2) & sum(E1, E2, E)) => weekly_total_earnings(P, E))).
+fof(rule_4, axiom, ! [P, W, A] : ((weekly_total_earnings(P, W) & weeks_per_year(n_50) & product(W, n_50, A)) => annual_earnings(P, A))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, product(n_20, n_35, n_700)).
+% From fact_1, fact_2, inf_1 by Modus Ponens
+fof(inf_2, axiom, weekly_teaching_earnings(jill, n_700)).
+% From fact_3, fact_4 by Arithmetic Computation
+fof(inf_3, axiom, product(n_30, n_15, n_450)).
+% From fact_3, fact_4, inf_3 by Modus Ponens
+fof(inf_4, axiom, weekly_coaching_earnings(jill, n_450)).
+% From inf_2, inf_4 by Arithmetic Computation
+fof(inf_5, axiom, sum(n_700, n_450, n_1150)).
+% From inf_2, inf_4, inf_5 by Modus Ponens
+fof(inf_6, axiom, weekly_total_earnings(jill, n_1150)).
+% From inf_6, fact_5 by Arithmetic Computation
+fof(inf_7, axiom, product(n_1150, n_50, n_57500)).
+% From inf_6, fact_5, inf_7 by Modus Ponens
+fof(inf_8, axiom, annual_earnings(jill, n_57500)).

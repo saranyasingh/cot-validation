@@ -1,0 +1,101 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Candice started with 80 post-it notes",
+      "formula": "InitialNotes(candice, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "She placed one post-it note on each of 220 cups of coffee",
+      "formula": "NotesUsedOnCups(candice, n_220)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "80 + 220 = 300",
+      "formula": "Plus(n_80, n_220, n_300)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "300 - 23 = 277",
+      "formula": "Minus(n_300, n_23, n_277)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state or imply that 80 + 220 = 300 is a relevant total; this derived value is not given and is not required to solve for the package size.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "SumThenTotal",
+      "formula": "\u2200a\u2200x\u2200y\u2200z((InitialNotes(a, x) \u2227 NotesUsedOnCups(a, y) \u2227 Plus(x, y, z)) \u2192 TotalNotes(a, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "SubtractThenFinal",
+      "formula": "\u2200a\u2200z\u2200w\u2200t((TotalNotes(a, z) \u2227 Minus(z, w, t)) \u2192 FinalNotes(a, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "FinalToPackage",
+      "formula": "\u2200a\u2200t((FinalNotes(a, t)) \u2192 PackageContents(a, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalNotes(candice, n_300)",
+      "formula": "from FACT-1, FACT-2, FACT-3 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "FinalNotes(candice, n_277)",
+      "formula": "from INF-1, FACT-4 by RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "PackageContents(candice, n_277)",
+      "formula": "from INF-2 by RULE-3",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem does not state or imply that 80 + 220 = 300 is a relevant total; this derived value is not given and is not required to solve for the package size."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: The tree costs $90 to plant :: InitialInvestment(n_90)
+FACT-2: There are 7 lemons per year :: LemonsPerYear(n_7)
+FACT-3: Each lemon costs $1.5 :: PricePerLemon(n_1_5)
+FACT-4: Annual expense is $3 on watering and feeding :: AnnualExpense(n_3)
+
+## RULES
+RULE-1: Revenue per year equals lemons per year times price per lemon :: ∀L∀P∀R((LemonsPerYear(L) ∧ PricePerLemon(P) ∧ Mult(L,P,R)) → RevenuePerYear(R))
+RULE-2: Break-even year is the investment divided by net profit per year :: ∀I∀N∀Y((InitialInvestment(I) ∧ NetProfitPerYear(N) ∧ Divides(I,N,Y)) → BreakEvenYear(Y))
+
+## INFERENCES

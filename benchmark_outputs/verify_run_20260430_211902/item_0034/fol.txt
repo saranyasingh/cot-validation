@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Gretchen has a total of 110 coins :: TotalCoins(gretchen, n_110)
+FACT-2: There are 30 more gold coins than silver coins :: GoldIsSilverPlus(gretchen, n_30)
+
+## RULES
+RULE-1: If a person has a total number of coins and the number of gold coins equals the number of silver coins plus a difference, then there exist silver and gold coin counts that satisfy the two equations :: ∀p∀T∀d((TotalCoins(p, T) ∧ GoldIsSilverPlus(p, d)) → ∃S∃G(SilverCoins(p, S) ∧ GoldCoins(p, G) ∧ G = S + d ∧ G + S = T))
+RULE-2: If there exist SilverCoins(p, S) and GoldCoins(p, G) with G = S + d ∧ G + S = T, then S = 40 ∧ G = 70 for the specific numbers T = 110 and d = 30 :: ∀p∀S∀G((SilverCoins(p, S) ∧ GoldCoins(p, G) ∧ G = S + n_30 ∧ G + S = n_110) → (S = n_40 ∧ G = n_70))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, and RULE-1 by Modus Ponens with Universal Instantiation :: ∃S∃G(SilverCoins(gretchen, S) ∧ GoldCoins(gretchen, G) ∧ G = S + n_30 ∧ G + S = n_110)
+INF-2: From INF-1 and RULE-2 by Existential Instantiation and Modus Ponens :: SilverCoins(gretchen, n_40) ∧ GoldCoins(gretchen, n_70)
+INF-3: From INF-2 by Conjunction Elimination :: GoldCoins(gretchen, n_70)

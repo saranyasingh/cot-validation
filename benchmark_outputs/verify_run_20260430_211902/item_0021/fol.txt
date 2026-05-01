@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: The orange drink has 10 liters :: OrangeLiters(n_10)
+FACT-2: The orange drink contains two-thirds water :: WaterFractionInOrange(n_2_over_3)
+FACT-3: One liter was spilled :: SpilledLiters(n_1)
+FACT-4: After spilling, 9 liters remain in the orange drink :: OrangeLitersRemaining(n_9)
+FACT-5: The pineapple juice volume is 15 liters :: PineappleLiters(n_15)
+FACT-6: The mixed drink total is 24 liters :: MixedTotalLiters(n_24)
+FACT-7: The original total is 10 liters :: OriginalTotalLiters(n_10)
+FACT-8: The removed fraction is 1/9 of the original 10 liters :: FractionRemovedFromOriginal(n_1_over_9)
+FACT-9: The remaining water in the orange drink after Step 4 is 59/9 liters :: RemainingWaterInOrangeStep4(n_59_over_9)
+FACT-10: The total water in the remaining 24 liters is 119/9 liters :: WaterInTotalRemaining(n_119_over_9)
+FACT-11: The product of 10 and 2/3 is 20/3 :: Product(n_10, n_2_over_3, n_20_over_3)
+FACT-12: 59/9 plus 60/9 equals 119/9 :: Sum(n_59_over_9, n_60_over_9, n_119_over_9)
+FACT-13: 60/9 equals 20/3 :: Equivalent(n_60_over_9, n_20_over_3)
+
+## RULES
+RULE-1: If OrangeLiters(a) and WaterFractionInOrange(b) and Product(a,b,c) then WaterInOrangeLiters(c) :: ∀a∀b∀c((OrangeLiters(a) ∧ WaterFractionInOrange(b) ∧ Product(a,b,c)) → WaterInOrangeLiters(c))
+RULE-2: If RemainingWaterInOrangeStep4(a) and WaterInOrangeLiters(b) and Sum(a,b,c) then WaterInTotalRemaining(c) :: ∀a∀b∀c((RemainingWaterInOrangeStep4(a) ∧ WaterInOrangeLiters(b) ∧ Sum(a,b,c)) → WaterInTotalRemaining(c))
+
+## INFERENCES
+INF-1: WaterInOrangeLiters(n_20_over_3) from FACT-1, FACT-2, FACT-11 by Arithmetic Computation :: WaterInOrangeLiters(n_20_over_3)
+INF-2: WaterInTotalRemaining(n_119_over_9) from FACT-9, FACT-12, FACT-13 by Arithmetic Computation :: WaterInTotalRemaining(n_119_over_9)

@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The candle melts 2 cm per hour",
+      "formula": "MeltsPerHour(candle, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: melts 2 cm per hour.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The burn time is 4 hours",
+      "formula": "BurnTime(candle, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "The 1:00 PM to 5:00 PM interval is 4 hours (implied burn duration).",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Height loss equals rate times time for a burning candle",
+      "formula": "\u2200x\u2200r\u2200t\u2200h((MeltsPerHour(x, r) \u2227 BurnTime(x, t) \u2227 Multiply(r, t, h)) \u2192 HeightLoss(x, h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Height loss equals rate times time is a correct general relation.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "2 \u00d7 4 = 8",
+      "formula": "Multiply(n_2, n_4, n_8)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Height loss of candle is 8 cm",
+      "formula": "HeightLoss(candle, n_8)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

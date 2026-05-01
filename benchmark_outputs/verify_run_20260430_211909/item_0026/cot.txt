@@ -1,0 +1,21 @@
+Explanation:
+
+1. Let's denote the number of boxes of pizza as P.
+2. We know the price of each item:
+   - Chicken meal: $12
+   - Milk pack: $3
+   - Apple: $1.50
+   - Pizza box: $8.50
+3. Marie bought 5 milk packs at $3 each, so she spent 5 * $3 = $15 on milk.
+4. She also bought 4 apples at $1.50 each, so she spent 4 * $1.50 = $6 on apples.
+5. Let's calculate how much money was spent on these items before buying any pizzas:
+   Total spent on non-pizza items = $15 (milk) + $6 (apples) = $21
+6. Since the total amount Marie paid is $50, we need to find out how much was spent on pizzas:
+   Amount spent on pizzas = Total paid - Amount spent on other items
+                           = $50 - $21 = $29
+7. Each box of pizza costs $8.50, so to find out how many boxes Marie bought, we divide the total amount spent on pizzas by the cost per box:
+   Number of boxes of pizza = Amount spent on pizzas / Cost per box
+                            = $29 / $8.50 = 3.43 boxes
+8. Since Marie cannot buy a fraction of a box, we round down to the nearest whole number because it doesn't make sense to have a partial box.
+
+Therefore, Marie ordered 3 boxes of pizza. The answer is: 3.

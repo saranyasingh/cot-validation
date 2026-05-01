@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Mike scored 4 points in the first 20 minutes :: ScoredInInterval(mike, first_20_minutes, n_4)
+FACT-2: Mike scored 5 points in the second 20 minutes :: ScoredInInterval(mike, second_20_minutes, n_5)
+FACT-3: 4 plus 5 equals 9 :: SumScores(n_4, n_5, n_9)
+
+## RULES
+RULE-1: If a person p scores s1 in first_20_minutes and s2 in second_20_minutes and SumScores(s1, s2, t), then TotalScore(p, t) :: ∀p∀i1∀i2∀s1∀s2∀t((ScoredInInterval(p, i1, s1) ∧ ScoredInInterval(p, i2, s2) ∧ SumScores(s1, s2, t)) → TotalScore(p, t))
+
+## INFERENCES
+INF-1: TotalScore(mike, n_9) from FACT-1, FACT-2, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens :: TotalScore(mike, n_9)

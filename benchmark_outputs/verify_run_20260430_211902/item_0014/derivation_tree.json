@@ -1,0 +1,122 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Remaining(n_5)",
+      "formula": "After selling some vacuums, she had 5 remaining.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "OneThird(n_N, n_Vgreen)",
+      "formula": "V_green is one third of N.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "RedPlusTwo(n_Vgreen, n_2)",
+      "formula": "She then sold 2 more vacuums at the red house.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "OrangeHalfLeft(n_before)",
+      "formula": "At the orange house, she sold half of what was left.",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "EquationSix(n_eq6)",
+      "formula": "(n_Vgreen + n_2) \u2212 1/2 (n_Vgreen + n_2) = 5",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "not stated or entailed by the problem",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200N\u2200V (OneThird(N, V) \u2192 V = N/3)",
+      "formula": "If V is one third of N, then V equals N/3.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "encodes division (N/3) inside the rule",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200V\u2200E ((RedPlusTwo(V, n_2) \u2227 OrangeHalfLeft(E)) \u2192 EquationSix(E))",
+      "formula": "If the red step adds two and the orange step halves the remainder, then the equation to left is 5.",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200E (EquationSix(E) \u2192 N = 12)",
+      "formula": "If the equation equals 5 as specified, then the total N equals 12.",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "asserts N = 12 from EquationSix; not a valid general principle",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-2 and RULE-1 by Modus Ponens we obtain V_green = N/3.",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens we obtain V_green = N/3.",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 (V_green = N/3) and FACT-3 and FACT-4 and FACT-5 together with RULE-2 we derive EquationSix(n_eq6).",
+      "formula": "Hypothetical Syllogism / Modus Ponens style chain",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 and RULE-3 we conclude N = 12.",
+      "formula": "Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "not stated or entailed by the problem"
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "encodes division (N/3) inside the rule"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "asserts N = 12 from EquationSix; not a valid general principle"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

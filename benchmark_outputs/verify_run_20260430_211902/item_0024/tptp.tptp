@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, melts_per_hour(candle, n_2)).
+fof(fact_2, axiom, burn_time(candle, n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, R, T, H] : ((melts_per_hour(X, R) & burn_time(X, T) & multiply(R, T, H)) => height_loss(X, H))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic
+fof(inf_1, axiom, multiply(n_2, n_4, n_8)).
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, height_loss(candle, n_8)).

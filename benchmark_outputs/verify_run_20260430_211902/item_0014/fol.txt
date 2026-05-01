@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: Remaining(n_5) :: After selling some vacuums, she had 5 remaining.
+
+FACT-2: OneThird(n_N, n_Vgreen) :: V_green is one third of N.
+
+FACT-3: RedPlusTwo(n_Vgreen, n_2) :: She then sold 2 more vacuums at the red house.
+
+FACT-4: OrangeHalfLeft(n_before) :: At the orange house, she sold half of what was left.
+
+FACT-5: EquationSix(n_eq6) :: (n_Vgreen + n_2) − 1/2 (n_Vgreen + n_2) = 5
+
+## RULES
+RULE-1: ∀N∀V (OneThird(N, V) → V = N/3) :: If V is one third of N, then V equals N/3.
+
+RULE-2: ∀V∀E ((RedPlusTwo(V, n_2) ∧ OrangeHalfLeft(E)) → EquationSix(E)) :: If the red step adds two and the orange step halves the remainder, then the equation to left is 5.
+
+RULE-3: ∀E (EquationSix(E) → N = 12) :: If the equation equals 5 as specified, then the total N equals 12.
+
+## INFERENCES
+INF-1: From FACT-2 and RULE-1 by Modus Ponens we obtain V_green = N/3. :: Modus Ponens
+
+INF-2: From INF-1 (V_green = N/3) and FACT-3 and FACT-4 and FACT-5 together with RULE-2 we derive EquationSix(n_eq6). :: Hypothetical Syllogism / Modus Ponens style chain
+
+INF-3: From INF-2 and RULE-3 we conclude N = 12. :: Modus Ponens

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — encodes a fixed 109 result without a general x -> x+10 mapping (not a universally valid arithmetic rule)
+RULE-3: PLAUSIBLE

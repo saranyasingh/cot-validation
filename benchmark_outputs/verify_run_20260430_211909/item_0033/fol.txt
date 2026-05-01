@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: 0.5 hours per dog per day :: HoursPerDogPerDay(n_0_5)
+FACT-2: 10 dogs :: Dogs(n_10)
+FACT-3: 7 days per week :: DaysPerWeek(n_7)
+
+## RULES
+RULE-1: If hours per dog per day is h, and there are d dogs, and the product of h and d is p, then total daily hours is p :: ∀h∀d∀p((HoursPerDogPerDay(h) ∧ Dogs(d) ∧ ProductHoursPerDay(h,d,p)) → DailyHoursPerDay(p))
+RULE-2: If daily hours per day is q, and there are t days per week, and the product of q and t is w, then weekly hours per week is w :: ∀q∀t∀w((DailyHoursPerDay(q) ∧ DaysPerWeek(t) ∧ ProductDailyHoursPerWeek(q,t,w)) → WeeklyHoursPerWeek(w))
+
+## INFERENCES
+INF-1: 0.5 hours per dog × 10 dogs = 5 hours/day, using Arithmetic Computation from FACT-1 and FACT-2 :: ProductHoursPerDay(n_0_5, n_10, n_5)
+INF-2: DailyHoursPerDay(n_5) from FACT-1, FACT-2, INF-1 and RULE-1 by Modus Ponens :: DailyHoursPerDay(n_5)
+INF-3: 5 hours/day × 7 days/week = 35 hours/week, using Arithmetic Computation from INF-2 and FACT-3 :: ProductDailyHoursPerWeek(n_5, n_7, n_35)
+INF-4: WeeklyHoursPerWeek(n_35) from INF-2, FACT-3, INF-3 and RULE-2 by Modus Ponens :: WeeklyHoursPerWeek(n_35)

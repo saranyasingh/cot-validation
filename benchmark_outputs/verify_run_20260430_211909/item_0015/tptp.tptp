@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_students(n_20)).
+fof(fact_2, axiom, contemporary_dancers(n_4)).
+fof(fact_3, axiom, remaining_students(n_16)).
+fof(fact_4, axiom, jazz_dancers(n_4)).
+fof(fact_5, axiom, hiphop_dancers(n_12)).
+fof(fact_6, axiom, hiphop_percent(n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (hiphop_percent(P) => final_answer(P))).
+fof(rule_2, axiom, ! [P] : (final_answer(P) => answer_value(P))).
+
+% --- INFERENCES ---
+% From fact_6, rule_1 by Modus Ponens
+fof(inf_1, axiom, final_answer(n_60)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, answer_value(n_60)).

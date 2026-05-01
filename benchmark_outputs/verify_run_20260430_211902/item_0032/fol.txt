@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: First friend guesses 80 jelly beans :: Guess(friend_1, jelly_beans, n_80)
+FACT-2: Second friend guesses 60 jelly beans :: Guess(friend_2, jelly_beans, n_60)
+FACT-3: Third friend guesses 100 jelly beans :: Guess(friend_3, jelly_beans, n_100)
+
+## RULES
+RULE-1: If the three specific friends guessed the numbers a, b, c for jelly_beans, then SumThree(a, b, c, n_240) :: ∀a∀b∀c((Guess(friend_1, jelly_beans, a) ∧ Guess(friend_2, jelly_beans, b) ∧ Guess(friend_3, jelly_beans, c)) → SumThree(a, b, c, n_240))
+RULE-2: If SumThree(a, b, c, s) then AverageThree(a, b, c, n_80) when s is n_240 :: ∀a∀b∀c((SumThree(a, b, c, s)) → (s = n_240 → AverageThree(a, b, c, n_80)))
+RULE-3: If AverageThree(a, b, c, n_80) then FinalAnswer(n_80) :: ∀a∀b∀c((AverageThree(a, b, c, n_80)) → FinalAnswer(n_80))
+
+## INFERENCES
+INF-1: SumThree(n_80, n_60, n_100, n_240) from FACT-1, FACT-2, FACT-3 via RULE-1 (Modus Ponens) 
+INF-2: AverageThree(n_80, n_60, n_100, n_80) from INF-1 and RULE-2 (Modus Ponens)
+INF-3: FinalAnswer(n_80) from INF-2 and RULE-3 (Modus Ponens)

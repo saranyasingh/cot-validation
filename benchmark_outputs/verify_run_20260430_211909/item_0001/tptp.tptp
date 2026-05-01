@@ -1,0 +1,12 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_eggs(n_16)).
+fof(fact_2, axiom, breakfast_eggs(n_3)).
+fof(fact_3, axiom, muffins_eggs(n_4)).
+fof(fact_4, axiom, price_per_egg(n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [E,B,M,P,R] : ((total_eggs(E) & breakfast_eggs(B) & muffins_eggs(M) & price_per_egg(P) & expr_compute(E,B,M,P,R)) => final_earnings(R))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3, FACT-4 by arithmetic computation
+fof(inf_1, axiom, final_earnings(n_2)).

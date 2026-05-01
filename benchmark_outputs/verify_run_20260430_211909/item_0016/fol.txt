@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: PresentValue(jewelry, n_5000) :: PresentValue(jewelry, n_5000)
+FACT-2: GrowthRate(jewelry, n_0_025) :: GrowthRate(jewelry, n_0_025)
+FACT-3: ComputedFV(jewelry, n_5000, n_0_025, n_5125) :: ComputedFV(jewelry, n_5000, n_0_025, n_5125)
+FACT-4: PresentValue(gadgets, n_8000) :: PresentValue(gadgets, n_8000)
+FACT-5: GrowthRate(gadgets, n_0_012) :: GrowthRate(gadgets, n_0_012)
+FACT-6: ComputedFV(gadgets, n_8000, n_0_012, n_8169) :: ComputedFV(gadgets, n_8000, n_0_012, n_8169)
+FACT-7: ComputedDifference(n_8169, n_5125, n_3044) :: ComputedDifference(n_8169, n_5125, n_3044)
+
+## RULES
+RULE-1: If a product p has present value pv and growth rate gr, and the computed future value FV(p, pv, gr, fv) holds, then FutureValue(p, fv) :: ∀p∀pv∀gr∀fv((PresentValue(p, pv) ∧ GrowthRate(p, gr) ∧ ComputedFV(p, pv, gr, fv)) → FutureValue(p, fv))
+RULE-2: If there are two products p1 and p2 with future values fvJ and fvG, and ComputedDifference(fvG, fvJ, diff) holds, then ProfitDifference(diff) :: ∀p1∀fvJ∀p2∀fvG∀diff((FutureValue(p1, fvJ) ∧ FutureValue(p2, fvG) ∧ ComputedDifference(fvG, fvJ, diff)) → ProfitDifference(diff))
+RULE-3: If ProfitDifference(diff) holds, then Recommend(gadgets) :: ∀diff(ProfitDifference(diff) → Recommend(gadgets))
+RULE-4: If ProfitDifference(diff) holds, then AnswerValue(n_3) :: ∀diff(ProfitDifference(diff) → AnswerValue(n_3))
+
+## INFERENCES
+INF-1: FutureValue(jewelry, n_5125) :: FutureValue(jewelry, n_5125) inferred from PresentValue(jewelry, n_5000) and GrowthRate(jewelry, n_0_025) and ComputedFV(jewelry, n_5000, n_0_025, n_5125) by RULE-1
+INF-2: FutureValue(gadgets, n_8169) :: FutureValue(gadgets, n_8169) inferred from PresentValue(gadgets, n_8000) and GrowthRate(gadgets, n_0_012) and ComputedFV(gadgets, n_8000, n_0_012, n_8169) by RULE-1
+INF-3: ProfitDifference(n_3044) :: ProfitDifference(n_3044) inferred from FutureValue(jewelry, n_5125) and FutureValue(gadgets, n_8169) and ComputedDifference(n_8169, n_5125, n_3044) by RULE-2
+INF-4: Recommend(gadgets) :: Recommend(gadgets) inferred from ProfitDifference(n_3044) by RULE-3
+INF-5: AnswerValue(n_3) :: AnswerValue(n_3) inferred from ProfitDifference(n_3044) by RULE-4

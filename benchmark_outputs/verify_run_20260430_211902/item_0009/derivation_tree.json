@@ -1,0 +1,81 @@
+{
+  "nodes": {
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Distance equals speed times time per segment",
+      "formula": "\u2200j \u2200seg \u2200s \u2200t \u2200d((SegmentSpeed(j, seg, s) \u2227 SegmentTime(j, seg, t) \u2227 Multiply(s, t, d)) \u2192 SegmentDistance(j, seg, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Total distance is the sum of four segment distances using Add4",
+      "formula": "\u2200j \u2200a1 \u2200a2 \u2200a3 \u2200a4 \u2200t((SegmentDistance(j, segment1, a1) \u2227 SegmentDistance(j, segment2, a2) \u2227 SegmentDistance(j, segment3, a3) \u2227 SegmentDistance(j, segment4, a4) \u2227 Add4(a1, a2, a3, a4, t)) \u2192 TotalDistance(j, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SegmentDistance(john, segment1, n_180) from FACT-1, FACT-2, FACT-3 by RULE-1",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SegmentDistance(john, segment3, n_15) from FACT-4, FACT-5, FACT-6 by RULE-1",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "FACT-6"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "SegmentDistance(john, segment4, n_280) from FACT-7, FACT-8, FACT-9 by RULE-1",
+      "formula": "Modus Ponens",
+      "premises": [
+        "FACT-7",
+        "FACT-8",
+        "FACT-9"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalDistance(john, n_475) from INF-1, FACT-11, INF-2, INF-3, and FACT-12 by RULE-2",
+      "formula": "Modus Ponens",
+      "premises": [
+        "INF-1",
+        "FACT-11",
+        "INF-2",
+        "INF-3",
+        "FACT-12"
+      ],
+      "inference_rule": "RULE-2",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

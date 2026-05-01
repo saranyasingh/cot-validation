@@ -1,0 +1,20 @@
+EXPLANATION
+
+1. Let's denote Dana's walking speed as \( V_w \) (in miles per hour).
+2. According to the problem, Dana runs at a speed of \( 4V_w \) mph.
+3. She skips at a speed which is half her running speed, so skipping speed = \( \frac{1}{2} \times 4V_w = 2V_w \) mph.
+4. We know her skipping speed is 3 mph, thus we can set up the equation \( 2V_w = 3 \). Solving this gives us \( V_w = 1.5 \) mph.
+
+Now, let's calculate the distances she travels during the given times.
+
+- Time spent running = \( \frac{1}{3} \) of 6 hours = 2 hours.
+- Distance covered while running = \( 4V_w \times 2 \) hours = \( 4 \times 1.5 \times 2 \) miles = 12 miles.
+
+- Time spent walking = \( \frac{2}{3} \) of 6 hours = 4 hours.
+- Distance covered while walking = \( V_w \times 4 \) hours = \( 1.5 \times 4 \) miles = 6 miles.
+
+Total distance traveled in 6 hours = Distance running + Distance walking = 12 miles + 6 miles = 18 miles.
+
+Therefore, the total distance Dana can travel in 6 hours is 18 miles.
+
+The answer is: 18

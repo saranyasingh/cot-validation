@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: There are 15 floors in the building :: FloorsInBuilding(n_15)
+FACT-2: Each floor has 8 units :: UnitsPerFloor(n_8)
+FACT-3: The product of floors and units per floor is 120 :: Product(n_15, n_8, n_120)
+FACT-4: 3/4 of 120 is 90 :: FractionOfTotal(n_3, n_4, n_120, n_90)
+FACT-5: Subtract 120 and 90 to get 30 :: Subtract(n_120, n_90, n_30)
+
+## RULES
+RULE-1: If FloorsInBuilding(f) ∧ UnitsPerFloor(u) ∧ Product(f,u,p) then TotalUnits(p) :: ∀f∀u∀p((FloorsInBuilding(f) ∧ UnitsPerFloor(u) ∧ Product(f,u,p)) → TotalUnits(p))
+RULE-2: If TotalUnits(t) ∧ FractionOfTotal(a,b,t,r) then OccupiedUnits(r) :: ∀a∀b∀t∀r((TotalUnits(t) ∧ FractionOfTotal(a,b,t,r)) → OccupiedUnits(r))
+RULE-3: If TotalUnits(t) ∧ Subtract(t,o,u) then UnoccupiedUnits(u) :: ∀t∀o∀u((TotalUnits(t) ∧ Subtract(t,o,u)) → UnoccupiedUnits(u))
+
+## INFERENCES
+INF-1: The total number of units is 120, from FACT-1, FACT-2, FACT-3 by RULE-1 :: TotalUnits(n_120)
+INF-2: The number of occupied units is 90, from INF-1 and FACT-4 by RULE-2 :: OccupiedUnits(n_90)
+INF-3: The number of unoccupied units is 30, from INF-1 and FACT-5 by RULE-3 :: UnoccupiedUnits(n_30)

@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Candice started with 80 post-it notes :: InitialNotes(candice, n_80)
+FACT-2: She placed one post-it note on each of 220 cups of coffee :: NotesUsedOnCups(candice, n_220)
+FACT-3: 80 + 220 = 300 :: Plus(n_80, n_220, n_300)
+FACT-4: 300 - 23 = 277 :: Minus(n_300, n_23, n_277)
+
+## RULES
+RULE-1: SumThenTotal :: ∀a∀x∀y∀z((InitialNotes(a, x) ∧ NotesUsedOnCups(a, y) ∧ Plus(x, y, z)) → TotalNotes(a, z))
+RULE-2: SubtractThenFinal :: ∀a∀z∀w∀t((TotalNotes(a, z) ∧ Minus(z, w, t)) → FinalNotes(a, t))
+RULE-3: FinalToPackage :: ∀a∀t((FinalNotes(a, t)) → PackageContents(a, t))
+
+## INFERENCES
+INF-1: TotalNotes(candice, n_300) :: from FACT-1, FACT-2, FACT-3 by RULE-1
+INF-2: FinalNotes(candice, n_277) :: from INF-1, FACT-4 by RULE-2
+INF-3: PackageContents(candice, n_277) :: from INF-2 by RULE-3

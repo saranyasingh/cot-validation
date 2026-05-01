@@ -1,0 +1,20 @@
+## FACTS
+FACT-1: Each glass initially costs 5 dollars :: InitialPricePerGlass(n_5)
+FACT-2: There are 8 glasses at $5 :: GlassesAtPrice(n_8, n_5)
+FACT-3: There are 8 glasses at $3 :: GlassesAtPrice(n_8, n_3)
+FACT-4: The cost of the second glass is $3 :: SecondGlassCost(n_3)
+FACT-5: There are 16 glasses in total :: GlassesTotalCount(n_16)
+
+## RULES
+RULE-1: If there are 8 glasses at 5, then their total is 40 :: ∀x∀y(GlassesAtPrice(n_8, n_5) → Mul(n_8, n_5, n_40))
+RULE-2: If there are 8 glasses at 3, then their total is 24 :: ∀x∀y(GlassesAtPrice(n_8, n_3) → Mul(n_8, n_3, n_24))
+RULE-3: If the 8×5 total is 40 and the 8×3 total is 24, then their sum is 64 :: ∀x∀y((Mul(n_8, n_5, n_40) ∧ Mul(n_8, n_3, n_24)) → Sum(n_40, n_24, n_64))
+RULE-4: If a sum equals 64, then TotalCost is 64 :: ∀x((Sum(n_40, n_24, n_64)) → TotalCost(n_64))
+RULE-5: If TotalCost(x), then FinalAnswer(x) :: ∀z(TotalCost(z) → FinalAnswer(z))
+
+## INFERENCES
+INF-1: From FACT-2 and RULE-1 by Modus Ponens, derive Mul(n_8, n_5, n_40) :: Mul(n_8, n_5, n_40)
+INF-2: From FACT-3 and RULE-2 by Modus Ponens, derive Mul(n_8, n_3, n_24) :: Mul(n_8, n_3, n_24)
+INF-3: From INF-1, INF-2 and RULE-3 by Modus Ponens, derive Sum(n_40, n_24, n_64) :: Sum(n_40, n_24, n_64)
+INF-4: From INF-3 and RULE-4 by Modus Ponens, derive TotalCost(n_64) :: TotalCost(n_64)
+INF-5: From INF-4 and RULE-5 by Modus Ponens, derive FinalAnswer(n_64) :: FinalAnswer(n_64)

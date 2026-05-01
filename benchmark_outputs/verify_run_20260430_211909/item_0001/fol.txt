@@ -1,0 +1,11 @@
+## FACTS
+FACT-1: TotalEggs(n_16) :: The ducks lay 16 eggs per day
+FACT-2: BreakfastEggs(n_3) :: She eats three eggs for breakfast
+FACT-3: MuffinsEggs(n_4) :: She bakes muffins using four eggs
+FACT-4: PricePerEgg(n_2) :: Price per egg is $2
+
+## RULES
+RULE-1: If TotalEggs(E) ∧ BreakfastEggs(B) ∧ MuffinsEggs(M) ∧ PricePerEgg(P) ∧ ExprCompute(E,B,M,P,R) then FinalEarnings(R) :: ∀E∀B∀M∀P∀R((TotalEggs(E) ∧ BreakfastEggs(B) ∧ MuffinsEggs(M) ∧ PricePerEgg(P) ∧ ExprCompute(E,B,M,P,R)) → FinalEarnings(R))
+
+## INFERENCES
+INF-1: From FACT-1, FACT-2, FACT-3, FACT-4 using RULE-1 via arithmetic computation :: FinalEarnings(n_2)

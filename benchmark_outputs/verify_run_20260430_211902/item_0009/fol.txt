@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: SegmentSpeed(john, segment1, n_60)
+FACT-2: SegmentTime(john, segment1, n_3)
+FACT-3: Multiply(n_60, n_3, n_180)
+FACT-4: SegmentSpeed(john, segment3, n_30)
+FACT-5: SegmentTime(john, segment3, n_0_5)
+FACT-6: Multiply(n_30, n_0_5, n_15)
+FACT-7: SegmentSpeed(john, segment4, n_80)
+FACT-8: SegmentTime(john, segment4, n_3_5)
+FACT-9: Multiply(n_80, n_3_5, n_280)
+FACT-10: SegmentTime(john, segment2, n_2)
+FACT-11: SegmentDistance(john, segment2, n_0)
+FACT-12: Add4(n_180, n_0, n_15, n_280, n_475)
+
+## RULES
+RULE-1: Distance equals speed times time per segment :: ∀j ∀seg ∀s ∀t ∀d((SegmentSpeed(j, seg, s) ∧ SegmentTime(j, seg, t) ∧ Multiply(s, t, d)) → SegmentDistance(j, seg, d))
+RULE-2: Total distance is the sum of four segment distances using Add4 :: ∀j ∀a1 ∀a2 ∀a3 ∀a4 ∀t((SegmentDistance(j, segment1, a1) ∧ SegmentDistance(j, segment2, a2) ∧ SegmentDistance(j, segment3, a3) ∧ SegmentDistance(j, segment4, a4) ∧ Add4(a1, a2, a3, a4, t)) → TotalDistance(j, t))
+
+## INFERENCES
+INF-1: SegmentDistance(john, segment1, n_180) from FACT-1, FACT-2, FACT-3 by RULE-1 :: Modus Ponens
+INF-2: SegmentDistance(john, segment3, n_15) from FACT-4, FACT-5, FACT-6 by RULE-1 :: Modus Ponens
+INF-3: SegmentDistance(john, segment4, n_280) from FACT-7, FACT-8, FACT-9 by RULE-1 :: Modus Ponens
+INF-4: TotalDistance(john, n_475) from INF-1, FACT-11, INF-2, INF-3, and FACT-12 by RULE-2 :: Modus Ponens

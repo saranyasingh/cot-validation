@@ -1,0 +1,12 @@
+  % From FACT-1, FACT-2 by Arithmetic Computation
+  inf_1: NOT PROVED
+  % From FACT-1, FACT-2, INF-1 by Modus Ponens
+  inf_2: PROVED
+  % From INF-2 and FACT-3 by Arithmetic Computation
+  inf_3: NOT PROVED
+  % From daily_total_hours_per_day(n_5), DaysInWeek(n_7), Multiply(n_5, n_7, n_35) by Modus Ponens
+  inf_4: PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms

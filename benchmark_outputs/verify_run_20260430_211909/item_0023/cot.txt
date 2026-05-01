@@ -1,0 +1,22 @@
+To determine how many DVDs Billy sold on Tuesday, we need to analyze his sales pattern based on the given information.
+
+**Premise 1:** Billy has 8 customers on Tuesday.
+- This establishes the total number of customers who bought DVDs.
+
+**Premise 2:** His first 3 customers buy one DVD each.
+- This indicates that these 3 customers accounted for 3 DVDs sold so far.
+
+**Premise 3:** His next 2 customers buy 2 DVDs each.
+- These 2 customers account for an additional 4 DVDs (2 DVDs/customer * 2 customers = 4 DVDs).
+
+**Premise 4:** His last 3 customers do not buy any DVDs.
+- This means there were no DVDs sold to these customers.
+
+Now, let's sum up all the DVDs sold according to Premises 2, 3, and 4:
+
+- DVDs sold to the first 3 customers: 3 DVDs
+- Additional DVDs sold to the next 2 customers: 4 DVDs
+
+Total DVDs sold = 3 DVDs + 4 DVDs = 7 DVDs
+
+Therefore, the total number of DVDs Billy sold on Tuesday is **7**.

@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, walking_speed(dana, v_w)).
+fof(fact_2, axiom, running_speed(dana, four_times_v_w)).
+fof(fact_3, axiom, skipping_speed(dana, half_of_running)).
+fof(fact_4, axiom, skipping_speed_actual(dana, n_3)).
+fof(fact_5, axiom, time_running(dana, n_2)).
+fof(fact_6, axiom, distance_running(dana, n_12)).
+fof(fact_7, axiom, time_walking(dana, n_4)).
+fof(fact_8, axiom, distance_walking(dana, n_6)).
+fof(fact_9, axiom, add(n_12, n_6, n_18)).
+fof(fact_10, axiom, multiply(v_w, n_4, n_6)).
+fof(fact_11, axiom, multiply(four_times_v_w, n_2, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [R] : ! [T] : ! [D] : ((running_speed(X, R) & time_running(X, T) & multiply(R, T, D)) => distance_running(X, D))).
+fof(rule_2, axiom, ! [X] : ! [V] : ! [T] : ! [D] : ((walking_speed(X, V) & time_walking(X, T) & multiply(V, T, D)) => distance_walking(X, D))).
+fof(rule_3, axiom, ! [X] : ! [D1] : ! [D2] : ! [D3] : ((distance_running(X, D1) & distance_walking(X, D2) & add(D1, D2, D3)) => total_distance(X, D3))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-5, FACT-11, RULE-1 by Modus Ponens
+fof(inf_1, axiom, distance_running(dana, n_12)).
+
+% From FACT-1, FACT-7, FACT-10 by Modus Ponens
+fof(inf_2, axiom, distance_walking(dana, n_6)).
+
+% From INF-1, INF-2, FACT-9 by Modus Ponens
+fof(inf_3, axiom, total_distance(dana, n_18)).
+
+% From INF-3 by direct fact-based conclusion
+fof(inf_4, axiom, total_distance(dana, n_18)).

@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, bought(mishka, shorts, n_3)).
+fof(fact_2, axiom, price_per_pair(shorts, n_16_50)).
+fof(fact_3, axiom, shorts_total(n_49_50)).
+fof(fact_4, axiom, bought(mishka, pants, n_3)).
+fof(fact_5, axiom, price_per_pair(pants, n_22_50)).
+fof(fact_6, axiom, pants_total(n_67_50)).
+fof(fact_7, axiom, bought(mishka, shoes, n_3)).
+fof(fact_8, axiom, price_per_pair(shoes, n_42)).
+fof(fact_9, axiom, shoes_total(n_126)).
+fof(fact_10, axiom, sum3(n_49_50, n_67_50, n_117_00)).
+fof(fact_11, axiom, sum3(n_117_00, n_126, n_243_00)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C,D,E] : ((shorts_total(A) & pants_total(B) & shoes_total(C) & sum3(A,B,D) & sum3(D,C,E)) => total_spending(E))).
+fof(rule_2, axiom, ! [A,B,C] : (sum3(A,B,C) => arithmetic_sum(A,B,C))).
+
+% --- INFERENCES ---
+% From fact_10, rule_2 by Sum3-Compute
+fof(inf_1, axiom, sum3(n_49_50, n_67_50, n_117_00)).
+% From fact_11, rule_2 by Sum3-Compute
+fof(inf_2, axiom, sum3(n_117_00, n_126, n_243_00)).
+% From fact_3, fact_6, fact_9, inf_1, inf_2 by RULE-1
+fof(inf_3, axiom, total_spending(n_243_00)).

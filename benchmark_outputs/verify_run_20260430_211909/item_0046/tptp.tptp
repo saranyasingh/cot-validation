@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, articles_written_on(meredith, monday, n_5)).
+fof(fact_2, axiom, hours_per_article(meredith, n_4)).
+fof(fact_3, axiom, time_on_day(meredith, monday, n_20)).
+fof(fact_4, axiom, articles_written_on(meredith, tuesday, n_7)).
+fof(fact_5, axiom, articles_written_on(meredith, wednesday, n_14)).
+fof(fact_6, axiom, time_on_day(meredith, tuesday, n_28)).
+fof(fact_7, axiom, time_on_day(meredith, wednesday, n_56)).
+fof(fact_8, axiom, product(n_5, n_4, n_20)).
+fof(fact_9, axiom, product(n_7, n_4, n_28)).
+fof(fact_10, axiom, product(n_14, n_4, n_56)).
+fof(fact_11, axiom, sum3(n_20, n_28, n_56, n_104)).
+fof(fact_12, axiom, total_time(meredith, n_104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,D,A,H,T] : ((articles_written_on(X,D,A) & hours_per_article(X,H) & product(A,H,T)) => time_on_day(X,D,T))).
+fof(rule_2, axiom, ! [X,P,Q,R,S] : ((time_on_day(X, monday, P) & time_on_day(X, tuesday, Q) & time_on_day(X, wednesday, R) & sum3(P,Q,R,S)) => total_time(X, S))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-8 via RULE-1
+fof(inf_1, axiom, time_on_day(meredith, monday, n_20)).
+% From FACT-4, FACT-9 via RULE-1
+fof(inf_2, axiom, time_on_day(meredith, tuesday, n_28)).
+% From FACT-5, FACT-10 via RULE-1
+fof(inf_3, axiom, time_on_day(meredith, wednesday, n_56)).
+% From INF-1, INF-2, INF-3 and FACT-11 via RULE-2
+fof(inf_4, axiom, total_time(meredith, n_104)).

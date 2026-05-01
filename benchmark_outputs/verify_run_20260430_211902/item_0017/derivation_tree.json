@@ -1,0 +1,75 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Train_alpha travels eighty miles on day_one",
+      "formula": "DistOnDay(train_alpha, day_one, eighty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Train_beta travels eighty miles on day_one",
+      "formula": "DistOnDay(train_beta, day_one, eighty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Train_alpha travels one_hundred_fifty miles on day_two",
+      "formula": "DistOnDay(train_alpha, day_two, one_hundred_fifty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Train_beta travels one_hundred_fifty miles on day_two",
+      "formula": "DistOnDay(train_beta, day_two, one_hundred_fifty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Sum(eighty, one_hundred_fifty, two_hundred_thirty)",
+      "formula": "Sum(eighty, one_hundred_fifty, two_hundred_thirty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a train t travels d1 on day_one and d2 on day_two, and ds is the sum of d1 and d2, then the total distance over two days is ds",
+      "formula": "\u2200t\u2200d1\u2200d2\u2200ds((DistOnDay(t, day_one, d1) \u2227 DistOnDay(t, day_two, d2) \u2227 Sum(d1, d2, ds)) \u2192 TotalDistance(t, ds))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Train_alpha's total distance over two days is two_hundred_thirty, derived from FACT-1, FACT-3, FACT-5 using RULE-1 (Modus Ponens)",
+      "formula": "TotalDistance(train_alpha, two_hundred_thirty)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Train_beta's total distance over two days is two_hundred_thirty, derived from FACT-2, FACT-4, FACT-5 using RULE-1 (Modus Ponens)",
+      "formula": "TotalDistance(train_beta, two_hundred_thirty)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

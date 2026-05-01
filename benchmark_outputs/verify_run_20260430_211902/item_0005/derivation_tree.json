@@ -1,0 +1,73 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "FeedsPerMeal(wendi, flock_of_chickens, n_3)",
+      "formula": "Wendi feeds each chicken three cups per feeding",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "ThreeMealsPerDay(flock_of_chickens)",
+      "formula": "The flock has three separate meals per day",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "MorningFeed(flock_of_chickens, n_15)",
+      "formula": "Morning feed is 15 cups",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "AfternoonFeed(flock_of_chickens, n_25)",
+      "formula": "Afternoon feed is 25 cups",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "ChickensCount(flock_of_chickens, n_20)",
+      "formula": "There are 20 chickens",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200f\u2200m\u2200a\u2200c((ThreeMealsPerDay(f) \u2227 MorningFeed(f,m) \u2227 AfternoonFeed(f,a) \u2227 ChickensCount(f,c)) \u2192 FeedSoFar(f, Sum(m,a)))",
+      "formula": "If a flock has three meals, morning feed m, afternoon feed a, and c chickens, then the feed so far is the sum of morning and afternoon feeds",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y\u2200z(Sum(x,y,z) \u2192 z = x + y)",
+      "formula": "Sum is the arithmetic sum",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "FeedSoFar(flock_of_chickens, n_40)",
+      "formula": "from FACT-3, FACT-4, RULE-1 via instantiation with f=flock_of_chickens, m=n_15, a=n_25, c=n_20 and RULE-2 to interpret Sum(n_15, n_25, n_40) as n_40",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

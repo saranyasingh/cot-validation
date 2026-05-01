@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Seattle has 20 sheep (given in the problem)
+FACT-2: SUPPORTED — Charleston has 4 times as many sheep as Seattle (stated)
+FACT-3: SUPPORTED — Toulouse has twice as many sheep as Charleston (stated)
+RULE-1: PLAUSIBLE — It encodes the multiplicative relationship: if y has m times as many as x, and p = n*m, then y has p sheep

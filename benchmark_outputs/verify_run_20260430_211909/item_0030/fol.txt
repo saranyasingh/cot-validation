@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: HeelCost(h1, n_33)
+FACT-2: HeelCost(h2, n_66)
+FACT-3: Sum(n_33, n_66, n_99)
+FACT-4: SubtractEq(b_price, n_99, n_5)
+FACT-5: Sum(n_99, n_5, n_104)
+
+## RULES
+RULE-1: ∀x∀a∀d∀s((SubtractEq(x, a, d) ∧ Sum(a, d, s)) → Equals(x, s))
+
+## INFERENCES
+INF-1: Equals(b_price, n_104) :: from FACT-4, FACT-5 by RULE-1

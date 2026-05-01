@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: Suzy's iPhone is 1 year old :: IPhoneAge(suzy, 1)
+
+## RULES
+RULE-1: If Suzy's iPhone is 1 year old, then Ben's iPhone is 2 years old :: ∀a(IPhoneAge(suzy, 1) → IPhoneAge(ben, 2))
+RULE-2: If Ben's iPhone is 2 years old, then Brandon's iPhone is 8 years old :: ∀a(IPhoneAge(ben, 2) → IPhoneAge(brandon, 8))
+
+## INFERENCES
+INF-1: Ben's iPhone age is 2, from FACT-1 and RULE-1 by Modus Ponens :: IPhoneAge(ben, 2)
+INF-2: Brandon's iPhone age is 8, from INF-1 and RULE-2 by Modus Ponens :: IPhoneAge(brandon, 8)

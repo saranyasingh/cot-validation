@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, paid(kyle, n_19_50)).
+fof(fact_2, axiom, discount_percent(kyle, n_25)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, D] : ((paid(X,Y) & discount_percent(X,D)) => discount_relation(X,Y,D))).
+fof(rule_2, axiom, ! [X, Y, D] : ((discount_relation(X,Y,D)) => Y = original_price(X) * (1 - D/100))).
+fof(rule_3, axiom, ! [X, Y, D] : (((Y = original_price(X) * (1 - D/100)) & (D = 25)) => original_price(X) = Y / (1 - D/100))).
+fof(rule_4, axiom, ! [X, Y] : ((Y = original_price(X) * 0.75) => original_price(X) = Y / 0.75)).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, discount_relation(kyle, n_19_50, n_25)).
+% From inf_1, rule_2 by Modus Ponens
+fof(inf_2, axiom, 19_50 = original_price(kyle) * 0.75).
+% From inf_2, rule_3 with d = 25
+fof(inf_3, axiom, original_price(kyle) = 19_50 / 0.75).
+% From inf_3, rule_4 via ArithmeticComputation
+fof(inf_4, axiom, original_price_value(kyle, n_26)).
+% Therefore the original price of the book was 26 :: OriginalPriceValue(kyle, n_26)
+fof(inf_5, axiom, original_price_value(kyle, n_26)).

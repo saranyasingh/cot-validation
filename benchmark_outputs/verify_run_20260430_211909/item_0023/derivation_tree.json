@@ -1,0 +1,73 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "TuesdayCustomers(billy, tuesday, n_8)",
+      "formula": "There are 8 customers on Tuesday",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated: there are 8 Tuesday customers.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "FirstThreeDVDs(billy, tuesday, n_3)",
+      "formula": "The first three customers buy 3 DVDs",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly corresponds to the first three customers buying 1 each, totaling 3.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "NextTwoDVDs(billy, tuesday, n_4)",
+      "formula": "The next two customers buy 4 DVDs",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly corresponds to the next two customers buying 2 each, totaling 4.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "LastThreeDVDs(billy, tuesday, n_0)",
+      "formula": "The last three customers buy 0 DVDs",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly corresponds to the last three customers buying 0.",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Add3(n_3, n_4, n_7)",
+      "formula": "3 + 4 = 7",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "3 + 4 = 7 matches Add3(n_3, n_4, n_7).",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200b\u2200c\u2200d\u2200e((FirstThreeDVDs(a,b,c) \u2227 NextTwoDVDs(a,b,d) \u2227 Add3(c,d,e)) \u2192 TotalDVDs(a,b,e))",
+      "formula": "If the DVDs from the first three and from the next two sum to e, then the total DVDs sold to that person on that day is e",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule asserts TotalDVDs = FirstThreeDVDs + NextTwoDVDs without accounting for LastThreeDVDs (0 in this problem but not guaranteed generally).",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalDVDs(billy, tuesday, n_7)",
+      "formula": "From FACT-2, FACT-3, FACT-5 and RULE-1 by Modus Ponens after Universal Instantiation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule asserts TotalDVDs = FirstThreeDVDs + NextTwoDVDs without accounting for LastThreeDVDs (0 in this problem but not guaranteed generally)."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,22 @@
+Explanation:
+
+To determine the total number of unoccupied units in the building, we need to follow these steps:
+
+1. Calculate the total number of units in the entire building.
+2. Determine how many units are occupied based on the given occupancy rate.
+3. Subtract the number of occupied units from the total number of units to find the number of unoccupied units.
+
+Step 1: Calculate the total number of units in the entire building.
+- There are 15 floors in the building.
+- Each floor has 8 units.
+Therefore, the total number of units = 15 floors * 8 units/floor = 120 units.
+
+Step 2: Determine how many units are occupied.
+- 3/4 of the building is occupied.
+Therefore, the number of occupied units = (3/4) * 120 units = 90 units.
+
+Step 3: Subtract the number of occupied units from the total number of units to find the number of unoccupied units.
+Therefore, the number of unoccupied units = Total number of units - Number of occupied units = 120 units - 90 units = 30 units.
+
+Conclusion:
+The total number of unoccupied units in the building is 30. The answer is: 30.

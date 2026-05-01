@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: The total length of wire is four feet :: TotalLength(tracy, wire, four_feet)
+FACT-2: Each segment is six inches long :: SegmentLength(six_inches)
+FACT-3: Four feet converts to forty_eight_inches :: FeetToInches(four_feet, forty_eight_inches)
+
+## RULES
+RULE-1: If a division of an inches-total by inches-per-segment yields a number, then that number is the number of segments :: ∀i∀s∀n(Division(i, s, n) → NumberOfSegments(n))
+RULE-2: If a number of segments is n, then the answer is n :: ∀n(NumberOfSegments(n) → AnswerIs(n))
+
+## INFERENCES
+INF-1: Division(forty_eight_inches, six_inches, eight_segments) :: from FACT-2 and FACT-3 by Arithmetic Computation
+INF-2: NumberOfSegments(eight_segments) :: from INF-1 by RULE-1
+INF-3: AnswerIs(eight_segments) :: from INF-2 by RULE-2

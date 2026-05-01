@@ -1,0 +1,52 @@
+EXPLANATION
+
+1. John starts with 13 Lego sets.
+2. Each Lego set is sold for $15.
+   - Total revenue from selling Lego sets = \( 13 \times 15 = \$195 \)
+3. John uses this total revenue ($195) to buy 8 video games at $20 each.
+4. Total cost of buying 8 video games = \( 8 \times 20 = \$160 \)
+5. After purchasing the video games, John has $5 left.
+
+Now let's calculate how much money John spent on the video games:
+
+\[ \text{Money spent} = \text{Total revenue} - \text{Remaining money} \]
+\[ \text{Money spent} = 195 - 5 = \$190 \]
+
+This means John used all his revenue from selling Lego sets to purchase the video games, leaving him with $5 as remaining money. Since he only had $190 available after buying the video games, we can deduce that before buying the video games, he must have had more than $190 but less than or equal to $205 (since he could not spend exactly $190).
+
+Since he started with 13 Lego sets, subtracting the amount spent on video games gives us the remaining Lego sets:
+
+\[ \text{Remaining Lego sets} = 13 - (\text{Money spent on video games}) \]
+\[ \text{Remaining Lego sets} = 13 - 160 \] (which would imply negative value)
+
+Clearly, it doesn't make sense to subtract more than the initial inventory since we're dealing with physical items. Therefore, the calculation above shows an inconsistency due to misinterpretation of spending limits.
+
+Revisiting our steps, the correct interpretation should consider the actual financial transactions accurately:
+
+- Initial sale revenue: $195
+- Cost of 8 video games: $160
+- Remaining money: $5
+
+Given these figures, if we correctly account for the expenditure on video games within the constraints provided:
+
+\[ \text{Initial Lego sets} = 13 \]
+\[ \text{Cost of video games} = 160 \]
+\[ \text{Remaining money} = 5 \]
+
+To find the number of Lego sets left, we need to adjust for the fact that the total revenue was $195 and he ended up with $5 after expenditures:
+
+\[ \text{Legos bought} = 8 \]
+\[ \text{Revenue per Lego set} = 15 \]
+\[ \text{Lego sets sold} = 13 \]
+\[ \text{Total revenue} = 13 \times 15 = 195 \]
+
+After accounting for expenses on video games:
+
+\[ \text{Spent on video games} = 160 \]
+\[ \text{Remaining money} = 5 \]
+
+So, initially having 13 Lego sets, we now have:
+
+\[ \text{Remaining Lego sets} = 13 - 8 = 5 \]
+
+Therefore, John has 5 Lego sets left after selling them and using some of the proceeds to buy video games.

@@ -1,0 +1,51 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "120 GB downloaded before restart, from CompletedBeforeRestart and TotalGB by ArithmeticComputation",
+      "formula": "AlreadyDownloadedBeforeRestart(carla, n_120)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalRemainingAfterRestartGB(carla, n_200) from RemainingAfterRestartPart1 and AlreadyDownloadedBeforeRestart by ArithmeticAddition",
+      "formula": "TotalRemainingAfterRestartGB(carla, n_200)",
+      "premises": [],
+      "inference_rule": "ArithmeticAddition",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "TimeToFinishRemainingMinutes(carla, n_100) from INF-2 and SpeedPerMinute by ArithmeticComputation",
+      "formula": "TimeToFinishRemainingMinutes(carla, n_100)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalTimeMinutes(carla, n_120) from INF-3 and RestartDowntime by ArithmeticAddition",
+      "formula": "TotalTimeMinutes(carla, n_120)",
+      "premises": [
+        "INF-3"
+      ],
+      "inference_rule": "ArithmeticAddition",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

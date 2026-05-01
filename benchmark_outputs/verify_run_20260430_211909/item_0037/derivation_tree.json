@@ -1,0 +1,117 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Terry eats 2 yogurts per day",
+      "formula": "YogurtsPerDay(terry, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 30 days",
+      "formula": "Days(n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The set contains 4 yogurts per set",
+      "formula": "SetSize(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The price per set is 5 dollars",
+      "formula": "PricePerSet(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "2 \u00d7 30 = 60",
+      "formula": "Multiply(n_2, n_30, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "60 \u00f7 4 = 15",
+      "formula": "Divide(n_60, n_4, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "15 \u00d7 5 = 75",
+      "formula": "Multiply(n_15, n_5, n_75)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person a eats x yogurts per day and there are d days such that Multiply(x, d, t), then TotalYogurts(a, t)",
+      "formula": "\u2200a\u2200x\u2200d\u2200t((YogurtsPerDay(a, x) \u2227 Days(d) \u2227 Multiply(x, d, t)) \u2192 TotalYogurts(a, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalYogurts(a, t) and SetSize(s) and Divide(t, s, u), then TotalSets(a, u)",
+      "formula": "\u2200a\u2200t\u2200s\u2200u((TotalYogurts(a, t) \u2227 SetSize(s) \u2227 Divide(t, s, u)) \u2192 TotalSets(a, u))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If TotalSets(a, u) and PricePerSet(p) and Multiply(u, p, c), then TotalCost(a, c)",
+      "formula": "\u2200a\u2200u\u2200p\u2200c((TotalSets(a, u) \u2227 PricePerSet(p) \u2227 Multiply(u, p, c)) \u2192 TotalCost(a, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Total yogurts Terry consumes over 30 days",
+      "formula": "TotalYogurts(terry, n_60) from FACT-1, FACT-2, FACT-5 and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Total sets of 4 yogurts",
+      "formula": "TotalSets(terry, n_15) from INF-1, FACT-3, FACT-6 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total cost",
+      "formula": "TotalCost(terry, n_75) from INF-2, FACT-4, FACT-7 and RULE-3 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

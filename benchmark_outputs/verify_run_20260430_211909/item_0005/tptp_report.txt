@@ -1,0 +1,9 @@
+  % From FACT-1, FACT-2 by ArithmeticComputation
+  inf_1: PROVED
+  % From INF-1, FACT-3 by ArithmeticComputation
+  inf_2: PROVED
+  % From INF-2, RULE-2 by Modus Ponens
+  inf_3: NOT PROVED
+
+Prover errors:
+inf_3: NOT PROVED — inference does not follow from axioms

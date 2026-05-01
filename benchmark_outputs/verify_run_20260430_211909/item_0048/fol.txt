@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Spends(john, blue_ties, n_200) :: Spends(john, blue_ties, n_200)
+FACT-2: PricePerItem(blue_ties, n_40) :: PricePerItem(blue_ties, n_40)
+
+## RULES
+RULE-1: ∀p∀i∀T∀P∀Q((Spends(p,i,T) ∧ PricePerItem(i,P) ∧ EqualDivision(T,P,Q)) → QuantityBought(p,i,Q)) :: ∀p∀i∀T∀P∀Q((Spends(p,i,T) ∧ PricePerItem(i,P) ∧ EqualDivision(T,P,Q)) → QuantityBought(p,i,Q))
+RULE-2: ∀p∀q((QuantityBought(p, blue_ties, q)) → ∃r(Double(q,r) ∧ QuantityBought(p, red_ties, r))) :: ∀p∀q((QuantityBought(p, blue_ties, q)) → ∃r(Double(q,r) ∧ QuantityBought(p, red_ties, r)))
+RULE-3: ∀PBlue∀PRed((Markup50Percent(PBlue, PRed) ∧ PricePerItem(blue_ties, PBlue)) → PricePerItem(red_ties, PRed)) :: ∀PBlue∀PRed((Markup50Percent(PBlue, PRed) ∧ PricePerItem(blue_ties, PBlue)) → PricePerItem(red_ties, PRed))
+RULE-4: ∀p∀i∀q∀P∀Total((QuantityBought(p,i,q) ∧ PricePerItem(i,P) ∧ Multiply(q,P,Total)) → TotalCost(p,i,Total)) :: ∀p∀i∀q∀P∀Total((QuantityBought(p,i,q) ∧ PricePerItem(i,P) ∧ Multiply(q,P,Total)) → TotalCost(p,i,Total))
+
+## INFERENCES
+INF-1: EqualDivision(n_200, n_40, n_5) from FACTS by Arithmetic Computation :: EqualDivision(n_200, n_40, n_5)
+INF-2: QuantityBought(john, blue_ties, n_5) from FACT-1, FACT-2, INF-1, and RULE-1 :: QuantityBought(john, blue_ties, n_5)
+INF-3: Double(n_5, n_10) from INF-2 by Arithmetic Computation :: Double(n_5, n_10)
+INF-4: QuantityBought(john, red_ties, n_10) from INF-2, INF-3, and RULE-2 :: QuantityBought(john, red_ties, n_10)
+INF-5: PricePerItem(red_ties, n_60) from FACT-2 by Arithmetic Computation (50% markup) :: PricePerItem(red_ties, n_60)
+INF-6: TotalCost(john, red_ties, n_600) from INF-4, INF-5, and RULE-4 :: TotalCost(john, red_ties, n_600)
+INF-7: Sum(n_200, n_600, n_800) by Arithmetic Computation :: Sum(n_200, n_600, n_800)
+INF-8: TotalSpent(john, n_800) from INF-7 by Arithmetic Computation :: TotalSpent(john, n_800)

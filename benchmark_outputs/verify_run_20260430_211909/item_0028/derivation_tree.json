@@ -1,0 +1,76 @@
+{
+  "nodes": {
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200x\u2200y\u2200z((TotalServings(x) \u2227 ServingsPerCarton(y) \u2227 EqualDivision(x,y,z)) \u2192 Cartons(z))",
+      "formula": "If a total number of servings is equally divided into a number of servings per carton with quotient z, then the number of cartons is z",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200z\u2200p\u2200q((Cartons(z) \u2227 PricePerCarton(p) \u2227 Multiply(z, p, q)) \u2192 TotalCost(q))",
+      "formula": "If the number of cartons z times the price per carton p equals q, then the total cost is q",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "EqualDivision(n_30, n_15, n_2)",
+      "formula": "from FACT-3, FACT-4 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Cartons(n_2)",
+      "formula": "from FACT-3, FACT-4, INF-1, and RULE-1 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Multiply(n_2, n_4, n_8)",
+      "formula": "from INF-2 and FACT-5 by Arithmetic Computation",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "TotalCost(n_8)",
+      "formula": "from INF-3 and RULE-2 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Gretchen has a total of 110 coins",
+      "formula": "TotalCoins(gretchen, n_110)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 30 more gold coins than silver coins",
+      "formula": "GoldIsSilverPlus(gretchen, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has a total number of coins and the number of gold coins equals the number of silver coins plus a difference, then there exist silver and gold coin counts that satisfy the two equations",
+      "formula": "\u2200p\u2200T\u2200d((TotalCoins(p, T) \u2227 GoldIsSilverPlus(p, d)) \u2192 \u2203S\u2203G(SilverCoins(p, S) \u2227 GoldCoins(p, G) \u2227 G = S + d \u2227 G + S = T))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there exist SilverCoins(p, S) and GoldCoins(p, G) with G = S + d \u2227 G + S = T, then S = 40 \u2227 G = 70 for the specific numbers T = 110 and d = 30",
+      "formula": "\u2200p\u2200S\u2200G((SilverCoins(p, S) \u2227 GoldCoins(p, G) \u2227 G = S + n_30 \u2227 G + S = n_110) \u2192 (S = n_40 \u2227 G = n_70))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds a concrete arithmetic result (S=40, G=70) into the rule instead of a general algebraic relation",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1, FACT-2, and RULE-1 by Modus Ponens with Universal Instantiation",
+      "formula": "\u2203S\u2203G(SilverCoins(gretchen, S) \u2227 GoldCoins(gretchen, G) \u2227 G = S + n_30 \u2227 G + S = n_110)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens with Universal Instantiation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-2 by Existential Instantiation and Modus Ponens",
+      "formula": "SilverCoins(gretchen, n_40) \u2227 GoldCoins(gretchen, n_70)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Existential Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 by Conjunction Elimination",
+      "formula": "GoldCoins(gretchen, n_70)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Conjunction Elimination",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "embeds a concrete arithmetic result (S=40, G=70) into the rule instead of a general algebraic relation"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

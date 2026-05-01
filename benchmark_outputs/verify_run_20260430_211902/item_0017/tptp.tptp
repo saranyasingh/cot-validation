@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, dist_on_day(train_alpha, day_one, eighty)).
+
+fof(fact_2, axiom, dist_on_day(train_beta, day_one, eighty)).
+
+fof(fact_3, axiom, dist_on_day(train_alpha, day_two, one_hundred_fifty)).
+
+fof(fact_4, axiom, dist_on_day(train_beta, day_two, one_hundred_fifty)).
+
+fof(fact_5, axiom, sum(eighty, one_hundred_fifty, two_hundred_thirty)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [T, D1, D2, DS] : ((dist_on_day(T, day_one, D1) & dist_on_day(T, day_two, D2) & sum(D1, D2, DS)) => total_distance(T, DS))).
+
+% --- INFERENCES ---
+% From fact_1, fact_3, fact_5 by Modus Ponens
+fof(inf_1, axiom, total_distance(train_alpha, two_hundred_thirty)).
+
+% From fact_2, fact_4, fact_5 by Modus Ponens
+fof(inf_2, axiom, total_distance(train_beta, two_hundred_thirty)).

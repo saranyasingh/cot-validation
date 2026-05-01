@@ -1,0 +1,29 @@
+EXPLANATION
+
+1. First, we need to calculate how much of the 200 GB file Carla has already downloaded before the restart.
+   - Since 40% of the way through the download was forced to restart, this means that 60% of the file was completed before the restart.
+
+2. To find out what 60% of 200 GB represents, we multiply 200 GB by 0.60 (since 60% = 0.60).
+   
+3. \( 200 \text{ GB} \times 0.60 = 120 \text{ GB} \)
+
+4. This means that Carla had downloaded 120 GB before the restart.
+
+5. After the restart, Carla starts the download again at her normal speed of 2 GB per minute.
+
+6. Now we have two parts of the total file remaining to be downloaded after the restart:
+   - The first part: 80 GB (the remaining 20%)
+   - The second part: 120 GB (the 120 GB already downloaded)
+
+7. We add these two amounts together to get the total amount of data left to download after the restart:
+   \( 80 \text{ GB} + 120 \text{ GB} = 200 \text{ GB} \)
+
+8. Next, we need to determine the time it takes to download the remaining 200 GB of the file at the normal speed of 2 GB per minute.
+
+9. To find this, we divide the remaining data by the download rate:
+   \( \frac{200 \text{ GB}}{2 \text{ GB/min}} = 100 \text{ minutes} \)
+
+10. Adding the time taken during the restart (20 minutes) to the time needed to complete the rest of the download gives us the total time required:
+    \( 20 \text{ minutes} + 100 \text{ minutes} = 120 \text{ minutes} \)
+
+THE ANSWER IS: 120

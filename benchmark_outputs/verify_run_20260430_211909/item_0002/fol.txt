@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: The amount of blue bolts is 2 :: BlueBoltAmount(n_2)
+FACT-2: The white bolts amount is half of the blue bolts amount :: WhiteBoltIsHalfBlue(n_2, n_1)
+
+## RULES
+RULE-1: If the amount of blue bolts is b and the white bolts are half of the blue bolts, and the sum of b and w is t, then the total bolts equals t :: ∀b∀w∀t((BlueBoltAmount(b) ∧ WhiteBoltIsHalfBlue(b,w) ∧ Sum(b,w,t)) → TotalBolt(t))
+
+## INFERENCES
+INF-1: The sum of 2 and 1 is 3, from FACT-1 and FACT-2 by Arithmetic Computation :: Sum(n_2, n_1, n_3)
+INF-2: The total bolts are 3, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalBolt(n_3)

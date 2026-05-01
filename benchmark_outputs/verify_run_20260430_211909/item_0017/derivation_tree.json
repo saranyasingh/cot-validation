@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Train A travels 80 miles west on day_1",
+      "formula": "Travel(train_a, day_1, west, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Train B travels 80 miles west on day_1",
+      "formula": "Travel(train_b, day_1, west, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Train A travels 150 miles north on day_2",
+      "formula": "Travel(train_a, day_2, north, n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Train B travels 150 miles north on day_2",
+      "formula": "Travel(train_b, day_2, north, n_150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "80 plus 150 equals 230",
+      "formula": "Add(n_80, n_150, n_230)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a train travels on day_1 west distance d1 and on day_2 north distance d2 and Add(d1, d2, d_tot), then TotalDistance(t, d_tot)",
+      "formula": "\u2200t\u2200d1\u2200d2\u2200d_tot ((Travel(t, day_1, west, d1) \u2227 Travel(t, day_2, north, d2) \u2227 Add(d1, d2, d_tot)) \u2192 TotalDistance(t, d_tot))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Train A total distance is 230 miles",
+      "formula": "TotalDistance(train_a, n_230)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Train B total distance is 230 miles",
+      "formula": "TotalDistance(train_b, n_230)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Both trains total distance 230 miles",
+      "formula": "TotalDistance(train_a, n_230) \u2227 TotalDistance(train_b, n_230)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

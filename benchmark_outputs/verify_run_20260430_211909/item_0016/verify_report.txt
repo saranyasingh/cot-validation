@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — 8000 × (1 + 0.012) = 8096, not 8169
+FACT-7: UNSUPPORTED — not entailed by the problem and relies on an incorrect premise from FACT-6
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — would yield 3, whereas the correct profit is 125

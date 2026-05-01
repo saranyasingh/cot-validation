@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, guess(friend_1, jelly_beans, n_80)).
+fof(fact_2, axiom, guess(friend_2, jelly_beans, n_60)).
+fof(fact_3, axiom, guess(friend_3, jelly_beans, n_100)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [A,B,C] : ((guess(friend_1, jelly_beans, A) & guess(friend_2, jelly_beans, B) & guess(friend_3, jelly_beans, C)) => sum_three(A, B, C, n_240))).
+fof(rule_2, axiom, ! [A,B,C,S] : ((sum_three(A,B,C,S)) => (S = n_240 => average_three(A,B,C,n_80)))).
+fof(rule_3, axiom, ! [A,B,C] : ((average_three(A,B,C, n_80)) => final_answer(n_80))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3 via RULE-1
+fof(inf_1, axiom, sum_three(n_80, n_60, n_100, n_240)).
+% From INF-1 via RULE-2 by Modus Ponens
+fof(inf_2, axiom, average_three(n_80, n_60, n_100, n_80)).
+% From INF-2 via RULE-3 by Modus Ponens
+fof(inf_3, axiom, final_answer(n_80)).

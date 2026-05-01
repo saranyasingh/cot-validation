@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: NightlyServing(cynthia, n_1)
+FACT-2: NightsInMonth(n_30)
+FACT-3: TotalServings(n_30)
+FACT-4: ServingsPerCarton(n_15)
+FACT-5: PricePerCarton(n_4)
+
+## RULES
+RULE-1: ∀x∀y∀z((TotalServings(x) ∧ ServingsPerCarton(y) ∧ EqualDivision(x,y,z)) → Cartons(z)) :: If a total number of servings is equally divided into a number of servings per carton with quotient z, then the number of cartons is z
+RULE-2: ∀z∀p∀q((Cartons(z) ∧ PricePerCarton(p) ∧ Multiply(z, p, q)) → TotalCost(q)) :: If the number of cartons z times the price per carton p equals q, then the total cost is q
+
+## INFERENCES
+INF-1: EqualDivision(n_30, n_15, n_2) :: from FACT-3, FACT-4 by Arithmetic Computation
+INF-2: Cartons(n_2) :: from FACT-3, FACT-4, INF-1, and RULE-1 by Modus Ponens
+INF-3: Multiply(n_2, n_4, n_8) :: from INF-2 and FACT-5 by Arithmetic Computation
+INF-4: TotalCost(n_8) :: from INF-3 and RULE-2 by Modus Ponens

@@ -1,0 +1,21 @@
+Explanation:
+1. First, let's determine how much time Carla spends downloading before the restart.
+   - Normal speed is 2 GB per minute.
+   - Total size of the file is 200 GB.
+   - Time at normal speed = Total size / Speed = 200 GB / 2 GB/minute = 100 minutes.
+
+2. Now we know that 40% of the way through the download was done normally. To find out what this means in terms of the total time,
+   - 40% of 100 minutes = 0.4 * 100 minutes = 40 minutes.
+   
+3. After the restart due to the system update, Carla starts over again from the beginning.
+   - This means another 40 minutes (the same as the initial 40% of the download).
+   - Total time spent on the second part of the download = 40 minutes + 20 minutes = 60 minutes.
+
+4. Adding up all the times together gives us the total download time.
+   - Initial time at normal speed: 100 minutes
+   - Restart time: 20 minutes
+   - Second part of download: 60 minutes
+   
+   Total time = 100 minutes + 20 minutes + 60 minutes = 180 minutes.
+
+Therefore, the total time it took Carla to download the file is 180 minutes.

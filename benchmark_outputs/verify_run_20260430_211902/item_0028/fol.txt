@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: 60 days :: Days(n_60)
+FACT-2: 1 per day :: ServingsPerDay(n_1)
+FACT-3: 15 servings per carton :: ServingsPerCarton(n_15)
+FACT-4: $4 per carton :: CostPerCarton(n_4)
+
+## RULES
+RULE-1: Total servings equal product of days and daily servings :: ∀d∀s∀t((Days(d) ∧ ServingsPerDay(s) ∧ Multiply(d,s,t)) → TotalServings(t))
+RULE-2: Cartons needed from total servings and carton size :: ∀ts∀pc∀cn((TotalServings(ts) ∧ ServingsPerCarton(pc) ∧ Divide(ts,pc,cn)) → Cartons(ts,pc,cn))
+RULE-3: Total cost from cartons and cost per carton :: ∀ts∀pc∀cn((Cartons(ts,pc,cn) ∧ CostPerCarton(n_4) ∧ Multiply(cn,n_4,total)) → TotalCost(total))
+RULE-4: From total cost to final answer :: ∀t((TotalCost(t)) → FinalAnswer(t))
+
+## INFERENCES
+INF-1: 60 × 1 = 60, from FACT-1 and FACT-2 by Arithmetic Computation :: Multiply(n_60, n_1, n_60)
+INF-2: 60 ÷ 15 = 4, from INF-1 and FACT-3 by Arithmetic Computation :: Divide(n_60, n_15, n_4)
+INF-3: 4 × 4 = 16, from INF-2 and FACT-4 by Arithmetic Computation :: Multiply(n_4, n_4, n_16)
+INF-4: FinalAnswer(16), from INF-3 by RULE-4

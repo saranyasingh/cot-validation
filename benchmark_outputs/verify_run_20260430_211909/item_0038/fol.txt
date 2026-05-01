@@ -1,0 +1,22 @@
+## FACTS
+FACT-1: LegoSetsSold(john, n_13)
+FACT-2: PriceLegoSet(n_15)
+FACT-3: VideoGamesBought(john, n_8)
+FACT-4: PriceVideoGame(n_20)
+FACT-5: RemainingMoney(john, n_5)
+
+## RULES
+RULE-1: EarningsFromSales(j, e) from LegoSetsSold(j, a) and PriceLegoSet(p) when a = n_13 and p = n_15 :: ∀j((LegoSetsSold(j, n_13) ∧ PriceLegoSet(n_15)) → EarningsFromSales(j, n_195))
+RULE-2: CostOfVideoGames(j, c) from VideoGamesBought(j, b) and PriceVideoGame(q) when b = n_8 and q = n_20 :: ∀j((VideoGamesBought(j, n_8) ∧ PriceVideoGame(n_20)) → CostOfVideoGames(j, n_160))
+RULE-3: RemainingMoneyAfterPurchases(j, r) from EarningsFromSales(j, e) and CostOfVideoGames(j, c) when e = n_195 and c = n_160 :: ∀j((EarningsFromSales(j, n_195) ∧ CostOfVideoGames(j, n_160)) → RemainingMoneyAfterPurchases(j, n_35))
+RULE-4: Inconsistency(j) from RemainingMoneyAfterPurchases(j, r) and RemainingMoney(j, m) when r = n_35 and m = n_5 :: ∀j((RemainingMoneyAfterPurchases(j, n_35) ∧ RemainingMoney(j, n_5)) → Inconsistency(j))
+RULE-5: Inconsistency(j) → FinalMoneyLeftZero(j) :: ∀j(Inconsistency(j) → FinalMoneyLeftZero(j))
+RULE-6: FinalMoneyLeftZero(j) → FinalMoneyLeft(j, n_0) :: ∀j(FinalMoneyLeftZero(j) → FinalMoneyLeft(j, n_0))
+
+## INFERENCES
+INF-1: EarningsFromSales(john, n_195) :: from FACT-1 and RULE-1
+INF-2: CostOfVideoGames(john, n_160) :: from FACT-3 and RULE-2
+INF-3: RemainingMoneyAfterPurchases(john, n_35) :: from INF-1 and INF-2 by RULE-3
+INF-4: Inconsistency(john) :: from INF-3 and FACT-5 by RULE-4
+INF-5: FinalMoneyLeftZero(john) :: from INF-4 by RULE-5
+INF-6: FinalMoneyLeft(john, n_0) :: from INF-5 by RULE-6

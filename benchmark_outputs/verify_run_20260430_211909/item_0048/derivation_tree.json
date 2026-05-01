@@ -1,0 +1,141 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Spends(john, blue_ties, n_200)",
+      "formula": "Spends(john, blue_ties, n_200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "PricePerItem(blue_ties, n_40)",
+      "formula": "PricePerItem(blue_ties, n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200i\u2200T\u2200P\u2200Q((Spends(p,i,T) \u2227 PricePerItem(i,P) \u2227 EqualDivision(T,P,Q)) \u2192 QuantityBought(p,i,Q))",
+      "formula": "\u2200p\u2200i\u2200T\u2200P\u2200Q((Spends(p,i,T) \u2227 PricePerItem(i,P) \u2227 EqualDivision(T,P,Q)) \u2192 QuantityBought(p,i,Q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200q((QuantityBought(p, blue_ties, q)) \u2192 \u2203r(Double(q,r) \u2227 QuantityBought(p, red_ties, r)))",
+      "formula": "\u2200p\u2200q((QuantityBought(p, blue_ties, q)) \u2192 \u2203r(Double(q,r) \u2227 QuantityBought(p, red_ties, r)))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200PBlue\u2200PRed((Markup50Percent(PBlue, PRed) \u2227 PricePerItem(blue_ties, PBlue)) \u2192 PricePerItem(red_ties, PRed))",
+      "formula": "\u2200PBlue\u2200PRed((Markup50Percent(PBlue, PRed) \u2227 PricePerItem(blue_ties, PBlue)) \u2192 PricePerItem(red_ties, PRed))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "\u2200p\u2200i\u2200q\u2200P\u2200Total((QuantityBought(p,i,q) \u2227 PricePerItem(i,P) \u2227 Multiply(q,P,Total)) \u2192 TotalCost(p,i,Total))",
+      "formula": "\u2200p\u2200i\u2200q\u2200P\u2200Total((QuantityBought(p,i,q) \u2227 PricePerItem(i,P) \u2227 Multiply(q,P,Total)) \u2192 TotalCost(p,i,Total))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "EqualDivision(n_200, n_40, n_5) from FACTS by Arithmetic Computation",
+      "formula": "EqualDivision(n_200, n_40, n_5)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "QuantityBought(john, blue_ties, n_5) from FACT-1, FACT-2, INF-1, and RULE-1",
+      "formula": "QuantityBought(john, blue_ties, n_5)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Double(n_5, n_10) from INF-2 by Arithmetic Computation",
+      "formula": "Double(n_5, n_10)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "QuantityBought(john, red_ties, n_10) from INF-2, INF-3, and RULE-2",
+      "formula": "QuantityBought(john, red_ties, n_10)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "PricePerItem(red_ties, n_60) from FACT-2 by Arithmetic Computation (50% markup)",
+      "formula": "PricePerItem(red_ties, n_60)",
+      "premises": [
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation (50% markup)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "TotalCost(john, red_ties, n_600) from INF-4, INF-5, and RULE-4",
+      "formula": "TotalCost(john, red_ties, n_600)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Sum(n_200, n_600, n_800) by Arithmetic Computation",
+      "formula": "Sum(n_200, n_600, n_800)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "TotalSpent(john, n_800) from INF-7 by Arithmetic Computation",
+      "formula": "TotalSpent(john, n_800)",
+      "premises": [
+        "INF-7"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [],
+  "error_stages": []
+}

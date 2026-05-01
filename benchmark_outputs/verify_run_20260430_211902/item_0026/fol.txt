@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: The chicken meal costs $12 :: ChickenMealCost(n_12)
+FACT-2: Five packs of milk at $3 each total $15 :: MilkTotalCost(n_15)
+FACT-3: Four apples at $1.50 each total $6 :: ApplesTotalCost(n_6)
+FACT-4: Subtotal is $33 :: Subtotal(n_33)
+FACT-5: Total payment is $50 :: TotalPayment(n_50)
+FACT-6: Cost of pizzas is $17 :: PizzasCost(n_17)
+FACT-7: Price per box is $8.50 :: BoxPrice(n_8_50)
+FACT-8: 17 divided by 8.50 is approximately 2 :: DivisionResult(n_17, n_8_50, n_2)
+
+## RULES
+RULE-1: If pizzas cost D, box price is B, and D divided by B yields N, then the number of boxes is approximately N :: ∀D∀B∀N((PizzasCost(D) ∧ BoxPrice(B) ∧ DivisionResult(D,B,N)) → NumberOfBoxesApprox(N))
+RULE-2: If the number of boxes is approximately N, then Marie ordered N boxes :: ∀N(NumberOfBoxesApprox(N) → BoxesOrdered(N))
+
+## INFERENCES
+INF-1: NumberOfBoxesApprox(n_2) from PizzasCost(n_17), BoxPrice(n_8_50), DivisionResult(n_17,n_8_50,n_2) by RULE-1 (Modus Ponens)
+INF-2: BoxesOrdered(n_2) from NumberOfBoxesApprox(n_2) by RULE-2 (Modus Ponens)

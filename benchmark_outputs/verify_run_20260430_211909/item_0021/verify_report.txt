@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The rule uses a two-argument Sum and a two-argument Total without a clear output; it does not properly encode a standard arithmetic relation (missing a resulting quantity).

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, scored_in_interval(mike, first_20_minutes, n_4)).
+fof(fact_2, axiom, scored_in_interval(mike, second_20_minutes, n_5)).
+fof(fact_3, axiom, sum_scores(n_4, n_5, n_9)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, I1, I2, S1, S2, T] : ((scored_in_interval(P, I1, S1) & scored_in_interval(P, I2, S2) & sum_scores(S1, S2, T)) => total_score(P, T))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2, FACT-3, RULE-1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_score(mike, n_9)).

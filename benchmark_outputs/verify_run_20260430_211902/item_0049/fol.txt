@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: 6 inches equals 0.5 feet :: InchesToFeet(n_6, n_0_5)
+FACT-2: 4 feet divided by 0.5 feet yields 8 pieces :: Division(n_4, n_0_5, n_8)
+FACT-3: Tracy is a person :: Person(tracy)
+
+## RULES
+RULE-1: If a person p has n pieces, then p obtained n pieces :: ∀p∀n((Person(p) ∧ Pieces(n)) → ObtainedPieces(p, n))
+RULE-2: If a division of L by P yields N, then there are N pieces :: ∀L∀P∀N((Division(L, P, N)) → Pieces(N))
+
+## INFERENCES
+INF-1: Pieces(n_8), from FACT-2 and RULE-2 by Modus Ponens :: Pieces(n_8)
+INF-2: ObtainedPieces(tracy, n_8), from FACT-3, INF-1, and RULE-1 by Modus Ponens :: ObtainedPieces(tracy, n_8)

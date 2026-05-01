@@ -1,0 +1,119 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 15 floors in the building",
+      "formula": "FloorsInBuilding(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each floor has 8 units",
+      "formula": "UnitsPerFloor(n_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The product of floors and units per floor is 120",
+      "formula": "Product(n_15, n_8, n_120)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "derived from FACT-1 and FACT-2 (15\u00d78 = 120)",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "3/4 of 120 is 90",
+      "formula": "FractionOfTotal(n_3, n_4, n_120, n_90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Subtract 120 and 90 to get 30",
+      "formula": "Subtract(n_120, n_90, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If FloorsInBuilding(f) \u2227 UnitsPerFloor(u) \u2227 Product(f,u,p) then TotalUnits(p)",
+      "formula": "\u2200f\u2200u\u2200p((FloorsInBuilding(f) \u2227 UnitsPerFloor(u) \u2227 Product(f,u,p)) \u2192 TotalUnits(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If TotalUnits(t) \u2227 FractionOfTotal(a,b,t,r) then OccupiedUnits(r)",
+      "formula": "\u2200a\u2200b\u2200t\u2200r((TotalUnits(t) \u2227 FractionOfTotal(a,b,t,r)) \u2192 OccupiedUnits(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If TotalUnits(t) \u2227 Subtract(t,o,u) then UnoccupiedUnits(u)",
+      "formula": "\u2200t\u2200o\u2200u((TotalUnits(t) \u2227 Subtract(t,o,u)) \u2192 UnoccupiedUnits(u))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "lacks explicit link that o equals the number of occupied units; would need Subtract(t, OccupiedUnits, UnoccupiedUnits) to be unambiguous",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The total number of units is 120, from FACT-1, FACT-2, FACT-3 by RULE-1",
+      "formula": "TotalUnits(n_120)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The number of occupied units is 90, from INF-1 and FACT-4 by RULE-2",
+      "formula": "OccupiedUnits(n_90)",
+      "premises": [
+        "INF-1",
+        "FACT-4"
+      ],
+      "inference_rule": "RULE-2",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The number of unoccupied units is 30, from INF-1 and FACT-5 by RULE-3",
+      "formula": "UnoccupiedUnits(n_30)",
+      "premises": [
+        "INF-1",
+        "FACT-5"
+      ],
+      "inference_rule": "RULE-3",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "lacks explicit link that o equals the number of occupied units; would need Subtract(t, OccupiedUnits, UnoccupiedUnits) to be unambiguous"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

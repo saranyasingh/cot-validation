@@ -1,0 +1,28 @@
+Explanation:
+
+1. John runs 60 miles a week.
+2. He runs 3 days a week.
+3. He runs 3 hours on the first day.
+4. On the other two days, he runs half as much time.
+
+Let's break down his running schedule:
+
+- First day: 3 hours
+- Second day: \( \frac{3}{2} = 1.5 \) hours
+- Third day: \( \frac{3}{2} = 1.5 \) hours
+
+Next, let's calculate his total running time per week:
+
+\[
+3 + 1.5 + 1.5 = 6 \text{ hours}
+\]
+
+Now, we know that he runs 60 miles in 6 hours. To find out how many miles he runs per hour, we divide the total distance by the total time:
+
+\[
+\frac{60 \text{ miles}}{6 \text{ hours}} = 10 \text{ miles/hour}
+\]
+
+Therefore, John runs at a speed of 10 miles per hour.
+
+The answer is: 10

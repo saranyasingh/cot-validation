@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — the problem implies the second stop is at 60 − 15 = 45 miles, not 15 miles
+
+RULE-1: IMPLAUSIBLE — distance between stops is not T − F; that would place the second stop at the end, which is incorrect
+
+RULE-2: IMPLAUSIBLE — Stop2AtDistance(D) with D = T − F is not generally true (the second stop is at T − 15)

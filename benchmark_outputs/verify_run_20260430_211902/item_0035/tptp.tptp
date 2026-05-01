@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, jewels(raymond, n_40)).
+fof(fact_2, axiom, half(raymond, n_20)).
+fof(fact_3, axiom, add(n_20, n_5, n_25)).
+fof(fact_4, axiom, subtract(n_25, n_2, n_23)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [H] : ! [A] : ((half(raymond, H) & add(H, n_5, A)) => jewels(aaron, A))).
+fof(rule_2, axiom, ! [A] : ! [B] : ((jewels(aaron, A) & subtract(A, n_2, B)) => jewels(siobhan, B))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, jewels(aaron, n_25)).
+
+% From inf_1, fact_4, rule_2 by Modus Ponens
+fof(inf_2, axiom, jewels(siobhan, n_23)).

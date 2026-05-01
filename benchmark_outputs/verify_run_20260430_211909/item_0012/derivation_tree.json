@@ -1,0 +1,105 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Toula bought 3 dozen donuts",
+      "formula": "BoughtDozen(toula, donuts, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Donuts price per dozen",
+      "formula": "PricePerDozen(donuts, n_68)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toula bought 2 dozen mini cupcakes",
+      "formula": "BoughtDozen(toula, mini_cupcakes, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Mini cupcakes price per dozen",
+      "formula": "PricePerDozen(mini_cupcakes, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Toula bought 6 dozen mini cheesecakes",
+      "formula": "BoughtDozen(toula, mini_cheesecakes, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Mini cheesecakes price per dozen",
+      "formula": "PricePerDozen(mini_cheesecakes, n_55)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Subtotal for donuts (3 dozen \u00d7 68)",
+      "formula": "Subtotal(toula, donuts, n_3, n_68, n_204)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Subtotal for mini cupcakes (2 dozen \u00d7 80)",
+      "formula": "Subtotal(toula, mini_cupcakes, n_2, n_80, n_160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Subtotal for mini cheesecakes (6 dozen \u00d7 55)",
+      "formula": "Subtotal(toula, mini_cheesecakes, n_6, n_55, n_330)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person has three subtotals for donuts, mini cupcakes, and mini cheesecakes, then the total cost is 794",
+      "formula": "\u2200person((Subtotal(person, donuts, n_3, n_68, n_204) \u2227 Subtotal(person, mini_cupcakes, n_2, n_80, n_160) \u2227 Subtotal(person, mini_cheesecakes, n_6, n_55, n_330)) \u2192 TotalCost(person, n_794))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "it asserts a fixed total of 794; the correct total is the sum of subtotals (204 + 160 + 330 = 694)",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Total cost 794 derived from the three subtotals and RULE-1 (Modus Ponens)",
+      "formula": "TotalCost(toula, n_794)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "it asserts a fixed total of 794; the correct total is the sum of subtotals (204 + 160 + 330 = 694)"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

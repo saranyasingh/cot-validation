@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: TrailLength(n_12) :: The total trail length is 12 miles
+FACT-2: DistanceCoveredInFirstHour(n_4) :: The distance covered in the first hour is 4 miles
+FACT-3: RemainingDistance(n_8) :: The remaining distance is 8 miles
+FACT-4: TimeTakenForFirstFourMiles(n_1) :: Time taken for the first four miles is 1 hour
+FACT-5: TimeTakenForNextTwoMiles(n_1) :: Time taken for the next two miles is 1 hour
+FACT-6: AverageSpeedGoal(n_4) :: The average speed goal is 4 miles per hour
+
+## RULES
+RULE-1: ∀D∀S((TrailLength(D) ∧ AverageSpeedGoal(S)) → ∃T(ArithmeticDivision(D,S,T) ∧ TotalTimeNeededAtAverageSpeed(T))) :: If total distance is D and average speed goal is S, then total time needed at average speed is T
+RULE-2: ∀T∀D((RemainingTime(T) ∧ RemainingDistance(D)) → LastHourDistance(D)) :: If there is remaining time T and remaining distance D, then the last hour distance required is D
+RULE-3: ∀D((LastHourDistance(D)) → AnswerIs(D)) :: If the last hour distance is D, then the answer is D
+
+## INFERENCES
+INF-1: TotalTimeNeededAtAverageSpeed(n_3) :: 12 divided by 4 equals 3, from FACT-1 and FACT-6 by Arithmetic Computation
+INF-2: TotalTimeSoFar(n_2) :: 1 plus 1 equals 2, from FACT-4 and FACT-5 by Arithmetic Computation
+INF-3: RemainingTime(n_1) :: 3 minus 2 equals 1, from INF-1 and INF-2 by Arithmetic Computation
+INF-4: LastHourDistance(n_8) :: From RemainingTime(n_1) and RemainingDistance(n_8) by RULE-2
+INF-5: AnswerIs(n_8) :: From LastHourDistance(n_8) by RULE-3

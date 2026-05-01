@@ -1,0 +1,8 @@
+## FACTS
+FACT-1: The robe requires blue fiber bolts :: BoltsBlueFiber(robe, n_2)
+
+## RULES
+
+## INFERENCES
+INF-1: White bolts are half of blue bolts (2 -> 1) computed by Arithmetic Computation from FACT-1 :: WhiteBolts(robe, n_1)
+INF-2: Total bolts computed as 2 + 1 from FACT-1 and INF-1 by Arithmetic Computation :: TotalBolts(robe, n_3)

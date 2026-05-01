@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, lego_sets_sold(john, n_13)).
+fof(fact_2, axiom, price_lego_set(n_15)).
+fof(fact_3, axiom, video_games_bought(john, n_8)).
+fof(fact_4, axiom, price_video_game(n_20)).
+fof(fact_5, axiom, remaining_money(john, n_5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [J] : ((lego_sets_sold(J, n_13) & price_lego_set(n_15)) => earnings_from_sales(J, n_195))).
+fof(rule_2, axiom, ! [J] : ((video_games_bought(J, n_8) & price_video_game(n_20)) => cost_of_video_games(J, n_160))).
+fof(rule_3, axiom, ! [J] : ((earnings_from_sales(J, n_195) & cost_of_video_games(J, n_160)) => remaining_money_after_purchases(J, n_35))).
+fof(rule_4, axiom, ! [J] : ((remaining_money_after_purchases(J, n_35) & remaining_money(J, n_5)) => inconsistency(J))).
+fof(rule_5, axiom, ! [J] : (inconsistency(J) => final_money_left_zero(J))).
+fof(rule_6, axiom, ! [J] : (final_money_left_zero(J) => final_money_left(J, n_0))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, earnings_from_sales(john, n_195)).
+% From fact_3, rule_2 by Modus Ponens
+fof(inf_2, axiom, cost_of_video_games(john, n_160)).
+% From inf_1, inf_2 by Modus Ponens
+fof(inf_3, axiom, remaining_money_after_purchases(john, n_35)).
+% From inf_3, fact_5 by Modus Ponens
+fof(inf_4, axiom, inconsistency(john)).
+% From inf_4 by Modus Ponens
+fof(inf_5, axiom, final_money_left_zero(john)).
+% From inf_5 by Modus Ponens
+fof(inf_6, axiom, final_money_left(john, n_0)).

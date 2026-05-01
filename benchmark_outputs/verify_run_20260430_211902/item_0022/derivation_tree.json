@@ -1,0 +1,106 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Raymond and Samantha are cousins",
+      "formula": "Cousins(raymond, samantha)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BornBeforeYears(raymond, samantha, n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Samantha is currently 31 years old",
+      "formula": "Age(samantha, n_31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Raymond had a son at the age of 23",
+      "formula": "HadChildAtAge(raymond, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "From Samantha is 31 and X was born 6 years before Samantha, then X was born 25 years ago",
+      "formula": "\u2200x((Age(samantha, n_31) \u2227 BornBeforeYears(x, samantha, n_6)) \u2192 BornYearsAgo(x, n_25))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The statement miscomputes X's birth time; since Samantha is 31 and X is 6 years older, X is 37 now, so born 37 years ago, not 25.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "From X had a child at age 23 and X was born 6 years before Samantha, then X's child was born 17 years ago",
+      "formula": "\u2200x((HadChildAtAge(x, n_23) \u2227 BornBeforeYears(x, samantha, n_6)) \u2192 ChildBirthYearsAgo(x, n_17))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "With X age 37 now and the child at age 23, the child was born 14 years ago, not 17.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "BornYearsAgo(raymond, n_25) from Age(samantha, n_31) [FACT-3], BornBeforeYears(raymond, samantha, n_6) [FACT-2] by RULE-1 (Modus Ponens)",
+      "formula": "BornYearsAgo(raymond, n_25)",
+      "premises": [
+        "FACT-3",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-1 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "ChildBirthYearsAgo(raymond, n_17) from HadChildAtAge(raymond, n_23) [FACT-4], BornBeforeYears(raymond, samantha, n_6) [FACT-2] by RULE-2 (Modus Ponens)",
+      "formula": "ChildBirthYearsAgo(raymond, n_17)",
+      "premises": [
+        "FACT-4",
+        "FACT-2"
+      ],
+      "inference_rule": "RULE-2 (Modus Ponens)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "AnswerIs(n_17) from ChildBirthYearsAgo(raymond, n_17) [INF-2] by Identity Rule",
+      "formula": "AnswerIs(n_17)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Identity Rule",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The statement miscomputes X's birth time; since Samantha is 31 and X is 6 years older, X is 37 now, so born 37 years ago, not 25."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "With X age 37 now and the child at age 23, the child was born 14 years ago, not 17."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

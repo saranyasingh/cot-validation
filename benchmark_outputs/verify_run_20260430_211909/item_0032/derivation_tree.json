@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "G1(n_80)",
+      "formula": "The first guess equals 80",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "G2(n_60)",
+      "formula": "The second guess equals 60",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "G3(n_100)",
+      "formula": "The third guess equals 100",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200a\u2200b\u2200c\u2200s\u2200t((G1(a) \u2227 G2(b) \u2227 G3(c) \u2227 Sum(a,b,c,s) \u2227 Div(s, n_3, t)) \u2192 Avg(a,b,c,t))",
+      "formula": "If three guesses are a, b, c then their average is t",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Average of G1, G2, G3 is 80, from FACT-1, FACT-2, FACT-3 by RULE-1 via Arithmetic Computation",
+      "formula": "Avg(n_80, n_60, n_100, n_80)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "RULE-1 via Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

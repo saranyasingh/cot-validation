@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_length(tracy, wire, four_feet)).
+fof(fact_2, axiom, segment_length(six_inches)).
+fof(fact_3, axiom, feet_to_inches(four_feet, forty_eight_inches)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [I, S, N] : ( division(I, S, N) => number_of_segments(N))).
+fof(rule_2, axiom, ! [N] : ( number_of_segments(N) => answer_is(N))).
+
+% --- INFERENCES ---
+% From FACT-2, FACT-3 by Arithmetic Computation
+fof(inf_1, axiom, division(forty_eight_inches, six_inches, eight_segments)).
+% From inf_1, rule_1 by RULE-1
+fof(inf_2, axiom, number_of_segments(eight_segments)).
+% From inf_2, rule_2 by RULE-2
+fof(inf_3, axiom, answer_is(eight_segments)).

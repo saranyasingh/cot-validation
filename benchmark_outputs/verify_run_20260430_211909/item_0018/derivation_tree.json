@@ -1,0 +1,204 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jill's teaching hourly rate is 20 dollars",
+      "formula": "HourlyRateTeaching(jill, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jill teaches 35 hours per week",
+      "formula": "TeachingHoursPerWeek(jill, n_35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jill's coaching hourly rate is 30 dollars",
+      "formula": "HourlyRateCoaching(jill, n_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Jill coaches 15 hours per week",
+      "formula": "CoachingHoursPerWeek(jill, n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "There are 50 weeks per year",
+      "formula": "WeeksPerYear(n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p has teaching hourly rate r and teaching hours per week h, and Product(r, h, e) then WeeklyTeachingEarnings(p, e)",
+      "formula": "\u2200p\u2200r\u2200h\u2200e((HourlyRateTeaching(p, r) \u2227 TeachingHoursPerWeek(p, h) \u2227 Product(r, h, e)) \u2192 WeeklyTeachingEarnings(p, e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person p has coaching hourly rate r and coaching hours per week h, and Product(r, h, e) then WeeklyCoachingEarnings(p, e)",
+      "formula": "\u2200p\u2200r\u2200h\u2200e((HourlyRateCoaching(p, r) \u2227 CoachingHoursPerWeek(p, h) \u2227 Product(r, h, e)) \u2192 WeeklyCoachingEarnings(p, e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If WeeklyTeachingEarnings(p, e1) and WeeklyCoachingEarnings(p, e2) and Sum(e1, e2, e) then WeeklyTotalEarnings(p, e)",
+      "formula": "\u2200p\u2200e1\u2200e2\u2200e((WeeklyTeachingEarnings(p, e1) \u2227 WeeklyCoachingEarnings(p, e2) \u2227 Sum(e1, e2, e)) \u2192 WeeklyTotalEarnings(p, e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If WeeklyTotalEarnings(p, w) and WeeksPerYear(n_50) and Product(w, n_50, a) then AnnualEarnings(p, a)",
+      "formula": "\u2200p\u2200w\u2200a((WeeklyTotalEarnings(p, w) \u2227 WeeksPerYear(n_50) \u2227 Product(w, n_50, a)) \u2192 AnnualEarnings(p, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "700 from 20 and 35 by Arithmetic Computation",
+      "formula": "Product(n_20, n_35, n_700)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "WeeklyTeachingEarnings(jill, n_700) from FACT-1, FACT-2, INF-1 by Modus Ponens",
+      "formula": "RULE-1",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "INF-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "450 from 30 and 15 by Arithmetic Computation",
+      "formula": "Product(n_30, n_15, n_450)",
+      "premises": [],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WeeklyCoachingEarnings(jill, n_450) from FACT-3, FACT-4, INF-3 by Modus Ponens",
+      "formula": "RULE-2",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "INF-3"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Sum(n_700, n_450, n_1150) from INF-2, INF-4 by Arithmetic Computation",
+      "formula": "Sum(n_700, n_450, n_1150)",
+      "premises": [
+        "INF-2",
+        "INF-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "WeeklyTotalEarnings(jill, n_1150) from INF-2, INF-4, INF-5 by Modus Ponens",
+      "formula": "RULE-3",
+      "premises": [
+        "INF-2",
+        "INF-4",
+        "INF-5"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Product(n_1150, n_50, n_57500) from INF-6, FACT-5 by Arithmetic Computation",
+      "formula": "Product(n_1150, n_50, n_57500)",
+      "premises": [
+        "INF-6",
+        "FACT-5"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "AnnualEarnings(jill, n_57500) from INF-6, FACT-5, INF-7 by Modus Ponens",
+      "formula": "RULE-4",
+      "premises": [
+        "INF-6",
+        "FACT-5",
+        "INF-7"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-7",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

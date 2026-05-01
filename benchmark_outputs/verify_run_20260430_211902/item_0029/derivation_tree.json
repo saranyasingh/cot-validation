@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "DistanceTotal(henry_trip, n_60)",
+      "formula": "The total distance of Henry's trip is 60 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "FirstStopAt(henry_trip, n_20)",
+      "formula": "Henry's first stop is at 20 miles",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "SecondStopFromEnd(henry_trip, n_15)",
+      "formula": "Henry's second stop is 15 miles before the end",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a trip T has total distance D and the second stop is O miles before the end, and D minus O equals R, then the second stop position is R",
+      "formula": "\u2200T\u2200D\u2200O\u2200R((DistanceTotal(T, D) \u2227 SecondStopFromEnd(T, O) \u2227 Subtract(D, O, R)) \u2192 SecondStopPosition(T, R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the second stop position is S and the first stop is F and S minus F equals R, then the distance between stops is R",
+      "formula": "\u2200T\u2200S\u2200F\u2200R((SecondStopPosition(T, S) \u2227 FirstStopAt(T, F) \u2227 Subtract(S, F, R)) \u2192 DistanceBetweenStops(T, R))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 minus 15 equals 45, from FACT-1 and FACT-3 by Arithmetic Subtraction",
+      "formula": "Subtract(n_60, n_15, n_45)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Subtraction",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SecondStopPosition(henry_trip, n_45)",
+      "formula": "from FACT-1, FACT-3, INF-1 by Modus Ponens on RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract( n_45, n_20, n_25 )",
+      "formula": "45 minus 20 equals 25, from FACT-2 and INF-2 by Arithmetic Subtraction",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "DistanceBetweenStops(henry_trip, n_25)",
+      "formula": "from INF-2 and INF-3 by Modus Ponens on RULE-2",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

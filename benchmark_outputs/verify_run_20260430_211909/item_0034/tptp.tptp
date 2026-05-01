@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, equals(gold, add(silver, n_30))).
+fof(fact_2, axiom, sum(silver, gold, n_110)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [S,G] : ((equals(G, add(S, n_30)) & sum(S, G, n_110)) => sum(S, add(S, n_30), n_110))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by RULE-1
+fof(inf_1, axiom, sum(silver, add(silver, n_30), n_110)).
+% From inf_1 by ArithmeticDivideTwo
+fof(inf_2, axiom, equals(silver, n_40)).
+% From inf_2 and fact_1 by ArithmeticSubstitution
+fof(inf_3, axiom, (equals(gold, add(silver, n_30)) => equals(gold, n_70))).
+% From inf_3 by EqualityElimination
+fof(inf_4, axiom, equals(gold, n_70)).

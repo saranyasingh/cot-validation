@@ -1,0 +1,163 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Total eggs laid per day",
+      "formula": "TotalEggs(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eggs eaten for breakfast",
+      "formula": "EggsEatenForBreakfast(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eggs used for muffins",
+      "formula": "EggsUsedForMuffins(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Price per egg",
+      "formula": "PricePerEgg(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total eggs x and eggs eaten y and Subtract(x,y,z) then RemainingAfterBreakfast(z)",
+      "formula": "\u2200x\u2200y\u2200z((TotalEggs(x) \u2227 EggsEatenForBreakfast(y) \u2227 Subtract(x,y,z)) \u2192 RemainingAfterBreakfast(z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If RemainingAfterBreakfast(a) and EggsUsedForMuffins(b) and Subtract(a,b,c) then RemainingAfterMuffins(c)",
+      "formula": "\u2200a\u2200b\u2200c((RemainingAfterBreakfast(a) \u2227 EggsUsedForMuffins(b) \u2227 Subtract(a,b,c)) \u2192 RemainingAfterMuffins(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Multiply(a,b,c) then Earnings(c)",
+      "formula": "\u2200a\u2200b\u2200c((Multiply(a,b,c)) \u2192 Earnings(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Subtract 16 and 3 to get 13, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Subtract(n_16, n_3, n_13)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "RemainingAfterBreakfast(n_13) from FACT-1, FACT-2, INF-1, RULE-1 by Modus Ponens",
+      "formula": "RemainingAfterBreakfast(n_13)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Subtract 13 and 4 to get 9, from INF-2 and FACT-3 by Arithmetic Computation",
+      "formula": "Subtract(n_13, n_4, n_9)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "RemainingAfterMuffins(n_9) from INF-2, FACT-3, INF-3, RULE-2 by Modus Ponens",
+      "formula": "RemainingAfterMuffins(n_9)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Multiply 9 and 2 to get 18, from INF-4 and FACT-4 by Arithmetic Computation",
+      "formula": "Multiply(n_9, n_2, n_18)",
+      "premises": [
+        "INF-4",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Earnings(n_18) from INF-5 and RULE-3 by Modus Ponens",
+      "formula": "Earnings(n_18)",
+      "premises": [
+        "INF-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

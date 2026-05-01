@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "ThreeQuartersOf(p_26, n_1950)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From INF-1 and RULE-2 by Modus Ponens",
+      "formula": "OriginalPriceValue(p_26)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-2 by Arithmetic Computation",
+      "formula": "OriginalPrice(p_26)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

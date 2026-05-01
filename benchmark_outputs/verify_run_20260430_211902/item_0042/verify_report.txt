@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED — The problem states Polly throws the gold_javelin for 400 feet.
+
+FACT-2: SUPPORTED — The scenario involves Polly holding the sapphire gem, which is required for the triple distance.
+
+RULE-1: IMPLAUSIBLE — The rule encodes a specific numeric computation (400 to 1200) with fixed constants, rather than a general, universally quantified relation; arithmetic should be left as a ground predicate, not baked into the rule.

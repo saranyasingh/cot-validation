@@ -1,0 +1,12 @@
+## FACTS
+FACT-1: Polly throws the javelin 400 feet away :: Distance(polly, javelin, distance_400)
+FACT-2: Polly holds sapphire gemstone :: Holds(polly, sapphire_gemstone)
+FACT-3: Dragon can reach 1000 feet :: DragonReach(dragon, distance_1000)
+
+## RULES
+RULE-1: If a person holds sapphire gemstone and distance to javelin is 400, then distance to javelin is 1200 :: ∀p((Distance(p, javelin, distance_400) ∧ Holds(p, sapphire_gemstone)) → Distance(p, javelin, distance_1200))
+RULE-2: If distance to javelin is 1200, dragon reach is 1000, and person holds sapphire gemstone, then the person can stand between 1000 and 1200 feet from the dragon :: ∀p((Distance(p, javelin, distance_1200) ∧ DragonReach(dragon, distance_1000) ∧ Holds(p, sapphire_gemstone)) → CanStandBetween(p, dragon, distance_1000, distance_1200))
+
+## INFERENCES
+INF-1: Distance(polly, javelin, distance_1200) from FACT-1 and RULE-1 by Modus Ponens :: Distance(polly, javelin, distance_1200)
+INF-2: CanStandBetween(polly, dragon, distance_1000, distance_1200) from INF-1, FACT-2, FACT-3, and RULE-2 by Modus Ponens :: CanStandBetween(polly, dragon, distance_1000, distance_1200)

@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Kyle paid 19_50 after a 25_percent discount :: Paid(kyle, n_19_50)
+FACT-2: The discount percentage is 25 :: DiscountPercent(kyle, n_25)
+
+## RULES
+RULE-1: If a payment occurs after a discount, then there is a DiscountRelation between person, amount, and discount :: ∀x∀y∀d((Paid(x,y) ∧ DiscountPercent(x,d)) → DiscountRelation(x,y,d))
+RULE-2: If DiscountRelation(x,y,d) then the amount y equals the OriginalPrice(x) multiplied by (1 - d/100) :: ∀x∀y∀d((DiscountRelation(x,y,d)) → y = OriginalPrice(x) * (1 - d/100))
+RULE-3: If y = OriginalPrice(x) * (1 - d/100) and d = 25 then OriginalPrice(x) = y / (1 - d/100) :: ∀x∀y∀d((y = OriginalPrice(x) * (1 - d/100) ∧ d = 25) → OriginalPrice(x) = y / (1 - d/100))
+RULE-4: If y = OriginalPrice(x) * 0.75 then OriginalPrice(x) = y / 0.75 :: ∀x∀y((y = OriginalPrice(x) * 0.75) → OriginalPrice(x) = y / 0.75)
+
+## INFERENCES
+INF-1: From FACT-1 and FACT-2 by RULE-1: DiscountRelation(kyle, n_19_50, n_25)
+INF-2: From INF-1 and RULE-2: 19_50 = OriginalPrice(kyle) * 0.75
+INF-3: From INF-2 and RULE-3 with d = 25: OriginalPrice(kyle) = 19_50 / 0.75
+INF-4: From INF-3 and RULE-4 via ArithmeticComputation: OriginalPriceValue(kyle, n_26)
+INF-5: Therefore the original price of the book was 26 :: OriginalPriceValue(kyle, n_26)

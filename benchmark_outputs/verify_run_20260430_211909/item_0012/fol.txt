@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Toula bought 3 dozen donuts :: BoughtDozen(toula, donuts, n_3)
+FACT-2: Donuts price per dozen :: PricePerDozen(donuts, n_68)
+FACT-3: Toula bought 2 dozen mini cupcakes :: BoughtDozen(toula, mini_cupcakes, n_2)
+FACT-4: Mini cupcakes price per dozen :: PricePerDozen(mini_cupcakes, n_80)
+FACT-5: Toula bought 6 dozen mini cheesecakes :: BoughtDozen(toula, mini_cheesecakes, n_6)
+FACT-6: Mini cheesecakes price per dozen :: PricePerDozen(mini_cheesecakes, n_55)
+FACT-7: Subtotal for donuts (3 dozen × 68) :: Subtotal(toula, donuts, n_3, n_68, n_204)
+FACT-8: Subtotal for mini cupcakes (2 dozen × 80) :: Subtotal(toula, mini_cupcakes, n_2, n_80, n_160)
+FACT-9: Subtotal for mini cheesecakes (6 dozen × 55) :: Subtotal(toula, mini_cheesecakes, n_6, n_55, n_330)
+
+## RULES
+RULE-1: If a person has three subtotals for donuts, mini cupcakes, and mini cheesecakes, then the total cost is 794 :: ∀person((Subtotal(person, donuts, n_3, n_68, n_204) ∧ Subtotal(person, mini_cupcakes, n_2, n_80, n_160) ∧ Subtotal(person, mini_cheesecakes, n_6, n_55, n_330)) → TotalCost(person, n_794))
+
+## INFERENCES
+INF-1: Total cost 794 derived from the three subtotals and RULE-1 (Modus Ponens) :: TotalCost(toula, n_794)

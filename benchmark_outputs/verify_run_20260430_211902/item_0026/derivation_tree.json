@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The chicken meal costs $12",
+      "formula": "ChickenMealCost(n_12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Five packs of milk at $3 each total $15",
+      "formula": "MilkTotalCost(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Four apples at $1.50 each total $6",
+      "formula": "ApplesTotalCost(n_6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Subtotal is $33",
+      "formula": "Subtotal(n_33)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Total payment is $50",
+      "formula": "TotalPayment(n_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Cost of pizzas is $17",
+      "formula": "PizzasCost(n_17)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Price per box is $8.50",
+      "formula": "BoxPrice(n_8_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "17 divided by 8.50 is approximately 2",
+      "formula": "DivisionResult(n_17, n_8_50, n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "17/8.50 = 2 exactly; \"approximately 2\" is true",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If pizzas cost D, box price is B, and D divided by B yields N, then the number of boxes is approximately N",
+      "formula": "\u2200D\u2200B\u2200N((PizzasCost(D) \u2227 BoxPrice(B) \u2227 DivisionResult(D,B,N)) \u2192 NumberOfBoxesApprox(N))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the number of boxes is approximately N, then Marie ordered N boxes",
+      "formula": "\u2200N(NumberOfBoxesApprox(N) \u2192 BoxesOrdered(N))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

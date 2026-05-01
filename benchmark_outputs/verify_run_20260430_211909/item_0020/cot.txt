@@ -1,0 +1,28 @@
+EXPLANATION
+
+To determine Marissa's required walking speed on the remaining portion of the trail, we start by calculating how long it takes her to cover that part.
+
+1. **Total Trail Length**: 12 miles.
+2. **Distance Covered in First Hour**: 4 miles.
+3. **Remaining Distance**: \(12 - 4 = 8\) miles.
+4. **Time Taken for First Two Hours**: 1 hour.
+
+Now, let's calculate the total time taken so far:
+- Time taken for the first four miles: 1 hour.
+- Time taken for the next two miles: 1 hour.
+- Total time so far: \(1 + 1 = 2\) hours.
+
+Next, we find out how much more time she needs to reach her goal of an average speed of 4 miles per hour over the entire trail.
+
+5. **Average Speed Goal**: 4 miles per hour.
+6. **Total Distance**: 12 miles.
+7. **Total Time Needed at Average Speed**:
+   \[
+   \text{Total Time} = \frac{\text{Total Distance}}{\text{Average Speed}} = \frac{12}{4} = 3 \text{ hours}
+   \]
+
+Since she has already spent 2 hours covering 4+2=6 miles, she still needs to cover the remaining 8 miles in the remaining time of 3-2=1 hour.
+
+Therefore, to achieve her desired average speed, Marissa must walk at least 8 miles in the last hour.
+
+The answer is: 8

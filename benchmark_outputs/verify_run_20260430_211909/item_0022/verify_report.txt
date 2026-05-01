@@ -1,0 +1,4 @@
+FACT-1: SUPPORTED — Directly stated: Samantha is currently 31.
+FACT-2: SUPPORTED — Directly stated: Raymond was born 6 years before Samantha.
+FACT-3: SUPPORTED — Directly stated: Raymond had a son at age 23.
+RULE-1: PLAUSIBLE — It encodes a valid general relationship (son birth occurs a years after the parent’s birth) without performing arithmetic inside the rule.

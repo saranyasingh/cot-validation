@@ -1,0 +1,117 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Total distance of the trip is 60 miles",
+      "formula": "TotalDistance(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "First stop occurred at 20 miles",
+      "formula": "FirstStopDistance(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Second stop occurred at 15 miles",
+      "formula": "SecondStopDistance(n_15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem implies the second stop is at 60 \u2212 15 = 45 miles, not 15 miles",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total distance is T and the first stop distance is F and there exists a D such that Subtract(T, F, D), then the distance between stops is D",
+      "formula": "\u2200T\u2200F\u2200D((TotalDistance(T) \u2227 FirstStopDistance(F) \u2227 Subtract(T,F,D)) \u2192 DistanceBetweenStops(D))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "distance between stops is not T \u2212 F; that would place the second stop at the end, which is incorrect",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there exists T, F, D such that Subtract(T,F,D), then Stop2AtDistance(D)",
+      "formula": "\u2200T\u2200F\u2200D((Subtract(T,F,D)) \u2192 Stop2AtDistance(D))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Stop2AtDistance(D) with D = T \u2212 F is not generally true (the second stop is at T \u2212 15)",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 minus 20 equals 40, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Subtract(n_60, n_20, n_40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Distance between stops equals 40, from INF-1 and RULE-1 by Modus Ponens",
+      "formula": "DistanceBetweenStops(n_40)",
+      "premises": [
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "60 minus 15 equals 45, from FACT-1 and FACT-3 by Arithmetic Computation",
+      "formula": "Subtract(n_60, n_15, n_45)",
+      "premises": [
+        "FACT-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Stop2 at distance 45, from INF-3 and RULE-2 by Modus Ponens",
+      "formula": "Stop2AtDistance(n_45)",
+      "premises": [
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "the problem implies the second stop is at 60 \u2212 15 = 45 miles, not 15 miles"
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "distance between stops is not T \u2212 F; that would place the second stop at the end, which is incorrect"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Stop2AtDistance(D) with D = T \u2212 F is not generally true (the second stop is at T \u2212 15)"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

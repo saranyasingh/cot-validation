@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Raymond's jewels count is 40",
+      "formula": "RaymondJewels(n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Raymond's jewels count is given as 40.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Half of Raymond's jewels is 20",
+      "formula": "HalfOf(n_40, n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Half of Raymond's jewels is 20, derived from 40.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "20 plus 5 equals 25",
+      "formula": "Sum(n_20, n_5, n_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "20 plus 5 equals 25, derived from half of Raymond's jewels.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "25 minus 2 equals 23",
+      "formula": "Diff(n_25, n_2, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Siobhan has 2 fewer than Aaron, so 25 \u2212 2 = 23.",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If HalfOf(h,a) and Sum(a,b,c) then AaronJewels(c)",
+      "formula": "\u2200h\u2200a\u2200b\u2200c((HalfOf(h,a) \u2227 Sum(a,b,c)) \u2192 AaronJewels(c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The conclusion AaronJewels(c) does not logically follow from HalfOf(h,a) and Sum(a,b,c) without linking a to Aaron and identifying c as Aaron's value.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If AaronJewels(x) and Diff(x,y,z) then SiobhanJewels(z)",
+      "formula": "\u2200x\u2200y\u2200z((AaronJewels(x) \u2227 Diff(x,y,z)) \u2192 SiobhanJewels(z))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It allows deriving SiobhanJewels(z) from Diff(x,y,z) without fixing y to 2, which is required by the problem's specific relation 2 fewer.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "AaronJewels(n_25) from FACT-2 and FACT-3 by ArithmeticComputation",
+      "formula": "AaronJewels(n_25)",
+      "premises": [
+        "FACT-2",
+        "FACT-3"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SiobhanJewels(n_23) from INF-1 and FACT-4 by ArithmeticComputation",
+      "formula": "SiobhanJewels(n_23)",
+      "premises": [
+        "INF-1",
+        "FACT-4"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The conclusion AaronJewels(c) does not logically follow from HalfOf(h,a) and Sum(a,b,c) without linking a to Aaron and identifying c as Aaron's value."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It allows deriving SiobhanJewels(z) from Diff(x,y,z) without fixing y to 2, which is required by the problem's specific relation 2 fewer."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

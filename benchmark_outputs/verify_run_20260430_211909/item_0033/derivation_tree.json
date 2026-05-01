@@ -1,0 +1,110 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "0.5 hours per dog per day",
+      "formula": "HoursPerDogPerDay(n_0_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "10 dogs",
+      "formula": "Dogs(n_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "7 days per week",
+      "formula": "DaysPerWeek(n_7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If hours per dog per day is h, and there are d dogs, and the product of h and d is p, then total daily hours is p",
+      "formula": "\u2200h\u2200d\u2200p((HoursPerDogPerDay(h) \u2227 Dogs(d) \u2227 ProductHoursPerDay(h,d,p)) \u2192 DailyHoursPerDay(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If daily hours per day is q, and there are t days per week, and the product of q and t is w, then weekly hours per week is w",
+      "formula": "\u2200q\u2200t\u2200w((DailyHoursPerDay(q) \u2227 DaysPerWeek(t) \u2227 ProductDailyHoursPerWeek(q,t,w)) \u2192 WeeklyHoursPerWeek(w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "0.5 hours per dog \u00d7 10 dogs = 5 hours/day, using Arithmetic Computation from FACT-1 and FACT-2",
+      "formula": "ProductHoursPerDay(n_0_5, n_10, n_5)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "DailyHoursPerDay(n_5) from FACT-1, FACT-2, INF-1 and RULE-1 by Modus Ponens",
+      "formula": "DailyHoursPerDay(n_5)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "5 hours/day \u00d7 7 days/week = 35 hours/week, using Arithmetic Computation from INF-2 and FACT-3",
+      "formula": "ProductDailyHoursPerWeek(n_5, n_7, n_35)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "WeeklyHoursPerWeek(n_35) from INF-2, FACT-3, INF-3 and RULE-2 by Modus Ponens",
+      "formula": "WeeklyHoursPerWeek(n_35)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

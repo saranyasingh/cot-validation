@@ -1,0 +1,153 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each glass initially costs 5 dollars",
+      "formula": "InitialPricePerGlass(n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 8 glasses at $5",
+      "formula": "GlassesAtPrice(n_8, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 8 glasses at $3",
+      "formula": "GlassesAtPrice(n_8, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The cost of the second glass is $3",
+      "formula": "SecondGlassCost(n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "There are 16 glasses in total",
+      "formula": "GlassesTotalCount(n_16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If there are 8 glasses at 5, then their total is 40",
+      "formula": "\u2200x\u2200y(GlassesAtPrice(n_8, n_5) \u2192 Mul(n_8, n_5, n_40))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are 8 glasses at 3, then their total is 24",
+      "formula": "\u2200x\u2200y(GlassesAtPrice(n_8, n_3) \u2192 Mul(n_8, n_3, n_24))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the 8\u00d75 total is 40 and the 8\u00d73 total is 24, then their sum is 64",
+      "formula": "\u2200x\u2200y((Mul(n_8, n_5, n_40) \u2227 Mul(n_8, n_3, n_24)) \u2192 Sum(n_40, n_24, n_64))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If a sum equals 64, then TotalCost is 64",
+      "formula": "\u2200x((Sum(n_40, n_24, n_64)) \u2192 TotalCost(n_64))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If TotalCost(x), then FinalAnswer(x)",
+      "formula": "\u2200z(TotalCost(z) \u2192 FinalAnswer(z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "From FACT-2 and RULE-1 by Modus Ponens, derive Mul(n_8, n_5, n_40)",
+      "formula": "Mul(n_8, n_5, n_40)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens, derive Mul(n_8, n_5, n_40)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "From FACT-3 and RULE-2 by Modus Ponens, derive Mul(n_8, n_3, n_24)",
+      "formula": "Mul(n_8, n_3, n_24)",
+      "premises": [
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens, derive Mul(n_8, n_3, n_24)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "From INF-1, INF-2 and RULE-3 by Modus Ponens, derive Sum(n_40, n_24, n_64)",
+      "formula": "Sum(n_40, n_24, n_64)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Modus Ponens, derive Sum(n_40, n_24, n_64)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "From INF-3 and RULE-4 by Modus Ponens, derive TotalCost(n_64)",
+      "formula": "TotalCost(n_64)",
+      "premises": [
+        "INF-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Modus Ponens, derive TotalCost(n_64)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "From INF-4 and RULE-5 by Modus Ponens, derive FinalAnswer(n_64)",
+      "formula": "FinalAnswer(n_64)",
+      "premises": [
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Modus Ponens, derive FinalAnswer(n_64)",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

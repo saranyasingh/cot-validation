@@ -1,0 +1,176 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "CostPerPoundBeeswaxWicks(ten_dollars)",
+      "formula": "cost per pound of beeswax and wicks is ten dollars",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "SellingPricePerCandle(two_dollars)",
+      "formula": "selling price per candle is two dollars",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "EqualDifference(two_dollars, ten_dollars, negative_eight_dollars)",
+      "formula": "difference between selling price and cost equals negative eight dollars",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not stated and not entailed; cost per pound vs per-candle profit involves a unit mismatch.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "CandlesSold(twenty)",
+      "formula": "number of candles sold is twenty",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "TotalRevenue(two_dollars, twenty, forty_dollars)",
+      "formula": "total revenue is forty dollars for twenty candles at two dollars each",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "TotalCost(ten_dollars)",
+      "formula": "total cost is ten dollars",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "TotalCost should reflect 2 pounds at $10 each for 20 candles, i.e., $20.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Subtract(forty_dollars, ten_dollars, thirty_dollars)",
+      "formula": "forty_dollars minus ten_dollars equals thirty_dollars",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Net profit is not 30; with correct cost it is 20.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Multiply(negative_eight_dollars, twenty, negative_one_hundred_sixty_dollars)",
+      "formula": "(-8) dollars per candle times twenty candles equals -160 dollars",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Not derived from the problem data.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "TotalLossFromSales(negative_one_hundred_sixty_dollars)",
+      "formula": "total loss from sales is negative one hundred sixty dollars",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "No net loss value is given in the problem.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "\u2200sp \u2200cp \u2200pp ((SellingPricePerCandle(sp) \u2227 CostPerPoundBeeswaxWicks(cp) \u2227 EqualDifference(sp, cp, pp)) \u2192 ProfitPerCandle(pp))",
+      "formula": "If selling price, cost, and their difference are known, then profit per candle is that difference",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "\u2200pp \u2200n \u2200T ((ProfitPerCandle(pp) \u2227 CandlesSold(n) \u2227 Multiply(pp, n, T)) \u2192 TotalLossFromSales(T))",
+      "formula": "If profit per candle, number of candles, and their product are known, then total loss from sales is that product",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It treats total loss as the product of per-item profit and quantity; mislabels the final quantity.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "\u2200p \u2200n \u2200r \u2200c \u2200np ((TotalRevenue(p, n, r) \u2227 TotalCost(c) \u2227 Subtract(r, c, np)) \u2192 NetProfit(np))",
+      "formula": "If revenue, cost, and their difference are known, then net profit is that difference",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "ProfitPerCandle(negative_eight_dollars)",
+      "formula": "from RULE-1 using FACT-2, FACT-1, FACT-3 by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "TotalLossFromSales(negative_one_hundred_sixty_dollars)",
+      "formula": "from RULE-2 using INF-1, CandlesSold(twenty), Multiply(negative_eight_dollars, twenty, negative_one_hundred_sixty_dollars) by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "NetProfit(thirty_dollars)",
+      "formula": "from RULE-3 using TotalRevenue(two_dollars, twenty, forty_dollars), TotalCost(ten_dollars), Subtract(forty_dollars, ten_dollars, thirty_dollars) by Modus Ponens",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "NetProfit(thirty_dollars)",
+      "formula": "from INF-3 by Reiteration",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "Not stated and not entailed; cost per pound vs per-candle profit involves a unit mismatch."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "TotalCost should reflect 2 pounds at $10 each for 20 candles, i.e., $20."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "Net profit is not 30; with correct cost it is 20."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "Not derived from the problem data."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "No net loss value is given in the problem."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It treats total loss as the product of per-item profit and quantity; mislabels the final quantity."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

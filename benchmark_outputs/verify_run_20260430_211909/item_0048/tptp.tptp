@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, spends(john, blue_ties, n_200)).
+fof(fact_2, axiom, price_per_item(blue_ties, n_40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, I, T, Pp, Q] : ((spends(P, I, T) & price_per_item(I, Pp) & equal_division(T, Pp, Q)) => quantity_bought(P, I, Q))).
+fof(rule_2, axiom, ! [P, Q] : ((quantity_bought(P, blue_ties, Q)) => ? [R] : ( double(Q, R) & quantity_bought(P, red_ties, R))).
+fof(rule_3, axiom, ! [PBlue, PRed] : ((markup_50_percent(PBlue, PRed) & price_per_item(blue_ties, PBlue)) => price_per_item(red_ties, PRed))).
+fof(rule_4, axiom, ! [p, i, q, P, Total] : ((quantity_bought(p,i,q) & price_per_item(i, P) & multiply(q, P, Total)) => total_cost(p, i, Total))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, equal_division(n_200, n_40, n_5)).
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, quantity_bought(john, blue_ties, n_5)).
+% From inf_2 by Arithmetic Computation
+fof(inf_3, axiom, double(n_5, n_10)).
+% From inf_2, inf_3, rule_2 by Modus Ponens
+fof(inf_4, axiom, quantity_bought(john, red_ties, n_10)).
+% From fact_2 by Arithmetic Computation (50% markup)
+fof(inf_5, axiom, price_per_item(red_ties, n_60)).
+% From inf_4, inf_5, rule_4 by Modus Ponens
+fof(inf_6, axiom, total_cost(john, red_ties, n_600)).
+% From inf_7 by Arithmetic Computation
+fof(inf_7, axiom, sum(n_200, n_600, n_800)).
+% From inf_7 by Arithmetic Computation
+fof(inf_8, axiom, total_spent(john, n_800)).

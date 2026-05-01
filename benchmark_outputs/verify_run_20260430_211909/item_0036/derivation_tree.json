@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mike scored 4 points in the first 20 minutes",
+      "formula": "ScoredInInterval(mike, first_20_minutes, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Mike scored 5 points in the second 20 minutes",
+      "formula": "ScoredInInterval(mike, second_20_minutes, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "4 plus 5 equals 9",
+      "formula": "SumScores(n_4, n_5, n_9)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person p scores s1 in first_20_minutes and s2 in second_20_minutes and SumScores(s1, s2, t), then TotalScore(p, t)",
+      "formula": "\u2200p\u2200i1\u2200i2\u2200s1\u2200s2\u2200t((ScoredInInterval(p, i1, s1) \u2227 ScoredInInterval(p, i2, s2) \u2227 SumScores(s1, s2, t)) \u2192 TotalScore(p, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TotalScore(mike, n_9) from FACT-1, FACT-2, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalScore(mike, n_9)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

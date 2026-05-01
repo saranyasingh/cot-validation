@@ -1,0 +1,25 @@
+EXPLANATION
+Let's denote the number of jelly beans in the jar as \( J \).
+
+1. The first friend guesses that there are 80 jelly beans.
+   - Premise: Friend 1 guesses 80 jelly beans.
+
+2. The second friend guesses that there are 20 more than half the amount guessed by the first friend.
+   - Calculation: Half of 80 = 40. Add 20: 40 + 20 = 60.
+   - Premise: Friend 2 guesses 60 jelly beans (half of 80 plus an additional 20).
+
+3. The third friend guesses that there are 25% more than the amount guessed by the first friend.
+   - Calculation: 25% of 80 = 20. Add this to 80: 80 + 20 = 100.
+   - Premise: Friend 3 guesses 100 jelly beans (80 plus 25%).
+
+To find the average guess, we sum up all the guesses and divide by the number of friends.
+
+Summing up the guesses:
+\[ 80 + 60 + 100 = 240 \]
+
+There are three friends, so we divide the total by 3:
+\[ \frac{240}{3} = 80 \]
+
+Therefore, the average guess is 80 jelly beans.
+
+The answer is: 80

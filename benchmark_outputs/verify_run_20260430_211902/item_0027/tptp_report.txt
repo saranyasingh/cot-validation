@@ -1,0 +1,6 @@
+  % From fact_10, rule_2 by Sum3-Compute
+  inf_1: PROVED
+  % From fact_11, rule_2 by Sum3-Compute
+  inf_2: PROVED
+  % From fact_3, fact_6, fact_9, inf_1, inf_2 by RULE-1
+  inf_3: PROVED

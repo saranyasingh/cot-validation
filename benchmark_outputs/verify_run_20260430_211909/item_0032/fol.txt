@@ -1,0 +1,10 @@
+## FACTS
+FACT-1: G1(n_80) :: The first guess equals 80
+FACT-2: G2(n_60) :: The second guess equals 60
+FACT-3: G3(n_100) :: The third guess equals 100
+
+## RULES
+RULE-1: ∀a∀b∀c∀s∀t((G1(a) ∧ G2(b) ∧ G3(c) ∧ Sum(a,b,c,s) ∧ Div(s, n_3, t)) → Avg(a,b,c,t)) :: If three guesses are a, b, c then their average is t
+
+## INFERENCES
+INF-1: Average of G1, G2, G3 is 80, from FACT-1, FACT-2, FACT-3 by RULE-1 via Arithmetic Computation :: Avg(n_80, n_60, n_100, n_80)

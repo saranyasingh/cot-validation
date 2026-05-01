@@ -1,0 +1,26 @@
+EXPLANATION
+To determine the total points Mike scored, we need to calculate his scoring rate over time and then apply it to the given intervals.
+
+1. **First 20 minutes**: Mike scores 4 points.
+   - Points scored in this interval = 4 points.
+
+2. **Second 20 minutes**: He scores 25% more than the initial 4 points.
+   - Calculate 25% of 4 points:
+     \[
+     0.25 \times 4 = 1
+     \]
+   - Add this value to the original score:
+     \[
+     4 + 1 = 5
+     \]
+   - Points scored in this interval = 5 points.
+
+3. **Total points**:
+   - Sum the points from both intervals:
+     \[
+     4 + 5 = 9
+     \]
+
+Therefore, the total points Mike scored is 9.
+
+The answer is: 9

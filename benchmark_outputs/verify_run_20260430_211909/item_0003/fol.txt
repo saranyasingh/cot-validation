@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: Josh's initial purchase price is $80,000 :: InitialPurchasePrice(josh, n_80000)
+FACT-2: Repairs cost is $50,000 :: RepairsCost(josh, n_50000)
+FACT-3: Increase in value is 150% :: ValueIncreasePercent(josh, n_150)
+
+## RULES
+RULE-1: If a person has an initial purchase price and a repairs cost, then there exists a sum of those two amounts :: ∀p∀A∀B((InitialPurchasePrice(p,A) ∧ RepairsCost(p,B)) → ∃C Add(A,B,C))
+RULE-2: If a person has a value increase percentage and an initial purchase price, then there exists an increased value :: ∀p∀A∀B((ValueIncreasePercent(p,B) ∧ InitialPurchasePrice(p,A)) → ∃D IncreasedValue(p,D))
+
+## INFERENCES
+INF-1: Increase in value due to repairs is 120000 from FACT-1 and FACT-3 by Arithmetic Computation :: InferredIncreaseFromRepairs(josh, n_120000)
+INF-2: Sum of initial price and repairs is 130000 from FACT-1 and FACT-2 by Arithmetic Computation :: SumInitialAndRepairs(josh, n_130000)
+INF-3: New value after renovations is 210000 from INF-2 and FACT-1 by Arithmetic Computation :: NewValue(josh, n_210000)
+INF-4: Profit is 130000 from INF-3 and FACT-1 by Arithmetic Computation :: Profit(josh, n_130000)

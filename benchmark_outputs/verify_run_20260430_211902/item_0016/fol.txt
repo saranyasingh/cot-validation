@@ -1,0 +1,13 @@
+## FACTS
+FACT-1: JewelryValue(jewelry, n_5125)
+FACT-2: ElectronicsValue(electronics_gadgets, n_8096)
+FACT-3: ProfitDiff(n_5125, n_8096, n_3041)
+FACT-4: Negative(n_3041)
+
+## RULES
+RULE-1: If ProfitDiff(v1, v2, d) and Negative(d) then NoOptimalChoice :: ∀v1∀v2∀d((ProfitDiff(v1, v2, d) ∧ Negative(d)) → NoOptimalChoice)
+RULE-2: If NoOptimalChoice then Answer(n_0) :: ∀x(NoOptimalChoice → Answer(n_0))
+
+## INFERENCES
+INF-1: NoOptimalChoice, derived from FACT-3, FACT-4, and RULE-1 by Modus Ponens :: (ProfitDiff(n_5125, n_8096, n_3041) ∧ Negative(n_3041)) → NoOptimalChoice [instantiated from RULE-1] using FACT-3 and FACT-4
+INF-2: Answer(n_0), derived from INF-1 and RULE-2 by Modus Ponens :: NoOptimalChoice → Answer(n_0)

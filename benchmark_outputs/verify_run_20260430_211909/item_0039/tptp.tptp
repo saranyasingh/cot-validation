@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, miles_per_week(john, n_60)).
+fof(fact_2, axiom, days_per_week(john, n_3)).
+fof(fact_3, axiom, time_on_day(john, day1, n_3)).
+fof(fact_4, axiom, time_on_day(john, day2, n_3_over_2)).
+fof(fact_5, axiom, time_on_day(john, day3, n_3_over_2)).
+fof(fact_6, axiom, total_time(john, n_6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, D, T, S] : ((miles_per_week(X, D) & total_time(X, T) & equal_division(D, T, S)) => speed(X, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_6 by Arithmetic Computation
+fof(inf_1, axiom, equal_division(n_60, n_6, n_10)).
+
+% From fact_1, fact_6, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, speed(john, n_10)).

@@ -1,0 +1,69 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mike played ping pong for 40 minutes",
+      "formula": "PlayedPingPongForMinutes(mike, n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated in the problem.",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "In the first 20 minutes, he scored 4 points",
+      "formula": "ScoredInFirstTwentyMinutes(mike, n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Directly stated in the problem.",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "In the second 20 minutes, he scored 5 points",
+      "formula": "ScoredInSecondTwentyMinutes(mike, n_5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "Derived from \"25% more than 4\" equals 5.",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Total points scored",
+      "formula": "TotalPoints(mike, n_9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem asks for the total; it does not state the total itself.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a person scored a points in the first twenty minutes and b points in the second twenty minutes, then the total points are a + b",
+      "formula": "\u2200p\u2200a\u2200b((ScoredInFirstTwentyMinutes(p, a) \u2227 ScoredInSecondTwentyMinutes(p, b)) \u2192 TotalPoints(p, a + b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "Encodes the correct arithmetic relation: total = a + b for first and second intervals.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The total number of points is 9, from FACT-2, FACT-3, and RULE-1 by Modus Ponens",
+      "formula": "TotalPoints(mike, n_9)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem asks for the total; it does not state the total itself."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

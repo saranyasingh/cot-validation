@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: The regular hourly rate is 10 :: RegularRate(n_10)
+FACT-2: The regular hours worked are 40 :: RegularHours(n_40)
+FACT-3: The overtime hourly rate is 12 :: OvertimeRate(n_12)
+FACT-4: The overtime hours worked are 5 :: OvertimeHours(n_5)
+FACT-5: Regular rate times regular hours equals 400 :: Multiply(n_10, n_40, n_400)
+FACT-6: Overtime rate times overtime hours equals 60 :: Multiply(n_12, n_5, n_60)
+FACT-7: 400 plus 60 equals 460 :: Add(n_400, n_60, n_460)
+
+## RULES
+RULE-1: If the regular rate is r and regular hours is h and r × h = e, then earnings for regular hours equal e :: ∀r∀h∀e((RegularRate(r) ∧ RegularHours(h) ∧ Multiply(r,h,e)) → EarningsRegular(e))
+RULE-2: If the overtime rate is ro and overtime hours is ho and ro × ho = eo, then earnings for overtime equal eo :: ∀ro∀ho∀eo((OvertimeRate(ro) ∧ OvertimeHours(ho) ∧ Multiply(ro,ho,eo)) → EarningsOvertime(eo))
+RULE-3: If earnings for regular are er and earnings for overtime are eo and er + eo = t, then total earnings equal t :: ∀er∀eo∀t((EarningsRegular(er) ∧ EarningsOvertime(eo) ∧ Add(er,eo,t)) → TotalEarnings(t))
+
+## INFERENCES
+INF-1: EarningsRegular(n_400) from RULE-1 with FACT-1, FACT-2, FACT-5 by Modus Ponens
+INF-2: EarningsOvertime(n_60) from RULE-2 with FACT-3, FACT-4, FACT-6 by Modus Ponens
+INF-3: TotalEarnings(n_460) from RULE-3 with INF-1, INF-2, FACT-7 by Modus Ponens

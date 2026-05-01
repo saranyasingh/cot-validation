@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The price of a blue tie is 40 dollars",
+      "formula": "BlueTiePrice(n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The total cost of blue ties is 200 dollars",
+      "formula": "BlueTiesTotalCost(n_200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If EqualDivision(x,y,z) holds, then BlueTiesCount(z) holds",
+      "formula": "\u2200x\u2200y\u2200z((EqualDivision(x,y,z)) \u2192 BlueTiesCount(z))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "does not encode a standard, universally valid mathematical principle",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If BlueTiesCount(x) holds, then RedTiesCount(n_100) holds",
+      "formula": "\u2200x(BlueTiesCount(x) \u2192 RedTiesCount(n_100))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "fixes red-tie count to a constant regardless of blue-tie count",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Equal division of 200 by 40 equals 50, from FACT-1 and FACT-2 by ArithmeticComputation",
+      "formula": "EqualDivision(n_200, n_40, n_50)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "BlueTiesCount(n_50) from INF-1 and RULE-1 by Modus Ponens",
+      "formula": "BlueTiesCount(n_50)",
+      "premises": [
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "RedTiesCount(n_100) from BlueTiesCount(n_50) via RULE-2 by Modus Ponens",
+      "formula": "RedTiesCount(n_100)",
+      "premises": [
+        "RULE-2"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "RedTiePrice(n_60) from FACT-1 by ArithmeticComputation",
+      "formula": "RedTiePrice(n_60)",
+      "premises": [
+        "FACT-1"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "TotalRedTiesCost(n_6000) from RedTiesCount(n_100) and RedTiePrice(n_60) by ArithmeticComputation",
+      "formula": "TotalRedTiesCost(n_6000)",
+      "premises": [],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "TotalExpenditure(n_6200) from FACT-2 and INF-5 by ArithmeticComputation",
+      "formula": "TotalExpenditure(n_6200)",
+      "premises": [
+        "FACT-2",
+        "INF-5"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "does not encode a standard, universally valid mathematical principle"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "fixes red-tie count to a constant regardless of blue-tie count"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

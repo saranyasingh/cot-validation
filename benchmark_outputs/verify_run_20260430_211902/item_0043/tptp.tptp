@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, pies_baked(grandma_jones, n_5)).
+fof(fact_2, axiom, pieces_per_pie(n_5, n_8)).
+fof(fact_3, axiom, pieces_left(grandma_jones, n_14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, N, K] : ((pies_baked(P, N) & pieces_per_pie(N, K)) => ? [T] : (product(N, K, T) & total_pieces(P, T)))).
+fof(rule_2, axiom, ! [P, T, L] : ((total_pieces(P, T) & pieces_left(P, L)) => ? [M] : (diff(T, L, M) & pieces_taken(P, M)))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 via rule_1
+fof(inf_1, axiom, exists(T, (product(n_5, n_8, T) & total_pieces(grandma_jones, T)))).
+% From inf_1, fact_3 via rule_2
+fof(inf_2, axiom, exists(M, (diff(T, n_14, M) & pieces_taken(grandma_jones, M)))).

@@ -1,0 +1,110 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "60 days",
+      "formula": "Days(n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "1 per day",
+      "formula": "ServingsPerDay(n_1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "15 servings per carton",
+      "formula": "ServingsPerCarton(n_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "$4 per carton",
+      "formula": "CostPerCarton(n_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Total servings equal product of days and daily servings",
+      "formula": "\u2200d\u2200s\u2200t((Days(d) \u2227 ServingsPerDay(s) \u2227 Multiply(d,s,t)) \u2192 TotalServings(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Cartons needed from total servings and carton size",
+      "formula": "\u2200ts\u2200pc\u2200cn((TotalServings(ts) \u2227 ServingsPerCarton(pc) \u2227 Divide(ts,pc,cn)) \u2192 Cartons(ts,pc,cn))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Total cost from cartons and cost per carton",
+      "formula": "\u2200ts\u2200pc\u2200cn((Cartons(ts,pc,cn) \u2227 CostPerCarton(n_4) \u2227 Multiply(cn,n_4,total)) \u2192 TotalCost(total))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "From total cost to final answer",
+      "formula": "\u2200t((TotalCost(t)) \u2192 FinalAnswer(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "60 \u00d7 1 = 60, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Multiply(n_60, n_1, n_60)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "60 \u00f7 15 = 4, from INF-1 and FACT-3 by Arithmetic Computation",
+      "formula": "Divide(n_60, n_15, n_4)",
+      "premises": [
+        "INF-1",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "4 \u00d7 4 = 16, from INF-2 and FACT-4 by Arithmetic Computation",
+      "formula": "Multiply(n_4, n_4, n_16)",
+      "premises": [
+        "INF-2",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

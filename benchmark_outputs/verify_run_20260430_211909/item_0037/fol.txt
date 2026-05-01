@@ -1,0 +1,18 @@
+## FACTS
+FACT-1: Terry eats 2 yogurts per day :: YogurtsPerDay(terry, n_2)
+FACT-2: There are 30 days :: Days(n_30)
+FACT-3: The set contains 4 yogurts per set :: SetSize(n_4)
+FACT-4: The price per set is 5 dollars :: PricePerSet(n_5)
+FACT-5: 2 × 30 = 60 :: Multiply(n_2, n_30, n_60)
+FACT-6: 60 ÷ 4 = 15 :: Divide(n_60, n_4, n_15)
+FACT-7: 15 × 5 = 75 :: Multiply(n_15, n_5, n_75)
+
+## RULES
+RULE-1: If a person a eats x yogurts per day and there are d days such that Multiply(x, d, t), then TotalYogurts(a, t) :: ∀a∀x∀d∀t((YogurtsPerDay(a, x) ∧ Days(d) ∧ Multiply(x, d, t)) → TotalYogurts(a, t))
+RULE-2: If TotalYogurts(a, t) and SetSize(s) and Divide(t, s, u), then TotalSets(a, u) :: ∀a∀t∀s∀u((TotalYogurts(a, t) ∧ SetSize(s) ∧ Divide(t, s, u)) → TotalSets(a, u))
+RULE-3: If TotalSets(a, u) and PricePerSet(p) and Multiply(u, p, c), then TotalCost(a, c) :: ∀a∀u∀p∀c((TotalSets(a, u) ∧ PricePerSet(p) ∧ Multiply(u, p, c)) → TotalCost(a, c))
+
+## INFERENCES
+INF-1: Total yogurts Terry consumes over 30 days :: TotalYogurts(terry, n_60) from FACT-1, FACT-2, FACT-5 and RULE-1 by Modus Ponens
+INF-2: Total sets of 4 yogurts :: TotalSets(terry, n_15) from INF-1, FACT-3, FACT-6 and RULE-2 by Modus Ponens
+INF-3: Total cost :: TotalCost(terry, n_75) from INF-2, FACT-4, FACT-7 and RULE-3 by Modus Ponens

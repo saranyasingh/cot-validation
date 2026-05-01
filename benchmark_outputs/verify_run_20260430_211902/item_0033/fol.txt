@@ -1,0 +1,14 @@
+## FACTS
+FACT-1: There are 10 dogs :: DogCount(n_10)
+FACT-2: Each dog takes 0.5 hours a day :: HoursPerDogPerDay(n_half)
+FACT-3: There are 7 days in a week :: DaysInWeek(n_7)
+
+## RULES
+RULE-1: If there are d dogs and each dog takes h hours per day and Multiply(d,h,t) then DailyTotalHoursPerDay(t) :: ∀d∀h∀t((DogCount(d) ∧ HoursPerDogPerDay(h) ∧ Multiply(d,h,t)) → DailyTotalHoursPerDay(t))
+RULE-2: If DailyTotalHoursPerDay(t) ∧ DaysInWeek(w) ∧ Multiply(t,w,u) then WeeklyTotalHours(u) :: ∀t∀w∀u((DailyTotalHoursPerDay(t) ∧ DaysInWeek(w) ∧ Multiply(t,w,u)) → WeeklyTotalHours(u))
+
+## INFERENCES
+INF-1: Multiplying 10 by 0.5 gives 5, from FACT-1 and FACT-2 by Arithmetic Computation :: Multiply(n_10, n_half, n_5)
+INF-2: DailyTotalHoursPerDay(n_5) from FACT-1, FACT-2, INF-1 by Modus Ponens on RULE-1
+INF-3: Multiply(n_5, n_7, n_35) from INF-2 and FACT-3 by Arithmetic Computation :: Multiply(n_5, n_7, n_35)
+INF-4: WeeklyTotalHours(n_35) from DailyTotalHoursPerDay(n_5), DaysInWeek(n_7), Multiply(n_5, n_7, n_35) by Modus Ponens on RULE-2

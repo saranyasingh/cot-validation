@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Candice started with 80 post-it notes",
+      "formula": "CandiceStartedWithNotes(candice, n_80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Candice purchased a package of unknown quantity",
+      "formula": "CandicePurchasedNotesPackage(candice, n_x)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Candice added the purchased notes to her original 80",
+      "formula": "CandiceAddedNotesToOriginal(candice, n_80, n_x)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Candice used 220 notes at work",
+      "formula": "CandiceUsedNotesAtWork(candice, n_220)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Candice left 23 notes",
+      "formula": "CandiceLeftNotes(candice, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "80 + x - 220 = 23",
+      "formula": "EquationHolds(n_80, n_x, n_220, n_23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a + b - c = d, then XMinus140Equals23(b, d, a, c)",
+      "formula": "\u2200a\u2200b\u2200c\u2200d((EquationHolds(a,b,c,d)) \u2192 XMinus140Equals23(b, d, a, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If XMinus140Equals23(a,b,c,d) then XEquals(a, n_163)",
+      "formula": "\u2200a\u2200b\u2200c\u2200d((XMinus140Equals23(a,b,c,d)) \u2192 XEquals(a, n_163))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "relies on a nonstandard predicate encoding rather than a clear universal inference",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If XEquals(a,b) then PackageNotesInNewPackage(candice, b)",
+      "formula": "\u2200a\u2200b((XEquals(a,b)) \u2192 PackageNotesInNewPackage(candice, b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "80 + x - 220 = 23, from FACT-1, FACT-2, FACT-4, FACT-5 by ArithmeticComputation",
+      "formula": "EquationHolds(n_80, n_x, n_220, n_23)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4",
+        "FACT-5"
+      ],
+      "inference_rule": "ArithmeticComputation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "relies on a nonstandard predicate encoding rather than a clear universal inference"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

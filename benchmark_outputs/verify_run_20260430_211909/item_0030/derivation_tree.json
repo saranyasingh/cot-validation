@@ -1,0 +1,17 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Equals(b_price, n_104)",
+      "formula": "from FACT-4, FACT-5 by RULE-1",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

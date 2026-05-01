@@ -1,0 +1,18 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — Not entailed: problem implies run is 2× skip, not 4× skip.
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: SUPPORTED
+FACT-9: SUPPORTED
+FACT-10: SUPPORTED
+FACT-11: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — Misencoded: uses run-is-four-times-skip and yields walking speed via division by 4, which would correspond to skip, not walking.
+RULE-3: IMPLAUSIBLE — Not universally valid; running time need not be an integer number of hours.
+RULE-4: IMPLAUSIBLE — Not universally valid; walking time need not be an integer number of hours.
+RULE-5: PLAUSIBLE
+RULE-6: PLAUSIBLE
+RULE-7: PLAUSIBLE

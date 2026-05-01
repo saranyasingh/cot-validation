@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints",
+      "formula": "SprintsPerSession(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint distance is 60 meters",
+      "formula": "DistancePerSprint(james, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "James runs this routine 3 times a week",
+      "formula": "SessionsPerWeek(james, n_3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "3 * 60 = 180",
+      "formula": "Product(n_3, n_60, n_180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "3 * 180 = 540",
+      "formula": "Product(n_3, n_180, n_540)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If someone has SprintsPerSession(j, s) and DistancePerSprint(j, d) and Product(s, d, p), then DistancePerSession(j, p)",
+      "formula": "\u2200j\u2200s\u2200d\u2200p((SprintsPerSession(j, s) \u2227 DistancePerSprint(j, d) \u2227 Product(s, d, p)) \u2192 DistancePerSession(j, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If DistancePerSession(j, p) and SessionsPerWeek(j, s) and Product(s, p, w), then WeeklyDistance(j, w)",
+      "formula": "\u2200j\u2200p\u2200s\u2200w((DistancePerSession(j, p) \u2227 SessionsPerWeek(j, s) \u2227 Product(s, p, w)) \u2192 WeeklyDistance(j, w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    }
+  },
+  "root": null,
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Claire makes a 3-egg omelet :: Omelet(claire, n_3)
+FACT-2: There are 7 days in a week :: DaysInWeek(n_7)
+FACT-3: 3 × 7 = 21 (arithmetic step) :: Multiply(n_3, n_7, n_21)
+FACT-4: 21 × 4 = 84 (arithmetic step) :: Multiply(n_21, n_4, n_84)
+FACT-5: 84 ÷ 12 = 7 (arithmetic step) :: Divide(n_84, n_12, n_7)
+
+## RULES
+RULE-1: If someone makes an omelet with a eggs and there are b days in a week and a × b = c, then they have c eggs per week :: ∀p∀a∀b∀c((Omelet(p, a) ∧ DaysInWeek(b) ∧ Multiply(a, b, c)) → EggsPerWeek(p, c))
+RULE-2: If someone has EggsPerWeek a and a × d = e, then they have TotalEggs e :: ∀p∀a∀c((EggsPerWeek(p, a) ∧ Multiply(a, n_4, c)) → TotalEggs(p, c))
+RULE-3: If someone has TotalEggs a and a ÷ d = f, then they have Dozens f :: ∀p∀a∀b((TotalEggs(p, a) ∧ Divide(a, n_12, b)) → Dozens(p, b))
+
+## INFERENCES
+INF-1: EggsPerWeek(claire, n_21) :: from FACT-1, FACT-2, FACT-3 by RULE-1 (Modus Ponens)
+INF-2: TotalEggs(claire, n_84) :: from INF-1, FACT-4, RULE-2 (Modus Ponens)
+INF-3: Dozens(claire, n_7) :: from INF-2, FACT-5, RULE-3 (Modus Ponens)

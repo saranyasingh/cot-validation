@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: 300g bag contains 5 servings :: ServingsPerBag(bag_300g, n_5)
+FACT-2: Each serving has 250 calories :: CaloriesPerServing(n_250)
+FACT-3: Daily calorie target is 2000 calories :: DailyTarget(n_2000)
+FACT-4: You have consumed 1800 calories :: CaloriesConsumed(n_1800)
+FACT-5: Bag weight is 300g :: BagWeight(bag_300g, n_300)
+
+## RULES
+RULE-1: If the daily target is T and C calories have been consumed, and Subtract(T, C, R) holds, then R is the remaining calories :: ∀T∀C∀R((DailyTarget(T) ∧ CaloriesConsumed(C) ∧ Subtract(T, C, R)) → RemainingCalories(R))
+RULE-2: If there are remaining calories R and calories per serving P, and Divide(R, P, A) holds, then A is the number of additional servings :: ∀R∀P∀A((RemainingCalories(R) ∧ CaloriesPerServing(P) ∧ Divide(R, P, A)) → AdditionalServings(A))
+RULE-3: If there are additional servings A and a bag with weight W, and Multiply(A, W, G) holds, then G is the weight of chips that can be consumed from that bag :: ∀Bag∀W∀A∀G((AdditionalServings(A) ∧ BagWeight(Bag, W) ∧ Multiply(A, W, G)) → WeightConsumedForBag(Bag, G))
+
+## INFERENCES
+INF-1: 2000 - 1800 = 200 :: Subtract(n_2000, n_1800, n_200) from FACT-3 and FACT-4 by ArithmeticSubtraction
+INF-2: RemainingCalories(n_200) :: from RULE-1 applied to DAILY TARGET n_2000, CALORIES CONSUMED n_1800, and Subtract(n_2000, n_1800, n_200) (MODUS PONENS)
+INF-3: Divide(n_200, n_250, n_0_8) :: 200 / 250 = 0.8 from INF-2 and FACT-2 by ArithmeticDivision
+INF-4: AdditionalServings(n_0_8) :: from RULE-2 using RemainingCalories(n_200), CaloriesPerServing(n_250), and Divide(n_200, n_250, n_0_8) (MODUS PONENS)
+INF-5: Multiply(n_0_8, n_300, n_240) :: 0.8 × 300 = 240 from INF-4 and FACT-5 by ArithmeticMultiplication
+INF-6: WeightConsumedForBag(bag_300g, n_240) :: from RULE-3 using AdditionalServings(n_0_8) and BagWeight(bag_300g, n_300) and Multiply(n_0_8, n_300, n_240) (MODUS PONENS)

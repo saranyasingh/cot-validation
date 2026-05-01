@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_eggs(n_16)).
+fof(fact_2, axiom, eggs_eaten_for_breakfast(n_3)).
+fof(fact_3, axiom, eggs_used_for_muffins(n_4)).
+fof(fact_4, axiom, price_per_egg(n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : ! [Y] : ! [Z] : ((total_eggs(X) & eggs_eaten_for_breakfast(Y) & subtract(X,Y,Z)) => remaining_after_breakfast(Z))).
+fof(rule_2, axiom, ! [A] : ! [B] : ! [C] : ((remaining_after_breakfast(A) & eggs_used_for_muffins(B) & subtract(A,B,C)) => remaining_after_muffins(C))).
+fof(rule_3, axiom, ! [A] : ! [B] : ! [C] : ((multiply(A,B,C)) => earnings(C))).
+
+% --- INFERENCES ---
+% From FACT-1, FACT-2 by Arithmetic Computation
+fof(inf_1, axiom, subtract(n_16, n_3, n_13)).
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, remaining_after_breakfast(n_13)).
+% From inf_2, FACT-3 by Arithmetic Computation
+fof(inf_3, axiom, subtract(n_13, n_4, n_9)).
+% From inf_2, FACT-3, inf_3, RULE-2 by Modus Ponens
+fof(inf_4, axiom, remaining_after_muffins(n_9)).
+% From inf_4, FACT-4 by Arithmetic Computation
+fof(inf_5, axiom, multiply(n_9, n_2, n_18)).
+% From inf_5, RULE-3 by Modus Ponens
+fof(inf_6, axiom, earnings(n_18)).

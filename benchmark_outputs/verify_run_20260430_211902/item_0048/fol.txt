@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: The price of a blue tie is 40 dollars :: BlueTiePrice(n_40)
+FACT-2: The total cost of blue ties is 200 dollars :: BlueTiesTotalCost(n_200)
+
+## RULES
+RULE-1: If EqualDivision(x,y,z) holds, then BlueTiesCount(z) holds :: ∀x∀y∀z((EqualDivision(x,y,z)) → BlueTiesCount(z))
+RULE-2: If BlueTiesCount(x) holds, then RedTiesCount(n_100) holds :: ∀x(BlueTiesCount(x) → RedTiesCount(n_100))
+
+## INFERENCES
+INF-1: Equal division of 200 by 40 equals 50, from FACT-1 and FACT-2 by ArithmeticComputation :: EqualDivision(n_200, n_40, n_50)
+INF-2: BlueTiesCount(n_50) from INF-1 and RULE-1 by Modus Ponens :: BlueTiesCount(n_50)
+INF-3: RedTiesCount(n_100) from BlueTiesCount(n_50) via RULE-2 by Modus Ponens :: RedTiesCount(n_100)
+INF-4: RedTiePrice(n_60) from FACT-1 by ArithmeticComputation :: RedTiePrice(n_60)
+INF-5: TotalRedTiesCost(n_6000) from RedTiesCount(n_100) and RedTiePrice(n_60) by ArithmeticComputation :: TotalRedTiesCost(n_6000)
+INF-6: TotalExpenditure(n_6200) from FACT-2 and INF-5 by ArithmeticComputation :: TotalExpenditure(n_6200)

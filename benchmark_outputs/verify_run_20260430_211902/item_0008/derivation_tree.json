@@ -1,0 +1,150 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The normal download speed is 2 GB per minute",
+      "formula": "NormalSpeedPerMinute(n_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The total size of the file is 200 GB",
+      "formula": "FileSizeGB(n_200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "40% of the download is done normally",
+      "formula": "PercentNormallyDone(n_40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The restart after the update takes 20 minutes",
+      "formula": "RestartTimeMinutes(n_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "200 divided by 2 equals 100",
+      "formula": "ArithmeticDiv(n_200, n_2, n_100)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "100 plus 20 equals 120",
+      "formula": "ArithmeticAdd(n_100, n_20, n_120)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state or entail that 100 + 20 = 120 is the total time.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "40 plus 20 equals 60",
+      "formula": "ArithmeticAdd(n_40, n_20, n_60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "40% of 200 GB is 80 GB; at 2 GB/min that is 40 minutes; plus 20 minutes = 60 minutes.",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "120 plus 60 equals 180",
+      "formula": "ArithmeticAdd(n_120, n_60, n_180)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "180 is not entailed by the given problem data.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a file has size F and a normal speed S, and ArithmeticDiv(F, S, T) holds, then TimeToNormalSpeedMinutes(F, S, T)",
+      "formula": "\u2200F\u2200S\u2200T((FileSizeGB(F) \u2227 NormalSpeedPerMinute(S) \u2227 ArithmeticDiv(F,S,T)) \u2192 TimeToNormalSpeedMinutes(F,S,T))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If ArithmeticAdd(A,B,C) holds, then SumMinutes(A,B,C)",
+      "formula": "\u2200A\u2200B\u2200C((ArithmeticAdd(A,B,C)) \u2192 SumMinutes(A,B,C))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "TimeToNormalSpeedMinutes(n_200, n_2, n_100)",
+      "formula": "RULE-1, FACT-1, FACT-2, FACT-5",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "SumMinutes(n_100, n_20, n_120)",
+      "formula": "RULE-2, FACT-6",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "SumMinutes(n_40, n_20, n_60)",
+      "formula": "RULE-2, FACT-7",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "SumMinutes(n_120, n_60, n_180)",
+      "formula": "RULE-2, FACT-8",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "TotalTimeMinutes(n_180)",
+      "formula": "Arithmetic Computation from INF-1, INF-2, INF-4",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "The problem does not state or entail that 100 + 20 = 120 is the total time."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "180 is not entailed by the given problem data."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

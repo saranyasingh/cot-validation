@@ -1,0 +1,41 @@
+To determine how many pieces of pie were taken by the guests, we need to follow these steps:
+
+**Premise 1:** Grandma Jones baked 5 apple pies.
+- This establishes the total number of pies.
+
+**Premise 2:** Each pie was cut into 8 pieces.
+- This gives us the size of each piece.
+
+**Premise 3:** There were 5 pies initially.
+- This confirms the quantity of pies.
+
+**Premise 4:** After serving, there were 14 pieces left.
+- This indicates how many pieces were consumed.
+
+**Premise 5:** We need to find out how many pieces were taken by the guests.
+- This is our goal.
+
+Let’s use the premises to reason through this problem:
+
+1. **Total Number of Pieces Initially:**
+   - Since there were 5 pies and each pie was cut into 8 pieces,
+   \[
+   \text{Total pieces} = 5 \times 8 = 40
+   \]
+
+2. **Number of Pieces Left:**
+   - There were 14 pieces remaining at the end of the evening.
+
+3. **Pieces Taken by Guests:**
+   - To find out how many pieces were taken, subtract the number of pieces left from the initial total.
+   \[
+   \text{Pieces taken} = \text{Total pieces} - \text{Pieces left}
+   \]
+   Substituting the values:
+   \[
+   \text{Pieces taken} = 40 - 14 = 26
+   \]
+
+Therefore, the number of pieces of pie that were taken by the guests is 26.
+
+**The answer is: 26**

@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: Volume(orange_drink, n_10) :: 10 liters of orange drink
+FACT-2: WaterFraction(orange_drink, n_2, n_3) :: orange_drink is 2/3 water
+FACT-3: Volume(pineapple_drink, n_15) :: 15 liters of pineapple drink
+FACT-4: WaterFraction(pineapple_drink, n_3, n_5) :: pineapple_drink is 3/5 water
+
+## RULES
+RULE-1: ∀D∀N∀Dn∀V((WaterFraction(D,N,Dn) ∧ Volume(D,V)) → WaterAmount(D, FracProd(N,Dn,V))) :: If a drink D has water fraction N/Dn and volume V, then WaterAmount(D, FracProd(N,Dn,V))
+RULE-2: ∀A∀B((Sum(A,B)) → Total(A,B)) :: If A and B sum to something, then Total
+
+## INFERENCES
+INF-1: WaterAmount(orange_drink, n_20_3) :: From FACT-1, FACT-2 by ArithmeticComputation (via RULE-1)
+INF-2: WaterAmount(pineapple_drink, n_9) :: From FACT-3, FACT-4 by ArithmeticComputation (via RULE-1)
+INF-3: TotalWater(n_50_3) :: From INF-1, INF-2 by ArithmeticComputation (via RULE-2)
+INF-4: WaterInRemaining(n_50_3, n_24) :: From INF-3 and RemainingVolume(n_24) by Rule-4 (Final conclusion)

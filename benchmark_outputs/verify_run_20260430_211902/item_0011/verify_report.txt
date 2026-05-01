@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED — directly stated: first month downloads = 60.
+
+FACT-2: SUPPORTED — derived: second month = 3 × 60 = 180.
+
+FACT-3: SUPPORTED — derived: third month = 70% of 180 = 126.
+
+FACT-4: SUPPORTED — derived: total = 60 + 180 + 126 = 366; SumIs encodes this.
+
+RULE-1: PLAUSIBLE — the form SumIs(a, b, c, d) encodes a + b + c = d, so d is the total.

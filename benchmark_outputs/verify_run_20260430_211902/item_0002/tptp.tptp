@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, bolts_blue_fiber(robe, n_2)).
+
+% --- RULES ---
+
+% --- INFERENCES ---
+% From fact_1 by Arithmetic Computation
+fof(inf_1, axiom, white_bolts(robe, n_1)).
+
+% From fact_1, inf_1 by Arithmetic Computation
+fof(inf_2, axiom, total_bolts(robe, n_3)).

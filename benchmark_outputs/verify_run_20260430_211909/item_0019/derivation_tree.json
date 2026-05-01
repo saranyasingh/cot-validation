@@ -1,0 +1,46 @@
+{
+  "nodes": {
+    "INF-1": {
+      "type": "inference",
+      "gloss": "3 \u00d7 7 = 21, from FACT-1 and FACT-2 by Arithmetic Computation",
+      "formula": "Mul(n_3, n_7, n_21)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "21 \u00d7 4 = 84, from INF-2 and FACT-3 by Arithmetic Computation",
+      "formula": "Mul(n_21, n_4, n_84)",
+      "premises": [
+        "INF-2",
+        "FACT-3"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "84 \u00f7 12 = 7, from INF-4 and FACT-4 by Arithmetic Computation",
+      "formula": "EqualDivision(n_84, n_12, n_7)",
+      "premises": [
+        "INF-4",
+        "FACT-4"
+      ],
+      "inference_rule": "Arithmetic Computation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,19 @@
+## FACTS
+FACT-1: Toula has 3 dozen donuts :: DonutsDozen(n_3)
+FACT-2: Donuts price per dozen is 68 dollars :: DonutsPricePerDozen(n_68)
+FACT-3: Toula has 2 dozen mini cupcakes :: CupcakesDozen(n_2)
+FACT-4: Mini cupcakes price per dozen is 80 dollars :: CupcakesPricePerDozen(n_80)
+FACT-5: Toula has 6 dozen mini cheesecakes :: CheesecakesDozen(n_6)
+FACT-6: Mini cheesecakes price per dozen is 55 dollars :: CheesecakesPricePerDozen(n_55)
+
+## RULES
+RULE-1: If the donuts are d dozen and the price per dozen is p, then the donuts total cost is 204 :: ∀d∀p((DonutsDozen(d) ∧ DonutsPricePerDozen(p)) → DonutsTotalCost(n_204))
+RULE-2: If the cupcakes are d dozen and the price per dozen is p, then the cupcakes total cost is 160 :: ∀d∀p((CupcakesDozen(d) ∧ CupcakesPricePerDozen(p)) → CupcakesTotalCost(n_160))
+RULE-3: If the cheesecakes are d dozen and the price per dozen is p, then the cheesecakes total cost is 330 :: ∀d∀p((CheesecakesDozen(d) ∧ CheesecakesPricePerDozen(p)) → CheesecakesTotalCost(n_330))
+RULE-4: If the donuts total cost, cupcakes total cost, and cheesecakes total cost are a, b, c respectively, then the grand total cost is 694 :: ∀a∀b∀c((DonutsTotalCost(a) ∧ CupcakesTotalCost(b) ∧ CheesecakesTotalCost(c)) → GrandTotalCost(n_694))
+
+## INFERENCES
+INF-1: DonutsTotalCost(n_204) from FACT-1, FACT-2 by RULE-1
+INF-2: CupcakesTotalCost(n_160) from FACT-3, FACT-4 by RULE-2
+INF-3: CheesecakesTotalCost(n_330) from FACT-5, FACT-6 by RULE-3
+INF-4: GrandTotalCost(n_694) from INF-1, INF-2, INF-3 by RULE-4
