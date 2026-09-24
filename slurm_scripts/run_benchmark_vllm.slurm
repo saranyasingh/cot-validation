@@ -23,11 +23,18 @@ DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
+VERIFIER_CLIENT="${VERIFIER_CLIENT:-openai}"   # openai | anthropic | ... (autoformalization/verification)
 VLLM_PORT="${VLLM_PORT:-8000}"
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 
 export OPENAI_API_KEY="$(cat ~/.openai_key)"
+if [ -z "${ANTHROPIC_API_KEY:-}" ] && [ -f ~/.anthropic_key ]; then
+    export ANTHROPIC_API_KEY="$(tr -d ' \n\r\t' < ~/.anthropic_key)"
+fi
+if [ -z "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && [ -f ~/.bedrock_key ]; then
+    export AWS_BEARER_TOKEN_BEDROCK="$(tr -d ' \n\r\t' < ~/.bedrock_key)"
+fi
 
 # ── Environment setup ──────────────────────────────────────────────────────────
 # Slurm runs a non-interactive shell, so ~/.bashrc conda init doesn't run.
@@ -58,6 +65,7 @@ echo "Python      : $PYTHON ($(command -v "$PYTHON" 2>/dev/null || echo not foun
 echo "Model       : $VLLM_MODEL"
 echo "Dataset     : $DATASET"
 echo "Max retries : $MAX_RETRIES"
+echo "Verifier    : $VERIFIER_CLIENT ${ANTHROPIC_MODEL:-}"
 echo "Start time  : $(date)"
 echo "──────────────────────────────────────────"
 
@@ -117,6 +125,7 @@ fi
 "$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/benchmark.py" \
     --dataset "$DATASET" \
     --client vllm \
+    --verifier-client "$VERIFIER_CLIENT" \
     --max-retries "$MAX_RETRIES" \
     $OUTPUT_ARG \
     $NUM_PROBLEMS_ARG
