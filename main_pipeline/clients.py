@@ -85,6 +85,38 @@ class VLLMLLMClient(LLMClient):
         return response.choices[0].message.content
 
 
+class AnthropicLLMClient(LLMClient):
+    """Uses the Anthropic Messages API (Claude)."""
+
+    def __init__(self):
+        import anthropic
+        self._client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY
+        self.model = os.getenv("ANTHROPIC_MODEL", "claude-opus-5-5")
+        self.max_tokens = int(os.getenv("ANTHROPIC_MAX_TOKENS", "16000"))
+
+    def complete(self, prompt: str) -> str:
+        with self._client.messages.stream(
+            model=self.model,
+            max_tokens=self.max_tokens,
+            messages=[{"role": "user", "content": prompt}],
+        ) as stream:
+            message = stream.get_final_message()
+        if message.stop_reason == "refusal":
+            print(f"WARNING: {self.model} refused (stop_details={message.stop_details})")
+        return "".join(b.text for b in message.content if b.type == "text")
+
+
+class BedrockLLMClient(AnthropicLLMClient):
+    """Claude via Amazon Bedrock (Messages API endpoint). Auth: AWS_BEARER_TOKEN_BEDROCK
+    (Bedrock API key) or standard AWS credentials (AWS_ACCESS_KEY_ID / profile)."""
+
+    def __init__(self):
+        from anthropic import AnthropicBedrockMantle
+        self._client = AnthropicBedrockMantle(aws_region=os.getenv("AWS_REGION", "us-east-1"))
+        self.model = os.getenv("BEDROCK_MODEL", "anthropic.claude-fable-5-1")
+        self.max_tokens = int(os.getenv("ANTHROPIC_MAX_TOKENS", "64000"))
+
+
 def make_client(name: str) -> LLMClient:
     if name == "openai":
         return OpenAILLMClient()
@@ -94,4 +126,8 @@ def make_client(name: str) -> LLMClient:
         return DeepSeekLLMClient()
     if name == "vllm":
         return VLLMLLMClient()
-    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'kimi', 'deepseek', or 'vllm'.")
+    if name == "anthropic":
+        return AnthropicLLMClient()
+    if name == "bedrock":
+        return BedrockLLMClient()
+    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'kimi', 'deepseek', 'vllm', 'anthropic', or 'bedrock'.")

@@ -285,15 +285,20 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--client", "-c",
-        choices=["openai", "kimi", "deepseek", "vllm"],
+        choices=["openai", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
         default="openai",
-        help="Reasoning client for CoT/FOL generation (default: openai). "
-             "Verification always uses openai.",
+        help="Reasoning client for CoT generation (default: openai).",
+    )
+    parser.add_argument(
+        "--verifier-client", "-v",
+        choices=["openai", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
+        default="openai",
+        help="Client for autoformalization (FOL), verification, and TPTP conversion (default: openai).",
     )
     args = parser.parse_args()
 
     reasoning_client = make_client(args.client)
-    verifier_client = OpenAILLMClient()
+    verifier_client = make_client(args.verifier_client)
 
     run_id = datetime.now().strftime("run_%Y%m%d_%H%M%S")
     base_dir = args.output_dir or os.path.join(SCRIPT_DIR, "benchmark_outputs")
