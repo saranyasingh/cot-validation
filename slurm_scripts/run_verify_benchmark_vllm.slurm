@@ -23,11 +23,22 @@ DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 SKIP_TPTP="${SKIP_TPTP:-}"       # set to "1" to pass --skip-tptp
+VERIFIER_CLIENT="${VERIFIER_CLIENT:-claude}"  # openai | claude | kimi | deepseek | vllm
+ANTHROPIC_MODEL="${ANTHROPIC_MODEL:-claude-opus-4-5}"
 VLLM_PORT="${VLLM_PORT:-8000}"
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 
-export OPENAI_API_KEY="$(cat ~/.openai_key 2>/dev/null || echo '')"
+export OPENAI_API_KEY="${OPENAI_API_KEY:-$(cat ~/.openai_key 2>/dev/null || echo '')}"
+export ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-$(cat ~/.anthropic_key 2>/dev/null || echo '')}"
+export ANTHROPIC_MODEL
+# Also pull keys from repo .env if present (cluster-friendly)
+if [ -f "${SLURM_SUBMIT_DIR}/../.env" ]; then
+    set -a
+    # shellcheck disable=SC1091
+    source "${SLURM_SUBMIT_DIR}/../.env"
+    set +a
+fi
 
 # ── Environment setup ──────────────────────────────────────────────────────────
 # Slurm runs a non-interactive shell, so ~/.bashrc conda init doesn't run.
@@ -58,6 +69,12 @@ echo "Python       : $PYTHON ($(command -v "$PYTHON" 2>/dev/null || echo not fou
 echo "Model        : $VLLM_MODEL"
 echo "Dataset      : $DATASET"
 echo "Skip TPTP    : ${SKIP_TPTP:-no}"
+echo "Verifier     : $VERIFIER_CLIENT ($ANTHROPIC_MODEL)"
+if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
+    echo "Anthropic key: set"
+else
+    echo "Anthropic key: MISSING"
+fi
 echo "Start time   : $(date)"
 echo "──────────────────────────────────────────"
 
@@ -122,9 +139,21 @@ export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
 "$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/verify_benchmark.py" \
     --dataset "$DATASET" \
     --client vllm \
+    --verifier "$VERIFIER_CLIENT" \
     $OUTPUT_ARG \
     $NUM_PROBLEMS_ARG \
     $SKIP_TPTP_ARG
+
+# ── Generate HTML report ───────────────────────────────────────────────────────
+BENCHMARK_OUTPUTS_DIR="${OUTPUT_DIR:-$SLURM_SUBMIT_DIR/../benchmark_outputs}"
+RESULTS_DIR=$(ls -td "${BENCHMARK_OUTPUTS_DIR}"/verify_run_* 2>/dev/null | head -1)
+if [ -n "$RESULTS_DIR" ]; then
+    echo "Generating HTML report for: $RESULTS_DIR"
+    "$PYTHON" "$SLURM_SUBMIT_DIR/../visualize_trees.py" "$RESULTS_DIR"
+    echo "Report written to: $RESULTS_DIR/report.html"
+else
+    echo "WARNING: Could not find output directory to generate report."
+fi
 
 echo "──────────────────────────────────────────"
 echo "End time : $(date)"

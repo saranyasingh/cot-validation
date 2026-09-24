@@ -3,6 +3,7 @@ LLM client abstractions for the CoT-validation pipeline.
 
 Clients:
   openai    — OpenAI Responses API (gpt-5-nano), used for verification
+  claude    — Anthropic Claude API (claude-opus-4-5 by default)
   kimi      — Moonshot/Kimi Chat Completions API, weaker model for reasoning
   deepseek  — DeepSeek Chat Completions API, weaker model for reasoning
 """
@@ -10,6 +11,7 @@ Clients:
 import os
 from dotenv import load_dotenv
 from openai import OpenAI as _OpenAI
+import anthropic as _anthropic
 
 load_dotenv()
 
@@ -67,6 +69,22 @@ class DeepSeekLLMClient(LLMClient):
         return response.choices[0].message.content
 
 
+class ClaudeLLMClient(LLMClient):
+    """Uses the Anthropic Claude API."""
+
+    def __init__(self):
+        self._client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        self.model = os.getenv("ANTHROPIC_MODEL", "claude-opus-4-5")
+
+    def complete(self, prompt: str) -> str:
+        response = self._client.messages.create(
+            model=self.model,
+            max_tokens=4096,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.content[0].text
+
+
 class VLLMLLMClient(LLMClient):
     """Uses a locally-running vLLM server (OpenAI-compatible Chat Completions API)."""
 
@@ -88,10 +106,12 @@ class VLLMLLMClient(LLMClient):
 def make_client(name: str) -> LLMClient:
     if name == "openai":
         return OpenAILLMClient()
+    if name == "claude":
+        return ClaudeLLMClient()
     if name == "kimi":
         return KimiLLMClient()
     if name == "deepseek":
         return DeepSeekLLMClient()
     if name == "vllm":
         return VLLMLLMClient()
-    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'kimi', 'deepseek', or 'vllm'.")
+    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'claude', 'kimi', 'deepseek', or 'vllm'.")

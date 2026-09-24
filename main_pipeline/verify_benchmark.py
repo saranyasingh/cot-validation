@@ -135,6 +135,8 @@ def run_verify_benchmark(
     reasoning_client=None,
     verifier_client=None,
     skip_tptp: bool = False,
+    reasoning_client_name: str = "openai",
+    verifier_client_name: str = "claude",
 ) -> dict:
     with open(dataset_path) as f:
         dataset = json.load(f)
@@ -161,6 +163,7 @@ def run_verify_benchmark(
 
     print(f"=== Verify-Only Benchmark: {dataset.get('name', dataset_path)} ===")
     print(f"Items: {total} | Skip TPTP: {skip_tptp}")
+    print(f"CoT agent: {reasoning_client_name} | Verifier: {verifier_client_name}")
     print(f"Outputs: {output_dir}\n")
     print(f"{'ID':<12} {'Expected':<12} {'CoT Ans':<12} {'CoT OK':<10} {'Flagged':<10} {'Outcome'}")
     print("-" * 74)
@@ -244,6 +247,8 @@ def run_verify_benchmark(
         "run_id": os.path.basename(output_dir),
         "total": total,
         "skip_tptp": skip_tptp,
+        "reasoning_client": reasoning_client_name,
+        "verifier_client": verifier_client_name,
         "cot": {
             "correct": cot_correct_count,
             "incorrect": cot_errors,
@@ -318,9 +323,15 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--client", "-c",
-        choices=["openai", "kimi", "deepseek", "vllm"],
+        choices=["openai", "claude", "kimi", "deepseek", "vllm"],
         default="openai",
-        help="Reasoning client for CoT generation (default: openai). Verification always uses openai.",
+        help="Reasoning client for CoT generation (default: openai).",
+    )
+    parser.add_argument(
+        "--verifier",
+        choices=["openai", "claude", "kimi", "deepseek", "vllm"],
+        default="claude",
+        help="Verification client for FOL extraction and fact/rule checking (default: claude / opus).",
     )
     parser.add_argument(
         "--skip-tptp",
@@ -330,7 +341,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     reasoning_client = make_client(args.client)
-    verifier_client = OpenAILLMClient()
+    verifier_client = make_client(args.verifier)
 
     run_id = datetime.now().strftime("verify_run_%Y%m%d_%H%M%S")
     base_dir = args.output_dir or os.path.join(SCRIPT_DIR, "..", "benchmark_outputs")
@@ -343,4 +354,6 @@ if __name__ == "__main__":
         reasoning_client=reasoning_client,
         verifier_client=verifier_client,
         skip_tptp=args.skip_tptp,
+        reasoning_client_name=args.client,
+        verifier_client_name=args.verifier,
     )

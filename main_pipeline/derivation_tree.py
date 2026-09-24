@@ -46,6 +46,8 @@ def parse_structured_fol(structured_fol: str) -> dict:
         if m:
             label, gloss, formula = m.group(1), m.group(2), m.group(3)
             premises, inf_rule = _parse_inf_premises(gloss)
+            if not premises:
+                premises, inf_rule = _parse_inf_premises(formula)
             inferences[label] = {
                 "type": "inference",
                 "gloss": gloss,
