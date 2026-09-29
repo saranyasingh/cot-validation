@@ -64,7 +64,8 @@ Ground atomic formulas taken directly from the question. No quantifiers.
 Each fact is one atomic predicate applied to constants.
 
 ## RULES
-Universally quantified implications that encode external or linguistic knowledge include basic mathematical knowledge.
+Universally quantified formulas — usually implications, but also disjunctions when the reasoning appeals to an
+exhaustive case split — that encode external, linguistic, or basic mathematical knowledge.
 Every rule MUST start with ∀. These are general principles, not story-specific. 
 If they include ground atomic formulas, those formulas must be defined as facts. 
 
@@ -88,29 +89,39 @@ Labels are FACT-1, FACT-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
 
 === EXAMPLE ===
 HERE IS EXAMPLE COT REASONING:
-Ana has 6 apples. The apples are split into 2 equal bags. Divide 6 by 2 to get 3. So each bag has 3 apples.
+Bonnie is a student who attends the school. Anyone who chaperones high school dances is not a student who attends
+the school, so Bonnie does not chaperone high school dances. Every person who is an inactive and disinterested
+member of their community chaperones high school dances, so Bonnie is not an inactive and disinterested member of
+her community. Every person either performs in school talent shows often or is an inactive and disinterested member
+of their community, so Bonnie performs in school talent shows often. Anyone who performs in school talent shows
+often attends and is very engaged with school events. So Bonnie attends and is very engaged with school events.
 
 CORRECT OUTPUT LOOKS LIKE THIS:
 
 ## VOCABULARY
 Predicates:
-TotalApples(x) — x is the total number of apples Ana has
-AppleBagCount(x) — the apples are split into x bags
-EqualDivision(x,y,z) — dividing x equally into y parts gives z
-ApplesPerBag(x) — each bag holds x apples
+Students(x) — x is a student who attends the school
+Chaperone(x) — x chaperones high school dances
+Inactive(x) — x is an inactive and disinterested member of their community
+TalentShows(x) — x performs in school talent shows often
+Engaged(x) — x attends and is very engaged with school events
 Constants:
-n_6, n_2, n_3
+bonnie
 
 ## FACTS
-FACT-1: Ana has 6 apples :: TotalApples(n_6)
-FACT-2: The apples are split into 2 bags :: AppleBagCount(n_2)
+FACT-1: Bonnie is a student who attends the school :: Students(bonnie)
 
 ## RULES
-RULE-1: If a total number of apples is equally divided into a number of bags with quotient z, then each bag has z apples :: ∀x∀y∀z((TotalApples(x) ∧ AppleBagCount(y) ∧ EqualDivision(x,y,z)) → ApplesPerBag(z))
+RULE-1: Anyone who chaperones high school dances is not a student who attends the school :: ∀x (Chaperone(x) → ¬Students(x))
+RULE-2: Every inactive and disinterested member of their community chaperones high school dances :: ∀x (Inactive(x) → Chaperone(x))
+RULE-3: Every person either performs in school talent shows often or is an inactive and disinterested member of their community :: ∀x (TalentShows(x) ∨ Inactive(x))
+RULE-4: Anyone who performs in school talent shows often attends and is very engaged with school events :: ∀x (TalentShows(x) → Engaged(x))
 
 ## INFERENCES
-# INF-1: Dividing 6 by 2 gives 3, from FACT-1 and FACT-2 by Arithmetic Computation :: EqualDivision(n_6,n_2,n_3)
-# INF-2: Each bag has 3 apples, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: ApplesPerBag(n_3)
+INF-1: Bonnie does not chaperone high school dances, from FACT-1 and RULE-1 by Modus Tollens :: ¬Chaperone(bonnie)
+INF-2: Bonnie is not an inactive and disinterested member of her community, from INF-1 and RULE-2 by Modus Tollens :: ¬Inactive(bonnie)
+INF-3: Bonnie performs in school talent shows often, from INF-2 and RULE-3 by Disjunctive Syllogism :: TalentShows(bonnie)
+INF-4: Bonnie attends and is very engaged with school events, from INF-3 and RULE-4 by Modus Ponens :: Engaged(bonnie)
 
 === CHAIN OF THOUGHT REASONING TO CONVERT ===
 {cot_text}
