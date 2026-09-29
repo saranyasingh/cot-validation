@@ -44,8 +44,20 @@ IMPORTANT: You must faithfully represent the EXACT reasoning steps in the chain 
 - Constants: lowercase with underscores (e.g., alice, bob, mr_black, kitchen)
 - Variables: single lowercase letters (x, y, z, w, t) — only in quantified formulas
 
+=== VOCABULARY ===
+Before writing any formulas, read the whole reasoning and CHOOSE and FIX the vocabulary you will use. The vocabulary is:
+- the predicates, each written with its arity and a one-line description of what it means
+- the constants, covering every proper noun, entity, and number the reasoning refers to
+
+Keep it small: AT MOST 5 predicates. Choose them so that they cover every step of the reasoning before you start,
+rather than inventing new symbols as you go.
+
+Output the fixed vocabulary as the first section (## VOCABULARY). Once fixed, it cannot change: every FACT, RULE,
+and INFERENCE below must be built ONLY from these predicates and constants. If a step seems to need a symbol you
+did not fix, go back and choose a better vocabulary instead of adding one.
+
 === OUTPUT CATEGORIES ===
-Produce exactly three sections:
+After the vocabulary, produce exactly three more sections. Each one must be expressed entirely in the fixed vocabulary:
 
 ## FACTS
 Ground atomic formulas taken directly from the question. No quantifiers.
@@ -68,15 +80,27 @@ Use :: as the delimiter between the gloss and the formula.
 Labels are FACT-1, FACT-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
 
 === CONSTRAINTS ===
+- ONLY use syntax described in the vocabulary and syntax sections. Must follow the fixed vocabulary.
+- Every predicate and constant that appears in a formula MUST be declared in ## VOCABULARY.
 - Do NOT merge a fact and a rule into one formula.
 - Every inference MUST cite its premises by label.
-- Output ONLY the three sections with labeled lines. No extra explanation.
+- Output ONLY the vocabulary section and the three labeled sections. No extra explanation.
 
 === EXAMPLE ===
 HERE IS EXAMPLE COT REASONING:
 Ana has 6 apples. The apples are split into 2 equal bags. Divide 6 by 2 to get 3. So each bag has 3 apples.
 
 CORRECT OUTPUT LOOKS LIKE THIS:
+
+## VOCABULARY
+Predicates:
+TotalApples(x) — x is the total number of apples Ana has
+AppleBagCount(x) — the apples are split into x bags
+EqualDivision(x,y,z) — dividing x equally into y parts gives z
+ApplesPerBag(x) — each bag holds x apples
+Constants:
+n_6, n_2, n_3
+
 ## FACTS
 FACT-1: Ana has 6 apples :: TotalApples(n_6)
 FACT-2: The apples are split into 2 bags :: AppleBagCount(n_2)
@@ -137,11 +161,13 @@ Fix the issues identified in the error report. Ensure:
 - Every RULE is a sound commonsense or logical principle.
 - Every INFERENCE correctly follows from its cited premises.
 - All TPTP syntax issues are corrected.
+- Every predicate and constant used is declared in ## VOCABULARY. Keep the original fixed vocabulary unless an error
+  requires changing it; if you do change it, re-fix the whole vocabulary and rewrite every formula to match.
 
 Use the same output format as before:
 LABEL: <natural language gloss> :: <FOL formula>
 
-Output ONLY the three sections (## FACTS, ## RULES, ## INFERENCES) with labeled lines. No extra explanation.
+Output ONLY the four sections (## VOCABULARY, ## FACTS, ## RULES, ## INFERENCES). No extra explanation.
 '''
 
 

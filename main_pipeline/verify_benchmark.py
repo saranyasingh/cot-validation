@@ -3,10 +3,14 @@ Verify-only benchmark: generate CoT, verify it (fact/rule + TPTP), flag as incor
 verification fails. No repair loop. Measures how well verification catches wrong answers
 vs. incorrectly rejecting right ones.
 
+A flagged item means the pipeline could not verify the CoT, i.e. it marks that answer
+incorrect. An item that passes verification is marked correct.
+
 Stats reported:
-  - True positives  (errors correctly identified): CoT was wrong AND verification flagged it
-  - False positives (correct but flagged wrong):   CoT was right AND verification flagged it
-  - False negatives (errors missed):               CoT was wrong AND verification passed
+  - Incorrect marked incorrect: CoT was wrong AND verification could not verify it
+  - Correct marked correct:     CoT was right AND verification verified it
+  - Incorrect marked correct:   CoT was wrong BUT verification verified it (missed error)
+  - Correct marked incorrect:   CoT was right BUT verification could not verify it
 
 Usage:
     python verify_benchmark.py
@@ -154,10 +158,12 @@ def run_verify_benchmark(
     # Counters
     cot_correct_count = 0
     flagged_count = 0
-    true_positives = 0   # CoT wrong + flagged
-    false_positives = 0  # CoT right + flagged
-    false_negatives = 0  # CoT wrong + not flagged
-    true_negatives = 0   # CoT right + not flagged
+    failed_verify_count = 0
+    failed_tptp_count = 0
+    incorrect_marked_incorrect = 0  # CoT wrong + flagged      (true positive)
+    correct_marked_incorrect = 0    # CoT right + flagged      (false positive)
+    incorrect_marked_correct = 0    # CoT wrong + not flagged  (false negative)
+    correct_marked_correct = 0      # CoT right + not flagged  (true negative)
 
     results = []
 
@@ -165,7 +171,7 @@ def run_verify_benchmark(
     print(f"Items: {total} | Skip TPTP: {skip_tptp}")
     print(f"CoT agent: {reasoning_client_name} | Verifier: {verifier_client_name}")
     print(f"Outputs: {output_dir}\n")
-    print(f"{'ID':<12} {'Expected':<12} {'CoT Ans':<12} {'CoT OK':<10} {'Flagged':<10} {'Outcome'}")
+    print(f"{'ID':<12} {'Expected':<12} {'CoT Ans':<12} {'CoT OK':<10} {'Marked':<12} {'Judged'}")
     print("-" * 74)
 
     for item in items:
@@ -191,18 +197,27 @@ def run_verify_benchmark(
             cot_correct_count += 1
         if flagged:
             flagged_count += 1
+        if not result["passed_verify"]:
+            failed_verify_count += 1
+        elif result["passed_tptp"] is False:
+            failed_tptp_count += 1
+
+        # Flagged means "could not verify the answer", i.e. the pipeline marks it incorrect.
+        marked = "incorrect" if flagged else "correct"
+        pipeline_answer = "could not verify the answer" if flagged else cot_answer
+        judged_ok = flagged != cot_ok
 
         if not cot_ok and flagged:
-            true_positives += 1
+            incorrect_marked_incorrect += 1
             outcome = "TP"
         elif cot_ok and flagged:
-            false_positives += 1
+            correct_marked_incorrect += 1
             outcome = "FP"
         elif not cot_ok and not flagged:
-            false_negatives += 1
+            incorrect_marked_correct += 1
             outcome = "FN"
         else:
-            true_negatives += 1
+            correct_marked_correct += 1
             outcome = "TN"
 
         derivation_tree = build_derivation_tree(
@@ -223,6 +238,9 @@ def run_verify_benchmark(
             "cot_answer": cot_answer,
             "cot_correct": cot_ok,
             "verify_flagged": flagged,
+            "pipeline_answer": pipeline_answer,
+            "marked": marked,
+            "judged_correctly": judged_ok,
             "passed_verify": result["passed_verify"],
             "passed_tptp": result["passed_tptp"],
             "outcome": outcome,
@@ -231,16 +249,21 @@ def run_verify_benchmark(
         results.append(entry)
 
         cot_marker = "✓" if cot_ok else "✗"
-        flag_marker = "flagged" if flagged else "passed"
+        judged_marker = "✓" if judged_ok else "✗"
         print(
-            f"\n{item_id:<12} {expected:<12} {cot_answer:<12} {cot_marker:<10} {flag_marker:<10} {outcome}"
+            f"\n{item_id:<12} {expected:<12} {cot_answer:<12} {cot_marker:<10} {marked:<12} {judged_marker}"
         )
 
     # ── Aggregate stats ────────────────────────────────────────────────────────
     cot_errors = total - cot_correct_count
-    precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) else 0
-    recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) else 0
+    judged_correct = incorrect_marked_incorrect + correct_marked_correct
+    marked_incorrect = incorrect_marked_incorrect + correct_marked_incorrect
+    precision = incorrect_marked_incorrect / marked_incorrect if marked_incorrect else 0
+    recall = incorrect_marked_incorrect / cot_errors if cot_errors else 0
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0
+
+    def pct(n, d):
+        return f"{n/d:.1%}" if d else "n/a"
 
     summary = {
         "dataset": dataset.get("name", dataset_path),
@@ -255,36 +278,66 @@ def run_verify_benchmark(
             "accuracy": round(cot_correct_count / total, 4) if total else 0,
         },
         "verification": {
-            "flagged": flagged_count,
-            "passed": total - flagged_count,
+            "marked_incorrect": flagged_count,
+            "marked_correct": total - flagged_count,
+            "failed_fact_rule_check": failed_verify_count,
+            "failed_tptp_check": failed_tptp_count,
+        },
+        "judgment": {
+            "incorrect_marked_incorrect": incorrect_marked_incorrect,
+            "correct_marked_correct": correct_marked_correct,
+            "incorrect_marked_correct": incorrect_marked_correct,
+            "correct_marked_incorrect": correct_marked_incorrect,
+            "judged_correct": judged_correct,
+            "accuracy": round(judged_correct / total, 4) if total else 0,
         },
         "error_detection": {
-            "true_positives": true_positives,
-            "false_positives": false_positives,
-            "false_negatives": false_negatives,
-            "true_negatives": true_negatives,
+            "true_positives": incorrect_marked_incorrect,
+            "false_positives": correct_marked_incorrect,
+            "false_negatives": incorrect_marked_correct,
+            "true_negatives": correct_marked_correct,
             "precision": round(precision, 4),
             "recall": round(recall, 4),
             "f1": round(f1, 4),
         },
     }
 
+    misjudged = [r for r in results if not r["judged_correctly"]]
+
     print("\n" + "=" * 74)
     print(f"{'RESULTS SUMMARY':^74}")
     print("=" * 74)
-    print(f"  Total items              : {total}")
-    print(f"  CoT correct              : {cot_correct_count}/{total} ({cot_correct_count/total:.1%})")
-    print(f"  CoT incorrect            : {cot_errors}/{total}")
+    print(f"  Total items                : {total}")
+    print(f"  CoT correct                : {cot_correct_count}/{total}  ({pct(cot_correct_count, total)})")
+    print(f"  CoT incorrect              : {cot_errors}/{total}  ({pct(cot_errors, total)})")
     print()
-    print(f"  -- Verification Error Detection --")
-    print(f"  Errors correctly flagged : {true_positives}/{cot_errors}  (true positives)")
-    print(f"  Correct but flagged      : {false_positives}/{cot_correct_count}  (false positives)")
-    print(f"  Errors missed            : {false_negatives}/{cot_errors}  (false negatives)")
-    print(f"  Correct and passed       : {true_negatives}/{cot_correct_count}  (true negatives)")
+    print(f"  -- Verification Judgment --")
+    print(f"  Incorrect marked incorrect : {incorrect_marked_incorrect}/{cot_errors}  ({pct(incorrect_marked_incorrect, cot_errors)} of wrong answers caught)")
+    print(f"  Correct marked correct     : {correct_marked_correct}/{cot_correct_count}  ({pct(correct_marked_correct, cot_correct_count)} of right answers verified)")
+    print(f"  Incorrect marked correct   : {incorrect_marked_correct}/{cot_errors}  ({pct(incorrect_marked_correct, cot_errors)} of wrong answers missed)")
+    print(f"  Correct marked incorrect   : {correct_marked_incorrect}/{cot_correct_count}  ({pct(correct_marked_incorrect, cot_correct_count)} of right answers rejected)")
+    print(f"  Judged correctly           : {judged_correct}/{total}  ({pct(judged_correct, total)})")
     print()
-    print(f"  Precision                : {precision:.1%}")
-    print(f"  Recall                   : {recall:.1%}")
-    print(f"  F1                       : {f1:.4f}")
+    print(f"  -- Detection Metrics --")
+    print(f"  Precision                  : {precision:.1%}")
+    print(f"  Recall                     : {recall:.1%}")
+    print(f"  F1                         : {f1:.4f}")
+    print()
+
+    if misjudged:
+        print(f"  -- Misjudged Items --")
+        for r in misjudged:
+            print(f"    {r['id']}")
+            print(f"      expected      : {r['expected']!r}")
+            print(f"      cot answer    : {r['cot_answer']!r}")
+            print(f"      pipeline says : {r['pipeline_answer']!r}")
+        print()
+
+    print(f"  -- Verification Internals --")
+    print(f"  Marked incorrect           : {flagged_count}/{total}  ({pct(flagged_count, total)})")
+    print(f"  Marked correct             : {total - flagged_count}/{total}  ({pct(total - flagged_count, total)})")
+    print(f"  Failed fact/rule check     : {failed_verify_count}/{total}  ({pct(failed_verify_count, total)})")
+    print(f"  Failed TPTP check          : {failed_tptp_count}/{total}  ({pct(failed_tptp_count, total)})")
     print("=" * 74)
 
     os.makedirs(output_dir, exist_ok=True)
