@@ -49,6 +49,8 @@ elif [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
     CONDA_BASE="$HOME/miniconda3"
 elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
     CONDA_BASE="$HOME/anaconda3"
+elif [ -f "/n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="/n/sw/Mambaforge-23.11.0-0"   # FASRC system conda (what vllm-inference was built with)
 else
     echo "ERROR: Could not find conda installation." && exit 1
 fi
@@ -110,6 +112,10 @@ ELAPSED=0
 until curl -sf "http://localhost:${VLLM_PORT}/health" > /dev/null 2>&1; do
     if [ $ELAPSED -ge $VLLM_MAX_WAIT ]; then
         echo "ERROR: vLLM did not start within ${VLLM_MAX_WAIT}s. Exiting."
+        exit 1
+    fi
+    if ! kill -0 "$VLLM_PID" 2>/dev/null; then
+        echo "ERROR: vLLM process exited before becoming ready (see .err log). Exiting."
         exit 1
     fi
     sleep 5
