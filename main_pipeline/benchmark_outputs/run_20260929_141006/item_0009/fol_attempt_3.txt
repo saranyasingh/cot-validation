@@ -1,0 +1,32 @@
+## FACTS
+FACT-1: John drives the first leg at 60 mph :: LegSpeed(leg1, n_60)
+FACT-2: John drives the first leg for 3 hours :: LegTime(leg1, n_3)
+FACT-3: The return trip takes a total of 4 hours :: LegTotalTime(leg2, n_4)
+FACT-4: The return trip includes a 2-hour delay in standstill traffic :: LegDelay(leg2, n_2)
+FACT-5: John drives at 80 mph on the return trip :: LegSpeed(leg2, n_80)
+
+## RULES
+RULE-1: If a leg is driven at speed s for time t, and s times t equals d, then the leg's distance is d :: ∀x∀s∀t∀d((LegSpeed(x,s) ∧ LegTime(x,t) ∧ Product(s,t,d)) → LegDistance(x,d))
+RULE-2: If a leg takes total time a with delay b, and a minus b equals c, then the effective driving time of the leg is c :: ∀x∀a∀b∀c((LegTotalTime(x,a) ∧ LegDelay(x,b) ∧ Difference(a,b,c)) → LegTime(x,c))
+RULE-3: The remaining distance equals the initial distance plus the distance driven initially minus the distance covered during effective driving time :: ∀a∀b∀c∀r((LegDistance(leg1,a) ∧ LegDistance(leg2,b) ∧ EffectiveDistance(c) ∧ SumDiff(a,b,c,r)) → LegDistance(leg3,r))
+RULE-4: The effective-time distance is the distance of the second leg :: ∀d(LegDistance(leg2,d) → EffectiveDistance(d))
+RULE-5: The total distance is the sum of the three legs' distances :: ∀a∀b∀c∀t((LegDistance(leg1,a) ∧ LegDistance(leg2,b) ∧ LegDistance(leg3,c) ∧ Sum3(a,b,c,t)) → TotalDistance(t))
+RULE-6: The distance from home equals the initial distance minus the total distance traveled :: ∀a∀t∀h((LegDistance(leg1,a) ∧ TotalDistance(t) ∧ Difference(a,t,h)) → DistanceFromHome(h))
+RULE-7: The final distance from home is the absolute value of the distance from home :: ∀h∀f((DistanceFromHome(h) ∧ AbsoluteValue(h,f)) → FinalDistanceFromHome(f))
+
+## INFERENCES
+INF-1: 60 times 3 equals 180, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_60, n_3, n_180)
+INF-2: The first leg distance is 180 miles, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: LegDistance(leg1, n_180)
+INF-3: 4 minus 2 equals 2, from FACT-3 and FACT-4 by Arithmetic Computation :: Difference(n_4, n_2, n_2)
+INF-4: The effective driving time of the return leg is 2 hours, from FACT-3, FACT-4, INF-3, and RULE-2 by Modus Ponens :: LegTime(leg2, n_2)
+INF-5: 80 times 2 equals 160, from FACT-5 and INF-4 by Arithmetic Computation :: Product(n_80, n_2, n_160)
+INF-6: The second leg distance is 160 miles, from FACT-5, INF-4, INF-5, and RULE-1 by Modus Ponens :: LegDistance(leg2, n_160)
+INF-7: The distance covered during effective driving time is 160 miles, from INF-6 and RULE-4 by Modus Ponens :: EffectiveDistance(n_160)
+INF-8: 180 plus 160 minus 160 equals 180, from INF-2, INF-6, and INF-7 by Arithmetic Computation :: SumDiff(n_180, n_160, n_160, n_180)
+INF-9: The third leg (remaining) distance is 180 miles, from INF-2, INF-6, INF-7, INF-8, and RULE-3 by Modus Ponens :: LegDistance(leg3, n_180)
+INF-10: 180 plus 160 plus 180 equals 520, from INF-2, INF-6, and INF-9 by Arithmetic Computation :: Sum3(n_180, n_160, n_180, n_520)
+INF-11: The total distance is 520 miles, from INF-2, INF-6, INF-9, INF-10, and RULE-5 by Modus Ponens :: TotalDistance(n_520)
+INF-12: 180 minus 520 equals -340, from INF-2 and INF-11 by Arithmetic Computation :: Difference(n_180, n_520, n_neg_340)
+INF-13: The distance from home is -340 miles, from INF-2, INF-11, INF-12, and RULE-6 by Modus Ponens :: DistanceFromHome(n_neg_340)
+INF-14: The absolute value of -340 is 340, from INF-13 by Arithmetic Computation :: AbsoluteValue(n_neg_340, n_340)
+INF-15: The final distance from home is 340 miles, from INF-13, INF-14, and RULE-7 by Modus Ponens :: FinalDistanceFromHome(n_340)

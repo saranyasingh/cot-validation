@@ -1,0 +1,23 @@
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: PurchasePrice(josh_house, n_80000)
+FACT-2: Josh spent an additional $50,000 on repairs :: RepairCost(josh_house, n_50000)
+FACT-3: The repairs increased the value of the house by 150% :: ValueIncreasePercent(josh_house, n_150)
+
+## RULES
+RULE-1: If a house has purchase price x and repair cost y, and x plus y equals z, then its total cost is z :: ∀h∀x∀y∀z((PurchasePrice(h,x) ∧ RepairCost(h,y) ∧ Sum(x,y,z)) → TotalCost(h,z))
+RULE-2: The new value of a house is taken to be its total cost after repairs :: ∀h∀z(TotalCost(h,z) → NewValue(h,z))
+RULE-3: A percentage p expressed as a decimal is d :: ∀h∀p∀d((ValueIncreasePercent(h,p) ∧ PercentToDecimal(p,d)) → IncreaseRate(h,d))
+RULE-4: The original value equals the new value divided by 1 plus the increase rate :: ∀h∀v∀r∀s∀o((NewValue(h,v) ∧ IncreaseRate(h,r) ∧ Sum(n_1,r,s) ∧ Quotient(v,s,o)) → OriginalValue(h,o))
+RULE-5: Profit is the difference between the new value and the original value :: ∀h∀v∀o∀p((NewValue(h,v) ∧ OriginalValue(h,o) ∧ Difference(v,o,p)) → Profit(h,p))
+
+## INFERENCES
+INF-1: 80,000 plus 50,000 equals 130,000, from FACT-1 and FACT-2 by Arithmetic Computation :: Sum(n_80000, n_50000, n_130000)
+INF-2: The total cost is $130,000, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalCost(josh_house, n_130000)
+INF-3: The new value is $130,000, from INF-2 and RULE-2 by Modus Ponens :: NewValue(josh_house, n_130000)
+INF-4: 150% as a decimal is 1.5, from FACT-3 by Arithmetic Computation :: PercentToDecimal(n_150, n_1_5)
+INF-5: The increase rate is 1.5, from FACT-3, INF-4, and RULE-3 by Modus Ponens :: IncreaseRate(josh_house, n_1_5)
+INF-6: 1 plus 1.5 equals 2.5, from INF-5 by Arithmetic Computation :: Sum(n_1, n_1_5, n_2_5)
+INF-7: 130,000 divided by 2.5 equals 52,000, from INF-3 and INF-6 by Arithmetic Computation :: Quotient(n_130000, n_2_5, n_52000)
+INF-8: The original value is $52,000, from INF-3, INF-5, INF-6, INF-7, and RULE-4 by Modus Ponens :: OriginalValue(josh_house, n_52000)
+INF-9: 130,000 minus 52,000 equals 78,000, from INF-3 and INF-8 by Arithmetic Computation :: Difference(n_130000, n_52000, n_78000)
+INF-10: Josh's profit is $78,000, from INF-3, INF-8, INF-9, and RULE-5 by Modus Ponens :: Profit(josh_house, n_78000)

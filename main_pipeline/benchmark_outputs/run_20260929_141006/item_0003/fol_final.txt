@@ -1,0 +1,25 @@
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: PurchaseCost(josh_house, n_80000)
+FACT-2: Josh spent $50,000 on repairs :: RepairCost(josh_house, n_50000)
+FACT-3: The house's value increased by 150% due to repairs :: ValueIncreasePercent(josh_house, n_150)
+FACT-4: The house's original value is its purchase price of $80,000 :: OriginalValue(josh_house, n_80000)
+FACT-5: Arithmetic truth: 80,000 + 50,000 = 130,000 :: Sum(n_80000, n_50000, n_130000)
+FACT-6: Arithmetic truth: a 150% increase corresponds to a growth multiplier of 1 + 1.5 = 2.5 :: GrowthMultiplier(n_150, n_2_5)
+FACT-7: Arithmetic truth: 80,000 × 2.5 = 200,000 :: Product(n_80000, n_2_5, n_200000)
+FACT-8: Arithmetic truth: 200,000 − 130,000 = 70,000 :: Difference(n_200000, n_130000, n_70000)
+
+## RULES
+RULE-1: The total initial cost of a house is the sum of its purchase cost and its repair cost :: ∀h∀x∀y∀z((PurchaseCost(h,x) ∧ RepairCost(h,y) ∧ Sum(x,y,z)) → TotalCost(h,z))
+RULE-2: The new value of a house is its original value multiplied by (1 + the percentage increase as a fraction) :: ∀h∀v∀p∀m∀n((OriginalValue(h,v) ∧ ValueIncreasePercent(h,p) ∧ GrowthMultiplier(p,m) ∧ Product(v,m,n)) → NewValue(h,n))
+RULE-3: The house is sold at its new value :: ∀h∀n(NewValue(h,n) → SalePrice(h,n))
+RULE-4: Profit is the sale price minus the total initial cost :: ∀h∀s∀c∀d((SalePrice(h,s) ∧ TotalCost(h,c) ∧ Difference(s,c,d)) → Profit(h,d))
+
+## INFERENCES
+INF-1: 80,000 + 50,000 = 130,000, from FACT-1, FACT-2, and FACT-5 by Arithmetic Computation :: Sum(n_80000, n_50000, n_130000)
+INF-2: The total initial cost is $130,000, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalCost(josh_house, n_130000)
+INF-3: A 150% increase gives a multiplier of 1 + 1.5 = 2.5, from FACT-3 and FACT-6 by Arithmetic Computation :: GrowthMultiplier(n_150, n_2_5)
+INF-4: 80,000 × 2.5 = 200,000, from FACT-4, INF-3, and FACT-7 by Arithmetic Computation :: Product(n_80000, n_2_5, n_200000)
+INF-5: The new value of the house is $200,000, from FACT-4, FACT-3, INF-3, INF-4, and RULE-2 by Modus Ponens :: NewValue(josh_house, n_200000)
+INF-6: The sale price is $200,000, from INF-5 and RULE-3 by Modus Ponens :: SalePrice(josh_house, n_200000)
+INF-7: 200,000 − 130,000 = 70,000, from INF-6, INF-2, and FACT-8 by Arithmetic Computation :: Difference(n_200000, n_130000, n_70000)
+INF-8: Josh's profit is $70,000, from INF-6, INF-2, INF-7, and RULE-4 by Modus Ponens :: Profit(josh_house, n_70000)

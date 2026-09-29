@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: Eliza's regular rate per hour for the first 40 hours is $10 :: RegularRate(eliza, n_10)
+FACT-2: The regular-hours threshold is 40 hours :: RegularHoursLimit(eliza, n_40)
+FACT-3: Eliza's overtime multiplier is 1.2 times her regular rate :: OvertimeMultiplier(eliza, n_1_2)
+FACT-4: Eliza worked 45 hours this week :: TotalHoursWorked(eliza, n_45)
+
+## RULES
+RULE-1: Regular pay equals the regular hours multiplied by the regular rate :: ∀p∀h∀r∀z((RegularHoursLimit(p,h) ∧ RegularRate(p,r) ∧ Product(h,r,z)) → RegularPay(p,z))
+RULE-2: Overtime hours equal total hours minus regular hours :: ∀p∀t∀h∀z((TotalHoursWorked(p,t) ∧ RegularHoursLimit(p,h) ∧ Difference(t,h,z)) → OvertimeHours(p,z))
+RULE-3: The overtime rate equals the multiplier times the regular rate :: ∀p∀m∀r∀z((OvertimeMultiplier(p,m) ∧ RegularRate(p,r) ∧ Product(m,r,z)) → OvertimeRate(p,z))
+RULE-4: Overtime pay equals overtime hours multiplied by the overtime rate :: ∀p∀h∀r∀z((OvertimeHours(p,h) ∧ OvertimeRate(p,r) ∧ Product(h,r,z)) → OvertimePay(p,z))
+RULE-5: Total earnings equal regular pay plus overtime pay :: ∀p∀x∀y∀z((RegularPay(p,x) ∧ OvertimePay(p,y) ∧ Sum(x,y,z)) → TotalEarnings(p,z))
+
+## INFERENCES
+INF-1: 40 times 10 equals 400, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_40, n_10, n_400)
+INF-2: Eliza's regular pay is $400, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: RegularPay(eliza, n_400)
+INF-3: 45 minus 40 equals 5, from FACT-2 and FACT-4 by Arithmetic Computation :: Difference(n_45, n_40, n_5)
+INF-4: Eliza worked 5 overtime hours, from FACT-2, FACT-4, INF-3, and RULE-2 by Modus Ponens :: OvertimeHours(eliza, n_5)
+INF-5: 1.2 times 10 equals 12, from FACT-1 and FACT-3 by Arithmetic Computation :: Product(n_1_2, n_10, n_12)
+INF-6: Eliza's overtime rate is $12 per hour, from FACT-1, FACT-3, INF-5, and RULE-3 by Modus Ponens :: OvertimeRate(eliza, n_12)
+INF-7: 5 times 12 equals 60, from INF-4 and INF-6 by Arithmetic Computation :: Product(n_5, n_12, n_60)
+INF-8: Eliza's overtime pay is $60, from INF-4, INF-6, INF-7, and RULE-4 by Modus Ponens :: OvertimePay(eliza, n_60)
+INF-9: 400 plus 60 equals 460, from INF-2 and INF-8 by Arithmetic Computation :: Sum(n_400, n_60, n_460)
+INF-10: Eliza's total earnings this week are $460, from INF-2, INF-8, INF-9, and RULE-5 by Modus Ponens :: TotalEarnings(eliza, n_460)

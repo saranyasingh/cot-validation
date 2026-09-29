@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: James runs 60 meters each sprint :: MetersPerSprint(james, n_60)
+FACT-2: James runs 3 sprints each time :: SprintsPerSession(james, n_3)
+FACT-3: James runs 3 times a week :: SessionsPerWeek(james, n_3)
+FACT-4: Arithmetic fact: 3 times 3 equals 9 :: Product(n_3, n_3, n_9)
+FACT-5: Arithmetic fact: 60 times 9 equals 540 :: Product(n_60, n_9, n_540)
+
+## RULES
+RULE-1: If a person runs x sprints per session and y sessions per week, and x times y equals z, then the person runs z sprints per week :: ∀p∀x∀y∀z((SprintsPerSession(p,x) ∧ SessionsPerWeek(p,y) ∧ Product(x,y,z)) → SprintsPerWeek(p,z))
+RULE-2: If a person runs x meters per sprint and y sprints per week, and x times y equals z, then the person runs z meters per week :: ∀p∀x∀y∀z((MetersPerSprint(p,x) ∧ SprintsPerWeek(p,y) ∧ Product(x,y,z)) → MetersPerWeek(p,z))
+
+## INFERENCES
+INF-1: 3 times 3 equals 9, from FACT-4 by Arithmetic Computation :: Product(n_3, n_3, n_9)
+INF-2: James runs 9 sprints per week, from FACT-2, FACT-3, INF-1, and RULE-1 by Modus Ponens :: SprintsPerWeek(james, n_9)
+INF-3: 60 times 9 equals 540, from FACT-5 by Arithmetic Computation :: Product(n_60, n_9, n_540)
+INF-4: James runs 540 meters per week, from FACT-1, INF-2, INF-3, and RULE-2 by Modus Ponens :: MetersPerWeek(james, n_540)

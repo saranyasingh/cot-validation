@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, meters_per_sprint(james, n_60)).
+fof(fact_2, axiom, sprints_per_session(james, n_3)).
+fof(fact_3, axiom, sessions_per_week(james, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, X, Y, Z] : ((sprints_per_session(P, X) & sessions_per_week(P, Y) & product(X, Y, Z)) => sprints_per_week(P, Z))).
+fof(rule_2, axiom, ! [P, X, Y, Z] : ((meters_per_sprint(P, X) & sprints_per_week(P, Y) & product(X, Y, Z)) => meters_per_week(P, Z))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3 by Arithmetic Computation
+fof(inf_1, axiom, product(n_3, n_3, n_9)).
+% From fact_2, fact_3, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, sprints_per_week(james, n_9)).
+% From fact_1, inf_2 by Arithmetic Computation
+fof(inf_3, axiom, product(n_60, n_9, n_540)).
+% From fact_1, inf_2, inf_3, rule_2 by Modus Ponens
+fof(inf_4, axiom, meters_per_week(james, n_540)).

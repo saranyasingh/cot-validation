@@ -1,0 +1,34 @@
+  % From fact_3 by Arithmetic Computation
+  inf_1: NOT PROVED
+  % From inf_1, rule_1 by Modus Ponens
+  inf_2: PROVED
+  % From fact_2, inf_2 by Arithmetic Computation
+  inf_3: NOT PROVED
+  % From fact_2, inf_2, inf_3, rule_2 by Modus Ponens
+  inf_4: PROVED
+  % From fact_1 by Arithmetic Computation
+  inf_5: NOT PROVED
+  % From fact_1, inf_5, rule_3 by Modus Ponens
+  inf_6: PROVED
+  % From fact_1, inf_5, rule_3 by Modus Ponens
+  inf_7: PROVED
+  % From inf_6, fact_2 by Arithmetic Computation
+  inf_8: NOT PROVED
+  % From inf_6, fact_2, inf_8, rule_4 by Modus Ponens
+  inf_9: PROVED
+  % From inf_7, inf_4 by Arithmetic Computation
+  inf_10: NOT PROVED
+  % From inf_7, inf_4, inf_10, rule_5 by Modus Ponens
+  inf_11: PROVED
+  % From inf_9, inf_11 by Arithmetic Computation
+  inf_12: NOT PROVED
+  % From inf_9, inf_11, inf_12, rule_6 by Modus Ponens
+  inf_13: PROVED
+
+Prover errors:
+inf_1: NOT PROVED — inference does not follow from axioms
+inf_3: NOT PROVED — inference does not follow from axioms
+inf_5: NOT PROVED — inference does not follow from axioms
+inf_8: NOT PROVED — inference does not follow from axioms
+inf_10: NOT PROVED — inference does not follow from axioms
+inf_12: NOT PROVED — inference does not follow from axioms

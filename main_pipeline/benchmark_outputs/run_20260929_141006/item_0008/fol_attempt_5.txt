@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: The file Carla downloads is 200 GB :: FileSize(n_200)
+FACT-2: Carla initially downloads at a rate of 2 GB per minute :: InitialRate(n_2)
+FACT-3: The restart happens after 40% of the file is downloaded :: RestartPercent(n_40)
+FACT-4: After the restart, Carla downloads at the original speed of 2 GB per minute :: RateAfterRestart(n_2)
+
+## RULES
+RULE-1: If the file size is x and the restart happens at p percent, and x times p percent equals y, then y GB is downloaded before the restart :: ∀x∀p∀y((FileSize(x) ∧ RestartPercent(p) ∧ PercentOf(x,p,y)) → DownloadedBeforeRestart(y))
+RULE-2: If y GB is downloaded before the restart at initial rate r, and y divided by r is t, then the first part takes t minutes :: ∀y∀r∀t((DownloadedBeforeRestart(y) ∧ InitialRate(r) ∧ Quotient(y,r,t)) → FirstPartTime(t))
+RULE-3: If the file size is x and y GB was downloaded before the restart, and x minus y is z, then z GB remain after the restart :: ∀x∀y∀z((FileSize(x) ∧ DownloadedBeforeRestart(y) ∧ Difference(x,y,z)) → RemainingAfterRestart(z))
+RULE-4: If z GB remain at rate r after the restart, and z divided by r is t, then the second part takes t minutes :: ∀z∀r∀t((RemainingAfterRestart(z) ∧ RateAfterRestart(r) ∧ Quotient(z,r,t)) → SecondPartTime(t))
+RULE-5: If the first part takes a minutes and the second part takes b minutes, and a plus b is c, then the total download time is c minutes :: ∀a∀b∀c((FirstPartTime(a) ∧ SecondPartTime(b) ∧ Sum(a,b,c)) → TotalDownloadTime(c))
+
+## INFERENCES
+INF-1: 200 times 40% is 80, from FACT-1 and FACT-3 by Arithmetic Computation :: PercentOf(n_200,n_40,n_80)
+INF-2: 80 GB is downloaded before the restart, from FACT-1, FACT-3, INF-1, and RULE-1 by Modus Ponens :: DownloadedBeforeRestart(n_80)
+INF-3: 80 divided by 2 is 40, from INF-2 and FACT-2 by Arithmetic Computation :: Quotient(n_80,n_2,n_40)
+INF-4: The first part takes 40 minutes, from INF-2, FACT-2, INF-3, and RULE-2 by Modus Ponens :: FirstPartTime(n_40)
+INF-5: 200 minus 80 is 120, from FACT-1 and INF-2 by Arithmetic Computation :: Difference(n_200,n_80,n_120)
+INF-6: 120 GB remain after the restart, from FACT-1, INF-2, INF-5, and RULE-3 by Modus Ponens :: RemainingAfterRestart(n_120)
+INF-7: 120 divided by 2 is 60, from INF-6 and FACT-4 by Arithmetic Computation :: Quotient(n_120,n_2,n_60)
+INF-8: The second part takes 60 minutes, from INF-6, FACT-4, INF-7, and RULE-4 by Modus Ponens :: SecondPartTime(n_60)
+INF-9: 40 plus 60 is 100, from INF-4 and INF-8 by Arithmetic Computation :: Sum(n_40,n_60,n_100)
+INF-10: The total download time is 100 minutes, from INF-4, INF-8, INF-9, and RULE-5 by Modus Ponens :: TotalDownloadTime(n_100)

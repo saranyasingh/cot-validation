@@ -1,0 +1,29 @@
+To determine how much Kylar needs to pay for 16 glasses, we first need to calculate the cost of each type of glass and then sum these costs.
+
+1. The first glass costs $5.
+2. Each subsequent glass costs 60% of the previous glass's price. So, the second glass will cost:
+   \[
+   5 \times 0.6 = 3 \text{ dollars}
+   \]
+3. Similarly, the third glass will cost:
+   \[
+   3 \times 0.6 = 1.8 \text{ dollars}
+   \]
+4. Following this pattern, the fourth glass will cost:
+   \[
+   1.8 \times 0.6 = 1.08 \text{ dollars}
+   \]
+
+Now, let's calculate the total cost:
+
+- First glass: $5
+- Second glass: $3
+- Third glass: $1.8
+- Fourth glass: $1.08
+
+Summing these amounts gives us the total cost:
+\[
+5 + 3 + 1.8 + 1.08 = 10.88 \text{ dollars}
+\]
+
+Therefore, Kylar needs to pay $\boxed{10.88}$ dollars for all 16 glasses.

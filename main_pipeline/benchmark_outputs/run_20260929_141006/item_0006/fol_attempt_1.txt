@@ -1,0 +1,27 @@
+## FACTS
+FACT-1: Kylar buys 16 glasses :: GlassesBought(kylar, n_16)
+FACT-2: One glass costs $5 :: GlassPrice(n_5)
+FACT-3: Every second glass costs 60% of the original price :: DiscountPercent(n_60)
+
+## RULES
+RULE-1: A percentage p converts to decimal d when p divided by 100 equals d :: ∀p∀d(PercentToDecimal(p,d) → DecimalRate(d))
+RULE-2: If the original price is x and the discount rate is d with x times d equal to y, then every second glass costs y :: ∀x∀d∀y((GlassPrice(x) ∧ DecimalRate(d) ∧ Product(x,d,y)) → DiscountedPrice(y))
+RULE-3: If n glasses are bought and n is even, then half are odd-numbered and half even-numbered :: ∀k∀n∀h((GlassesBought(k,n) ∧ Half(n,h)) → (OddCount(h) ∧ EvenCount(h)))
+RULE-4: If there are h odd-numbered glasses each at full price x and h times x equals t, the odd-numbered total is t :: ∀h∀x∀t((OddCount(h) ∧ GlassPrice(x) ∧ Product(h,x,t)) → OddTotal(t))
+RULE-5: If there are h even-numbered glasses each at discounted price y and h times y equals t, the even-numbered total is t :: ∀h∀y∀t((EvenCount(h) ∧ DiscountedPrice(y) ∧ Product(h,y,t)) → EvenTotal(t))
+RULE-6: If the odd total is a, the even total is b, and a plus b equals c, Kylar pays c :: ∀a∀b∀c((OddTotal(a) ∧ EvenTotal(b) ∧ Sum(a,b,c)) → TotalPaid(kylar,c))
+
+## INFERENCES
+INF-1: 60% converted to decimal is 0.6, from FACT-3 by Arithmetic Computation :: PercentToDecimal(n_60,n_0_6)
+INF-2: The discount rate is 0.6, from INF-1 and RULE-1 by Modus Ponens :: DecimalRate(n_0_6)
+INF-3: 5 times 0.6 equals 3, from FACT-2 and INF-2 by Arithmetic Computation :: Product(n_5,n_0_6,n_3)
+INF-4: Every second glass costs $3, from FACT-2, INF-2, INF-3, and RULE-2 by Modus Ponens :: DiscountedPrice(n_3)
+INF-5: Half of 16 is 8, from FACT-1 by Arithmetic Computation :: Half(n_16,n_8)
+INF-6: There are 8 odd-numbered glasses, from FACT-1, INF-5, and RULE-3 by Modus Ponens :: OddCount(n_8)
+INF-7: There are 8 even-numbered glasses, from FACT-1, INF-5, and RULE-3 by Modus Ponens :: EvenCount(n_8)
+INF-8: 8 times 5 equals 40, from INF-6 and FACT-2 by Arithmetic Computation :: Product(n_8,n_5,n_40)
+INF-9: The odd-numbered glasses total $40, from INF-6, FACT-2, INF-8, and RULE-4 by Modus Ponens :: OddTotal(n_40)
+INF-10: 8 times 3 equals 24, from INF-7 and INF-4 by Arithmetic Computation :: Product(n_8,n_3,n_24)
+INF-11: The even-numbered glasses total $24, from INF-7, INF-4, INF-10, and RULE-5 by Modus Ponens :: EvenTotal(n_24)
+INF-12: 40 plus 24 equals 64, from INF-9 and INF-11 by Arithmetic Computation :: Sum(n_40,n_24,n_64)
+INF-13: Kylar pays $64, from INF-9, INF-11, INF-12, and RULE-6 by Modus Ponens :: TotalPaid(kylar,n_64)

@@ -1,0 +1,23 @@
+### Corrected Chain-of-Thought Reasoning
+
+1. **Initial Purchase Cost**: Josh bought the house for $80,000.
+   - Initial purchase cost: $80,000.
+
+2. **Total Expenses**: Josh spent an additional $50,000 on repairs.
+   - Total expenses: $80,000 (initial purchase) + $50,000 (repairs) = $130,000.
+
+3. **Increase in Value Due to Repairs**: The value of the house increased by 150% due to repairs.
+   - Let the original value be \( V \).
+   - According to the problem, \( 150\% \) increase means the final value is 250% of the original value.
+   - Therefore, \( 2.5V = 130,000 \) (since 150% as a multiplier is 1.5).
+
+4. **Calculate Original Value Before Repairs**: Solve for \( V \).
+   - \( V = \frac{130,000}{2.5} = 52,000 \).
+
+5. **Determine Profit**: Calculate the profit by subtracting the initial purchase cost from the final sale price.
+   - Final sale price: $130,000.
+   - Initial purchase cost: $80,000.
+   - Profit: $130,000 - $80,000 = $50,000.
+
+### Conclusion
+Josh made a profit of **$50,000** after selling the flipped house.

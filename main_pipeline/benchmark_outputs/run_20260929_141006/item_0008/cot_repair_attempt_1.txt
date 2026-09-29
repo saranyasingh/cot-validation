@@ -1,0 +1,10 @@
+EXPLANATION
+1. Carla initially downloads at a rate of 2 GB per minute.
+2. For the first 40% of the download, she downloads \( 2 \times 40 = 80 \) GB.
+3. The remaining distance to be downloaded is \( 200 - 80 = 120 \) GB.
+4. After the restart, Carla starts again at her initial speed of 2 GB per minute.
+5. To download the remaining 120 GB, she needs \( \frac{120 \text{ GB}}{2 \text{ GB/min}} = 60 \) minutes.
+6. Adding the initial 40 minutes to the 60 minutes needed for the second part of the download gives us the total time:
+   \[ 40 \text{ min} + 60 \text{ min} = 100 \text{ min} \]
+   
+Therefore, the answer is: 100

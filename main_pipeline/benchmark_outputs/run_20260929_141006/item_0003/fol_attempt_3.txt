@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: PurchasePrice(josh_house, n_80000)
+FACT-2: Josh spent an additional $50,000 on repairs :: RepairCost(josh_house, n_50000)
+FACT-3: The value of the house increased by 150% due to repairs :: ValueIncreasePercent(josh_house, n_150)
+
+## RULES
+RULE-1: Total expenses equal the purchase price plus the repair cost :: ∀h∀x∀y∀z((PurchasePrice(h,x) ∧ RepairCost(h,y) ∧ Sum(x,y,z)) → TotalExpenses(h,z))
+RULE-2: An increase of p percent means the new value is the original value times the corresponding multiplier (100+p)/100 :: ∀h∀p∀m((ValueIncreasePercent(h,p) ∧ PercentToMultiplier(p,m)) → ValueMultiplier(h,m))
+RULE-3: If the value multiplier is m and the total expenses are z, then the new value equation is m·V = z :: ∀h∀m∀z((ValueMultiplier(h,m) ∧ TotalExpenses(h,z)) → NewValueEquation(h,m,z))
+RULE-4: If m·V = z and z divided by m is v, then the original value V is v :: ∀h∀m∀z∀v((NewValueEquation(h,m,z) ∧ Quotient(z,m,v)) → OriginalValue(h,v))
+RULE-5: If the new value equation is m·V = z, then the final sale price is z :: ∀h∀m∀z(NewValueEquation(h,m,z) → SalePrice(h,z))
+RULE-6: Profit equals the final sale price minus the initial purchase cost :: ∀h∀s∀x∀p((SalePrice(h,s) ∧ PurchasePrice(h,x) ∧ Difference(s,x,p)) → Profit(h,p))
+
+## INFERENCES
+INF-1: 80,000 + 50,000 = 130,000, from FACT-1 and FACT-2 by Arithmetic Computation :: Sum(n_80000, n_50000, n_130000)
+INF-2: Total expenses are $130,000, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalExpenses(josh_house, n_130000)
+INF-3: A 150% increase corresponds to a multiplier of 2.5 (250%), from FACT-3 by Arithmetic Computation :: PercentToMultiplier(n_150, n_2_5)
+INF-4: The new value is 2.5 times the original value, from FACT-3, INF-3, and RULE-2 by Modus Ponens :: ValueMultiplier(josh_house, n_2_5)
+INF-5: The equation 2.5V = 130,000 is set up, from INF-4, INF-2, and RULE-3 by Modus Ponens :: NewValueEquation(josh_house, n_2_5, n_130000)
+INF-6: 130,000 / 2.5 = 52,000, from INF-5 by Arithmetic Computation :: Quotient(n_130000, n_2_5, n_52000)
+INF-7: The original value V is $52,000, from INF-5, INF-6, and RULE-4 by Modus Ponens :: OriginalValue(josh_house, n_52000)
+INF-8: The final sale price is $130,000, from INF-5 and RULE-5 by Modus Ponens :: SalePrice(josh_house, n_130000)
+INF-9: 130,000 − 80,000 = 50,000, from INF-8 and FACT-1 by Arithmetic Computation :: Difference(n_130000, n_80000, n_50000)
+INF-10: Josh made a profit of $50,000, from INF-8, FACT-1, INF-9, and RULE-6 by Modus Ponens :: Profit(josh_house, n_50000)

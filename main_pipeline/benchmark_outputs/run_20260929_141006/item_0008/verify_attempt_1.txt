@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — the problem never says Carla has 16 minutes available after the restart; this quantity is invented.
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — an amount downloadable (GB) is not a speed (GB/min); treating it as the new effective speed is dimensionally and logically wrong.
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — the total time leaves out the 20-minute update restart, and the post-restart download must cover the full file, not just the remaining amount.

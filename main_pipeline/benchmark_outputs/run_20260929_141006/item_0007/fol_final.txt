@@ -1,0 +1,16 @@
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCount(seattle, n_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: TimesAsMany(charleston, seattle, n_4)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TimesAsMany(toulouse, charleston, n_2)
+FACT-4: 4 times 20 equals 80 (arithmetic truth) :: Product(n_4, n_20, n_80)
+FACT-5: 2 times 80 equals 160 (arithmetic truth) :: Product(n_2, n_80, n_160)
+FACT-6: 160 + 80 + 20 equals 260 (arithmetic truth) :: Sum3(n_160, n_80, n_20, n_260)
+
+## RULES
+RULE-1: If city x has k times as many sheep as city y, y has m sheep, and k times m equals n, then x has n sheep :: ∀x∀y∀k∀m∀n((TimesAsMany(x,y,k) ∧ SheepCount(y,m) ∧ Product(k,m,n)) → SheepCount(x,n))
+RULE-2: If Toulouse has a sheep, Charleston has b sheep, Seattle has c sheep, and a+b+c equals t, then the three cities have t sheep together :: ∀a∀b∀c∀t((SheepCount(toulouse,a) ∧ SheepCount(charleston,b) ∧ SheepCount(seattle,c) ∧ Sum3(a,b,c,t)) → TotalSheep(t))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep, from FACT-2, FACT-1, FACT-4, and RULE-1 by Modus Ponens :: SheepCount(charleston, n_80)
+INF-2: Toulouse has 160 sheep, from FACT-3, INF-1, FACT-5, and RULE-1 by Modus Ponens :: SheepCount(toulouse, n_160)
+INF-3: The three cities have 260 sheep together, from INF-2, INF-1, FACT-1, FACT-6, and RULE-2 by Modus Ponens :: TotalSheep(n_260)

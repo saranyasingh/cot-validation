@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Carla initially downloads at a rate of 2 GB per minute :: InitialRate(carla, n_2)
+FACT-2: The first part of the download lasts 40 minutes, as the reasoning treats the 40% figure :: InitialDuration(carla, n_40)
+FACT-3: The total download size is 200 GB :: TotalSize(carla, n_200)
+FACT-4: After the restart, Carla downloads at 2 GB per minute :: RestartRate(carla, n_2)
+
+## RULES
+RULE-1: If someone downloads at rate r for time t and r times t equals d, then they download d GB in the first part :: ∀x∀r∀t∀d((InitialRate(x,r) ∧ InitialDuration(x,t) ∧ Product(r,t,d)) → InitialDownloaded(x,d))
+RULE-2: If the total size is s, the amount already downloaded is d, and s minus d equals m, then m GB remain :: ∀x∀s∀d∀m((TotalSize(x,s) ∧ InitialDownloaded(x,d) ∧ Difference(s,d,m)) → Remaining(x,m))
+RULE-3: If m GB remain, the restart rate is r, and m divided by r equals t, then the second part takes t minutes :: ∀x∀m∀r∀t((Remaining(x,m) ∧ RestartRate(x,r) ∧ Quotient(m,r,t)) → SecondDuration(x,t))
+RULE-4: The total time is the sum of the first and second durations :: ∀x∀a∀b∀c((InitialDuration(x,a) ∧ SecondDuration(x,b) ∧ Sum(a,b,c)) → TotalTime(x,c))
+
+## INFERENCES
+INF-1: 2 times 40 equals 80, from FACT-1 and FACT-2 by Arithmetic Computation :: Product(n_2,n_40,n_80)
+INF-2: Carla downloads 80 GB in the first part, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: InitialDownloaded(carla,n_80)
+INF-3: 200 minus 80 equals 120, from FACT-3 and INF-2 by Arithmetic Computation :: Difference(n_200,n_80,n_120)
+INF-4: 120 GB remain to be downloaded, from FACT-3, INF-2, INF-3, and RULE-2 by Modus Ponens :: Remaining(carla,n_120)
+INF-5: 120 divided by 2 equals 60, from INF-4 and FACT-4 by Arithmetic Computation :: Quotient(n_120,n_2,n_60)
+INF-6: The second part takes 60 minutes, from INF-4, FACT-4, INF-5, and RULE-3 by Modus Ponens :: SecondDuration(carla,n_60)
+INF-7: 40 plus 60 equals 100, from FACT-2 and INF-6 by Arithmetic Computation :: Sum(n_40,n_60,n_100)
+INF-8: The total time is 100 minutes, from FACT-2, INF-6, INF-7, and RULE-4 by Modus Ponens :: TotalTime(carla,n_100)

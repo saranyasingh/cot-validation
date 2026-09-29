@@ -1,0 +1,40 @@
+% --- FACTS ---
+fof(fact_1, axiom, glasses_bought(kylar, n_16)).
+fof(fact_2, axiom, glass_price(n_5)).
+fof(fact_3, axiom, discount_percent(n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, D] : (percent_to_decimal(P, D) => decimal_rate(D))).
+fof(rule_2, axiom, ! [X, D, Y] : ((glass_price(X) & decimal_rate(D) & product(X, D, Y)) => discounted_price(Y))).
+fof(rule_3, axiom, ! [K, N, H] : ((glasses_bought(K, N) & half(N, H)) => (odd_count(H) & even_count(H)))).
+fof(rule_4, axiom, ! [H, X, T] : ((odd_count(H) & glass_price(X) & product(H, X, T)) => odd_total(T))).
+fof(rule_5, axiom, ! [H, Y, T] : ((even_count(H) & discounted_price(Y) & product(H, Y, T)) => even_total(T))).
+fof(rule_6, axiom, ! [A, B, C] : ((odd_total(A) & even_total(B) & sum(A, B, C)) => total_paid(kylar, C))).
+
+% --- INFERENCES ---
+% From fact_3 by Arithmetic Computation
+fof(inf_1, axiom, percent_to_decimal(n_60, n_0_6)).
+% From inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, decimal_rate(n_0_6)).
+% From fact_2, inf_2 by Arithmetic Computation
+fof(inf_3, axiom, product(n_5, n_0_6, n_3)).
+% From fact_2, inf_2, inf_3, rule_2 by Modus Ponens
+fof(inf_4, axiom, discounted_price(n_3)).
+% From fact_1 by Arithmetic Computation
+fof(inf_5, axiom, half(n_16, n_8)).
+% From fact_1, inf_5, rule_3 by Modus Ponens
+fof(inf_6, axiom, odd_count(n_8)).
+% From fact_1, inf_5, rule_3 by Modus Ponens
+fof(inf_7, axiom, even_count(n_8)).
+% From inf_6, fact_2 by Arithmetic Computation
+fof(inf_8, axiom, product(n_8, n_5, n_40)).
+% From inf_6, fact_2, inf_8, rule_4 by Modus Ponens
+fof(inf_9, axiom, odd_total(n_40)).
+% From inf_7, inf_4 by Arithmetic Computation
+fof(inf_10, axiom, product(n_8, n_3, n_24)).
+% From inf_7, inf_4, inf_10, rule_5 by Modus Ponens
+fof(inf_11, axiom, even_total(n_24)).
+% From inf_9, inf_11 by Arithmetic Computation
+fof(inf_12, axiom, sum(n_40, n_24, n_64)).
+% From inf_9, inf_11, inf_12, rule_6 by Modus Ponens
+fof(inf_13, axiom, total_paid(kylar, n_64)).

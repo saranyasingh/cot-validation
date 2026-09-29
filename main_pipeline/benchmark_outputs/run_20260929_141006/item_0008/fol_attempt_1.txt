@@ -1,0 +1,26 @@
+## FACTS
+FACT-1: Carla downloads at a rate of 2 GB per minute :: DownloadRate(carla, n_2)
+FACT-2: The file to download is 200 GB :: TotalFileSize(n_200)
+FACT-3: Carla downloads at the initial speed for 40 minutes before the restart :: InitialPeriodTime(n_40)
+FACT-4: After the restart Carla restarts at her initial speed of 2 GB per minute :: RestartRate(carla, n_2)
+FACT-5: After the restart Carla has 16 minutes available :: AvailableTimeAfterRestart(n_16)
+
+## RULES
+RULE-1: The amount downloaded equals rate times time :: ∀r∀t∀z((Product(r,t,z)) → DownloadedAmount(r,t,z))
+RULE-2: If a total size minus the amount downloaded equals z, then the remaining amount is z :: ∀x∀y∀z((TotalFileSize(x) ∧ DownloadedAmount(n_2,n_40,y) ∧ Difference(x,y,z)) → RemainingAmount(z))
+RULE-3: If the amount downloadable in the available time after restart is z, then the new effective speed is z :: ∀z(DownloadedAmount(n_2,n_16,z) → NewEffectiveSpeed(z))
+RULE-4: The time after restart is the remaining amount divided by the new speed :: ∀x∀y∀z((RemainingAmount(x) ∧ NewEffectiveSpeed(y) ∧ Quotient(x,y,z)) → TimeAfterRestart(z))
+RULE-5: The total time is the initial period time plus the time after restart :: ∀x∀y∀z((InitialPeriodTime(x) ∧ TimeAfterRestart(y) ∧ Sum(x,y,z)) → TotalTime(z))
+
+## INFERENCES
+INF-1: 2 times 40 equals 80, from FACT-1 and FACT-3 by Arithmetic Computation :: Product(n_2,n_40,n_80)
+INF-2: Carla downloads 80 GB in the first 40 minutes, from INF-1 and RULE-1 by Modus Ponens :: DownloadedAmount(n_2,n_40,n_80)
+INF-3: 200 minus 80 equals 120, from FACT-2 and INF-2 by Arithmetic Computation :: Difference(n_200,n_80,n_120)
+INF-4: The remaining amount is 120 GB, from FACT-2, INF-2, INF-3, and RULE-2 by Modus Ponens :: RemainingAmount(n_120)
+INF-5: 2 times 16 equals 32, from FACT-4 and FACT-5 by Arithmetic Computation :: Product(n_2,n_16,n_32)
+INF-6: Carla can download 32 GB in 16 minutes, from INF-5 and RULE-1 by Modus Ponens :: DownloadedAmount(n_2,n_16,n_32)
+INF-7: Carla's new effective speed is 32 GB per minute, from INF-6 and RULE-3 by Modus Ponens :: NewEffectiveSpeed(n_32)
+INF-8: 120 divided by 32 equals 3.75, from INF-4 and INF-7 by Arithmetic Computation :: Quotient(n_120,n_32,n_3_75)
+INF-9: The time after restart is 3.75 minutes, from INF-4, INF-7, INF-8, and RULE-4 by Modus Ponens :: TimeAfterRestart(n_3_75)
+INF-10: 40 plus 3.75 equals 43.75, from FACT-3 and INF-9 by Arithmetic Computation :: Sum(n_40,n_3_75,n_43_75)
+INF-11: The total time is 43.75 minutes, from FACT-3, INF-9, INF-10, and RULE-5 by Modus Ponens :: TotalTime(n_43_75)

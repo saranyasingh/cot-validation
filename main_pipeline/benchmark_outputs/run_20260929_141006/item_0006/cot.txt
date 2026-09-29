@@ -1,0 +1,12 @@
+EXPLANATION
+To determine how much Kylar needs to pay for 16 glasses, we first need to calculate the cost per glass and then multiply that by the total number of glasses.
+
+1. **Calculate the cost per glass**: The problem states that one glass costs $5.
+2. **Determine the discounted price for every second glass**: Every second glass costs 60% of the original price. Since 60% is equivalent to 0.6 when converted to decimal form, this means the price of every second glass is \( \$5 \times 0.6 = \$3 \).
+3. **Calculate the total cost for odd-numbered glasses (1, 3, 5, ..., 15)**: There are 8 odd-numbered glasses (1, 3, 5, 7, 9, 11, 13, 15). Each of these glasses costs $5. Therefore, the total cost for the odd-numbered glasses is \( 8 \times \$5 = \$40 \).
+4. **Calculate the total cost for even-numbered glasses (2, 4, 6, ..., 16)**: There are also 8 even-numbered glasses (2, 4, 6, 8, 10, 12, 14, 16). Each of these glasses costs $3. Therefore, the total cost for the even-numbered glasses is \( 8 \times \$3 = \$24 \).
+
+Finally, add the total costs for both types of glasses to find the overall amount Kylar needs to pay:
+\[ \$40 + \$24 = \$64 \]
+
+Therefore, Kylar needs to pay $64 for 16 glasses. The answer is: 64.

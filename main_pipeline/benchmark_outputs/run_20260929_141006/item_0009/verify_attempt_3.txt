@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — adding the initial distance to the distance driven initially double-counts the outbound leg; remaining distance should be the outbound distance minus the distance covered on the return.
+RULE-4: IMPLAUSIBLE — the 2-hour effective driving time covers two segments at different speeds (30 mph and 80 mph), so its distance cannot be equated with a single leg's distance.
+RULE-5: PLAUSIBLE
+RULE-6: PLAUSIBLE
+RULE-7: PLAUSIBLE

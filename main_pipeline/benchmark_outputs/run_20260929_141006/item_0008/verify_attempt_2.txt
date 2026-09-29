@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — the problem says 40% of the download (80 GB), not 40 minutes; the fact treats the percentage as a duration instead of deriving time from 40% × 200 GB ÷ 2 GB/min.
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — the download restarts from the beginning, so the full 200 GB remains; subtracting the amount already downloaded is the wrong relationship here.
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — the total time must also include the 20-minute restart, which this rule leaves out.

@@ -1,0 +1,21 @@
+## FACTS
+FACT-1: Wendi has 20 chickens :: ChickenCount(wendi, n_20)
+FACT-2: Wendi feeds each chicken 3 cups of feed per day :: FeedPerChickenPerDay(wendi, n_3)
+FACT-3: In the morning, Wendi gives 15 cups of feed :: MorningFeed(wendi, n_15)
+FACT-4: In the afternoon, Wendi gives 25 cups of feed :: AfternoonFeed(wendi, n_25)
+FACT-5: Arithmetic truth: 20 times 3 equals 60 :: Product(n_20, n_3, n_60)
+FACT-6: Arithmetic truth: 15 plus 25 equals 40 :: Sum(n_15, n_25, n_40)
+FACT-7: Arithmetic truth: 60 minus 40 equals 20 :: Difference(n_60, n_40, n_20)
+
+## RULES
+RULE-1: If a person has x chickens, feeds each chicken y cups per day, and x times y equals z, then the total daily feed is z cups :: ∀p∀x∀y∀z((ChickenCount(p,x) ∧ FeedPerChickenPerDay(p,y) ∧ Product(x,y,z)) → TotalDailyFeed(p,z))
+RULE-2: If a person gives x cups in the morning, y cups in the afternoon, and x plus y equals z, then the combined morning and afternoon feed is z cups :: ∀p∀x∀y∀z((MorningFeed(p,x) ∧ AfternoonFeed(p,y) ∧ Sum(x,y,z)) → MorningAfternoonFeed(p,z))
+RULE-3: If the total daily feed is t cups, the combined morning and afternoon feed is g cups, and t minus g equals r, then the final meal needs r cups :: ∀p∀t∀g∀r((TotalDailyFeed(p,t) ∧ MorningAfternoonFeed(p,g) ∧ Difference(t,g,r)) → FinalMealFeed(p,r))
+
+## INFERENCES
+INF-1: 20 times 3 equals 60, from FACT-5 by Arithmetic Computation :: Product(n_20, n_3, n_60)
+INF-2: Total daily feed is 60 cups, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: TotalDailyFeed(wendi, n_60)
+INF-3: 15 plus 25 equals 40, from FACT-6 by Arithmetic Computation :: Sum(n_15, n_25, n_40)
+INF-4: Combined morning and afternoon feed is 40 cups, from FACT-3, FACT-4, INF-3, and RULE-2 by Modus Ponens :: MorningAfternoonFeed(wendi, n_40)
+INF-5: 60 minus 40 equals 20, from FACT-7 by Arithmetic Computation :: Difference(n_60, n_40, n_20)
+INF-6: The final meal requires 20 cups of feed, from INF-2, INF-4, INF-5, and RULE-3 by Modus Ponens :: FinalMealFeed(wendi, n_20)

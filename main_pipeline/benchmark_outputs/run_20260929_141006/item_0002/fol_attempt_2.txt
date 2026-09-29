@@ -1,0 +1,15 @@
+## FACTS
+FACT-1: A robe requires 2 bolts of blue fiber :: BlueFiberBolts(robe, n_2)
+FACT-2: The robe requires half as much white fiber as blue fiber :: WhiteIsHalfOfBlue(robe)
+FACT-3: Arithmetic fact: half of 2 is 1 :: Half(n_2, n_1)
+FACT-4: Arithmetic fact: 2 plus 1 is 3 :: Sum(n_2, n_1, n_3)
+
+## RULES
+RULE-1: If a robe needs x bolts of blue fiber, needs half as much white fiber, and half of x is y, then it needs y bolts of white fiber :: ∀r∀x∀y((BlueFiberBolts(r,x) ∧ WhiteIsHalfOfBlue(r) ∧ Half(x,y)) → WhiteFiberBolts(r,y))
+RULE-2: If a robe needs x bolts of blue fiber and y bolts of white fiber, and x plus y is z, then it needs z bolts in total :: ∀r∀x∀y∀z((BlueFiberBolts(r,x) ∧ WhiteFiberBolts(r,y) ∧ Sum(x,y,z)) → TotalFiberBolts(r,z))
+
+## INFERENCES
+INF-1: Half of 2 is 1, from FACT-3 by Arithmetic Computation :: Half(n_2, n_1)
+INF-2: The robe needs 1 bolt of white fiber, from FACT-1, FACT-2, INF-1, and RULE-1 by Modus Ponens :: WhiteFiberBolts(robe, n_1)
+INF-3: 2 plus 1 is 3, from FACT-4 by Arithmetic Computation :: Sum(n_2, n_1, n_3)
+INF-4: The robe needs 3 bolts of fiber in total, from FACT-1, INF-2, INF-3, and RULE-2 by Modus Ponens :: TotalFiberBolts(robe, n_3)

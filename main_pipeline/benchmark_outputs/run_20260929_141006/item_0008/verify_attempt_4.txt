@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The first-part time should be the first-part amount (40% of the file) divided by the rate, not the whole file size divided by the rate.
+RULE-3: IMPLAUSIBLE — The download restarts from the beginning, so the full 200 GB must be downloaded again; subtracting the first-part amount is wrong.
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — The total leaves out the 20-minute restart for the updates.

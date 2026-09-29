@@ -1,0 +1,24 @@
+## FACTS
+FACT-1: The file is 200 GB :: FileSize(n_200)
+FACT-2: Carla downloads at a rate of 2 GB per minute :: DownloadRate(n_2)
+FACT-3: The first part of the download covers 40% of the file :: FirstPartFraction(n_40_percent)
+FACT-4: After the restart, Carla downloads at the original speed of 2 GB per minute :: RestartRate(n_2)
+
+## RULES
+RULE-1: The amount covered in the first part is the given fraction of the file size :: ∀x∀y∀z((FileSize(x) ∧ FirstPartFraction(y) ∧ PercentOf(y,x,z)) → FirstPartAmount(z))
+RULE-2: The time for the first part is the file size divided by the download rate :: ∀x∀y∀z((FileSize(x) ∧ DownloadRate(y) ∧ Quotient(x,y,z)) → FirstPartTime(z))
+RULE-3: The amount left after the restart is the file size minus the first-part amount :: ∀x∀y∀z((FileSize(x) ∧ FirstPartAmount(y) ∧ Difference(x,y,z)) → RemainingAmount(z))
+RULE-4: The time for the remaining download is the remaining amount divided by the restart rate :: ∀x∀y∀z((RemainingAmount(x) ∧ RestartRate(y) ∧ Quotient(x,y,z)) → RemainingTime(z))
+RULE-5: The total download time is the sum of the first-part time and the remaining time :: ∀x∀y∀z((FirstPartTime(x) ∧ RemainingTime(y) ∧ Sum(x,y,z)) → TotalTime(z))
+
+## INFERENCES
+INF-1: 40% of 200 is 80, from FACT-1 and FACT-3 by Arithmetic Computation :: PercentOf(n_40_percent,n_200,n_80)
+INF-2: The first part covers 80 GB, from FACT-1, FACT-3, INF-1, and RULE-1 by Modus Ponens :: FirstPartAmount(n_80)
+INF-3: 200 divided by 2 is 100, from FACT-1 and FACT-2 by Arithmetic Computation :: Quotient(n_200,n_2,n_100)
+INF-4: The first part takes 100 minutes, from FACT-1, FACT-2, INF-3, and RULE-2 by Modus Ponens :: FirstPartTime(n_100)
+INF-5: 200 minus 80 is 120, from FACT-1 and INF-2 by Arithmetic Computation :: Difference(n_200,n_80,n_120)
+INF-6: 120 GB remain after the restart, from FACT-1, INF-2, INF-5, and RULE-3 by Modus Ponens :: RemainingAmount(n_120)
+INF-7: 120 divided by 2 is 60, from INF-6 and FACT-4 by Arithmetic Computation :: Quotient(n_120,n_2,n_60)
+INF-8: The remaining download takes 60 minutes, from INF-6, FACT-4, INF-7, and RULE-4 by Modus Ponens :: RemainingTime(n_60)
+INF-9: 100 plus 60 is 160, from INF-4 and INF-8 by Arithmetic Computation :: Sum(n_100,n_60,n_160)
+INF-10: The total download time is 160 minutes, from INF-4, INF-8, INF-9, and RULE-5 by Modus Ponens :: TotalTime(n_160)

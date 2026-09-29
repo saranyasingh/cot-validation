@@ -1,0 +1,36 @@
+To determine Eliza's earnings for the week when she worked 45 hours, we need to break down the calculation into two parts: her regular pay for the first 40 hours and her overtime pay for the additional 5 hours.
+
+**Premise 1:** Eliza's rate per hour for the first 40 hours is $10.
+- This establishes the base rate for the initial part of her workweek.
+
+**Premise 2:** Eliza receives an overtime pay of 1.2 times her regular hourly rate.
+- This indicates that any hours beyond 40 are paid at an increased rate due to being considered "overtime."
+
+**Premise 3:** Eliza worked for 45 hours this week.
+- We know the total working hours but not yet split between regular and overtime.
+
+**Premise 4:** To calculate earnings, we must multiply the number of hours worked by the respective rates (regular or overtime).
+- Regular pay = Hours * Regular Rate
+- Overtime pay = Hours > 40 * Overtime Rate
+
+Let’s apply these premises to our specific scenario:
+
+1. **Calculate the earnings for the first 40 hours:**
+   - Regular Rate = $10/hour
+   - Earnings for 40 hours = 40 hours * $10/hour = $400
+
+2. **Determine the hours over which overtime applies:**
+   - Total hours worked = 45 hours
+   - Overtime hours = Total hours - Regular hours = 45 hours - 40 hours = 5 hours
+
+3. **Calculate the overtime pay:**
+   - Overtime Rate = 1.2 times regular rate = 1.2 * $10/hour = $12/hour
+   - Earnings for overtime = 5 hours * $12/hour = $60
+
+4. **Sum up all earnings:**
+   - Total earnings = Earnings for regular hours + Earnings for overtime
+   - Total earnings = $400 + $60 = $460
+
+Therefore, Eliza's earnings for this week amount to $460.
+
+**The answer is: 460**

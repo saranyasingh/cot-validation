@@ -1,0 +1,33 @@
+To determine how many sheep Toulouse, Charleston, and Seattle have together, we need to establish relationships between the number of sheep each city has based on the given information.
+
+1. **Seattle's Sheep**  
+   - Given: Seattle has 20 sheep.
+   - This is our first premise.
+
+2. **Charleston's Sheep**  
+   - Charleston has 4 times as many sheep as Seattle.
+   - Using the first premise (Seattle has 20 sheep), we calculate:
+     \[
+     \text{Sheep in Charleston} = 4 \times \text{Sheep in Seattle} = 4 \times 20 = 80
+     \]
+   - This is our second premise.
+
+3. **Toulouse's Sheep**  
+   - Toulouse has twice as many sheep as Charleston.
+   - Using the result from the second premise (Charleston has 80 sheep), we calculate:
+     \[
+     \text{Sheep in Toulouse} = 2 \times \text{Sheep in Charleston} = 2 \times 80 = 160
+     \]
+   - This is our third premise.
+
+4. **Total Sheep**  
+   - To find the total number of sheep across all three cities, we sum up the number of sheep in each city:
+     \[
+     \text{Total Sheep} = \text{Sheep in Toulouse} + \text{Sheep in Charleston} + \text{Sheep in Seattle}
+     \]
+     Substituting the values calculated above:
+     \[
+     \text{Total Sheep} = 160 + 80 + 20 = 260
+     \]
+
+Therefore, the answer is: 260.

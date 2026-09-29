@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, eggs_laid_per_day(janet, n_16)).
+fof(fact_2, axiom, eggs_eaten_per_day(janet, n_3)).
+fof(fact_3, axiom, eggs_baked_per_day(janet, n_4)).
+fof(fact_4, axiom, price_per_egg(janet, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P, X, Y, Z, W] : ((eggs_laid_per_day(P, X) & eggs_eaten_per_day(P, Y) & eggs_baked_per_day(P, Z) & double_difference(X, Y, Z, W)) => eggs_for_sale_per_day(P, W))).
+fof(rule_2, axiom, ! [P, X, Y, Z] : ((eggs_for_sale_per_day(P, X) & price_per_egg(P, Y) & product(X, Y, Z)) => daily_earnings(P, Z))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3 by Arithmetic Computation
+fof(inf_1, axiom, double_difference(n_16, n_3, n_4, n_9)).
+% From fact_1, fact_2, fact_3, inf_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, eggs_for_sale_per_day(janet, n_9)).
+% From inf_2, fact_4 by Arithmetic Computation
+fof(inf_3, axiom, product(n_9, n_2, n_18)).
+% From inf_2, fact_4, inf_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, daily_earnings(janet, n_18)).

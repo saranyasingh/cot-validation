@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — dividing the whole file size by the rate gives the time for the full file (100 min), not the first phase, which covers only 40% of the file.
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — the download restarts from the beginning, so the full file size remains, not x minus the portion already downloaded.
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — the total time must also include the 20-minute restart, not just the two download phases.

@@ -1,0 +1,16 @@
+EXPLANATION
+To determine how long it will take Carla to download the 200 GB file after the restart, we need to break down the process into two parts:
+
+1. **First 40% of the Download**: 
+   - Carla initially downloads at a rate of 2 GB per minute.
+   - She covers 40% of the 200 GB file in 200 GB / 2 GB/min = 100 minutes.
+
+2. **Restart and Remaining Download**:
+   - After the restart, Carla starts over with the original speed of 2 GB per minute.
+   - There are still 200 GB - 80 GB = 120 GB left to download after the restart.
+   - The time required to download the remaining 120 GB is 120 GB / 2 GB/min = 60 minutes.
+
+Adding these times together gives the total download time:
+\[ 100 \text{ minutes} + 60 \text{ minutes} = 160 \text{ minutes} \]
+
+Therefore, the answer is: 160

@@ -1,0 +1,17 @@
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: EggsLaidPerDay(janet, n_16)
+FACT-2: Janet eats three eggs for breakfast every morning :: EggsEatenPerDay(janet, n_3)
+FACT-3: Janet uses four eggs per day to bake muffins :: EggsBakedPerDay(janet, n_4)
+FACT-4: Janet sells the remaining eggs for $2 per egg :: PricePerEgg(janet, n_2)
+FACT-5: Arithmetic truth: 16 - 3 - 4 = 9 :: DoubleDifference(n_16, n_3, n_4, n_9)
+FACT-6: Arithmetic truth: 9 × 2 = 18 :: Product(n_9, n_2, n_18)
+
+## RULES
+RULE-1: The eggs laid per day minus the eggs eaten minus the eggs used for baking equals the eggs left for sale :: ∀p∀x∀y∀z∀w((EggsLaidPerDay(p,x) ∧ EggsEatenPerDay(p,y) ∧ EggsBakedPerDay(p,z) ∧ DoubleDifference(x,y,z,w)) → EggsForSalePerDay(p,w))
+RULE-2: Total daily earnings equal the number of eggs for sale times the price per egg :: ∀p∀x∀y∀z((EggsForSalePerDay(p,x) ∧ PricePerEgg(p,y) ∧ Product(x,y,z)) → DailyEarnings(p,z))
+
+## INFERENCES
+INF-1: 16 - 3 - 4 = 9, from FACT-1, FACT-2, FACT-3 and FACT-5 by Arithmetic Computation :: DoubleDifference(n_16, n_3, n_4, n_9)
+INF-2: Janet has 9 eggs left for sale per day, from FACT-1, FACT-2, FACT-3, INF-1 and RULE-1 by Universal Instantiation and Modus Ponens :: EggsForSalePerDay(janet, n_9)
+INF-3: 9 × 2 = 18, from INF-2, FACT-4 and FACT-6 by Arithmetic Computation :: Product(n_9, n_2, n_18)
+INF-4: Janet makes $18 per day at the farmers' market, from INF-2, FACT-4, INF-3 and RULE-2 by Universal Instantiation and Modus Ponens :: DailyEarnings(janet, n_18)

@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, purchase_cost(josh_house, n_80000)).
+fof(fact_2, axiom, repair_cost(josh_house, n_50000)).
+fof(fact_3, axiom, value_increase_percent(josh_house, n_150)).
+fof(fact_4, axiom, original_value(josh_house, n_80000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [H, X, Y, Z] : ((purchase_cost(H, X) & repair_cost(H, Y) & sum(X, Y, Z)) => total_cost(H, Z))).
+fof(rule_2, axiom, ! [H, V, P, M, N] : ((original_value(H, V) & value_increase_percent(H, P) & growth_multiplier(P, M) & product(V, M, N)) => new_value(H, N))).
+fof(rule_3, axiom, ! [H, N] : (new_value(H, N) => sale_price(H, N))).
+fof(rule_4, axiom, ! [H, S, C, D] : ((sale_price(H, S) & total_cost(H, C) & difference(S, C, D)) => profit(H, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2 by Arithmetic Computation
+fof(inf_1, axiom, sum(n_80000, n_50000, n_130000)).
+% From fact_1, fact_2, inf_1, rule_1 by Modus Ponens
+fof(inf_2, axiom, total_cost(josh_house, n_130000)).
+% From fact_3 by Arithmetic Computation
+fof(inf_3, axiom, growth_multiplier(n_150, n_2_5)).
+% From fact_4, inf_3 by Arithmetic Computation
+fof(inf_4, axiom, product(n_80000, n_2_5, n_200000)).
+% From fact_4, fact_3, inf_3, inf_4, rule_2 by Modus Ponens
+fof(inf_5, axiom, new_value(josh_house, n_200000)).
+% From inf_5, rule_3 by Modus Ponens
+fof(inf_6, axiom, sale_price(josh_house, n_200000)).
+% From inf_6, inf_2 by Arithmetic Computation
+fof(inf_7, axiom, difference(n_200000, n_130000, n_70000)).
+% From inf_6, inf_2, inf_7, rule_4 by Modus Ponens
+fof(inf_8, axiom, profit(josh_house, n_70000)).

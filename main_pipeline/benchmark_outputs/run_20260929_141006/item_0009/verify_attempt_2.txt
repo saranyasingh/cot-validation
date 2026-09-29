@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — the return trip has a 30 mph half-hour before the 80 mph driving, so calling the "second leg" 80 mph misstates the problem.
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — adding the initial distance to the distance driven initially double-counts the outbound trip, so this is not a valid relationship.
+RULE-4: PLAUSIBLE
+RULE-5: PLAUSIBLE
+RULE-6: PLAUSIBLE

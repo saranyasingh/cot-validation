@@ -1,0 +1,23 @@
+EXPLANATION
+
+1. **First leg of the journey:** John drives for 3 hours at a speed of 60 mph.
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. **Second leg of the journey:** John returns home, which takes him another 4 hours, but he experiences a 2-hour delay due to standing still traffic.
+   - Effective driving time = Total time - Delay = 4 hours - 2 hours = 2 hours.
+   - Distance covered during effective driving time = Speed × Time = 80 mph × 2 hours = 160 miles.
+
+3. **Third leg of the journey:** After the delay, John drives the remaining part of his trip at 80 mph.
+   - Remaining distance to cover = Initial distance + Distance driven initially - Distance covered during effective driving time.
+     - Initial distance = 180 miles (first leg).
+     - Distance driven initially = 160 miles (second leg).
+     - Distance covered during effective driving time = 160 miles.
+     - Remaining distance = 180 miles + 160 miles - 160 miles = 180 miles.
+
+4. **Total distance covered:** Adding up all distances:
+   - Total distance = First leg + Second leg + Third leg.
+     - Total distance = 180 miles + 160 miles + 180 miles = 520 miles.
+
+5. **Distance from home:** Since John started at home and drove back to it, the distance from home is zero when he reaches it after completing his journey.
+
+**The answer is: 0**

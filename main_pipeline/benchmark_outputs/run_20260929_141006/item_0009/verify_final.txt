@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — the problem says he drives at 80 mph only for the remaining time after a half-hour at 30 mph, not for the whole return.
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — it applies 80 mph to all non-traffic time and ignores the half-hour driven at 30 mph.
+RULE-4: IMPLAUSIBLE — adding the initial distance to the outbound distance double-counts it, so the relationship is mathematically incoherent.
+RULE-5: PLAUSIBLE
+RULE-6: IMPLAUSIBLE — distance from home should be outbound distance minus return distance, not initial distance minus a total that includes the outbound leg.
+RULE-7: PLAUSIBLE
