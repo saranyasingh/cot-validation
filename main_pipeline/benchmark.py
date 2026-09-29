@@ -285,13 +285,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--client", "-c",
-        choices=["openai", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
+        choices=["openai", "claude", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
         default="openai",
         help="Reasoning client for CoT generation (default: openai).",
     )
     parser.add_argument(
         "--verifier-client", "-v",
-        choices=["openai", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
+        choices=["openai", "claude", "kimi", "deepseek", "vllm", "anthropic", "bedrock"],
         default="openai",
         help="Client for autoformalization (FOL), verification, and TPTP conversion (default: openai).",
     )

@@ -3,15 +3,16 @@ LLM client abstractions for the CoT-validation pipeline.
 
 Clients:
   openai    — OpenAI Responses API (gpt-5-nano), used for verification
-  claude    — Anthropic Claude API (claude-opus-4-5 by default)
+  claude    — Anthropic Claude API (claude-opus-5-5 by default); 'anthropic' is an alias
+  bedrock   — Claude via Amazon Bedrock
   kimi      — Moonshot/Kimi Chat Completions API, weaker model for reasoning
   deepseek  — DeepSeek Chat Completions API, weaker model for reasoning
+  vllm      — locally-running vLLM server
 """
 
 import os
 from dotenv import load_dotenv
 from openai import OpenAI as _OpenAI
-import anthropic as _anthropic
 
 load_dotenv()
 
@@ -69,22 +70,6 @@ class DeepSeekLLMClient(LLMClient):
         return response.choices[0].message.content
 
 
-class ClaudeLLMClient(LLMClient):
-    """Uses the Anthropic Claude API."""
-
-    def __init__(self):
-        self._client = _anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        self.model = os.getenv("ANTHROPIC_MODEL", "claude-opus-4-5")
-
-    def complete(self, prompt: str) -> str:
-        response = self._client.messages.create(
-            model=self.model,
-            max_tokens=4096,
-            messages=[{"role": "user", "content": prompt}],
-        )
-        return response.content[0].text
-
-
 class VLLMLLMClient(LLMClient):
     """Uses a locally-running vLLM server (OpenAI-compatible Chat Completions API)."""
 
@@ -103,7 +88,7 @@ class VLLMLLMClient(LLMClient):
         return response.choices[0].message.content
 
 
-class AnthropicLLMClient(LLMClient):
+class ClaudeLLMClient(LLMClient):
     """Uses the Anthropic Messages API (Claude)."""
 
     def __init__(self):
@@ -124,7 +109,7 @@ class AnthropicLLMClient(LLMClient):
         return "".join(b.text for b in message.content if b.type == "text")
 
 
-class BedrockLLMClient(AnthropicLLMClient):
+class BedrockLLMClient(ClaudeLLMClient):
     """Claude via Amazon Bedrock (Messages API endpoint). Auth: AWS_BEARER_TOKEN_BEDROCK
     (Bedrock API key) or standard AWS credentials (AWS_ACCESS_KEY_ID / profile)."""
 
@@ -138,7 +123,7 @@ class BedrockLLMClient(AnthropicLLMClient):
 def make_client(name: str) -> LLMClient:
     if name == "openai":
         return OpenAILLMClient()
-    if name == "claude":
+    if name in ("claude", "anthropic"):
         return ClaudeLLMClient()
     if name == "kimi":
         return KimiLLMClient()
@@ -146,8 +131,6 @@ def make_client(name: str) -> LLMClient:
         return DeepSeekLLMClient()
     if name == "vllm":
         return VLLMLLMClient()
-    if name == "anthropic":
-        return AnthropicLLMClient()
     if name == "bedrock":
         return BedrockLLMClient()
     raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'claude', 'kimi', 'deepseek', 'vllm', 'anthropic', or 'bedrock'.")

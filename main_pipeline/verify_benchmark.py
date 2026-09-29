@@ -376,13 +376,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--client", "-c",
-        choices=["openai", "claude", "kimi", "deepseek", "vllm"],
+        choices=["openai", "claude", "kimi", "deepseek", "vllm", "bedrock"],
         default="openai",
         help="Reasoning client for CoT generation (default: openai).",
     )
     parser.add_argument(
         "--verifier",
-        choices=["openai", "claude", "kimi", "deepseek", "vllm"],
+        choices=["openai", "claude", "kimi", "deepseek", "vllm", "bedrock"],
         default="claude",
         help="Verification client for FOL extraction and fact/rule checking (default: claude / opus).",
     )
