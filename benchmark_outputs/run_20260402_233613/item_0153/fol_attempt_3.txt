@@ -1,3 +1,0 @@
-LABEL: RemainingFlour :: RemainingFlour(TotalFlourNeeded() - FlourAlreadyAdded())
-LABEL: Difference :: Difference(FlourNeeded(), SaltRequired())
-LABEL: Difference(10, 7) :: Difference(RemainingFlour(), RemainingSalt())

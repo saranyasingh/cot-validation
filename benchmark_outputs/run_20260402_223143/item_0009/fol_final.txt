@@ -1,3 +1,0 @@
-LABEL: Fact 1 :: WinningTickets(W)
-LABEL: Rule 1 :: ∀t (AmountUsedAtTime(t) → RemainingQuantityAtTime(t))
-LABEL: Inference 1 :: WinningTickets(26)

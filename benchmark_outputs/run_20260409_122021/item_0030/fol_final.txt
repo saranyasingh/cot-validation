@@ -1,9 +1,0 @@
-```plaintext
-## FACTS
-FACT-1: BootsCost = 104 :: Booleans(BootsCost = 104)
-
-## RULES
-RULE-1: BootsCost = 104 :: Given that one pair of heels costs $33 and another pair costs twice as much, calculate the total cost of the two pairs of high heels which is five dollars less than the boots, then solve for the boots' cost.
-
-## INFERENCES
-INF-1: BootsCost = 104 :: Given the total cost of the two pairs of high heels ($99), subtract $5 to get the boots' cost ($104).

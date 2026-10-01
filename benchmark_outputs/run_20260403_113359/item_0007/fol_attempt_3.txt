@@ -1,3 +1,0 @@
-LABEL: FACT-1 :: SheepIn(Seattle) = 20
-LABEL: FACT-2 :: SheepIn(Charleston) = 4 * SheepIn(Seattle)
-LABEL: RULE-1 :: SheepIn(Toulouse) = 2 * SheepIn(Charleston)
