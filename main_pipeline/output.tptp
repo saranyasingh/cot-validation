@@ -1,29 +1,23 @@
 % --- FACTS ---
-fof(fact_1, axiom, regular_rate(eliza, n_10)).
-fof(fact_2, axiom, regular_hours_limit(eliza, n_40)).
-fof(fact_3, axiom, overtime_multiplier(eliza, n_1_2)).
-fof(fact_4, axiom, total_hours_worked(eliza, n_45)).
-fof(fact_5, axiom, product(n_40, n_10, n_400)).
-fof(fact_6, axiom, difference(n_45, n_40, n_5)).
-fof(fact_7, axiom, product(n_1_2, n_10, n_12)).
-fof(fact_8, axiom, product(n_5, n_12, n_60)).
-fof(fact_9, axiom, sum(n_400, n_60, n_460)).
+fof(fact_1, axiom, rate(eliza_regular, n10)).
+fof(fact_2, axiom, hours(eliza_regular, n40)).
+fof(fact_3, axiom, hours(eliza_overtime, n5)).
+fof(fact_4, axiom, product(n10, n40, n400)).
+fof(fact_5, axiom, product(n1_2, n10, n12)).
+fof(fact_6, axiom, product(n12, n5, n60)).
+fof(fact_7, axiom, sum(n400, n60, n460)).
 
 % --- RULES ---
-fof(rule_1, axiom, ! [P, H, R, Z] : ((regular_hours_limit(P, H) & regular_rate(P, R) & product(H, R, Z)) => regular_pay(P, Z))).
-fof(rule_2, axiom, ! [P, T, H, Z] : ((total_hours_worked(P, T) & regular_hours_limit(P, H) & difference(T, H, Z)) => overtime_hours(P, Z))).
-fof(rule_3, axiom, ! [P, M, R, Z] : ((overtime_multiplier(P, M) & regular_rate(P, R) & product(M, R, Z)) => overtime_rate(P, Z))).
-fof(rule_4, axiom, ! [P, H, R, Z] : ((overtime_hours(P, H) & overtime_rate(P, R) & product(H, R, Z)) => overtime_pay(P, Z))).
-fof(rule_5, axiom, ! [P, X, Y, Z] : ((regular_pay(P, X) & overtime_pay(P, Y) & sum(X, Y, Z)) => total_earnings(P, Z))).
+fof(rule_1, axiom, ! [X, R, H, P] : ((rate(X, R) & hours(X, H) & product(R, H, P)) => pay(X, P))).
+fof(rule_2, axiom, ! [R, S] : ((rate(eliza_regular, R) & product(n1_2, R, S)) => rate(eliza_overtime, S))).
+fof(rule_3, axiom, ! [P, Q, T] : ((pay(eliza_regular, P) & pay(eliza_overtime, Q) & sum(P, Q, T)) => pay(eliza_total, T))).
 
 % --- INFERENCES ---
-% From fact_1, fact_2, fact_5, rule_1 by Modus Ponens
-fof(inf_1, axiom, regular_pay(eliza, n_400)).
-% From fact_2, fact_4, fact_6, rule_2 by Modus Ponens
-fof(inf_2, axiom, overtime_hours(eliza, n_5)).
-% From fact_1, fact_3, fact_7, rule_3 by Modus Ponens
-fof(inf_3, axiom, overtime_rate(eliza, n_12)).
-% From inf_2, inf_3, fact_8, rule_4 by Modus Ponens
-fof(inf_4, axiom, overtime_pay(eliza, n_60)).
-% From inf_1, inf_4, fact_9, rule_5 by Modus Ponens
-fof(inf_5, axiom, total_earnings(eliza, n_460)).
+% From fact_1, fact_2, fact_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, pay(eliza_regular, n400)).
+% From fact_1, fact_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, rate(eliza_overtime, n12)).
+% From inf_2, fact_3, fact_6, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, pay(eliza_overtime, n60)).
+% From inf_1, inf_3, fact_7, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, pay(eliza_total, n460)).

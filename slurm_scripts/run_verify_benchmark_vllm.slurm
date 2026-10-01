@@ -32,6 +32,12 @@ VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 export OPENAI_API_KEY="${OPENAI_API_KEY:-$(cat ~/.openai_key 2>/dev/null || echo '')}"
 export ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-$(cat ~/.anthropic_key 2>/dev/null || echo '')}"
 export ANTHROPIC_MODEL
+# Bedrock verifier (VERIFIER_CLIENT=bedrock): Bedrock API key from ~/.bedrock_key
+if [ -z "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && [ -f ~/.bedrock_key ]; then
+    export AWS_BEARER_TOKEN_BEDROCK="$(tr -d ' \n\r\t' < ~/.bedrock_key)"
+fi
+export AWS_REGION="${AWS_REGION:-us-east-1}"
+export BEDROCK_MODEL="${BEDROCK_MODEL:-anthropic.claude-opus-5-5}"
 # Also pull keys from repo .env if present (cluster-friendly)
 if [ -f "${SLURM_SUBMIT_DIR}/../.env" ]; then
     set -a
@@ -71,11 +77,12 @@ echo "Python       : $PYTHON ($(command -v "$PYTHON" 2>/dev/null || echo not fou
 echo "Model        : $VLLM_MODEL"
 echo "Dataset      : $DATASET"
 echo "Skip TPTP    : ${SKIP_TPTP:-no}"
-echo "Verifier     : $VERIFIER_CLIENT ($ANTHROPIC_MODEL)"
-if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
-    echo "Anthropic key: set"
+if [ "$VERIFIER_CLIENT" = "bedrock" ]; then
+    echo "Verifier     : bedrock ($BEDROCK_MODEL, $AWS_REGION)"
+    echo "Bedrock key  : $([ -n "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && echo set || echo MISSING)"
 else
-    echo "Anthropic key: MISSING"
+    echo "Verifier     : $VERIFIER_CLIENT ($ANTHROPIC_MODEL)"
+    echo "Anthropic key: $([ -n "${ANTHROPIC_API_KEY:-}" ] && echo set || echo MISSING)"
 fi
 echo "Start time   : $(date)"
 echo "──────────────────────────────────────────"
