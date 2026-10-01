@@ -1,0 +1,28 @@
+EXPLANATION
+Let's break down the problem into logical steps.
+
+1. **Daily Feed Consumption per Chicken**: Each chicken consumes 3 cups of feed daily.
+   
+   - Total feed consumption for all chickens per day = \( 3 \text{ cups/chicken} \times 20 \text{ chickens} = 60 \text{ cups/day} \)
+
+2. **Total Feed Given During Morning Meal**: Wendi gives 15 cups of feed in the morning.
+   
+   - Remaining feed needed after morning = \( 60 \text{ cups/day} - 15 \text{ cups} = 45 \text{ cups/day} \)
+
+3. **Total Feed Given During Afternoon Meal**: Wendi gives 25 cups of feed in the afternoon.
+   
+   - Since we have already accounted for the morning feed, the remaining feed given in the afternoon must cover the rest.
+   
+   - This means the afternoon feed alone equals the total feed needed for the day minus what was given in the morning.
+   
+   - Therefore, the afternoon feed needs to make up the difference between the total daily requirement and the morning amount:
+     \[
+     \text{Afternoon feed} = 45 \text{ cups/day} - 15 \text{ cups}
+     \]
+
+4. **Calculation of Final Meal Feed**:
+   - The afternoon feed (25 cups) directly covers this part since it’s explicitly stated that the afternoon feeding amounts exactly match the required daily amount.
+   
+Therefore, the amount of feed needed for the final meal of the day is equal to the afternoon feeding amount provided by Wendi.
+
+The answer is: 25

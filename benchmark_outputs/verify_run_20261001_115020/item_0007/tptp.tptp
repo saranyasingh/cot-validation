@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, sheep_count(seattle, num_20)).
+fof(fact_2, axiom, times_as(charleston, seattle, num_4)).
+fof(fact_3, axiom, times_as(toulouse, charleston, num_2)).
+fof(fact_4, axiom, product(num_2, num_4, num_8)).
+fof(fact_5, axiom, product(num_8, num_20, num_160)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, Y, Z, A, B, C] : ((times_as(X, Y, A) & times_as(Y, Z, B) & product(A, B, C)) => times_as(X, Z, C))).
+fof(rule_2, axiom, ! [X, Y, K, N, M] : ((times_as(X, Y, K) & sheep_count(Y, N) & product(K, N, M)) => sheep_count(X, M))).
+
+% --- INFERENCES ---
+% From fact_3, fact_2, fact_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, times_as(toulouse, seattle, num_8)).
+% From inf_1, fact_1, fact_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, sheep_count(toulouse, num_160)).
+% From inf_2 by assertion (as stated in the reasoning)
+fof(inf_3, axiom, total_sheep(toulouse, charleston, seattle, num_160)).

@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's regular hourly rate is $10",
+      "formula": "Rate(eliza_regular, n10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza worked 40 regular hours",
+      "formula": "Hours(eliza_regular, n40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza worked 5 overtime hours",
+      "formula": "Hours(eliza_overtime, n5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "10 \u00d7 40 = 400",
+      "formula": "Product(n10, n40, n400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "1.2 \u00d7 10 = 12",
+      "formula": "Product(n1_2, n10, n12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "12 \u00d7 5 = 60",
+      "formula": "Product(n12, n5, n60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "400 + 60 = 460",
+      "formula": "Sum(n400, n60, n460)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Pay equals hourly rate times hours worked",
+      "formula": "\u2200x \u2200r \u2200h \u2200p ((Rate(x, r) \u2227 Hours(x, h) \u2227 Product(r, h, p)) \u2192 Pay(x, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The overtime rate is 1.2 times the regular rate",
+      "formula": "\u2200r \u2200s ((Rate(eliza_regular, r) \u2227 Product(n1_2, r, s)) \u2192 Rate(eliza_overtime, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Total earnings are regular pay plus overtime pay",
+      "formula": "\u2200p \u2200q \u2200t ((Pay(eliza_regular, p) \u2227 Pay(eliza_overtime, q) \u2227 Sum(p, q, t)) \u2192 Pay(eliza_total, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Eliza's regular pay is $400, from FACT-1, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza_regular, n400)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Eliza's overtime rate is $12/hour, from FACT-1, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Rate(eliza_overtime, n12)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Eliza's overtime pay is $60, from INF-2, FACT-3, FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza_overtime, n60)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Eliza's total earnings this week are $460, from INF-1, INF-3, FACT-7 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza_total, n460)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

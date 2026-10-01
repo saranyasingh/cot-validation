@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Seattle has 20 sheep",
+      "formula": "SheepCount(seattle, num_20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charleston has 4 times as many sheep as Seattle",
+      "formula": "TimesAs(charleston, seattle, num_4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toulouse has twice as many sheep as Charleston",
+      "formula": "TimesAs(toulouse, charleston, num_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "2 times 4 equals 8",
+      "formula": "Product(num_2, num_4, num_8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "8 times 20 equals 160",
+      "formula": "Product(num_8, num_20, num_160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has a times as many sheep as y, y has b times as many as z, and a\u00b7b = c, then x has c times as many sheep as z",
+      "formula": "\u2200x \u2200y \u2200z \u2200a \u2200b \u2200c ((TimesAs(x, y, a) \u2227 TimesAs(y, z, b) \u2227 Product(a, b, c)) \u2192 TimesAs(x, z, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has k times as many sheep as y, y has n sheep, and k\u00b7n = m, then x has m sheep",
+      "formula": "\u2200x \u2200y \u2200k \u2200n \u2200m ((TimesAs(x, y, k) \u2227 SheepCount(y, n) \u2227 Product(k, n, m)) \u2192 SheepCount(x, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Substituting C = 4\u00b7S into T = 2\u00b7C and simplifying to 2\u00b74 = 8 gives T = 8\u00b7S, so Toulouse has 8 times as many sheep as Seattle. This follows from FACT-3, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TimesAs(toulouse, seattle, num_8)",
+      "premises": [
+        "FACT-3",
+        "FACT-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Substituting S = 20 gives T = 8\u00b720 = 160, so Toulouse has 160 sheep. This follows from INF-1, FACT-1, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "SheepCount(toulouse, num_160)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The reasoning concludes that the total number of sheep in Toulouse, Charleston and Seattle together is 160. This is an assertion based on INF-2, as stated in the reasoning",
+      "formula": "TotalSheep(toulouse, charleston, seattle, num_160)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

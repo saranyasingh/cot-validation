@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — it bakes the specific computation 3 × 20 = 60 into the rule instead of using a general multiplication predicate over separate variables.
+RULE-2: IMPLAUSIBLE — it bakes the specific computation 60 − 15 = 45 into the rule instead of using a general subtraction predicate over separate variables.
+RULE-3: IMPLAUSIBLE — this is mathematically wrong: the final meal is the daily total minus both earlier meals (60 − 15 − 25 = 20), not the afternoon amount.

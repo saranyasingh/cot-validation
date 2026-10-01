@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+FeedPerChicken(n) — each chicken eats n cups of feed daily
+NumChickens(n) — the flock has n chickens
+TotalDaily(n) — the flock needs n cups of feed in total per day
+MealFeed(m, n) — n cups of feed are given at meal m
+Remaining(m, n) — n cups of the daily requirement are still needed after meal m
+Constants:
+morning, afternoon, final_meal, n3, n15, n20, n25, n45, n60
+
+## FACTS
+FACT-1: Each chicken consumes 3 cups of feed daily :: FeedPerChicken(n3)
+FACT-2: Wendi has 20 chickens :: NumChickens(n20)
+FACT-3: Wendi gives 15 cups of feed in the morning :: MealFeed(morning, n15)
+FACT-4: Wendi gives 25 cups of feed in the afternoon :: MealFeed(afternoon, n25)
+
+## RULES
+RULE-1: If each chicken eats 3 cups and there are 20 chickens, the total daily need is 3 × 20 = 60 cups :: ∀x ∀y ((FeedPerChicken(x) ∧ NumChickens(y) ∧ FeedPerChicken(n3) ∧ NumChickens(n20)) → TotalDaily(n60))
+RULE-2: If 60 cups are needed daily and a meal gives 15 cups, then 60 − 15 = 45 cups remain needed after that meal :: ∀m ((TotalDaily(n60) ∧ MealFeed(m, n15)) → Remaining(m, n45))
+RULE-3: Once the morning feed is accounted for, the afternoon feeding is taken to cover the rest, so the final meal's amount equals the afternoon amount :: ∀x ∀y ((Remaining(morning, x) ∧ MealFeed(afternoon, y)) → MealFeed(final_meal, y))
+
+## INFERENCES
+INF-1: The total feed needed for all chickens per day is 60 cups, from FACT-1, FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: TotalDaily(n60)
+INF-2: After the morning meal, 45 cups are still needed, from INF-1, FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: Remaining(morning, n45)
+INF-3: The final meal of the day needs 25 cups, the same as the afternoon feeding, from INF-2, FACT-4 and RULE-3 by Universal Instantiation and Modus Ponens :: MealFeed(final_meal, n25)

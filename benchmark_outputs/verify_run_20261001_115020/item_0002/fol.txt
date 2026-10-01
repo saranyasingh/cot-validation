@@ -1,0 +1,22 @@
+## VOCABULARY
+Predicates:
+BlueBolts(x, n) — robe x requires n bolts of blue fiber
+WhiteBolts(x, n) — robe x requires n bolts of white fiber
+TotalBolts(x, n) — robe x requires n bolts of fiber in total
+Half(n, m) — m is half of n
+Sum(a, b, c) — a + b = c
+Constants:
+robe, n1, n2, n3
+
+## FACTS
+FACT-1: A robe requires 2 bolts of blue fiber :: BlueBolts(robe, n2)
+FACT-2: Half of 2 is 1 :: Half(n2, n1)
+FACT-3: 2 plus 1 equals 3 :: Sum(n2, n1, n3)
+
+## RULES
+RULE-1: The white fiber in a robe is half the blue fiber :: ∀x ∀y ∀z ((BlueBolts(x, y) ∧ Half(y, z)) → WhiteBolts(x, z))
+RULE-2: The total bolts in a robe are the blue bolts plus the white bolts :: ∀x ∀y ∀z ∀w ((BlueBolts(x, y) ∧ WhiteBolts(x, z) ∧ Sum(y, z, w)) → TotalBolts(x, w))
+
+## INFERENCES
+INF-1: The robe requires 1 bolt of white fiber, from FACT-1, FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: WhiteBolts(robe, n1)
+INF-2: The robe requires 3 bolts in total, from FACT-1, INF-1, FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: TotalBolts(robe, n3)

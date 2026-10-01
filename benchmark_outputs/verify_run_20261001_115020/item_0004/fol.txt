@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+SprintsPerSession(x, n) — person x runs n sprints in each session
+SprintLength(x, n) — each sprint person x runs is n meters long
+SessionsPerWeek(x, n) — person x runs n sessions per week
+Distance(x, p, d) — person x covers d meters over period p
+Product(a, b, c) — a multiplied by b equals c
+Constants:
+james, session, week, n3, n60, n180, n540
+
+## FACTS
+FACT-1: James runs 3 sprints each time :: SprintsPerSession(james, n3)
+FACT-2: Each sprint is 60 meters long :: SprintLength(james, n60)
+FACT-3: James runs this session 3 times a week :: SessionsPerWeek(james, n3)
+FACT-4: 3 times 60 equals 180 :: Product(n3, n60, n180)
+FACT-5: 180 times 3 equals 540 :: Product(n180, n3, n540)
+
+## RULES
+RULE-1: The distance in one session is the number of sprints per session times the length of each sprint :: ∀x ∀a ∀b ∀c ((SprintsPerSession(x, a) ∧ SprintLength(x, b) ∧ Product(a, b, c)) → Distance(x, session, c))
+RULE-2: The weekly distance is the distance of one session times the number of sessions per week :: ∀x ∀d ∀n ∀w ((Distance(x, session, d) ∧ SessionsPerWeek(x, n) ∧ Product(d, n, w)) → Distance(x, week, w))
+
+## INFERENCES
+INF-1: In one session James runs 3 × 60 = 180 meters, from FACT-1, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(james, session, n180)
+INF-2: In a week James runs 180 × 3 = 540 meters, from INF-1, FACT-3, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: Distance(james, week, n540)

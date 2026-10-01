@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, sprints_per_session(james, n3)).
+fof(fact_2, axiom, sprint_length(james, n60)).
+fof(fact_3, axiom, sessions_per_week(james, n3)).
+fof(fact_4, axiom, product(n3, n60, n180)).
+fof(fact_5, axiom, product(n180, n3, n540)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X, A, B, C] : ((sprints_per_session(X, A) & sprint_length(X, B) & product(A, B, C)) => distance(X, session, C))).
+fof(rule_2, axiom, ! [X, D, N, W] : ((distance(X, session, D) & sessions_per_week(X, N) & product(D, N, W)) => distance(X, week, W))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, distance(james, session, n180)).
+% From inf_1, fact_3, fact_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, distance(james, week, n540)).

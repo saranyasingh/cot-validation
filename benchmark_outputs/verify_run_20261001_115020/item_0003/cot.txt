@@ -1,0 +1,45 @@
+To determine Josh's profit from flipping the house, we need to follow these steps:
+
+1. **Calculate the total cost**: Add the initial purchase price and the amount spent on repairs.
+2. **Determine the increase in value**: Since the house's value increased by 150%, calculate this percentage of the original value.
+3. **Find the new value after repairs**: Subtract the repair costs from the original purchase price to get the adjusted value before adding the increase.
+4. **Calculate the profit**: Subtract the total cost from the new value.
+
+Let's break it down:
+
+### Step-by-Step Logical Reasoning:
+
+**Premise 1:**  
+Josh bought a house for $80,000.
+
+**Premise 2:**  
+He put in $50,000 in repairs.
+
+**Conclusion 1 (Total Cost):**
+\[ \text{Total Cost} = \$80,000 + \$50,000 = \$130,000 \]
+
+**Premise 3:**  
+The house's value increased by 150%.
+
+**Conclusion 2 (Increase in Value):**
+\[ \text{Increase in Value} = 150\% \times \$80,000 = 1.5 \times \$80,000 = \$120,000 \]
+
+**Premise 4:**  
+After the repairs, the value was reduced by subtracting the repair costs.
+
+**Conclusion 3 (Adjusted Value Before Increase):**
+\[ \text{Adjusted Value Before Increase} = \$80,000 - \$50,000 = \$30,000 \]
+
+**Premise 5:**  
+This adjusted value plus the 150% increase equals the new value of the house.
+
+**Conclusion 6 (New Value After Increase):**
+\[ \text{New Value} = \$30,000 + \$120,000 = \$150,000 \]
+
+**Premise 7:**  
+Profit is calculated as the difference between the new value and the total cost.
+
+**Conclusion 8 (Profit Calculation):**
+\[ \text{Profit} = \text{New Value} - \text{Total Cost} = \$150,000 - \$130,000 = \$20,000 \]
+
+Therefore, Josh made a profit of $\boxed{20000}$.

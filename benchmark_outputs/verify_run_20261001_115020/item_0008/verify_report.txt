@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — the download restarts from the beginning, so the full 200 GB must be re-downloaded, not 60% of it.
+RULE-2: IMPLAUSIBLE — it multiplies a percentage by the speed (60 * 2) instead of dividing data by speed, and it hardcodes the arithmetic into the rule.
+RULE-3: IMPLAUSIBLE — it hardcodes the specific sum and leaves out the 40 minutes spent on the first 80 GB and the 100-minute full re-download (correct total is 40 + 20 + 100 = 160 minutes).
+RULE-4: IMPLAUSIBLE — it hardcodes the specific computation and applies it to an incorrect total.

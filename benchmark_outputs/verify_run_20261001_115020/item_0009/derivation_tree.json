@@ -1,0 +1,244 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The first leg is driven at 60 mph",
+      "formula": "Speed(leg1, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The first leg lasts 3 hours",
+      "formula": "Duration(leg1, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The second leg is standstill traffic (speed 0)",
+      "formula": "Speed(leg2, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The second leg lasts 2 hours",
+      "formula": "Duration(leg2, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The third leg is driven at 30 mph",
+      "formula": "Speed(leg3, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The third leg lasts half an hour",
+      "formula": "Duration(leg3, 0.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The fourth leg is driven at 80 mph",
+      "formula": "Speed(leg4, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The period lasts 4 hours",
+      "formula": "Duration(four_hour_period, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "60 \u00d7 3 = 180",
+      "formula": "Product(60, 3, 180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "0 \u00d7 2 = 0",
+      "formula": "Product(0, 2, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "30 \u00d7 0.5 = 15",
+      "formula": "Product(30, 0.5, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "2 + 0.5 + 1.5 + 0 = 4, so 4 \u2212 2 \u2212 0.5 = 1.5",
+      "formula": "Total(2, 0.5, 1.5, 0, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "80 \u00d7 1.5 = 120",
+      "formula": "Product(80, 1.5, 120)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-14": {
+      "type": "fact",
+      "gloss": "180 + 0 + 15 + 120 = 315",
+      "formula": "Total(180, 0, 15, 120, 315)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Distance = Speed \u00d7 Time",
+      "formula": "\u2200x \u2200s \u2200t \u2200d ((Speed(x, s) \u2227 Duration(x, t) \u2227 Product(s, t, d)) \u2192 Distance(x, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The fourth leg's time is the 4-hour period minus the standstill time and the 30 mph time",
+      "formula": "\u2200a \u2200b \u2200t \u2200p ((Duration(four_hour_period, p) \u2227 Duration(leg2, a) \u2227 Duration(leg3, b) \u2227 Total(a, b, t, 0, p)) \u2192 Duration(leg4, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "John's distance from home is the sum of the distances of all legs",
+      "formula": "\u2200a \u2200b \u2200c \u2200d \u2200r ((Distance(leg1, a) \u2227 Distance(leg2, b) \u2227 Distance(leg3, c) \u2227 Distance(leg4, d) \u2227 Total(a, b, c, d, r)) \u2192 Distance(john, r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "John turned around, so the return legs (0 + 15 + 120 = 135) must be subtracted from the 180 outbound miles, not added; distance from home is the difference.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The first leg covers 180 miles, from FACT-1, FACT-2, FACT-9 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg1, 180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-9",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The standstill leg adds 0 miles, from FACT-3, FACT-4, FACT-10 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg2, 0)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "FACT-10",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The third leg covers 15 miles, from FACT-5, FACT-6, FACT-11 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg3, 15)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "FACT-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The fourth leg lasts 1.5 hours, from FACT-8, FACT-4, FACT-6, FACT-12 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Duration(leg4, 1.5)",
+      "premises": [
+        "FACT-8",
+        "FACT-4",
+        "FACT-6",
+        "FACT-12",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The fourth leg covers 120 miles, from FACT-7, INF-4, FACT-13 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg4, 120)",
+      "premises": [
+        "FACT-7",
+        "INF-4",
+        "FACT-13",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "John is 315 miles from home, from INF-1, INF-2, INF-3, INF-5, FACT-14 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(john, 315)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "INF-5",
+        "FACT-14",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "John turned around, so the return legs (0 + 15 + 120 = 135) must be subtracted from the 180 outbound miles, not added; distance from home is the difference."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "A robe requires 2 bolts of blue fiber",
+      "formula": "BlueBolts(robe, n2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Half of 2 is 1",
+      "formula": "Half(n2, n1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "2 plus 1 equals 3",
+      "formula": "Sum(n2, n1, n3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The white fiber in a robe is half the blue fiber",
+      "formula": "\u2200x \u2200y \u2200z ((BlueBolts(x, y) \u2227 Half(y, z)) \u2192 WhiteBolts(x, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The total bolts in a robe are the blue bolts plus the white bolts",
+      "formula": "\u2200x \u2200y \u2200z \u2200w ((BlueBolts(x, y) \u2227 WhiteBolts(x, z) \u2227 Sum(y, z, w)) \u2192 TotalBolts(x, w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The robe requires 1 bolt of white fiber, from FACT-1, FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WhiteBolts(robe, n1)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The robe requires 3 bolts in total, from FACT-1, INF-1, FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalBolts(robe, n3)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

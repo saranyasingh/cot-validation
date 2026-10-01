@@ -1,0 +1,23 @@
+Explanation:
+Let's break down the problem into smaller parts to solve it logically.
+
+Step 1: Determine the cost of each glass.
+- First glass: $5
+- Second glass (every second): 60% of $5 = \( \frac{60}{100} \times 5 = \$3 \)
+
+Step 2: Calculate how many of these discounted glasses Kylar buys.
+- Since he wants to buy 16 glasses total, half of them would be at 60% discount.
+- Number of discounted glasses = \( \frac{16}{2} = 8 \)
+- Cost of these 8 glasses = \( 8 \times 3 = \$24 \)
+
+Step 3: Calculate the cost of the remaining glasses that are not discounted.
+- Total glasses bought = 16 - 8 = 8
+- Cost of non-discounted glasses = \( 8 \times 5 = \$40 \)
+
+Step 4: Add up the costs of all glasses to get the total amount paid.
+- Total cost = Cost of discounted glasses + Cost of non-discounted glasses
+- Total cost = \( \$24 + \$40 = \$64 \)
+
+Therefore, Kylar needs to pay a total of $64 for the 16 glasses.
+
+The answer is: 64

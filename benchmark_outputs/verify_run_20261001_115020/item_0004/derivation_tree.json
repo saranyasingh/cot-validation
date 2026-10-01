@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints each time",
+      "formula": "SprintsPerSession(james, n3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint is 60 meters long",
+      "formula": "SprintLength(james, n60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "James runs this session 3 times a week",
+      "formula": "SessionsPerWeek(james, n3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "3 times 60 equals 180",
+      "formula": "Product(n3, n60, n180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "180 times 3 equals 540",
+      "formula": "Product(n180, n3, n540)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The distance in one session is the number of sprints per session times the length of each sprint",
+      "formula": "\u2200x \u2200a \u2200b \u2200c ((SprintsPerSession(x, a) \u2227 SprintLength(x, b) \u2227 Product(a, b, c)) \u2192 Distance(x, session, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The weekly distance is the distance of one session times the number of sessions per week",
+      "formula": "\u2200x \u2200d \u2200n \u2200w ((Distance(x, session, d) \u2227 SessionsPerWeek(x, n) \u2227 Product(d, n, w)) \u2192 Distance(x, week, w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "In one session James runs 3 \u00d7 60 = 180 meters, from FACT-1, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(james, session, n180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "In a week James runs 180 \u00d7 3 = 540 meters, from INF-1, FACT-3, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(james, week, n540)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

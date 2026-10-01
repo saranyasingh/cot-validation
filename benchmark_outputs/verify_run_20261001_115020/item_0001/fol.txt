@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+EggsProduced(x, n) — x's ducks produce n eggs per day
+EggsUsed(x, n) — x uses n eggs per day for her own consumption or baking
+EggsLeft(x, n) — x has n eggs left per day after the uses accounted for so far
+Price(x, n) — x sells each egg for n dollars
+DailyRevenue(x, n) — x makes n dollars per day at the farmers' market
+Constants:
+janet, n2, n3, n4, n9, n13, n16, n18
+
+## FACTS
+FACT-1: Janet's ducks produce 16 eggs per day :: EggsProduced(janet, n16)
+FACT-2: Janet eats 3 eggs for breakfast each day :: EggsUsed(janet, n3)
+FACT-3: Janet uses 4 eggs to bake muffins each day :: EggsUsed(janet, n4)
+FACT-4: Janet sells eggs at $2 per egg :: Price(janet, n2)
+
+## RULES
+RULE-1: If 16 eggs are produced and 3 are eaten, 16 - 3 = 13 eggs are left :: ∀x ((EggsProduced(x, n16) ∧ EggsUsed(x, n3)) → EggsLeft(x, n13))
+RULE-2: If 13 eggs are left and 4 are used for baking, 13 - 4 = 9 eggs are left :: ∀x ((EggsLeft(x, n13) ∧ EggsUsed(x, n4)) → EggsLeft(x, n9))
+RULE-3: If 9 eggs are left and sold at $2 each, revenue is 9 × 2 = $18 :: ∀x ((EggsLeft(x, n9) ∧ Price(x, n2)) → DailyRevenue(x, n18))
+
+## INFERENCES
+INF-1: Janet has 13 eggs left after breakfast, from FACT-1, FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: EggsLeft(janet, n13)
+INF-2: Janet has 9 eggs left after baking, from INF-1, FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: EggsLeft(janet, n9)
+INF-3: Janet makes $18 per day at the farmers' market, from INF-2, FACT-4 and RULE-3 by Universal Instantiation and Modus Ponens :: DailyRevenue(janet, n18)

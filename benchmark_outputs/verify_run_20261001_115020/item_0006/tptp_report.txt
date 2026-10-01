@@ -1,0 +1,12 @@
+  % From fact_1, fact_3, rule_1 by Universal Instantiation and Modus Ponens
+  inf_1: PROVED
+  % From fact_2, fact_4, rule_2 by Universal Instantiation and Modus Ponens
+  inf_2: PROVED
+  % From inf_2, inf_1, fact_6, rule_4 by Universal Instantiation and Modus Ponens
+  inf_3: PROVED
+  % From fact_2, inf_2, fact_5, rule_3 by Universal Instantiation and Modus Ponens
+  inf_4: PROVED
+  % From inf_4, fact_1, fact_7, rule_4 by Universal Instantiation and Modus Ponens
+  inf_5: PROVED
+  % From inf_3, inf_5, fact_8, rule_5 by Universal Instantiation and Modus Ponens
+  inf_6: PROVED

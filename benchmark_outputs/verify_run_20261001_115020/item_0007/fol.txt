@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+SheepCount(x, n) — city x has n sheep
+TimesAs(x, y, k) — city x has k times as many sheep as city y
+Product(a, b, c) — a multiplied by b equals c
+TotalSheep(x, y, z, n) — the combined number of sheep in cities x, y and z is n
+Constants:
+seattle, charleston, toulouse, num_2, num_4, num_8, num_20, num_160
+
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCount(seattle, num_20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: TimesAs(charleston, seattle, num_4)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TimesAs(toulouse, charleston, num_2)
+FACT-4: 2 times 4 equals 8 :: Product(num_2, num_4, num_8)
+FACT-5: 8 times 20 equals 160 :: Product(num_8, num_20, num_160)
+
+## RULES
+RULE-1: If x has a times as many sheep as y, y has b times as many as z, and a·b = c, then x has c times as many sheep as z :: ∀x ∀y ∀z ∀a ∀b ∀c ((TimesAs(x, y, a) ∧ TimesAs(y, z, b) ∧ Product(a, b, c)) → TimesAs(x, z, c))
+RULE-2: If x has k times as many sheep as y, y has n sheep, and k·n = m, then x has m sheep :: ∀x ∀y ∀k ∀n ∀m ((TimesAs(x, y, k) ∧ SheepCount(y, n) ∧ Product(k, n, m)) → SheepCount(x, m))
+
+## INFERENCES
+INF-1: Substituting C = 4·S into T = 2·C and simplifying to 2·4 = 8 gives T = 8·S, so Toulouse has 8 times as many sheep as Seattle. This follows from FACT-3, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: TimesAs(toulouse, seattle, num_8)
+INF-2: Substituting S = 20 gives T = 8·20 = 160, so Toulouse has 160 sheep. This follows from INF-1, FACT-1, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: SheepCount(toulouse, num_160)
+INF-3: The reasoning concludes that the total number of sheep in Toulouse, Charleston and Seattle together is 160. This is an assertion based on INF-2, as stated in the reasoning :: TotalSheep(toulouse, charleston, seattle, num_160)

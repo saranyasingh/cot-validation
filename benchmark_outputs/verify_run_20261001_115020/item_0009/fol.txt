@@ -1,0 +1,45 @@
+## VOCABULARY
+Predicates:
+Speed(x, s): leg x is driven at speed s (mph)
+Duration(x, t): leg or period x lasts t hours
+Distance(x, d): leg x covers d miles; for john, john is d miles from home
+Product(a, b, c): a × b = c
+Total(a, b, c, d, r): a + b + c + d = r
+
+Constants:
+john: the driver
+leg1: first leg, 3 hours at 60 mph
+leg2: standstill traffic
+leg3: half hour at 30 mph
+leg4: remaining time at 80 mph
+four_hour_period: the 4-hour period
+0, 0.5, 1.5, 2, 3, 4, 15, 30, 60, 80, 120, 180, 315: numeric values
+
+## FACTS
+FACT-1: The first leg is driven at 60 mph :: Speed(leg1, 60)
+FACT-2: The first leg lasts 3 hours :: Duration(leg1, 3)
+FACT-3: The second leg is standstill traffic (speed 0) :: Speed(leg2, 0)
+FACT-4: The second leg lasts 2 hours :: Duration(leg2, 2)
+FACT-5: The third leg is driven at 30 mph :: Speed(leg3, 30)
+FACT-6: The third leg lasts half an hour :: Duration(leg3, 0.5)
+FACT-7: The fourth leg is driven at 80 mph :: Speed(leg4, 80)
+FACT-8: The period lasts 4 hours :: Duration(four_hour_period, 4)
+FACT-9: 60 × 3 = 180 :: Product(60, 3, 180)
+FACT-10: 0 × 2 = 0 :: Product(0, 2, 0)
+FACT-11: 30 × 0.5 = 15 :: Product(30, 0.5, 15)
+FACT-12: 2 + 0.5 + 1.5 + 0 = 4, so 4 − 2 − 0.5 = 1.5 :: Total(2, 0.5, 1.5, 0, 4)
+FACT-13: 80 × 1.5 = 120 :: Product(80, 1.5, 120)
+FACT-14: 180 + 0 + 15 + 120 = 315 :: Total(180, 0, 15, 120, 315)
+
+## RULES
+RULE-1: Distance = Speed × Time :: ∀x ∀s ∀t ∀d ((Speed(x, s) ∧ Duration(x, t) ∧ Product(s, t, d)) → Distance(x, d))
+RULE-2: The fourth leg's time is the 4-hour period minus the standstill time and the 30 mph time :: ∀a ∀b ∀t ∀p ((Duration(four_hour_period, p) ∧ Duration(leg2, a) ∧ Duration(leg3, b) ∧ Total(a, b, t, 0, p)) → Duration(leg4, t))
+RULE-3: John's distance from home is the sum of the distances of all legs :: ∀a ∀b ∀c ∀d ∀r ((Distance(leg1, a) ∧ Distance(leg2, b) ∧ Distance(leg3, c) ∧ Distance(leg4, d) ∧ Total(a, b, c, d, r)) → Distance(john, r))
+
+## INFERENCES
+INF-1: The first leg covers 180 miles, from FACT-1, FACT-2, FACT-9 and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg1, 180)
+INF-2: The standstill leg adds 0 miles, from FACT-3, FACT-4, FACT-10 and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg2, 0)
+INF-3: The third leg covers 15 miles, from FACT-5, FACT-6, FACT-11 and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg3, 15)
+INF-4: The fourth leg lasts 1.5 hours, from FACT-8, FACT-4, FACT-6, FACT-12 and RULE-2 by Universal Instantiation and Modus Ponens :: Duration(leg4, 1.5)
+INF-5: The fourth leg covers 120 miles, from FACT-7, INF-4, FACT-13 and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg4, 120)
+INF-6: John is 315 miles from home, from INF-1, INF-2, INF-3, INF-5, FACT-14 and RULE-3 by Universal Instantiation and Modus Ponens :: Distance(john, 315)

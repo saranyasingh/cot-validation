@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Amount(q, n) — quantity q has the dollar amount n
+IncreasePercent(x, p) — the value of house x increased by p percent
+Sum(a, b, c) — a + b = c
+Diff(a, b, c) — a − b = c
+PercentOf(p, a, c) — p percent of a equals c
+Constants:
+house, purchase_price, repair_cost, total_cost, increase, adjusted_value, new_value, profit, n80000, n50000, n130000, n150, n120000, n30000, n150000, n20000
+
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: Amount(purchase_price, n80000)
+FACT-2: He put $50,000 into repairs :: Amount(repair_cost, n50000)
+FACT-3: The house's value increased by 150% :: IncreasePercent(house, n150)
+FACT-4: 80,000 + 50,000 = 130,000 :: Sum(n80000, n50000, n130000)
+FACT-5: 150% of 80,000 = 120,000 :: PercentOf(n150, n80000, n120000)
+FACT-6: 80,000 − 50,000 = 30,000 :: Diff(n80000, n50000, n30000)
+FACT-7: 30,000 + 120,000 = 150,000 :: Sum(n30000, n120000, n150000)
+FACT-8: 150,000 − 130,000 = 20,000 :: Diff(n150000, n130000, n20000)
+
+## RULES
+RULE-1: Total cost is the purchase price plus the repair cost :: ∀a ∀b ∀c ((Amount(purchase_price, a) ∧ Amount(repair_cost, b) ∧ Sum(a, b, c)) → Amount(total_cost, c))
+RULE-2: The increase in value is the given percentage of the original purchase price :: ∀p ∀a ∀c ((IncreasePercent(house, p) ∧ Amount(purchase_price, a) ∧ PercentOf(p, a, c)) → Amount(increase, c))
+RULE-3: The adjusted value before the increase is the purchase price minus the repair cost :: ∀a ∀b ∀c ((Amount(purchase_price, a) ∧ Amount(repair_cost, b) ∧ Diff(a, b, c)) → Amount(adjusted_value, c))
+RULE-4: The new value is the adjusted value plus the increase :: ∀a ∀b ∀c ((Amount(adjusted_value, a) ∧ Amount(increase, b) ∧ Sum(a, b, c)) → Amount(new_value, c))
+RULE-5: Profit is the new value minus the total cost :: ∀a ∀b ∀c ((Amount(new_value, a) ∧ Amount(total_cost, b) ∧ Diff(a, b, c)) → Amount(profit, c))
+
+## INFERENCES
+INF-1: The total cost is $130,000, from FACT-1, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(total_cost, n130000)
+INF-2: The increase in value is $120,000, from FACT-3, FACT-1, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(increase, n120000)
+INF-3: The adjusted value before the increase is $30,000, from FACT-1, FACT-2, FACT-6 and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(adjusted_value, n30000)
+INF-4: The new value is $150,000, from INF-3, INF-2, FACT-7 and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(new_value, n150000)
+INF-5: The profit is $20,000, from INF-4, INF-1, FACT-8 and RULE-5 by Universal Instantiation and Modus Ponens :: Amount(profit, n20000)

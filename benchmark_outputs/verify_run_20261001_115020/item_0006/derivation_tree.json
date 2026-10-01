@@ -1,0 +1,199 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "A full-price glass costs $5",
+      "formula": "Price(full_price_glass, n5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Kylar buys 16 glasses in total",
+      "formula": "Count(all_glasses, n16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "0.6 \u00d7 5 = 3",
+      "formula": "Product(n0_6, n5, n3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "8 \u00d7 2 = 16",
+      "formula": "Product(n8, n2, n16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "8 + 8 = 16",
+      "formula": "Sum(n8, n8, n16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "8 \u00d7 3 = 24",
+      "formula": "Product(n8, n3, n24)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "8 \u00d7 5 = 40",
+      "formula": "Product(n8, n5, n40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "24 + 40 = 64",
+      "formula": "Sum(n24, n40, n64)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Every second glass costs 60% of the full price",
+      "formula": "\u2200y \u2200z ((Price(full_price_glass, y) \u2227 Product(n0_6, y, z)) \u2192 Price(discounted_glass, z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Half of the total glasses are discounted",
+      "formula": "\u2200n \u2200m ((Count(all_glasses, n) \u2227 Product(m, n2, n)) \u2192 Count(discounted_glass, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The remaining glasses are full-price",
+      "formula": "\u2200n \u2200m \u2200k ((Count(all_glasses, n) \u2227 Count(discounted_glass, m) \u2227 Sum(m, k, n)) \u2192 Count(full_price_glass, k))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The cost of a glass type is its count times its price",
+      "formula": "\u2200x \u2200n \u2200p \u2200c ((Count(x, n) \u2227 Price(x, p) \u2227 Product(n, p, c)) \u2192 Cost(x, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "The total cost is the discounted cost plus the full-price cost",
+      "formula": "\u2200a \u2200b \u2200c ((Cost(discounted_glass, a) \u2227 Cost(full_price_glass, b) \u2227 Sum(a, b, c)) \u2192 Cost(all_glasses, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Each discounted glass costs $3, from FACT-1, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Price(discounted_glass, n3)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Kylar buys 8 discounted glasses, from FACT-2, FACT-4 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(discounted_glass, n8)",
+      "premises": [
+        "FACT-2",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The 8 discounted glasses cost $24, from INF-2, INF-1, FACT-6 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(discounted_glass, n24)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "FACT-6",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Kylar buys 8 full-price glasses, from FACT-2, INF-2, FACT-5 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(full_price_glass, n8)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "FACT-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The 8 full-price glasses cost $40, from INF-4, FACT-1, FACT-7 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(full_price_glass, n40)",
+      "premises": [
+        "INF-4",
+        "FACT-1",
+        "FACT-7",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Kylar pays $64 in total for the 16 glasses, from INF-3, INF-5, FACT-8 and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(all_glasses, n64)",
+      "premises": [
+        "INF-3",
+        "INF-5",
+        "FACT-8",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [],
+  "error_stages": []
+}

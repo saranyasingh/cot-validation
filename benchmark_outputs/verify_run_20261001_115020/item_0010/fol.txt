@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Rate(x, y) — x has hourly rate y (in dollars per hour)
+Hours(x, y) — x consists of y hours worked
+Pay(x, y) — x yields pay of y dollars
+Product(x, y, z) — x × y = z
+Sum(x, y, z) — x + y = z
+Constants:
+eliza_regular — Eliza's regular work portion this week
+eliza_overtime — Eliza's overtime work portion this week
+eliza_total — Eliza's total work this week
+n10, n40, n400, n1_2, n12, n5, n60, n460 — the numbers 10, 40, 400, 1.2, 12, 5, 60, 460
+
+## FACTS
+FACT-1: Eliza's regular hourly rate is $10 :: Rate(eliza_regular, n10)
+FACT-2: Eliza worked 40 regular hours :: Hours(eliza_regular, n40)
+FACT-3: Eliza worked 5 overtime hours :: Hours(eliza_overtime, n5)
+FACT-4: 10 × 40 = 400 :: Product(n10, n40, n400)
+FACT-5: 1.2 × 10 = 12 :: Product(n1_2, n10, n12)
+FACT-6: 12 × 5 = 60 :: Product(n12, n5, n60)
+FACT-7: 400 + 60 = 460 :: Sum(n400, n60, n460)
+
+## RULES
+RULE-1: Pay equals hourly rate times hours worked :: ∀x ∀r ∀h ∀p ((Rate(x, r) ∧ Hours(x, h) ∧ Product(r, h, p)) → Pay(x, p))
+RULE-2: The overtime rate is 1.2 times the regular rate :: ∀r ∀s ((Rate(eliza_regular, r) ∧ Product(n1_2, r, s)) → Rate(eliza_overtime, s))
+RULE-3: Total earnings are regular pay plus overtime pay :: ∀p ∀q ∀t ((Pay(eliza_regular, p) ∧ Pay(eliza_overtime, q) ∧ Sum(p, q, t)) → Pay(eliza_total, t))
+
+## INFERENCES
+INF-1: Eliza's regular pay is $400, from FACT-1, FACT-2, FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: Pay(eliza_regular, n400)
+INF-2: Eliza's overtime rate is $12/hour, from FACT-1, FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: Rate(eliza_overtime, n12)
+INF-3: Eliza's overtime pay is $60, from INF-2, FACT-3, FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens :: Pay(eliza_overtime, n60)
+INF-4: Eliza's total earnings this week are $460, from INF-1, INF-3, FACT-7 and RULE-3 by Universal Instantiation and Modus Ponens :: Pay(eliza_total, n460)

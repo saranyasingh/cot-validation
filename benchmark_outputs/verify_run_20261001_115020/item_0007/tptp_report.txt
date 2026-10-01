@@ -1,0 +1,9 @@
+  % From fact_3, fact_2, fact_4, rule_1 by Universal Instantiation and Modus Ponens
+  inf_1: PROVED
+  % From inf_1, fact_1, fact_5, rule_2 by Universal Instantiation and Modus Ponens
+  inf_2: PROVED
+  % From inf_2 by assertion (as stated in the reasoning)
+  inf_3: NOT PROVED
+
+Prover errors:
+inf_3: NOT PROVED — inference does not follow from axioms

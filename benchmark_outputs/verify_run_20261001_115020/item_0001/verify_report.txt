@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — puts the specific computation 16 - 3 = 13 inside the rule instead of a general subtraction relation with separate variables
+RULE-2: IMPLAUSIBLE — puts the specific computation 13 - 4 = 9 inside the rule instead of a general subtraction relation with separate variables
+RULE-3: IMPLAUSIBLE — puts the specific computation 9 × 2 = 18 inside the rule instead of a general multiplication relation with separate variables

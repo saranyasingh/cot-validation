@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Downloaded(x, p) — p percent of file x was downloaded before the forced restart
+Remaining(x, p) — p percent (taken as p GB) of file x remains to be downloaded
+Speed(x, s) — file x downloads at Carla's normal speed s (2 GB per minute, used as 2 minutes/GB in the calculation)
+Minutes(x, k, m) — phase k of downloading file x takes m minutes
+Hours(x, k, h) — phase k of downloading file x takes h hours
+Constants:
+carla_file, remaining_phase, restart_phase, total_phase, n40, n60, n2, n20, n120, n140, n2_33
+
+## FACTS
+FACT-1: Windows forced a restart after 40% of Carla's file was downloaded :: Downloaded(carla_file, n40)
+FACT-2: Carla's normal download speed is 2 GB per minute :: Speed(carla_file, n2)
+FACT-3: The restart takes 20 minutes :: Minutes(carla_file, restart_phase, n20)
+
+## RULES
+RULE-1: If 40% of a file was downloaded, then 60% remains to be downloaded :: ∀x (Downloaded(x, n40) → Remaining(x, n60))
+RULE-2: If 60 remains and the speed figure is 2, the remaining download takes 60 * 2 = 120 minutes :: ∀x ((Remaining(x, n60) ∧ Speed(x, n2)) → Minutes(x, remaining_phase, n120))
+RULE-3: Adding 120 minutes of downloading and 20 minutes of restart gives a total of 140 minutes :: ∀x ((Minutes(x, remaining_phase, n120) ∧ Minutes(x, restart_phase, n20)) → Minutes(x, total_phase, n140))
+RULE-4: 140 minutes divided by 60 minutes/hour is 2.33 hours :: ∀x (Minutes(x, total_phase, n140) → Hours(x, total_phase, n2_33))
+
+## INFERENCES
+INF-1: 60% of the file remains to be downloaded, from FACT-1 and RULE-1 by Modus Ponens :: Remaining(carla_file, n60)
+INF-2: The remaining download takes 120 minutes, from INF-1, FACT-2 and RULE-2 by Conjunction and Modus Ponens :: Minutes(carla_file, remaining_phase, n120)
+INF-3: The total time is 140 minutes, from INF-2, FACT-3 and RULE-3 by Conjunction and Modus Ponens :: Minutes(carla_file, total_phase, n140)
+INF-4: The total time is 2.33 hours, from INF-3 and RULE-4 by Modus Ponens :: Hours(carla_file, total_phase, n2_33)

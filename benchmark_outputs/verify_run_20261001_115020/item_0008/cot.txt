@@ -1,0 +1,16 @@
+EXPLANATION
+
+1. First, we need to determine how much of the file Carla downloaded before the restart.
+   - Since Windows forced a restart after 40% of the file was downloaded, that means 60% remains to be downloaded.
+
+2. Next, we calculate the time it would normally take Carla to download the remaining 60% at her normal speed (2 GB per minute).
+   - Time = Total remaining data / Download speed
+   - Time = 60 GB * 2 minutes/GB = 120 minutes
+
+3. Now, add the time taken for the restart to the time already spent downloading.
+   - Total time = 120 minutes + 20 minutes = 140 minutes
+
+4. Finally, convert this total time into hours since the problem asks for the loading time in hours.
+   - Total time in hours = 140 minutes ÷ 60 minutes/hour = 2.33 hours
+
+Therefore, the answer is: 2.33

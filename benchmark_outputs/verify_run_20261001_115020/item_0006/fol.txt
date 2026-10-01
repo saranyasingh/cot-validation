@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Price(x, y) — each glass of type x costs y dollars
+Count(x, n) — Kylar buys n glasses of type x
+Product(a, b, c) — a × b = c
+Sum(a, b, c) — a + b = c
+Cost(x, y) — the total amount paid for glasses of type x is y dollars
+Constants:
+full_price_glass, discounted_glass, all_glasses, n5, n0_6, n3, n16, n2, n8, n24, n40, n64
+
+## FACTS
+FACT-1: A full-price glass costs $5 :: Price(full_price_glass, n5)
+FACT-2: Kylar buys 16 glasses in total :: Count(all_glasses, n16)
+FACT-3: 0.6 × 5 = 3 :: Product(n0_6, n5, n3)
+FACT-4: 8 × 2 = 16 :: Product(n8, n2, n16)
+FACT-5: 8 + 8 = 16 :: Sum(n8, n8, n16)
+FACT-6: 8 × 3 = 24 :: Product(n8, n3, n24)
+FACT-7: 8 × 5 = 40 :: Product(n8, n5, n40)
+FACT-8: 24 + 40 = 64 :: Sum(n24, n40, n64)
+
+## RULES
+RULE-1: Every second glass costs 60% of the full price :: ∀y ∀z ((Price(full_price_glass, y) ∧ Product(n0_6, y, z)) → Price(discounted_glass, z))
+RULE-2: Half of the total glasses are discounted :: ∀n ∀m ((Count(all_glasses, n) ∧ Product(m, n2, n)) → Count(discounted_glass, m))
+RULE-3: The remaining glasses are full-price :: ∀n ∀m ∀k ((Count(all_glasses, n) ∧ Count(discounted_glass, m) ∧ Sum(m, k, n)) → Count(full_price_glass, k))
+RULE-4: The cost of a glass type is its count times its price :: ∀x ∀n ∀p ∀c ((Count(x, n) ∧ Price(x, p) ∧ Product(n, p, c)) → Cost(x, c))
+RULE-5: The total cost is the discounted cost plus the full-price cost :: ∀a ∀b ∀c ((Cost(discounted_glass, a) ∧ Cost(full_price_glass, b) ∧ Sum(a, b, c)) → Cost(all_glasses, c))
+
+## INFERENCES
+INF-1: Each discounted glass costs $3, from FACT-1, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens :: Price(discounted_glass, n3)
+INF-2: Kylar buys 8 discounted glasses, from FACT-2, FACT-4 and RULE-2 by Universal Instantiation and Modus Ponens :: Count(discounted_glass, n8)
+INF-3: The 8 discounted glasses cost $24, from INF-2, INF-1, FACT-6 and RULE-4 by Universal Instantiation and Modus Ponens :: Cost(discounted_glass, n24)
+INF-4: Kylar buys 8 full-price glasses, from FACT-2, INF-2, FACT-5 and RULE-3 by Universal Instantiation and Modus Ponens :: Count(full_price_glass, n8)
+INF-5: The 8 full-price glasses cost $40, from INF-4, FACT-1, FACT-7 and RULE-4 by Universal Instantiation and Modus Ponens :: Cost(full_price_glass, n40)
+INF-6: Kylar pays $64 in total for the 16 glasses, from INF-3, INF-5, FACT-8 and RULE-5 by Universal Instantiation and Modus Ponens :: Cost(all_glasses, n64)
