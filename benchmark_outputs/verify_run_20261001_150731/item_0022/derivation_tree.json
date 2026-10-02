@@ -1,0 +1,88 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Samantha is currently 31 years old",
+      "formula": "CurrentAge(samantha, 31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BornBefore(raymond, samantha, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond's son was born when Raymond was 23 years old",
+      "formula": "SonBornAtAge(raymond, 23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If y is currently m years old and x was born n years before y, then x was born (m\u2212n) years ago",
+      "formula": "\u2200x\u2200y\u2200n\u2200m ((CurrentAge(y, m) \u2227 BornBefore(x, y, n)) \u2192 BornYearsAgo(x, m-n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "If x was born n years before y, and y is currently m years old, then x is (m+n) years old, so x was born (m+n) years ago, not (m\u2212n). The rule inverts the correct relationship.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x was born n years ago and x's son was born when x was k years old, then x's son was born (n+k) years ago",
+      "formula": "\u2200x\u2200n\u2200k ((BornYearsAgo(x, n) \u2227 SonBornAtAge(x, k)) \u2192 SonBornYearsAgo(x, n+k))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "If x was born n years ago (so x is currently n years old) and x had a son at age k, the son was born (n\u2212k) years ago, not (n+k). The rule uses the wrong operation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Raymond was born 25 years ago, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens (computing 31-6=25)",
+      "formula": "BornYearsAgo(raymond, 25)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (computing 31-6=25)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Raymond's son was born 48 years ago, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens (computing 25+23=48)",
+      "formula": "SonBornYearsAgo(raymond, 48)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (computing 25+23=48)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "If x was born n years before y, and y is currently m years old, then x is (m+n) years old, so x was born (m+n) years ago, not (m\u2212n). The rule inverts the correct relationship."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "If x was born n years ago (so x is currently n years old) and x had a son at age k, the son was born (n\u2212k) years ago, not (n+k). The rule uses the wrong operation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

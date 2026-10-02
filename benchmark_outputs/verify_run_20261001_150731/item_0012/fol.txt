@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Quantity(x, n) — item x was purchased in quantity n (dozens)
+PricePerDozen(x, n) — item x costs n dollars per dozen
+Product(a, b, p) — a multiplied by b equals p
+Cost(x, n) — the total cost for item x is n dollars
+Sum3(a, b, c, s) — a plus b plus c equals s
+TotalCost(n) — the total cost of all purchases is n dollars
+
+Constants:
+donuts, cupcakes, cheesecakes
+3, 68, 204, 2, 80, 160, 6, 55, 330, 794
+
+## FACTS
+FACT-1: Toula bought 3 dozen donuts :: Quantity(donuts, 3)
+FACT-2: Each dozen donuts costs $68 :: PricePerDozen(donuts, 68)
+FACT-3: Toula bought 2 dozen mini cupcakes :: Quantity(cupcakes, 2)
+FACT-4: Each dozen mini cupcakes costs $80 :: PricePerDozen(cupcakes, 80)
+FACT-5: Toula bought 6 dozen mini cheesecakes :: Quantity(cheesecakes, 6)
+FACT-6: Each dozen mini cheesecakes costs $55 :: PricePerDozen(cheesecakes, 55)
+FACT-7: 3 times 68 equals 204 :: Product(3, 68, 204)
+FACT-8: 2 times 80 equals 160 :: Product(2, 80, 160)
+FACT-9: 6 times 55 equals 330 :: Product(6, 55, 330)
+FACT-10: 204 plus 160 plus 330 equals 794 :: Sum3(204, 160, 330, 794)
+
+## RULES
+RULE-1: For any item, if it was purchased in quantity n at price m per dozen, and n times m equals p, then the cost of that item is p :: ∀x∀n∀m∀p (Quantity(x,n) ∧ PricePerDozen(x,m) ∧ Product(n,m,p) → Cost(x,p))
+RULE-2: If the cost of donuts is a, the cost of cupcakes is b, the cost of cheesecakes is c, and a plus b plus c equals s, then the total cost is s :: ∀a∀b∀c∀s (Cost(donuts,a) ∧ Cost(cupcakes,b) ∧ Cost(cheesecakes,c) ∧ Sum3(a,b,c,s) → TotalCost(s))
+
+## INFERENCES
+INF-1: The cost of donuts is $204, from FACT-1, FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(donuts, 204)
+INF-2: The cost of mini cupcakes is $160, from FACT-3, FACT-4, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(cupcakes, 160)
+INF-3: The cost of mini cheesecakes is $330, from FACT-5, FACT-6, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(cheesecakes, 330)
+INF-4: The total cost of Toula's purchases is $794, from INF-1, INF-2, INF-3, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalCost(794)

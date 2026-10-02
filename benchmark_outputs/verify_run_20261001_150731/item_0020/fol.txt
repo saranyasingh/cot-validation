@@ -1,0 +1,31 @@
+## VOCABULARY
+
+Predicates:
+Sum(x, y, z) — x plus y equals z
+Quotient(x, y, z) — x divided by y equals z
+Equals(x, y) — x equals y
+
+Constants:
+d_first, t_first, d_second, t_second, d_initial, t_initial, speed_current, d_total, speed_desired, d_final, t_final, t_base, total_distance, total_time, r, t_remaining, required_speed, zero
+
+## FACTS
+FACT-1: The first and second distances walked sum to the initial distance already walked (4+2=6) :: Sum(d_first, d_second, d_initial)
+FACT-2: The first and second times taken sum to the initial time already taken (1+1=2) :: Sum(t_first, t_second, t_initial)
+FACT-3: The final distance segment is set equal to the initial distance (6 miles), per step 6's setup :: Equals(d_final, d_initial)
+FACT-4: The final time segment is set equal to the first segment's time (1 hour), per step 7's setup :: Equals(t_final, t_first)
+FACT-5: The required speed V is set equal to the remaining distance R, per step 9 :: Equals(required_speed, r)
+FACT-6: The remaining time T is replaced by R in forming the equation, as shown in step 9 :: Equals(t_remaining, r)
+
+## RULES
+RULE-1: If a quantity is zero and some value equals that quantity, then that value equals the desired average speed :: ∀x,v (Equals(x, zero) ∧ Equals(v, x) → Equals(v, speed_desired))
+
+## INFERENCES
+INF-1: Current speed is computed as the quotient of initial distance and initial time (step 3) :: Quotient(d_initial, t_initial, speed_current), from FACT-1 and FACT-2 by Arithmetic Division
+INF-2: Initial distance plus final distance equals the total trail distance, 6+6=12 (step 6) :: Sum(d_initial, d_final, d_total), from FACT-1 and FACT-3 by Arithmetic Addition
+INF-3: Total distance expression equals the total trail distance plus remaining distance R (step 6 full formula) :: Sum(d_total, r, total_distance), from INF-2 by Algebraic Rearrangement
+INF-4: Initial time plus final time equals the base time, 2+1=3 (step 7) :: Sum(t_initial, t_final, t_base), from FACT-2 and FACT-4 by Arithmetic Addition
+INF-5: Total time expression (before substitution) equals base time plus remaining time T (step 7 formula) :: Sum(t_base, t_remaining, total_time), from INF-4 by Algebraic Rearrangement
+INF-6: Substituting t_remaining with r, total time equals base time plus R (step 9's shown equation) :: Sum(t_base, r, total_time), from INF-5 and FACT-6 by Substitution
+INF-7: The desired average speed equals total distance divided by total time (step 8 equation) :: Quotient(total_distance, total_time, speed_desired), from INF-3 and INF-6 by Arithmetic Division
+INF-8: Solving the equation for R gives R=0 (step 10) :: Equals(r, zero), from INF-3, INF-6, and INF-7 by Algebraic Solving
+INF-9: The required speed equals the desired average speed (final answer) :: Equals(required_speed, speed_desired), from FACT-5, INF-8, and RULE-1 by Universal Instantiation and Modus Ponens

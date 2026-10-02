@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, quantity(donuts, 3)).
+fof(fact_2, axiom, price_per_dozen(donuts, 68)).
+fof(fact_3, axiom, quantity(cupcakes, 2)).
+fof(fact_4, axiom, price_per_dozen(cupcakes, 80)).
+fof(fact_5, axiom, quantity(cheesecakes, 6)).
+fof(fact_6, axiom, price_per_dozen(cheesecakes, 55)).
+fof(fact_7, axiom, product(3, 68, 204)).
+fof(fact_8, axiom, product(2, 80, 160)).
+fof(fact_9, axiom, product(6, 55, 330)).
+fof(fact_10, axiom, sum3(204, 160, 330, 794)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((quantity(X,N) & price_per_dozen(X,M) & product(N,M,P)) => cost(X,P))).
+fof(rule_2, axiom, ! [A,B,C,S] : ((cost(donuts,A) & cost(cupcakes,B) & cost(cheesecakes,C) & sum3(A,B,C,S)) => total_cost(S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_7, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(donuts, 204)).
+% From fact_3, fact_4, fact_8, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, cost(cupcakes, 160)).
+% From fact_5, fact_6, fact_9, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, cost(cheesecakes, 330)).
+% From inf_1, inf_2, inf_3, fact_10, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total_cost(794)).

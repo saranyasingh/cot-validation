@@ -1,0 +1,212 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Morning feed is 15 cups",
+      "formula": "Feed(morning, fifteen)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Afternoon feed is 25 cups",
+      "formula": "Feed(afternoon, twenty_five)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "15 + 25 = 40",
+      "formula": "Sum(fifteen, twenty_five, forty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The flock has 20 chickens",
+      "formula": "Chickens(flock, twenty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The chickens receive 3 cups of feed daily",
+      "formula": "Feed(daily, three)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "3 / 20 = 0.15",
+      "formula": "Divide(three, twenty, zero_one_five)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem does not state or entail dividing total per-chicken feed by flock size; this computation is irrelevant/unfounded in context.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Each chicken receives 3 cups in the morning",
+      "formula": "Feed(morning_per_chicken, three)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem states each chicken gets 3 cups total per day, not 3 cups specifically in the morning; morning total was 15 cups for 20 chickens, not 3 cups per chicken.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Each chicken receives 3 cups in the afternoon",
+      "formula": "Feed(afternoon_per_chicken, three)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "similarly, the problem does not state each chicken receives 3 cups in the afternoon; afternoon total was 25 cups for 20 chickens.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "3 + 3 = 6",
+      "formula": "Sum(three, three, six)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "this sum relies on the unsupported FACT-7 and FACT-8 values.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "40 \u2212 6 = 34",
+      "formula": "Diff(forty, six, thirty_four)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "this subtraction uses the incorrect value 6 (from unsupported facts) rather than the correct total daily feed (60) minus morning+afternoon (40).",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If morning feed is a and afternoon feed is b and a+b=c, then total feed is c",
+      "formula": "\u2200a \u2200b \u2200c (Feed(morning,a) \u2227 Feed(afternoon,b) \u2227 Sum(a,b,c) \u2192 Feed(total,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If daily feed is a and flock size is b and a/b=c, then per-chicken feed is c",
+      "formula": "\u2200a \u2200b \u2200c (Feed(daily,a) \u2227 Chickens(flock,b) \u2227 Divide(a,b,c) \u2192 Feed(per_chicken,c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "this inverts the correct relationship; total daily feed should equal per-chicken feed multiplied by flock size (a = b*c), not divided.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If morning-per-chicken feed is a and afternoon-per-chicken feed is b and a+b=c, then the morning-afternoon sum feed is c",
+      "formula": "\u2200a \u2200b \u2200c (Feed(morning_per_chicken,a) \u2227 Feed(afternoon_per_chicken,b) \u2227 Sum(a,b,c) \u2192 Feed(morning_afternoon_sum,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If total feed is a and morning-afternoon sum feed is b and a\u2212b=c, then final meal feed is c",
+      "formula": "\u2200a \u2200b \u2200c (Feed(total,a) \u2227 Feed(morning_afternoon_sum,b) \u2227 Diff(a,b,c) \u2192 Feed(final,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Total feed is 40 cups, from FACT-1, FACT-2, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(total, forty)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Average feed per chicken is 0.15 cups, from FACT-4, FACT-5, FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(per_chicken, zero_one_five)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Combined morning and afternoon per-chicken feed is 6 cups, from FACT-7, FACT-8, FACT-9 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(morning_afternoon_sum, six)",
+      "premises": [
+        "FACT-7",
+        "FACT-8",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Final meal feed is 34 cups, from INF-1, INF-3, FACT-10 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(final, thirty_four)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "FACT-10",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "the problem does not state or entail dividing total per-chicken feed by flock size; this computation is irrelevant/unfounded in context."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "the problem states each chicken gets 3 cups total per day, not 3 cups specifically in the morning; morning total was 15 cups for 20 chickens, not 3 cups per chicken."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "similarly, the problem does not state each chicken receives 3 cups in the afternoon; afternoon total was 25 cups for 20 chickens."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "this sum relies on the unsupported FACT-7 and FACT-8 values."
+    },
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "this subtraction uses the incorrect value 6 (from unsupported facts) rather than the correct total daily feed (60) minus morning+afternoon (40)."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "this inverts the correct relationship; total daily feed should equal per-chicken feed multiplied by flock size (a = b*c), not divided."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

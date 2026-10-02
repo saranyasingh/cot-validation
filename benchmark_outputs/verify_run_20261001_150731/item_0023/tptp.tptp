@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, has_customers(billy,8)).
+fof(fact_2, axiom, group_size(billy,group1,3)).
+fof(fact_3, axiom, buys_each(billy,group1,1)).
+fof(fact_4, axiom, group_size(billy,group2,2)).
+fof(fact_5, axiom, buys_each(billy,group2,2)).
+fof(fact_6, axiom, group_size(billy,group3,3)).
+fof(fact_7, axiom, buys_each(billy,group3,0)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,G,A,B] : ((group_size(X,G,A) & buys_each(X,G,B)) => group_total(X,G,$product(A,B)))).
+fof(rule_2, axiom, ! [X,N1,N2,N3] : ((group_total(X,group1,N1) & group_total(X,group2,N2) & group_total(X,group3,N3)) => sold(X,$sum($sum(N1,N2),N3)))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, group_total(billy,group1,3)).
+% From fact_4, fact_5, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, group_total(billy,group2,4)).
+% From fact_6, fact_7, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, group_total(billy,group3,0)).
+% From inf_1, inf_2, inf_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, sold(billy,7)).

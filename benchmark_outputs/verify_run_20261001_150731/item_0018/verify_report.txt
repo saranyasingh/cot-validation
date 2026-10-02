@@ -1,0 +1,13 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — this bakes a specific arithmetic computation (20×35=700) directly into the rule rather than using variables and leaving the result as a ground predicate to be checked by the theorem prover.
+RULE-5: IMPLAUSIBLE — this bakes a specific arithmetic computation (30×15=450) directly into the rule rather than using variables and leaving the result as a ground predicate to be checked by the theorem prover.
+RULE-6: IMPLAUSIBLE — this bakes a specific arithmetic computation (700+450=1150) directly into the rule rather than using variables and leaving the result as a ground predicate to be checked by the theorem prover.
+RULE-7: IMPLAUSIBLE — this bakes a specific arithmetic computation (1150×50=57500) directly into the rule rather than using variables and leaving the result as a ground predicate to be checked by the theorem prover.

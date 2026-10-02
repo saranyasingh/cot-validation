@@ -1,0 +1,32 @@
+## VOCABULARY
+
+Predicates:
+Value(x, n) — quantity x has numeric value n
+Sum(x, y, z) — z equals x plus y
+Diff(x, y, z) — z equals x minus y
+Half(x, y) — y equals half of x
+Product(x, n, y) — y equals n times x
+
+Constants:
+final_count, start_count, green_sold, red_sold, remainder_after_red, orange_sold, total_sold, 2, 3, 15
+
+## FACTS
+FACT-1: Melanie has 5 vacuum cleaners left :: Value(final_count, 5)
+FACT-2: Before selling anything, she had final_count times 3 vacuum cleaners, since she sold a third of them :: Product(final_count, 3, start_count)
+FACT-3: The numeral two has value two :: Value(2, 2)
+FACT-4: At the red house she sold 2 more than at the green house :: Sum(green_sold, 2, red_sold)
+FACT-5: The amount remaining after the red house equals the start count minus the red house count :: Diff(start_count, red_sold, remainder_after_red)
+FACT-6: At the orange house she sold half of what remained after the red house :: Half(remainder_after_red, orange_sold)
+FACT-7: The combined sales at the red and orange houses together :: Sum(red_sold, orange_sold, total_sold)
+FACT-8: The equation set up in the reasoning equates this total to the start count's value of 15 :: Value(total_sold, 15)
+
+## RULES
+RULE-1: For any quantity x with value n, if y equals m times x, then y has value n times m :: ∀x,y,n,m (Value(x,n) ∧ Product(x,m,y) → Value(y, n*m))
+RULE-2: For any quantities x and y with values n and m, if z equals x plus y, then z has value n plus m :: ∀x,y,z,n,m (Value(x,n) ∧ Value(y,m) ∧ Sum(x,y,z) → Value(z, n+m))
+RULE-3: For any quantities x and y with values n and m, if z equals x minus y, then z has value n minus m :: ∀x,y,z,n,m (Value(x,n) ∧ Value(y,m) ∧ Diff(x,y,z) → Value(z, n-m))
+RULE-4: For any quantity x with value n, if y equals half of x, then y has value n divided by 2 :: ∀x,y,n (Value(x,n) ∧ Half(x,y) → Value(y, n/2))
+
+## INFERENCES
+INF-1: The start count has value 15, from FACT-1 and FACT-2 by Universal Instantiation and Modus Ponens on RULE-1 :: Value(start_count, 15)
+INF-2: The green house count has value 13, solving the system of relations from FACT-3, FACT-4, FACT-5, FACT-6, FACT-7, FACT-8, and INF-1 using RULE-2, RULE-3, and RULE-4 by Algebraic Equation Solving :: Value(green_sold, 13)
+INF-3: Melanie started with 15 vacuum cleaners (final answer), restated from INF-1 :: Value(start_count, 15)

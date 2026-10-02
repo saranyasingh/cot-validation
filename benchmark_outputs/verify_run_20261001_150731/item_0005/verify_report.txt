@@ -1,0 +1,15 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: UNSUPPORTED — the problem does not state or entail dividing total per-chicken feed by flock size; this computation is irrelevant/unfounded in context.
+FACT-7: UNSUPPORTED — the problem states each chicken gets 3 cups total per day, not 3 cups specifically in the morning; morning total was 15 cups for 20 chickens, not 3 cups per chicken.
+FACT-8: UNSUPPORTED — similarly, the problem does not state each chicken receives 3 cups in the afternoon; afternoon total was 25 cups for 20 chickens.
+FACT-9: UNSUPPORTED — this sum relies on the unsupported FACT-7 and FACT-8 values.
+FACT-10: UNSUPPORTED — this subtraction uses the incorrect value 6 (from unsupported facts) rather than the correct total daily feed (60) minus morning+afternoon (40).
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — this inverts the correct relationship; total daily feed should equal per-chicken feed multiplied by flock size (a = b*c), not divided.
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE

@@ -1,0 +1,11 @@
+% --- FACTS ---
+fof(fact_1, axiom, duration(one_pm, five_pm, 4)).
+fof(fact_2, axiom, melt_rate(2)).
+fof(fact_3, axiom, product(2, 4, 8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,R,P] : ((duration(X, Y, N) & melt_rate(R) & product(R, N, P)) => shorter(P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, shorter(8)).

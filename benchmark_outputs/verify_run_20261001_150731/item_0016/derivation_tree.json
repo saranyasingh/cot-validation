@@ -1,0 +1,133 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The current value of jewelry is $5,000",
+      "formula": "Value(jewelry, 5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The current value of electronic gadgets is $8,000",
+      "formula": "Value(electronic_gadgets, 8000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The jewelry market is predicted to increase by 2.5%",
+      "formula": "Rate(jewelry, 0.025)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The electronic gadgets market is predicted to increase by 1.2%",
+      "formula": "Rate(electronic_gadgets, 0.012)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any item, its new value equals its original value plus the original value times its predicted increase rate",
+      "formula": "\u2200x \u2200v \u2200r \u2200n ((Value(x, v) \u2227 Rate(x, r) \u2227 n = v + v*r) \u2192 NewValue(x, n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any item, its profit equals its new value minus its original value",
+      "formula": "\u2200x \u2200v \u2200n \u2200p ((Value(x, v) \u2227 NewValue(x, n) \u2227 p = n - v) \u2192 Profit(x, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For any two items, if one has a greater profit than the other, purchasing it is the better choice",
+      "formula": "\u2200x \u2200y \u2200p1 \u2200p2 ((Profit(x, p1) \u2227 Profit(y, p2) \u2227 p1 > p2) \u2192 Better(x, y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The new value of jewelry is $5,125, from FACT-1, FACT-3, and RULE-1 by Universal Instantiation and arithmetic substitution (5000 + 5000*0.025 = 5125)",
+      "formula": "NewValue(jewelry, 5125)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and arithmetic substitution (5000 + 5000*0.025 = 5125)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The new value of electronic gadgets is $8,096, from FACT-2, FACT-4, and RULE-1 by Universal Instantiation and arithmetic substitution (8000 + 8000*0.012 = 8096)",
+      "formula": "NewValue(electronic_gadgets, 8096)",
+      "premises": [
+        "FACT-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and arithmetic substitution (8000 + 8000*0.012 = 8096)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The profit from jewelry is $125, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and arithmetic substitution (5125 - 5000 = 125)",
+      "formula": "Profit(jewelry, 125)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and arithmetic substitution (5125 - 5000 = 125)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The profit from electronic gadgets is $96, from FACT-2, INF-2, and RULE-2 by Universal Instantiation and arithmetic substitution (8096 - 8000 = 96)",
+      "formula": "Profit(electronic_gadgets, 96)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and arithmetic substitution (8096 - 8000 = 96)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Purchasing jewelry is the better profit choice compared to purchasing electronic gadgets, from INF-3, INF-4, and RULE-3 by Universal Instantiation and Modus Ponens (125 > 96)",
+      "formula": "Better(jewelry, electronic_gadgets)",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (125 > 96)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

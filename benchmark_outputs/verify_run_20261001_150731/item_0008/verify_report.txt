@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — the problem states 40% of a 200 GB file was downloaded (i.e., 80 GB), not "4/5 × 20 = 16 GB"; this computation does not correspond to any quantity described in the problem.
+FACT-4: UNSUPPORTED — derived from the unsupported calculation in FACT-3; the problem implies the initial downloaded amount should be 80 GB (40% of 200 GB), not 16 GB.
+FACT-5: UNSUPPORTED — relies on the incorrect initial amount (16 GB) from FACT-4, which is not grounded in the problem.
+FACT-6: UNSUPPORTED — built on the unsupported remaining amount (184 GB) from FACT-5.
+FACT-7: UNSUPPORTED — incorrectly adds an amount (16 GB) to a time value (92 minutes) as though both were time quantities, and is based on the unsupported chain of prior facts.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — it adds an "initial downloaded amount" (a quantity in GB) to a "catch-up time" (a quantity in minutes) to produce a "total time," conflating two different units/quantities rather than correctly combining time-based quantities.

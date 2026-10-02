@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+ValueOf(x, n) — entity x has the numeric value n
+Mult(x, y, z) — z is defined as the product of x and y
+Sub(x, y, z) — z is defined as x minus y
+Add(x, y, z) — z is defined as x plus y
+Div(x, y, z) — z is defined as x divided by y
+
+Constants:
+initial_investment, lemons_per_year, price_per_lemon, annual_revenue, annual_expenses, net_profit, total_needed, break_even_years, final_years
+90, 7, 1.5, 10.5, 3, 7.5, 97.5, 13.33, 14
+
+## FACTS
+FACT-1: The cost to plant the lemon tree is $90 :: ValueOf(initial_investment, 90)
+FACT-2: Carlos sells 7 lemons per year :: ValueOf(lemons_per_year, 7)
+FACT-3: The price per lemon is $1.5 :: ValueOf(price_per_lemon, 1.5)
+FACT-4: The yearly cost to water and feed the tree is $3 :: ValueOf(annual_expenses, 3)
+FACT-5: Annual revenue is defined as the product of lemons sold per year and price per lemon :: Mult(lemons_per_year, price_per_lemon, annual_revenue)
+FACT-6: Net profit is defined as annual revenue minus annual expenses :: Sub(annual_revenue, annual_expenses, net_profit)
+FACT-7: Total amount needed to break even is defined as the initial investment plus one year's net profit :: Add(initial_investment, net_profit, total_needed)
+FACT-8: Break-even years is defined as total amount needed divided by net profit per year :: Div(total_needed, net_profit, break_even_years)
+
+## RULES
+RULE-1: The product of two quantities' values equals the value of the product entity :: ∀x,y,z,a,b ((Mult(x,y,z) ∧ ValueOf(x,a) ∧ ValueOf(y,b)) → ValueOf(z, a*b))
+RULE-2: The difference of two quantities' values equals the value of the difference entity :: ∀x,y,z,a,b ((Sub(x,y,z) ∧ ValueOf(x,a) ∧ ValueOf(y,b)) → ValueOf(z, a-b))
+RULE-3: The sum of two quantities' values equals the value of the sum entity :: ∀x,y,z,a,b ((Add(x,y,z) ∧ ValueOf(x,a) ∧ ValueOf(y,b)) → ValueOf(z, a+b))
+RULE-4: The quotient of two quantities' values equals the value of the quotient entity :: ∀x,y,z,a,b ((Div(x,y,z) ∧ ValueOf(x,a) ∧ ValueOf(y,b)) → ValueOf(z, a/b))
+RULE-5: Since Carlos cannot have a fraction of a year in practical terms, a fractional break-even value of 13.33 years must be rounded up to the next whole year, 14 :: ∀x (ValueOf(x, 13.33) → ValueOf(x, 14))
+
+## INFERENCES
+INF-1: Annual revenue is $10.5, from FACT-5, FACT-2, FACT-3, RULE-1 by Universal Instantiation and Modus Ponens :: ValueOf(annual_revenue, 10.5)
+INF-2: Net profit is $7.5, from FACT-6, INF-1, FACT-4, RULE-2 by Universal Instantiation and Modus Ponens :: ValueOf(net_profit, 7.5)
+INF-3: Total amount needed to break even is $97.5, from FACT-7, FACT-1, INF-2, RULE-3 by Universal Instantiation and Modus Ponens :: ValueOf(total_needed, 97.5)
+INF-4: Break-even years computed as 13.33, from FACT-8, INF-3, INF-2, RULE-4 by Universal Instantiation and Modus Ponens :: ValueOf(break_even_years, 13.33)
+INF-5: Carlos needs 14 years to start earning money, from INF-4 and RULE-5 by Universal Instantiation and Modus Ponens :: ValueOf(final_years, 14)

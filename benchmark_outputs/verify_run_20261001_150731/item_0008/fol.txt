@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Equals(x,y) — the quantity x has numeric value y
+Sum(a,b,c) — a + b = c
+Difference(a,b,c) — a − b = c
+Quotient(a,b,c) — a ÷ b = c
+Product(a,b,c) — a × b = c
+
+Constants:
+download_speed, file_size, initial_downloaded, remaining_amount, catchup_time, total_time, four_fifths, twenty, sixteen, two_hundred, one_hundred_eighty_four, ninety_two, two, one_hundred_eight
+
+## FACTS
+FACT-1: Carla's normal download speed is 2 GB per minute :: Equals(download_speed, two)
+FACT-2: The total size of the file is 200 GB :: Equals(file_size, two_hundred)
+FACT-3: 4/5 × 20 = 16 GB, the amount already downloaded before the restart :: Product(four_fifths, twenty, sixteen)
+FACT-4: The initial downloaded amount is 16 GB :: Equals(initial_downloaded, sixteen)
+FACT-5: 200 − 16 = 184 GB, the additional amount needed :: Difference(two_hundred, sixteen, one_hundred_eighty_four)
+FACT-6: 184 ÷ 2 = 92 minutes, the time to download the remaining amount :: Quotient(one_hundred_eighty_four, two, ninety_two)
+FACT-7: 16 + 92 = 108, the total time including the initial download :: Sum(sixteen, ninety_two, one_hundred_eight)
+
+## RULES
+RULE-1: For any file size a and initial downloaded amount b, if their difference is c, then the remaining amount to download equals c :: ∀a∀b∀c (Equals(file_size,a) ∧ Equals(initial_downloaded,b) ∧ Difference(a,b,c) → Equals(remaining_amount,c))
+RULE-2: For any remaining amount a and download speed b, if their quotient is c, then the catch-up time equals c :: ∀a∀b∀c (Equals(remaining_amount,a) ∧ Equals(download_speed,b) ∧ Quotient(a,b,c) → Equals(catchup_time,c))
+RULE-3: For any initial downloaded amount a and catch-up time b, if their sum is c, then the total time equals c :: ∀a∀b∀c (Equals(initial_downloaded,a) ∧ Equals(catchup_time,b) ∧ Sum(a,b,c) → Equals(total_time,c))
+
+## INFERENCES
+INF-1: The remaining amount to download is 184 GB, from FACT-2, FACT-4, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens :: Equals(remaining_amount, one_hundred_eighty_four)
+INF-2: The catch-up time is 92 minutes, from INF-1, FACT-1, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens :: Equals(catchup_time, ninety_two)
+INF-3: The total time to download the file considering the restart is 108 minutes, from FACT-4, INF-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: Equals(total_time, one_hundred_eight)

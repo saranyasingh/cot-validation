@@ -1,0 +1,105 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Janet's ducks lay 16 eggs per day",
+      "formula": "Amount(total_eggs, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Janet eats 3 eggs for breakfast every morning",
+      "formula": "Amount(breakfast_eggs, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Janet uses 4 eggs to bake muffins for her friends",
+      "formula": "Amount(muffin_eggs, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Janet sells the remaining eggs at $2 per egg",
+      "formula": "Amount(price_per_egg, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any total egg count n and breakfast egg count m, the eggs remaining after breakfast equal n minus m",
+      "formula": "\u2200n,m ((Amount(total_eggs, n) \u2227 Amount(breakfast_eggs, m)) \u2192 Amount(after_breakfast, n - m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any post-breakfast egg count n and muffin egg count m, the eggs remaining after baking muffins equal n minus m",
+      "formula": "\u2200n,m ((Amount(after_breakfast, n) \u2227 Amount(muffin_eggs, m)) \u2192 Amount(after_muffins, n - m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For any remaining egg count n and price per egg m, the earnings equal n multiplied by m",
+      "formula": "\u2200n,m ((Amount(after_muffins, n) \u2227 Amount(price_per_egg, m)) \u2192 Amount(earnings, n * m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Eggs remaining after breakfast equal 16 - 3 = 13, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(after_breakfast, 13)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Eggs remaining after baking muffins equal 13 - 4 = 9, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(after_muffins, 9)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Earnings equal 9 \u00d7 2 = 18, from INF-2, FACT-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(earnings, 18)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

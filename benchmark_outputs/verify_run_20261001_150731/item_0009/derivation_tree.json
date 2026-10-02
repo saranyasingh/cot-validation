@@ -1,0 +1,337 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The speed on leg1 is 60 mph",
+      "formula": "Speed(leg1,60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The time on leg1 is 3 hours",
+      "formula": "Time(leg1,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "60 times 3 equals 180",
+      "formula": "Mult(60,3,180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The speed on leg2 is 60 mph",
+      "formula": "Speed(leg2,60)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem describes \"standstill traffic\" for the second leg, implying 0 mph, not 60 mph.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The time on leg2 is 1 hour",
+      "formula": "Time(leg2,1)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states standstill traffic lasted 2 hours, not 1 hour.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "60 times 1 equals 60",
+      "formula": "Mult(60,1,60)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Based on incorrect speed/time values from FACT-4 and FACT-5, which do not correspond to any leg in the problem.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "60 plus 120 equals 180 (used to find remaining distance)",
+      "formula": "Sum(60,120,180)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The number 120 is not derived from any stated or previously computed problem quantity; this computation is not grounded in the problem.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "120 plus 60 equals 180 (total distance covered so far)",
+      "formula": "Sum(120,60,180)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Same unexplained operands as FACT-7, used for a different purpose with no clear grounding in the problem.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "The speed on leg4 is 80 mph",
+      "formula": "Speed(leg4,80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "The time on leg4 is 2 hours",
+      "formula": "Time(leg4,2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The remaining time after 2 hours standstill and 0.5 hours at 30 mph is 1.5 hours (4 - 2 - 0.5), not 2 hours.",
+      "error": true
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "80 times 2 equals 160",
+      "formula": "Mult(80,2,160)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Based on the incorrect time value from FACT-10.",
+      "error": true
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "180 plus 60 equals 240",
+      "formula": "Sum(180,60,240)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "No clear derivation or grounding for this computation in the problem.",
+      "error": true
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "240 plus 120 equals 360",
+      "formula": "Sum(240,120,360)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "No clear derivation or grounding for this computation in the problem.",
+      "error": true
+    },
+    "FACT-14": {
+      "type": "fact",
+      "gloss": "360 plus 160 equals 520",
+      "formula": "Sum(360,160,520)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Final result does not match the problem's correct answer (180 - 15 - 120 = 45 miles) and is built on unsupported intermediate facts.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the speed on a leg is s, the time on that leg is t, and s times t equals d, then the distance of that leg is d",
+      "formula": "\u2200x\u2200s\u2200t\u2200d((Speed(x,s) \u2227 Time(x,t) \u2227 Mult(s,t,d)) \u2192 Distance(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the distance of x is a, the distance of y is b, and a plus b equals c, then the combined distance (for any z representing that combination) is c",
+      "formula": "\u2200x\u2200y\u2200z\u2200a\u2200b\u2200c((Distance(x,a) \u2227 Distance(y,b) \u2227 Sum(a,b,c)) \u2192 Distance(z,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the distance of x is a, the distance of y is b, and b plus c equals a, then the remaining distance (for any z representing that remainder) is c",
+      "formula": "\u2200x\u2200y\u2200z\u2200a\u2200b\u2200c((Distance(x,a) \u2227 Distance(y,b) \u2227 Sum(b,c,a)) \u2192 Distance(z,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the total distance of the trip is y, then the distance from home is y",
+      "formula": "\u2200y(Distance(total_trip,y) \u2192 Distance(home,y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The distance of leg1 is 180 miles, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg1,180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The distance of leg2 is 60 miles, from FACT-4, FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg2,60)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The distance of leg3 (remaining distance) is 120 miles, from INF-1, INF-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg3,120)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total distance covered so far (partial1) is 180 miles, from INF-3, INF-2, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(partial1,180)",
+      "premises": [
+        "INF-3",
+        "INF-2",
+        "FACT-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The distance of leg4 is 160 miles, from FACT-9, FACT-10, FACT-11, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(leg4,160)",
+      "premises": [
+        "FACT-9",
+        "FACT-10",
+        "FACT-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "The combined distance of leg1 and leg2 (partial2) is 240 miles, from INF-1, INF-2, FACT-12, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(partial2,240)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "FACT-12",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "The combined distance of partial2 and leg3 (partial3) is 360 miles, from INF-6, INF-3, FACT-13, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(partial3,360)",
+      "premises": [
+        "INF-6",
+        "INF-3",
+        "FACT-13",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "The total distance of the trip is 520 miles, from INF-7, INF-5, FACT-14, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(total_trip,520)",
+      "premises": [
+        "INF-7",
+        "INF-5",
+        "FACT-14",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-9": {
+      "type": "inference",
+      "gloss": "The distance from home is 520 miles, from INF-8 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(home,520)",
+      "premises": [
+        "INF-8",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-9",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem describes \"standstill traffic\" for the second leg, implying 0 mph, not 60 mph."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "The problem states standstill traffic lasted 2 hours, not 1 hour."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "Based on incorrect speed/time values from FACT-4 and FACT-5, which do not correspond to any leg in the problem."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "The number 120 is not derived from any stated or previously computed problem quantity; this computation is not grounded in the problem."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "Same unexplained operands as FACT-7, used for a different purpose with no clear grounding in the problem."
+    },
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "The remaining time after 2 hours standstill and 0.5 hours at 30 mph is 1.5 hours (4 - 2 - 0.5), not 2 hours."
+    },
+    {
+      "node": "FACT-11",
+      "stage": "verify",
+      "message": "Based on the incorrect time value from FACT-10."
+    },
+    {
+      "node": "FACT-12",
+      "stage": "verify",
+      "message": "No clear derivation or grounding for this computation in the problem."
+    },
+    {
+      "node": "FACT-13",
+      "stage": "verify",
+      "message": "No clear derivation or grounding for this computation in the problem."
+    },
+    {
+      "node": "FACT-14",
+      "stage": "verify",
+      "message": "Final result does not match the problem's correct answer (180 - 15 - 120 = 45 miles) and is built on unsupported intermediate facts."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

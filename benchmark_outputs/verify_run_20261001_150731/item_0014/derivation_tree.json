@@ -1,0 +1,175 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Melanie has 5 vacuum cleaners left",
+      "formula": "Value(final_count, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Before selling anything, she had final_count times 3 vacuum cleaners, since she sold a third of them",
+      "formula": "Product(final_count, 3, start_count)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state that the starting count equals three times the final remaining count; this ignores the red and orange house sales and is not entailed by the problem.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The numeral two has value two",
+      "formula": "Value(2, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "At the red house she sold 2 more than at the green house",
+      "formula": "Sum(green_sold, 2, red_sold)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem says she sold \"2 more\" (an additional 2 units) at the red house, not that she sold 2 more than she sold at the green house; this is a misreading of the problem's wording.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The amount remaining after the red house equals the start count minus the red house count",
+      "formula": "Diff(start_count, red_sold, remainder_after_red)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The amount remaining after the red house should equal the amount remaining after the green house minus the red house count, not the start count minus the red house count.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "At the orange house she sold half of what remained after the red house",
+      "formula": "Half(remainder_after_red, orange_sold)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The combined sales at the red and orange houses together",
+      "formula": "Sum(red_sold, orange_sold, total_sold)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "This is an incomplete statement with no verifiable claim or value grounded in the problem text.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The equation set up in the reasoning equates this total to the start count's value of 15",
+      "formula": "Value(total_sold, 15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state the start count is 15; this numeric value is not supported and conflicts with the correct derivation (18).",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any quantity x with value n, if y equals m times x, then y has value n times m",
+      "formula": "\u2200x,y,n,m (Value(x,n) \u2227 Product(x,m,y) \u2192 Value(y, n*m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any quantities x and y with values n and m, if z equals x plus y, then z has value n plus m",
+      "formula": "\u2200x,y,z,n,m (Value(x,n) \u2227 Value(y,m) \u2227 Sum(x,y,z) \u2192 Value(z, n+m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For any quantities x and y with values n and m, if z equals x minus y, then z has value n minus m",
+      "formula": "\u2200x,y,z,n,m (Value(x,n) \u2227 Value(y,m) \u2227 Diff(x,y,z) \u2192 Value(z, n-m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "For any quantity x with value n, if y equals half of x, then y has value n divided by 2",
+      "formula": "\u2200x,y,n (Value(x,n) \u2227 Half(x,y) \u2192 Value(y, n/2))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The start count has value 15, from FACT-1 and FACT-2 by Universal Instantiation and Modus Ponens on RULE-1",
+      "formula": "Value(start_count, 15)",
+      "premises": [
+        "FACT-1",
+        "FACT-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens on RULE-1",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The green house count has value 13, solving the system of relations from FACT-3, FACT-4, FACT-5, FACT-6, FACT-7, FACT-8, and INF-1 using RULE-2, RULE-3, and RULE-4 by Algebraic Equation Solving",
+      "formula": "Value(green_sold, 13)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "FACT-5",
+        "FACT-6",
+        "FACT-7",
+        "FACT-8",
+        "INF-1",
+        "RULE-2",
+        "RULE-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Algebraic Equation Solving",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Melanie started with 15 vacuum cleaners (final answer), restated from INF-1",
+      "formula": "Value(start_count, 15)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "The problem does not state that the starting count equals three times the final remaining count; this ignores the red and orange house sales and is not entailed by the problem."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem says she sold \"2 more\" (an additional 2 units) at the red house, not that she sold 2 more than she sold at the green house; this is a misreading of the problem's wording."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "The amount remaining after the red house should equal the amount remaining after the green house minus the red house count, not the start count minus the red house count."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "This is an incomplete statement with no verifiable claim or value grounded in the problem text."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "The problem does not state the start count is 15; this numeric value is not supported and conflicts with the correct derivation (18)."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

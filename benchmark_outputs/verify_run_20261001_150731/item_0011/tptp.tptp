@@ -1,0 +1,15 @@
+% --- FACTS ---
+fof(fact_1, axiom, downloads(month1, 60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (downloads(month1, X) => downloads(month2, 3*X))).
+fof(rule_2, axiom, ! [X] : (downloads(month2, X) => downloads(month3, 0.7*X))).
+fof(rule_3, axiom, ! [X,Y,Z] : ((downloads(month1, X) & downloads(month2, Y) & downloads(month3, Z)) => total(X+Y+Z))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, downloads(month2, 180)).
+% From inf_1, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, downloads(month3, 126)).
+% From fact_1, inf_1, inf_2, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(366)).

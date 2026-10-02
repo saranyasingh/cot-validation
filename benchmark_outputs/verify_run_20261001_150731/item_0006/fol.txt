@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Cost(x, y) — x glasses cost y dollars
+Half(x, y) — y is half of x
+Mult(x, y, z) — x multiplied by y equals z
+Add(x, y, z) — x plus y equals z
+
+Constants:
+one, five, eight, sixteen, zero_six, forty, twenty_four, twenty_nine
+
+## FACTS
+FACT-1: The first glass costs $5 :: Cost(one, five)
+FACT-2: Half of 16 glasses is 8 glasses :: Half(sixteen, eight)
+FACT-3: 8 times $5 equals $40 :: Mult(eight, five, forty)
+FACT-4: $40 times 0.60 equals $24 :: Mult(forty, zero_six, twenty_four)
+FACT-5: $5 plus $24 equals $29 :: Add(five, twenty_four, twenty_nine)
+
+## RULES
+RULE-1: If one glass costs p dollars, h is half of sixteen glasses, and h times p equals t, then h glasses (before discount) cost t dollars :: ∀p∀h∀t (Cost(one,p) ∧ Half(sixteen,h) ∧ Mult(h,p,t) → Cost(h,t))
+RULE-2: Every second glass costs 60% of the original price, i.e., if h glasses cost t dollars (undiscounted) and t times 0.60 equals d, then those h glasses cost d dollars (discounted) :: ∀h∀t∀d (Cost(h,t) ∧ Mult(t, zero_six, d) → Cost(h,d))
+RULE-3: The total cost of all 16 glasses equals the cost of the first glass plus the cost of the remaining 8 discounted glasses :: ∀p∀d∀s (Cost(one,p) ∧ Cost(eight,d) ∧ Add(p,d,s) → Cost(sixteen,s))
+
+## INFERENCES
+INF-1: The 8 glasses (undiscounted) cost $40, from FACT-1, FACT-2, FACT-3, RULE-1 by Universal Instantiation and Modus Ponens :: Cost(eight, forty)
+INF-2: The 8 glasses (discounted) cost $24, from INF-1, FACT-4, RULE-2 by Universal Instantiation and Modus Ponens :: Cost(eight, twenty_four)
+INF-3: The total cost of all 16 glasses is $29, from FACT-1, INF-2, FACT-5, RULE-3 by Universal Instantiation and Modus Ponens :: Cost(sixteen, twenty_nine)

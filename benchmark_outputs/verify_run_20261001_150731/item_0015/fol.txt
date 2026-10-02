@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+Value(x, n) — the quantity x has numeric value n
+PercentOf(p, x, y) — quantity y equals p percent of quantity x
+Difference(x, y, z) — quantity z equals quantity x minus quantity y
+
+Constants:
+total_students, contemporary, remaining_students, jazz, hiphop
+20, 4, 16, 12, 25, 60
+
+## FACTS
+FACT-1: The total number of students is 20 :: Value(total_students, 20)
+FACT-2: Contemporary dance students are 20 percent of total students :: PercentOf(20, total_students, contemporary)
+FACT-3: Remaining students equals total students minus contemporary dance students :: Difference(total_students, contemporary, remaining_students)
+FACT-4: Jazz dance students are 25 percent of remaining students :: PercentOf(25, remaining_students, jazz)
+FACT-5: Hip-hop dance students equals remaining students minus jazz dance students :: Difference(remaining_students, jazz, hiphop)
+
+## RULES
+RULE-1: If a quantity's value is 20 and another quantity is 20 percent of it, then that other quantity's value is 4 :: ∀x,y (Value(x,20) ∧ PercentOf(20,x,y) → Value(y,4))
+RULE-2: If a quantity's value is 20, another quantity's value is 4, and a third quantity is their difference, then the third quantity's value is 16 :: ∀x,y,z (Value(x,20) ∧ Value(y,4) ∧ Difference(x,y,z) → Value(z,16))
+RULE-3: If a quantity's value is 16 and another quantity is 25 percent of it, then that other quantity's value is 4 :: ∀x,y (Value(x,16) ∧ PercentOf(25,x,y) → Value(y,4))
+RULE-4: If a quantity's value is 16, another quantity's value is 4, and a third quantity is their difference, then the third quantity's value is 12 :: ∀x,y,z (Value(x,16) ∧ Value(y,4) ∧ Difference(x,y,z) → Value(z,12))
+RULE-5: If a quantity's value is 20 and another quantity's value is 12, then the second quantity is 60 percent of the first :: ∀x,y (Value(x,20) ∧ Value(y,12) → PercentOf(60,x,y))
+
+## INFERENCES
+INF-1: Contemporary dance students' value is 4, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Value(contemporary, 4)
+INF-2: Remaining students' value is 16, from FACT-1, INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Value(remaining_students, 16)
+INF-3: Jazz dance students' value is 4, from INF-2, FACT-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Value(jazz, 4)
+INF-4: Hip-hop dance students' value is 12, from INF-2, INF-3, FACT-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Value(hiphop, 12)
+INF-5: Hip-hop dance students are 60 percent of total students, from FACT-1, INF-4, and RULE-5 by Universal Instantiation and Modus Ponens :: PercentOf(60, total_students, hiphop)

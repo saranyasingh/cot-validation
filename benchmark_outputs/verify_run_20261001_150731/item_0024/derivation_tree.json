@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The duration from 1:00 PM to 5:00 PM is 4 hours",
+      "formula": "Duration(one_pm, five_pm, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The candle melts at a rate of 2 centimeters per hour",
+      "formula": "MeltRate(2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "2 multiplied by 4 equals 8",
+      "formula": "Product(2, 4, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any times x and y, any duration n, any melting rate r, and any product p, if the duration from x to y is n hours, the candle melts at r centimeters per hour, and r multiplied by n equals p, then the candle is p centimeters shorter",
+      "formula": "\u2200x\u2200y\u2200n\u2200r\u2200p (Duration(x, y, n) \u2227 MeltRate(r) \u2227 Product(r, n, p) \u2192 Shorter(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The candle is 8 centimeters shorter after burning from 1:00 PM to 5:00 PM, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Shorter(8)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

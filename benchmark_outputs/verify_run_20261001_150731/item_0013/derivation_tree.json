@@ -1,0 +1,202 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The cost to plant the lemon tree is $90",
+      "formula": "ValueOf(initial_investment, 90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Carlos sells 7 lemons per year",
+      "formula": "ValueOf(lemons_per_year, 7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The price per lemon is $1.5",
+      "formula": "ValueOf(price_per_lemon, 1.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The yearly cost to water and feed the tree is $3",
+      "formula": "ValueOf(annual_expenses, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Annual revenue is defined as the product of lemons sold per year and price per lemon",
+      "formula": "Mult(lemons_per_year, price_per_lemon, annual_revenue)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Net profit is defined as annual revenue minus annual expenses",
+      "formula": "Sub(annual_revenue, annual_expenses, net_profit)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Total amount needed to break even is defined as the initial investment plus one year's net profit",
+      "formula": "Add(initial_investment, net_profit, total_needed)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not define break-even total as \"initial investment plus one year's net profit\"; this is an invented formulation not stated or entailed by the problem.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Break-even years is defined as total amount needed divided by net profit per year",
+      "formula": "Div(total_needed, net_profit, break_even_years)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "This definition relies on the unsupported FACT-7 total and is not stated in the problem; the problem only implies years = initial cost / net profit per year.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The product of two quantities' values equals the value of the product entity",
+      "formula": "\u2200x,y,z,a,b ((Mult(x,y,z) \u2227 ValueOf(x,a) \u2227 ValueOf(y,b)) \u2192 ValueOf(z, a*b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The difference of two quantities' values equals the value of the difference entity",
+      "formula": "\u2200x,y,z,a,b ((Sub(x,y,z) \u2227 ValueOf(x,a) \u2227 ValueOf(y,b)) \u2192 ValueOf(z, a-b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The sum of two quantities' values equals the value of the sum entity",
+      "formula": "\u2200x,y,z,a,b ((Add(x,y,z) \u2227 ValueOf(x,a) \u2227 ValueOf(y,b)) \u2192 ValueOf(z, a+b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The quotient of two quantities' values equals the value of the quotient entity",
+      "formula": "\u2200x,y,z,a,b ((Div(x,y,z) \u2227 ValueOf(x,a) \u2227 ValueOf(y,b)) \u2192 ValueOf(z, a/b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "Since Carlos cannot have a fraction of a year in practical terms, a fractional break-even value of 13.33 years must be rounded up to the next whole year, 14",
+      "formula": "\u2200x (ValueOf(x, 13.33) \u2192 ValueOf(x, 14))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule embeds specific numeric values (13.33, 14) that do not correspond to the actual problem's numbers (90/7.5=12), hardcoding an arithmetic result rather than abstracting the rounding relationship as a general rule.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Annual revenue is $10.5, from FACT-5, FACT-2, FACT-3, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "ValueOf(annual_revenue, 10.5)",
+      "premises": [
+        "FACT-5",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Net profit is $7.5, from FACT-6, INF-1, FACT-4, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "ValueOf(net_profit, 7.5)",
+      "premises": [
+        "FACT-6",
+        "INF-1",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total amount needed to break even is $97.5, from FACT-7, FACT-1, INF-2, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "ValueOf(total_needed, 97.5)",
+      "premises": [
+        "FACT-7",
+        "FACT-1",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Break-even years computed as 13.33, from FACT-8, INF-3, INF-2, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "ValueOf(break_even_years, 13.33)",
+      "premises": [
+        "FACT-8",
+        "INF-3",
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Carlos needs 14 years to start earning money, from INF-4 and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "ValueOf(final_years, 14)",
+      "premises": [
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "The problem does not define break-even total as \"initial investment plus one year's net profit\"; this is an invented formulation not stated or entailed by the problem."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "This definition relies on the unsupported FACT-7 total and is not stated in the problem; the problem only implies years = initial cost / net profit per year."
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "The rule embeds specific numeric values (13.33, 14) that do not correspond to the actual problem's numbers (90/7.5=12), hardcoding an arithmetic result rather than abstracting the rounding relationship as a general rule."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

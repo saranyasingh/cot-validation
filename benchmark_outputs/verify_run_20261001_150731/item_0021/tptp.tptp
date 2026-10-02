@@ -1,0 +1,42 @@
+% --- FACTS ---
+fof(fact_1, axiom, volume(orange_drink, ten)).
+fof(fact_2, axiom, water_fraction(orange_drink, two_thirds)).
+fof(fact_3, axiom, volume(pineapple_drink, fifteen)).
+fof(fact_4, axiom, water_fraction(pineapple_drink, three_fifths)).
+fof(fact_5, axiom, spilled(orange_drink, one)).
+fof(fact_6, axiom, water_fraction(orange_remaining, two_thirds)).
+fof(fact_7, axiom, computes(multiply, two_thirds, ten, twenty_thirds)).
+fof(fact_8, axiom, computes(multiply, three_fifths, fifteen, nine)).
+fof(fact_9, axiom, computes(add, twenty_thirds, nine, initial_water_total)).
+fof(fact_10, axiom, computes(subtract, ten, one, nine)).
+fof(fact_11, axiom, computes(multiply, two_thirds, nine, six)).
+fof(fact_12, axiom, computes(add, six, nine, fifteen)).
+fof(fact_13, axiom, computes(add, nine, fifteen, twenty_four)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,F,V,W] : ((water_fraction(X,F) & volume(X,V) & computes(multiply,F,V,W)) => water(X,W))).
+fof(rule_2, axiom, ! [X,Y,V,S,R] : ((volume(X,V) & spilled(X,S) & computes(subtract,V,S,R)) => volume(Y,R))).
+fof(rule_3, axiom, ! [X,Y,Z,A,B,C] : ((water(X,A) & water(Y,B) & computes(add,A,B,C)) => water(Z,C))).
+fof(rule_4, axiom, ! [X,Y,Z,A,B,C] : ((volume(X,A) & volume(Y,B) & computes(add,A,B,C)) => volume(Z,C))).
+
+% --- INFERENCES ---
+% From fact_2, fact_1, fact_7, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, water(orange_drink, twenty_thirds)).
+
+% From fact_4, fact_3, fact_8, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, water(pineapple_drink, nine)).
+
+% From inf_1, inf_2, fact_9, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, water(initial_total, initial_water_total)).
+
+% From fact_1, fact_5, fact_10, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, volume(orange_remaining, nine)).
+
+% From fact_6, inf_4, fact_11, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, water(orange_remaining, six)).
+
+% From inf_5, inf_2, fact_12, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, water(mixture_total, fifteen)).
+
+% From inf_4, fact_3, fact_13, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_7, axiom, volume(mixture_total, twenty_four)).

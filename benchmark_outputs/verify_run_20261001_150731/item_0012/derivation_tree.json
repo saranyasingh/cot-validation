@@ -1,0 +1,164 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Toula bought 3 dozen donuts",
+      "formula": "Quantity(donuts, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each dozen donuts costs $68",
+      "formula": "PricePerDozen(donuts, 68)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toula bought 2 dozen mini cupcakes",
+      "formula": "Quantity(cupcakes, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each dozen mini cupcakes costs $80",
+      "formula": "PricePerDozen(cupcakes, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Toula bought 6 dozen mini cheesecakes",
+      "formula": "Quantity(cheesecakes, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Each dozen mini cheesecakes costs $55",
+      "formula": "PricePerDozen(cheesecakes, 55)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "3 times 68 equals 204",
+      "formula": "Product(3, 68, 204)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "2 times 80 equals 160",
+      "formula": "Product(2, 80, 160)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "6 times 55 equals 330",
+      "formula": "Product(6, 55, 330)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "204 plus 160 plus 330 equals 794",
+      "formula": "Sum3(204, 160, 330, 794)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any item, if it was purchased in quantity n at price m per dozen, and n times m equals p, then the cost of that item is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x,n) \u2227 PricePerDozen(x,m) \u2227 Product(n,m,p) \u2192 Cost(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the cost of donuts is a, the cost of cupcakes is b, the cost of cheesecakes is c, and a plus b plus c equals s, then the total cost is s",
+      "formula": "\u2200a\u2200b\u2200c\u2200s (Cost(donuts,a) \u2227 Cost(cupcakes,b) \u2227 Cost(cheesecakes,c) \u2227 Sum3(a,b,c,s) \u2192 TotalCost(s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The cost of donuts is $204, from FACT-1, FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(donuts, 204)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The cost of mini cupcakes is $160, from FACT-3, FACT-4, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(cupcakes, 160)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The cost of mini cheesecakes is $330, from FACT-5, FACT-6, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(cheesecakes, 330)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "FACT-9",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total cost of Toula's purchases is $794, from INF-1, INF-2, INF-3, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(794)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

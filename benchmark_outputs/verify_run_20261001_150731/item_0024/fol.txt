@@ -1,0 +1,20 @@
+## VOCABULARY
+Predicates:
+Duration(x, y, n) — the duration from time x to time y is n hours
+MeltRate(n) — the candle melts at n centimeters per hour
+Product(a, b, c) — a multiplied by b equals c
+Shorter(n) — the candle is n centimeters shorter after burning for the duration in question
+
+Constants:
+one_pm, five_pm, 2, 4, 8
+
+## FACTS
+FACT-1: The duration from 1:00 PM to 5:00 PM is 4 hours :: Duration(one_pm, five_pm, 4)
+FACT-2: The candle melts at a rate of 2 centimeters per hour :: MeltRate(2)
+FACT-3: 2 multiplied by 4 equals 8 :: Product(2, 4, 8)
+
+## RULES
+RULE-1: For any times x and y, any duration n, any melting rate r, and any product p, if the duration from x to y is n hours, the candle melts at r centimeters per hour, and r multiplied by n equals p, then the candle is p centimeters shorter :: ∀x∀y∀n∀r∀p (Duration(x, y, n) ∧ MeltRate(r) ∧ Product(r, n, p) → Shorter(p))
+
+## INFERENCES
+INF-1: The candle is 8 centimeters shorter after burning from 1:00 PM to 5:00 PM, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Shorter(8)

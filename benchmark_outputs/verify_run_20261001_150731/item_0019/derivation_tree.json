@@ -1,0 +1,219 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Claire's daily egg consumption is 3",
+      "formula": "Value(daily_eggs,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 7 days per week",
+      "formula": "Value(days_per_week,7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Weekly eggs is the product of daily eggs and days per week",
+      "formula": "Mult(daily_eggs,days_per_week,weekly_eggs)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "There are 4 weeks per month (approximation used)",
+      "formula": "Value(weeks_per_month,4)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states \"4 weeks\" directly as the target period; it does not define 4 weeks as \"weeks per month\" or introduce the concept of a month.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Monthly eggs is the product of weekly eggs and weeks per month",
+      "formula": "Mult(weekly_eggs,weeks_per_month,monthly_eggs)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not mention monthly consumption; this introduces a quantity not present in the problem.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "There are 52 weeks per year (used as the yearly multiplier)",
+      "formula": "Value(weeks_per_year,52)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not mention weeks per year or any yearly timeframe at all.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Yearly eggs is the product of monthly eggs and weeks per year",
+      "formula": "Mult(monthly_eggs,weeks_per_year,yearly_eggs)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem never asks about or references yearly egg consumption.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "A dozen equals 12",
+      "formula": "Value(dozen,12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Dozen eggs is the quotient of yearly eggs divided by a dozen",
+      "formula": "Div(yearly_eggs,dozen,dozen_eggs)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem asks for dozens of eggs over 4 weeks, not from an invented \"yearly eggs\" quantity.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any quantities, if one has value 3 and another has value 7 and their product is some quantity, that product has value 21 (3\u00d77=21)",
+      "formula": "\u2200x\u2200y\u2200z (Value(x,3) \u2227 Value(y,7) \u2227 Mult(x,y,z) \u2192 Value(z,21))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule hard-codes the specific values 3, 7, and 21 and bakes the multiplication result directly into the rule rather than abstracting it into a general predicate relation to be checked as an inference.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any quantities, if one has value 21 and another has value 4 and their product is some quantity, that product has value 84 (21\u00d74=84)",
+      "formula": "\u2200x\u2200y\u2200z (Value(x,21) \u2227 Value(y,4) \u2227 Mult(x,y,z) \u2192 Value(z,84))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule hard-codes the specific values 21, 4, and 84 and embeds the arithmetic computation directly rather than using an abstracted product predicate.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For any quantities, if one has value 84 and another has value 52 and their product is some quantity, that product has value 4464 (84\u00d752=4464 as computed)",
+      "formula": "\u2200x\u2200y\u2200z (Value(x,84) \u2227 Value(y,52) \u2227 Mult(x,y,z) \u2192 Value(z,4464))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule hard-codes the specific values 84, 52, and 4464 and embeds the arithmetic computation directly rather than using an abstracted product predicate.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "For any quantities, if one has value 4464 and another has value 12 and their quotient is some quantity, that quotient has value 372 (4464\u00f712=372)",
+      "formula": "\u2200x\u2200y\u2200z (Value(x,4464) \u2227 Value(y,12) \u2227 Div(x,y,z) \u2192 Value(z,372))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule hard-codes the specific values 4464, 12, and 372 and embeds the division computation directly rather than using an abstracted quotient predicate.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Weekly eggs equals 21, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(weekly_eggs,21)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Monthly eggs equals 84, from INF-1, FACT-4, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(monthly_eggs,84)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Yearly eggs equals 4464, from INF-2, FACT-6, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(yearly_eggs,4464)",
+      "premises": [
+        "INF-2",
+        "FACT-6",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Dozen eggs equals 372, from INF-3, FACT-8, FACT-9, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(dozen_eggs,372)",
+      "premises": [
+        "INF-3",
+        "FACT-8",
+        "FACT-9",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem states \"4 weeks\" directly as the target period; it does not define 4 weeks as \"weeks per month\" or introduce the concept of a month."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "The problem does not mention monthly consumption; this introduces a quantity not present in the problem."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "The problem does not mention weeks per year or any yearly timeframe at all."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "The problem never asks about or references yearly egg consumption."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "The problem asks for dozens of eggs over 4 weeks, not from an invented \"yearly eggs\" quantity."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule hard-codes the specific values 3, 7, and 21 and bakes the multiplication result directly into the rule rather than abstracting it into a general predicate relation to be checked as an inference."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The rule hard-codes the specific values 21, 4, and 84 and embeds the arithmetic computation directly rather than using an abstracted product predicate."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "The rule hard-codes the specific values 84, 52, and 4464 and embeds the arithmetic computation directly rather than using an abstracted product predicate."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "The rule hard-codes the specific values 4464, 12, and 372 and embeds the division computation directly rather than using an abstracted quotient predicate."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

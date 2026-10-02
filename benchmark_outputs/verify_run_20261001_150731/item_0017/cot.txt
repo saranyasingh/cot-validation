@@ -1,0 +1,24 @@
+Explanation:
+
+Let's break down the problem into steps to determine the total distance covered by each train over the two days.
+
+**Step 1:** Determine the distance traveled on the first day.
+- Both trains start from San Rafael and travel westward for 80 miles.
+- Therefore, each train covers 80 miles on the first day.
+
+**Step 2:** Calculate the remaining distance to reach their destination after the first day.
+- Each train has another 80 miles to cover before turning north.
+- Since they have already traveled 80 miles, there is no additional distance left to travel during this leg of the journey.
+
+**Step 3:** Determine the distance traveled on the second day.
+- On the second day, both trains travel northward for 150 miles.
+- Thus, each train travels an additional 150 miles during this phase.
+
+**Step 4:** Sum up all distances covered by each train.
+- First day: 80 miles (west) + 80 miles (north) = 160 miles
+- Second day: 150 miles (north)
+
+**Total Distance Covered by Each Train:**
+- Total distance = 160 miles (first day) + 150 miles (second day) = 310 miles
+
+Therefore, the answer is: 310.

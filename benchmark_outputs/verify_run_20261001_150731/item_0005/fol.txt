@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Feed(x, n) — the amount of feed (in cups) associated with entity x is n
+Chickens(x, n) — the number of chickens in flock x is n
+Sum(a, b, c) — a + b = c
+Diff(a, b, c) — a − b = c
+Divide(a, b, c) — a / b = c
+
+Constants:
+flock, morning, afternoon, total, daily, per_chicken, morning_per_chicken, afternoon_per_chicken, morning_afternoon_sum, final
+fifteen, twenty_five, forty, three, twenty, zero_one_five, six, thirty_four
+
+## FACTS
+FACT-1: Morning feed is 15 cups :: Feed(morning, fifteen)
+FACT-2: Afternoon feed is 25 cups :: Feed(afternoon, twenty_five)
+FACT-3: 15 + 25 = 40 :: Sum(fifteen, twenty_five, forty)
+FACT-4: The flock has 20 chickens :: Chickens(flock, twenty)
+FACT-5: The chickens receive 3 cups of feed daily :: Feed(daily, three)
+FACT-6: 3 / 20 = 0.15 :: Divide(three, twenty, zero_one_five)
+FACT-7: Each chicken receives 3 cups in the morning :: Feed(morning_per_chicken, three)
+FACT-8: Each chicken receives 3 cups in the afternoon :: Feed(afternoon_per_chicken, three)
+FACT-9: 3 + 3 = 6 :: Sum(three, three, six)
+FACT-10: 40 − 6 = 34 :: Diff(forty, six, thirty_four)
+
+## RULES
+RULE-1: If morning feed is a and afternoon feed is b and a+b=c, then total feed is c :: ∀a ∀b ∀c (Feed(morning,a) ∧ Feed(afternoon,b) ∧ Sum(a,b,c) → Feed(total,c))
+RULE-2: If daily feed is a and flock size is b and a/b=c, then per-chicken feed is c :: ∀a ∀b ∀c (Feed(daily,a) ∧ Chickens(flock,b) ∧ Divide(a,b,c) → Feed(per_chicken,c))
+RULE-3: If morning-per-chicken feed is a and afternoon-per-chicken feed is b and a+b=c, then the morning-afternoon sum feed is c :: ∀a ∀b ∀c (Feed(morning_per_chicken,a) ∧ Feed(afternoon_per_chicken,b) ∧ Sum(a,b,c) → Feed(morning_afternoon_sum,c))
+RULE-4: If total feed is a and morning-afternoon sum feed is b and a−b=c, then final meal feed is c :: ∀a ∀b ∀c (Feed(total,a) ∧ Feed(morning_afternoon_sum,b) ∧ Diff(a,b,c) → Feed(final,c))
+
+## INFERENCES
+INF-1: Total feed is 40 cups, from FACT-1, FACT-2, FACT-3 and RULE-1 by Universal Instantiation and Modus Ponens :: Feed(total, forty)
+INF-2: Average feed per chicken is 0.15 cups, from FACT-4, FACT-5, FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: Feed(per_chicken, zero_one_five)
+INF-3: Combined morning and afternoon per-chicken feed is 6 cups, from FACT-7, FACT-8, FACT-9 and RULE-3 by Universal Instantiation and Modus Ponens :: Feed(morning_afternoon_sum, six)
+INF-4: Final meal feed is 34 cups, from INF-1, INF-3, FACT-10 and RULE-4 by Universal Instantiation and Modus Ponens :: Feed(final, thirty_four)

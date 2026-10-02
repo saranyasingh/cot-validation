@@ -1,0 +1,22 @@
+EXPLANATION
+
+1. **First Leg of the Trip**: John drives for 3 hours at 60 mph.
+   - Distance = Speed × Time = 60 mph × 3 hours = 180 miles.
+
+2. **Second Leg of the Trip**: John returns home, which takes another 1 hour (since he spent the first 2 hours in traffic).
+   - Distance = Speed × Time = 60 mph × 1 hour = 60 miles.
+
+3. **Third Leg of the Trip**: John drives back to his starting point, covering the distance he traveled on the second leg minus the initial 180 miles.
+   - Remaining distance to cover after returning home: 180 miles - 60 miles = 120 miles.
+   - Now, John has driven 120 miles out and needs to return 120 miles back.
+   - Total distance covered so far: 120 miles + 60 miles = 180 miles.
+
+4. **Fourth Leg of the Trip**: John travels for an additional 2 hours at 80 mph.
+   - Distance = Speed × Time = 80 mph × 2 hours = 160 miles.
+
+5. **Total Distance Traveled**: Summing up all distances covered so far.
+   - Total distance = 180 miles (first trip) + 60 miles (return home) + 120 miles (back to starting point) + 160 miles (fourth leg) = 520 miles.
+
+6. **Distance from Home**: Since John started at home and traveled 520 miles away, he is now 520 miles from home.
+
+Therefore, the answer is: 520.

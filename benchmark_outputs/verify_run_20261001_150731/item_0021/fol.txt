@@ -1,0 +1,42 @@
+## VOCABULARY
+Predicates:
+Volume(x, n) — the volume of x is n liters
+WaterFraction(x, f) — the fraction of x that is water is f
+Water(x, n) — the amount of water in x is n liters
+Spilled(x, n) — n liters of x spilled
+Computes(op, a, b, c) — applying arithmetic operation op to a and b yields c
+
+Constants:
+orange_drink, orange_remaining, pineapple_drink, mixture_total, initial_total,
+two_thirds, three_fifths, ten, fifteen, one, nine, six, twenty_thirds, twenty_four, initial_water_total,
+multiply, add, subtract
+
+## FACTS
+FACT-1: The orange drink's initial volume is 10 liters :: Volume(orange_drink, ten)
+FACT-2: The orange drink is two-thirds water :: WaterFraction(orange_drink, two_thirds)
+FACT-3: The pineapple drink's volume is 15 liters :: Volume(pineapple_drink, fifteen)
+FACT-4: The pineapple drink is three-fifths water :: WaterFraction(pineapple_drink, three_fifths)
+FACT-5: 1 liter spilled from the orange drink :: Spilled(orange_drink, one)
+FACT-6: The remaining orange drink is still two-thirds water :: WaterFraction(orange_remaining, two_thirds)
+FACT-7: Two-thirds of 10 is 20/3 :: Computes(multiply, two_thirds, ten, twenty_thirds)
+FACT-8: Three-fifths of 15 is 9 :: Computes(multiply, three_fifths, fifteen, nine)
+FACT-9: 20/3 plus 9 is the initial total water :: Computes(add, twenty_thirds, nine, initial_water_total)
+FACT-10: 10 minus 1 is 9 :: Computes(subtract, ten, one, nine)
+FACT-11: Two-thirds of 9 is 6 :: Computes(multiply, two_thirds, nine, six)
+FACT-12: 6 plus 9 is 15 :: Computes(add, six, nine, fifteen)
+FACT-13: 9 plus 15 is 24 :: Computes(add, nine, fifteen, twenty_four)
+
+## RULES
+RULE-1: If x has fraction f of water and volume v, and multiplying f and v yields w, then x contains w liters of water :: ∀x,f,v,w (WaterFraction(x,f) ∧ Volume(x,v) ∧ Computes(multiply,f,v,w) → Water(x,w))
+RULE-2: If x has volume v and s liters spill from x, and subtracting s from v yields r, then the resulting entity y has volume r :: ∀x,y,v,s,r (Volume(x,v) ∧ Spilled(x,s) ∧ Computes(subtract,v,s,r) → Volume(y,r))
+RULE-3: If x has water amount a and y has water amount b, and adding a and b yields c, then the combined entity z has water amount c :: ∀x,y,z,a,b,c (Water(x,a) ∧ Water(y,b) ∧ Computes(add,a,b,c) → Water(z,c))
+RULE-4: If x has volume a and y has volume b, and adding a and b yields c, then the combined entity z has volume c :: ∀x,y,z,a,b,c (Volume(x,a) ∧ Volume(y,b) ∧ Computes(add,a,b,c) → Volume(z,c))
+
+## INFERENCES
+INF-1: The orange drink initially contains 20/3 liters of water, from FACT-2, FACT-1, FACT-7, RULE-1 by Universal Instantiation and Modus Ponens :: Water(orange_drink, twenty_thirds)
+INF-2: The pineapple drink contains 9 liters of water, from FACT-4, FACT-3, FACT-8, RULE-1 by Universal Instantiation and Modus Ponens :: Water(pineapple_drink, nine)
+INF-3: The initial total water across both drinks is initial_water_total, from INF-1, INF-2, FACT-9, RULE-3 by Universal Instantiation and Modus Ponens :: Water(initial_total, initial_water_total)
+INF-4: The remaining orange drink has volume 9 liters, from FACT-1, FACT-5, FACT-10, RULE-2 by Universal Instantiation and Modus Ponens :: Volume(orange_remaining, nine)
+INF-5: The remaining orange drink contains 6 liters of water, from FACT-6, INF-4, FACT-11, RULE-1 by Universal Instantiation and Modus Ponens :: Water(orange_remaining, six)
+INF-6: The total remaining water across both mixtures is 15 liters, from INF-5, INF-2, FACT-12, RULE-3 by Universal Instantiation and Modus Ponens :: Water(mixture_total, fifteen)
+INF-7: The total remaining volume of both mixtures is 24 liters, from INF-4, FACT-3, FACT-13, RULE-4 by Universal Instantiation and Modus Ponens :: Volume(mixture_total, twenty_four)

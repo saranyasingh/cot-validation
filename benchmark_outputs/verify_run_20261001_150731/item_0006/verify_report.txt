@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — This rule incorrectly partitions the 16 glasses into only 1 full-price glass + 8 discounted glasses (9 total), ignoring the other 7 full-price glasses that must also be paid for at $5 each; it does not correctly account for all 16 glasses.

@@ -1,0 +1,19 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The problem describes "standstill traffic" for the second leg, implying 0 mph, not 60 mph.
+FACT-5: UNSUPPORTED — The problem states standstill traffic lasted 2 hours, not 1 hour.
+FACT-6: UNSUPPORTED — Based on incorrect speed/time values from FACT-4 and FACT-5, which do not correspond to any leg in the problem.
+FACT-7: UNSUPPORTED — The number 120 is not derived from any stated or previously computed problem quantity; this computation is not grounded in the problem.
+FACT-8: UNSUPPORTED — Same unexplained operands as FACT-7, used for a different purpose with no clear grounding in the problem.
+FACT-9: SUPPORTED
+FACT-10: UNSUPPORTED — The remaining time after 2 hours standstill and 0.5 hours at 30 mph is 1.5 hours (4 - 2 - 0.5), not 2 hours.
+FACT-11: UNSUPPORTED — Based on the incorrect time value from FACT-10.
+FACT-12: UNSUPPORTED — No clear derivation or grounding for this computation in the problem.
+FACT-13: UNSUPPORTED — No clear derivation or grounding for this computation in the problem.
+FACT-14: UNSUPPORTED — Final result does not match the problem's correct answer (180 - 15 - 120 = 45 miles) and is built on unsupported intermediate facts.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE

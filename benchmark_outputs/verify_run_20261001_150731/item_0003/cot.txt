@@ -1,0 +1,36 @@
+To determine Josh's profit, we need to follow these steps:
+
+**Premise 1:** Josh bought a house for $80,000.
+
+**Premise 2:** Josh spent an additional $50,000 on repairs.
+
+**Conclusion:** After making these improvements, the total cost was $130,000 ($80,000 + $50,000).
+
+**Premise 3:** The increase in the value of the house due to the renovations was 150%.
+
+**Step 1:** Calculate the original value of the house before any renovations.
+- Let \( V \) represent the original value of the house.
+- According to Premise 3, the increase in value after renovations is 150% of the original value.
+- Therefore, the new value of the house (\( N \)) is given by:
+\[ N = V + 1.5V = 2.5V \]
+
+**Step 2:** Set up an equation using the information about the total cost and the renovated value.
+- Total cost (including purchase price and repairs): $130,000.
+- New value of the house after renovations: $N.
+- We know that \( N = 2.5V \), so:
+\[ 2.5V = 130,000 \]
+
+**Step 3:** Solve for \( V \).
+\[ V = \frac{130,000}{2.5} = 52,000 \]
+
+**Step 4:** Determine the original purchase price of the house.
+- Original purchase price (\( P \)): $80,000.
+
+**Step 5:** Calculate the profit.
+- Profit (\( P_{profit} \)) is calculated as:
+\[ P_{profit} = N - P \]
+\[ P_{profit} = 130,000 - 80,000 = 50,000 \]
+
+Therefore, the profit Josh made is $50,000.
+
+The answer is: 50

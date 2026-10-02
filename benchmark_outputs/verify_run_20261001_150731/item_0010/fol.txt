@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+Rate(x, n) — x's hourly rate for the first/regular hours is n dollars
+OvertimeMultiplier(x, n) — x's overtime pay rate is n times x's regular hourly rate
+Hours(x, k, n) — x worked n hours of kind k (k is a kind constant: regular_hours, overtime_hours, or total_hours)
+Pay(x, k, n) — x's pay of kind k equals n dollars (k is a kind constant: regular_pay, base_overtime, overtime_pay, or total_pay)
+Calc(op, a, b, c) — applying arithmetic operation op to a and b yields c (op is the constant times or plus)
+
+Constants:
+eliza
+regular_hours, overtime_hours, total_hours
+regular_pay, base_overtime, overtime_pay, total_pay
+times, plus
+ten, forty, five, one_point_two, forty_five, four_hundred, fifty, sixty, four_sixty
+
+## FACTS
+FACT-1: Eliza's rate per hour for the first 40 hours is $10 :: Rate(eliza, ten)
+FACT-2: Eliza receives an overtime pay of 1.2 times her regular hourly rate :: OvertimeMultiplier(eliza, one_point_two)
+FACT-3: Eliza worked 45 hours this week :: Hours(eliza, total_hours, forty_five)
+FACT-4: Eliza worked 40 regular hours (the first 40 hours) :: Hours(eliza, regular_hours, forty)
+FACT-5: Eliza worked 5 overtime hours (the additional hours) :: Hours(eliza, overtime_hours, five)
+FACT-6: $10 times 40 equals $400 :: Calc(times, ten, forty, four_hundred)
+FACT-7: $10 times 5 equals $50 :: Calc(times, ten, five, fifty)
+FACT-8: 1.2 times $50 equals $60 :: Calc(times, one_point_two, fifty, sixty)
+FACT-9: $400 plus $60 equals $460 :: Calc(plus, four_hundred, sixty, four_sixty)
+
+## RULES
+RULE-1: For anyone, regular pay equals regular rate times regular hours :: ∀x ∀n ∀m ∀p ((Rate(x,n) ∧ Hours(x,regular_hours,m) ∧ Calc(times,n,m,p)) → Pay(x,regular_pay,p))
+RULE-2: For anyone, the base overtime amount equals regular rate times overtime hours :: ∀x ∀n ∀m ∀p ((Rate(x,n) ∧ Hours(x,overtime_hours,m) ∧ Calc(times,n,m,p)) → Pay(x,base_overtime,p))
+RULE-3: For anyone, overtime pay equals the overtime multiplier times the base overtime amount :: ∀x ∀n ∀m ∀p ((OvertimeMultiplier(x,n) ∧ Pay(x,base_overtime,m) ∧ Calc(times,n,m,p)) → Pay(x,overtime_pay,p))
+RULE-4: For anyone, total earnings equal regular pay plus overtime pay :: ∀x ∀n ∀m ∀p ((Pay(x,regular_pay,n) ∧ Pay(x,overtime_pay,m) ∧ Calc(plus,n,m,p)) → Pay(x,total_pay,p))
+
+## INFERENCES
+INF-1: Eliza's regular pay is $400, from FACT-1, FACT-4, FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens :: Pay(eliza, regular_pay, four_hundred)
+INF-2: Eliza's base overtime amount is $50, from FACT-1, FACT-5, FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens :: Pay(eliza, base_overtime, fifty)
+INF-3: Eliza's overtime pay is $60, from FACT-2, INF-2, FACT-8 and RULE-3 by Universal Instantiation and Modus Ponens :: Pay(eliza, overtime_pay, sixty)
+INF-4: Eliza's total earnings are $460, from INF-1, INF-3, FACT-9 and RULE-4 by Universal Instantiation and Modus Ponens :: Pay(eliza, total_pay, four_sixty)

@@ -1,0 +1,36 @@
+{
+  "dataset": "GSM8K",
+  "run_id": "verify_run_20261001_150731",
+  "total": 25,
+  "skip_tptp": false,
+  "reasoning_client": "vllm",
+  "verifier_client": "bedrock",
+  "cot": {
+    "correct": 13,
+    "incorrect": 12,
+    "accuracy": 0.52
+  },
+  "verification": {
+    "marked_incorrect": 23,
+    "marked_correct": 2,
+    "failed_fact_rule_check": 15,
+    "failed_tptp_check": 8
+  },
+  "judgment": {
+    "incorrect_marked_incorrect": 12,
+    "correct_marked_correct": 2,
+    "incorrect_marked_correct": 0,
+    "correct_marked_incorrect": 11,
+    "judged_correct": 14,
+    "accuracy": 0.56
+  },
+  "error_detection": {
+    "true_positives": 12,
+    "false_positives": 11,
+    "false_negatives": 0,
+    "true_negatives": 2,
+    "precision": 0.5217,
+    "recall": 1.0,
+    "f1": 0.6857
+  }
+}

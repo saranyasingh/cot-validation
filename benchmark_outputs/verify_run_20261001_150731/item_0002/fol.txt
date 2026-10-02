@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+BlueFiber(x,n) — x requires n bolts of blue fiber
+WhiteFiber(x,n) — x requires n bolts of white fiber
+HalfOf(n,m) — n is half of m (n = m/2)
+Sum(n,m,k) — k is the sum of n and m
+TotalFiber(x,n) — x requires a total of n bolts of fiber
+
+Constants:
+robe, 1, 2, 3
+
+## FACTS
+FACT-1: A robe requires 2 bolts of blue fiber :: BlueFiber(robe, 2)
+FACT-2: 1 is half of 2 :: HalfOf(1, 2)
+FACT-3: 2 plus 1 equals 3 :: Sum(2, 1, 3)
+
+## RULES
+RULE-1: For any item, if it requires n bolts of blue fiber and m is half of n, then it requires m bolts of white fiber (it needs half as much white fiber as blue fiber) :: ∀x ∀n ∀m (BlueFiber(x,n) ∧ HalfOf(m,n) → WhiteFiber(x,m))
+RULE-2: For any item, if it requires n bolts of blue fiber and m bolts of white fiber, and k is the sum of n and m, then it requires a total of k bolts of fiber :: ∀x ∀n ∀m ∀k (BlueFiber(x,n) ∧ WhiteFiber(x,m) ∧ Sum(n,m,k) → TotalFiber(x,k))
+
+## INFERENCES
+INF-1: The robe requires 1 bolt of white fiber, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: WhiteFiber(robe, 1)
+INF-2: The robe requires a total of 3 bolts of fiber, from FACT-1, INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalFiber(robe, 3)

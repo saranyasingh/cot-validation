@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Carla's normal download speed is 2 GB per minute",
+      "formula": "Equals(download_speed, two)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The total size of the file is 200 GB",
+      "formula": "Equals(file_size, two_hundred)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "4/5 \u00d7 20 = 16 GB, the amount already downloaded before the restart",
+      "formula": "Product(four_fifths, twenty, sixteen)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem states 40% of a 200 GB file was downloaded (i.e., 80 GB), not \"4/5 \u00d7 20 = 16 GB\"; this computation does not correspond to any quantity described in the problem.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The initial downloaded amount is 16 GB",
+      "formula": "Equals(initial_downloaded, sixteen)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "derived from the unsupported calculation in FACT-3; the problem implies the initial downloaded amount should be 80 GB (40% of 200 GB), not 16 GB.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "200 \u2212 16 = 184 GB, the additional amount needed",
+      "formula": "Difference(two_hundred, sixteen, one_hundred_eighty_four)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "relies on the incorrect initial amount (16 GB) from FACT-4, which is not grounded in the problem.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "184 \u00f7 2 = 92 minutes, the time to download the remaining amount",
+      "formula": "Quotient(one_hundred_eighty_four, two, ninety_two)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "built on the unsupported remaining amount (184 GB) from FACT-5.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "16 + 92 = 108, the total time including the initial download",
+      "formula": "Sum(sixteen, ninety_two, one_hundred_eight)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "incorrectly adds an amount (16 GB) to a time value (92 minutes) as though both were time quantities, and is based on the unsupported chain of prior facts.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any file size a and initial downloaded amount b, if their difference is c, then the remaining amount to download equals c",
+      "formula": "\u2200a\u2200b\u2200c (Equals(file_size,a) \u2227 Equals(initial_downloaded,b) \u2227 Difference(a,b,c) \u2192 Equals(remaining_amount,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any remaining amount a and download speed b, if their quotient is c, then the catch-up time equals c",
+      "formula": "\u2200a\u2200b\u2200c (Equals(remaining_amount,a) \u2227 Equals(download_speed,b) \u2227 Quotient(a,b,c) \u2192 Equals(catchup_time,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For any initial downloaded amount a and catch-up time b, if their sum is c, then the total time equals c",
+      "formula": "\u2200a\u2200b\u2200c (Equals(initial_downloaded,a) \u2227 Equals(catchup_time,b) \u2227 Sum(a,b,c) \u2192 Equals(total_time,c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "it adds an \"initial downloaded amount\" (a quantity in GB) to a \"catch-up time\" (a quantity in minutes) to produce a \"total time,\" conflating two different units/quantities rather than correctly combining time-based quantities.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The remaining amount to download is 184 GB, from FACT-2, FACT-4, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Equals(remaining_amount, one_hundred_eighty_four)",
+      "premises": [
+        "FACT-2",
+        "FACT-4",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The catch-up time is 92 minutes, from INF-1, FACT-1, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Equals(catchup_time, ninety_two)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total time to download the file considering the restart is 108 minutes, from FACT-4, INF-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Equals(total_time, one_hundred_eight)",
+      "premises": [
+        "FACT-4",
+        "INF-2",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "the problem states 40% of a 200 GB file was downloaded (i.e., 80 GB), not \"4/5 \u00d7 20 = 16 GB\"; this computation does not correspond to any quantity described in the problem."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "derived from the unsupported calculation in FACT-3; the problem implies the initial downloaded amount should be 80 GB (40% of 200 GB), not 16 GB."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "relies on the incorrect initial amount (16 GB) from FACT-4, which is not grounded in the problem."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "built on the unsupported remaining amount (184 GB) from FACT-5."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "incorrectly adds an amount (16 GB) to a time value (92 minutes) as though both were time quantities, and is based on the unsupported chain of prior facts."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "it adds an \"initial downloaded amount\" (a quantity in GB) to a \"catch-up time\" (a quantity in minutes) to produce a \"total time,\" conflating two different units/quantities rather than correctly combining time-based quantities."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

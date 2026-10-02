@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+HasValue(x,a,v) — entity x has attribute a with numeric value v
+Product(a,b,c) — a multiplied by b equals c
+Sum(a,b,c) — a plus b equals c
+WeeklyEarning(x,e) — x earns e dollars per week
+AnnualSalary(x,s) — x's annual salary is s dollars
+
+Constants:
+teaching, coaching, year, jill, rate, hours, weeks, 20, 35, 30, 15, 50, 700, 450, 1150, 57500
+
+## FACTS
+FACT-1: Jill earns $20 per hour as a teacher (teaching job's rate is 20) :: HasValue(teaching, rate, 20)
+FACT-2: Jill works 35 hours per week teaching :: HasValue(teaching, hours, 35)
+FACT-3: Jill earns $30 per hour as a cheerleading coach (coaching job's rate is 30) :: HasValue(coaching, rate, 30)
+FACT-4: Jill works 15 hours per week coaching :: HasValue(coaching, hours, 15)
+FACT-5: There are 50 weeks in a year :: HasValue(year, weeks, 50)
+
+## RULES
+RULE-1: For any job, the weekly earning equals the hourly rate multiplied by the weekly hours :: ∀x∀r∀h∀e ((HasValue(x,rate,r) ∧ HasValue(x,hours,h) ∧ Product(r,h,e)) → WeeklyEarning(x,e))
+RULE-2: Jill's total weekly earning is the sum of the weekly earnings from her two jobs :: ∀x∀y∀et∀ec∀s ((WeeklyEarning(x,et) ∧ WeeklyEarning(y,ec) ∧ Sum(et,ec,s)) → WeeklyEarning(jill,s))
+RULE-3: Jill's annual salary equals her total weekly earning multiplied by the number of weeks in a year :: ∀s∀w∀a ((WeeklyEarning(jill,s) ∧ HasValue(year,weeks,w) ∧ Product(s,w,a)) → AnnualSalary(jill,a))
+RULE-4: Basic arithmetic fact: 20 multiplied by 35 equals 700 :: ∀n (Product(20,35,700))
+RULE-5: Basic arithmetic fact: 30 multiplied by 15 equals 450 :: ∀n (Product(30,15,450))
+RULE-6: Basic arithmetic fact: 700 plus 450 equals 1150 :: ∀n (Sum(700,450,1150))
+RULE-7: Basic arithmetic fact: 1150 multiplied by 50 equals 57500 :: ∀n (Product(1150,50,57500))
+
+## INFERENCES
+INF-1: Jill's weekly earning from teaching is $700, from FACT-1, FACT-2, RULE-4 (instantiated) and RULE-1 by Universal Instantiation and Modus Ponens :: WeeklyEarning(teaching,700)
+INF-2: Jill's weekly earning from coaching is $450, from FACT-3, FACT-4, RULE-5 (instantiated) and RULE-1 by Universal Instantiation and Modus Ponens :: WeeklyEarning(coaching,450)
+INF-3: Jill's total weekly earning is $1150, from INF-1, INF-2, RULE-6 (instantiated) and RULE-2 by Universal Instantiation and Modus Ponens :: WeeklyEarning(jill,1150)
+INF-4: Jill's annual salary is $57,500, from INF-3, FACT-5, RULE-7 (instantiated) and RULE-3 by Universal Instantiation and Modus Ponens :: AnnualSalary(jill,57500)

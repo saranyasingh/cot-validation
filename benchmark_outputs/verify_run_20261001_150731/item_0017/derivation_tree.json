@@ -1,0 +1,141 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each train travels 80 miles westward on the first leg",
+      "formula": "Travels(train, west_leg, eighty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The leg before turning north requires a total of 80 miles",
+      "formula": "LegRequirement(west_leg, eighty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each train travels 80 miles northward on day one, completing that leg",
+      "formula": "Travels(train, north_day1, eighty)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states the first day's travel is westward (80 miles), not northward; northward travel occurs on day two with 150 miles.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each train travels 150 miles northward on day two",
+      "formula": "Travels(train, north_day2, onefifty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "80 plus 80 equals 160",
+      "formula": "Sum(eighty, eighty, onesixty)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "This computes 80+80, but the problem only involves one 80-mile leg (westward) and one 150-mile leg (northward); there is no second 80-mile leg to add.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "160 plus 150 equals 310",
+      "formula": "Sum(onesixty, onefifty, threeten)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "This builds on the erroneous 160 figure from FACT-5, which does not correspond to any quantity in the problem.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a train has traveled n miles on a leg and that leg requires n miles total, then the remaining distance on that leg is zero",
+      "formula": "\u2200x\u2200leg\u2200n (Travels(x,leg,n) \u2227 LegRequirement(leg,n) \u2192 RemainingDistance(leg, zero))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a train travels n1 miles on one leg and n2 miles on another leg, and n1 plus n2 equals n3, then the train's cumulative distance is n3",
+      "formula": "\u2200x\u2200l1\u2200l2\u2200n1\u2200n2\u2200n3 (Travels(x,l1,n1) \u2227 Travels(x,l2,n2) \u2227 Sum(n1,n2,n3) \u2192 TotalDistance(x,n3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If a train's cumulative distance is n1 and it travels n2 more miles on another leg, and n1 plus n2 equals n3, then the train's new cumulative distance is n3",
+      "formula": "\u2200x\u2200l\u2200n1\u2200n2\u2200n3 (TotalDistance(x,n1) \u2227 Travels(x,l,n2) \u2227 Sum(n1,n2,n3) \u2192 TotalDistance(x,n3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The remaining distance on the west leg is zero, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingDistance(west_leg, zero)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Each train's cumulative distance after day one (west leg plus north leg) is 160 miles, from FACT-1, FACT-3, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(train, onesixty)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Each train's cumulative distance after day two is 310 miles, from INF-2, FACT-4, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(train, threeten)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "FACT-6",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "The problem states the first day's travel is westward (80 miles), not northward; northward travel occurs on day two with 150 miles."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "This computes 80+80, but the problem only involves one 80-mile leg (westward) and one 150-mile leg (northward); there is no second 80-mile leg to add."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "This builds on the erroneous 160 figure from FACT-5, which does not correspond to any quantity in the problem."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

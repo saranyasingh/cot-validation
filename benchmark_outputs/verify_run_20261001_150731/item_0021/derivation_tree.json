@@ -1,0 +1,248 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The orange drink's initial volume is 10 liters",
+      "formula": "Volume(orange_drink, ten)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The orange drink is two-thirds water",
+      "formula": "WaterFraction(orange_drink, two_thirds)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The pineapple drink's volume is 15 liters",
+      "formula": "Volume(pineapple_drink, fifteen)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The pineapple drink is three-fifths water",
+      "formula": "WaterFraction(pineapple_drink, three_fifths)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "1 liter spilled from the orange drink",
+      "formula": "Spilled(orange_drink, one)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The remaining orange drink is still two-thirds water",
+      "formula": "WaterFraction(orange_remaining, two_thirds)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Two-thirds of 10 is 20/3",
+      "formula": "Computes(multiply, two_thirds, ten, twenty_thirds)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Three-fifths of 15 is 9",
+      "formula": "Computes(multiply, three_fifths, fifteen, nine)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "20/3 plus 9 is the initial total water",
+      "formula": "Computes(add, twenty_thirds, nine, initial_water_total)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "10 minus 1 is 9",
+      "formula": "Computes(subtract, ten, one, nine)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Two-thirds of 9 is 6",
+      "formula": "Computes(multiply, two_thirds, nine, six)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "6 plus 9 is 15",
+      "formula": "Computes(add, six, nine, fifteen)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "9 plus 15 is 24",
+      "formula": "Computes(add, nine, fifteen, twenty_four)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has fraction f of water and volume v, and multiplying f and v yields w, then x contains w liters of water",
+      "formula": "\u2200x,f,v,w (WaterFraction(x,f) \u2227 Volume(x,v) \u2227 Computes(multiply,f,v,w) \u2192 Water(x,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has volume v and s liters spill from x, and subtracting s from v yields r, then the resulting entity y has volume r",
+      "formula": "\u2200x,y,v,s,r (Volume(x,v) \u2227 Spilled(x,s) \u2227 Computes(subtract,v,s,r) \u2192 Volume(y,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has water amount a and y has water amount b, and adding a and b yields c, then the combined entity z has water amount c",
+      "formula": "\u2200x,y,z,a,b,c (Water(x,a) \u2227 Water(y,b) \u2227 Computes(add,a,b,c) \u2192 Water(z,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x has volume a and y has volume b, and adding a and b yields c, then the combined entity z has volume c",
+      "formula": "\u2200x,y,z,a,b,c (Volume(x,a) \u2227 Volume(y,b) \u2227 Computes(add,a,b,c) \u2192 Volume(z,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The orange drink initially contains 20/3 liters of water, from FACT-2, FACT-1, FACT-7, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Water(orange_drink, twenty_thirds)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The pineapple drink contains 9 liters of water, from FACT-4, FACT-3, FACT-8, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Water(pineapple_drink, nine)",
+      "premises": [
+        "FACT-4",
+        "FACT-3",
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The initial total water across both drinks is initial_water_total, from INF-1, INF-2, FACT-9, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Water(initial_total, initial_water_total)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The remaining orange drink has volume 9 liters, from FACT-1, FACT-5, FACT-10, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(orange_remaining, nine)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The remaining orange drink contains 6 liters of water, from FACT-6, INF-4, FACT-11, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Water(orange_remaining, six)",
+      "premises": [
+        "FACT-6",
+        "INF-4",
+        "FACT-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "The total remaining water across both mixtures is 15 liters, from INF-5, INF-2, FACT-12, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Water(mixture_total, fifteen)",
+      "premises": [
+        "INF-5",
+        "INF-2",
+        "FACT-12",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "The total remaining volume of both mixtures is 24 liters, from INF-4, FACT-3, FACT-13, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(mixture_total, twenty_four)",
+      "premises": [
+        "INF-4",
+        "FACT-3",
+        "FACT-13",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Josh bought the house for $80,000",
+      "formula": "Value(purchase_price,80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Josh spent $50,000 on repairs",
+      "formula": "Value(repair_cost,50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The increase in value due to renovations was 150%",
+      "formula": "Value(increase_percent,150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Arithmetic fact that 80,000 + 50,000 = 130,000",
+      "formula": "Sum(80000,50000,130000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Arithmetic fact that 130,000 \u00f7 2.5 = 52,000",
+      "formula": "Div(130000,2.5,52000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Arithmetic fact that 130,000 \u2212 80,000 = 50,000",
+      "formula": "Sub(130000,80000,50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The total cost equals the purchase price plus the repair cost",
+      "formula": "\u2200a,b,c (Value(purchase_price,a) \u2227 Value(repair_cost,b) \u2227 Sum(a,b,c) \u2192 Value(total_cost,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A 150% increase in value means the new value equals 2.5 times the original value",
+      "formula": "\u2200v,n (Value(original_value,v) \u2227 Value(increase_percent,150) \u2227 Mult(v,2.5,n) \u2192 Value(new_value,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The new (renovated) value of the house equals the total cost incurred",
+      "formula": "\u2200n (Value(total_cost,n) \u2192 Value(new_value,n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Incorrectly equates the renovated value of the house with the total cost incurred (purchase price + repairs); value and cost are distinct quantities, and this conflation misrepresents the 150% increase relationship.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The original value can be found by dividing the new value by 2.5",
+      "formula": "\u2200n,v (Value(new_value,n) \u2227 Div(n,2.5,v) \u2192 Value(original_value,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "Profit equals the new value minus the purchase price",
+      "formula": "\u2200n,p,prof (Value(new_value,n) \u2227 Value(purchase_price,p) \u2227 Sub(n,p,prof) \u2192 Value(profit,prof))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Profit should be computed as new value minus total cost incurred (purchase price + repair cost), not just the purchase price; omitting repair costs misrepresents the profit calculation.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The total cost is $130,000, from FACT-1, FACT-2, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(total_cost,130000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The new value of the house is $130,000, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(new_value,130000)",
+      "premises": [
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The original value of the house is $52,000, from INF-2, FACT-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(original_value,52000)",
+      "premises": [
+        "INF-2",
+        "FACT-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Josh's profit is $50,000, from INF-2, FACT-1, FACT-6, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(profit,50000)",
+      "premises": [
+        "INF-2",
+        "FACT-1",
+        "FACT-6",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Incorrectly equates the renovated value of the house with the total cost incurred (purchase price + repairs); value and cost are distinct quantities, and this conflation misrepresents the 150% increase relationship."
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "Profit should be computed as new value minus total cost incurred (purchase price + repair cost), not just the purchase price; omitting repair costs misrepresents the profit calculation."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

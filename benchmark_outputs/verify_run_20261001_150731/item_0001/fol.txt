@@ -1,0 +1,22 @@
+## VOCABULARY
+Predicates:
+Amount(x, n) — the quantity labeled x has numeric value n
+
+Constants:
+janet, total_eggs, breakfast_eggs, after_breakfast, muffin_eggs, after_muffins, price_per_egg, earnings, 16, 3, 13, 4, 9, 2, 18
+
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: Amount(total_eggs, 16)
+FACT-2: Janet eats 3 eggs for breakfast every morning :: Amount(breakfast_eggs, 3)
+FACT-3: Janet uses 4 eggs to bake muffins for her friends :: Amount(muffin_eggs, 4)
+FACT-4: Janet sells the remaining eggs at $2 per egg :: Amount(price_per_egg, 2)
+
+## RULES
+RULE-1: For any total egg count n and breakfast egg count m, the eggs remaining after breakfast equal n minus m :: ∀n,m ((Amount(total_eggs, n) ∧ Amount(breakfast_eggs, m)) → Amount(after_breakfast, n - m))
+RULE-2: For any post-breakfast egg count n and muffin egg count m, the eggs remaining after baking muffins equal n minus m :: ∀n,m ((Amount(after_breakfast, n) ∧ Amount(muffin_eggs, m)) → Amount(after_muffins, n - m))
+RULE-3: For any remaining egg count n and price per egg m, the earnings equal n multiplied by m :: ∀n,m ((Amount(after_muffins, n) ∧ Amount(price_per_egg, m)) → Amount(earnings, n * m))
+
+## INFERENCES
+INF-1: Eggs remaining after breakfast equal 16 - 3 = 13, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(after_breakfast, 13)
+INF-2: Eggs remaining after baking muffins equal 13 - 4 = 9, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(after_muffins, 9)
+INF-3: Earnings equal 9 × 2 = 18, from INF-2, FACT-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(earnings, 18)

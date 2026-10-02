@@ -1,0 +1,42 @@
+Explanation:
+
+1. Marissa has already walked a total of 6 miles.
+   Premise: She took 1 hour to walk the first 4 miles and another hour to walk the next 2 miles.
+
+2. We know that Marissa's current speed is calculated based on the time taken and the distance covered so far.
+   Formula: Speed = Distance / Time
+
+3. Calculate her current speed:
+   Current speed = 6 miles / 2 hours = 3 miles/hour
+
+4. To achieve an average speed of 4 miles per hour over the entire 12-mile trail,
+   we need to cover the remaining distance at this desired rate.
+
+5. Let V represent the required walking speed to reach the desired average speed.
+   Desired average speed = Total distance / Total time needed
+
+6. Set up the equation for the total distance:
+   Total distance = Initial distance + Remaining distance + Final distance
+                  = 6 miles + R + 6 miles
+                  = 12 miles + R
+
+7. Set up the equation for the total time needed:
+   Total time needed = Initial time + Remaining time + Final time
+                     = 2 hours + T + 1 hour
+                     = 3 hours + T
+
+8. Substitute these into the desired average speed formula:
+   4 mph = (12 miles + R) / (3 hours + T)
+
+9. Since we want to find the required walking speed V for the remaining distance R,
+   we set V equal to R in the above equation:
+   4 mph = (12 miles + R) / (3 hours + R)
+  
+10. Solve for R using algebraic manipulation or substitution method.
+    Rearrange the equation to solve for R:
+    4(3 + R) = 12 + R
+    12 + 4R = 12 + R
+    3R = 0
+    R = 0
+
+Therefore, Marissa needs to walk at a speed of 4 miles per hour for the remaining distance to maintain an average speed of 4 miles per hour over the entire 12-mile trail. The answer is: 4.

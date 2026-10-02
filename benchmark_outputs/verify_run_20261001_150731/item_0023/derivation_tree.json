@@ -1,0 +1,136 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Billy has 8 customers",
+      "formula": "HasCustomers(billy,8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The first group (group1) of Billy's customers has 3 customers",
+      "formula": "GroupSize(billy,group1,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each customer in group1 buys 1 DVD",
+      "formula": "BuysEach(billy,group1,1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The second group (group2) of Billy's customers has 2 customers",
+      "formula": "GroupSize(billy,group2,2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Each customer in group2 buys 2 DVDs",
+      "formula": "BuysEach(billy,group2,2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The third group (group3) of Billy's customers has 3 customers",
+      "formula": "GroupSize(billy,group3,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Each customer in group3 buys 0 DVDs",
+      "formula": "BuysEach(billy,group3,0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any customer x and group g, if the group has a customers each buying b DVDs, then the group's total DVDs bought is a\u00d7b",
+      "formula": "\u2200x\u2200g\u2200a\u2200b (GroupSize(x,g,a) \u2227 BuysEach(x,g,b) \u2192 GroupTotal(x,g,a*b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any customer x, if group1 bought n1 DVDs, group2 bought n2 DVDs, and group3 bought n3 DVDs in total, then x sold n1+n2+n3 DVDs overall",
+      "formula": "\u2200x\u2200n1\u2200n2\u2200n3 (GroupTotal(x,group1,n1) \u2227 GroupTotal(x,group2,n2) \u2227 GroupTotal(x,group3,n3) \u2192 Sold(x,n1+n2+n3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Group1 of Billy's customers bought 3 DVDs in total (3\u00d71=3), from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "GroupTotal(billy,group1,3)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Group2 of Billy's customers bought 4 DVDs in total (2\u00d72=4), from FACT-4, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "GroupTotal(billy,group2,4)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Group3 of Billy's customers bought 0 DVDs in total (3\u00d70=0), from FACT-6, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "GroupTotal(billy,group3,0)",
+      "premises": [
+        "FACT-6",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Billy sold 7 DVDs in total (3+4+0=7), from INF-1, INF-2, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Sold(billy,7)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

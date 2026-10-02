@@ -1,0 +1,123 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The first glass costs $5",
+      "formula": "Cost(one, five)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Half of 16 glasses is 8 glasses",
+      "formula": "Half(sixteen, eight)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "8 times $5 equals $40",
+      "formula": "Mult(eight, five, forty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "$40 times 0.60 equals $24",
+      "formula": "Mult(forty, zero_six, twenty_four)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "$5 plus $24 equals $29",
+      "formula": "Add(five, twenty_four, twenty_nine)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If one glass costs p dollars, h is half of sixteen glasses, and h times p equals t, then h glasses (before discount) cost t dollars",
+      "formula": "\u2200p\u2200h\u2200t (Cost(one,p) \u2227 Half(sixteen,h) \u2227 Mult(h,p,t) \u2192 Cost(h,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Every second glass costs 60% of the original price, i.e., if h glasses cost t dollars (undiscounted) and t times 0.60 equals d, then those h glasses cost d dollars (discounted)",
+      "formula": "\u2200h\u2200t\u2200d (Cost(h,t) \u2227 Mult(t, zero_six, d) \u2192 Cost(h,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The total cost of all 16 glasses equals the cost of the first glass plus the cost of the remaining 8 discounted glasses",
+      "formula": "\u2200p\u2200d\u2200s (Cost(one,p) \u2227 Cost(eight,d) \u2227 Add(p,d,s) \u2192 Cost(sixteen,s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "This rule incorrectly partitions the 16 glasses into only 1 full-price glass + 8 discounted glasses (9 total), ignoring the other 7 full-price glasses that must also be paid for at $5 each; it does not correctly account for all 16 glasses.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The 8 glasses (undiscounted) cost $40, from FACT-1, FACT-2, FACT-3, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(eight, forty)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The 8 glasses (discounted) cost $24, from INF-1, FACT-4, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(eight, twenty_four)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total cost of all 16 glasses is $29, from FACT-1, INF-2, FACT-5, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(sixteen, twenty_nine)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "FACT-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "This rule incorrectly partitions the 16 glasses into only 1 full-price glass + 8 discounted glasses (9 total), ignoring the other 7 full-price glasses that must also be paid for at $5 each; it does not correctly account for all 16 glasses."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — The rule bakes the specific computation 3×60=180 directly into the formula with fixed numeric constants instead of using universally quantified variables and leaving the arithmetic result as a separate predicate (e.g., Product(n_3, n_60, n_180)) for the theorem prover to verify.
+RULE-2: IMPLAUSIBLE — The rule bakes the specific computation 180×3=540 directly into the formula with fixed numeric constants instead of abstracting the arithmetic into a predicate relation to be checked as an inference.

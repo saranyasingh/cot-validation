@@ -1,0 +1,171 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's rate per hour for the first 40 hours is $10",
+      "formula": "Rate(eliza, ten)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza receives an overtime pay of 1.2 times her regular hourly rate",
+      "formula": "OvertimeMultiplier(eliza, one_point_two)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza worked 45 hours this week",
+      "formula": "Hours(eliza, total_hours, forty_five)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Eliza worked 40 regular hours (the first 40 hours)",
+      "formula": "Hours(eliza, regular_hours, forty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Eliza worked 5 overtime hours (the additional hours)",
+      "formula": "Hours(eliza, overtime_hours, five)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "$10 times 40 equals $400",
+      "formula": "Calc(times, ten, forty, four_hundred)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "$10 times 5 equals $50",
+      "formula": "Calc(times, ten, five, fifty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "1.2 times $50 equals $60",
+      "formula": "Calc(times, one_point_two, fifty, sixty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "$400 plus $60 equals $460",
+      "formula": "Calc(plus, four_hundred, sixty, four_sixty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For anyone, regular pay equals regular rate times regular hours",
+      "formula": "\u2200x \u2200n \u2200m \u2200p ((Rate(x,n) \u2227 Hours(x,regular_hours,m) \u2227 Calc(times,n,m,p)) \u2192 Pay(x,regular_pay,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For anyone, the base overtime amount equals regular rate times overtime hours",
+      "formula": "\u2200x \u2200n \u2200m \u2200p ((Rate(x,n) \u2227 Hours(x,overtime_hours,m) \u2227 Calc(times,n,m,p)) \u2192 Pay(x,base_overtime,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "For anyone, overtime pay equals the overtime multiplier times the base overtime amount",
+      "formula": "\u2200x \u2200n \u2200m \u2200p ((OvertimeMultiplier(x,n) \u2227 Pay(x,base_overtime,m) \u2227 Calc(times,n,m,p)) \u2192 Pay(x,overtime_pay,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "For anyone, total earnings equal regular pay plus overtime pay",
+      "formula": "\u2200x \u2200n \u2200m \u2200p ((Pay(x,regular_pay,n) \u2227 Pay(x,overtime_pay,m) \u2227 Calc(plus,n,m,p)) \u2192 Pay(x,total_pay,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Eliza's regular pay is $400, from FACT-1, FACT-4, FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza, regular_pay, four_hundred)",
+      "premises": [
+        "FACT-1",
+        "FACT-4",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Eliza's base overtime amount is $50, from FACT-1, FACT-5, FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza, base_overtime, fifty)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Eliza's overtime pay is $60, from FACT-2, INF-2, FACT-8 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza, overtime_pay, sixty)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Eliza's total earnings are $460, from INF-1, INF-3, FACT-9 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Pay(eliza, total_pay, four_sixty)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "FACT-9",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

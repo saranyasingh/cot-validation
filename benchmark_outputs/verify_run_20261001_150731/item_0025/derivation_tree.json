@@ -1,0 +1,66 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Kyle paid $19.50 for the book after the discount",
+      "formula": "PaidAmount(kyle, 19.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Kyle received a 25% discount on the book",
+      "formula": "DiscountPercent(kyle, 25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A 25% discount means the buyer pays 75% (0.75) of the original price",
+      "formula": "\u2200x (DiscountPercent(x,25) \u2192 PaidFraction(x,0.75))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The original price equals the amount paid divided by the fraction of the original price that was paid",
+      "formula": "\u2200x\u2200y\u2200f ((PaidAmount(x,y) \u2227 PaidFraction(x,f)) \u2192 OriginalPrice(x, y/f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Kyle paid a fraction of 0.75 of the original price, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "PaidFraction(kyle, 0.75)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The original price of the book is $26 (19.50/0.75 = 26), from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "OriginalPrice(kyle, 26)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

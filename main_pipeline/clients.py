@@ -116,7 +116,7 @@ class BedrockLLMClient(ClaudeLLMClient):
     def __init__(self):
         from anthropic import AnthropicBedrockMantle
         self._client = AnthropicBedrockMantle(aws_region=os.getenv("AWS_REGION", "us-east-1"))
-        self.model = os.getenv("BEDROCK_MODEL", "anthropic.claude-opus-5-5")
+        self.model = os.getenv("BEDROCK_MODEL", "anthropic.claude-sonnet-5-5")
         self.max_tokens = int(os.getenv("ANTHROPIC_MAX_TOKENS", "64000"))
 
 

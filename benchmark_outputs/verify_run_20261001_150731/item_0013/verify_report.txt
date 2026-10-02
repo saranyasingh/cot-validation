@@ -1,0 +1,14 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: UNSUPPORTED — The problem does not define break-even total as "initial investment plus one year's net profit"; this is an invented formulation not stated or entailed by the problem.
+FACT-8: UNSUPPORTED — This definition relies on the unsupported FACT-7 total and is not stated in the problem; the problem only implies years = initial cost / net profit per year.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — The rule embeds specific numeric values (13.33, 14) that do not correspond to the actual problem's numbers (90/7.5=12), hardcoding an arithmetic result rather than abstracting the rounding relationship as a general rule.

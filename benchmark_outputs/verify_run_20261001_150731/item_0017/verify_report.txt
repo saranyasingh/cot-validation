@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The problem states the first day's travel is westward (80 miles), not northward; northward travel occurs on day two with 150 miles.
+FACT-4: SUPPORTED
+FACT-5: UNSUPPORTED — This computes 80+80, but the problem only involves one 80-mile leg (westward) and one 150-mile leg (northward); there is no second 80-mile leg to add.
+FACT-6: UNSUPPORTED — This builds on the erroneous 160 figure from FACT-5, which does not correspond to any quantity in the problem.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE

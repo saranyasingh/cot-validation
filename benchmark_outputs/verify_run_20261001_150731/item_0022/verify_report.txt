@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — If x was born n years before y, and y is currently m years old, then x is (m+n) years old, so x was born (m+n) years ago, not (m−n). The rule inverts the correct relationship.
+RULE-2: IMPLAUSIBLE — If x was born n years ago (so x is currently n years old) and x had a son at age k, the son was born (n−k) years ago, not (n+k). The rule uses the wrong operation.

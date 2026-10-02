@@ -1,0 +1,20 @@
+## VOCABULARY
+Predicates:
+Downloads(m, n) — the number of downloads in month m is n
+Total(n) — the total number of downloads over the three months is n
+
+Constants:
+month1, month2, month3, 60, 180, 126, 366
+
+## FACTS
+FACT-1: The number of downloads in the first month is 60 :: Downloads(month1, 60)
+
+## RULES
+RULE-1: The number of downloads in the second month is three times that of the first month :: ∀x (Downloads(month1, x) → Downloads(month2, 3*x))
+RULE-2: The number of downloads in the third month is 70% of that of the second month :: ∀x (Downloads(month2, x) → Downloads(month3, 0.7*x))
+RULE-3: The total downloads over the three months is the sum of the individual monthly downloads :: ∀x ∀y ∀z (Downloads(month1, x) ∧ Downloads(month2, y) ∧ Downloads(month3, z) → Total(x+y+z))
+
+## INFERENCES
+INF-1: The number of downloads in the second month is 180, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens (3*60=180) :: Downloads(month2, 180)
+INF-2: The number of downloads in the third month is 126, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens (0.7*180=126) :: Downloads(month3, 126)
+INF-3: The total number of downloads over the three months is 366, from FACT-1, INF-1, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens (60+180+126=366) :: Total(366)

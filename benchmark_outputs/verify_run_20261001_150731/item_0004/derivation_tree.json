@@ -1,0 +1,88 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints each time he exercises",
+      "formula": "SprintsPerSession(james,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint James runs is 60 meters long",
+      "formula": "SprintLength(james,60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "James performs this exercise regimen 3 times a week",
+      "formula": "SessionsPerWeek(james,3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For anyone, running 3 sprints of 60 meters each in a session totals 180 meters per session (basic arithmetic: 3\u00d760=180)",
+      "formula": "\u2200x (SprintsPerSession(x,3) \u2227 SprintLength(x,60) \u2192 SessionDistance(x,180))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule bakes the specific computation 3\u00d760=180 directly into the formula with fixed numeric constants instead of using universally quantified variables and leaving the arithmetic result as a separate predicate (e.g., Product(n_3, n_60, n_180)) for the theorem prover to verify.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For anyone, running 180 meters per session over 3 sessions a week totals 540 meters per week (basic arithmetic: 180\u00d73=540)",
+      "formula": "\u2200x (SessionDistance(x,180) \u2227 SessionsPerWeek(x,3) \u2192 WeeklyDistance(x,540))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule bakes the specific computation 180\u00d73=540 directly into the formula with fixed numeric constants instead of abstracting the arithmetic into a predicate relation to be checked as an inference.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "James runs 180 meters during one complete exercise session, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SessionDistance(james,180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "James runs 540 meters per week, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "WeeklyDistance(james,540)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule bakes the specific computation 3\u00d760=180 directly into the formula with fixed numeric constants instead of using universally quantified variables and leaving the arithmetic result as a separate predicate (e.g., Product(n_3, n_60, n_180)) for the theorem prover to verify."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The rule bakes the specific computation 180\u00d73=540 directly into the formula with fixed numeric constants instead of abstracting the arithmetic into a predicate relation to be checked as an inference."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+SheepCount(x, n) — entity x has n sheep
+FourTimesAsMany(x, y) — x has four times as many sheep as y
+TwiceAsMany(x, y) — x has twice as many sheep as y
+TotalSheep(x, y, z, n) — the total number of sheep among x, y, and z is n
+
+Constants:
+toulouse, charleston, seattle, 20, 80, 160, 260
+
+## FACTS
+FACT-1: Seattle has 20 sheep :: SheepCount(seattle, 20)
+FACT-2: Charleston has four times as many sheep as Seattle :: FourTimesAsMany(charleston, seattle)
+FACT-3: Toulouse has twice as many sheep as Charleston :: TwiceAsMany(toulouse, charleston)
+
+## RULES
+RULE-1: If x has four times as many sheep as y, and y has n sheep, then x has 4×n sheep :: ∀x∀y∀n (FourTimesAsMany(x,y) ∧ SheepCount(y,n) → SheepCount(x,4*n))
+RULE-2: If x has twice as many sheep as y, and y has n sheep, then x has 2×n sheep :: ∀x∀y∀n (TwiceAsMany(x,y) ∧ SheepCount(y,n) → SheepCount(x,2*n))
+RULE-3: If x has n1 sheep, y has n2 sheep, and z has n3 sheep, then the total sheep among x, y, z is n1+n2+n3 :: ∀x∀y∀z∀n1∀n2∀n3 (SheepCount(x,n1) ∧ SheepCount(y,n2) ∧ SheepCount(z,n3) → TotalSheep(x,y,z,n1+n2+n3))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens (4×20=80) :: SheepCount(charleston,80)
+INF-2: Toulouse has 160 sheep, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens (2×80=160) :: SheepCount(toulouse,160)
+INF-3: The total number of sheep among Toulouse, Charleston, and Seattle is 260, from INF-2, INF-1, FACT-1, and RULE-3 by Universal Instantiation and Modus Ponens (160+80+20=260) :: TotalSheep(toulouse,charleston,seattle,260)

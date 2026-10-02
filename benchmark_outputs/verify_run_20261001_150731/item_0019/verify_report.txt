@@ -1,0 +1,14 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The problem states "4 weeks" directly as the target period; it does not define 4 weeks as "weeks per month" or introduce the concept of a month.
+FACT-5: UNSUPPORTED — The problem does not mention monthly consumption; this introduces a quantity not present in the problem.
+FACT-6: UNSUPPORTED — The problem does not mention weeks per year or any yearly timeframe at all.
+FACT-7: UNSUPPORTED — The problem never asks about or references yearly egg consumption.
+FACT-8: SUPPORTED
+FACT-9: UNSUPPORTED — The problem asks for dozens of eggs over 4 weeks, not from an invented "yearly eggs" quantity.
+
+RULE-1: IMPLAUSIBLE — The rule hard-codes the specific values 3, 7, and 21 and bakes the multiplication result directly into the rule rather than abstracting it into a general predicate relation to be checked as an inference.
+RULE-2: IMPLAUSIBLE — The rule hard-codes the specific values 21, 4, and 84 and embeds the arithmetic computation directly rather than using an abstracted product predicate.
+RULE-3: IMPLAUSIBLE — The rule hard-codes the specific values 84, 52, and 4464 and embeds the arithmetic computation directly rather than using an abstracted product predicate.
+RULE-4: IMPLAUSIBLE — The rule hard-codes the specific values 4464, 12, and 372 and embeds the division computation directly rather than using an abstracted quotient predicate.

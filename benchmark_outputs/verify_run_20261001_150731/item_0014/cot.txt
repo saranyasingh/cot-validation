@@ -1,0 +1,56 @@
+To solve this problem, we need to work backwards through the given information about how many vacuum cleaners Melanie sold at each location.
+
+1. **Final count**: Melanie has 5 vacuum cleaners left.
+   
+   - This means that before selling any vacuum cleaners, she had \( 5 \times 3 = 15 \) vacuum cleaners (since she sold a third of them).
+   
+2. **Red House**: At the red house, she sold 2 more than she did at the green house.
+   
+   - Let's denote the number of vacuum cleaners sold at the green house as \( x \). According to the problem, \( x + 2 \) were sold at the red house.
+   
+   - Therefore, before selling anything at the red house, she must have had \( (x + 2) + y \) vacuum cleaners (where \( y \) is the number sold at the orange house), because after selling those, she had 15 vacuum cleaners left.
+   
+3. **Orange House**: At the orange house, she sold half of what remained after the red house.
+   
+   - Since she sold 2 more at the red house, the total number of vacuum cleaners sold so far is \( x + 2 \).
+   
+   - After selling these, she had \( 15 - (x + 2) = 13 - x \) vacuum cleaners left.
+   
+   - Then, she sold half of what was left at the orange house, which means she sold \( \frac{1}{2} \left( 13 - x \right) \).
+   
+4. **Equating the numbers**:
+   
+   - We know she sold \( \frac{1}{2} \left( 13 - x \right) \) vacuum cleaners at the orange house.
+   
+   - Before selling those, she had \( 13 - x \) vacuum cleaners left.
+   
+   - Adding the vacuum cleaners sold at the green and red houses gives us:
+     \[
+     x + 2 + \frac{1}{2} \left( 13 - x \right)
+     \]
+     
+   - Simplifying the expression inside the parentheses:
+     \[
+     x + 2 + \frac{1}{2}(13 - x) = x + 2 + \frac{13}{2} - \frac{x}{2}
+     \]
+
+5. **Simplifying further**:
+   \[
+   x + 2 + 6.5 - 0.5x = 8.5 + 0.5x
+   \]
+
+6. **Setting up the equation**:
+   \[
+   8.5 + 0.5x = 15
+   \]
+
+7. **Solving for \( x \)**:
+   \[
+   0.5x = 15 - 8.5 \\
+   0.5x = 6.5 \\
+   x = 13
+   \]
+
+Therefore, Melanie started with 15 vacuum cleaners.
+
+**The answer is: 15**

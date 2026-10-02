@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+HasCustomers(x,n) — x has n customers in total
+GroupSize(x,g,n) — group g of x's customers consists of n customers
+BuysEach(x,g,n) — each customer in group g of x buys n DVDs
+GroupTotal(x,g,n) — group g of x's customers bought n DVDs in total
+Sold(x,n) — x sold n DVDs in total
+
+Constants:
+billy, group1, group2, group3
+
+## FACTS
+FACT-1: Billy has 8 customers :: HasCustomers(billy,8)
+FACT-2: The first group (group1) of Billy's customers has 3 customers :: GroupSize(billy,group1,3)
+FACT-3: Each customer in group1 buys 1 DVD :: BuysEach(billy,group1,1)
+FACT-4: The second group (group2) of Billy's customers has 2 customers :: GroupSize(billy,group2,2)
+FACT-5: Each customer in group2 buys 2 DVDs :: BuysEach(billy,group2,2)
+FACT-6: The third group (group3) of Billy's customers has 3 customers :: GroupSize(billy,group3,3)
+FACT-7: Each customer in group3 buys 0 DVDs :: BuysEach(billy,group3,0)
+
+## RULES
+RULE-1: For any customer x and group g, if the group has a customers each buying b DVDs, then the group's total DVDs bought is a×b :: ∀x∀g∀a∀b (GroupSize(x,g,a) ∧ BuysEach(x,g,b) → GroupTotal(x,g,a*b))
+RULE-2: For any customer x, if group1 bought n1 DVDs, group2 bought n2 DVDs, and group3 bought n3 DVDs in total, then x sold n1+n2+n3 DVDs overall :: ∀x∀n1∀n2∀n3 (GroupTotal(x,group1,n1) ∧ GroupTotal(x,group2,n2) ∧ GroupTotal(x,group3,n3) → Sold(x,n1+n2+n3))
+
+## INFERENCES
+INF-1: Group1 of Billy's customers bought 3 DVDs in total (3×1=3), from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupTotal(billy,group1,3)
+INF-2: Group2 of Billy's customers bought 4 DVDs in total (2×2=4), from FACT-4, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupTotal(billy,group2,4)
+INF-3: Group3 of Billy's customers bought 0 DVDs in total (3×0=0), from FACT-6, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupTotal(billy,group3,0)
+INF-4: Billy sold 7 DVDs in total (3+4+0=7), from INF-1, INF-2, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Sold(billy,7)

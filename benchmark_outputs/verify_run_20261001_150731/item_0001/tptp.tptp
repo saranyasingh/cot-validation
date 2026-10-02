@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, amount(total_eggs, 16)).
+fof(fact_2, axiom, amount(breakfast_eggs, 3)).
+fof(fact_3, axiom, amount(muffin_eggs, 4)).
+fof(fact_4, axiom, amount(price_per_egg, 2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,M] : ((amount(total_eggs, N) & amount(breakfast_eggs, M)) => amount(after_breakfast, minus(N, M)))).
+fof(rule_2, axiom, ! [N,M] : ((amount(after_breakfast, N) & amount(muffin_eggs, M)) => amount(after_muffins, minus(N, M)))).
+fof(rule_3, axiom, ! [N,M] : ((amount(after_muffins, N) & amount(price_per_egg, M)) => amount(earnings, multiply(N, M)))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, amount(after_breakfast, 13)).
+% From inf_1, fact_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, amount(after_muffins, 9)).
+% From inf_2, fact_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, amount(earnings, 18)).

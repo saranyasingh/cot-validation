@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+
+RULE-1: IMPLAUSIBLE — Specific numeric values (20, 20 percent, 4) are hard-coded into the rule rather than using general variables with the result left as an abstract predicate relation to be checked by the prover.
+RULE-2: IMPLAUSIBLE — Specific numeric values (20, 4, 16) are hard-coded into the rule instead of abstracting the difference computation into a general predicate relation.
+RULE-3: IMPLAUSIBLE — Specific numeric values (16, 25 percent, 4) are hard-coded into the rule instead of using general variables for the percentage computation.
+RULE-4: IMPLAUSIBLE — Specific numeric values (16, 4, 12) are hard-coded into the rule instead of abstracting the difference computation into a general predicate relation.
+RULE-5: IMPLAUSIBLE — Specific numeric values (20, 12, 60 percent) are hard-coded into the rule instead of using general variables for the percentage computation.

@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+CurrentAge(x, n) — x is currently n years old
+BornBefore(x, y, n) — x was born n years before y
+BornYearsAgo(x, n) — x was born n years ago
+SonBornAtAge(x, n) — x's son was born when x was n years old
+SonBornYearsAgo(x, n) — x's son was born n years ago
+
+Constants:
+raymond, samantha, 6, 23, 25, 31, 48
+
+## FACTS
+FACT-1: Samantha is currently 31 years old :: CurrentAge(samantha, 31)
+FACT-2: Raymond was born 6 years before Samantha :: BornBefore(raymond, samantha, 6)
+FACT-3: Raymond's son was born when Raymond was 23 years old :: SonBornAtAge(raymond, 23)
+
+## RULES
+RULE-1: If y is currently m years old and x was born n years before y, then x was born (m−n) years ago :: ∀x∀y∀n∀m ((CurrentAge(y, m) ∧ BornBefore(x, y, n)) → BornYearsAgo(x, m-n))
+RULE-2: If x was born n years ago and x's son was born when x was k years old, then x's son was born (n+k) years ago :: ∀x∀n∀k ((BornYearsAgo(x, n) ∧ SonBornAtAge(x, k)) → SonBornYearsAgo(x, n+k))
+
+## INFERENCES
+INF-1: Raymond was born 25 years ago, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens (computing 31-6=25) :: BornYearsAgo(raymond, 25)
+INF-2: Raymond's son was born 48 years ago, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens (computing 25+23=48) :: SonBornYearsAgo(raymond, 48)

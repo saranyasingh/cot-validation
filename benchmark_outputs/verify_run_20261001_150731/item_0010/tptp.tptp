@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, rate(eliza, ten)).
+fof(fact_2, axiom, overtime_multiplier(eliza, one_point_two)).
+fof(fact_3, axiom, hours(eliza, total_hours, forty_five)).
+fof(fact_4, axiom, hours(eliza, regular_hours, forty)).
+fof(fact_5, axiom, hours(eliza, overtime_hours, five)).
+fof(fact_6, axiom, calc(times, ten, forty, four_hundred)).
+fof(fact_7, axiom, calc(times, ten, five, fifty)).
+fof(fact_8, axiom, calc(times, one_point_two, fifty, sixty)).
+fof(fact_9, axiom, calc(plus, four_hundred, sixty, four_sixty)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((rate(X,N) & hours(X,regular_hours,M) & calc(times,N,M,P)) => pay(X,regular_pay,P))).
+fof(rule_2, axiom, ! [X,N,M,P] : ((rate(X,N) & hours(X,overtime_hours,M) & calc(times,N,M,P)) => pay(X,base_overtime,P))).
+fof(rule_3, axiom, ! [X,N,M,P] : ((overtime_multiplier(X,N) & pay(X,base_overtime,M) & calc(times,N,M,P)) => pay(X,overtime_pay,P))).
+fof(rule_4, axiom, ! [X,N,M,P] : ((pay(X,regular_pay,N) & pay(X,overtime_pay,M) & calc(plus,N,M,P)) => pay(X,total_pay,P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_4, fact_6, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, pay(eliza, regular_pay, four_hundred)).
+% From fact_1, fact_5, fact_7, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, pay(eliza, base_overtime, fifty)).
+% From fact_2, inf_2, fact_8, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, pay(eliza, overtime_pay, sixty)).
+% From inf_1, inf_3, fact_9, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, pay(eliza, total_pay, four_sixty)).

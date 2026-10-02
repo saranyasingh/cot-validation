@@ -1,0 +1,116 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Seattle has 20 sheep",
+      "formula": "SheepCount(seattle, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charleston has four times as many sheep as Seattle",
+      "formula": "FourTimesAsMany(charleston, seattle)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Toulouse has twice as many sheep as Charleston",
+      "formula": "TwiceAsMany(toulouse, charleston)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has four times as many sheep as y, and y has n sheep, then x has 4\u00d7n sheep",
+      "formula": "\u2200x\u2200y\u2200n (FourTimesAsMany(x,y) \u2227 SheepCount(y,n) \u2192 SheepCount(x,4*n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds the arithmetic computation 4\u00d7n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 4, result)) to be checked by the theorem prover.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has twice as many sheep as y, and y has n sheep, then x has 2\u00d7n sheep",
+      "formula": "\u2200x\u2200y\u2200n (TwiceAsMany(x,y) \u2227 SheepCount(y,n) \u2192 SheepCount(x,2*n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds the arithmetic computation 2\u00d7n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 2, result)) to be checked by the theorem prover.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has n1 sheep, y has n2 sheep, and z has n3 sheep, then the total sheep among x, y, z is n1+n2+n3",
+      "formula": "\u2200x\u2200y\u2200z\u2200n1\u2200n2\u2200n3 (SheepCount(x,n1) \u2227 SheepCount(y,n2) \u2227 SheepCount(z,n3) \u2192 TotalSheep(x,y,z,n1+n2+n3))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "embeds the arithmetic computation n1+n2+n3 directly in the rule instead of abstracting it into a separate predicate (e.g., Sum(n1, n2, n3, total)) to be checked by the theorem prover.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Charleston has 80 sheep, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens (4\u00d720=80)",
+      "formula": "SheepCount(charleston,80)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (4\u00d720=80)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Toulouse has 160 sheep, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens (2\u00d780=160)",
+      "formula": "SheepCount(toulouse,160)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (2\u00d780=160)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total number of sheep among Toulouse, Charleston, and Seattle is 260, from INF-2, INF-1, FACT-1, and RULE-3 by Universal Instantiation and Modus Ponens (160+80+20=260)",
+      "formula": "TotalSheep(toulouse,charleston,seattle,260)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "FACT-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens (160+80+20=260)",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "embeds the arithmetic computation 4\u00d7n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 4, result)) to be checked by the theorem prover."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "embeds the arithmetic computation 2\u00d7n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 2, result)) to be checked by the theorem prover."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "embeds the arithmetic computation n1+n2+n3 directly in the rule instead of abstracting it into a separate predicate (e.g., Sum(n1, n2, n3, total)) to be checked by the theorem prover."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

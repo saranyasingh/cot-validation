@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Value(x, n) — quantity x has the numeric value n
+Mult(x, y, z) — z is the product of x multiplied by y
+Div(x, y, z) — z is the quotient of x divided by y
+
+Constants:
+daily_eggs, days_per_week, weekly_eggs, weeks_per_month, monthly_eggs, weeks_per_year, yearly_eggs, dozen, dozen_eggs
+
+## FACTS
+FACT-1: Claire's daily egg consumption is 3 :: Value(daily_eggs,3)
+FACT-2: There are 7 days per week :: Value(days_per_week,7)
+FACT-3: Weekly eggs is the product of daily eggs and days per week :: Mult(daily_eggs,days_per_week,weekly_eggs)
+FACT-4: There are 4 weeks per month (approximation used) :: Value(weeks_per_month,4)
+FACT-5: Monthly eggs is the product of weekly eggs and weeks per month :: Mult(weekly_eggs,weeks_per_month,monthly_eggs)
+FACT-6: There are 52 weeks per year (used as the yearly multiplier) :: Value(weeks_per_year,52)
+FACT-7: Yearly eggs is the product of monthly eggs and weeks per year :: Mult(monthly_eggs,weeks_per_year,yearly_eggs)
+FACT-8: A dozen equals 12 :: Value(dozen,12)
+FACT-9: Dozen eggs is the quotient of yearly eggs divided by a dozen :: Div(yearly_eggs,dozen,dozen_eggs)
+
+## RULES
+RULE-1: For any quantities, if one has value 3 and another has value 7 and their product is some quantity, that product has value 21 (3×7=21) :: ∀x∀y∀z (Value(x,3) ∧ Value(y,7) ∧ Mult(x,y,z) → Value(z,21))
+RULE-2: For any quantities, if one has value 21 and another has value 4 and their product is some quantity, that product has value 84 (21×4=84) :: ∀x∀y∀z (Value(x,21) ∧ Value(y,4) ∧ Mult(x,y,z) → Value(z,84))
+RULE-3: For any quantities, if one has value 84 and another has value 52 and their product is some quantity, that product has value 4464 (84×52=4464 as computed) :: ∀x∀y∀z (Value(x,84) ∧ Value(y,52) ∧ Mult(x,y,z) → Value(z,4464))
+RULE-4: For any quantities, if one has value 4464 and another has value 12 and their quotient is some quantity, that quotient has value 372 (4464÷12=372) :: ∀x∀y∀z (Value(x,4464) ∧ Value(y,12) ∧ Div(x,y,z) → Value(z,372))
+
+## INFERENCES
+INF-1: Weekly eggs equals 21, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Value(weekly_eggs,21)
+INF-2: Monthly eggs equals 84, from INF-1, FACT-4, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens :: Value(monthly_eggs,84)
+INF-3: Yearly eggs equals 4464, from INF-2, FACT-6, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: Value(yearly_eggs,4464)
+INF-4: Dozen eggs equals 372, from INF-3, FACT-8, FACT-9, and RULE-4 by Universal Instantiation and Modus Ponens :: Value(dozen_eggs,372)

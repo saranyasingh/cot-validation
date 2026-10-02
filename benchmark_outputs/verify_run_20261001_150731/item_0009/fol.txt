@@ -1,0 +1,44 @@
+## VOCABULARY
+Predicates:
+Speed(x,y) — the speed during leg x is y mph
+Time(x,y) — the time duration of leg x is y hours
+Distance(x,y) — the distance associated with x is y miles
+Mult(a,b,c) — a multiplied by b equals c
+Sum(a,b,c) — a plus b equals c
+
+Constants:
+leg1, leg2, leg3, leg4, partial1, partial2, partial3, total_trip, home
+60, 3, 180, 1, 120, 160, 2, 80, 520, 240, 360
+
+## FACTS
+FACT-1: The speed on leg1 is 60 mph :: Speed(leg1,60)
+FACT-2: The time on leg1 is 3 hours :: Time(leg1,3)
+FACT-3: 60 times 3 equals 180 :: Mult(60,3,180)
+FACT-4: The speed on leg2 is 60 mph :: Speed(leg2,60)
+FACT-5: The time on leg2 is 1 hour :: Time(leg2,1)
+FACT-6: 60 times 1 equals 60 :: Mult(60,1,60)
+FACT-7: 60 plus 120 equals 180 (used to find remaining distance) :: Sum(60,120,180)
+FACT-8: 120 plus 60 equals 180 (total distance covered so far) :: Sum(120,60,180)
+FACT-9: The speed on leg4 is 80 mph :: Speed(leg4,80)
+FACT-10: The time on leg4 is 2 hours :: Time(leg4,2)
+FACT-11: 80 times 2 equals 160 :: Mult(80,2,160)
+FACT-12: 180 plus 60 equals 240 :: Sum(180,60,240)
+FACT-13: 240 plus 120 equals 360 :: Sum(240,120,360)
+FACT-14: 360 plus 160 equals 520 :: Sum(360,160,520)
+
+## RULES
+RULE-1: If the speed on a leg is s, the time on that leg is t, and s times t equals d, then the distance of that leg is d :: ∀x∀s∀t∀d((Speed(x,s) ∧ Time(x,t) ∧ Mult(s,t,d)) → Distance(x,d))
+RULE-2: If the distance of x is a, the distance of y is b, and a plus b equals c, then the combined distance (for any z representing that combination) is c :: ∀x∀y∀z∀a∀b∀c((Distance(x,a) ∧ Distance(y,b) ∧ Sum(a,b,c)) → Distance(z,c))
+RULE-3: If the distance of x is a, the distance of y is b, and b plus c equals a, then the remaining distance (for any z representing that remainder) is c :: ∀x∀y∀z∀a∀b∀c((Distance(x,a) ∧ Distance(y,b) ∧ Sum(b,c,a)) → Distance(z,c))
+RULE-4: If the total distance of the trip is y, then the distance from home is y :: ∀y(Distance(total_trip,y) → Distance(home,y))
+
+## INFERENCES
+INF-1: The distance of leg1 is 180 miles, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg1,180)
+INF-2: The distance of leg2 is 60 miles, from FACT-4, FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg2,60)
+INF-3: The distance of leg3 (remaining distance) is 120 miles, from INF-1, INF-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: Distance(leg3,120)
+INF-4: The total distance covered so far (partial1) is 180 miles, from INF-3, INF-2, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens :: Distance(partial1,180)
+INF-5: The distance of leg4 is 160 miles, from FACT-9, FACT-10, FACT-11, and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg4,160)
+INF-6: The combined distance of leg1 and leg2 (partial2) is 240 miles, from INF-1, INF-2, FACT-12, and RULE-2 by Universal Instantiation and Modus Ponens :: Distance(partial2,240)
+INF-7: The combined distance of partial2 and leg3 (partial3) is 360 miles, from INF-6, INF-3, FACT-13, and RULE-2 by Universal Instantiation and Modus Ponens :: Distance(partial3,360)
+INF-8: The total distance of the trip is 520 miles, from INF-7, INF-5, FACT-14, and RULE-2 by Universal Instantiation and Modus Ponens :: Distance(total_trip,520)
+INF-9: The distance from home is 520 miles, from INF-8 and RULE-4 by Universal Instantiation and Modus Ponens :: Distance(home,520)

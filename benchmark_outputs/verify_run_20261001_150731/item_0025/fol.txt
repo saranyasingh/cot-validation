@@ -1,0 +1,21 @@
+## VOCABULARY
+Predicates:
+PaidAmount(x,y) — x paid amount y for the book after the discount
+DiscountPercent(x,y) — x received a y% discount on the book
+PaidFraction(x,y) — x paid fraction y (as a decimal) of the original price
+OriginalPrice(x,y) — y is the original price of the book that x bought
+
+Constants:
+kyle, 19.50, 25, 0.75, 26
+
+## FACTS
+FACT-1: Kyle paid $19.50 for the book after the discount :: PaidAmount(kyle, 19.50)
+FACT-2: Kyle received a 25% discount on the book :: DiscountPercent(kyle, 25)
+
+## RULES
+RULE-1: A 25% discount means the buyer pays 75% (0.75) of the original price :: ∀x (DiscountPercent(x,25) → PaidFraction(x,0.75))
+RULE-2: The original price equals the amount paid divided by the fraction of the original price that was paid :: ∀x∀y∀f ((PaidAmount(x,y) ∧ PaidFraction(x,f)) → OriginalPrice(x, y/f))
+
+## INFERENCES
+INF-1: Kyle paid a fraction of 0.75 of the original price, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: PaidFraction(kyle, 0.75)
+INF-2: The original price of the book is $26 (19.50/0.75 = 26), from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: OriginalPrice(kyle, 26)

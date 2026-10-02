@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — Incorrectly equates the renovated value of the house with the total cost incurred (purchase price + repairs); value and cost are distinct quantities, and this conflation misrepresents the 150% increase relationship.
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — Profit should be computed as new value minus total cost incurred (purchase price + repair cost), not just the purchase price; omitting repair costs misrepresents the profit calculation.

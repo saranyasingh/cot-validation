@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, value(jewelry, 5000)).
+fof(fact_2, axiom, value(electronic_gadgets, 8000)).
+fof(fact_3, axiom, rate(jewelry, 0.025)).
+fof(fact_4, axiom, rate(electronic_gadgets, 0.012)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,V,R,N] : ((value(X,V) & rate(X,R) & N = V + V*R) => new_value(X,N))).
+fof(rule_2, axiom, ! [X,V,N,P] : ((value(X,V) & new_value(X,N) & P = N - V) => profit(X,P))).
+fof(rule_3, axiom, ! [X,Y,P1,P2] : ((profit(X,P1) & profit(Y,P2) & P1 > P2) => better(X,Y))).
+
+% --- INFERENCES ---
+% From fact_1, fact_3, rule_1 by Universal Instantiation and arithmetic substitution
+fof(inf_1, axiom, new_value(jewelry, 5125)).
+% From fact_2, fact_4, rule_1 by Universal Instantiation and arithmetic substitution
+fof(inf_2, axiom, new_value(electronic_gadgets, 8096)).
+% From fact_1, inf_1, rule_2 by Universal Instantiation and arithmetic substitution
+fof(inf_3, axiom, profit(jewelry, 125)).
+% From fact_2, inf_2, rule_2 by Universal Instantiation and arithmetic substitution
+fof(inf_4, axiom, profit(electronic_gadgets, 96)).
+% From inf_3, inf_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, better(jewelry, electronic_gadgets)).

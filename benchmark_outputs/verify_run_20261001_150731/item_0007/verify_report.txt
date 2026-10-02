@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — embeds the arithmetic computation 4×n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 4, result)) to be checked by the theorem prover.
+RULE-2: IMPLAUSIBLE — embeds the arithmetic computation 2×n directly in the rule instead of abstracting it into a separate predicate (e.g., Product(n, 2, result)) to be checked by the theorem prover.
+RULE-3: IMPLAUSIBLE — embeds the arithmetic computation n1+n2+n3 directly in the rule instead of abstracting it into a separate predicate (e.g., Sum(n1, n2, n3, total)) to be checked by the theorem prover.

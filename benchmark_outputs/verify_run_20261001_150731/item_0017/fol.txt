@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Travels(x, leg, n) — x travels n miles on leg "leg"
+LegRequirement(leg, n) — leg "leg" requires a total of n miles to complete
+RemainingDistance(leg, n) — the remaining distance left to complete leg "leg" is n miles
+Sum(a, b, c) — a plus b equals c (arithmetic addition)
+TotalDistance(x, n) — x's cumulative distance traveled so far is n miles
+
+Constants:
+train, west_leg, north_day1, north_day2, zero, eighty, onefifty, onesixty, threeten
+
+## FACTS
+FACT-1: Each train travels 80 miles westward on the first leg :: Travels(train, west_leg, eighty)
+FACT-2: The leg before turning north requires a total of 80 miles :: LegRequirement(west_leg, eighty)
+FACT-3: Each train travels 80 miles northward on day one, completing that leg :: Travels(train, north_day1, eighty)
+FACT-4: Each train travels 150 miles northward on day two :: Travels(train, north_day2, onefifty)
+FACT-5: 80 plus 80 equals 160 :: Sum(eighty, eighty, onesixty)
+FACT-6: 160 plus 150 equals 310 :: Sum(onesixty, onefifty, threeten)
+
+## RULES
+RULE-1: If a train has traveled n miles on a leg and that leg requires n miles total, then the remaining distance on that leg is zero :: ∀x∀leg∀n (Travels(x,leg,n) ∧ LegRequirement(leg,n) → RemainingDistance(leg, zero))
+RULE-2: If a train travels n1 miles on one leg and n2 miles on another leg, and n1 plus n2 equals n3, then the train's cumulative distance is n3 :: ∀x∀l1∀l2∀n1∀n2∀n3 (Travels(x,l1,n1) ∧ Travels(x,l2,n2) ∧ Sum(n1,n2,n3) → TotalDistance(x,n3))
+RULE-3: If a train's cumulative distance is n1 and it travels n2 more miles on another leg, and n1 plus n2 equals n3, then the train's new cumulative distance is n3 :: ∀x∀l∀n1∀n2∀n3 (TotalDistance(x,n1) ∧ Travels(x,l,n2) ∧ Sum(n1,n2,n3) → TotalDistance(x,n3))
+
+## INFERENCES
+INF-1: The remaining distance on the west leg is zero, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: RemainingDistance(west_leg, zero)
+INF-2: Each train's cumulative distance after day one (west leg plus north leg) is 160 miles, from FACT-1, FACT-3, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalDistance(train, onesixty)
+INF-3: Each train's cumulative distance after day two is 310 miles, from INF-2, FACT-4, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalDistance(train, threeten)

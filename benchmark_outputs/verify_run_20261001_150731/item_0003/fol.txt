@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Value(x,n) — the quantity x has the numeric value n
+Sum(a,b,c) — a + b = c
+Mult(a,b,c) — a × b = c
+Div(a,b,c) — a ÷ b = c
+Sub(a,b,c) — a − b = c
+
+Constants:
+purchase_price, repair_cost, total_cost, increase_percent, original_value, new_value, profit, 80000, 50000, 130000, 150, 2.5, 52000
+
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: Value(purchase_price,80000)
+FACT-2: Josh spent $50,000 on repairs :: Value(repair_cost,50000)
+FACT-3: The increase in value due to renovations was 150% :: Value(increase_percent,150)
+FACT-4: Arithmetic fact that 80,000 + 50,000 = 130,000 :: Sum(80000,50000,130000)
+FACT-5: Arithmetic fact that 130,000 ÷ 2.5 = 52,000 :: Div(130000,2.5,52000)
+FACT-6: Arithmetic fact that 130,000 − 80,000 = 50,000 :: Sub(130000,80000,50000)
+
+## RULES
+RULE-1: The total cost equals the purchase price plus the repair cost :: ∀a,b,c (Value(purchase_price,a) ∧ Value(repair_cost,b) ∧ Sum(a,b,c) → Value(total_cost,c))
+RULE-2: A 150% increase in value means the new value equals 2.5 times the original value :: ∀v,n (Value(original_value,v) ∧ Value(increase_percent,150) ∧ Mult(v,2.5,n) → Value(new_value,n))
+RULE-3: The new (renovated) value of the house equals the total cost incurred :: ∀n (Value(total_cost,n) → Value(new_value,n))
+RULE-4: The original value can be found by dividing the new value by 2.5 :: ∀n,v (Value(new_value,n) ∧ Div(n,2.5,v) → Value(original_value,v))
+RULE-5: Profit equals the new value minus the purchase price :: ∀n,p,prof (Value(new_value,n) ∧ Value(purchase_price,p) ∧ Sub(n,p,prof) → Value(profit,prof))
+
+## INFERENCES
+INF-1: The total cost is $130,000, from FACT-1, FACT-2, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens :: Value(total_cost,130000)
+INF-2: The new value of the house is $130,000, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens :: Value(new_value,130000)
+INF-3: The original value of the house is $52,000, from INF-2, FACT-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Value(original_value,52000)
+INF-4: Josh's profit is $50,000, from INF-2, FACT-1, FACT-6, and RULE-5 by Universal Instantiation and Modus Ponens :: Value(profit,50000)

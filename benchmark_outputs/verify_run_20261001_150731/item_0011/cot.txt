@@ -1,0 +1,23 @@
+Explanation:
+
+1. Let's denote the number of downloads in the first month as \(D_1\).
+2. According to the problem, \(D_1 = 60\).
+
+3. In the second month, the number of downloads is three times that of the first month:
+   \[
+   D_2 = 3 \times D_1 = 3 \times 60 = 180
+   \]
+
+4. In the third month, the number of downloads is 70% (or 0.7) of what it was in the second month because it reduces by 30%. Thus,
+   \[
+   D_3 = 0.7 \times D_2 = 0.7 \times 180 = 126
+   \]
+
+5. To find the total number of downloads over the three months, we sum up all the individual monthly downloads:
+   \[
+   \text{Total Downloads} = D_1 + D_2 + D_3 = 60 + 180 + 126 = 366
+   \]
+
+Therefore, the total number of downloads over the three months is 366.
+
+The answer is: 366

@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+SprintsPerSession(x,n) — x runs n sprints during one exercise session
+SprintLength(x,n) — each sprint x runs is n meters long
+SessionsPerWeek(x,n) — x performs n exercise sessions per week
+SessionDistance(x,n) — x runs n meters in one complete exercise session
+WeeklyDistance(x,n) — x runs n meters per week
+
+Constants:
+james, 3, 60, 180, 540
+
+## FACTS
+FACT-1: James runs 3 sprints each time he exercises :: SprintsPerSession(james,3)
+FACT-2: Each sprint James runs is 60 meters long :: SprintLength(james,60)
+FACT-3: James performs this exercise regimen 3 times a week :: SessionsPerWeek(james,3)
+
+## RULES
+RULE-1: For anyone, running 3 sprints of 60 meters each in a session totals 180 meters per session (basic arithmetic: 3×60=180) :: ∀x (SprintsPerSession(x,3) ∧ SprintLength(x,60) → SessionDistance(x,180))
+RULE-2: For anyone, running 180 meters per session over 3 sessions a week totals 540 meters per week (basic arithmetic: 180×3=540) :: ∀x (SessionDistance(x,180) ∧ SessionsPerWeek(x,3) → WeeklyDistance(x,540))
+
+## INFERENCES
+INF-1: James runs 180 meters during one complete exercise session, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: SessionDistance(james,180)
+INF-2: James runs 540 meters per week, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: WeeklyDistance(james,540)

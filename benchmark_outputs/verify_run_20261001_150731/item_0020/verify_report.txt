@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The problem does not state that the remaining distance equals the initial distance; this is a coincidental numeric equality (12−6=6), not a stated or logically entailed equation in the problem.
+FACT-4: UNSUPPORTED — The problem does not state that the remaining time equals the first segment's time; the remaining time should be derived as total time minus elapsed time (3−2=1), not asserted as equal to the first segment's time.
+FACT-5: UNSUPPORTED — The problem does not state that required speed equals remaining distance; speed should be remaining distance divided by remaining time, not set directly equal to distance.
+FACT-6: UNSUPPORTED — The problem gives no basis for replacing remaining time T with remaining distance R; this substitution is not stated or entailed by the problem.
+
+RULE-1: IMPLAUSIBLE — This rule is vague and does not encode a valid arithmetic relationship (e.g., speed = distance/time); it conflates an unrelated "zero quantity" condition with determining average speed, rather than using proper quantity predicates for distance, time, and speed.
