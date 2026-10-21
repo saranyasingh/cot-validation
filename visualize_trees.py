@@ -23,6 +23,8 @@ import graphviz
 
 FILL = {
     "fact":          "#a8d5a2",  # green
+    "operation":     "#d9c2f0",  # purple
+    "operation_err": "#f08080",  # red
     "rule":          "#a8c8e8",  # blue
     "inference_ok":  "#f5e642",  # yellow
     "inference_err": "#f08080",  # red
@@ -43,7 +45,7 @@ def parse_premises(formula: str) -> list[str]:
     m = re.match(r"from\s+(.+?)\s+by\s+", formula, re.IGNORECASE)
     if not m:
         return []
-    return re.findall(r"(FACT-\d+|RULE-\d+|INF-\d+)", m.group(1))
+    return re.findall(r"(FACT-\d+|OP-\d+|RULE-\d+|INF-\d+)", m.group(1))
 
 
 def wrap_label(text: str, width: int = 38) -> str:
@@ -76,6 +78,12 @@ def build_dot(item_id: str, tree: dict, meta: dict) -> graphviz.Digraph:
             fill  = FILL["fact"]
             shape = "box"
             label = f"{nid}\\n{wrap_label(node['formula'])}\\n({node.get('verify_status', '')})"
+        elif ntype == "operation":
+            fill  = FILL["operation_err"] if node.get("error") else FILL["operation"]
+            shape = "box"
+            label = f"{nid}\\n{wrap_label(node['formula'])}\\n({node.get('arithmetic_status', '')})"
+            if node.get("arithmetic_reason"):
+                label += f"\\n{wrap_label(node['arithmetic_reason'], 30)}"
         elif ntype == "rule":
             fill  = FILL["rule"]
             shape = "ellipse"

@@ -23,7 +23,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 import main_pipeline.tptp as tptp_module
-from main_pipeline.clients import make_client, OpenAILLMClient
+from main_pipeline.clients import (
+    make_client, OpenAILLMClient,
+    start_cost_log, set_cost_context, call_log_mark, summarize_costs, print_cost_summary,
+)
 
 load_dotenv()
 
@@ -375,6 +378,9 @@ def run_benchmark(
     class_correct = {"True": 0, "False": 0, "Unknown": 0}
     class_total   = {"True": 0, "False": 0, "Unknown": 0}
 
+    run_mark = call_log_mark()
+    start_cost_log(os.path.join(output_dir, "api_calls.jsonl"))
+
     print(f"\n{'ID':<22} {'Expected':<10} {'Got':<10} {'Verify':<8} {'TPTP':<6} {'OK'}")
     print("-" * 64)
 
@@ -389,6 +395,8 @@ def run_benchmark(
         print(f"\n[{item_id}] {question[:70]}")
         print(f"  Expected: {expected} | {len(facts)} facts, {len(rules)} rules")
 
+        set_cost_context(item_id=item_id)
+        item_mark = call_log_mark()
         result = run_item(
             facts=facts,
             rules=rules,
@@ -398,6 +406,7 @@ def run_benchmark(
             max_retries=max_retries,
             output_dir=item_dir,
         )
+        item_cost = summarize_costs(item_mark)
 
         predicted = result["answer"]
         ok        = predicted == expected
@@ -420,12 +429,16 @@ def run_benchmark(
             "attempts":      result["attempts"],
             "passed_verify": result["passed_verify"],
             "passed_tptp":   result["passed_tptp"],
+            "cost":          item_cost,
         })
 
         v_m  = "✓" if result["passed_verify"] else "✗"
         t_m  = "✓" if result["passed_tptp"]   else "✗"
         ok_m = "✓" if ok else "✗"
         print(f"\n{item_id:<22} {expected:<10} {predicted:<10} {v_m:<8} {t_m:<6} {ok_m}")
+
+    set_cost_context()
+    run_cost = summarize_costs(run_mark)
 
     # ── Summary ───────────────────────────────────────────────────────────────
     acc          = correct / total if total else 0
@@ -459,6 +472,9 @@ def run_benchmark(
         "retry_rate":      round(retry_rate, 4),
         "avg_attempts":    round(avg_attempts, 2),
         "per_class":       per_class,
+        "reasoning_model": reasoning_client.model,
+        "verifier_model":  verifier_client.model,
+        "cost":            run_cost,
     }
 
     print("\n" + "=" * 64)
@@ -478,6 +494,8 @@ def run_benchmark(
         n = class_correct.get(cls, 0)
         d = class_total.get(cls, 0)
         print(f"  {cls:<8}: {n}/{d}  ({pct(n, d)})")
+    print()
+    print_cost_summary(run_cost)
     print("=" * 64)
 
     _write(os.path.join(output_dir, "summary.json"), json.dumps(summary, indent=2))

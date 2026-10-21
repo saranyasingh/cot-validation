@@ -27,9 +27,13 @@ from datetime import datetime
 from main_pipeline.main import COT_PROMPT, STRUCTURED_FOL_TEMPLATE, extract_answer
 from main_pipeline.verify import verify_fol
 from main_pipeline.tptp import convert_and_check
-from main_pipeline.clients import make_client, OpenAILLMClient
+from main_pipeline.clients import (
+    make_client, OpenAILLMClient,
+    start_cost_log, set_cost_context, call_log_mark, summarize_costs, print_cost_summary,
+)
 from main_pipeline.benchmark import answers_match
 from main_pipeline.derivation_tree import build_derivation_tree
+from main_pipeline.arithmetic import check_operations
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -53,14 +57,16 @@ def run_verify_only(
     Generate CoT, convert to FOL, run verification once (no repair).
 
     Returns:
-        cot_text        — raw CoT output
-        cot_answer      — answer extracted from CoT
-        structured_fol  — FOL extracted from CoT
-        verify_flagged  — True if verify.py OR tptp found errors
-        verify_report   — text report from verify.py
-        tptp_report     — text report from tptp (empty string if skipped or not reached)
-        passed_verify   — whether fact/rule check passed
-        passed_tptp     — whether TPTP check passed (None if skipped)
+        cot_text          — raw CoT output
+        cot_answer        — answer extracted from CoT
+        structured_fol    — FOL extracted from CoT
+        verify_flagged    — True if verify.py, the arithmetic check, OR tptp found errors
+        verify_report     — text report from verify.py
+        arithmetic_report — text report from the arithmetic check of OPERATIONS
+        tptp_report       — text report from tptp (empty string if skipped or not reached)
+        passed_verify     — whether fact/rule check passed
+        passed_arithmetic — whether every OPERATION was proved correct
+        passed_tptp       — whether TPTP check passed (None if skipped)
     """
     if reasoning_client is None:
         reasoning_client = OpenAILLMClient()
@@ -84,31 +90,39 @@ def run_verify_only(
     # Stage 3: fact/rule verification
     verify_errors, verify_report = verify_fol(question, structured_fol, client=verifier_client)
 
+    # Stage 4: arithmetic check of OPERATIONS (theorem prover, no LLM)
+    arith_errors, arith_report, arith_tptp = check_operations(structured_fol)
+
     if output_dir:
         _write(os.path.join(output_dir, "verify_report.txt"), verify_report)
+        _write(os.path.join(output_dir, "arithmetic_report.txt"), arith_report)
+        if arith_tptp:
+            _write(os.path.join(output_dir, "arithmetic.tptp"), arith_tptp)
 
-    if verify_errors:
+    base = {
+        "cot_text": cot_text,
+        "cot_answer": cot_answer,
+        "structured_fol": structured_fol,
+        "verify_report": verify_report,
+        "arithmetic_report": arith_report,
+        "passed_verify": not verify_errors,
+        "passed_arithmetic": not arith_errors,
+    }
+
+    if verify_errors or arith_errors:
         return {
-            "cot_text": cot_text,
-            "cot_answer": cot_answer,
-            "structured_fol": structured_fol,
+            **base,
             "verify_flagged": True,
-            "verify_report": verify_report,
             "tptp_report": "",
-            "passed_verify": False,
             "passed_tptp": None if skip_tptp else False,
         }
 
-    # Stage 4: TPTP (optional)
+    # Stage 5: TPTP (optional)
     if skip_tptp:
         return {
-            "cot_text": cot_text,
-            "cot_answer": cot_answer,
-            "structured_fol": structured_fol,
+            **base,
             "verify_flagged": False,
-            "verify_report": verify_report,
             "tptp_report": "",
-            "passed_verify": True,
             "passed_tptp": None,
         }
 
@@ -119,13 +133,9 @@ def run_verify_only(
         _write(os.path.join(output_dir, "tptp_report.txt"), tptp_report)
 
     return {
-        "cot_text": cot_text,
-        "cot_answer": cot_answer,
-        "structured_fol": structured_fol,
+        **base,
         "verify_flagged": tptp_errors,
-        "verify_report": verify_report,
         "tptp_report": tptp_report,
-        "passed_verify": True,
         "passed_tptp": not tptp_errors,
     }
 
@@ -159,6 +169,7 @@ def run_verify_benchmark(
     cot_correct_count = 0
     flagged_count = 0
     failed_verify_count = 0
+    failed_arithmetic_count = 0
     failed_tptp_count = 0
     incorrect_marked_incorrect = 0  # CoT wrong + flagged      (true positive)
     correct_marked_incorrect = 0    # CoT right + flagged      (false positive)
@@ -166,6 +177,8 @@ def run_verify_benchmark(
     correct_marked_correct = 0      # CoT right + not flagged  (true negative)
 
     results = []
+    run_mark = call_log_mark()
+    start_cost_log(os.path.join(output_dir, "api_calls.jsonl"))
 
     print(f"=== Verify-Only Benchmark: {dataset.get('name', dataset_path)} ===")
     print(f"Items: {total} | Skip TPTP: {skip_tptp}")
@@ -181,6 +194,8 @@ def run_verify_benchmark(
         item_dir = os.path.join(output_dir, item_id)
 
         print(f"\n[{item_id}] Running verify-only pipeline...")
+        set_cost_context(item_id=item_id)
+        item_mark = call_log_mark()
         result = run_verify_only(
             question,
             output_dir=item_dir,
@@ -188,6 +203,7 @@ def run_verify_benchmark(
             verifier_client=verifier_client,
             skip_tptp=skip_tptp,
         )
+        item_cost = summarize_costs(item_mark)
 
         cot_answer = result["cot_answer"]
         flagged = result["verify_flagged"]
@@ -199,7 +215,9 @@ def run_verify_benchmark(
             flagged_count += 1
         if not result["passed_verify"]:
             failed_verify_count += 1
-        elif result["passed_tptp"] is False:
+        if not result["passed_arithmetic"]:
+            failed_arithmetic_count += 1
+        if result["passed_verify"] and result["passed_arithmetic"] and result["passed_tptp"] is False:
             failed_tptp_count += 1
 
         # Flagged means "could not verify the answer", i.e. the pipeline marks it incorrect.
@@ -224,6 +242,7 @@ def run_verify_benchmark(
             result["structured_fol"],
             result["verify_report"],
             result["tptp_report"],
+            result["arithmetic_report"],
         )
         if item_dir:
             _write(
@@ -242,8 +261,10 @@ def run_verify_benchmark(
             "marked": marked,
             "judged_correctly": judged_ok,
             "passed_verify": result["passed_verify"],
+            "passed_arithmetic": result["passed_arithmetic"],
             "passed_tptp": result["passed_tptp"],
             "outcome": outcome,
+            "cost": item_cost,
             "derivation_tree": derivation_tree,
         }
         results.append(entry)
@@ -252,7 +273,11 @@ def run_verify_benchmark(
         judged_marker = "✓" if judged_ok else "✗"
         print(
             f"\n{item_id:<12} {expected:<12} {cot_answer:<12} {cot_marker:<10} {marked:<12} {judged_marker}"
+            f"  (${item_cost['total_cost_usd']:.4f})"
         )
+
+    set_cost_context()
+    run_cost = summarize_costs(run_mark)
 
     # ── Aggregate stats ────────────────────────────────────────────────────────
     cot_errors = total - cot_correct_count
@@ -272,6 +297,8 @@ def run_verify_benchmark(
         "skip_tptp": skip_tptp,
         "reasoning_client": reasoning_client_name,
         "verifier_client": verifier_client_name,
+        "reasoning_model": reasoning_client.model,
+        "verifier_model": verifier_client.model,
         "cot": {
             "correct": cot_correct_count,
             "incorrect": cot_errors,
@@ -281,6 +308,7 @@ def run_verify_benchmark(
             "marked_incorrect": flagged_count,
             "marked_correct": total - flagged_count,
             "failed_fact_rule_check": failed_verify_count,
+            "failed_arithmetic_check": failed_arithmetic_count,
             "failed_tptp_check": failed_tptp_count,
         },
         "judgment": {
@@ -300,6 +328,7 @@ def run_verify_benchmark(
             "recall": round(recall, 4),
             "f1": round(f1, 4),
         },
+        "cost": run_cost,
     }
 
     misjudged = [r for r in results if not r["judged_correctly"]]
@@ -337,7 +366,10 @@ def run_verify_benchmark(
     print(f"  Marked incorrect           : {flagged_count}/{total}  ({pct(flagged_count, total)})")
     print(f"  Marked correct             : {total - flagged_count}/{total}  ({pct(total - flagged_count, total)})")
     print(f"  Failed fact/rule check     : {failed_verify_count}/{total}  ({pct(failed_verify_count, total)})")
+    print(f"  Failed arithmetic check    : {failed_arithmetic_count}/{total}  ({pct(failed_arithmetic_count, total)})")
     print(f"  Failed TPTP check          : {failed_tptp_count}/{total}  ({pct(failed_tptp_count, total)})")
+    print()
+    print_cost_summary(run_cost)
     print("=" * 74)
 
     os.makedirs(output_dir, exist_ok=True)

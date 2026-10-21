@@ -7,6 +7,7 @@ import re
 import verify as verify_module
 import tptp as tptp_module
 from main_pipeline.clients import make_client, OpenAILLMClient
+from main_pipeline.arithmetic import check_operations
 
 load_dotenv()
 
@@ -50,27 +51,48 @@ Before writing any formulas, read the whole reasoning and CHOOSE and FIX the voc
 - the constants, covering every proper noun, entity, and number the reasoning refers to
 
 Keep it small: AT MOST 5 predicates. Choose them so that they cover every step of the reasoning before you start,
-rather than inventing new symbols as you go.
+rather than inventing new symbols as you go. The four built-in arithmetic predicates below (Sum, Difference,
+Product, Quotient) are always available, do not count toward the limit, and must NOT be declared.
 
-Output the fixed vocabulary as the first section (## VOCABULARY). Once fixed, it cannot change: every FACT, RULE,
-and INFERENCE below must be built ONLY from these predicates and constants. If a step seems to need a symbol you
-did not fix, go back and choose a better vocabulary instead of adding one.
+Output the fixed vocabulary as the first section (## VOCABULARY). Once fixed, it cannot change: every FACT, OP, RULE,
+and INFERENCE below must be built ONLY from these predicates, the built-in arithmetic predicates, and these constants.
+If a step seems to need a symbol you did not fix, go back and choose a better vocabulary instead of adding one.
+
+=== BUILT-IN ARITHMETIC PREDICATES ===
+The last argument is always the result:
+- Sum(a, b, ..., r)       — a + b + ... = r   (two or more addends)
+- Difference(a, b, r)     — a − b = r
+- Product(a, b, ..., r)   — a × b × ... = r   (two or more factors)
+- Quotient(a, b, r)       — a ÷ b = r
+Arguments are plain numbers: no units, no $, no %, no thousands separators. Write percentages as decimals
+(20% of 50 → Product(0.2, 50, 10)).
 
 === OUTPUT CATEGORIES ===
-After the vocabulary, produce exactly three more sections. Each one must be expressed entirely in the fixed vocabulary:
+After the vocabulary, produce exactly four more sections. Each one must be expressed entirely in the fixed vocabulary:
 
 ## FACTS
 Ground atomic formulas taken directly from the question. No quantifiers.
 Each fact is one atomic predicate applied to constants.
+A fact may only contain numbers that appear in the question (or direct restatements of them, such as
+"a dozen" → 12). Never put a computed value or an arithmetic relationship in a fact.
+
+## OPERATIONS
+Every arithmetic calculation the reasoning performs, one calculation per line, each a single built-in
+arithmetic predicate applied to numbers. Copy the operands and the result EXACTLY as the reasoning states them,
+even if the result looks wrong — do NOT correct the arithmetic; these lines are checked separately.
+Break multi-step calculations into one line per step (204 + 160 + 330 = 694 → Sum(204, 160, 330, 694);
+(3 × 12) − 5 = 31 → Product(3, 12, 36) then Difference(36, 5, 31)).
 
 ## RULES
 Universally quantified formulas — usually implications, but also disjunctions when the reasoning appeals to an
 exhaustive case split — that encode external, linguistic, or basic mathematical knowledge.
-Every rule MUST start with ∀. These are general principles, not story-specific. 
-If they include ground atomic formulas, those formulas must be defined as facts. 
+Every rule MUST start with ∀. These are general principles, not story-specific.
+If they include ground atomic formulas, those formulas must be defined as facts or operations.
+When a rule involves arithmetic, it must refer to a built-in arithmetic predicate as a condition rather than
+computing anything itself, e.g. ∀x∀n∀m∀p (Boxes(x,n) ∧ PerBox(x,m) ∧ Product(n,m,p) → Total(x,p)).
 
 ## INFERENCES
-Derived conclusions. Each inference MUST cite the FACT/RULE/INF labels it depends on
+Derived conclusions. Each inference MUST cite the FACT/OP/RULE/INF labels it depends on
 and name the inference rule used (Modus Ponens, Universal Instantiation, etc.).
 
 === OUTPUT FORMAT ===
@@ -78,16 +100,19 @@ Each line follows this format:
 LABEL: <natural language gloss> :: <FOL formula>
 
 Use :: as the delimiter between the gloss and the formula.
-Labels are FACT-1, FACT-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
+Labels are FACT-1, FACT-2, ..., OP-1, OP-2, ..., RULE-1, RULE-2, ..., INF-1, INF-2, ...
 
 === CONSTRAINTS ===
 - ONLY use syntax described in the vocabulary and syntax sections. Must follow the fixed vocabulary.
-- Every predicate and constant that appears in a formula MUST be declared in ## VOCABULARY.
+- Every predicate and constant that appears in a formula MUST be declared in ## VOCABULARY
+  (except the built-in arithmetic predicates).
+- No mathematical operation may appear under ## FACTS. Every calculation goes under ## OPERATIONS.
 - Do NOT merge a fact and a rule into one formula.
 - Every inference MUST cite its premises by label.
-- Output ONLY the vocabulary section and the three labeled sections. No extra explanation.
+- Output ONLY the vocabulary section and the four labeled sections. If the reasoning performs no
+  arithmetic, keep the ## OPERATIONS header and leave it empty. No extra explanation.
 
-=== EXAMPLE ===
+=== EXAMPLE 1 (logic) ===
 HERE IS EXAMPLE COT REASONING:
 Bonnie is a student who attends the school. Anyone who chaperones high school dances is not a student who attends
 the school, so Bonnie does not chaperone high school dances. Every person who is an inactive and disinterested
@@ -111,6 +136,8 @@ bonnie
 ## FACTS
 FACT-1: Bonnie is a student who attends the school :: Students(bonnie)
 
+## OPERATIONS
+
 ## RULES
 RULE-1: Anyone who chaperones high school dances is not a student who attends the school :: ∀x (Chaperone(x) → ¬Students(x))
 RULE-2: Every inactive and disinterested member of their community chaperones high school dances :: ∀x (Inactive(x) → Chaperone(x))
@@ -122,6 +149,39 @@ INF-1: Bonnie does not chaperone high school dances, from FACT-1 and RULE-1 by M
 INF-2: Bonnie is not an inactive and disinterested member of her community, from INF-1 and RULE-2 by Modus Tollens :: ¬Inactive(bonnie)
 INF-3: Bonnie performs in school talent shows often, from INF-2 and RULE-3 by Disjunctive Syllogism :: TalentShows(bonnie)
 INF-4: Bonnie attends and is very engaged with school events, from INF-3 and RULE-4 by Modus Ponens :: Engaged(bonnie)
+
+=== EXAMPLE 2 (arithmetic) ===
+HERE IS EXAMPLE COT REASONING:
+Sam buys 3 boxes of pencils with 12 pencils in each box. 3 boxes times 12 pencils per box is 36 pencils, so Sam
+has 36 pencils. He gives away 5 pencils. 36 minus 5 is 31, so Sam has 31 pencils left.
+
+CORRECT OUTPUT LOOKS LIKE THIS:
+
+## VOCABULARY
+Predicates:
+Boxes(x, n) — x bought n boxes of pencils
+PerBox(x, n) — each of x's boxes holds n pencils
+GaveAway(x, n) — x gave away n pencils
+Has(x, n) — x has n pencils
+Constants:
+sam, 3, 12, 5, 36, 31
+
+## FACTS
+FACT-1: Sam buys 3 boxes of pencils :: Boxes(sam, 3)
+FACT-2: Each box holds 12 pencils :: PerBox(sam, 12)
+FACT-3: Sam gives away 5 pencils :: GaveAway(sam, 5)
+
+## OPERATIONS
+OP-1: 3 times 12 is 36 :: Product(3, 12, 36)
+OP-2: 36 minus 5 is 31 :: Difference(36, 5, 31)
+
+## RULES
+RULE-1: If x bought n boxes of m pencils each and n × m = p, then x has p pencils :: ∀x∀n∀m∀p (Boxes(x,n) ∧ PerBox(x,m) ∧ Product(n,m,p) → Has(x,p))
+RULE-2: If x has n pencils, gives away k, and n − k = r, then x has r pencils left :: ∀x∀n∀k∀r (Has(x,n) ∧ GaveAway(x,k) ∧ Difference(n,k,r) → Has(x,r))
+
+## INFERENCES
+INF-1: Sam has 36 pencils, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Has(sam, 36)
+INF-2: Sam has 31 pencils left, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Has(sam, 31)
 
 === CHAIN OF THOUGHT REASONING TO CONVERT ===
 {cot_text}
@@ -168,7 +228,9 @@ IMPORTANT: Your repairs must stay faithful to the EXACT reasoning steps in the o
 
 === INSTRUCTIONS ===
 Fix the issues identified in the error report. Ensure:
-- Every FACT is directly supported by or obviously entailed from the story.
+- Every FACT is directly supported by or obviously entailed from the story, and contains no calculation.
+- Every calculation is an OP line using Sum, Difference, Product, or Quotient, with the result copied from the
+  reasoning.
 - Every RULE is a sound commonsense or logical principle.
 - Every INFERENCE correctly follows from its cited premises.
 - All TPTP syntax issues are corrected.
@@ -178,7 +240,7 @@ Fix the issues identified in the error report. Ensure:
 Use the same output format as before:
 LABEL: <natural language gloss> :: <FOL formula>
 
-Output ONLY the four sections (## VOCABULARY, ## FACTS, ## RULES, ## INFERENCES). No extra explanation.
+Output ONLY the five sections (## VOCABULARY, ## FACTS, ## OPERATIONS, ## RULES, ## INFERENCES). No extra explanation.
 '''
 
 
@@ -287,18 +349,26 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
         verify_reports.append(verify_report)
         print(verify_report)
 
+        print("\n[arithmetic] Checking operations with the theorem prover...")
+        arith_errors, arith_report, _ = check_operations(structured_fol)
+        print(arith_report)
+
         if output_dir:
             _write(
                 os.path.join(output_dir, f"verify_attempt_{attempt}.txt"),
                 verify_report,
             )
+            _write(
+                os.path.join(output_dir, f"arithmetic_attempt_{attempt}.txt"),
+                arith_report,
+            )
 
-        if verify_errors:
+        if verify_errors or arith_errors:
             print(f"\n[verify] Reasoning errors found. Asking reasoning client to produce new CoT...")
             cot_text = reasoning_client.complete(COT_REPAIR_TEMPLATE.format(
                 question=question,
                 cot_text=cot_text,
-                error_report=verify_report,
+                error_report=f"{verify_report}\n\n{arith_report}",
             ))
             print("\n[repair] Updated CoT:")
             print(cot_text)

@@ -14,16 +14,17 @@ def _parse_inf_premises(gloss: str) -> tuple[list[str], Optional[str]]:
     m = re.search(r'\bfrom\s+(.+?)\s+by\s+(.+)$', gloss, re.IGNORECASE)
     if not m:
         return [], None
-    premises = re.findall(r'(?:FACT|RULE|INF)-\d+', m.group(1))
+    premises = re.findall(r'(?:FACT|OP|RULE|INF)-\d+', m.group(1))
     return premises, m.group(2).strip()
 
 
 def parse_structured_fol(structured_fol: str) -> dict:
-    """Parse structured FOL text into facts, rules, and inferences.
+    """Parse structured FOL text into facts, operations, rules, and inferences.
 
-    Returns {"facts": {...}, "rules": {...}, "inferences": {...}} each keyed by label.
+    Returns {"facts": {...}, "operations": {...}, "rules": {...}, "inferences": {...}} each keyed by label.
     """
     facts: dict = {}
+    operations: dict = {}
     rules: dict = {}
     inferences: dict = {}
 
@@ -34,6 +35,12 @@ def parse_structured_fol(structured_fol: str) -> dict:
         if m:
             label, gloss, formula = m.group(1), m.group(2), m.group(3)
             facts[label] = {"type": "fact", "gloss": gloss, "formula": formula}
+            continue
+
+        m = re.match(r'^(OP-\d+):\s*(.+?)\s*::\s*(.+)$', line)
+        if m:
+            label, gloss, formula = m.group(1), m.group(2), m.group(3)
+            operations[label] = {"type": "operation", "gloss": gloss, "formula": formula}
             continue
 
         m = re.match(r'^(RULE-\d+):\s*(.+?)\s*::\s*(.+)$', line)
@@ -56,7 +63,26 @@ def parse_structured_fol(structured_fol: str) -> dict:
                 "inference_rule": inf_rule,
             }
 
-    return {"facts": facts, "rules": rules, "inferences": inferences}
+    return {"facts": facts, "operations": operations, "rules": rules, "inferences": inferences}
+
+
+def parse_arithmetic_report(arithmetic_report: str) -> dict:
+    """Parse arithmetic.py report text into per-operation status dicts.
+
+    Returns {"OP-1": {"status": "CORRECT", "reason": None}, ...}
+    """
+    results: dict = {}
+    for raw_line in arithmetic_report.splitlines():
+        m = re.match(
+            r'^(OP-\d+):\s*(CORRECT|INCORRECT|MALFORMED|UNKNOWN)(?:\s*[—–\-]+\s*(.+))?$',
+            raw_line.strip(),
+        )
+        if m:
+            results[m.group(1)] = {
+                "status": m.group(2),
+                "reason": m.group(3).strip() if m.group(3) else None,
+            }
+    return results
 
 
 def parse_verify_report(verify_report: str) -> dict:
@@ -117,18 +143,20 @@ def build_derivation_tree(
     structured_fol: str,
     verify_report: str,
     tptp_report: str,
+    arithmetic_report: str = "",
 ) -> dict:
     """Build a parsable derivation tree annotated with verification errors.
 
     Schema:
-        nodes       — dict keyed by label (FACT-N, RULE-N, INF-N) with full annotation
+        nodes       — dict keyed by label (FACT-N, OP-N, RULE-N, INF-N) with full annotation
         root        — label of the final inference (the conclusion)
         errors      — list of {node, stage, message} for every detected error
-        error_stages — sorted list of stages that fired ("verify", "tptp")
+        error_stages — sorted list of stages that fired ("arithmetic", "tptp", "verify")
     """
     parsed = parse_structured_fol(structured_fol)
     verify_statuses = parse_verify_report(verify_report)
     tptp_statuses = parse_tptp_report(tptp_report)
+    arith_statuses = parse_arithmetic_report(arithmetic_report)
 
     nodes: dict = {}
     errors: list = []
@@ -148,6 +176,22 @@ def build_derivation_tree(
         }
         if has_error:
             errors.append({"node": label, "stage": "verify", "message": reason or "unsupported fact"})
+
+    for label, data in parsed["operations"].items():
+        a = arith_statuses.get(label, {})
+        status = a.get("status", "NOT_CHECKED")
+        reason = a.get("reason")
+        has_error = status in ("INCORRECT", "MALFORMED", "UNKNOWN")
+        nodes[label] = {
+            "type": "operation",
+            "gloss": data["gloss"],
+            "formula": data["formula"],
+            "arithmetic_status": status,
+            "arithmetic_reason": reason,
+            "error": has_error,
+        }
+        if has_error:
+            errors.append({"node": label, "stage": "arithmetic", "message": reason or status.lower()})
 
     for label, data in parsed["rules"].items():
         v = verify_statuses.get(label, {})

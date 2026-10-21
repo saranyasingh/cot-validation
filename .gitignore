@@ -8,3 +8,5 @@ slurm_logs/
 .venv/
 __pycache__/
 *.pyc
+tools/
+scratch_retest.py

@@ -35,7 +35,10 @@ import sys
 from datetime import datetime
 
 from main_pipeline.main import run_plain, run_pipeline, extract_answer
-from main_pipeline.clients import make_client, OpenAILLMClient
+from main_pipeline.clients import (
+    make_client, OpenAILLMClient,
+    start_cost_log, set_cost_context, call_log_mark, summarize_costs, print_cost_summary,
+)
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -91,6 +94,9 @@ def run_benchmark(
     if verifier_client is None:
         verifier_client = OpenAILLMClient()
 
+    run_mark = call_log_mark()
+    start_cost_log(os.path.join(output_dir, "api_calls.jsonl"))
+
     print(f"=== Benchmark: {dataset.get('name', dataset_path)} ===")
     print(f"Items: {total} | Max retries: {max_retries}")
     print(f"Outputs: {output_dir}\n")
@@ -106,7 +112,10 @@ def run_benchmark(
 
         # ── Plain prompt ───────────────────────────────────────────────────────
         print(f"\n[{item_id}] Running plain prompt...")
+        set_cost_context(item_id=item_id, stage="plain")
+        plain_mark = call_log_mark()
         plain_result = run_plain(question, output_dir=item_dir, reasoning_client=reasoning_client)
+        plain_cost = summarize_costs(plain_mark)
         plain_answer = plain_result["answer"]
         plain_ok = answers_match(plain_answer, expected)
         if plain_ok:
@@ -114,10 +123,13 @@ def run_benchmark(
 
         # ── Full pipeline ──────────────────────────────────────────────────────
         print(f"[{item_id}] Running pipeline...")
+        set_cost_context(item_id=item_id, stage="pipeline")
+        pipeline_mark = call_log_mark()
         pipeline_result = run_pipeline(
             question, max_retries=max_retries, output_dir=item_dir,
             reasoning_client=reasoning_client, verifier_client=verifier_client,
         )
+        pipeline_cost = summarize_costs(pipeline_mark)
         pipeline_answer = pipeline_result["answer"]
         cot_answer = extract_answer(pipeline_result["cot_text"])
         pipeline_ok = answers_match(pipeline_answer, expected)
@@ -143,6 +155,7 @@ def run_benchmark(
             "plain": {
                 "answer": plain_answer,
                 "correct": plain_ok,
+                "cost": plain_cost,
             },
             "cot_answer": cot_answer,
             "pipeline": {
@@ -151,6 +164,7 @@ def run_benchmark(
                 "attempts": pipeline_result["attempts"],
                 "passed_verify": pipeline_result["passed_verify"],
                 "passed_tptp": pipeline_result["passed_tptp"],
+                "cost": pipeline_cost,
             },
         }
         results.append(result)
@@ -161,6 +175,11 @@ def run_benchmark(
             f"\n{item_id:<12} {expected:<12} {plain_answer:<12} {pipeline_answer:<12} "
             f"{plain_marker:<10} {pipeline_marker}"
         )
+
+    set_cost_context()
+    run_cost = summarize_costs(run_mark)
+    plain_total = round(sum(r["plain"]["cost"]["total_cost_usd"] for r in results), 6)
+    pipeline_total = round(sum(r["pipeline"]["cost"]["total_cost_usd"] for r in results), 6)
 
     # ── Aggregate summary ──────────────────────────────────────────────────────
     plain_acc = plain_correct / total if total else 0
@@ -177,9 +196,12 @@ def run_benchmark(
         "dataset": dataset.get("name", dataset_path),
         "run_id": os.path.basename(output_dir),
         "total": total,
+        "reasoning_model": reasoning_client.model,
+        "verifier_model": verifier_client.model,
         "plain": {
             "correct": plain_correct,
             "accuracy": round(plain_acc, 4),
+            "cost_usd": plain_total,
         },
         "pipeline": {
             "correct": pipeline_correct,
@@ -191,6 +213,7 @@ def run_benchmark(
             "needed_retry": pipeline_needed_retry,
             "retry_rate": round(retry_rate, 4),
             "avg_attempts": round(avg_attempts, 2),
+            "cost_usd": pipeline_total,
         },
         "error_analysis": {
             "plain_errors": plain_errors,
@@ -199,6 +222,7 @@ def run_benchmark(
             "regressions": plain_right_pipeline_wrong,
             "regression_rate": round(regression_rate, 4),
         },
+        "cost": run_cost,
     }
 
     delta = pipeline_acc - plain_acc
@@ -236,6 +260,10 @@ def run_benchmark(
     print(f"  Passed TPTP         : {pipeline_passed_tptp}/{total} ({tptp_rate:.1%})")
     print(f"  Needed retry        : {pipeline_needed_retry}/{total} ({retry_rate:.1%})")
     print(f"  Avg attempts/item   : {avg_attempts:.2f}")
+    print()
+    print(f"  Plain cost          : ${plain_total:.4f}")
+    print(f"  Pipeline cost       : ${pipeline_total:.4f}")
+    print_cost_summary(run_cost)
     print("=" * 72)
 
     # ── Write output files ─────────────────────────────────────────────────────

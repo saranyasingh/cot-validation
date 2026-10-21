@@ -41,33 +41,63 @@ The goal is to produce a TPTP file that exactly captures the entire reasoning pr
 - Predicates: lowercase snake_case (in_room, holding, found_dead, murder_location)
 - Time constants stay as-is: t_21, t_murder, t_seen, etc.
 
+=== NUMBERS (IMPORTANT) ===
+NEVER write a bare number such as 4, 204, or 1.2 anywhere in a formula. Provers read bare numbers as typed
+integers, which clash with the untyped variables in the rules ("Type mismatch ... expected $int but got $i")
+and stop the prover from running at all. Write every number as a constant with the prefix n_:
+- integers: 4 → n_4, 204 → n_204
+- decimals: replace the point with an underscore: 1.2 → n_1_2, 0.25 → n_0_25
+- negatives: -5 → n_neg_5
+- drop units, $, %, and thousands separators first: $1,500 → n_1500
+Use exactly the same constant for the same number everywhere in the file.
+
+=== OTHER COMMON ERRORS TO AVOID ===
+- Use only fof(...). Do NOT use tff, thf, or arithmetic symbols ($sum, $product, $int, <, >, +, -, *, /),
+  and do not invent arithmetic functions such as minus(N, M) or multiply(N, M).
+  Arithmetic is expressed only through the predicates sum, difference, product, quotient.
+- If a rule computes a value inline, rewrite the computation as an extra condition using those predicates, so
+  that the matching op_N axiom can satisfy it:
+  "∀x (Downloads(m1, x) → Downloads(m2, 3*x))"
+    → fof(rule_1, axiom, ! [X,Y] : ((downloads(m1, X) & product(n_3, X, Y)) => downloads(m2, Y))).
+- Every variable must be bound by a quantifier; every quantifier lists its variables in brackets: ! [X,Y] : (...)
+- Each predicate must be used with the same number of arguments everywhere.
+- Constants and predicates must start with a lowercase letter and contain only letters, digits, and underscores.
+- Every statement ends with ")." and parentheses must balance.
+
 === MAPPING ===
 - Each FACT-N line becomes: fof(fact_N, axiom, <ground formula>).
+- Each OP-N line becomes:   fof(op_N, axiom, <ground formula>). (e.g. Product(3, 68, 204) → product(n_3, n_68, n_204))
 - Each RULE-N line becomes: fof(rule_N, axiom, <quantified formula>).
 - Each INF-N line becomes:  fof(inf_N, axiom, <derived formula>).
-  Preceded by a TPTP comment citing premises: % From fact_N, rule_N by <inference rule>
+  Preceded by a TPTP comment citing premises: % From fact_N, op_N, rule_N by <inference rule>
 
 === OUTPUT FORMAT ===
-- Section headers as TPTP comments: % --- FACTS ---, % --- RULES ---, % --- INFERENCES ---
+- Section headers as TPTP comments: % --- FACTS ---, % --- OPERATIONS ---, % --- RULES ---, % --- INFERENCES ---
 - One fof(...) statement per line, ending with a period.
 - Output ONLY TPTP comments (% ...) and fof() statements. No other text.
 
 === EXAMPLE ===
 Input:
-FACT-1: It was raining at noon :: Raining(t_12)
-RULE-1: If it rains, ground is wet :: ∀t (Raining(t) → GroundWet(t))
-INF-1: From FACT-1, RULE-1 by Modus Ponens: Ground was wet :: GroundWet(t_12)
+FACT-1: Sam buys 3 boxes of pencils :: Boxes(sam, 3)
+FACT-2: Each box holds 12 pencils :: PerBox(sam, 12)
+OP-1: 3 times 12 is 36 :: Product(3, 12, 36)
+RULE-1: If x bought n boxes of m pencils and n × m = p, x has p pencils :: ∀x∀n∀m∀p (Boxes(x,n) ∧ PerBox(x,m) ∧ Product(n,m,p) → Has(x,p))
+INF-1: Sam has 36 pencils, from FACT-1, FACT-2, OP-1, and RULE-1 by Modus Ponens :: Has(sam, 36)
 
 Output:
 % --- FACTS ---
-fof(fact_1, axiom, raining(t_12)).
+fof(fact_1, axiom, boxes(sam, n_3)).
+fof(fact_2, axiom, per_box(sam, n_12)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_12, n_36)).
 
 % --- RULES ---
-fof(rule_1, axiom, ! [T] : (raining(T) => ground_wet(T))).
+fof(rule_1, axiom, ! [X,N,M,P] : ((boxes(X, N) & per_box(X, M) & product(N, M, P)) => has(X, P))).
 
 % --- INFERENCES ---
-% From fact_1, rule_1 by Modus Ponens
-fof(inf_1, axiom, ground_wet(t_12)).
+% From fact_1, fact_2, op_1, rule_1 by Modus Ponens
+fof(inf_1, axiom, has(sam, n_36)).
 
 === CONVERT NOW ===
 '''
@@ -111,13 +141,29 @@ def parse_tptp(tptp_text):
     return axioms, inferences
 
 
+def _number_constant(m: re.Match) -> str:
+    token = m.group(0)
+    sign = "neg_" if token.startswith("-") else ""
+    return f"n_{sign}{token.lstrip('-').replace('.', '_')}"
+
+
+def normalize_numbers(tptp_text: str) -> str:
+    """Rewrite any bare numbers left in fof() lines as n_ constants (see NUMBERS in the prompt)."""
+    out = []
+    for line in tptp_text.splitlines():
+        if line.strip().startswith("fof("):
+            line = re.sub(r'(?<![\w.])-?\d+(?:\.\d+)?(?![\w.])', _number_constant, line)
+        out.append(line)
+    return "\n".join(out)
+
+
 def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]:
     """
     Convert structured FOL to TPTP and optionally run prover validation.
     Returns (tptp_text, has_errors, error_report).
     """
     llm = client if client is not None else _get_default_client()
-    tptp_output = llm.complete(TPTP_TEMPLATE.format(structured_fol=structured_fol))
+    tptp_output = normalize_numbers(llm.complete(TPTP_TEMPLATE.format(structured_fol=structured_fol)))
 
     tptp_path = os.path.join(SCRIPT_DIR, "output.tptp")
     with open(tptp_path, "w") as f:
