@@ -1,0 +1,184 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each glass initially costs $5",
+      "formula": "Price(glasses, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Every second (even-numbered) glass gets a 60% discount rate applied to its original price",
+      "formula": "DiscountRate(even_glasses, 0.6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Kylar is buying 16 glasses",
+      "formula": "Count(glasses, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "There are 8 odd-numbered glasses among the 16",
+      "formula": "Count(odd_glasses, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "There are 8 even-numbered glasses among the 16",
+      "formula": "Count(even_glasses, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 \u00d7 0.6 = 3 (discounted price of an even-numbered glass)",
+      "formula": "Product(5, 0.6, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "8 \u00d7 5 = 40 (cost for odd-numbered glasses)",
+      "formula": "Product(8, 5, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "8 \u00d7 3 = 24 (cost for even-numbered glasses)",
+      "formula": "Product(8, 3, 24)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "40 + 24 = 64 (total cost)",
+      "formula": "Sum(40, 24, 64)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the base price of a glass is p, then odd-numbered glasses retain the full price p",
+      "formula": "\u2200p (Price(glasses,p) \u2192 Price(odd_glasses,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the base price of a glass is p, the discount rate for even glasses is r, and p \u00d7 r = q, then the price of an even-numbered glass is q",
+      "formula": "\u2200p\u2200r\u2200q (Price(glasses,p) \u2227 DiscountRate(even_glasses,r) \u2227 Product(p,r,q) \u2192 Price(even_glasses,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If category x has n items each priced at p, and n \u00d7 p = c, then the total cost for category x is c",
+      "formula": "\u2200x\u2200n\u2200p\u2200c (Count(x,n) \u2227 Price(x,p) \u2227 Product(n,p,c) \u2192 CostFor(x,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the cost for odd-numbered glasses is c1 and the cost for even-numbered glasses is c2, and c1 + c2 = c, then the total cost for Kylar is c",
+      "formula": "\u2200c1\u2200c2\u2200c (CostFor(odd_glasses,c1) \u2227 CostFor(even_glasses,c2) \u2227 Sum(c1,c2,c) \u2192 CostFor(kylar,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The price of an odd-numbered glass is $5, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Price(odd_glasses, 5)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The price of an even-numbered glass is $3, from FACT-1, FACT-2, OP-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Price(even_glasses, 3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total cost for odd-numbered glasses is $40, from FACT-4, INF-1, OP-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "CostFor(odd_glasses, 40)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "OP-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total cost for even-numbered glasses is $24, from FACT-5, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "CostFor(even_glasses, 24)",
+      "premises": [
+        "FACT-5",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The total cost for Kylar is $64, from INF-3, INF-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "CostFor(kylar, 64)",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

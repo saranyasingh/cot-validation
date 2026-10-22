@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+InitialPrice(x, n) — x has an initial price of n dollars
+GrowthRate(x, n) — x has a growth rate of n
+FutureValue(x, n) — x has a future value of n dollars
+GreaterThan(n, m) — number n is greater than number m
+Chooses(x) — the merchant should choose x to maximize profit
+
+Constants:
+jewelry, electronics, 5000, 0.025, 1, 1.025, 5125, 8000, 0.012, 1.012, 8096
+
+## FACTS
+FACT-1: The jewelry purchase plan has an initial price of $5,000 :: InitialPrice(jewelry, 5000)
+FACT-2: The jewelry purchase plan has a growth rate of 2.5% :: GrowthRate(jewelry, 0.025)
+FACT-3: The electronics purchase plan has an initial price of $8,000 :: InitialPrice(electronics, 8000)
+FACT-4: The electronics purchase plan has a growth rate of 1.2% :: GrowthRate(electronics, 0.012)
+
+## OPERATIONS
+OP-1: 1 + 0.025 = 1.025 :: Sum(1, 0.025, 1.025)
+OP-2: 5000 × 1.025 = 5125 :: Product(5000, 1.025, 5125)
+OP-3: 1 + 0.012 = 1.012 :: Sum(1, 0.012, 1.012)
+OP-4: 8000 × 1.012 = 8096 :: Product(8000, 1.012, 8096)
+
+## RULES
+RULE-1: For any x with initial price n and growth rate g, if 1 + g = f and n × f = v, then x has future value v :: ∀x∀n∀g∀f∀v (InitialPrice(x,n) ∧ GrowthRate(x,g) ∧ Sum(1,g,f) ∧ Product(n,f,v) → FutureValue(x,v))
+RULE-2: For any two plans x and y, if x's future value is greater than y's future value, then the merchant should choose x to maximize profit :: ∀x∀y∀n∀m (FutureValue(x,n) ∧ FutureValue(y,m) ∧ GreaterThan(n,m) → Chooses(x))
+
+## INFERENCES
+INF-1: The jewelry plan has a future value of $5,125, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: FutureValue(jewelry, 5125)
+INF-2: The electronics plan has a future value of $8,096, from FACT-3, FACT-4, OP-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens :: FutureValue(electronics, 8096)
+INF-3: 8096 is greater than 5125 :: GreaterThan(8096, 5125)
+INF-4: The merchant should choose the electronics plan to maximize profit, from INF-2, INF-1, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Chooses(electronics)

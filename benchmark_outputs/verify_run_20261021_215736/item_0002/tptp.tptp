@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, blue_fiber(robe, n_2)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_2, n_2, n_1)).
+fof(op_2, axiom, sum(n_2, n_1, n_3)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,H] : ((blue_fiber(X, N) & quotient(N, n_2, H)) => white_fiber(X, H))).
+fof(rule_2, axiom, ! [X,B,W,T] : ((blue_fiber(X, B) & white_fiber(X, W) & sum(B, W, T)) => total_fiber(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, white_fiber(robe, n_1)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_fiber(robe, n_3)).

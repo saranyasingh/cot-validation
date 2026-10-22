@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Rate(x, r, n) — x's hourly pay rate for role r is n dollars
+HoursWeek(x, r, n) — x works n hours per week in role r
+WeeksYear(x, r, n) — x works n weeks per year in role r
+Earnings(x, r, n) — x earns n dollars per year from role r
+TotalSalary(x, n) — x's total annual salary (across all roles) is n dollars
+
+Constants:
+jill, teacher, cheerleader, 20, 35, 50, 7000, 30, 15, 22500, 29500
+
+## FACTS
+FACT-1: Jill's hourly rate as a teacher is $20 :: Rate(jill, teacher, 20)
+FACT-2: Jill works 35 hours per week as a teacher :: HoursWeek(jill, teacher, 35)
+FACT-3: Jill works 50 weeks per year as a teacher :: WeeksYear(jill, teacher, 50)
+FACT-4: Jill's hourly rate as a cheerleader is $30 :: Rate(jill, cheerleader, 30)
+FACT-5: Jill works 15 hours per week as a cheerleader :: HoursWeek(jill, cheerleader, 15)
+FACT-6: Jill works 50 weeks per year as a cheerleader :: WeeksYear(jill, cheerleader, 50)
+
+## OPERATIONS
+OP-1: $20/hour × 35 hours/week × 50 weeks/year = $7,000/year :: Product(20, 35, 50, 7000)
+OP-2: $30/hour × 15 hours/week × 50 weeks/year = $22,500/year :: Product(30, 15, 50, 22500)
+OP-3: $7,000 + $22,500 = $29,500 :: Sum(7000, 22500, 29500)
+
+## RULES
+RULE-1: If x's hourly rate for role r is n, x works h hours per week in role r, x works w weeks per year in role r, and n × h × w = p, then x earns p dollars per year from role r :: ∀x∀r∀n∀h∀w∀p (Rate(x,r,n) ∧ HoursWeek(x,r,h) ∧ WeeksYear(x,r,w) ∧ Product(n,h,w,p) → Earnings(x,r,p))
+RULE-2: If x earns n from being a teacher, x earns m from being a cheerleader, and n + m = p, then x's total annual salary is p :: ∀x∀n∀m∀p (Earnings(x,teacher,n) ∧ Earnings(x,cheerleader,m) ∧ Sum(n,m,p) → TotalSalary(x,p))
+
+## INFERENCES
+INF-1: Jill earns $7,000 per year as a teacher, from FACT-1, FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Earnings(jill, teacher, 7000)
+INF-2: Jill earns $22,500 per year as a cheerleader, from FACT-4, FACT-5, FACT-6, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Earnings(jill, cheerleader, 22500)
+INF-3: Jill's total annual salary is $29,500, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalSalary(jill, 29500)

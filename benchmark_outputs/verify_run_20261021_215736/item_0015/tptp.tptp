@@ -1,0 +1,34 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_students(n_20)).
+fof(fact_2, axiom, rate(contemporary, n_0_2)).
+fof(fact_3, axiom, rate(jazz, n_0_25)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_2, n_20, n_4)).
+fof(op_2, axiom, difference(n_20, n_4, n_16)).
+fof(op_3, axiom, product(n_0_25, n_16, n_4)).
+fof(op_4, axiom, difference(n_16, n_4, n_12)).
+fof(op_5, axiom, quotient(n_12, n_20, n_0_6)).
+fof(op_6, axiom, product(n_0_6, n_100, n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,R,N,M] : ((rate(X, R) & total_students(N) & product(R, N, M)) => enrolled(X, M))).
+fof(rule_2, axiom, ! [X,N,M,R] : ((total_students(N) & enrolled(X, M) & difference(N, M, R)) => remaining_after(X, R))).
+fof(rule_3, axiom, ! [X,Y,R,N,M] : ((rate(Y, R) & remaining_after(X, N) & product(R, N, M)) => enrolled(Y, M))).
+fof(rule_4, axiom, ! [X,Y,N,M,R] : ((remaining_after(X, N) & enrolled(Y, M) & difference(N, M, R)) => remaining_after(contemporary_and_jazz, R))).
+fof(rule_5, axiom, ! [N] : (remaining_after(contemporary_and_jazz, N) => enrolled(hiphop, N))).
+fof(rule_6, axiom, ! [X,M,N,Q,P] : ((enrolled(X, M) & total_students(N) & quotient(M, N, Q) & product(Q, n_100, P)) => percentage(X, P))).
+
+% --- INFERENCES ---
+% From fact_2, fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, enrolled(contemporary, n_4)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, remaining_after(contemporary, n_16)).
+% From fact_3, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, enrolled(jazz, n_4)).
+% From inf_2, inf_3, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, remaining_after(contemporary_and_jazz, n_12)).
+% From inf_4, rule_5 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, enrolled(hiphop, n_12)).
+% From inf_5, fact_1, op_5, op_6, rule_6 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, percentage(hiphop, n_60)).

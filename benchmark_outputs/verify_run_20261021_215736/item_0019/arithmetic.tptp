@@ -1,0 +1,6 @@
+% OP-1: Product(3, 7, 21)
+tff(op_1, conjecture, $product(3/1, 7/1) = 21/1).
+% OP-2: Product(21, 4, 84)
+tff(op_2, conjecture, $product(21/1, 4/1) = 84/1).
+% OP-3: Quotient(84, 12, 7)
+tff(op_3, conjecture, $quotient(84/1, 12/1) = 7/1).

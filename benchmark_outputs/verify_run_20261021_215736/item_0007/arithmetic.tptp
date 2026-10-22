@@ -1,0 +1,6 @@
+% OP-1: Product(20, 4, 80)
+tff(op_1, conjecture, $product(20/1, 4/1) = 80/1).
+% OP-2: Product(80, 2, 160)
+tff(op_2, conjecture, $product(80/1, 2/1) = 160/1).
+% OP-3: Sum(20, 80, 160, 260)
+tff(op_3, conjecture, $sum($sum(20/1, 80/1), 160/1) = 260/1).

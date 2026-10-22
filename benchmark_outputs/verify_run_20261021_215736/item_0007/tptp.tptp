@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, sheep(seattle, n_20)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_20, n_4, n_80)).
+fof(op_2, axiom, product(n_80, n_2, n_160)).
+fof(op_3, axiom, sum(n_20, n_80, n_160, n_260)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,M] : ((sheep(seattle, N) & product(N, n_4, M)) => sheep(charleston, M))).
+fof(rule_2, axiom, ! [N,M] : ((sheep(charleston, N) & product(N, n_2, M)) => sheep(toulouse, M))).
+fof(rule_3, axiom, ! [A,B,C,T] : ((sheep(seattle, A) & sheep(charleston, B) & sheep(toulouse, C) & sum(A, B, C, T)) => total(T))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, sheep(charleston, n_80)).
+% From inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, sheep(toulouse, n_160)).
+% From fact_1, inf_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(n_260)).

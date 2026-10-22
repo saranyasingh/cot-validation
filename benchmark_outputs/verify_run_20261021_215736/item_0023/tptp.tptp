@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, customers(billy, first_group, n_3)).
+fof(fact_2, axiom, per_customer(billy, first_group, n_1)).
+fof(fact_3, axiom, customers(billy, second_group, n_2)).
+fof(fact_4, axiom, per_customer(billy, second_group, n_2)).
+fof(fact_5, axiom, customers(billy, third_group, n_3)).
+fof(fact_6, axiom, per_customer(billy, third_group, n_0)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_1, n_3)).
+fof(op_2, axiom, product(n_2, n_2, n_4)).
+fof(op_3, axiom, product(n_3, n_0, n_0)).
+fof(op_4, axiom, sum(n_3, n_4, n_0, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,G,N,M,P] : ((customers(X, G, N) & per_customer(X, G, M) & product(N, M, P)) => sold_in_group(X, G, P))).
+fof(rule_2, axiom, ! [X,G1,G2,G3,N1,N2,N3,T] : ((sold_in_group(X, G1, N1) & sold_in_group(X, G2, N2) & sold_in_group(X, G3, N3) & sum(N1, N2, N3, T)) => total_sold(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, sold_in_group(billy, first_group, n_3)).
+% From fact_3, fact_4, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, sold_in_group(billy, second_group, n_4)).
+% From fact_5, fact_6, op_3, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, sold_in_group(billy, third_group, n_0)).
+% From inf_1, inf_2, inf_3, op_4, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total_sold(billy, n_7)).

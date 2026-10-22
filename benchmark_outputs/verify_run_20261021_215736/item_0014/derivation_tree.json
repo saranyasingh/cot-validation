@@ -1,0 +1,114 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Melanie sold 2 vacuum cleaners at the red house",
+      "formula": "SoldAtRed(melanie, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "After selling at the orange house, Melanie has 5 vacuum cleaners left",
+      "formula": "AfterOrange(melanie, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Multiply both sides by 2: 2 \u00d7 5 = 10",
+      "formula": "Product(2, 5, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "Add 2 to both sides: 10 + 2 = 12",
+      "formula": "Sum(10, 2, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "Multiply by the reciprocal 3/2: 12 \u00d7 1.5 = 18",
+      "formula": "Product(12, 1.5, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If p has r vacuum cleaners left after the orange house (having sold half there), and 2 \u00d7 r = n, then p had n vacuum cleaners before the orange house (i.e., after the red house)",
+      "formula": "\u2200p\u2200n\u2200r (AfterOrange(p,r) \u2227 Product(2,r,n) \u2192 AfterRed(p,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If p has n vacuum cleaners left after the red house, sold s there, and n + s = r, then p had r vacuum cleaners before the red house (i.e., after the green house)",
+      "formula": "\u2200p\u2200n\u2200s\u2200r (AfterRed(p,n) \u2227 SoldAtRed(p,s) \u2227 Sum(n,s,r) \u2192 AfterGreen(p,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If p has n vacuum cleaners left after the green house (having sold a third there, leaving two-thirds of the start), and n \u00d7 1.5 = r, then p started with r vacuum cleaners",
+      "formula": "\u2200p\u2200n\u2200r (AfterGreen(p,n) \u2227 Product(n,1.5,r) \u2192 StartedWith(p,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Melanie had 10 vacuum cleaners after selling at the red house, from FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "AfterRed(melanie, 10)",
+      "premises": [
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Melanie had 12 vacuum cleaners after selling at the green house, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "AfterGreen(melanie, 12)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Melanie started with 18 vacuum cleaners, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "StartedWith(melanie, 18)",
+      "premises": [
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

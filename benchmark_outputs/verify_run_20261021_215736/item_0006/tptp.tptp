@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, price(glasses, n_5)).
+fof(fact_2, axiom, discount_rate(even_glasses, n_0_6)).
+fof(fact_3, axiom, count(glasses, n_16)).
+fof(fact_4, axiom, count(odd_glasses, n_8)).
+fof(fact_5, axiom, count(even_glasses, n_8)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5, n_0_6, n_3)).
+fof(op_2, axiom, product(n_8, n_5, n_40)).
+fof(op_3, axiom, product(n_8, n_3, n_24)).
+fof(op_4, axiom, sum(n_40, n_24, n_64)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P] : (price(glasses, P) => price(odd_glasses, P))).
+fof(rule_2, axiom, ! [P,R,Q] : ((price(glasses, P) & discount_rate(even_glasses, R) & product(P, R, Q)) => price(even_glasses, Q))).
+fof(rule_3, axiom, ! [X,N,P,C] : ((count(X, N) & price(X, P) & product(N, P, C)) => cost_for(X, C))).
+fof(rule_4, axiom, ! [C1,C2,C] : ((cost_for(odd_glasses, C1) & cost_for(even_glasses, C2) & sum(C1, C2, C)) => cost_for(kylar, C))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, price(odd_glasses, n_5)).
+% From fact_1, fact_2, op_1, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, price(even_glasses, n_3)).
+% From fact_4, inf_1, op_2, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, cost_for(odd_glasses, n_40)).
+% From fact_5, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, cost_for(even_glasses, n_24)).
+% From inf_3, inf_4, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, cost_for(kylar, n_64)).

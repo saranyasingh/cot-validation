@@ -1,0 +1,216 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total number of students is 20",
+      "formula": "TotalStudents(20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "20% of students enrolled in contemporary dance (rate)",
+      "formula": "Rate(contemporary, 0.2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "25% of the remaining students enrolled in jazz dance (rate)",
+      "formula": "Rate(jazz, 0.25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "0.2 \u00d7 20 = 4",
+      "formula": "Product(0.2, 20, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "20 \u2212 4 = 16",
+      "formula": "Difference(20, 4, 16)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "0.25 \u00d7 16 = 4",
+      "formula": "Product(0.25, 16, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "16 \u2212 4 = 12",
+      "formula": "Difference(16, 4, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "12 \u00f7 20 = 0.6",
+      "formula": "Quotient(12, 20, 0.6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "0.6 \u00d7 100 = 60",
+      "formula": "Product(0.6, 100, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the rate r of dance style x applies to a total of n students and r \u00d7 n = m, then m students enrolled in x",
+      "formula": "\u2200x\u2200r\u2200n\u2200m (Rate(x,r) \u2227 TotalStudents(n) \u2227 Product(r,n,m) \u2192 Enrolled(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If there are n total students and m enrolled in x, and n \u2212 m = r, then r students remain after x",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (TotalStudents(n) \u2227 Enrolled(x,m) \u2227 Difference(n,m,r) \u2192 RemainingAfter(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the rate r of dance style y applies to n students remaining after x, and r \u00d7 n = m, then m students enrolled in y",
+      "formula": "\u2200x\u2200y\u2200r\u2200n\u2200m (Rate(y,r) \u2227 RemainingAfter(x,n) \u2227 Product(r,n,m) \u2192 Enrolled(y,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If n students remain after x, and m students enrolled in y, and n \u2212 m = r, then r students remain after the combination of x and y",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (RemainingAfter(x,n) \u2227 Enrolled(y,m) \u2227 Difference(n,m,r) \u2192 RemainingAfter(contemporary_and_jazz,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If n students remain after contemporary and jazz dance, then all of those n students enrolled in hip-hop dance",
+      "formula": "\u2200n (RemainingAfter(contemporary_and_jazz,n) \u2192 Enrolled(hiphop,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If m students enrolled in x out of n total students, m \u00f7 n = q, and q \u00d7 100 = p, then the percentage of students enrolled in x is p",
+      "formula": "\u2200x\u2200m\u2200n\u2200q\u2200p (Enrolled(x,m) \u2227 TotalStudents(n) \u2227 Quotient(m,n,q) \u2227 Product(q,100,p) \u2192 Percentage(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "4 students enrolled in contemporary dance, from FACT-2, FACT-1, OP-1, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Enrolled(contemporary, 4)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "16 students remain after contemporary dance, from FACT-1, INF-1, OP-2, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingAfter(contemporary, 16)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "4 students enrolled in jazz dance, from FACT-3, INF-2, OP-3, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Enrolled(jazz, 4)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "12 students remain after contemporary and jazz dance, from INF-2, INF-3, OP-4, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingAfter(contemporary_and_jazz, 12)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "12 students enrolled in hip-hop dance, from INF-4, RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Enrolled(hiphop, 12)",
+      "premises": [
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "The percentage of students enrolled in hip-hop dance is 60, from INF-5, FACT-1, OP-5, OP-6, RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "Percentage(hiphop, 60)",
+      "premises": [
+        "INF-5",
+        "FACT-1",
+        "OP-5",
+        "OP-6",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [],
+  "error_stages": []
+}

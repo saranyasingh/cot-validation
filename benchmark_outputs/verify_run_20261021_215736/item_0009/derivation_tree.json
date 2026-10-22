@@ -1,0 +1,217 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John's first segment has speed 60 mph",
+      "formula": "Speed(seg1, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "John's first segment lasts 3 hours",
+      "formula": "Time(seg1, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "John's second segment has speed 0 mph",
+      "formula": "Speed(seg2, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "John's second segment lasts 2 hours",
+      "formula": "Time(seg2, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "John's third segment has speed 30 mph",
+      "formula": "Speed(seg3, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "John's third segment lasts 0.5 hours",
+      "formula": "Time(seg3, 0.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "John's fourth segment has speed 80 mph",
+      "formula": "Speed(seg4, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "John's fourth segment lasts 2 hours",
+      "formula": "Time(seg4, 2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The fourth segment's duration should be the remaining time after the 2-hour standstill and 0.5-hour segment within the 4-hour window (4 \u2212 2 \u2212 0.5 = 1.5 hours), not 2 hours.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "60 mph times 3 hours is 180 miles",
+      "formula": "Product(60, 3, 180)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "0 mph times 2 hours is 0 miles",
+      "formula": "Product(0, 2, 0)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "30 mph times 0.5 hours is 15 miles",
+      "formula": "Product(30, 0.5, 15)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "80 mph times 2 hours is 160 miles",
+      "formula": "Product(80, 2, 160)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "180 + 0 + 15 + 160 = 355",
+      "formula": "Sum(180, 0, 15, 160, 355)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a segment has speed s and time t and s \u00d7 t = d, then the segment's distance is d",
+      "formula": "\u2200x\u2200s\u2200t\u2200d (Speed(x,s) \u2227 Time(x,t) \u2227 Product(s,t,d) \u2192 SegmentDistance(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If four segments have distances d1, d2, d3, d4 summing to d, then the person's total distance from home is d",
+      "formula": "\u2200w\u2200x\u2200y\u2200z\u2200d1\u2200d2\u2200d3\u2200d4\u2200d (SegmentDistance(w,d1) \u2227 SegmentDistance(x,d2) \u2227 SegmentDistance(y,d3) \u2227 SegmentDistance(z,d4) \u2227 Sum(d1,d2,d3,d4,d) \u2192 TotalDistance(john,d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Segments 2\u20134 are return trips toward home, so their distances should be subtracted from the outbound distance (segment 1), not simply summed; summing all four as the total distance from home ignores direction.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "John's first segment covers 180 miles, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SegmentDistance(seg1, 180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "John's second segment covers 0 miles, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SegmentDistance(seg2, 0)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "John's third segment covers 15 miles, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SegmentDistance(seg3, 15)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "John's fourth segment covers 160 miles, from FACT-7, FACT-8, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SegmentDistance(seg4, 160)",
+      "premises": [
+        "FACT-7",
+        "FACT-8",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "John is 355 miles from home, from INF-1, INF-2, INF-3, INF-4, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(john, 355)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "INF-4",
+        "OP-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "The fourth segment's duration should be the remaining time after the 2-hour standstill and 0.5-hour segment within the 4-hour window (4 \u2212 2 \u2212 0.5 = 1.5 hours), not 2 hours."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Segments 2\u20134 are return trips toward home, so their distances should be subtracted from the outbound distance (segment 1), not simply summed; summing all four as the total distance from home ignores direction."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

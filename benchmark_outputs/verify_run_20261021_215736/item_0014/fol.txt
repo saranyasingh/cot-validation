@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+StartedWith(p, n) — p started with n vacuum cleaners
+AfterGreen(p, n) — p has n vacuum cleaners left after selling at the green house
+AfterRed(p, n) — p has n vacuum cleaners left after selling at the red house
+AfterOrange(p, n) — p has n vacuum cleaners left after selling at the orange house
+SoldAtRed(p, n) — p sold n vacuum cleaners at the red house
+
+Constants:
+melanie, 2, 5, 10, 12, 18, 1.5
+
+## FACTS
+FACT-1: Melanie sold 2 vacuum cleaners at the red house :: SoldAtRed(melanie, 2)
+FACT-2: After selling at the orange house, Melanie has 5 vacuum cleaners left :: AfterOrange(melanie, 5)
+
+## OPERATIONS
+OP-1: Multiply both sides by 2: 2 × 5 = 10 :: Product(2, 5, 10)
+OP-2: Add 2 to both sides: 10 + 2 = 12 :: Sum(10, 2, 12)
+OP-3: Multiply by the reciprocal 3/2: 12 × 1.5 = 18 :: Product(12, 1.5, 18)
+
+## RULES
+RULE-1: If p has r vacuum cleaners left after the orange house (having sold half there), and 2 × r = n, then p had n vacuum cleaners before the orange house (i.e., after the red house) :: ∀p∀n∀r (AfterOrange(p,r) ∧ Product(2,r,n) → AfterRed(p,n))
+RULE-2: If p has n vacuum cleaners left after the red house, sold s there, and n + s = r, then p had r vacuum cleaners before the red house (i.e., after the green house) :: ∀p∀n∀s∀r (AfterRed(p,n) ∧ SoldAtRed(p,s) ∧ Sum(n,s,r) → AfterGreen(p,r))
+RULE-3: If p has n vacuum cleaners left after the green house (having sold a third there, leaving two-thirds of the start), and n × 1.5 = r, then p started with r vacuum cleaners :: ∀p∀n∀r (AfterGreen(p,n) ∧ Product(n,1.5,r) → StartedWith(p,r))
+
+## INFERENCES
+INF-1: Melanie had 10 vacuum cleaners after selling at the red house, from FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: AfterRed(melanie, 10)
+INF-2: Melanie had 12 vacuum cleaners after selling at the green house, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: AfterGreen(melanie, 12)
+INF-3: Melanie started with 18 vacuum cleaners, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: StartedWith(melanie, 18)

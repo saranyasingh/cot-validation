@@ -1,0 +1,164 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Billy's first 3 customers form a group of 3",
+      "formula": "Customers(billy, first_group, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each of Billy's first-group customers bought 1 DVD",
+      "formula": "PerCustomer(billy, first_group, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Billy's next 2 customers form a group of 2",
+      "formula": "Customers(billy, second_group, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each of Billy's second-group customers bought 2 DVDs",
+      "formula": "PerCustomer(billy, second_group, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Billy's last 3 customers form a group of 3",
+      "formula": "Customers(billy, third_group, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Each of Billy's third-group customers bought 0 DVDs",
+      "formula": "PerCustomer(billy, third_group, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 customers \u00d7 1 DVD each = 3 DVDs",
+      "formula": "Product(3, 1, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "2 customers \u00d7 2 DVDs each = 4 DVDs",
+      "formula": "Product(2, 2, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "3 customers \u00d7 0 DVDs each = 0 DVDs",
+      "formula": "Product(3, 0, 0)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "3 + 4 + 0 = 7",
+      "formula": "Sum(3, 4, 0, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's group g has n customers each buying m DVDs, and n \u00d7 m = p, then x sold p DVDs in group g",
+      "formula": "\u2200x\u2200g\u2200n\u2200m\u2200p (Customers(x,g,n) \u2227 PerCustomer(x,g,m) \u2227 Product(n,m,p) \u2192 SoldInGroup(x,g,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x sold n1, n2, n3 DVDs in three groups and n1 + n2 + n3 = t, then x sold t DVDs in total",
+      "formula": "\u2200x\u2200g1\u2200g2\u2200g3\u2200n1\u2200n2\u2200n3\u2200t (SoldInGroup(x,g1,n1) \u2227 SoldInGroup(x,g2,n2) \u2227 SoldInGroup(x,g3,n3) \u2227 Sum(n1,n2,n3,t) \u2192 TotalSold(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Billy sold 3 DVDs in the first group, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SoldInGroup(billy, first_group, 3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Billy sold 4 DVDs in the second group, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SoldInGroup(billy, second_group, 4)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Billy sold 0 DVDs in the third group, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SoldInGroup(billy, third_group, 0)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Billy sold 7 DVDs in total, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalSold(billy, 7)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

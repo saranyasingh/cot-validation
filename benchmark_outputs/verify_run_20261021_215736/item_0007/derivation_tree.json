@@ -1,0 +1,107 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Seattle has 20 sheep",
+      "formula": "Sheep(seattle, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "20 times 4 is 80",
+      "formula": "Product(20, 4, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "80 times 2 is 160",
+      "formula": "Product(80, 2, 160)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "20 plus 80 plus 160 is 260",
+      "formula": "Sum(20, 80, 160, 260)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If Seattle has n sheep and Charleston has four times as many, and n \u00d7 4 = m, then Charleston has m sheep",
+      "formula": "\u2200n\u2200m (Sheep(seattle, n) \u2227 Product(n, 4, m) \u2192 Sheep(charleston, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Charleston has n sheep and Toulouse has twice as many, and n \u00d7 2 = m, then Toulouse has m sheep",
+      "formula": "\u2200n\u2200m (Sheep(charleston, n) \u2227 Product(n, 2, m) \u2192 Sheep(toulouse, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Seattle has a sheep, Charleston has b sheep, Toulouse has c sheep, and a + b + c = t, then the total number of sheep is t",
+      "formula": "\u2200a\u2200b\u2200c\u2200t (Sheep(seattle, a) \u2227 Sheep(charleston, b) \u2227 Sheep(toulouse, c) \u2227 Sum(a, b, c, t) \u2192 Total(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Charleston has 80 sheep, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Sheep(charleston, 80)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Toulouse has 160 sheep, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Sheep(toulouse, 160)",
+      "premises": [
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total number of sheep is 260, from FACT-1, INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(260)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

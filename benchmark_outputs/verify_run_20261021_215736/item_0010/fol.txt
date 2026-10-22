@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Hours(x, t, n) — x worked n hours of type t (regular/overtime/total)
+Rate(x, t, n) — x's pay rate for hour-type t is n dollars/hour
+Earnings(x, t, n) — x earns n dollars for hour-type t
+
+Constants:
+eliza, regular, overtime, total, 40, 10, 45, 5, 12, 1.2, 400, 60, 460
+
+## FACTS
+FACT-1: Eliza worked 40 regular hours :: Hours(eliza, regular, 40)
+FACT-2: Eliza's regular rate is $10/hour :: Rate(eliza, regular, 10)
+FACT-3: Eliza worked 45 total hours :: Hours(eliza, total, 45)
+
+## OPERATIONS
+OP-1: 45 − 40 = 5 (overtime hours) :: Difference(45, 40, 5)
+OP-2: 10 × 1.2 = 12 (overtime rate) :: Product(10, 1.2, 12)
+OP-3: 40 × 10 = 400 (earnings for regular hours) :: Product(40, 10, 400)
+OP-4: 5 × 12 = 60 (earnings for overtime hours) :: Product(5, 12, 60)
+OP-5: 400 + 60 = 460 (total earnings) :: Sum(400, 60, 460)
+
+## RULES
+RULE-1: If x worked n total hours and m regular hours and n − m = r, then x worked r overtime hours :: ∀x∀n∀m∀r (Hours(x, total, n) ∧ Hours(x, regular, m) ∧ Difference(n, m, r) → Hours(x, overtime, r))
+RULE-2: If x's regular rate is n and n × 1.2 = r, then x's overtime rate is r :: ∀x∀n∀r (Rate(x, regular, n) ∧ Product(n, 1.2, r) → Rate(x, overtime, r))
+RULE-3: If x worked n hours of type t at rate m and n × m = p, then x earns p dollars for type t :: ∀x∀t∀n∀m∀p (Hours(x, t, n) ∧ Rate(x, t, m) ∧ Product(n, m, p) → Earnings(x, t, p))
+RULE-4: If x earns n for regular hours and m for overtime hours and n + m = s, then x's total earnings are s :: ∀x∀n∀m∀s (Earnings(x, regular, n) ∧ Earnings(x, overtime, m) ∧ Sum(n, m, s) → Earnings(x, total, s))
+
+## INFERENCES
+INF-1: Eliza worked 5 overtime hours, from FACT-3, FACT-1, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: Hours(eliza, overtime, 5)
+INF-2: Eliza's overtime rate is $12/hour, from FACT-2, OP-2, RULE-2 by Universal Instantiation and Modus Ponens :: Rate(eliza, overtime, 12)
+INF-3: Eliza earns $400 for regular hours, from FACT-1, FACT-2, OP-3, RULE-3 by Universal Instantiation and Modus Ponens :: Earnings(eliza, regular, 400)
+INF-4: Eliza earns $60 for overtime hours, from INF-1, INF-2, OP-4, RULE-3 by Universal Instantiation and Modus Ponens :: Earnings(eliza, overtime, 60)
+INF-5: Eliza's total earnings are $460, from INF-3, INF-4, OP-5, RULE-4 by Universal Instantiation and Modus Ponens :: Earnings(eliza, total, 460)

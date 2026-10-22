@@ -1,0 +1,10 @@
+% OP-1: Sum(4, 2, 6)
+tff(op_1, conjecture, $sum(4/1, 2/1) = 6/1).
+% OP-2: Difference(12, 6, 6)
+tff(op_2, conjecture, $difference(12/1, 6/1) = 6/1).
+% OP-3: Quotient(6, 4, 1.5)
+tff(op_3, conjecture, ($lesseq($difference($quotient(6/1, 4/1), 3/2), 1/20) & $lesseq($difference(3/2, $quotient(6/1, 4/1)), 1/20))).
+% OP-4: Quotient(12, 4, 3)
+tff(op_4, conjecture, $quotient(12/1, 4/1) = 3/1).
+% OP-5: Difference(8, 3, 5)
+tff(op_5, conjecture, $difference(8/1, 3/1) = 5/1).

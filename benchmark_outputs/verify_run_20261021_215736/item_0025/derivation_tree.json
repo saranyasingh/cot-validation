@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Kyle paid $19.50 after a discount",
+      "formula": "PaidAfterDiscount(kyle, 19.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The discount was 25%",
+      "formula": "DiscountRate(kyle, 0.25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "100% minus 25% is 75%",
+      "formula": "Difference(1, 0.25, 0.75)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "19.50 divided by 0.75 is 26",
+      "formula": "Quotient(19.50, 0.75, 26)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x paid n after a discount rate d, and 1 \u2212 d = r (the fraction of original price paid), and n \u00f7 r = p, then the original price of x's item is p",
+      "formula": "\u2200x\u2200n\u2200d\u2200r\u2200p (PaidAfterDiscount(x,n) \u2227 DiscountRate(x,d) \u2227 Difference(1,d,r) \u2227 Quotient(n,r,p) \u2192 OriginalPrice(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The original price of Kyle's book was $26, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "OriginalPrice(kyle, 26)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

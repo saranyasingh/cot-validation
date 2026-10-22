@@ -1,0 +1,39 @@
+Explanation:
+Let's break down the problem step-by-step using logical reasoning.
+
+1. **Given Information:**
+   - Raymond and Samantha are cousins.
+   - Raymond was born 6 years before Samantha.
+   - Raymond has a son who was born when he was 23 years old.
+   - Samantha is currently 31 years old.
+
+2. **Determine Raymond’s Birth Year:**
+   - Since Samantha is currently 31 years old, she must have been born \(31\) years earlier than her current year.
+     \[
+     \text{Samantha's birth year} = 31 - 31 = 0
+     \]
+   - Therefore, Samantha was born in the year \(0\).
+
+3. **Determine Raymond’s Birth Year:**
+   - Given that Raymond was born 6 years before Samantha:
+     \[
+     \text{Raymond's birth year} = 0 - 6 = -6
+     \]
+
+4. **Calculate Raymond’s Son’s Age When He Was Born:**
+   - We know that Raymond's son was born when he was 23 years old.
+   - To find out how long it took to reach this age:
+     \[
+     \text{Time elapsed since Raymond's birth} = 23 - (-6) = 23 + 6 = 29 \text{ years}
+     \]
+
+5. **Determine How Many Years Ago Raymond's Son Was Born:**
+   - Now we need to determine how many years ago Raymond’s son was born relative to his father’s current age (31).
+   - Since the son was born 29 years after his father's birth, we subtract these 29 years from Samantha's current age (31):
+     \[
+     \text{Years ago when Raymond's son was born} = 31 - 29 = 2 \text{ years}
+     \]
+
+**Conclusion:** Raymond's son was born 2 years ago.
+
+Therefore, the answer is: 2.

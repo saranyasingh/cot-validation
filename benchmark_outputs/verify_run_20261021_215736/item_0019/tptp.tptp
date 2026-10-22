@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, eats_per_day(claire, n_3)).
+fof(fact_2, axiom, days_in_week(n_7)).
+fof(fact_3, axiom, weeks(claire, n_4)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_7, n_21)).
+fof(op_2, axiom, product(n_21, n_4, n_84)).
+fof(op_3, axiom, quotient(n_84, n_12, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,D,W] : ((eats_per_day(X, N) & days_in_week(D) & product(N, D, W)) => consumes_eggs(X, W))).
+fof(rule_2, axiom, ! [X,W,K,T] : ((consumes_eggs(X, W) & weeks(X, K) & product(W, K, T)) => consumes_eggs(X, T))).
+fof(rule_3, axiom, ! [X,N,Q] : ((consumes_eggs(X, N) & quotient(N, n_12, Q)) => consumes_dozens(X, Q))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, consumes_eggs(claire, n_21)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, consumes_eggs(claire, n_84)).
+% From inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, consumes_dozens(claire, n_7)).

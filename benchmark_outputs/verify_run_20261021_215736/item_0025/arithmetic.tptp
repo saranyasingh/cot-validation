@@ -1,0 +1,4 @@
+% OP-1: Difference(1, 0.25, 0.75)
+tff(op_1, conjecture, ($lesseq($difference($difference(1/1, 1/4), 3/4), 1/200) & $lesseq($difference(3/4, $difference(1/1, 1/4)), 1/200))).
+% OP-2: Quotient(19.50, 0.75, 26)
+tff(op_2, conjecture, $quotient(39/2, 3/4) = 26/1).

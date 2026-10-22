@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Janet's ducks lay 16 eggs per day",
+      "formula": "LaysEggs(janet, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Janet eats 3 eggs for breakfast every morning",
+      "formula": "Consumes(janet, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Janet bakes muffins using 4 eggs every day",
+      "formula": "Consumes(janet, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Janet sells the leftover eggs at $2 per egg",
+      "formula": "PricePerEgg(janet, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 + 4 = 7",
+      "formula": "Sum(3, 4, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "16 \u2212 7 = 9",
+      "formula": "Difference(16, 7, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "9 \u00d7 2 = 18",
+      "formula": "Product(9, 2, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's ducks lay n eggs, x consumes m1 eggs for one activity and m2 eggs for another, and m1+m2=s, and n\u2212s=r, then x has r eggs remaining",
+      "formula": "\u2200x\u2200n\u2200m1\u2200m2\u2200s\u2200r (LaysEggs(x,n) \u2227 Consumes(x,m1) \u2227 Consumes(x,m2) \u2227 Sum(m1,m2,s) \u2227 Difference(n,s,r) \u2192 Remaining(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has r eggs remaining and sells them at p dollars each, and r\u00d7p=e, then x earns e dollars",
+      "formula": "\u2200x\u2200r\u2200p\u2200e (Remaining(x,r) \u2227 PricePerEgg(x,p) \u2227 Product(r,p,e) \u2192 Earns(x,e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Janet has 9 eggs remaining, from FACT-1, FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Remaining(janet, 9)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Janet earns $18, from INF-1, FACT-4, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Earns(janet, 18)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

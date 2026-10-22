@@ -1,0 +1,46 @@
+To determine which purchase plan maximizes profit at the end of the month, we need to calculate the future value of both purchases considering their respective growth rates.
+
+### Step 1: Calculate Future Value of Jewelry Purchase Plan
+- **Initial Price**: $5,000
+- **Growth Rate**: 2.5%
+- **Future Value Calculation**:
+  \[
+  \text{Future Value}_{\text{jewelry}} = \text{Initial Price} \times (1 + \text{Growth Rate})
+  \]
+  \[
+  \text{Future Value}_{\text{jewelry}} = 5000 \times (1 + 0.025)
+  \]
+  \[
+  \text{Future Value}_{\text{jewelry}} = 5000 \times 1.025
+  \]
+  \[
+  \text{Future Value}_{\text{jewelry}} = 5125
+  \]
+
+### Step 2: Calculate Future Value of Electronic Gadgets Purchase Plan
+- **Initial Price**: $8,000
+- **Growth Rate**: 1.2%
+- **Future Value Calculation**:
+  \[
+  \text{Future Value}_{\text{gadgets}} = \text{Initial Price} \times (1 + \text{Growth Rate})
+  \]
+  \[
+  \text{Future Value}_{\text{gadgets}} = 8000 \times (1 + 0.012)
+  \]
+  \[
+  \text{Future Value}_{\text{gadgets}} = 8000 \times 1.012
+  \]
+  \[
+  \text{Future Value}_{\text{gadgets}} = 8096
+  \]
+
+### Step 3: Compare Future Values
+- **Future Value of Jewelry**: $5,125
+- **Future Value of Electronics**: $8,096
+
+Since $8,096 > $5,125, purchasing the electronics gadgets will result in a higher future value.
+
+### Conclusion
+Therefore, to maximize profit at the end of the month, the merchant should choose the electronic gadget purchase plan.
+
+The answer is: 8

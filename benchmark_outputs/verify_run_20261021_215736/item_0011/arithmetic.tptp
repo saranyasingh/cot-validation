@@ -1,0 +1,6 @@
+% OP-1: Product(3, 60, 180)
+tff(op_1, conjecture, $product(3/1, 60/1) = 180/1).
+% OP-2: Product(0.7, 180, 126)
+tff(op_2, conjecture, $product(7/10, 180/1) = 126/1).
+% OP-3: Sum(60, 180, 126, 366)
+tff(op_3, conjecture, $sum($sum(60/1, 180/1), 126/1) = 366/1).

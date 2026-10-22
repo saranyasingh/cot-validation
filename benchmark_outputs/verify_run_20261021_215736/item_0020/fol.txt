@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+Miles(x, label, d) — x covers d miles for the portion of the trail identified by label (labels: first, second, total, covered, remaining)
+Hours(x, label, t) — x spends t hours on the portion of the trip identified by label (labels: first, second, sofar, total_possible, needed, left)
+Speed(x, label, s) — x's speed (in mph) for the purpose identified by label is s (labels: desired, required)
+
+Constants:
+marissa, first, second, total, covered, remaining, sofar, total_possible, needed, left, desired, required, 4, 2, 1, 3, 12, 6, 1.5, 8, 5
+
+## FACTS
+FACT-1: Marissa walked 4 miles in the first segment :: Miles(marissa, first, 4)
+FACT-2: Marissa walked 2 miles in the second segment :: Miles(marissa, second, 2)
+FACT-3: Marissa took 1 hour for the first segment :: Hours(marissa, first, 1)
+FACT-4: Marissa took 1 hour for the second segment :: Hours(marissa, second, 1)
+FACT-5: Marissa has taken 3 hours so far :: Hours(marissa, sofar, 3)
+FACT-6: The total trail distance is 12 miles :: Miles(marissa, total, 12)
+FACT-7: Marissa's desired average speed over the entire trail is 4 mph :: Speed(marissa, desired, 4)
+FACT-8: The reasoning states the total possible time for the whole trail is 8 hours :: Hours(marissa, total_possible, 8)
+
+## OPERATIONS
+OP-1: 4 + 2 = 6 (distance already covered) :: Sum(4, 2, 6)
+OP-2: 12 − 6 = 6 (remaining distance) :: Difference(12, 6, 6)
+OP-3: 6 ÷ 4 = 1.5 (time needed for remaining distance) :: Quotient(6, 4, 1.5)
+OP-4: 12 ÷ 4 = 3 (total possible time, per the parenthetical) :: Quotient(12, 4, 3)
+OP-5: 8 − 3 = 5 (time left) :: Difference(8, 3, 5)
+
+## RULES
+RULE-1: If x walked d1 miles in the first segment and d2 miles in the second segment, and d1+d2=dc, then x has covered dc miles in total :: ∀x∀d1∀d2∀dc (Miles(x,first,d1) ∧ Miles(x,second,d2) ∧ Sum(d1,d2,dc) → Miles(x,covered,dc))
+RULE-2: If x's total trail distance is dt and covered distance is dc, and dt−dc=dr, then x's remaining distance is dr :: ∀x∀dt∀dc∀dr (Miles(x,total,dt) ∧ Miles(x,covered,dc) ∧ Difference(dt,dc,dr) → Miles(x,remaining,dr))
+RULE-3: If x's remaining distance is dr and desired speed is s, and dr÷s=t, then the time needed to cover the remaining distance is t :: ∀x∀dr∀s∀t (Miles(x,remaining,dr) ∧ Speed(x,desired,s) ∧ Quotient(dr,s,t) → Hours(x,needed,t))
+RULE-4: If x's total possible time is tp and time so far is ts, and tp−ts=tl, then x's time left is tl :: ∀x∀tp∀ts∀tl (Hours(x,total_possible,tp) ∧ Hours(x,sofar,ts) ∧ Difference(tp,ts,tl) → Hours(x,left,tl))
+RULE-5: If x's desired average speed is s and x's remaining distance is d, then the speed required for the remaining distance is s :: ∀x∀s∀d (Speed(x,desired,s) ∧ Miles(x,remaining,d) → Speed(x,required,s))
+
+## INFERENCES
+INF-1: Marissa has covered 6 miles in total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Miles(marissa, covered, 6)
+INF-2: Marissa's remaining distance is 6 miles, from FACT-6, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Miles(marissa, remaining, 6)
+INF-3: The time needed to cover the remaining distance is 1.5 hours, from INF-2, FACT-7, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Hours(marissa, needed, 1.5)
+INF-4: Marissa's time left is 5 hours, from FACT-8, FACT-5, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Hours(marissa, left, 5)
+INF-5: The speed required for the remaining distance is 4 mph, from FACT-7, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens :: Speed(marissa, required, 4)

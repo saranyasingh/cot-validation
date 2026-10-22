@@ -1,0 +1,8 @@
+% OP-1: Sum(15, 25, 40)
+tff(op_1, conjecture, $sum(15/1, 25/1) = 40/1).
+% OP-2: Quotient(40, 20, 2)
+tff(op_2, conjecture, $quotient(40/1, 20/1) = 2/1).
+% OP-3: Product(2, 20, 40)
+tff(op_3, conjecture, $product(2/1, 20/1) = 40/1).
+% OP-4: Difference(40, 40, 0)
+tff(op_4, conjecture, $difference(40/1, 40/1) = 0/1).

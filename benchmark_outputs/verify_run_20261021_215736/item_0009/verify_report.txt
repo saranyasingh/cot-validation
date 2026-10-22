@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+FACT-6: SUPPORTED
+FACT-7: SUPPORTED
+FACT-8: UNSUPPORTED — The fourth segment's duration should be the remaining time after the 2-hour standstill and 0.5-hour segment within the 4-hour window (4 − 2 − 0.5 = 1.5 hours), not 2 hours.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — Segments 2–4 are return trips toward home, so their distances should be subtracted from the outbound distance (segment 1), not simply summed; summing all four as the total distance from home ignores direction.

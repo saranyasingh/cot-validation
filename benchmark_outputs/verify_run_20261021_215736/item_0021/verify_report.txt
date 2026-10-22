@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+FACT-5: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — the orange drink's remaining volume should be computed as 10 − 1 = 9 liters (per the spill fact), not derived from an unrelated calculation of 48 ÷ 3; this introduces an unsupported/incorrect value.
+RULE-5: PLAUSIBLE

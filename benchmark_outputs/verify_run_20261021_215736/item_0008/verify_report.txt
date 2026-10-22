@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — Total time should include the 20-minute restart/update delay, but this rule only sums the before-restart and after-restart download times, omitting the 20 minutes entirely.

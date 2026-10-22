@@ -1,0 +1,107 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "In the first month, there were 60 downloads",
+      "formula": "Downloads(month1, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 times 60 is 180",
+      "formula": "Product(3, 60, 180)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "0.7 times 180 is 126",
+      "formula": "Product(0.7, 180, 126)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "60 plus 180 plus 126 is 366",
+      "formula": "Sum(60, 180, 126, 366)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the first month had x downloads and 3 times x is y, then the second month had y downloads",
+      "formula": "\u2200x\u2200y (Downloads(month1, x) \u2227 Product(3, x, y) \u2192 Downloads(month2, y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the second month had x downloads and 0.7 times x is y, then the third month had y downloads (a 30% reduction)",
+      "formula": "\u2200x\u2200y (Downloads(month2, x) \u2227 Product(0.7, x, y) \u2192 Downloads(month3, y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the first, second, and third months had a, b, and c downloads respectively and a + b + c = s, then the total downloads is s",
+      "formula": "\u2200a\u2200b\u2200c\u2200s (Downloads(month1, a) \u2227 Downloads(month2, b) \u2227 Downloads(month3, c) \u2227 Sum(a, b, c, s) \u2192 Total(s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The second month had 180 downloads, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Downloads(month2, 180)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The third month had 126 downloads, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Downloads(month3, 126)",
+      "premises": [
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total number of downloads over the three months is 366, from FACT-1, INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(366)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,22 @@
+## VOCABULARY
+Predicates:
+PaidAfterDiscount(x, n) — x paid amount n after a discount was applied
+DiscountRate(x, n) — the discount rate applied to x's purchase is n (as a decimal fraction)
+OriginalPrice(x, n) — the original price of x's item is n
+
+Constants:
+kyle, 19.50, 0.25, 1, 0.75, 26
+
+## FACTS
+FACT-1: Kyle paid $19.50 after a discount :: PaidAfterDiscount(kyle, 19.50)
+FACT-2: The discount was 25% :: DiscountRate(kyle, 0.25)
+
+## OPERATIONS
+OP-1: 100% minus 25% is 75% :: Difference(1, 0.25, 0.75)
+OP-2: 19.50 divided by 0.75 is 26 :: Quotient(19.50, 0.75, 26)
+
+## RULES
+RULE-1: If x paid n after a discount rate d, and 1 − d = r (the fraction of original price paid), and n ÷ r = p, then the original price of x's item is p :: ∀x∀n∀d∀r∀p (PaidAfterDiscount(x,n) ∧ DiscountRate(x,d) ∧ Difference(1,d,r) ∧ Quotient(n,r,p) → OriginalPrice(x,p))
+
+## INFERENCES
+INF-1: The original price of Kyle's book was $26, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: OriginalPrice(kyle, 26)

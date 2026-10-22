@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, downloads(month1, n_60)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_60, n_180)).
+fof(op_2, axiom, product(n_0_7, n_180, n_126)).
+fof(op_3, axiom, sum(n_60, n_180, n_126, n_366)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y] : ((downloads(month1, X) & product(n_3, X, Y)) => downloads(month2, Y))).
+fof(rule_2, axiom, ! [X,Y] : ((downloads(month2, X) & product(n_0_7, X, Y)) => downloads(month3, Y))).
+fof(rule_3, axiom, ! [A,B,C,S] : ((downloads(month1, A) & downloads(month2, B) & downloads(month3, C) & sum(A, B, C, S)) => total(S))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, downloads(month2, n_180)).
+% From inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, downloads(month3, n_126)).
+% From fact_1, inf_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(n_366)).

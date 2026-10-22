@@ -1,0 +1,310 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The orange drink's initial volume is 10 liters",
+      "formula": "Volume(orange_drink, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The orange drink is two-thirds water",
+      "formula": "WaterFraction(orange_drink, 0.6667)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The pineapple drink's volume is 15 liters",
+      "formula": "Volume(pineapple_drink, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The pineapple drink is three-fifths water",
+      "formula": "WaterFraction(pineapple_drink, 0.6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "One liter is spilled",
+      "formula": "Volume(spill, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2/3 \u00d7 10 = 20/3 (water in OD initial)",
+      "formula": "Product(0.6667, 10, 6.6667)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "0.6667 * 10 = 6.667, not 6.6667",
+      "error": true
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3/5 \u00d7 15 = 9 (water in PD)",
+      "formula": "Product(0.6, 15, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "10 + 15 = 25 (total initial volume)",
+      "formula": "Sum(10, 15, 25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "25 - 1 = 24 (volume after spill)",
+      "formula": "Difference(25, 1, 24)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "9 \u00d7 3 = 27 (clearing fraction, constant term)",
+      "formula": "Product(9, 3, 27)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "24 \u00d7 3 = 72 (clearing fraction, RHS)",
+      "formula": "Product(24, 3, 72)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "3 \u00d7 1 = 3 (expanding 3(x-1) constant term)",
+      "formula": "Product(3, 1, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-8": {
+      "type": "operation",
+      "gloss": "27 - 3 = 24 (combining constants)",
+      "formula": "Difference(27, 3, 24)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-9": {
+      "type": "operation",
+      "gloss": "72 - 24 = 48 (isolating 3x)",
+      "formula": "Difference(72, 24, 48)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-10": {
+      "type": "operation",
+      "gloss": "48 \u00f7 3 = 16 (solving for x)",
+      "formula": "Quotient(48, 3, 16)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-11": {
+      "type": "operation",
+      "gloss": "2/3 \u00d7 16 = 32/3 (water in OD using x=16)",
+      "formula": "Product(0.6667, 16, 10.6667)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "0.6667 * 16 = 10.6672, not 10.6667",
+      "error": true
+    },
+    "OP-12": {
+      "type": "operation",
+      "gloss": "32/3 + 9 = 59/3 (total water content)",
+      "formula": "Sum(10.6667, 9, 19.6667)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has volume v and water fraction f, and f \u00d7 v = w, then x has water amount w",
+      "formula": "\u2200x\u2200v\u2200f\u2200w (Volume(x,v) \u2227 WaterFraction(x,f) \u2227 Product(f,v,w) \u2192 WaterAmount(x,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has volume v1 and y has volume v2, and v1 + v2 = t, then the mixture before spill has volume t",
+      "formula": "\u2200x\u2200y\u2200v1\u2200v2\u2200t (Volume(x,v1) \u2227 Volume(y,v2) \u2227 Sum(v1,v2,t) \u2192 Volume(mixture_before_spill,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has volume v and the spill has volume s, and v - s = r, then the mixture after spill has volume r",
+      "formula": "\u2200x\u2200v\u2200s\u2200r (Volume(x,v) \u2227 Volume(spill,s) \u2227 Difference(v,s,r) \u2192 Volume(mixture_after_spill,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If dividing 48 by 3 gives n, then the orange drink's (used) volume is n",
+      "formula": "\u2200n (Quotient(48,3,n) \u2192 Volume(orange_drink,n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "the orange drink's remaining volume should be computed as 10 \u2212 1 = 9 liters (per the spill fact), not derived from an unrelated calculation of 48 \u00f7 3; this introduces an unsupported/incorrect value.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x has water amount w1 and y has water amount w2, and w1 + w2 = t, then the mixture after spill has water amount t",
+      "formula": "\u2200x\u2200y\u2200w1\u2200w2\u2200t (WaterAmount(x,w1) \u2227 WaterAmount(y,w2) \u2227 Sum(w1,w2,t) \u2192 WaterAmount(mixture_after_spill,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Water amount in orange drink (initial) is 6.6667 liters, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(orange_drink, 6.6667)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Water amount in pineapple drink is 9 liters, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(pineapple_drink, 9)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Mixture before spill has volume 25 liters, from FACT-1, FACT-3, OP-3, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(mixture_before_spill, 25)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Mixture after spill has volume 24 liters, from INF-3, FACT-5, OP-4, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(mixture_after_spill, 24)",
+      "premises": [
+        "INF-3",
+        "FACT-5",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The orange drink's (used) volume is 16 liters, from OP-5, OP-6, OP-7, OP-8, OP-9, OP-10, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(orange_drink, 16)",
+      "premises": [
+        "OP-5",
+        "OP-6",
+        "OP-7",
+        "OP-8",
+        "OP-9",
+        "OP-10",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Water amount in orange drink (using 16 liters) is 10.6667 liters, from INF-5, FACT-2, OP-11, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(orange_drink, 10.6667)",
+      "premises": [
+        "INF-5",
+        "FACT-2",
+        "OP-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Total water content in mixture after spill is 19.6667 liters, from INF-6, INF-2, OP-12, RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(mixture_after_spill, 19.6667)",
+      "premises": [
+        "INF-6",
+        "INF-2",
+        "OP-12",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "OP-1",
+      "stage": "arithmetic",
+      "message": "0.6667 * 10 = 6.667, not 6.6667"
+    },
+    {
+      "node": "OP-11",
+      "stage": "arithmetic",
+      "message": "0.6667 * 16 = 10.6672, not 10.6667"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "the orange drink's remaining volume should be computed as 10 \u2212 1 = 9 liters (per the spill fact), not derived from an unrelated calculation of 48 \u00f7 3; this introduces an unsupported/incorrect value."
+    }
+  ],
+  "error_stages": [
+    "arithmetic",
+    "verify"
+  ]
+}

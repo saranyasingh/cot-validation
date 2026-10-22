@@ -1,0 +1,4 @@
+% OP-1: Quotient(2, 2, 1)
+tff(op_1, conjecture, $quotient(2/1, 2/1) = 1/1).
+% OP-2: Sum(2, 1, 3)
+tff(op_2, conjecture, $sum(2/1, 1/1) = 3/1).

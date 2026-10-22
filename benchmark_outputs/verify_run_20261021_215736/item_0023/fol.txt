@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Customers(x, g, n) — x's customer group g has n customers
+PerCustomer(x, g, n) — each customer in x's group g bought n DVDs
+SoldInGroup(x, g, n) — x sold n DVDs within group g
+TotalSold(x, n) — x sold n DVDs in total
+
+Constants:
+billy, first_group, second_group, third_group, 3, 1, 2, 0, 4, 7
+
+## FACTS
+FACT-1: Billy's first 3 customers form a group of 3 :: Customers(billy, first_group, 3)
+FACT-2: Each of Billy's first-group customers bought 1 DVD :: PerCustomer(billy, first_group, 1)
+FACT-3: Billy's next 2 customers form a group of 2 :: Customers(billy, second_group, 2)
+FACT-4: Each of Billy's second-group customers bought 2 DVDs :: PerCustomer(billy, second_group, 2)
+FACT-5: Billy's last 3 customers form a group of 3 :: Customers(billy, third_group, 3)
+FACT-6: Each of Billy's third-group customers bought 0 DVDs :: PerCustomer(billy, third_group, 0)
+
+## OPERATIONS
+OP-1: 3 customers × 1 DVD each = 3 DVDs :: Product(3, 1, 3)
+OP-2: 2 customers × 2 DVDs each = 4 DVDs :: Product(2, 2, 4)
+OP-3: 3 customers × 0 DVDs each = 0 DVDs :: Product(3, 0, 0)
+OP-4: 3 + 4 + 0 = 7 :: Sum(3, 4, 0, 7)
+
+## RULES
+RULE-1: If x's group g has n customers each buying m DVDs, and n × m = p, then x sold p DVDs in group g :: ∀x∀g∀n∀m∀p (Customers(x,g,n) ∧ PerCustomer(x,g,m) ∧ Product(n,m,p) → SoldInGroup(x,g,p))
+RULE-2: If x sold n1, n2, n3 DVDs in three groups and n1 + n2 + n3 = t, then x sold t DVDs in total :: ∀x∀g1∀g2∀g3∀n1∀n2∀n3∀t (SoldInGroup(x,g1,n1) ∧ SoldInGroup(x,g2,n2) ∧ SoldInGroup(x,g3,n3) ∧ Sum(n1,n2,n3,t) → TotalSold(x,t))
+
+## INFERENCES
+INF-1: Billy sold 3 DVDs in the first group, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: SoldInGroup(billy, first_group, 3)
+INF-2: Billy sold 4 DVDs in the second group, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: SoldInGroup(billy, second_group, 4)
+INF-3: Billy sold 0 DVDs in the third group, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: SoldInGroup(billy, third_group, 0)
+INF-4: Billy sold 7 DVDs in total, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalSold(billy, 7)

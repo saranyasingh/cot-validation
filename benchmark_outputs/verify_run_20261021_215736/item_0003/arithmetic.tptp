@@ -1,0 +1,8 @@
+% OP-1: Sum(80000, 50000, 130000)
+tff(op_1, conjecture, $sum(80000/1, 50000/1) = 130000/1).
+% OP-2: Product(1.5, 80000, 120000)
+tff(op_2, conjecture, $product(3/2, 80000/1) = 120000/1).
+% OP-3: Sum(80000, 120000, 200000)
+tff(op_3, conjecture, $sum(80000/1, 120000/1) = 200000/1).
+% OP-4: Difference(200000, 130000, 70000)
+tff(op_4, conjecture, $difference(200000/1, 130000/1) = 70000/1).

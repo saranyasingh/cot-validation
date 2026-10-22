@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+EatsPerDay(x, n) — x eats n eggs per day (in the omelet)
+DaysInWeek(n) — there are n days in a week
+Weeks(x, n) — x consumes eggs over a period of n weeks
+ConsumesEggs(x, n) — x consumes n eggs (over some period)
+ConsumesDozens(x, n) — x consumes n dozens of eggs (over some period)
+
+Constants:
+claire, 3, 7, 4, 12, 21, 84
+
+## FACTS
+FACT-1: Claire makes a 3-egg omelet every morning :: EatsPerDay(claire, 3)
+FACT-2: There are 7 days in a week :: DaysInWeek(7)
+FACT-3: Claire's consumption is considered over a period of 4 weeks :: Weeks(claire, 4)
+
+## OPERATIONS
+OP-1: 3 eggs/omelet * 7 days/week = 21 eggs/week :: Product(3, 7, 21)
+OP-2: 21 eggs/week * 4 weeks = 84 eggs :: Product(21, 4, 84)
+OP-3: 84 eggs / 12 eggs per dozen = 7 dozens :: Quotient(84, 12, 7)
+
+## RULES
+RULE-1: If x eats n eggs per day and there are d days in a week, and n times d equals w, then x consumes w eggs per week :: ∀x∀n∀d∀w (EatsPerDay(x,n) ∧ DaysInWeek(d) ∧ Product(n,d,w) → ConsumesEggs(x,w))
+RULE-2: If x consumes w eggs per week over a period of k weeks, and w times k equals t, then x consumes t eggs over that period :: ∀x∀w∀k∀t (ConsumesEggs(x,w) ∧ Weeks(x,k) ∧ Product(w,k,t) → ConsumesEggs(x,t))
+RULE-3: If x consumes n eggs, and n divided by 12 equals q, then x consumes q dozens of eggs :: ∀x∀n∀q (ConsumesEggs(x,n) ∧ Quotient(n,12,q) → ConsumesDozens(x,q))
+
+## INFERENCES
+INF-1: Claire consumes 21 eggs per week, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: ConsumesEggs(claire, 21)
+INF-2: Claire consumes 84 eggs over 4 weeks, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: ConsumesEggs(claire, 84)
+INF-3: Claire consumes 7 dozens of eggs over 4 weeks, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: ConsumesDozens(claire, 7)

@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Amount(x, k, n) — x's value for the attribute k is the number n
+
+Constants:
+josh, purchase_price, repairs_cost, increase_percent, total_investment, increase_value, new_value, profit, 80000, 50000, 1.5, 130000, 120000, 200000, 70000
+
+## FACTS
+FACT-1: Josh bought the house for $80,000 :: Amount(josh, purchase_price, 80000)
+FACT-2: Josh spent $50,000 on repairs :: Amount(josh, repairs_cost, 50000)
+FACT-3: The house's value increased by 150% (as a decimal multiplier, 1.5) :: Amount(josh, increase_percent, 1.5)
+
+## OPERATIONS
+OP-1: 80,000 plus 50,000 is 130,000 (total investment) :: Sum(80000, 50000, 130000)
+OP-2: 1.5 times 80,000 is 120,000 (increase amount) :: Product(1.5, 80000, 120000)
+OP-3: 80,000 plus 120,000 is 200,000 (new value) :: Sum(80000, 120000, 200000)
+OP-4: 200,000 minus 130,000 is 70,000 (profit) :: Difference(200000, 130000, 70000)
+
+## RULES
+RULE-1: If x's purchase price is p, repairs cost is r, and p + r = t, then x's total investment is t :: ∀x∀p∀r∀t (Amount(x,purchase_price,p) ∧ Amount(x,repairs_cost,r) ∧ Sum(p,r,t) → Amount(x,total_investment,t))
+RULE-2: If x's purchase price is p, increase percent (as decimal) is k, and k × p = i, then x's increase value is i :: ∀x∀p∀k∀i (Amount(x,purchase_price,p) ∧ Amount(x,increase_percent,k) ∧ Product(k,p,i) → Amount(x,increase_value,i))
+RULE-3: If x's purchase price is p, increase value is i, and p + i = v, then x's new value is v :: ∀x∀p∀i∀v (Amount(x,purchase_price,p) ∧ Amount(x,increase_value,i) ∧ Sum(p,i,v) → Amount(x,new_value,v))
+RULE-4: If x's new value is v, total investment is t, and v − t = d, then x's profit is d :: ∀x∀v∀t∀d (Amount(x,new_value,v) ∧ Amount(x,total_investment,t) ∧ Difference(v,t,d) → Amount(x,profit,d))
+
+## INFERENCES
+INF-1: Josh's total investment is 130,000, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(josh, total_investment, 130000)
+INF-2: Josh's increase value is 120,000, from FACT-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(josh, increase_value, 120000)
+INF-3: Josh's new house value is 200,000, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(josh, new_value, 200000)
+INF-4: Josh's profit is 70,000, from INF-3, INF-1, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(josh, profit, 70000)

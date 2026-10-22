@@ -1,0 +1,150 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jill's hourly rate as a teacher is $20",
+      "formula": "Rate(jill, teacher, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jill works 35 hours per week as a teacher",
+      "formula": "HoursWeek(jill, teacher, 35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jill works 50 weeks per year as a teacher",
+      "formula": "WeeksYear(jill, teacher, 50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Jill's hourly rate as a cheerleader is $30",
+      "formula": "Rate(jill, cheerleader, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Jill works 15 hours per week as a cheerleader",
+      "formula": "HoursWeek(jill, cheerleader, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Jill works 50 weeks per year as a cheerleader",
+      "formula": "WeeksYear(jill, cheerleader, 50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$20/hour \u00d7 35 hours/week \u00d7 50 weeks/year = $7,000/year",
+      "formula": "Product(20, 35, 50, 7000)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "20 * 35 * 50 = 35000, not 7000",
+      "error": true
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$30/hour \u00d7 15 hours/week \u00d7 50 weeks/year = $22,500/year",
+      "formula": "Product(30, 15, 50, 22500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$7,000 + $22,500 = $29,500",
+      "formula": "Sum(7000, 22500, 29500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's hourly rate for role r is n, x works h hours per week in role r, x works w weeks per year in role r, and n \u00d7 h \u00d7 w = p, then x earns p dollars per year from role r",
+      "formula": "\u2200x\u2200r\u2200n\u2200h\u2200w\u2200p (Rate(x,r,n) \u2227 HoursWeek(x,r,h) \u2227 WeeksYear(x,r,w) \u2227 Product(n,h,w,p) \u2192 Earnings(x,r,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x earns n from being a teacher, x earns m from being a cheerleader, and n + m = p, then x's total annual salary is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Earnings(x,teacher,n) \u2227 Earnings(x,cheerleader,m) \u2227 Sum(n,m,p) \u2192 TotalSalary(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Jill earns $7,000 per year as a teacher, from FACT-1, FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(jill, teacher, 7000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Jill earns $22,500 per year as a cheerleader, from FACT-4, FACT-5, FACT-6, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(jill, cheerleader, 22500)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "FACT-6",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Jill's total annual salary is $29,500, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalSalary(jill, 29500)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "OP-1",
+      "stage": "arithmetic",
+      "message": "20 * 35 * 50 = 35000, not 7000"
+    }
+  ],
+  "error_stages": [
+    "arithmetic"
+  ]
+}

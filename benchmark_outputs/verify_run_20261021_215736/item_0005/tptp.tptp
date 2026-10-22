@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, feed(morning, n_15)).
+fof(fact_2, axiom, feed(afternoon, n_25)).
+fof(fact_3, axiom, chickens(farm, n_20)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_15, n_25, n_40)).
+fof(op_2, axiom, quotient(n_40, n_20, n_2)).
+fof(op_3, axiom, product(n_2, n_20, n_40)).
+fof(op_4, axiom, difference(n_40, n_40, n_0)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,M,A,S] : ((feed(X, M) & feed(Y, A) & sum(M, A, S)) => feed(first_two_meals, S))).
+fof(rule_2, axiom, ! [X,F,C,P] : ((feed(X, F) & chickens(farm, C) & quotient(F, C, P)) => per_chicken(farm, P))).
+fof(rule_3, axiom, ! [X,P,C,T] : ((per_chicken(X, P) & chickens(X, C) & product(P, C, T)) => feed(all_meals, T))).
+fof(rule_4, axiom, ! [X,Y,T,F,R] : ((feed(X, T) & feed(Y, F) & difference(T, F, R)) => remaining(final_meal, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, feed(first_two_meals, n_40)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, per_chicken(farm, n_2)).
+% From inf_2, fact_3, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, feed(all_meals, n_40)).
+% From inf_3, inf_1, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, remaining(final_meal, n_0)).

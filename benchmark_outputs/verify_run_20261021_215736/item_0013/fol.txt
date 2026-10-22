@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Rate(x, n) — x earns n dollars of profit per lemon sold
+Grows(x, n) — x's lemon tree grows n lemons per year
+NeedsAmount(x, n) — x needs n dollars to break even
+YearsToBreakEven(x, n) — x needs n years to break even
+RoundUp(a, b) — b is the value a rounded up to the nearest whole number
+
+Constants:
+carlos, 1.5, 7, 90, 10.5, 8.57, 9
+
+## FACTS
+FACT-1: Each lemon sold generates 1.5 dollars profit for Carlos :: Rate(carlos, 1.5)
+FACT-2: Carlos's lemon tree grows 7 lemons per year :: Grows(carlos, 7)
+FACT-3: Carlos needs 90 dollars worth of lemons to break even :: NeedsAmount(carlos, 90)
+FACT-4: 8.57 rounded up to the nearest whole number is 9 :: RoundUp(8.57, 9)
+
+## OPERATIONS
+OP-1: 7 lemons times 1.5 dollars per lemon equals 10.5 dollars per year :: Product(7, 1.5, 10.5)
+OP-2: 90 dollars divided by 10.5 dollars per year equals approximately 8.57 years :: Quotient(90, 10.5, 8.57)
+
+## RULES
+RULE-1: If x's tree grows n lemons per year, x earns m dollars per lemon, n times m equals p dollars per year, x needs b dollars to break even, and b divided by p equals y years, then x needs y years to break even :: ∀x∀n∀m∀b∀p∀y (Grows(x,n) ∧ Rate(x,m) ∧ Product(n,m,p) ∧ NeedsAmount(x,b) ∧ Quotient(b,p,y) → YearsToBreakEven(x,y))
+RULE-2: If x needs y years to break even and y rounds up to z, then x needs z years to break even (since fractional years must be rounded up to a whole year) :: ∀x∀y∀z (YearsToBreakEven(x,y) ∧ RoundUp(y,z) → YearsToBreakEven(x,z))
+
+## INFERENCES
+INF-1: Carlos needs approximately 8.57 years to break even, from FACT-1, FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: YearsToBreakEven(carlos, 8.57)
+INF-2: Carlos needs 9 years to break even, from INF-1, FACT-4, and RULE-2 by Universal Instantiation and Modus Ponens :: YearsToBreakEven(carlos, 9)

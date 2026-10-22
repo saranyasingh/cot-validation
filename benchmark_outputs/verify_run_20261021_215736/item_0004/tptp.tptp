@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, sprints_per_day(james, n_3)).
+fof(fact_2, axiom, meters_per_sprint(james, n_60)).
+fof(fact_3, axiom, times_per_week(james, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_60, n_180)).
+fof(op_2, axiom, product(n_180, n_3, n_540)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((sprints_per_day(X, N) & meters_per_sprint(X, M) & product(N, M, P)) => total_distance(X, P))).
+fof(rule_2, axiom, ! [X,P,T,R] : ((total_distance(X, P) & times_per_week(X, T) & product(P, T, R)) => total_distance(X, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_distance(james, n_180)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_distance(james, n_540)).

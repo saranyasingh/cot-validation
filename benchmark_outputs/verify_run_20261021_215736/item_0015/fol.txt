@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+TotalStudents(n) — the total number of students is n
+Rate(x, r) — the fraction r of the relevant student pool enrolled in dance style x
+Enrolled(x, n) — n students enrolled in dance style x
+RemainingAfter(x, n) — n students remain after removing those accounted for by x
+Percentage(x, n) — the percentage of total students enrolled in dance style x is n
+
+Constants:
+20, 0.2, 4, 16, 0.25, 12, 100, 0.6, 60, contemporary, jazz, hiphop, contemporary_and_jazz
+
+## FACTS
+FACT-1: The total number of students is 20 :: TotalStudents(20)
+FACT-2: 20% of students enrolled in contemporary dance (rate) :: Rate(contemporary, 0.2)
+FACT-3: 25% of the remaining students enrolled in jazz dance (rate) :: Rate(jazz, 0.25)
+
+## OPERATIONS
+OP-1: 0.2 × 20 = 4 :: Product(0.2, 20, 4)
+OP-2: 20 − 4 = 16 :: Difference(20, 4, 16)
+OP-3: 0.25 × 16 = 4 :: Product(0.25, 16, 4)
+OP-4: 16 − 4 = 12 :: Difference(16, 4, 12)
+OP-5: 12 ÷ 20 = 0.6 :: Quotient(12, 20, 0.6)
+OP-6: 0.6 × 100 = 60 :: Product(0.6, 100, 60)
+
+## RULES
+RULE-1: If the rate r of dance style x applies to a total of n students and r × n = m, then m students enrolled in x :: ∀x∀r∀n∀m (Rate(x,r) ∧ TotalStudents(n) ∧ Product(r,n,m) → Enrolled(x,m))
+RULE-2: If there are n total students and m enrolled in x, and n − m = r, then r students remain after x :: ∀x∀n∀m∀r (TotalStudents(n) ∧ Enrolled(x,m) ∧ Difference(n,m,r) → RemainingAfter(x,r))
+RULE-3: If the rate r of dance style y applies to n students remaining after x, and r × n = m, then m students enrolled in y :: ∀x∀y∀r∀n∀m (Rate(y,r) ∧ RemainingAfter(x,n) ∧ Product(r,n,m) → Enrolled(y,m))
+RULE-4: If n students remain after x, and m students enrolled in y, and n − m = r, then r students remain after the combination of x and y :: ∀x∀y∀n∀m∀r (RemainingAfter(x,n) ∧ Enrolled(y,m) ∧ Difference(n,m,r) → RemainingAfter(contemporary_and_jazz,r))
+RULE-5: If n students remain after contemporary and jazz dance, then all of those n students enrolled in hip-hop dance :: ∀n (RemainingAfter(contemporary_and_jazz,n) → Enrolled(hiphop,n))
+RULE-6: If m students enrolled in x out of n total students, m ÷ n = q, and q × 100 = p, then the percentage of students enrolled in x is p :: ∀x∀m∀n∀q∀p (Enrolled(x,m) ∧ TotalStudents(n) ∧ Quotient(m,n,q) ∧ Product(q,100,p) → Percentage(x,p))
+
+## INFERENCES
+INF-1: 4 students enrolled in contemporary dance, from FACT-2, FACT-1, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: Enrolled(contemporary, 4)
+INF-2: 16 students remain after contemporary dance, from FACT-1, INF-1, OP-2, RULE-2 by Universal Instantiation and Modus Ponens :: RemainingAfter(contemporary, 16)
+INF-3: 4 students enrolled in jazz dance, from FACT-3, INF-2, OP-3, RULE-3 by Universal Instantiation and Modus Ponens :: Enrolled(jazz, 4)
+INF-4: 12 students remain after contemporary and jazz dance, from INF-2, INF-3, OP-4, RULE-4 by Universal Instantiation and Modus Ponens :: RemainingAfter(contemporary_and_jazz, 12)
+INF-5: 12 students enrolled in hip-hop dance, from INF-4, RULE-5 by Universal Instantiation and Modus Ponens :: Enrolled(hiphop, 12)
+INF-6: The percentage of students enrolled in hip-hop dance is 60, from INF-5, FACT-1, OP-5, OP-6, RULE-6 by Universal Instantiation and Modus Ponens :: Percentage(hiphop, 60)

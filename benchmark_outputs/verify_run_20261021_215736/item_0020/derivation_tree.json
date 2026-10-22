@@ -1,0 +1,243 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Marissa walked 4 miles in the first segment",
+      "formula": "Miles(marissa, first, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Marissa walked 2 miles in the second segment",
+      "formula": "Miles(marissa, second, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Marissa took 1 hour for the first segment",
+      "formula": "Hours(marissa, first, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Marissa took 1 hour for the second segment",
+      "formula": "Hours(marissa, second, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Marissa has taken 3 hours so far",
+      "formula": "Hours(marissa, sofar, 3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states 1 hour for the first segment and 1 hour for the second, totaling 2 hours, not 3.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The total trail distance is 12 miles",
+      "formula": "Miles(marissa, total, 12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Marissa's desired average speed over the entire trail is 4 mph",
+      "formula": "Speed(marissa, desired, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The reasoning states the total possible time for the whole trail is 8 hours",
+      "formula": "Hours(marissa, total_possible, 8)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Total possible time should be distance \u00f7 desired speed = 12 \u00f7 4 = 3 hours, not 8.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 + 2 = 6 (distance already covered)",
+      "formula": "Sum(4, 2, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "12 \u2212 6 = 6 (remaining distance)",
+      "formula": "Difference(12, 6, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "6 \u00f7 4 = 1.5 (time needed for remaining distance)",
+      "formula": "Quotient(6, 4, 1.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "12 \u00f7 4 = 3 (total possible time, per the parenthetical)",
+      "formula": "Quotient(12, 4, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "8 \u2212 3 = 5 (time left)",
+      "formula": "Difference(8, 3, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x walked d1 miles in the first segment and d2 miles in the second segment, and d1+d2=dc, then x has covered dc miles in total",
+      "formula": "\u2200x\u2200d1\u2200d2\u2200dc (Miles(x,first,d1) \u2227 Miles(x,second,d2) \u2227 Sum(d1,d2,dc) \u2192 Miles(x,covered,dc))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's total trail distance is dt and covered distance is dc, and dt\u2212dc=dr, then x's remaining distance is dr",
+      "formula": "\u2200x\u2200dt\u2200dc\u2200dr (Miles(x,total,dt) \u2227 Miles(x,covered,dc) \u2227 Difference(dt,dc,dr) \u2192 Miles(x,remaining,dr))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's remaining distance is dr and desired speed is s, and dr\u00f7s=t, then the time needed to cover the remaining distance is t",
+      "formula": "\u2200x\u2200dr\u2200s\u2200t (Miles(x,remaining,dr) \u2227 Speed(x,desired,s) \u2227 Quotient(dr,s,t) \u2192 Hours(x,needed,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's total possible time is tp and time so far is ts, and tp\u2212ts=tl, then x's time left is tl",
+      "formula": "\u2200x\u2200tp\u2200ts\u2200tl (Hours(x,total_possible,tp) \u2227 Hours(x,sofar,ts) \u2227 Difference(tp,ts,tl) \u2192 Hours(x,left,tl))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x's desired average speed is s and x's remaining distance is d, then the speed required for the remaining distance is s",
+      "formula": "\u2200x\u2200s\u2200d (Speed(x,desired,s) \u2227 Miles(x,remaining,d) \u2192 Speed(x,required,s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It incorrectly equates the required speed for the remaining distance with the overall desired average speed, ignoring the time already spent and the remaining time/distance relationship.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Marissa has covered 6 miles in total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Miles(marissa, covered, 6)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Marissa's remaining distance is 6 miles, from FACT-6, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Miles(marissa, remaining, 6)",
+      "premises": [
+        "FACT-6",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The time needed to cover the remaining distance is 1.5 hours, from INF-2, FACT-7, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Hours(marissa, needed, 1.5)",
+      "premises": [
+        "INF-2",
+        "FACT-7",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Marissa's time left is 5 hours, from FACT-8, FACT-5, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Hours(marissa, left, 5)",
+      "premises": [
+        "FACT-8",
+        "FACT-5",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The speed required for the remaining distance is 4 mph, from FACT-7, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Speed(marissa, required, 4)",
+      "premises": [
+        "FACT-7",
+        "INF-2",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "The problem states 1 hour for the first segment and 1 hour for the second, totaling 2 hours, not 3."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "Total possible time should be distance \u00f7 desired speed = 12 \u00f7 4 = 3 hours, not 8."
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "It incorrectly equates the required speed for the remaining distance with the overall desired average speed, ignoring the time already spent and the remaining time/distance relationship."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

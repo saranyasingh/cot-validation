@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+StartTime(x, t) — x started burning at time t
+EndTime(x, t) — x stopped burning at time t
+MeltRate(x, r) — x melts at rate r centimeters per hour
+Duration(x, d) — x burned for duration d hours
+Shortening(x, s) — x became s centimeters shorter
+
+Constants:
+candle, 1, 5, 2, 4, 8
+
+## FACTS
+FACT-1: The candle starts burning at 1:00 PM :: StartTime(candle, 1)
+FACT-2: The candle stops burning at 5:00 PM :: EndTime(candle, 5)
+FACT-3: The candle melts at a rate of 2 centimeters per hour :: MeltRate(candle, 2)
+
+## OPERATIONS
+OP-1: 5 minus 1 is 4 :: Difference(5, 1, 4)
+OP-2: 2 times 4 is 8 :: Product(2, 4, 8)
+
+## RULES
+RULE-1: If x starts burning at time s and ends at time e, and e − s = d, then x burned for duration d :: ∀x∀s∀e∀d (StartTime(x,s) ∧ EndTime(x,e) ∧ Difference(e,s,d) → Duration(x,d))
+RULE-2: If x burned for duration d at melt rate r, and r × d = s, then x became s centimeters shorter :: ∀x∀d∀r∀s (Duration(x,d) ∧ MeltRate(x,r) ∧ Product(r,d,s) → Shortening(x,s))
+
+## INFERENCES
+INF-1: The candle burned for 4 hours, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Duration(candle, 4)
+INF-2: The candle became 8 centimeters shorter, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Shortening(candle, 8)

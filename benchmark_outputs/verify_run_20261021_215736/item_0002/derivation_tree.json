@@ -1,0 +1,76 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "A robe requires 2 bolts of blue fiber",
+      "formula": "BlueFiber(robe, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 divided by 2 is 1",
+      "formula": "Quotient(2, 2, 1)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "2 plus 1 is 3",
+      "formula": "Sum(2, 1, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a robe requires n bolts of blue fiber and n divided by 2 is h, then it requires h bolts of white fiber",
+      "formula": "\u2200x\u2200n\u2200h (BlueFiber(x,n) \u2227 Quotient(n,2,h) \u2192 WhiteFiber(x,h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a robe requires b bolts of blue fiber and w bolts of white fiber, and b plus w equals t, then it requires t bolts of fiber in total",
+      "formula": "\u2200x\u2200b\u2200w\u2200t (BlueFiber(x,b) \u2227 WhiteFiber(x,w) \u2227 Sum(b,w,t) \u2192 TotalFiber(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "A robe requires 1 bolt of white fiber, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WhiteFiber(robe, 1)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "A robe requires 3 bolts of fiber in total, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalFiber(robe, 3)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

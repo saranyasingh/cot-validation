@@ -1,0 +1,46 @@
+## VOCABULARY
+Predicates:
+Volume(x, n) — the volume of x is n liters
+WaterFraction(x, n) — the fraction of x that is water is n
+WaterAmount(x, n) — the amount of water in x is n liters
+
+Constants:
+orange_drink, pineapple_drink, spill, mixture_before_spill, mixture_after_spill,
+10, 15, 1, 25, 24, 0.6667, 0.6, 6.6667, 9, 27, 72, 3, 48, 16, 10.6667, 19.6667
+
+## FACTS
+FACT-1: The orange drink's initial volume is 10 liters :: Volume(orange_drink, 10)
+FACT-2: The orange drink is two-thirds water :: WaterFraction(orange_drink, 0.6667)
+FACT-3: The pineapple drink's volume is 15 liters :: Volume(pineapple_drink, 15)
+FACT-4: The pineapple drink is three-fifths water :: WaterFraction(pineapple_drink, 0.6)
+FACT-5: One liter is spilled :: Volume(spill, 1)
+
+## OPERATIONS
+OP-1: 2/3 × 10 = 20/3 (water in OD initial) :: Product(0.6667, 10, 6.6667)
+OP-2: 3/5 × 15 = 9 (water in PD) :: Product(0.6, 15, 9)
+OP-3: 10 + 15 = 25 (total initial volume) :: Sum(10, 15, 25)
+OP-4: 25 - 1 = 24 (volume after spill) :: Difference(25, 1, 24)
+OP-5: 9 × 3 = 27 (clearing fraction, constant term) :: Product(9, 3, 27)
+OP-6: 24 × 3 = 72 (clearing fraction, RHS) :: Product(24, 3, 72)
+OP-7: 3 × 1 = 3 (expanding 3(x-1) constant term) :: Product(3, 1, 3)
+OP-8: 27 - 3 = 24 (combining constants) :: Difference(27, 3, 24)
+OP-9: 72 - 24 = 48 (isolating 3x) :: Difference(72, 24, 48)
+OP-10: 48 ÷ 3 = 16 (solving for x) :: Quotient(48, 3, 16)
+OP-11: 2/3 × 16 = 32/3 (water in OD using x=16) :: Product(0.6667, 16, 10.6667)
+OP-12: 32/3 + 9 = 59/3 (total water content) :: Sum(10.6667, 9, 19.6667)
+
+## RULES
+RULE-1: If x has volume v and water fraction f, and f × v = w, then x has water amount w :: ∀x∀v∀f∀w (Volume(x,v) ∧ WaterFraction(x,f) ∧ Product(f,v,w) → WaterAmount(x,w))
+RULE-2: If x has volume v1 and y has volume v2, and v1 + v2 = t, then the mixture before spill has volume t :: ∀x∀y∀v1∀v2∀t (Volume(x,v1) ∧ Volume(y,v2) ∧ Sum(v1,v2,t) → Volume(mixture_before_spill,t))
+RULE-3: If x has volume v and the spill has volume s, and v - s = r, then the mixture after spill has volume r :: ∀x∀v∀s∀r (Volume(x,v) ∧ Volume(spill,s) ∧ Difference(v,s,r) → Volume(mixture_after_spill,r))
+RULE-4: If dividing 48 by 3 gives n, then the orange drink's (used) volume is n :: ∀n (Quotient(48,3,n) → Volume(orange_drink,n))
+RULE-5: If x has water amount w1 and y has water amount w2, and w1 + w2 = t, then the mixture after spill has water amount t :: ∀x∀y∀w1∀w2∀t (WaterAmount(x,w1) ∧ WaterAmount(y,w2) ∧ Sum(w1,w2,t) → WaterAmount(mixture_after_spill,t))
+
+## INFERENCES
+INF-1: Water amount in orange drink (initial) is 6.6667 liters, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(orange_drink, 6.6667)
+INF-2: Water amount in pineapple drink is 9 liters, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(pineapple_drink, 9)
+INF-3: Mixture before spill has volume 25 liters, from FACT-1, FACT-3, OP-3, RULE-2 by Universal Instantiation and Modus Ponens :: Volume(mixture_before_spill, 25)
+INF-4: Mixture after spill has volume 24 liters, from INF-3, FACT-5, OP-4, RULE-3 by Universal Instantiation and Modus Ponens :: Volume(mixture_after_spill, 24)
+INF-5: The orange drink's (used) volume is 16 liters, from OP-5, OP-6, OP-7, OP-8, OP-9, OP-10, RULE-4 by Universal Instantiation and Modus Ponens :: Volume(orange_drink, 16)
+INF-6: Water amount in orange drink (using 16 liters) is 10.6667 liters, from INF-5, FACT-2, OP-11, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(orange_drink, 10.6667)
+INF-7: Total water content in mixture after spill is 19.6667 liters, from INF-6, INF-2, OP-12, RULE-5 by Universal Instantiation and Modus Ponens :: WaterAmount(mixture_after_spill, 19.6667)

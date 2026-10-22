@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Price(x, p) — the price of one unit/item in category x is p dollars
+DiscountRate(x, r) — items in category x are priced at fraction r of the base price
+Count(x, n) — there are n items in category x
+CostFor(x, c) — the total cost for category x is c dollars
+
+Constants:
+kylar, glasses, odd_glasses, even_glasses, 5, 0.6, 3, 8, 16, 40, 24, 64
+
+## FACTS
+FACT-1: Each glass initially costs $5 :: Price(glasses, 5)
+FACT-2: Every second (even-numbered) glass gets a 60% discount rate applied to its original price :: DiscountRate(even_glasses, 0.6)
+FACT-3: Kylar is buying 16 glasses :: Count(glasses, 16)
+FACT-4: There are 8 odd-numbered glasses among the 16 :: Count(odd_glasses, 8)
+FACT-5: There are 8 even-numbered glasses among the 16 :: Count(even_glasses, 8)
+
+## OPERATIONS
+OP-1: 5 × 0.6 = 3 (discounted price of an even-numbered glass) :: Product(5, 0.6, 3)
+OP-2: 8 × 5 = 40 (cost for odd-numbered glasses) :: Product(8, 5, 40)
+OP-3: 8 × 3 = 24 (cost for even-numbered glasses) :: Product(8, 3, 24)
+OP-4: 40 + 24 = 64 (total cost) :: Sum(40, 24, 64)
+
+## RULES
+RULE-1: If the base price of a glass is p, then odd-numbered glasses retain the full price p :: ∀p (Price(glasses,p) → Price(odd_glasses,p))
+RULE-2: If the base price of a glass is p, the discount rate for even glasses is r, and p × r = q, then the price of an even-numbered glass is q :: ∀p∀r∀q (Price(glasses,p) ∧ DiscountRate(even_glasses,r) ∧ Product(p,r,q) → Price(even_glasses,q))
+RULE-3: If category x has n items each priced at p, and n × p = c, then the total cost for category x is c :: ∀x∀n∀p∀c (Count(x,n) ∧ Price(x,p) ∧ Product(n,p,c) → CostFor(x,c))
+RULE-4: If the cost for odd-numbered glasses is c1 and the cost for even-numbered glasses is c2, and c1 + c2 = c, then the total cost for Kylar is c :: ∀c1∀c2∀c (CostFor(odd_glasses,c1) ∧ CostFor(even_glasses,c2) ∧ Sum(c1,c2,c) → CostFor(kylar,c))
+
+## INFERENCES
+INF-1: The price of an odd-numbered glass is $5, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Price(odd_glasses, 5)
+INF-2: The price of an even-numbered glass is $3, from FACT-1, FACT-2, OP-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Price(even_glasses, 3)
+INF-3: The total cost for odd-numbered glasses is $40, from FACT-4, INF-1, OP-2, and RULE-3 by Universal Instantiation and Modus Ponens :: CostFor(odd_glasses, 40)
+INF-4: The total cost for even-numbered glasses is $24, from FACT-5, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: CostFor(even_glasses, 24)
+INF-5: The total cost for Kylar is $64, from INF-3, INF-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: CostFor(kylar, 64)

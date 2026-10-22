@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, start_time(candle, n_1)).
+fof(fact_2, axiom, end_time(candle, n_5)).
+fof(fact_3, axiom, melt_rate(candle, n_2)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_5, n_1, n_4)).
+fof(op_2, axiom, product(n_2, n_4, n_8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,S,E,D] : ((start_time(X, S) & end_time(X, E) & difference(E, S, D)) => duration(X, D))).
+fof(rule_2, axiom, ! [X,D,R,S] : ((duration(X, D) & melt_rate(X, R) & product(R, D, S)) => shortening(X, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, duration(candle, n_4)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, shortening(candle, n_8)).

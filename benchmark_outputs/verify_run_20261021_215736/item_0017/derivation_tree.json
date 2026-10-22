@@ -1,0 +1,92 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each train travels 80 miles westward",
+      "formula": "TravelsWest(train, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each train travels 150 miles northward on the second day",
+      "formula": "TravelsNorth(train, 150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "80 + 80 = 160 (total distance traveled westward)",
+      "formula": "Sum(80, 80, 160)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "160 + 150 = 310 (total distance covered by each train)",
+      "formula": "Sum(160, 150, 310)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a train travels n miles westward and n + n = s, then the train's total westward distance is s",
+      "formula": "\u2200x\u2200n\u2200s (TravelsWest(x,n) \u2227 Sum(n,n,s) \u2192 TotalWest(x,s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The westward distance is simply n (80 miles); doubling it (n+n=s) incorrectly inflates the distance to 160 miles.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a train's total westward distance is n and it travels m miles northward and n + m = s, then the train's total distance over the two days is s",
+      "formula": "\u2200x\u2200n\u2200m\u2200s (TotalWest(x,n) \u2227 TravelsNorth(x,m) \u2227 Sum(n,m,s) \u2192 TotalDistance(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The train's total westward distance is 160 miles, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalWest(train, 160)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The train's total distance covered over the two days is 310 miles, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(train, 310)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The westward distance is simply n (80 miles); doubling it (n+n=s) incorrectly inflates the distance to 160 miles."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

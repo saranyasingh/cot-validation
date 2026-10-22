@@ -1,0 +1,21 @@
+To solve this problem, we need to calculate the number of downloads for each month and then sum them up.
+
+**Premise 1:** In the first month, there were 60 downloads.
+- **Explanation:** This is given directly in the problem statement.
+
+**Premise 2:** The number of downloads in the second month was three times as many as the downloads in the first month.
+- **Explanation:** If \( D_1 \) represents the downloads in the first month, then \( D_2 = 3 \times D_1 \).
+- Given \( D_1 = 60 \), we find \( D_2 = 3 \times 60 = 180 \).
+
+**Premise 3:** The number of downloads in the third month was reduced by 30% compared to the second month.
+- **Explanation:** If \( D_2 \) represents the downloads in the second month, then \( D_3 = D_2 - 0.3 \times D_2 \).
+- Simplifying, \( D_3 = 0.7 \times D_2 \).
+- Given \( D_2 = 180 \), we find \( D_3 = 0.7 \times 180 = 126 \).
+
+**Conclusion:** To find the total number of downloads over the three months, we add the downloads from each month.
+- Total Downloads = \( D_1 + D_2 + D_3 \)
+- Substituting the values, we get \( 60 + 180 + 126 = 366 \).
+
+Therefore, the total number of downloads over the three months is 366.
+
+The answer is: 366

@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Cousins(x, y) — x and y are cousins
+BornBefore(x, y, n) — x was born n years before y
+AgeAtSonBirth(x, n) — x's son was born when x was n years old
+CurrentAge(x, n) — x is currently n years old
+Value(x, label, n) — the numeric value n associated with x for the quantity named label
+
+Constants:
+raymond, samantha, 6, 23, 31, 0, -6, 29, 2, birth_year, elapsed_since_birth, son_born_ago
+
+## FACTS
+FACT-1: Raymond and Samantha are cousins :: Cousins(raymond, samantha)
+FACT-2: Raymond was born 6 years before Samantha :: BornBefore(raymond, samantha, 6)
+FACT-3: Raymond's son was born when Raymond was 23 years old :: AgeAtSonBirth(raymond, 23)
+FACT-4: Samantha is currently 31 years old :: CurrentAge(samantha, 31)
+
+## OPERATIONS
+OP-1: Samantha's birth year = 31 - 31 = 0 :: Difference(31, 31, 0)
+OP-2: Raymond's birth year = 0 - 6 = -6 :: Difference(0, 6, -6)
+OP-3: Time elapsed since Raymond's birth = 23 - (-6) = 29 :: Difference(23, -6, 29)
+OP-4: Years ago Raymond's son was born = 31 - 29 = 2 :: Difference(31, 29, 2)
+
+## RULES
+RULE-1: If x is currently n years old and n minus n equals r, then x's birth year is r :: ∀x∀n∀r (CurrentAge(x,n) ∧ Difference(n,n,r) → Value(x, birth_year, r))
+RULE-2: If x was born n years before y, y's birth year is by, and by minus n equals r, then x's birth year is r :: ∀x∀y∀n∀by∀r (BornBefore(x,y,n) ∧ Value(y, birth_year, by) ∧ Difference(by,n,r) → Value(x, birth_year, r))
+RULE-3: If x's son was born when x was n years old, x's birth year is by, and n minus by equals r, then the time elapsed since x's birth (at son's birth) is r :: ∀x∀n∀by∀r (AgeAtSonBirth(x,n) ∧ Value(x, birth_year, by) ∧ Difference(n,by,r) → Value(x, elapsed_since_birth, r))
+RULE-4: If y is currently n1 years old, the time elapsed since x's birth is n2, and n1 minus n2 equals r, then x's son was born r years ago :: ∀x∀y∀n1∀n2∀r (CurrentAge(y,n1) ∧ Value(x, elapsed_since_birth, n2) ∧ Difference(n1,n2,r) → Value(x, son_born_ago, r))
+
+## INFERENCES
+INF-1: Samantha's birth year is 0, from FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Value(samantha, birth_year, 0)
+INF-2: Raymond's birth year is -6, from FACT-2, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Value(raymond, birth_year, -6)
+INF-3: The time elapsed since Raymond's birth (at son's birth) is 29, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Value(raymond, elapsed_since_birth, 29)
+INF-4: Raymond's son was born 2 years ago, from FACT-4, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Value(raymond, son_born_ago, 2)

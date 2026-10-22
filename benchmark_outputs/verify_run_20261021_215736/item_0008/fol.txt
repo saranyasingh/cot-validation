@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Speed(x, s) — x's download speed is s GB per minute
+FileSize(x, n) — the total file x is downloading has size n GB
+Percent(x, p) — p is the fraction of the file x had downloaded before the restart
+Volume(x, seg, v) — the amount of data x must download for segment seg is v GB
+Time(x, seg, t) — it takes x t minutes to download segment seg
+
+Constants:
+carla, 2, 200, 0.4, 80, 40, 100, 140, before_restart, after_restart, total
+
+## FACTS
+FACT-1: Carla's normal download speed is 2 GB per minute :: Speed(carla, 2)
+FACT-2: The file Carla is downloading is 200 GB :: FileSize(carla, 200)
+FACT-3: Carla had downloaded 40% of the file before the restart :: Percent(carla, 0.4)
+
+## OPERATIONS
+OP-1: 40% of 200 GB is 80 GB :: Product(0.4, 200, 80)
+OP-2: 80 GB divided by 2 GB/min is 40 minutes :: Quotient(80, 2, 40)
+OP-3: 200 GB divided by 2 GB/min is 100 minutes :: Quotient(200, 2, 100)
+OP-4: 40 minutes plus 100 minutes is 140 minutes :: Sum(40, 100, 140)
+
+## RULES
+RULE-1: If x's file size is n and x had downloaded fraction p before the restart, and p times n equals v, then the volume x must redo before the restart is v :: ∀x∀n∀p∀v (FileSize(x,n) ∧ Percent(x,p) ∧ Product(p,n,v) → Volume(x,before_restart,v))
+RULE-2: If x must download volume v for the before-restart segment at speed s, and v divided by s equals t, then it takes x t minutes for that segment :: ∀x∀v∀s∀t (Volume(x,before_restart,v) ∧ Speed(x,s) ∧ Quotient(v,s,t) → Time(x,before_restart,t))
+RULE-3: If x's file size is n and x's speed is s, and n divided by s equals t, then it takes x t minutes to download the whole file again after the restart :: ∀x∀n∀s∀t (FileSize(x,n) ∧ Speed(x,s) ∧ Quotient(n,s,t) → Time(x,after_restart,t))
+RULE-4: If x's before-restart time is t1 and x's after-restart time is t2, and t1 plus t2 equals t, then x's total time is t :: ∀x∀t1∀t2∀t (Time(x,before_restart,t1) ∧ Time(x,after_restart,t2) ∧ Sum(t1,t2,t) → Time(x,total,t))
+
+## INFERENCES
+INF-1: The volume Carla must redo before the restart is 80 GB, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Volume(carla, before_restart, 80)
+INF-2: It takes Carla 40 minutes for the before-restart segment, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Time(carla, before_restart, 40)
+INF-3: It takes Carla 100 minutes for the after-restart segment, from FACT-2, FACT-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Time(carla, after_restart, 100)
+INF-4: Carla's total download time is 140 minutes, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Time(carla, total, 140)

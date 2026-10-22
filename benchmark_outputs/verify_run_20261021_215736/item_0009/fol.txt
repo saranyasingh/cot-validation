@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+Speed(x, s) — segment x has speed s (mph)
+Time(x, t) — segment x lasts duration t (hours)
+SegmentDistance(x, d) — segment x covers distance d (miles)
+TotalDistance(p, d) — person p is distance d from home
+
+Constants:
+john, seg1, seg2, seg3, seg4, 60, 3, 0, 2, 30, 0.5, 80, 180, 15, 160, 355
+
+## FACTS
+FACT-1: John's first segment has speed 60 mph :: Speed(seg1, 60)
+FACT-2: John's first segment lasts 3 hours :: Time(seg1, 3)
+FACT-3: John's second segment has speed 0 mph :: Speed(seg2, 0)
+FACT-4: John's second segment lasts 2 hours :: Time(seg2, 2)
+FACT-5: John's third segment has speed 30 mph :: Speed(seg3, 30)
+FACT-6: John's third segment lasts 0.5 hours :: Time(seg3, 0.5)
+FACT-7: John's fourth segment has speed 80 mph :: Speed(seg4, 80)
+FACT-8: John's fourth segment lasts 2 hours :: Time(seg4, 2)
+
+## OPERATIONS
+OP-1: 60 mph times 3 hours is 180 miles :: Product(60, 3, 180)
+OP-2: 0 mph times 2 hours is 0 miles :: Product(0, 2, 0)
+OP-3: 30 mph times 0.5 hours is 15 miles :: Product(30, 0.5, 15)
+OP-4: 80 mph times 2 hours is 160 miles :: Product(80, 2, 160)
+OP-5: 180 + 0 + 15 + 160 = 355 :: Sum(180, 0, 15, 160, 355)
+
+## RULES
+RULE-1: If a segment has speed s and time t and s × t = d, then the segment's distance is d :: ∀x∀s∀t∀d (Speed(x,s) ∧ Time(x,t) ∧ Product(s,t,d) → SegmentDistance(x,d))
+RULE-2: If four segments have distances d1, d2, d3, d4 summing to d, then the person's total distance from home is d :: ∀w∀x∀y∀z∀d1∀d2∀d3∀d4∀d (SegmentDistance(w,d1) ∧ SegmentDistance(x,d2) ∧ SegmentDistance(y,d3) ∧ SegmentDistance(z,d4) ∧ Sum(d1,d2,d3,d4,d) → TotalDistance(john,d))
+
+## INFERENCES
+INF-1: John's first segment covers 180 miles, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: SegmentDistance(seg1, 180)
+INF-2: John's second segment covers 0 miles, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: SegmentDistance(seg2, 0)
+INF-3: John's third segment covers 15 miles, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: SegmentDistance(seg3, 15)
+INF-4: John's fourth segment covers 160 miles, from FACT-7, FACT-8, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens :: SegmentDistance(seg4, 160)
+INF-5: John is 355 miles from home, from INF-1, INF-2, INF-3, INF-4, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalDistance(john, 355)

@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Morning feed is 15 cups",
+      "formula": "Feed(morning, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Afternoon feed is 25 cups",
+      "formula": "Feed(afternoon, 25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 20 chickens",
+      "formula": "Chickens(farm, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "15 + 25 = 40",
+      "formula": "Sum(15, 25, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 / 20 = 2",
+      "formula": "Quotient(40, 20, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "2 * 20 = 40",
+      "formula": "Product(2, 20, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "40 - 40 = 0",
+      "formula": "Difference(40, 40, 0)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the feed at one meal is m, the feed at another meal is a, and m+a=s, then the feed for the first two meals is s",
+      "formula": "\u2200x\u2200y\u2200m\u2200a\u2200s (Feed(x,m) \u2227 Feed(y,a) \u2227 Sum(m,a,s) \u2192 Feed(first_two_meals, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the feed total for x is f, x has c chickens, and f/c = p, then the per-chicken feed for x is p",
+      "formula": "\u2200x\u2200f\u2200c\u2200p (Feed(x,f) \u2227 Chickens(farm,c) \u2227 Quotient(f,c,p) \u2192 PerChicken(farm, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the per-chicken feed for x is p, x has c chickens, and p\u00d7c=t, then the feed for all meals is t",
+      "formula": "\u2200x\u2200p\u2200c\u2200t (PerChicken(x,p) \u2227 Chickens(x,c) \u2227 Product(p,c,t) \u2192 Feed(all_meals, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the feed for all meals is t, the feed for the first two meals is f, and t\u2212f=r, then the remaining feed for the final meal is r",
+      "formula": "\u2200x\u2200y\u2200t\u2200f\u2200r (Feed(x,t) \u2227 Feed(y,f) \u2227 Difference(t,f,r) \u2192 Remaining(final_meal, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The feed for the first two meals is 40 cups, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(first_two_meals, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The per-chicken feed for the farm is 2 cups, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "PerChicken(farm, 2)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The feed for all meals is 40 cups, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(all_meals, 40)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The remaining feed for the final meal is 0 cups, from INF-3, INF-1, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Remaining(final_meal, 0)",
+      "premises": [
+        "INF-3",
+        "INF-1",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

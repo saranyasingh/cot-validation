@@ -1,0 +1,53 @@
+EXPLANATION
+Let's break down the problem into smaller parts to find out how much water is left after spilling.
+
+1. **Initial quantities**: We start with 10 liters of orange drink, which is two-thirds water.
+   - Orange drink (OD) = 10 liters
+   - Water in OD = \( \frac{2}{3} \times 10 = \frac{20}{3} \) liters
+
+2. **Pineapple drink**: We then mix this with 15 liters of pineapple drink, which is three-fifths water.
+   - Pineapple drink (PD) = 15 liters
+   - Water in PD = \( \frac{3}{5} \times 15 = 9 \) liters
+
+3. **Total volume before spill**:
+   - Total initial volume = 10 + 15 = 25 liters
+
+4. **Volume after spill**: One liter is spilled.
+   - Volume after spill = 25 - 1 = 24 liters
+
+5. **Water content calculation**:
+   - After mixing, we need to account for the water in both drinks but also consider the loss due to the spill.
+   - Let x be the amount of orange drink used initially.
+     - Since 1 liter was spilled, only x-1 liters of orange drink were added.
+     - Therefore, the total volume equation considering the spill becomes:
+       - Total volume = (x-1) * (2/3) + 9
+     - This must equal the new total volume after the spill: 24 liters.
+     - Set up the equation: 
+       - (x-1) * (2/3) + 9 = 24
+
+6. **Solve for x**:
+   - Multiply through by 3 to clear fractions:
+     - 3(x-1) + 27 = 72
+   - Distribute and simplify:
+     - 3x - 3 + 27 = 72
+     - 3x + 24 = 72
+     - Subtract 24 from both sides:
+       - 3x = 48
+     - Divide by 3:
+       - x = 16
+
+7. **Calculate water content**:
+   - Amount of orange drink used initially: 16 liters
+   - Water in the orange drink = \( \frac{2}{3} \times 16 = \frac{32}{3} \) liters
+
+Now let’s calculate the total water content including the spillage:
+
+- Water from orange drink after spill: \( \frac{32}{3} \)
+- Water from pineapple drink: 9 liters
+
+Adding these together gives us the total water content:
+\[ \frac{32}{3} + 9 = \frac{32}{3} + \frac{27}{3} = \frac{59}{3} \]
+
+Therefore, the total amount of water in the remaining 24 liters is \( \frac{59}{3} \) liters or approximately 19.67 liters.
+
+The answer is: 19.67

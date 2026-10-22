@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each lemon sold generates 1.5 dollars profit for Carlos",
+      "formula": "Rate(carlos, 1.5)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "$1.5 per lemon is the sale price, not profit; the problem states a separate $3/year watering/feeding cost that must be subtracted from lemon revenue to get actual net earnings, which this fact ignores.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Carlos's lemon tree grows 7 lemons per year",
+      "formula": "Grows(carlos, 7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Carlos needs 90 dollars worth of lemons to break even",
+      "formula": "NeedsAmount(carlos, 90)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem requires covering both the $90 planting cost and the ongoing $3/year maintenance cost; stating that he only needs \"$90 worth of lemons\" ignores the annual cost that reduces net earnings.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "8.57 rounded up to the nearest whole number is 9",
+      "formula": "RoundUp(8.57, 9)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "this value is derived from an incomplete calculation that omits the $3/year maintenance cost, so it is not a valid entailment of the problem's actual break-even requirement.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "7 lemons times 1.5 dollars per lemon equals 10.5 dollars per year",
+      "formula": "Product(7, 1.5, 10.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "90 dollars divided by 10.5 dollars per year equals approximately 8.57 years",
+      "formula": "Quotient(90, 10.5, 8.57)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's tree grows n lemons per year, x earns m dollars per lemon, n times m equals p dollars per year, x needs b dollars to break even, and b divided by p equals y years, then x needs y years to break even",
+      "formula": "\u2200x\u2200n\u2200m\u2200b\u2200p\u2200y (Grows(x,n) \u2227 Rate(x,m) \u2227 Product(n,m,p) \u2227 NeedsAmount(x,b) \u2227 Quotient(b,p,y) \u2192 YearsToBreakEven(x,y))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "it computes break-even years using gross lemon revenue only (n\u00d7m), failing to subtract the stated $3/year watering/feeding cost before dividing into the $90 planting cost.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x needs y years to break even and y rounds up to z, then x needs z years to break even (since fractional years must be rounded up to a whole year)",
+      "formula": "\u2200x\u2200y\u2200z (YearsToBreakEven(x,y) \u2227 RoundUp(y,z) \u2192 YearsToBreakEven(x,z))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Carlos needs approximately 8.57 years to break even, from FACT-1, FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "YearsToBreakEven(carlos, 8.57)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Carlos needs 9 years to break even, from INF-1, FACT-4, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "YearsToBreakEven(carlos, 9)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "$1.5 per lemon is the sale price, not profit; the problem states a separate $3/year watering/feeding cost that must be subtracted from lemon revenue to get actual net earnings, which this fact ignores."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "the problem requires covering both the $90 planting cost and the ongoing $3/year maintenance cost; stating that he only needs \"$90 worth of lemons\" ignores the annual cost that reduces net earnings."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "this value is derived from an incomplete calculation that omits the $3/year maintenance cost, so it is not a valid entailment of the problem's actual break-even requirement."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "it computes break-even years using gross lemon revenue only (n\u00d7m), failing to subtract the stated $3/year watering/feeding cost before dividing into the $90 planting cost."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

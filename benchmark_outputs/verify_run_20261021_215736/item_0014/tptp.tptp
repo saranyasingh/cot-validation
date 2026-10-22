@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, sold_at_red(melanie, n_2)).
+fof(fact_2, axiom, after_orange(melanie, n_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_5, n_10)).
+fof(op_2, axiom, sum(n_10, n_2, n_12)).
+fof(op_3, axiom, product(n_12, n_1_5, n_18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [P,N,R] : ((after_orange(P, R) & product(n_2, R, N)) => after_red(P, N))).
+fof(rule_2, axiom, ! [P,N,S,R] : ((after_red(P, N) & sold_at_red(P, S) & sum(N, S, R)) => after_green(P, R))).
+fof(rule_3, axiom, ! [P,N,R] : ((after_green(P, N) & product(N, n_1_5, R)) => started_with(P, R))).
+
+% --- INFERENCES ---
+% From fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, after_red(melanie, n_10)).
+% From inf_1, fact_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, after_green(melanie, n_12)).
+% From inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, started_with(melanie, n_18)).

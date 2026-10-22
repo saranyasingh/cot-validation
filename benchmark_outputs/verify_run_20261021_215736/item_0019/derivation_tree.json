@@ -1,0 +1,123 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Claire makes a 3-egg omelet every morning",
+      "formula": "EatsPerDay(claire, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 7 days in a week",
+      "formula": "DaysInWeek(7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Claire's consumption is considered over a period of 4 weeks",
+      "formula": "Weeks(claire, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 eggs/omelet * 7 days/week = 21 eggs/week",
+      "formula": "Product(3, 7, 21)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "21 eggs/week * 4 weeks = 84 eggs",
+      "formula": "Product(21, 4, 84)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "84 eggs / 12 eggs per dozen = 7 dozens",
+      "formula": "Quotient(84, 12, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x eats n eggs per day and there are d days in a week, and n times d equals w, then x consumes w eggs per week",
+      "formula": "\u2200x\u2200n\u2200d\u2200w (EatsPerDay(x,n) \u2227 DaysInWeek(d) \u2227 Product(n,d,w) \u2192 ConsumesEggs(x,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x consumes w eggs per week over a period of k weeks, and w times k equals t, then x consumes t eggs over that period",
+      "formula": "\u2200x\u2200w\u2200k\u2200t (ConsumesEggs(x,w) \u2227 Weeks(x,k) \u2227 Product(w,k,t) \u2192 ConsumesEggs(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x consumes n eggs, and n divided by 12 equals q, then x consumes q dozens of eggs",
+      "formula": "\u2200x\u2200n\u2200q (ConsumesEggs(x,n) \u2227 Quotient(n,12,q) \u2192 ConsumesDozens(x,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Claire consumes 21 eggs per week, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "ConsumesEggs(claire, 21)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Claire consumes 84 eggs over 4 weeks, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "ConsumesEggs(claire, 84)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Claire consumes 7 dozens of eggs over 4 weeks, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "ConsumesDozens(claire, 7)",
+      "premises": [
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

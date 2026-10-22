@@ -1,0 +1,163 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Carla's normal download speed is 2 GB per minute",
+      "formula": "Speed(carla, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The file Carla is downloading is 200 GB",
+      "formula": "FileSize(carla, 200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Carla had downloaded 40% of the file before the restart",
+      "formula": "Percent(carla, 0.4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "40% of 200 GB is 80 GB",
+      "formula": "Product(0.4, 200, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "80 GB divided by 2 GB/min is 40 minutes",
+      "formula": "Quotient(80, 2, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "200 GB divided by 2 GB/min is 100 minutes",
+      "formula": "Quotient(200, 2, 100)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "40 minutes plus 100 minutes is 140 minutes",
+      "formula": "Sum(40, 100, 140)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's file size is n and x had downloaded fraction p before the restart, and p times n equals v, then the volume x must redo before the restart is v",
+      "formula": "\u2200x\u2200n\u2200p\u2200v (FileSize(x,n) \u2227 Percent(x,p) \u2227 Product(p,n,v) \u2192 Volume(x,before_restart,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x must download volume v for the before-restart segment at speed s, and v divided by s equals t, then it takes x t minutes for that segment",
+      "formula": "\u2200x\u2200v\u2200s\u2200t (Volume(x,before_restart,v) \u2227 Speed(x,s) \u2227 Quotient(v,s,t) \u2192 Time(x,before_restart,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's file size is n and x's speed is s, and n divided by s equals t, then it takes x t minutes to download the whole file again after the restart",
+      "formula": "\u2200x\u2200n\u2200s\u2200t (FileSize(x,n) \u2227 Speed(x,s) \u2227 Quotient(n,s,t) \u2192 Time(x,after_restart,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's before-restart time is t1 and x's after-restart time is t2, and t1 plus t2 equals t, then x's total time is t",
+      "formula": "\u2200x\u2200t1\u2200t2\u2200t (Time(x,before_restart,t1) \u2227 Time(x,after_restart,t2) \u2227 Sum(t1,t2,t) \u2192 Time(x,total,t))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Total time should include the 20-minute restart/update delay, but this rule only sums the before-restart and after-restart download times, omitting the 20 minutes entirely.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The volume Carla must redo before the restart is 80 GB, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(carla, before_restart, 80)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "It takes Carla 40 minutes for the before-restart segment, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Time(carla, before_restart, 40)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "It takes Carla 100 minutes for the after-restart segment, from FACT-2, FACT-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Time(carla, after_restart, 100)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Carla's total download time is 140 minutes, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Time(carla, total, 140)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Total time should include the 20-minute restart/update delay, but this rule only sums the before-restart and after-restart download times, omitting the 20 minutes entirely."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

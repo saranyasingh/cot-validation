@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+TravelsWest(x, n) — x travels n miles westward
+TravelsNorth(x, n) — x travels n miles northward
+TotalWest(x, n) — the total distance x travels westward is n miles
+TotalDistance(x, n) — the total distance x travels over the two days is n miles
+
+Constants:
+train, 80, 150, 160, 310
+
+## FACTS
+FACT-1: Each train travels 80 miles westward :: TravelsWest(train, 80)
+FACT-2: Each train travels 150 miles northward on the second day :: TravelsNorth(train, 150)
+
+## OPERATIONS
+OP-1: 80 + 80 = 160 (total distance traveled westward) :: Sum(80, 80, 160)
+OP-2: 160 + 150 = 310 (total distance covered by each train) :: Sum(160, 150, 310)
+
+## RULES
+RULE-1: If a train travels n miles westward and n + n = s, then the train's total westward distance is s :: ∀x∀n∀s (TravelsWest(x,n) ∧ Sum(n,n,s) → TotalWest(x,s))
+RULE-2: If a train's total westward distance is n and it travels m miles northward and n + m = s, then the train's total distance over the two days is s :: ∀x∀n∀m∀s (TotalWest(x,n) ∧ TravelsNorth(x,m) ∧ Sum(n,m,s) → TotalDistance(x,s))
+
+## INFERENCES
+INF-1: The train's total westward distance is 160 miles, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalWest(train, 160)
+INF-2: The train's total distance covered over the two days is 310 miles, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalDistance(train, 310)

@@ -1,0 +1,11 @@
+FACT-1: UNSUPPORTED — $1.5 per lemon is the sale price, not profit; the problem states a separate $3/year watering/feeding cost that must be subtracted from lemon revenue to get actual net earnings, which this fact ignores.
+
+FACT-2: SUPPORTED
+
+FACT-3: UNSUPPORTED — the problem requires covering both the $90 planting cost and the ongoing $3/year maintenance cost; stating that he only needs "$90 worth of lemons" ignores the annual cost that reduces net earnings.
+
+FACT-4: UNSUPPORTED — this value is derived from an incomplete calculation that omits the $3/year maintenance cost, so it is not a valid entailment of the problem's actual break-even requirement.
+
+RULE-1: IMPLAUSIBLE — it computes break-even years using gross lemon revenue only (n×m), failing to subtract the stated $3/year watering/feeding cost before dividing into the $90 planting cost.
+
+RULE-2: PLAUSIBLE

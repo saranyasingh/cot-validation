@@ -1,0 +1,175 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Raymond and Samantha are cousins",
+      "formula": "Cousins(raymond, samantha)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BornBefore(raymond, samantha, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond's son was born when Raymond was 23 years old",
+      "formula": "AgeAtSonBirth(raymond, 23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Samantha is currently 31 years old",
+      "formula": "CurrentAge(samantha, 31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Samantha's birth year = 31 - 31 = 0",
+      "formula": "Difference(31, 31, 0)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "Raymond's birth year = 0 - 6 = -6",
+      "formula": "Difference(0, 6, -6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "Time elapsed since Raymond's birth = 23 - (-6) = 29",
+      "formula": "Difference(23, -6, 29)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "Years ago Raymond's son was born = 31 - 29 = 2",
+      "formula": "Difference(31, 29, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x is currently n years old and n minus n equals r, then x's birth year is r",
+      "formula": "\u2200x\u2200n\u2200r (CurrentAge(x,n) \u2227 Difference(n,n,r) \u2192 Value(x, birth_year, r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "\"n minus n\" is trivially always 0 regardless of n, so this rule does not actually derive a birth year from age; it discards the input entirely rather than correctly relating current age to birth year (e.g., present year minus age).",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x was born n years before y, y's birth year is by, and by minus n equals r, then x's birth year is r",
+      "formula": "\u2200x\u2200y\u2200n\u2200by\u2200r (BornBefore(x,y,n) \u2227 Value(y, birth_year, by) \u2227 Difference(by,n,r) \u2192 Value(x, birth_year, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "if x is born n years before y, then x's birth year equals y's birth year minus n, which is correctly stated.",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's son was born when x was n years old, x's birth year is by, and n minus by equals r, then the time elapsed since x's birth (at son's birth) is r",
+      "formula": "\u2200x\u2200n\u2200by\u2200r (AgeAtSonBirth(x,n) \u2227 Value(x, birth_year, by) \u2227 Difference(n,by,r) \u2192 Value(x, elapsed_since_birth, r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "computing \"n minus by\" mixes an age (n) with a birth year (by) using subtraction, which is the wrong operation; the son's birth year (or elapsed time to it) should be x's birth year plus n (by + n), not n minus by.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If y is currently n1 years old, the time elapsed since x's birth is n2, and n1 minus n2 equals r, then x's son was born r years ago",
+      "formula": "\u2200x\u2200y\u2200n1\u2200n2\u2200r (CurrentAge(y,n1) \u2227 Value(x, elapsed_since_birth, n2) \u2227 Difference(n1,n2,r) \u2192 Value(x, son_born_ago, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "given y's current age (n1) and the (correctly computed) offset value (n2) for when the son was born relative to the same reference, subtracting n2 from n1 correctly yields how many years ago the son was born.",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Samantha's birth year is 0, from FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(samantha, birth_year, 0)",
+      "premises": [
+        "FACT-4",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Raymond's birth year is -6, from FACT-2, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(raymond, birth_year, -6)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The time elapsed since Raymond's birth (at son's birth) is 29, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(raymond, elapsed_since_birth, 29)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Raymond's son was born 2 years ago, from FACT-4, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Value(raymond, son_born_ago, 2)",
+      "premises": [
+        "FACT-4",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "\"n minus n\" is trivially always 0 regardless of n, so this rule does not actually derive a birth year from age; it discards the input entirely rather than correctly relating current age to birth year (e.g., present year minus age)."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "computing \"n minus by\" mixes an age (n) with a birth year (by) using subtraction, which is the wrong operation; the son's birth year (or elapsed time to it) should be x's birth year plus n (by + n), not n minus by."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

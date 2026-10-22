@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Feed(x, n) — the amount of feed associated with x is n cups
+Chickens(x, n) — x has n chickens
+PerChicken(x, n) — the feed per chicken for x is n cups
+Remaining(x, n) — the remaining feed amount for x is n cups
+
+Constants:
+morning, afternoon, farm, first_two_meals, all_meals, final_meal, 15, 25, 20, 40, 2, 0
+
+## FACTS
+FACT-1: Morning feed is 15 cups :: Feed(morning, 15)
+FACT-2: Afternoon feed is 25 cups :: Feed(afternoon, 25)
+FACT-3: There are 20 chickens :: Chickens(farm, 20)
+
+## OPERATIONS
+OP-1: 15 + 25 = 40 :: Sum(15, 25, 40)
+OP-2: 40 / 20 = 2 :: Quotient(40, 20, 2)
+OP-3: 2 * 20 = 40 :: Product(2, 20, 40)
+OP-4: 40 - 40 = 0 :: Difference(40, 40, 0)
+
+## RULES
+RULE-1: If the feed at one meal is m, the feed at another meal is a, and m+a=s, then the feed for the first two meals is s :: ∀x∀y∀m∀a∀s (Feed(x,m) ∧ Feed(y,a) ∧ Sum(m,a,s) → Feed(first_two_meals, s))
+RULE-2: If the feed total for x is f, x has c chickens, and f/c = p, then the per-chicken feed for x is p :: ∀x∀f∀c∀p (Feed(x,f) ∧ Chickens(farm,c) ∧ Quotient(f,c,p) → PerChicken(farm, p))
+RULE-3: If the per-chicken feed for x is p, x has c chickens, and p×c=t, then the feed for all meals is t :: ∀x∀p∀c∀t (PerChicken(x,p) ∧ Chickens(x,c) ∧ Product(p,c,t) → Feed(all_meals, t))
+RULE-4: If the feed for all meals is t, the feed for the first two meals is f, and t−f=r, then the remaining feed for the final meal is r :: ∀x∀y∀t∀f∀r (Feed(x,t) ∧ Feed(y,f) ∧ Difference(t,f,r) → Remaining(final_meal, r))
+
+## INFERENCES
+INF-1: The feed for the first two meals is 40 cups, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Feed(first_two_meals, 40)
+INF-2: The per-chicken feed for the farm is 2 cups, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: PerChicken(farm, 2)
+INF-3: The feed for all meals is 40 cups, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Feed(all_meals, 40)
+INF-4: The remaining feed for the final meal is 0 cups, from INF-3, INF-1, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Remaining(final_meal, 0)

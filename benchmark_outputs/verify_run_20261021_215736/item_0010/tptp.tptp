@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, hours(eliza, regular, n_40)).
+fof(fact_2, axiom, rate(eliza, regular, n_10)).
+fof(fact_3, axiom, hours(eliza, total, n_45)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_45, n_40, n_5)).
+fof(op_2, axiom, product(n_10, n_1_2, n_12)).
+fof(op_3, axiom, product(n_40, n_10, n_400)).
+fof(op_4, axiom, product(n_5, n_12, n_60)).
+fof(op_5, axiom, sum(n_400, n_60, n_460)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,R] : ((hours(X, total, N) & hours(X, regular, M) & difference(N, M, R)) => hours(X, overtime, R))).
+fof(rule_2, axiom, ! [X,N,R] : ((rate(X, regular, N) & product(N, n_1_2, R)) => rate(X, overtime, R))).
+fof(rule_3, axiom, ! [X,T,N,M,P] : ((hours(X, T, N) & rate(X, T, M) & product(N, M, P)) => earnings(X, T, P))).
+fof(rule_4, axiom, ! [X,N,M,S] : ((earnings(X, regular, N) & earnings(X, overtime, M) & sum(N, M, S)) => earnings(X, total, S))).
+
+% --- INFERENCES ---
+% From fact_3, fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, hours(eliza, overtime, n_5)).
+% From fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, rate(eliza, overtime, n_12)).
+% From fact_1, fact_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, earnings(eliza, regular, n_400)).
+% From inf_1, inf_2, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, earnings(eliza, overtime, n_60)).
+% From inf_3, inf_4, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, earnings(eliza, total, n_460)).

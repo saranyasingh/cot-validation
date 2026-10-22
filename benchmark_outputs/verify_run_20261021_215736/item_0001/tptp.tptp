@@ -1,0 +1,20 @@
+% --- FACTS ---
+fof(fact_1, axiom, lays_eggs(janet, n_16)).
+fof(fact_2, axiom, consumes(janet, n_3)).
+fof(fact_3, axiom, consumes(janet, n_4)).
+fof(fact_4, axiom, price_per_egg(janet, n_2)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_3, n_4, n_7)).
+fof(op_2, axiom, difference(n_16, n_7, n_9)).
+fof(op_3, axiom, product(n_9, n_2, n_18)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M1,M2,S,R] : ((lays_eggs(X, N) & consumes(X, M1) & consumes(X, M2) & sum(M1, M2, S) & difference(N, S, R)) => remaining(X, R))).
+fof(rule_2, axiom, ! [X,R,P,E] : ((remaining(X, R) & price_per_egg(X, P) & product(R, P, E)) => earns(X, E))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, remaining(janet, n_9)).
+% From inf_1, fact_4, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, earns(janet, n_18)).

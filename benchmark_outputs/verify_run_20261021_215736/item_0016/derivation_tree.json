@@ -1,0 +1,152 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The jewelry purchase plan has an initial price of $5,000",
+      "formula": "InitialPrice(jewelry, 5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The jewelry purchase plan has a growth rate of 2.5%",
+      "formula": "GrowthRate(jewelry, 0.025)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The electronics purchase plan has an initial price of $8,000",
+      "formula": "InitialPrice(electronics, 8000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The electronics purchase plan has a growth rate of 1.2%",
+      "formula": "GrowthRate(electronics, 0.012)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "1 + 0.025 = 1.025",
+      "formula": "Sum(1, 0.025, 1.025)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "5000 \u00d7 1.025 = 5125",
+      "formula": "Product(5000, 1.025, 5125)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "1 + 0.012 = 1.012",
+      "formula": "Sum(1, 0.012, 1.012)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "8000 \u00d7 1.012 = 8096",
+      "formula": "Product(8000, 1.012, 8096)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any x with initial price n and growth rate g, if 1 + g = f and n \u00d7 f = v, then x has future value v",
+      "formula": "\u2200x\u2200n\u2200g\u2200f\u2200v (InitialPrice(x,n) \u2227 GrowthRate(x,g) \u2227 Sum(1,g,f) \u2227 Product(n,f,v) \u2192 FutureValue(x,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any two plans x and y, if x's future value is greater than y's future value, then the merchant should choose x to maximize profit",
+      "formula": "\u2200x\u2200y\u2200n\u2200m (FutureValue(x,n) \u2227 FutureValue(y,m) \u2227 GreaterThan(n,m) \u2192 Chooses(x))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Maximizing profit requires comparing profit (future value minus initial cost), not future value alone; comparing future values directly would favor the plan with higher initial cost even if its profit is smaller.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The jewelry plan has a future value of $5,125, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FutureValue(jewelry, 5125)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The electronics plan has a future value of $8,096, from FACT-3, FACT-4, OP-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FutureValue(electronics, 8096)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-3",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "8096 is greater than 5125",
+      "formula": "GreaterThan(8096, 5125)",
+      "premises": [],
+      "inference_rule": null,
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The merchant should choose the electronics plan to maximize profit, from INF-2, INF-1, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Chooses(electronics)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "Maximizing profit requires comparing profit (future value minus initial cost), not future value alone; comparing future values directly would favor the plan with higher initial cost even if its profit is smaller."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

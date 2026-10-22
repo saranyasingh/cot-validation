@@ -1,0 +1,34 @@
+EXPLANATION
+
+1. **Premise**: Carlos needs to earn money from selling lemons.
+   - Premise derived directly from the problem statement.
+
+2. **Premise**: Each lemon sold generates $1.5 profit.
+   - This is based on the information that Carlos sells each lemon for $1.5 and subtracts the initial cost (which we assume to be negligible or not relevant here).
+
+3. **Premise**: The lemon tree grows 7 lemons per year.
+   - This is given as part of the problem description.
+
+4. **Premise**: To break even after accounting for the initial cost of planting, Carlos must make at least $90 worth of lemons.
+   - This is because the initial investment was $90, and if he doesn't make this amount back within the time frame, he won’t start earning any money.
+
+5. **Calculation**:
+   - We need to determine how many years \( y \) it takes for Carlos to collect $90 worth of lemons.
+   - From step 2, each lemon makes $1.5 profit.
+   - Therefore, \( 7 \) lemons produce \( 7 \times 1.5 = 10.5 \) dollars per year.
+
+6. **Break-even Condition**:
+   - For Carlos to break even, he needs \( 90 \) dollars.
+   - Since \( 10.5 \) dollars come from \( 7 \) lemons per year, it means \( 7 \) lemons cover \( 10.5 \) dollars.
+
+7. **Total Years Calculation**:
+   - If Carlos plants the tree initially and then waits for \( x \) years until he breaks even, he would have planted the tree once and started making profits immediately.
+   - In these \( x \) years, he would have grown \( 7x \) lemons and earned \( 10.5x \) dollars.
+   - He needs \( 90 \) dollars to break even, so \( 10.5x = 90 \).
+   - Solving for \( x \), we get \( x = \frac{90}{10.5} \approx 8.57 \).
+
+Since Carlos cannot wait for a fraction of a year, he needs to round up to the nearest whole year.
+
+Therefore, the calculation shows that Carlos will start earning money on the lemon tree after approximately 9 years.
+
+The answer is: 9

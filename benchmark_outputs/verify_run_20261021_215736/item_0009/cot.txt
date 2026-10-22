@@ -1,0 +1,40 @@
+To determine how far John is from home at the end of his journey, we need to break down his trip into segments based on the given information.
+
+1. **First Segment (Driving):**
+   - Distance = Speed × Time
+   - John drove for 3 hours at 60 mph.
+   \[
+   \text{Distance} = 60 \, \text{mph} \times 3 \, \text{hours} = 180 \, \text{miles}
+   \]
+
+2. **Second Segment (Standing Still Traffic):**
+   - Distance = Speed × Time
+   - John spent 2 hours standing still.
+   \[
+   \text{Distance} = 0 \, \text{mph} \times 2 \, \text{hours} = 0 \, \text{miles}
+   \]
+   This segment does not contribute to his distance from home.
+
+3. **Third Segment (Reduced Speed):**
+   - Distance = Speed × Time
+   - John drove for 0.5 hours at 30 mph.
+   \[
+   \text{Distance} = 30 \, \text{mph} \times 0.5 \, \text{hours} = 15 \, \text{miles}
+   \]
+
+4. **Fourth Segment (Higher Speed):**
+   - Distance = Speed × Time
+   - John drove for the remaining 2 hours at 80 mph.
+   \[
+   \text{Distance} = 80 \, \text{mph} \times 2 \, \text{hours} = 160 \, \text{miles}
+   \]
+
+Now, let's sum up all the distances traveled during these segments to find out how far John has been from home after 4 hours.
+
+\[
+\text{Total Distance} = 180 \, \text{miles} + 0 \, \text{miles} + 15 \, \text{miles} + 160 \, \text{miles} = 355 \, \text{miles}
+\]
+
+Therefore, John is 355 miles away from home at the end of those 4 hours. 
+
+The answer is: 355

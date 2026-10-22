@@ -1,0 +1,6 @@
+  % From fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+  inf_1: PROVED
+  % From inf_1, fact_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+  inf_2: PROVED
+  % From inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+  inf_3: PROVED

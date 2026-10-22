@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, amount(josh, purchase_price, n_80000)).
+fof(fact_2, axiom, amount(josh, repairs_cost, n_50000)).
+fof(fact_3, axiom, amount(josh, increase_percent, n_1_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_80000, n_50000, n_130000)).
+fof(op_2, axiom, product(n_1_5, n_80000, n_120000)).
+fof(op_3, axiom, sum(n_80000, n_120000, n_200000)).
+fof(op_4, axiom, difference(n_200000, n_130000, n_70000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,P,R,T] : ((amount(X, purchase_price, P) & amount(X, repairs_cost, R) & sum(P, R, T)) => amount(X, total_investment, T))).
+fof(rule_2, axiom, ! [X,P,K,I] : ((amount(X, purchase_price, P) & amount(X, increase_percent, K) & product(K, P, I)) => amount(X, increase_value, I))).
+fof(rule_3, axiom, ! [X,P,I,V] : ((amount(X, purchase_price, P) & amount(X, increase_value, I) & sum(P, I, V)) => amount(X, new_value, V))).
+fof(rule_4, axiom, ! [X,V,T,D] : ((amount(X, new_value, V) & amount(X, total_investment, T) & difference(V, T, D)) => amount(X, profit, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, amount(josh, total_investment, n_130000)).
+% From fact_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, amount(josh, increase_value, n_120000)).
+% From fact_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, amount(josh, new_value, n_200000)).
+% From inf_3, inf_1, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, amount(josh, profit, n_70000)).

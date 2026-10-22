@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — "n minus n" is trivially always 0 regardless of n, so this rule does not actually derive a birth year from age; it discards the input entirely rather than correctly relating current age to birth year (e.g., present year minus age).
+RULE-2: PLAUSIBLE — if x is born n years before y, then x's birth year equals y's birth year minus n, which is correctly stated.
+RULE-3: IMPLAUSIBLE — computing "n minus by" mixes an age (n) with a birth year (by) using subtraction, which is the wrong operation; the son's birth year (or elapsed time to it) should be x's birth year plus n (by + n), not n minus by.
+RULE-4: PLAUSIBLE — given y's current age (n1) and the (correctly computed) offset value (n2) for when the son was born relative to the same reference, subtracting n2 from n1 correctly yields how many years ago the son was born.

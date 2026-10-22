@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Josh bought the house for $80,000",
+      "formula": "Amount(josh, purchase_price, 80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Josh spent $50,000 on repairs",
+      "formula": "Amount(josh, repairs_cost, 50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The house's value increased by 150% (as a decimal multiplier, 1.5)",
+      "formula": "Amount(josh, increase_percent, 1.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "80,000 plus 50,000 is 130,000 (total investment)",
+      "formula": "Sum(80000, 50000, 130000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1.5 times 80,000 is 120,000 (increase amount)",
+      "formula": "Product(1.5, 80000, 120000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "80,000 plus 120,000 is 200,000 (new value)",
+      "formula": "Sum(80000, 120000, 200000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "200,000 minus 130,000 is 70,000 (profit)",
+      "formula": "Difference(200000, 130000, 70000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's purchase price is p, repairs cost is r, and p + r = t, then x's total investment is t",
+      "formula": "\u2200x\u2200p\u2200r\u2200t (Amount(x,purchase_price,p) \u2227 Amount(x,repairs_cost,r) \u2227 Sum(p,r,t) \u2192 Amount(x,total_investment,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's purchase price is p, increase percent (as decimal) is k, and k \u00d7 p = i, then x's increase value is i",
+      "formula": "\u2200x\u2200p\u2200k\u2200i (Amount(x,purchase_price,p) \u2227 Amount(x,increase_percent,k) \u2227 Product(k,p,i) \u2192 Amount(x,increase_value,i))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's purchase price is p, increase value is i, and p + i = v, then x's new value is v",
+      "formula": "\u2200x\u2200p\u2200i\u2200v (Amount(x,purchase_price,p) \u2227 Amount(x,increase_value,i) \u2227 Sum(p,i,v) \u2192 Amount(x,new_value,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's new value is v, total investment is t, and v \u2212 t = d, then x's profit is d",
+      "formula": "\u2200x\u2200v\u2200t\u2200d (Amount(x,new_value,v) \u2227 Amount(x,total_investment,t) \u2227 Difference(v,t,d) \u2192 Amount(x,profit,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Josh's total investment is 130,000, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(josh, total_investment, 130000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Josh's increase value is 120,000, from FACT-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(josh, increase_value, 120000)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Josh's new house value is 200,000, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(josh, new_value, 200000)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Josh's profit is 70,000, from INF-3, INF-1, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(josh, profit, 70000)",
+      "premises": [
+        "INF-3",
+        "INF-1",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}
