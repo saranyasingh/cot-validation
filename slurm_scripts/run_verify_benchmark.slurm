@@ -14,15 +14,32 @@
 
 # ── Args (override at submission time via --export or edit here) ───────────────
 DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/dataset.json}"
-CLIENT="${CLIENT:-openai}"       # openai | kimi | deepseek
+CLIENT="${CLIENT:-openai}"       # openai | claude | kimi | deepseek | bedrock
+VERIFIER="${VERIFIER:-claude}"   # openai | claude | kimi | deepseek | bedrock
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 SKIP_TPTP="${SKIP_TPTP:-}"       # set to "1" to pass --skip-tptp
+ANTHROPIC_MODEL="${ANTHROPIC_MODEL:-claude-opus-5-5}"
 
 # ── API keys — set these in your cluster environment or uncomment and fill in ──
 # export OPENAI_API_KEY=""
 # export KIMI_API_KEY=""
 # export DEEPSEEK_API_KEY=""
+export ANTHROPIC_API_KEY="${ANTHROPIC_API_KEY:-$(cat ~/.anthropic_key 2>/dev/null || echo '')}"
+export ANTHROPIC_MODEL
+# Bedrock (CLIENT/VERIFIER=bedrock): Bedrock API key from ~/.bedrock_key
+if [ -z "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && [ -f ~/.bedrock_key ]; then
+    export AWS_BEARER_TOKEN_BEDROCK="$(tr -d ' \n\r\t' < ~/.bedrock_key)"
+fi
+export AWS_REGION="${AWS_REGION:-us-east-1}"
+export BEDROCK_MODEL="${BEDROCK_MODEL:-anthropic.claude-sonnet-5-5}"
+# Also pull keys from repo .env if present (cluster-friendly)
+if [ -f "${SLURM_SUBMIT_DIR}/../.env" ]; then
+    set -a
+    # shellcheck disable=SC1091
+    source "${SLURM_SUBMIT_DIR}/../.env"
+    set +a
+fi
 
 # ── Environment setup ──────────────────────────────────────────────────────────
 # Compute nodes often have no `python` on PATH (only python3, or after module load).
@@ -34,8 +51,8 @@ mkdir -p slurm_logs
 
 cd "$SLURM_SUBMIT_DIR"
 
-if [ -f "${SLURM_SUBMIT_DIR}/.venv/bin/activate" ]; then
-    source "${SLURM_SUBMIT_DIR}/.venv/bin/activate"
+if [ -f "${SLURM_SUBMIT_DIR}/../.venv/bin/activate" ]; then
+    source "${SLURM_SUBMIT_DIR}/../.venv/bin/activate"
 fi
 PYTHON="${PYTHON:-$(command -v python3 2>/dev/null || command -v python 2>/dev/null)}"
 if [ -z "$PYTHON" ]; then
@@ -47,7 +64,19 @@ echo "Job ID       : $SLURM_JOB_ID"
 echo "Node         : $SLURMD_NODENAME"
 echo "Python       : $PYTHON ($("$PYTHON" -c 'import sys; print(sys.version.split()[0])' 2>/dev/null || echo unknown))"
 echo "Dataset      : $DATASET"
-echo "Client       : $CLIENT"
+if [ "$CLIENT" = "bedrock" ]; then
+    echo "Client       : bedrock ($BEDROCK_MODEL, $AWS_REGION)"
+    echo "Bedrock key  : $([ -n "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && echo set || echo MISSING)"
+else
+    echo "Client       : $CLIENT ($ANTHROPIC_MODEL)"
+fi
+if [ "$VERIFIER" = "bedrock" ]; then
+    echo "Verifier     : bedrock ($BEDROCK_MODEL, $AWS_REGION)"
+    echo "Bedrock key  : $([ -n "${AWS_BEARER_TOKEN_BEDROCK:-}" ] && echo set || echo MISSING)"
+else
+    echo "Verifier     : $VERIFIER ($ANTHROPIC_MODEL)"
+    echo "Anthropic key: $([ -n "${ANTHROPIC_API_KEY:-}" ] && echo set || echo MISSING)"
+fi
 echo "Skip TPTP    : ${SKIP_TPTP:-no}"
 echo "Start time   : $(date)"
 echo "──────────────────────────────────────────"
@@ -73,6 +102,7 @@ export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
 "$PYTHON" "$SLURM_SUBMIT_DIR/../main_pipeline/verify_benchmark.py" \
     --dataset "$DATASET" \
     --client "$CLIENT" \
+    --verifier "$VERIFIER" \
     $OUTPUT_ARG \
     $NUM_PROBLEMS_ARG \
     $SKIP_TPTP_ARG

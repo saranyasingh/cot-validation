@@ -1,13 +1,14 @@
 % --- FACTS ---
-fof(fact_1, axiom, paid_amount(kyle, 19.50)).
-fof(fact_2, axiom, discount_percent(kyle, 25)).
+fof(fact_1, axiom, paid_after_discount(kyle, n_19_50)).
+fof(fact_2, axiom, discount_rate(kyle, n_0_25)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_1, n_0_25, n_0_75)).
+fof(op_2, axiom, quotient(n_19_50, n_0_75, n_26)).
 
 % --- RULES ---
-fof(rule_1, axiom, ! [X] : (discount_percent(X,25) => paid_fraction(X,0.75))).
-fof(rule_2, axiom, ! [X,Y,F] : ((paid_amount(X,Y) & paid_fraction(X,F)) => original_price(X, Y/F))).
+fof(rule_1, axiom, ! [X,N,D,R,P] : ((paid_after_discount(X, N) & discount_rate(X, D) & difference(n_1, D, R) & quotient(N, R, P)) => original_price(X, P))).
 
 % --- INFERENCES ---
-% From fact_2, rule_1 by Universal Instantiation and Modus Ponens
-fof(inf_1, axiom, paid_fraction(kyle, 0.75)).
-% From fact_1, inf_1, rule_2 by Universal Instantiation and Modus Ponens
-fof(inf_2, axiom, original_price(kyle, 26)).
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, original_price(kyle, n_26)).
