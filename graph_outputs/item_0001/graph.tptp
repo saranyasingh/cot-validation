@@ -1,0 +1,26 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(janet_decl, type, janet: person).
+tff(eggs_laid_per_day_decl, type, eggs_laid_per_day: (person * $rat) > $o).
+tff(breakfast_eggs_decl, type, breakfast_eggs: (person * $rat) > $o).
+tff(eggs_after_breakfast_decl, type, eggs_after_breakfast: (person * $rat) > $o).
+tff(muffin_eggs_decl, type, muffin_eggs: (person * $rat) > $o).
+tff(eggs_after_muffins_decl, type, eggs_after_muffins: (person * $rat) > $o).
+tff(egg_price_decl, type, egg_price: (person * $rat) > $o).
+tff(daily_earnings_decl, type, daily_earnings: (person * $rat) > $o).
+tff(sells_all_remaining_decl, type, sells_all_remaining: person > $o).
+tff(uses_same_day_eggs_decl, type, uses_same_day_eggs: person > $o).
+
+% Statements
+tff(c1, axiom, eggs_laid_per_day(janet, 16/1)).
+tff(c2, axiom, breakfast_eggs(janet, 3/1)).
+tff(c3, axiom, ![V_x: person, V_t: $rat, V_b: $rat, V_r: $rat]: ((eggs_laid_per_day(V_x, V_t) & breakfast_eggs(V_x, V_b) & uses_same_day_eggs(V_x) & V_r = $difference(V_t, V_b)) => eggs_after_breakfast(V_x, V_r))).
+tff(c4, lemma, eggs_after_breakfast(janet, 13/1)).
+tff(c5, axiom, muffin_eggs(janet, 4/1)).
+tff(c6, axiom, ![V_x: person, V_r: $rat, V_m: $rat, V_s: $rat]: ((eggs_after_breakfast(V_x, V_r) & muffin_eggs(V_x, V_m) & V_s = $difference(V_r, V_m)) => eggs_after_muffins(V_x, V_s))).
+tff(c7, lemma, eggs_after_muffins(janet, 9/1)).
+tff(c8, axiom, egg_price(janet, 2/1)).
+tff(c9, axiom, ![V_x: person, V_n: $rat, V_p: $rat, V_e: $rat]: ((eggs_after_muffins(V_x, V_n) & egg_price(V_x, V_p) & sells_all_remaining(V_x) & V_e = $product(V_n, V_p)) => daily_earnings(V_x, V_e))).
+tff(c10, lemma, daily_earnings(janet, 18/1)).
+tff(i1, axiom, sells_all_remaining(janet)).
+tff(i2, axiom, uses_same_day_eggs(janet)).

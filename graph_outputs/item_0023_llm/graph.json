@@ -1,0 +1,402 @@
+{
+  "question": "Billy sells DVDs. He has 8 customers on Tuesday. His first 3 customers buy one DVD each.  His next 2 customers buy 2 DVDs each.  His last 3 customers don't buy any DVDs. How many DVDs did Billy sell on Tuesday?",
+  "cot": "EXPLANATION\n\n1. **Total Customers**: Billy has 8 customers.\n   - This is our starting point.\n\n2. **First 3 Customers**: Each buys 1 DVD.\n   - Total DVDs sold to these customers = \\(3 \\times 1 = 3\\).\n\n3. **Next 2 Customers**: Each buys 2 DVDs.\n   - Total DVDs sold to these customers = \\(2 \\times 2 = 4\\).\n\n4. **Last 3 Customers**: None buy DVDs.\n   - Total DVDs sold to these customers = \\(0 \\times 3 = 0\\).\n\n5. **Summing Up**: To find the total number of DVDs sold, we add up all the individual totals calculated above.\n   - Total DVDs sold = \\(3 + 4 + 0 = 7\\).\n\n**Conclusion**: Billy sold a total of 7 DVDs on Tuesday.\n\nThe answer is: 7",
+  "sorts": {
+    "group": {
+      "description": "a group of Billy's Tuesday customers"
+    }
+  },
+  "entities": {
+    "tuesday_customers": {
+      "sort": "group",
+      "name": "all of Billy's customers on Tuesday"
+    },
+    "first_group": {
+      "sort": "group",
+      "name": "Billy's first 3 customers on Tuesday"
+    },
+    "next_group": {
+      "sort": "group",
+      "name": "Billy's next 2 customers on Tuesday"
+    },
+    "last_group": {
+      "sort": "group",
+      "name": "Billy's last 3 customers on Tuesday"
+    }
+  },
+  "relations": {
+    "group_size": {
+      "slots": [
+        [
+          "group",
+          "group"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "customer group {group} contains {count} customers"
+    },
+    "buys_each": {
+      "slots": [
+        [
+          "group",
+          "group"
+        ],
+        [
+          "size",
+          "num"
+        ],
+        [
+          "each",
+          "num"
+        ]
+      ],
+      "sentence": "customer group {group} consists of {size} customers who each buy {each} DVDs from Billy"
+    },
+    "dvds_sold_to": {
+      "slots": [
+        [
+          "group",
+          "group"
+        ],
+        [
+          "total",
+          "num"
+        ]
+      ],
+      "sentence": "Billy sold a total of {total} DVDs to customer group {group}"
+    },
+    "subgroup_of": {
+      "slots": [
+        [
+          "whole",
+          "group"
+        ],
+        [
+          "member",
+          "group"
+        ]
+      ],
+      "sentence": "customer group {member} is one of the parts making up customer group {whole}"
+    }
+  },
+  "statements": {
+    "F1": {
+      "shape": "fact",
+      "text": "Billy has 8 customers on Tuesday.",
+      "question_quote": "He has 8 customers on Tuesday.",
+      "cot_quote": "Billy has 8 customers.",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "group_size",
+        "args": [
+          "tuesday_customers",
+          8
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F1",
+      "label": "assumption",
+      "english": "Customer group all of Billy's customers on Tuesday contains 8 customers."
+    },
+    "F2": {
+      "shape": "fact",
+      "text": "Billy's first 3 customers buy one DVD each.",
+      "question_quote": "His first 3 customers buy one DVD each.",
+      "cot_quote": "**First 3 Customers**: Each buys 1 DVD.",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "buys_each",
+        "args": [
+          "first_group",
+          3,
+          1
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F2",
+      "label": "assumption",
+      "english": "Customer group Billy's first 3 customers on Tuesday consists of 3 customers who each buy 1 DVDs from Billy."
+    },
+    "F3": {
+      "shape": "fact",
+      "text": "Billy's next 2 customers buy 2 DVDs each.",
+      "question_quote": "His next 2 customers buy 2 DVDs each.",
+      "cot_quote": "**Next 2 Customers**: Each buys 2 DVDs.",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "buys_each",
+        "args": [
+          "next_group",
+          2,
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F3",
+      "label": "assumption",
+      "english": "Customer group Billy's next 2 customers on Tuesday consists of 2 customers who each buy 2 DVDs from Billy."
+    },
+    "F4": {
+      "shape": "fact",
+      "text": "Billy's last 3 customers don't buy any DVDs.",
+      "question_quote": "His last 3 customers don't buy any DVDs.",
+      "cot_quote": "**Last 3 Customers**: None buy DVDs.",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "buys_each",
+        "args": [
+          "last_group",
+          3,
+          0
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F4",
+      "label": "assumption",
+      "english": "Customer group Billy's last 3 customers on Tuesday consists of 3 customers who each buy 0 DVDs from Billy."
+    },
+    "A1": {
+      "shape": "rule",
+      "text": "For any group of customers who each buy the same number of DVDs, the group's total is the group size times the number each customer buys.",
+      "question_quote": null,
+      "cot_quote": null,
+      "stated_in_cot": false,
+      "content": {
+        "vars": {
+          "g": "group",
+          "n": "num",
+          "e": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "buys_each",
+            "args": [
+              "g",
+              "n",
+              "e"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "n",
+              "e"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "dvds_sold_to",
+            "args": [
+              "g",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "A1",
+      "kind": "math_principle",
+      "label": "assumption",
+      "english": "For any group g, any numbers n, e, t: if customer group g consists of n customers who each buy e DVDs from Billy and t = n \u00d7 e, then Billy sold a total of t DVDs to customer group g."
+    },
+    "A2": {
+      "shape": "closure",
+      "text": "Billy's Tuesday customers are exactly these three groups and no others: the first 3, the next 2 and the last 3 (3 + 2 + 3 = 8).",
+      "question_quote": null,
+      "cot_quote": null,
+      "stated_in_cot": false,
+      "content": {
+        "whole": "tuesday_customers",
+        "relation": "subgroup_of",
+        "members": [
+          "first_group",
+          "next_group",
+          "last_group"
+        ]
+      },
+      "id": "A2",
+      "kind": "closure",
+      "label": "assumption",
+      "english": "The only X such that \"customer group X is one of the parts making up customer group all of Billy's customers on Tuesday\" are Billy's first 3 customers on Tuesday, Billy's next 2 customers on Tuesday and Billy's last 3 customers on Tuesday; there are no others."
+    },
+    "D1": {
+      "shape": "fact",
+      "text": "Billy sold 3 DVDs to his first 3 customers.",
+      "question_quote": null,
+      "cot_quote": "Total DVDs sold to these customers = \\(3 \\times 1 = 3\\).",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "dvds_sold_to",
+        "args": [
+          "first_group",
+          3
+        ],
+        "negated": false
+      },
+      "id": "D1",
+      "kind": null,
+      "label": "derived",
+      "english": "Billy sold a total of 3 DVDs to customer group Billy's first 3 customers on Tuesday."
+    },
+    "D2": {
+      "shape": "fact",
+      "text": "Billy sold 4 DVDs to his next 2 customers.",
+      "question_quote": null,
+      "cot_quote": "Total DVDs sold to these customers = \\(2 \\times 2 = 4\\).",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "dvds_sold_to",
+        "args": [
+          "next_group",
+          4
+        ],
+        "negated": false
+      },
+      "id": "D2",
+      "kind": null,
+      "label": "derived",
+      "english": "Billy sold a total of 4 DVDs to customer group Billy's next 2 customers on Tuesday."
+    },
+    "D3": {
+      "shape": "fact",
+      "text": "Billy sold 0 DVDs to his last 3 customers.",
+      "question_quote": null,
+      "cot_quote": "Total DVDs sold to these customers = \\(0 \\times 3 = 0\\).",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "dvds_sold_to",
+        "args": [
+          "last_group",
+          0
+        ],
+        "negated": false
+      },
+      "id": "D3",
+      "kind": null,
+      "label": "derived",
+      "english": "Billy sold a total of 0 DVDs to customer group Billy's last 3 customers on Tuesday."
+    },
+    "D4": {
+      "shape": "fact",
+      "text": "Billy sold a total of 7 DVDs on Tuesday.",
+      "question_quote": null,
+      "cot_quote": "Billy sold a total of 7 DVDs on Tuesday.",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "dvds_sold_to",
+        "args": [
+          "tuesday_customers",
+          7
+        ],
+        "negated": false
+      },
+      "id": "D4",
+      "kind": null,
+      "label": "derived",
+      "english": "Billy sold a total of 7 DVDs to customer group all of Billy's customers on Tuesday."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Apply the group-total rule to the first 3 customers, who buy 1 DVD each.",
+      "premises": [
+        "F2"
+      ],
+      "warrant": "A1",
+      "conclusion": "D1",
+      "stated_computation": "3 x 1 = 3",
+      "cot_quote": "Total DVDs sold to these customers = \\(3 \\times 1 = 3\\).",
+      "id": "S1",
+      "english": "Because customer group Billy's first 3 customers on Tuesday consists of 3 customers who each buy 1 DVDs from Billy; and since for any group g, any numbers n, e, t: if customer group g consists of n customers who each buy e DVDs from Billy and t = n \u00d7 e, then Billy sold a total of t DVDs to customer group g: Billy sold a total of 3 DVDs to customer group Billy's first 3 customers on Tuesday (3 x 1 = 3).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "g": "first_group",
+        "n": "3",
+        "e": "1",
+        "t": "3"
+      }
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Apply the group-total rule to the next 2 customers, who buy 2 DVDs each.",
+      "premises": [
+        "F3"
+      ],
+      "warrant": "A1",
+      "conclusion": "D2",
+      "stated_computation": "2 x 2 = 4",
+      "cot_quote": "Total DVDs sold to these customers = \\(2 \\times 2 = 4\\).",
+      "id": "S2",
+      "english": "Because customer group Billy's next 2 customers on Tuesday consists of 2 customers who each buy 2 DVDs from Billy; and since for any group g, any numbers n, e, t: if customer group g consists of n customers who each buy e DVDs from Billy and t = n \u00d7 e, then Billy sold a total of t DVDs to customer group g: Billy sold a total of 4 DVDs to customer group Billy's next 2 customers on Tuesday (2 x 2 = 4).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "g": "next_group",
+        "n": "2",
+        "e": "2",
+        "t": "4"
+      }
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Apply the group-total rule to the last 3 customers, who buy no DVDs.",
+      "premises": [
+        "F4"
+      ],
+      "warrant": "A1",
+      "conclusion": "D3",
+      "stated_computation": "0 x 3 = 0",
+      "cot_quote": "Total DVDs sold to these customers = \\(0 \\times 3 = 0\\).",
+      "id": "S3",
+      "english": "Because customer group Billy's last 3 customers on Tuesday consists of 3 customers who each buy 0 DVDs from Billy; and since for any group g, any numbers n, e, t: if customer group g consists of n customers who each buy e DVDs from Billy and t = n \u00d7 e, then Billy sold a total of t DVDs to customer group g: Billy sold a total of 0 DVDs to customer group Billy's last 3 customers on Tuesday (0 x 3 = 0).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "g": "last_group",
+        "n": "3",
+        "e": "0",
+        "t": "0"
+      }
+    },
+    "S4": {
+      "move": "aggregate",
+      "text": "Sum the three group totals to get the total DVDs sold, treating the three groups as all 8 customers.",
+      "premises": [
+        "D1",
+        "D2",
+        "D3"
+      ],
+      "warrant": "A2",
+      "conclusion": "D4",
+      "stated_computation": "3 + 4 + 0 = 7",
+      "cot_quote": "Total DVDs sold = \\(3 + 4 + 0 = 7\\).",
+      "id": "S4",
+      "english": "Because Billy sold a total of 3 DVDs to customer group Billy's first 3 customers on Tuesday; and Billy sold a total of 4 DVDs to customer group Billy's next 2 customers on Tuesday; and Billy sold a total of 0 DVDs to customer group Billy's last 3 customers on Tuesday; and since the only X such that \"customer group X is one of the parts making up customer group all of Billy's customers on Tuesday\" are Billy's first 3 customers on Tuesday, Billy's next 2 customers on Tuesday and Billy's last 3 customers on Tuesday; there are no others: Billy sold a total of 7 DVDs to customer group all of Billy's customers on Tuesday (3 + 4 + 0 = 7).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "parts": {
+          "first_group": "3",
+          "next_group": "4",
+          "last_group": "0"
+        },
+        "total": "7"
+      }
+    }
+  },
+  "errors": []
+}

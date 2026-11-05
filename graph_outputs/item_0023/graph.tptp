@@ -1,0 +1,29 @@
+% Declarations
+tff(group_type, type, group: $tType).
+tff(person_type, type, person: $tType).
+tff(billy_decl, type, billy: person).
+tff(first3_decl, type, first3: group).
+tff(next2_decl, type, next2: group).
+tff(last3_decl, type, last3: group).
+tff(customer_count_decl, type, customer_count: (person * $rat) > $o).
+tff(group_buys_decl, type, group_buys: (person * group * $rat * $rat) > $o).
+tff(group_total_decl, type, group_total: (person * group * $rat) > $o).
+tff(customer_group_decl, type, customer_group: (person * group) > $o).
+tff(total_sold_decl, type, total_sold: (person * $rat) > $o).
+tff(first3_neq_next2, axiom, first3 != next2).
+tff(first3_neq_last3, axiom, first3 != last3).
+tff(next2_neq_last3, axiom, next2 != last3).
+
+% Statements
+tff(c1, axiom, customer_count(billy, 8/1)).
+tff(c2, axiom, group_buys(billy, first3, 3/1, 1/1)).
+tff(c3, lemma, group_total(billy, first3, 3/1)).
+tff(c4, axiom, group_buys(billy, next2, 2/1, 2/1)).
+tff(c5, lemma, group_total(billy, next2, 4/1)).
+tff(c6, axiom, group_buys(billy, last3, 3/1, 0/1)).
+tff(c7, lemma, group_total(billy, last3, 0/1)).
+tff(c8, axiom, ![V_x: person, V_g1: group, V_g2: group, V_g3: group, V_a: $rat, V_b: $rat, V_c: $rat, V_s: $rat]: ((group_total(V_x, V_g1, V_a) & group_total(V_x, V_g2, V_b) & group_total(V_x, V_g3, V_c) & V_s = $sum($sum(V_a, V_b), V_c)) => total_sold(V_x, V_s))).
+tff(c9, lemma, total_sold(billy, 7/1)).
+tff(i1, axiom, ![V_x: person, V_g: group, V_a: $rat, V_b: $rat, V_c: $rat]: ((group_buys(V_x, V_g, V_a, V_b) & V_c = $product(V_a, V_b)) => group_total(V_x, V_g, V_c))).
+tff(i2, axiom, ![V_m: group]: (customer_group(billy, V_m) <=> (V_m = first3 | V_m = next2 | V_m = last3))).
+tff(s4_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((group_total(billy, first3, N1) & group_total(billy, next2, N2) & group_total(billy, last3, N3)) => total_sold(billy, $sum($sum(N1, N2), N3)))).

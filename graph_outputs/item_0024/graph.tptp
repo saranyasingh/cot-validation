@@ -1,0 +1,15 @@
+% Declarations
+tff(candle_type, type, candle: $tType).
+tff(the_candle_decl, type, the_candle: candle).
+tff(melt_rate_decl, type, melt_rate: (candle * $rat) > $o).
+tff(burn_interval_decl, type, burn_interval: (candle * $rat * $rat) > $o).
+tff(burn_duration_decl, type, burn_duration: (candle * $rat) > $o).
+tff(length_reduction_decl, type, length_reduction: (candle * $rat) > $o).
+
+% Statements
+tff(f1, axiom, melt_rate(the_candle, 2/1)).
+tff(f2, axiom, burn_interval(the_candle, 1/1, 5/1)).
+tff(a1, axiom, ![V_x: candle, V_s: $rat, V_e: $rat, V_d: $rat]: ((burn_interval(V_x, V_s, V_e) & V_d = $difference(V_e, V_s)) => burn_duration(V_x, V_d))).
+tff(d1, lemma, burn_duration(the_candle, 4/1)).
+tff(a2, axiom, ![V_x: candle, V_r: $rat, V_t: $rat, V_m: $rat]: ((melt_rate(V_x, V_r) & burn_duration(V_x, V_t) & V_m = $product(V_r, V_t)) => length_reduction(V_x, V_m))).
+tff(d2, lemma, length_reduction(the_candle, 8/1)).

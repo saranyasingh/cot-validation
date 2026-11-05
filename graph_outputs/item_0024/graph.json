@@ -1,0 +1,302 @@
+{
+  "question": "A candle melts by 2 centimeters every hour that it burns. How many centimeters shorter will a candle be after burning from 1:00 PM to 5:00 PM?",
+  "cot": "EXPLANATION\nTo determine how much shorter the candle will be after burning from 1:00 PM to 5:00 PM, we need to calculate the total time the candle has been burning.\n\nFirst, let's find out how long the candle has been burning. From 1:00 PM to 5:00 PM spans 4 hours (since there are 60 minutes in an hour).\n\nNext, we know that the candle melts at a rate of 2 centimeters per hour. To find the total melting length over these 4 hours, we multiply the hourly melting rate by the total time:\n\nMelting rate = 2 cm/hour\nTotal time = 4 hours\nTotal melting length = Melting rate \u00d7 Total time\n                      = 2 cm/hour \u00d7 4 hours\n                      = 8 cm\n\nTherefore, the candle will be 8 cm shorter after burning from 1:00 PM to 5:00 PM.\n\nThe answer is: 8",
+  "sorts": {
+    "candle": {
+      "description": "a candle that burns and melts"
+    }
+  },
+  "entities": {
+    "the_candle": {
+      "sort": "candle",
+      "name": "the candle"
+    }
+  },
+  "relations": {
+    "melt_rate": {
+      "slots": [
+        [
+          "c",
+          "candle"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "{c} melts by {rate} centimeters for every hour that it burns"
+    },
+    "burn_interval": {
+      "slots": [
+        [
+          "c",
+          "candle"
+        ],
+        [
+          "start",
+          "num"
+        ],
+        [
+          "end",
+          "num"
+        ]
+      ],
+      "sentence": "{c} burns from {start}:00 PM to {end}:00 PM on the same day"
+    },
+    "burn_duration": {
+      "slots": [
+        [
+          "c",
+          "candle"
+        ],
+        [
+          "hours",
+          "num"
+        ]
+      ],
+      "sentence": "{c} burns for a total of {hours} hours"
+    },
+    "length_reduction": {
+      "slots": [
+        [
+          "c",
+          "candle"
+        ],
+        [
+          "cm",
+          "num"
+        ]
+      ],
+      "sentence": "{c} becomes {cm} centimeters shorter over its total burning time"
+    }
+  },
+  "statements": {
+    "F1": {
+      "shape": "fact",
+      "text": "The candle melts by 2 centimeters every hour that it burns.",
+      "question_quote": "A candle melts by 2 centimeters every hour that it burns.",
+      "cot_quote": "the candle melts at a rate of 2 centimeters per hour",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "melt_rate",
+        "args": [
+          "the_candle",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F1",
+      "label": "assumption",
+      "english": "The candle melts by 2 centimeters for every hour that it burns."
+    },
+    "F2": {
+      "shape": "fact",
+      "text": "The candle burns from 1:00 PM to 5:00 PM.",
+      "question_quote": "after burning from 1:00 PM to 5:00 PM",
+      "cot_quote": "From 1:00 PM to 5:00 PM",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "burn_interval",
+        "args": [
+          "the_candle",
+          1,
+          5
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "id": "F2",
+      "label": "assumption",
+      "english": "The candle burns from 1:00 PM to 5:00 PM on the same day."
+    },
+    "A1": {
+      "shape": "rule",
+      "text": "The duration of an interval within a single day is the end time minus the start time, measured in hours.",
+      "question_quote": null,
+      "cot_quote": null,
+      "stated_in_cot": false,
+      "content": {
+        "vars": {
+          "x": "candle",
+          "s": "num",
+          "e": "num",
+          "d": "num"
+        },
+        "if": [
+          {
+            "relation": "burn_interval",
+            "args": [
+              "x",
+              "s",
+              "e"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "e",
+              "s"
+            ],
+            "result": "d"
+          }
+        ],
+        "then": [
+          {
+            "relation": "burn_duration",
+            "args": [
+              "x",
+              "d"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "A1",
+      "kind": "commonsense",
+      "label": "assumption",
+      "english": "For any candle x, any numbers s, e, d: if x burns from s:00 PM to e:00 PM on the same day and d = e - s, then x burns for a total of d hours."
+    },
+    "D1": {
+      "shape": "fact",
+      "text": "The candle burns for 4 hours.",
+      "question_quote": null,
+      "cot_quote": "From 1:00 PM to 5:00 PM spans 4 hours",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "burn_duration",
+        "args": [
+          "the_candle",
+          4
+        ],
+        "negated": false
+      },
+      "id": "D1",
+      "kind": null,
+      "label": "derived",
+      "english": "The candle burns for a total of 4 hours."
+    },
+    "A2": {
+      "shape": "rule",
+      "text": "If something melts at a constant rate, the total length melted is the melting rate times the total burning time.",
+      "question_quote": null,
+      "cot_quote": "Total melting length = Melting rate \u00d7 Total time",
+      "stated_in_cot": true,
+      "content": {
+        "vars": {
+          "x": "candle",
+          "r": "num",
+          "t": "num",
+          "m": "num"
+        },
+        "if": [
+          {
+            "relation": "melt_rate",
+            "args": [
+              "x",
+              "r"
+            ]
+          },
+          {
+            "relation": "burn_duration",
+            "args": [
+              "x",
+              "t"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "r",
+              "t"
+            ],
+            "result": "m"
+          }
+        ],
+        "then": [
+          {
+            "relation": "length_reduction",
+            "args": [
+              "x",
+              "m"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "A2",
+      "kind": "math_principle",
+      "label": "assumption",
+      "english": "For any candle x, any numbers r, t, m: if x melts by r centimeters for every hour that it burns and x burns for a total of t hours and m = r \u00d7 t, then x becomes m centimeters shorter over its total burning time."
+    },
+    "D2": {
+      "shape": "fact",
+      "text": "The candle will be 8 cm shorter after burning from 1:00 PM to 5:00 PM.",
+      "question_quote": null,
+      "cot_quote": "the candle will be 8 cm shorter after burning from 1:00 PM to 5:00 PM",
+      "stated_in_cot": true,
+      "content": {
+        "relation": "length_reduction",
+        "args": [
+          "the_candle",
+          8
+        ],
+        "negated": false
+      },
+      "id": "D2",
+      "kind": null,
+      "label": "derived",
+      "english": "The candle becomes 8 centimeters shorter over its total burning time."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Compute the burning duration from the start and end times.",
+      "premises": [
+        "F2"
+      ],
+      "warrant": "A1",
+      "conclusion": "D1",
+      "stated_computation": "5 - 1 = 4",
+      "cot_quote": "From 1:00 PM to 5:00 PM spans 4 hours (since there are 60 minutes in an hour).",
+      "id": "S1",
+      "english": "Because the candle burns from 1:00 PM to 5:00 PM on the same day; and since for any candle x, any numbers s, e, d: if x burns from s:00 PM to e:00 PM on the same day and d = e - s, then x burns for a total of d hours: the candle burns for a total of 4 hours (5 - 1 = 4).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "the_candle",
+        "s": "1",
+        "e": "5",
+        "d": "4"
+      }
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Multiply the melting rate by the burning time to get the total length melted.",
+      "premises": [
+        "F1",
+        "D1"
+      ],
+      "warrant": "A2",
+      "conclusion": "D2",
+      "stated_computation": "2 x 4 = 8",
+      "cot_quote": "To find the total melting length over these 4 hours, we multiply the hourly melting rate by the total time",
+      "id": "S2",
+      "english": "Because the candle melts by 2 centimeters for every hour that it burns; and the candle burns for a total of 4 hours; and since for any candle x, any numbers r, t, m: if x melts by r centimeters for every hour that it burns and x burns for a total of t hours and m = r \u00d7 t, then x becomes m centimeters shorter over its total burning time: the candle becomes 8 centimeters shorter over its total burning time (2 x 4 = 8).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "the_candle",
+        "r": "2",
+        "t": "4",
+        "m": "8"
+      }
+    }
+  },
+  "errors": []
+}

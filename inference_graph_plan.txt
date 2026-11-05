@@ -1,0 +1,486 @@
+INFERENCE GRAPH PLAN
+====================
+
+Goal
+----
+Replace the current linear pipeline, in which each retry regenerates the whole CoT and
+the whole structured FOL, with a persistent inference graph. The graph is the main
+object. LLM agents propose small, typed edits to it, and deterministic checkers (Vampire
+and the grounding verifier) decide whether each edit is accepted.
+
+Success means that for each benchmark item, either:
+  (a) the goal node is derived by a chain in which every step has been checked
+      individually by the prover, every problem fact is grounded in the text, and every
+      assumption is ranked; or
+  (b) the system reports exactly which node or gap it could not close.
+
+New code lives in a new package, graph_pipeline/, alongside main_pipeline/ and
+rule_pipeline/. main_pipeline/ is not modified, apart from reusing its helpers.
+
+The plan has four phases, each with deliverables and acceptance criteria:
+
+  Phase 1  Data model, formula language and invariants
+  Phase 2  Assumption ranking (how "silly" each assumption is)
+  Phase 3  The graph as a living object, plus the agents that edit it
+  Phase 4  Build order, evaluation and milestones
+
+
+=====================================================================================
+PHASE 1: DATA MODEL, FORMULA LANGUAGE AND INVARIANTS
+=====================================================================================
+
+1.1 Node types
+--------------
+Every node has a stable id, a type, a status and a creation record (which agent and
+which operation created it).
+
+  Symbol (vocabulary, V)
+    id          "SYM:GroupSize"
+    kind        pred | func | const
+    name        GroupSize
+    signature   argument sorts, e.g. [Person, Group, Num]; for func, also a result sort
+    gloss       "group g of x's customers consists of n customers"
+    origin      problem | assumption
+                Origin is "problem" if the symbol was introduced while formalizing the
+                text. Phase 2 uses this to detect problem-specific assumptions.
+
+  ProblemFact (P)
+    id          "P-3"
+    formula     a closed formula in the language of section 1.3
+    gloss       natural-language restatement
+    source_span (start_char, end_char) into question.txt
+                This is required. A fact without a span is an assumption, not a fact.
+
+  Assumption (A)
+    id          "A-2"
+    formula     a closed formula
+    gloss       natural-language statement
+    tier        integer 0-4 (Phase 2)
+    cost        float >= 0 (Phase 2)
+    rationale   one sentence on why it is needed
+
+  Inference (I)
+    id          "I-4"
+    formula     a closed formula
+    premises    ordered list of node ids, each in P, A or I
+    rule_label  free text such as "UI + MP". This is informational only; validity is
+                decided by the prover, not by this label.
+
+  Goal
+    An Inference node whose formula answers the question, e.g. Sold(billy, 7).
+    Exactly one Goal per graph. Before the answer is known, the goal is stored as a
+    template with an answer variable, e.g. "exists n. Sold(billy, n)", plus the
+    instantiated formula once one has been proposed.
+
+1.2 Edge types
+--------------
+  uses(node -> Symbol)
+    Derived mechanically from the parsed formula and never written by hand. Every
+    non-logical symbol in a formula must resolve to a Symbol node.
+
+  depends_on(Inference -> premise)
+    Exactly the premise list.
+
+  Structural rule: every Inference must have at least one premise in P or I. It cannot
+  be derived from assumptions alone, because then it would be a disguised assumption.
+  It may have zero or more premises in A.
+
+  The graph of depends_on edges must be acyclic.
+
+1.3 Formula language
+--------------------
+Internal representation is an AST, never a raw string. Concrete syntax accepted from
+LLMs, which is a superset of what the current structured FOL uses:
+
+  formula  := atom | ~F | F & F | F | F | F -> F | F <-> F
+            | forall v1..vn. F | exists v1..vn. F
+            | t = t | t < t | t <= t | t > t | t >= t
+  atom     := Pred(t1, ..., tn)
+  term     := var | const | numeral | Func(t1..tn) | t + t | t - t | t * t | t / t
+  numeral  := integer, decimal or rational (a/b), stored exactly as a Fraction
+
+The Unicode forms (∀ ∃ ∧ ∨ ¬ → ↔ × ÷) are normalized at parse time, along with the
+"∀x∀g (...)" spacing seen in current outputs.
+
+Sorts: user sorts are declared in V (Person, Group, Item, ...). There is one built-in
+numeric sort, Num, interpreted as $rat in TFF. Every predicate argument has a sort, and
+the parser type-checks against V.
+
+Why not reuse tptp.py's approach: tptp.py has an LLM convert FOL to untyped fof and
+rewrites numbers as opaque constants (n_3, n_7). Under that encoding the prover cannot
+evaluate 3*1 = 3, so a rule like GroupTotal(x,g,a*b) can only be "proved" by syntactic
+coincidence. The graph pipeline instead translates the AST to TFF over $rat
+deterministically, with no LLM involved. That is the same arithmetic encoding
+arithmetic.py already uses successfully.
+
+1.4 Invariants
+--------------
+Each invariant is a pure function of the graph, or of one node plus its neighbors, and
+returns PASS, FAIL(reason) or UNKNOWN(reason).
+
+  INV-1  Well-formed: every formula parses, is closed (no free variables) and
+         type-checks against V.
+  INV-2  Vocabulary closure: every symbol used by a node exists in V with a matching
+         arity and signature.
+  INV-3  Grounding: every ProblemFact is entailed by question_text[source_span].
+         Checked by an LLM judge (adapted from verify.py's Fact Grounding prompt), one
+         fact per call, not batched.
+  INV-4  Local validity: for every Inference I,
+             premises(I) |- formula(I)
+         is proved by Vampire in TFF using ONLY the declared premises. This is stricter
+         than tptp.py today, which gives the prover every axiom plus every earlier
+         inference.
+         Status: PROVED, REFUTED (premises imply the negation), or UNKNOWN (timeout or
+         gave up).
+  INV-5  Non-vacuity: premises(I) are jointly satisfiable. This stops an inference from
+         being "proved" from contradictory premises. Run Vampire on premises(I) with
+         the conjecture $false. If $false is proved, the step is FAIL(vacuous).
+  INV-6  Global consistency: P together with A has no proof of $false within the time
+         limit. This is a one-sided check: with arithmetic, satisfiability is undecidable
+         in general, so UNKNOWN is a valid outcome and is reported, not hidden.
+  INV-7  Acyclicity of depends_on.
+  INV-8  Structural rule from 1.2 (at least one premise from P or I).
+  INV-9  Assumption generality: an Assumption may not mention any constant symbol whose
+         origin is "problem". If it does, it is still allowed, but it is forced to tier 4
+         (Phase 2). Numerals do not count as problem constants.
+
+  Node status values: UNCHECKED, OK, FAIL, UNKNOWN, STALE.
+  The graph is VALID iff every node reachable from Goal is OK.
+  The graph is PARTIAL if some reachable node is UNKNOWN but none is FAIL.
+
+1.5 Prover interface
+--------------------
+  prove(premises: list[Formula], conjecture: Formula, timeout_s) -> PROVED | REFUTED | UNKNOWN
+
+Implementation: generalize arithmetic._run_vampire. Run two Vampire processes in
+parallel, one for the conjecture and one for its negation, and return whichever proves
+first. Emit "tff(type decls)" from V, then "tff(pN, axiom, ...)" for each premise, then
+the conjecture. Cache results keyed by a hash of (sorted premises, conjecture).
+
+1.6 Serialization
+-----------------
+graph.json contains: symbols, nodes, the edges (premises only, since uses is derived),
+the goal id, the question text and the op log (Phase 3). Round-tripping must be lossless:
+load(save(g)) == g.
+
+1.7 Importer from existing outputs
+----------------------------------
+convert.from_structured_fol(question, fol_text) -> Graph
+
+  VOCABULARY Predicates       -> Symbol(pred). Sorts are inferred by a one-shot LLM call
+                                 that proposes sorts per argument; a human can override.
+  VOCABULARY Constants        -> Symbol(const, origin=problem)
+  FACT-N                      -> ProblemFact. source_span is found by an LLM call that
+                                 returns a quote, which is then located in the text by
+                                 exact or fuzzy match. If no span is found, the node
+                                 becomes an Assumption with rationale "unsourced fact".
+  RULE-N                      -> Assumption, tier unset (filled in by Phase 2)
+  INF-N                       -> Inference. Premises are taken from the
+                                 "from FACT-2, FACT-3, ..." gloss, the same way
+                                 derivation_tree._parse_inf_premises does it.
+  OP-N                        -> folded into an Inference as an arithmetic fact; once the
+                                 terms are interpreted it is checked by INV-4 directly.
+  Last INF                    -> Goal
+
+Phase 1 deliverables
+  graph_pipeline/formula.py   parser, AST, normalization, type checker
+  graph_pipeline/schema.py    dataclasses from 1.1, plus JSON (de)serialization
+  graph_pipeline/tff.py       AST to TFF translator
+  graph_pipeline/prover.py    prove() and is_vacuous() with a cache
+  graph_pipeline/invariants.py  INV-1 to INV-9
+  graph_pipeline/convert.py   the importer from 1.7
+
+Phase 1 acceptance criteria
+  - Parser round-trips every formula in verify_run_20261001_150731/*/fol.txt, or reports
+    a precise parse error; target >= 95% parse rate.
+  - On item_0023: INF-1 to INF-3 come out PROVED under INV-4, INV-9 flags RULE-2 (it
+    mentions group1, group2 and group3), and INF-4 is PROVED given RULE-2.
+  - Unit tests: a deliberately wrong step (2*2 = 5) is REFUTED; a step with
+    contradictory premises fails INV-5; a cycle fails INV-7.
+  - Over the whole run directory, report the distribution of INV-4 results
+    (PROVED / REFUTED / UNKNOWN). This is the baseline for every later phase.
+
+
+=====================================================================================
+PHASE 2: RANKING ASSUMPTIONS BY HOW "SILLY" THEY ARE
+=====================================================================================
+
+2.1 Tiers
+---------
+Tiers are fixed and ordinal. Each has a base cost.
+
+  Tier  Name                         Base cost  Examples
+  0     Logic and arithmetic         0          definition of a sum, a*0 = 0
+  1     Lexical or definitional      1          "each buys b" means per-member;
+                                                "a dozen" = 12; "twice" = 2x
+  2     Stable world knowledge       2          a week has 7 days; 60 min = 1 hour
+  3     Defeasible default or        5          the listed groups are all the customers;
+        closed-world assumption                 nobody buys a negative number of items
+  4     Problem-specific stipulation 20         RULE-2 in item_0023: a rule naming
+                                                group1, group2 and group3
+
+  Hard rule: if INV-9 detects a problem constant, the tier is forced to 4.
+  Otherwise the tier is assigned by an LLM classifier (2.3).
+
+2.2 Cost within a tier
+----------------------
+  cost(a) = base(tier) + w_g * n_problem_consts(a)
+                       + w_s * specificity(a)
+                       - w_r * reuse(a)
+
+  n_problem_consts  count of problem-origin constants (0 except in tier 4)
+  specificity       number of literals in the antecedent, normalized; narrower rules
+                    cost more
+  reuse             log(1 + number of other benchmark items whose graphs contain an
+                    alpha-equivalent assumption), computed from a global assumption
+                    library (2.4)
+  Initial weights: w_g = 2, w_s = 0.5, w_r = 1. They are recalibrated in 2.5.
+
+2.3 Classifier and pairwise judge
+---------------------------------
+  - Tier classifier: one LLM call per assumption. Input is the gloss and formula plus
+    the tier definitions and examples. Output is a tier and one sentence of rationale.
+    Run three samples and take the majority; on disagreement, take the higher (sillier)
+    tier.
+  - Pairwise judge, used only to order assumptions within the same tier: the LLM sees
+    two assumptions and answers "which is the less defensible thing to assume without
+    being told?". Aggregate the judgments with Bradley-Terry into a score in [0, 1], and
+    add it to the cost as w_p * score.
+
+2.4 Assumption library
+----------------------
+assumptions_library.jsonl is shared across items. Each entry holds a canonical formula
+(alpha-renamed, with sorts generalized), its tier, its cost and the item ids that use it.
+Before inventing a new assumption, the assumption proposer agent (Phase 3) looks up
+library entries that would close the gap. This is what makes reuse meaningful.
+
+2.5 Calibration
+---------------
+  - Hand-label 100 assumptions drawn from the benchmark with tiers; this is the gold set.
+  - Classifier target: exact tier agreement >= 70%, within one tier >= 90%.
+  - Collect 200 human pairwise labels and report Bradley-Terry agreement against them.
+  This is the point at which to bring in the ML expert (learning-to-rank, label design).
+
+2.6 Objective
+-------------
+Proof cost = the sum of cost(a) over the distinct assumptions reachable from Goal.
+Among VALID graphs, the system prefers the one with the lowest proof cost. This is the
+weighted-abduction objective (Hobbs et al., "Interpretation as Abduction").
+
+Important conflict with existing code: verify.py's prompt explicitly tells the judge to
+mark narrow, story-specific rules PLAUSIBLE. In this pipeline that judgment is replaced
+by tiering. A rule may be correct (it passes INV-4 downstream) and still be expensive
+(tier 4). These are deliberately separate axes.
+
+Phase 2 deliverables
+  graph_pipeline/silliness.py         tier classifier, pairwise judge, cost function
+  graph_pipeline/library.py           assumption library and canonicalization
+  data/assumption_gold.jsonl          hand-labeled tiers
+
+Phase 2 acceptance criteria
+  - The 2.5 targets are met on the gold set.
+  - item_0023: RULE-2 is tier 4 and RULE-1 is tier 1. The cost report shows RULE-2
+    dominating the proof cost.
+
+
+=====================================================================================
+PHASE 3: THE GRAPH AS A LIVING OBJECT, AND THE AGENTS
+=====================================================================================
+
+3.1 Operations
+--------------
+Agents can only change the graph through these operations. Each one is validated, then
+either committed or rejected with a reason.
+
+  AddSymbol(name, kind, signature, gloss, origin)
+  MergeSymbols(keep, drop)      rewrites every formula that uses drop; affected nodes
+                                become STALE
+  AddFact(formula, gloss, source_span)
+  AddAssumption(formula, gloss, rationale)       tier and cost are assigned on commit
+  AddInference(formula, premises, rule_label)
+  Replace(node_id, new_formula[, new_premises])
+  Retract(node_id)              refused if other nodes still depend on it, unless
+                                cascade=True
+  SetGoal(formula)
+
+Validation on apply(op):
+  1. Syntactic checks: INV-1, INV-2, INV-7 and INV-8 on the changed region. If any
+     fails, the op is rejected and the graph is unchanged.
+  2. Commit the op and append it to the op log as
+     (seq, agent, op, timestamp, parent_seq).
+  3. Mark the changed node and everything downstream of it STALE (3.2).
+  4. Run the semantic checks (INV-3, INV-4, INV-5, INV-9) on STALE nodes, in
+     topological order, and set their status.
+  5. Return OpResult(accepted, statuses_changed, failures).
+
+Every op is reversible. undo(seq) replays the log up to seq - 1. Snapshots are taken
+every N ops so replay stays fast.
+
+3.2 Change propagation (truth maintenance)
+------------------------------------------
+  - Store reverse edges, dependents(node).
+  - On any change to a node, BFS over dependents and set each one STALE.
+  - Rechecking is lazy. A STALE node is rechecked when the orchestrator selects it, or
+    when the goal's validity is requested.
+  - Prover results are cached (1.5), so rechecking an unchanged step is free.
+
+3.3 Frontier and scheduling
+---------------------------
+frontier(graph) returns the work items in priority order:
+  1. Nodes with status FAIL, reachable from Goal
+  2. Goal with no inference deriving it, or with UNKNOWN status
+  3. STALE nodes reachable from Goal
+  4. Tier 3 and tier 4 assumptions reachable from Goal; the aim is to replace them with
+     cheaper ones
+  5. Unused symbols and duplicate symbols (vocabulary cleanup)
+
+The orchestrator picks the top item, routes it to an agent by work-item type and failure
+reason (3.4), and applies whatever ops the agent returns.
+
+3.4 Agents
+----------
+Each agent is one prompt template plus a parser for the ops it returns. Agents get a
+LOCAL view: the target node, its premises, the vocabulary and the question text. They
+never see or rewrite the whole graph.
+
+  Formalizer
+    Trigger: an empty graph, or a text span not yet covered by any fact
+    Input: question text, current vocabulary
+    Output: AddSymbol*, AddFact*, SetGoal
+
+  Vocabulary curator
+    Trigger: INV-1 or INV-2 failures, or likely synonyms (symbols with similar glosses)
+    Output: AddSymbol, MergeSymbols
+
+  Planner (backward chaining)
+    Trigger: Goal or a gap with no derivation
+    Input: the target formula plus facts, assumptions and inferences already in the graph
+    Output: AddInference with premises chosen from existing nodes. Where no premise
+            exists, it adds a sub-goal: an Inference whose premises are still open.
+
+  Assumption proposer
+    Trigger: an Inference with status UNKNOWN or REFUTED, where adding a premise would
+             help
+    Input: the failed step and the prover's result
+    Output: AddAssumption. It must first query the library (2.4) and prefer existing
+            entries, and it is instructed to propose the most general (lowest tier)
+            formula that closes the gap.
+
+  Silliness critic
+    Trigger: a tier 3 or tier 4 assumption reachable from Goal
+    Output: Replace with a more general assumption, or AddAssumption plus a rewired
+            AddInference. The change is kept only if the new proof cost is strictly
+            lower and the graph stays VALID.
+
+  Checkers (deterministic, not LLMs)
+    Run inside apply(). Vampire for INV-4, INV-5 and INV-6; the LLM grounding judge
+    for INV-3.
+
+3.5 Orchestrator
+----------------
+  graph = Formalizer.init(question)
+  while budget.remaining() and not (graph.valid() and graph.frontier() has no items
+                                    of priority 1-3):
+      item  = graph.frontier()[0]
+      agent = route(item)
+      ops   = agent.propose(graph.view(item))
+      for op in ops:
+          result = graph.apply(op)
+          agent.record(result)          # feeds the reason into the next attempt
+      if no progress on item after K attempts:
+          mark item ABANDONED and continue
+
+  Budgets: max LLM calls (default 40), max prover seconds (default 120), and max
+  attempts per item (K = 3).
+
+  Termination states:
+    VALID         every reachable node is OK
+    PARTIAL       no failures, some UNKNOWN
+    FAILED        some reachable FAIL could not be fixed; the report names the node
+    OUT_OF_BUDGET
+
+3.6 Concurrency
+---------------
+Version 1 is single-threaded and deterministic: one op at a time, which makes it easy to
+debug. Version 2 runs agents in parallel on disjoint frontier items. Every op carries
+the graph version it was based on, and an op whose changed region was modified since
+that version is rejected and retried (optimistic concurrency).
+
+3.7 Logging and inspection
+--------------------------
+For each item, write graph.json, oplog.jsonl, a final report (status, proof cost, and
+the assumptions grouped by tier), and a Graphviz rendering. Extend visualize_trees.py to
+color nodes by status and assumptions by tier.
+
+Phase 3 deliverables
+  graph_pipeline/graph.py         Graph, apply(), staleness, frontier(), undo
+  graph_pipeline/ops.py           op dataclasses and validation
+  graph_pipeline/agents/*.py      one module per agent, each with its own prompt
+  graph_pipeline/orchestrator.py  the main loop, budgets and routing
+  graph_pipeline/run.py           command-line entry point that mirrors
+                                  main_pipeline/main.py
+
+Phase 3 acceptance criteria
+  - The op layer passes its unit tests with no LLM involved: hand-written op sequences
+    produce the expected statuses, and undo restores the exact earlier state.
+  - item_0023 end to end: reaches VALID, and the critic replaces RULE-2 with a general
+    sum-over-partition rule plus an explicit tier 3 closed-world assumption ("these
+    groups are all of Billy's customers"), lowering the proof cost.
+
+
+=====================================================================================
+PHASE 4: BUILD ORDER, EVALUATION AND MILESTONES
+=====================================================================================
+
+4.1 Build order
+---------------
+Each milestone is runnable on its own and produces a measurable result.
+
+  M1  Formula parser, schema and TFF translator (Phase 1, sections 1.1 to 1.3 and 1.6)
+  M2  Prover interface plus INV-4 and INV-5, then the importer (1.5, 1.7)
+      -> Run it over verify_run_20261001_150731 with no LLM agents at all. This is the
+         first real result: how many existing CoT steps actually hold up under per-step
+         checking.
+  M3  Op layer, staleness and undo (3.1, 3.2) with unit tests, still no LLMs
+  M4  Tiering and cost (Phase 2), the gold labels and the library
+  M5  Formalizer and Planner, giving a graph built from the question alone with no
+      CoT import
+  M6  Assumption proposer and critic, then the full orchestrator
+  M7  Evaluation (4.2) and a comparison against main_pipeline
+
+4.2 Metrics
+-----------
+Per item, and aggregated over the benchmark:
+  - Answer accuracy, the same as benchmark.py
+  - Termination state distribution (VALID / PARTIAL / FAILED / OUT_OF_BUDGET)
+  - Share of reachable inference steps PROVED under INV-4
+  - Proof cost, and the number of tier 3 and tier 4 assumptions per item
+  - Grounding failure rate (INV-3)
+  - LLM calls and prover seconds per item
+
+Baselines:
+  B0  main_pipeline as it is now
+  B1  M2 alone: imported graphs with per-step checks, which measures what the current
+      pipeline's derivations really establish
+  B2  the full system
+
+4.3 Risks and mitigations
+-------------------------
+  - Arithmetic makes Vampire incomplete, and some valid steps will come back UNKNOWN.
+    Keep UNKNOWN as a first-class status, use short timeouts, and track the UNKNOWN rate
+    separately from REFUTED.
+  - Sort inference in the importer is unreliable. Allow a single "Any" sort as a
+    fallback, logged as a warning.
+  - Agents may loop (propose, reject, propose again). The per-item attempt cap and the
+    ABANDONED status prevent this.
+  - Tier labels are subjective. Calibrate against the gold set, and have the ML expert
+    review the labeling guidelines before M4 is finalized.
+
+4.4 Questions for the ML expert
+-------------------------------
+  - How to learn or calibrate the silliness cost: learning-to-rank from pairwise labels,
+    and what number of labels is enough.
+  - How to evaluate whether the final graph is faithful to the original CoT, when it was
+    built independently rather than imported.
+  - Fixed routing rules versus a learned policy for choosing which agent handles which
+    frontier item.

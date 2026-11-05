@@ -1,0 +1,29 @@
+% Declarations
+tff(group_type, type, group: $tType).
+tff(tuesday_customers_decl, type, tuesday_customers: group).
+tff(first_group_decl, type, first_group: group).
+tff(next_group_decl, type, next_group: group).
+tff(last_group_decl, type, last_group: group).
+tff(group_size_decl, type, group_size: (group * $rat) > $o).
+tff(buys_each_decl, type, buys_each: (group * $rat * $rat) > $o).
+tff(dvds_sold_to_decl, type, dvds_sold_to: (group * $rat) > $o).
+tff(subgroup_of_decl, type, subgroup_of: (group * group) > $o).
+tff(tuesday_customers_neq_first_group, axiom, tuesday_customers != first_group).
+tff(tuesday_customers_neq_next_group, axiom, tuesday_customers != next_group).
+tff(tuesday_customers_neq_last_group, axiom, tuesday_customers != last_group).
+tff(first_group_neq_next_group, axiom, first_group != next_group).
+tff(first_group_neq_last_group, axiom, first_group != last_group).
+tff(next_group_neq_last_group, axiom, next_group != last_group).
+
+% Statements
+tff(f1, axiom, group_size(tuesday_customers, 8/1)).
+tff(f2, axiom, buys_each(first_group, 3/1, 1/1)).
+tff(f3, axiom, buys_each(next_group, 2/1, 2/1)).
+tff(f4, axiom, buys_each(last_group, 3/1, 0/1)).
+tff(a1, axiom, ![V_g: group, V_n: $rat, V_e: $rat, V_t: $rat]: ((buys_each(V_g, V_n, V_e) & V_t = $product(V_n, V_e)) => dvds_sold_to(V_g, V_t))).
+tff(a2, axiom, ![V_m: group]: (subgroup_of(tuesday_customers, V_m) <=> (V_m = first_group | V_m = next_group | V_m = last_group))).
+tff(d1, lemma, dvds_sold_to(first_group, 3/1)).
+tff(d2, lemma, dvds_sold_to(next_group, 4/1)).
+tff(d3, lemma, dvds_sold_to(last_group, 0/1)).
+tff(d4, lemma, dvds_sold_to(tuesday_customers, 7/1)).
+tff(s4_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((dvds_sold_to(first_group, N1) & dvds_sold_to(next_group, N2) & dvds_sold_to(last_group, N3)) => dvds_sold_to(tuesday_customers, $sum($sum(N1, N2), N3)))).
