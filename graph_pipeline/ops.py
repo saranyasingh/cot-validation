@@ -16,7 +16,7 @@ from graph_pipeline.render_en import render_statement, render_step
 
 COMPUTED = {
     "statements": {"label", "english"},
-    "steps": {"binding", "status", "status_detail", "english"},
+    "steps": {"binding", "status", "status_detail", "english", "prover", "prover_detail"},
 }
 
 
@@ -82,6 +82,8 @@ def refresh(graph: Graph):
         step["status"] = result["status"]
         step["status_detail"] = result.get("detail", "")
         step["binding"] = result.get("binding", {})
+        step.pop("prover", None)
+        step.pop("prover_detail", None)
     graph.errors = errors
 
 

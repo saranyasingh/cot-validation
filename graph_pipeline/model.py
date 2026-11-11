@@ -104,7 +104,7 @@ class Graph:
     def authored_dict(self) -> dict:
         """The graph without computed fields, as shown to agents."""
         computed_statement = {"label", "english"}
-        computed_step = {"binding", "status", "status_detail", "english"}
+        computed_step = {"binding", "status", "status_detail", "english", "prover", "prover_detail"}
         return {
             "sorts": self.sorts,
             "entities": self.entities,

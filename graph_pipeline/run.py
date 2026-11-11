@@ -1,6 +1,6 @@
 """
-Build an inference graph from a chain of thought and write graph.json, oplog.jsonl,
-graph.tptp, argument.txt and graph.html.
+Build an inference graph from a chain of thought, prove each step with Vampire, and
+write graph.json, oplog.jsonl, graph.tptp, prover_report.txt, argument.txt and graph.html.
 
 Usage:
   python -m graph_pipeline.run --item benchmark_outputs/verify_run_20261001_150731/item_0023
@@ -16,8 +16,22 @@ from graph_pipeline.build import build_graph, problems
 from graph_pipeline.compile_tff import compile_graph
 from graph_pipeline.model import Graph
 from graph_pipeline.ops import refresh, step_order
+from graph_pipeline.prove import PROVER_TIMEOUT_S, prove_graph, prover_report, prover_verdict
 from graph_pipeline.render_en import render_argument
 from graph_pipeline.visualize import write_html
+
+
+def make_graph_client(name: str):
+    """An LLM client for the graph agents. Bedrock defaults to Claude Opus with long outputs."""
+    from dotenv import load_dotenv
+    load_dotenv()
+    if name == "bedrock":
+        if os.getenv("BEDROCK_API_KEY") and not os.getenv("AWS_BEARER_TOKEN_BEDROCK"):
+            os.environ["AWS_BEARER_TOKEN_BEDROCK"] = os.environ["BEDROCK_API_KEY"]
+        os.environ.setdefault("BEDROCK_MODEL", "anthropic.claude-opus-5-5")
+        os.environ.setdefault("ANTHROPIC_MAX_TOKENS", "32000")
+    from main_pipeline.clients import make_client
+    return make_client(name)
 
 
 def _read(path: str) -> str:
@@ -25,7 +39,7 @@ def _read(path: str) -> str:
         return f.read()
 
 
-def write_outputs(graph: Graph, out_dir: str):
+def write_outputs(graph: Graph, out_dir: str, vampire: str | None):
     os.makedirs(out_dir, exist_ok=True)
     graph.save(os.path.join(out_dir, "graph.json"))
     with open(os.path.join(out_dir, "oplog.jsonl"), "w") as f:
@@ -33,6 +47,8 @@ def write_outputs(graph: Graph, out_dir: str):
             f.write(json.dumps(op, default=str) + "\n")
     with open(os.path.join(out_dir, "graph.tptp"), "w") as f:
         f.write(compile_graph(graph))
+    with open(os.path.join(out_dir, "prover_report.txt"), "w") as f:
+        f.write(prover_report(graph, vampire))
     with open(os.path.join(out_dir, "argument.txt"), "w") as f:
         f.write(render_argument(graph, step_order(graph)) + "\n")
     write_html(graph, os.path.join(out_dir, "graph.html"))
@@ -47,6 +63,12 @@ def print_summary(graph: Graph, out_dir: str):
     for step_id, step in graph.steps.items():
         if step.get("status") == "arithmetic_mismatch":
             print(f"  reasoning error reported in {step_id}: {step.get('status_detail')}")
+    proved = sum(1 for s in graph.steps.values() if s.get("prover") == "proved")
+    print(f"Prover: {prover_verdict(graph)} ({proved}/{len(graph.steps)} steps proved)")
+    for step_id in step_order(graph):
+        step = graph.steps[step_id]
+        if step.get("prover") not in (None, "proved", "skipped"):
+            print(f"  {step_id}: {step.get('prover')} - {step.get('prover_detail')}")
     remaining = problems(graph)
     if remaining:
         print(f"{len(remaining)} unresolved problems:")
@@ -66,6 +88,9 @@ def main():
     parser.add_argument("--client", "-c", default="bedrock",
                         help="LLM client from main_pipeline/clients.py (default: bedrock)")
     parser.add_argument("--repair-rounds", type=int, default=3)
+    parser.add_argument("--no-prover", action="store_true", help="skip the Vampire step checks")
+    parser.add_argument("--prover-timeout", type=int, default=PROVER_TIMEOUT_S,
+                        help=f"seconds per step (default: {PROVER_TIMEOUT_S})")
     args = parser.parse_args()
 
     if args.graph:
@@ -87,18 +112,11 @@ def main():
                 parser.error("--question-file needs --cot-file")
             question, cot = _read(args.question_file), _read(args.cot_file)
             default_out = os.path.join("graph_outputs", "custom")
-        from dotenv import load_dotenv
-        load_dotenv()
-        if args.client == "bedrock":
-            if os.getenv("BEDROCK_API_KEY") and not os.getenv("AWS_BEARER_TOKEN_BEDROCK"):
-                os.environ["AWS_BEARER_TOKEN_BEDROCK"] = os.environ["BEDROCK_API_KEY"]
-            os.environ.setdefault("BEDROCK_MODEL", "anthropic.claude-opus-5-5")
-            os.environ.setdefault("ANTHROPIC_MAX_TOKENS", "32000")
-        from main_pipeline.clients import make_client
-        graph = build_graph(question, cot, make_client(args.client), args.repair_rounds)
+        graph = build_graph(question, cot, make_graph_client(args.client), args.repair_rounds)
         out_dir = args.output_dir or default_out
 
-    write_outputs(graph, out_dir)
+    vampire = None if args.no_prover else prove_graph(graph, args.prover_timeout)
+    write_outputs(graph, out_dir, vampire)
     print_summary(graph, out_dir)
 
 

@@ -4,6 +4,7 @@ import json
 
 from graph_pipeline.compile_tff import compile_graph, compile_statement, compile_step
 from graph_pipeline.model import Graph
+from graph_pipeline.prove import prover_verdict
 
 
 def _safe(fn, *args) -> str:
@@ -53,6 +54,7 @@ def graph_payload(graph: Graph) -> dict:
         "question": graph.question,
         "cot": graph.cot,
         "errors": graph.errors,
+        "prover_verdict": prover_verdict(graph),
         "dictionary": {"sorts": graph.sorts, "entities": graph.entities,
                        "relations": graph.relations},
         "tptp": _safe(compile_graph, graph),
@@ -102,6 +104,8 @@ const KIND_COLORS = {
 };
 const STATUS_COLORS = { matched: "#2e9d4f", gap: "#d32f2f",
                         arithmetic_mismatch: "#e98a00", unchecked: "#999999" };
+const PROVER_COLORS = { proved: "#2e9d4f", not_proved: "#d32f2f", contradictory_premises: "#d32f2f",
+                        timeout: "#e98a00", unknown: "#e98a00", error: "#b00020", skipped: "#999999" };
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
@@ -166,11 +170,16 @@ function overview() {
     : "<div>none</div>";
   const problems = steps.filter(s => s.status !== "matched")
     .map(s => `<div><b>${esc(s.id)}</b> ${esc(s.status)}: ${esc(s.status_detail)}</div>`).join("") || "<div>none</div>";
+  const proverProblems = steps.filter(s => s.prover && s.prover !== "proved")
+    .map(s => `<div><b>${esc(s.id)}</b> ${esc(s.prover)}: ${esc(s.prover_detail)}</div>`).join("") || "<div>none</div>";
+  const verdictColor = {VERIFIED: "#2e9d4f", "NOT VERIFIED": "#d32f2f"}[DATA.prover_verdict] || "#999";
   document.getElementById("side").innerHTML =
     `<h2>Inference graph</h2>${statusLine}` +
+    `<div><span class="badge" style="border:2px solid ${verdictColor}">prover: ${esc(DATA.prover_verdict)}</span></div>` +
     section("Legend", legend()) +
     section("Validation errors", errors) +
     section("Steps that did not match", problems) +
+    section("Steps not proved by Vampire", proverProblems) +
     section("Question", `<div class="text">${esc(DATA.question)}</div>`) +
     section("Chain of thought", pre(DATA.cot)) +
     section("Dictionary", pre(DATA.dictionary)) +
@@ -187,6 +196,9 @@ function showNode(id) {
     html += `<h2>${esc(id)} · step (${esc(d.move)})</h2>` +
       `<span class="badge" style="border-color:${STATUS_COLORS[d.status]}">${esc(d.status)}</span>` +
       (d.status_detail ? `<div class="err">${esc(d.status_detail)}</div>` : "") +
+      (d.prover ? section("Prover (Vampire)",
+        `<span class="badge" style="border-color:${PROVER_COLORS[d.prover] || "#999"}">${esc(d.prover)}</span>` +
+        `<div class="text">${esc(d.prover_detail)}</div>`) : "") +
       section("Authored text", `<div class="text">${esc(d.text)}</div>`) +
       section("Generated English", `<div class="text">${esc(d.english)}</div>`) +
       section("CoT quote", `<div class="text">${esc(d.cot_quote)}</div>`) +

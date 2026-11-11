@@ -171,15 +171,40 @@ deterministically (`match.py`): its rule is unified with its premises, arithmeti
 evaluated with exact fractions, and a truth table decides entailment. Step statuses are
 `matched`, `gap`, `arithmetic_mismatch` (the CoT's own arithmetic is wrong) or `unchecked`.
 
+Finally (`prove.py`), each step is compiled to its own TFF problem (premises and warrant
+as axioms, conclusion as the conjecture) and given to Vampire in portfolio mode. Each step
+gets a prover status: `proved`, `not_proved`, `contradictory_premises`, `timeout`,
+`unknown`, `error` or `skipped` (Vampire not found). The graph is `VERIFIED` only if every
+step is proved. E is not used here because it does not support `$rat` arithmetic. Use
+`--no-prover` to skip this check, or `--prover-timeout N` to change the per-step limit
+(default 20 s). With arithmetic, Vampire rarely finds countermodels, so an invalid step
+usually shows up as `timeout` rather than `not_proved`.
+
 Outputs, written to `graph_outputs/<item>/` by default:
 
 - `graph.json`: the graph
 - `oplog.jsonl`: every edit
 - `graph.tptp`: a TFF translation
+- `prover_report.txt`: the verdict and each step's prover status
 - `argument.txt`: the argument rendered back into English
 - `graph.html`: an interactive view (loads Cytoscape from a CDN)
 
-The longer-term design (per-step prover checks, assumption tiers and costs, an agent
+#### Graph benchmark
+
+```bash
+python -m graph_pipeline.benchmark --dataset data/dataset.json -n 20 \
+    --client vllm --verifier bedrock [--start 0] [--prover-timeout 20]
+```
+
+For each item the reasoning client (`--client`) writes a CoT, the graph agents
+(`--verifier`) build the graph, and Vampire proves each step. An answer is **verified**
+only if every step is proved, no assumption is `unjustified` or unclassified, and a final
+conclusion of the graph states the CoT's answer. Verified is compared with correct, as in
+the verify-only benchmark. Output goes to `benchmark_outputs/graph_run_<timestamp>/`:
+`summary.json`, `results.json` (rewritten after every item), `index.html` (one row per
+item linking to its `graph.html`), and one folder per item with the usual graph outputs.
+
+The longer-term design (assumption tiers and costs, an agent
 orchestrator) is described in `inference_graph_plan.txt`.
 
 ## Running on a Slurm cluster
@@ -191,7 +216,16 @@ orchestrator) is described in `inference_graph_plan.txt`.
 cd slurm_scripts
 sbatch --export=ALL,CLIENT=bedrock,VERIFIER=bedrock,NUM_PROBLEMS=50 run_verify_benchmark.slurm
 sbatch --export=ALL,VLLM_MODEL=Qwen/Qwen2.5-7B-Instruct run_verify_benchmark_vllm.slurm
+
+# Graph benchmark: Qwen on vLLM writes the CoTs, Claude Opus on Bedrock builds the graphs
+sbatch --export=ALL,NUM_PROBLEMS=50,VLLM_MODEL=Qwen/Qwen2.5-7B-Instruct run_graph_benchmark_vllm.slurm
 ```
+
+`run_graph_benchmark_vllm.slurm` also takes `DATASET`, `START`, `OUTPUT_DIR`,
+`VERIFIER_CLIENT` (default `bedrock`), `BEDROCK_MODEL`, `ANTHROPIC_MODEL` and
+`PROVER_TIMEOUT`. On first run it downloads the Linux Vampire build into `tools/linux/`
+(set `VAMPIRE_PATH` to use your own); if compute nodes have no internet, unzip
+`vampire-Linux-X64.zip` from the Vampire releases there yourself.
 
 The `*_vllm.slurm` scripts start a vLLM server on the allocated GPU, wait for it to
 come up, use it as the reasoning client, and shut it down when the job exits. They
