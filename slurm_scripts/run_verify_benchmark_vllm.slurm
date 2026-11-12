@@ -146,6 +146,10 @@ SKIP_TPTP_ARG=""
 if [ -n "$SKIP_TPTP" ]; then
     SKIP_TPTP_ARG="--skip-tptp"
 fi
+FORMAL_ARG=""
+if [ -n "${FORMAL_PROGRAM:-}" ]; then
+    FORMAL_ARG="--formal-program $FORMAL_PROGRAM"   # optimized prompts from formal_dspy.optimize
+fi
 
 # ── Run verify benchmark ───────────────────────────────────────────────────────
 export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
@@ -155,7 +159,8 @@ export PYTHONPATH="$SLURM_SUBMIT_DIR/..:${PYTHONPATH:-}"
     --verifier "$VERIFIER_CLIENT" \
     $OUTPUT_ARG \
     $NUM_PROBLEMS_ARG \
-    $SKIP_TPTP_ARG
+    $SKIP_TPTP_ARG \
+    $FORMAL_ARG
 
 # ── Generate HTML report ───────────────────────────────────────────────────────
 BENCHMARK_OUTPUTS_DIR="${OUTPUT_DIR:-$SLURM_SUBMIT_DIR/../benchmark_outputs}"

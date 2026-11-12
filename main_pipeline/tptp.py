@@ -169,30 +169,55 @@ def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]
     with open(tptp_path, "w") as f:
         f.write(tptp_output)
 
+    result = check_tptp(tptp_output)
+    return tptp_output, result["has_errors"], result["report"]
+
+
+def _syntax_error(tptp_output: str) -> str | None:
+    """E's syntax check. Returns the error message, or None if the file parses."""
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tptp', delete=False, dir=SCRIPT_DIR) as tmp:
+        tmp.write(tptp_output)
+        tmp_path = tmp.name
+    try:
+        syntax_check = subprocess.run(
+            ["eprover", "--syntax-only", "--tptp3-format", tmp_path],
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
+        )
+        if syntax_check.returncode != 0:
+            return (syntax_check.stderr or syntax_check.stdout).strip()
+        return None
+    except subprocess.TimeoutExpired:
+        return "syntax check timed out (possible malformed formula or unsupported function)"
+    finally:
+        os.unlink(tmp_path)
+
+
+def check_tptp(tptp_output: str) -> dict:
+    """
+    Prove each inference of LLM-written TPTP from the axioms and earlier inferences.
+    Returns {has_errors, report, syntax_error, statuses}, where statuses maps each
+    inference name to PROVED, NOT PROVED, TIMEOUT, UNKNOWN (...) or ERROR.
+    """
     name, base_args = find_prover()
     if name is None:
-        return tptp_output, False, "No theorem prover available; skipping formal validation."
+        return {"has_errors": False, "syntax_error": None, "statuses": {},
+                "report": "No theorem prover available; skipping formal validation."}
 
-    # Syntax check (eprover only)
     if name == "eprover":
-        try:
-            syntax_check = subprocess.run(
-                ["eprover", "--syntax-only", "--tptp3-format", tptp_path],
-                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=10,
-            )
-            if syntax_check.returncode != 0:
-                error_msg = (syntax_check.stderr or syntax_check.stdout).strip()
-                return tptp_output, True, f"TPTP syntax error:\n{error_msg}"
-        except subprocess.TimeoutExpired:
-            return tptp_output, True, "TPTP syntax check timed out (possible malformed formula or unsupported function)"
+        error_msg = _syntax_error(tptp_output)
+        if error_msg:
+            return {"has_errors": True, "syntax_error": error_msg, "statuses": {},
+                    "report": f"TPTP syntax error:\n{error_msg}"}
 
     axioms, inferences = parse_tptp(tptp_output)
 
     if not inferences:
-        return tptp_output, False, "No inferences found to validate."
+        return {"has_errors": False, "syntax_error": None, "statuses": {},
+                "report": "No inferences found to validate."}
 
     errors = []
     inference_results = []
+    statuses = {}
     proven_so_far = []
 
     for comment, fof_line in inferences:
@@ -237,14 +262,17 @@ def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]
             inference_results.append(f"{prefix}  {inf_name}: {status}")
 
         except subprocess.TimeoutExpired:
+            status = "TIMEOUT"
             inference_results.append(f"  {inf_name}: TIMEOUT")
         except Exception as e:
+            status = "ERROR"
             err = f"{inf_name}: ERROR ({e})"
             inference_results.append(f"  {err}")
             errors.append(err)
         finally:
             os.unlink(tmp_path)
 
+        statuses[inf_name] = status
         proven_so_far.append(fof_line)
 
     report = "\n".join(inference_results)
@@ -252,7 +280,7 @@ def convert_and_check(structured_fol: str, client=None) -> tuple[str, bool, str]
     if has_errors:
         report += "\n\nProver errors:\n" + "\n".join(errors)
 
-    return tptp_output, has_errors, report
+    return {"has_errors": has_errors, "syntax_error": None, "statuses": statuses, "report": report}
 
 
 def main():

@@ -134,6 +134,35 @@ has `summary.json`, `results.json` and one subfolder per item with the question,
 FOL, verification and prover reports. The verify-only summary reports a confusion
 matrix: correct/incorrect answers against verified/flagged.
 
+### Optimizing the formal-verification prompts (DSPy)
+
+`formal_dspy/` uses [DSPy](https://dspy.ai) GEPA to rewrite the two prompts that feed the
+provers: FOL extraction (`STRUCTURED_FOL_TEMPLATE`) and FOL-to-TPTP conversion
+(`TPTP_TEMPLATE`). The fact/rule judge and the graph pipeline are not touched. Training data
+is every saved CoT in `benchmark_outputs/*_run_*/` with its correct/incorrect label, split by
+question into train, dev and test. Requires `pip install dspy`.
+
+```bash
+python -m formal_dspy.optimize --verifier bedrock --reflection bedrock \
+    --reflection-model anthropic.claude-opus-5-5 --auto light
+python -m formal_dspy.optimize --eval-only                    # score the current prompts
+PYTHONPATH=. python main_pipeline/verify_benchmark.py ... \
+    --formal-program formal_dspy/runs/<run>/program.json      # use the optimized prompts
+```
+
+Each formalization is checked by the existing provers and scored:
+
+| CoT answer | proved | refuted (an OP is wrong or an inference is not proved) | broken (syntax error, timeout, no inferences) |
+| ---------- | ------ | ------------------------------------------------------ | --------------------------------------------- |
+| correct    | 1      | 0                                                      | 0                                             |
+| incorrect  | 0.5    | 1                                                      | 0                                             |
+
+A number in a FACT or OP formula that is not in the question or the CoT scores 0, so the
+optimizer cannot learn to correct or invent arithmetic. GEPA also receives the prover
+reports as written feedback. Runs go to `formal_dspy/runs/formal_<timestamp>/`: `report.json`
+(baseline and optimized test scores, splits, cost), `program.json`, and the optimized
+instructions as text. On the cluster use `slurm_scripts/run_formal_optimize.slurm` (CPU only).
+
 ### ProofWriter pipeline
 
 ```bash

@@ -26,7 +26,7 @@ from datetime import datetime
 
 from main_pipeline.main import COT_PROMPT, STRUCTURED_FOL_TEMPLATE, extract_answer
 from main_pipeline.verify import verify_fol
-from main_pipeline.tptp import convert_and_check
+from main_pipeline.tptp import check_tptp, convert_and_check
 from main_pipeline.clients import (
     make_client, OpenAILLMClient,
     start_cost_log, set_cost_context, call_log_mark, summarize_costs, print_cost_summary,
@@ -52,9 +52,12 @@ def run_verify_only(
     reasoning_client=None,
     verifier_client=None,
     skip_tptp: bool = False,
+    formal=None,
 ) -> dict:
     """
     Generate CoT, convert to FOL, run verification once (no repair).
+    `formal` is an optional formal_dspy FormalVerifier whose (optimized) prompts replace
+    the FOL extraction and TPTP conversion prompts.
 
     Returns:
         cot_text          — raw CoT output
@@ -82,7 +85,10 @@ def run_verify_only(
         _write(os.path.join(output_dir, "cot.txt"), cot_text)
 
     # Stage 2: FOL extraction
-    structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
+    if formal is not None:
+        structured_fol = formal.extract(cot_text)
+    else:
+        structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
 
     if output_dir:
         _write(os.path.join(output_dir, "fol.txt"), structured_fol)
@@ -126,7 +132,12 @@ def run_verify_only(
             "passed_tptp": None,
         }
 
-    tptp_text, tptp_errors, tptp_report = convert_and_check(structured_fol, client=verifier_client)
+    if formal is not None:
+        tptp_text = formal.convert(structured_fol)
+        tptp_result = check_tptp(tptp_text)
+        tptp_errors, tptp_report = tptp_result["has_errors"], tptp_result["report"]
+    else:
+        tptp_text, tptp_errors, tptp_report = convert_and_check(structured_fol, client=verifier_client)
 
     if output_dir:
         _write(os.path.join(output_dir, "tptp.tptp"), tptp_text)
@@ -151,6 +162,7 @@ def run_verify_benchmark(
     skip_tptp: bool = False,
     reasoning_client_name: str = "openai",
     verifier_client_name: str = "claude",
+    formal=None,
 ) -> dict:
     with open(dataset_path) as f:
         dataset = json.load(f)
@@ -202,6 +214,7 @@ def run_verify_benchmark(
             reasoning_client=reasoning_client,
             verifier_client=verifier_client,
             skip_tptp=skip_tptp,
+            formal=formal,
         )
         item_cost = summarize_costs(item_mark)
 
@@ -423,10 +436,23 @@ if __name__ == "__main__":
         action="store_true",
         help="Skip the TPTP/prover step and only use fact/rule verification.",
     )
+    parser.add_argument(
+        "--formal-program",
+        default=None,
+        help="program.json from formal_dspy.optimize; its prompts replace FOL extraction and TPTP conversion.",
+    )
     args = parser.parse_args()
 
     reasoning_client = make_client(args.client)
     verifier_client = make_client(args.verifier)
+
+    formal = None
+    if args.formal_program:
+        from formal_dspy.lm import make_lm
+        from formal_dspy.program import FormalVerifier
+        formal = FormalVerifier()
+        formal.load(args.formal_program)
+        formal.set_lm(make_lm(args.verifier))
 
     run_id = datetime.now().strftime("verify_run_%Y%m%d_%H%M%S")
     base_dir = args.output_dir or os.path.join(SCRIPT_DIR, "..", "benchmark_outputs")
@@ -441,4 +467,5 @@ if __name__ == "__main__":
         skip_tptp=args.skip_tptp,
         reasoning_client_name=args.client,
         verifier_client_name=args.verifier,
+        formal=formal,
     )
