@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total number of games played is 22",
+      "formula": "TotalGames(22)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The team won 8 more games than they lost",
+      "formula": "WinMargin(8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Subtract 8 from 22 to get 14",
+      "formula": "Difference(22, 8, 14)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "Divide 14 by 2 to get 7",
+      "formula": "Quotient(14, 2, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "Add 7 and 8 to get 15",
+      "formula": "Sum(7, 8, 15)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total games is n, the win margin is m, n minus m equals d, and d divided by 2 equals l, then the number of losses is l",
+      "formula": "\u2200n\u2200m\u2200d\u2200l (TotalGames(n) \u2227 WinMargin(m) \u2227 Difference(n,m,d) \u2227 Quotient(d,2,l) \u2192 Losses(l))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the number of losses is l, the win margin is m, and l plus m equals w, then the number of wins is w",
+      "formula": "\u2200l\u2200m\u2200w (Losses(l) \u2227 WinMargin(m) \u2227 Sum(l,m,w) \u2192 Wins(w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The number of losses is 7, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Losses(7)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The number of wins is 15, from INF-1, FACT-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Wins(15)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

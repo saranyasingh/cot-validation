@@ -1,0 +1,408 @@
+{
+  "question": "Toula went to the bakery and bought various types of pastries. She bought 3 dozen donuts which cost $68 per dozen, 2 dozen mini cupcakes which cost $80 per dozen, and 6 dozen mini cheesecakes for $55 per dozen. How much was the total cost?",
+  "cot": "EXPLANATION\nFirst, we calculate the cost of the donuts.\n1. Toula bought 3 dozen donuts at $68 per dozen.\n2. Therefore, the cost of the donuts is 3 * $68 = $204.\nNext, we calculate the cost of the mini cupcakes.\n3. Toula bought 2 dozen mini cupcakes at $80 per dozen.\n4. Therefore, the cost of the mini cupcakes is 2 * $80 = $160.\nThen, we calculate the cost of the mini cheesecakes.\n5. Toula bought 6 dozen mini cheesecakes at $55 per dozen.\n6. Therefore, the cost of the mini cheesecakes is 6 * $55 = $330.\nFinally, we add up all the costs to find the total cost.\n7. The total cost is $204 (donuts) + $160 (mini cupcakes) + $330 (mini cheesecakes) = $694.\n\nThe answer is: 694",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "item": {
+      "description": "a kind of baked good that was purchased"
+    }
+  },
+  "entities": {
+    "toula": {
+      "sort": "person",
+      "name": "Toula"
+    },
+    "donuts": {
+      "sort": "item",
+      "name": "donuts"
+    },
+    "mini_cupcakes": {
+      "sort": "item",
+      "name": "mini cupcakes"
+    },
+    "mini_cheesecakes": {
+      "sort": "item",
+      "name": "mini cheesecakes"
+    }
+  },
+  "relations": {
+    "bought_dozens": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "item",
+          "item"
+        ],
+        [
+          "dozens",
+          "num"
+        ],
+        [
+          "price",
+          "num"
+        ]
+      ],
+      "sentence": "{buyer} bought {dozens} dozen {item} at ${price} per dozen"
+    },
+    "item_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "item",
+          "item"
+        ],
+        [
+          "cost",
+          "num"
+        ]
+      ],
+      "sentence": "the cost of the {item} {buyer} bought is ${cost}"
+    },
+    "bought_item": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "item",
+          "item"
+        ]
+      ],
+      "sentence": "{item} is one of the items {buyer} bought"
+    },
+    "total_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "cost",
+          "num"
+        ]
+      ],
+      "sentence": "the total cost of everything {buyer} bought is ${cost}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Toula bought 3 dozen donuts at $68 per dozen.",
+      "cot_quote": "Toula bought 3 dozen donuts at $68 per dozen.",
+      "content": {
+        "relation": "bought_dozens",
+        "args": [
+          "toula",
+          "donuts",
+          3,
+          68
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "She bought 3 dozen donuts which cost $68 per dozen",
+      "label": "assumption",
+      "english": "Toula bought 3 dozen donuts at $68 per dozen."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "The cost of the donuts is $204.",
+      "cot_quote": "the cost of the donuts is 3 * $68 = $204",
+      "content": {
+        "relation": "item_cost",
+        "args": [
+          "toula",
+          "donuts",
+          204
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C2",
+      "label": "derived",
+      "english": "The cost of the donuts Toula bought is $204."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Toula bought 2 dozen mini cupcakes at $80 per dozen.",
+      "cot_quote": "Toula bought 2 dozen mini cupcakes at $80 per dozen.",
+      "content": {
+        "relation": "bought_dozens",
+        "args": [
+          "toula",
+          "mini_cupcakes",
+          2,
+          80
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C3",
+      "question_quote": "2 dozen mini cupcakes which cost $80 per dozen",
+      "label": "assumption",
+      "english": "Toula bought 2 dozen mini cupcakes at $80 per dozen."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "The cost of the mini cupcakes is $160.",
+      "cot_quote": "the cost of the mini cupcakes is 2 * $80 = $160",
+      "content": {
+        "relation": "item_cost",
+        "args": [
+          "toula",
+          "mini_cupcakes",
+          160
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C4",
+      "label": "derived",
+      "english": "The cost of the mini cupcakes Toula bought is $160."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Toula bought 6 dozen mini cheesecakes at $55 per dozen.",
+      "cot_quote": "Toula bought 6 dozen mini cheesecakes at $55 per dozen.",
+      "content": {
+        "relation": "bought_dozens",
+        "args": [
+          "toula",
+          "mini_cheesecakes",
+          6,
+          55
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C5",
+      "question_quote": "6 dozen mini cheesecakes for $55 per dozen",
+      "label": "assumption",
+      "english": "Toula bought 6 dozen mini cheesecakes at $55 per dozen."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "The cost of the mini cheesecakes is $330.",
+      "cot_quote": "the cost of the mini cheesecakes is 6 * $55 = $330",
+      "content": {
+        "relation": "item_cost",
+        "args": [
+          "toula",
+          "mini_cheesecakes",
+          330
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "The cost of the mini cheesecakes Toula bought is $330."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "The total cost is $694.",
+      "cot_quote": "The total cost is $204 (donuts) + $160 (mini cupcakes) + $330 (mini cheesecakes) = $694.",
+      "content": {
+        "relation": "total_cost",
+        "args": [
+          "toula",
+          694
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The total cost of everything Toula bought is $694."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "The cost of buying some number of dozens at a fixed price per dozen equals the number of dozens times the price per dozen.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "i": "item",
+          "d": "num",
+          "p": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "bought_dozens",
+            "args": [
+              "x",
+              "i",
+              "d",
+              "p"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "d",
+              "p"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "item_cost",
+            "args": [
+              "x",
+              "i",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person x, any item i, any numbers d, p, c: if x bought d dozen i at $p per dozen and c = d \u00d7 p, then the cost of the i x bought is $c."
+    },
+    "I2": {
+      "shape": "closure",
+      "text": "The donuts, mini cupcakes, and mini cheesecakes are all of the items Toula bought.",
+      "kind": "closure",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "whole": "toula",
+        "relation": "bought_item",
+        "members": [
+          "donuts",
+          "mini_cupcakes",
+          "mini_cheesecakes"
+        ]
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "The only X such that \"X is one of the items Toula bought\" are donuts, mini cupcakes and mini cheesecakes; there are no others."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Therefore, the cost of the donuts is 3 * $68 = $204.",
+      "premises": [
+        "C1"
+      ],
+      "warrant": "I1",
+      "conclusion": "C2",
+      "stated_computation": "3 * 68 = 204",
+      "cot_quote": "Therefore, the cost of the donuts is 3 * $68 = $204.",
+      "id": "S1",
+      "english": "Because Toula bought 3 dozen donuts at $68 per dozen; and since for any person x, any item i, any numbers d, p, c: if x bought d dozen i at $p per dozen and c = d \u00d7 p, then the cost of the i x bought is $c: the cost of the donuts Toula bought is $204 (3 * 68 = 204).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "toula",
+        "i": "donuts",
+        "d": "3",
+        "p": "68",
+        "c": "204"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Therefore, the cost of the mini cupcakes is 2 * $80 = $160.",
+      "premises": [
+        "C3"
+      ],
+      "warrant": "I1",
+      "conclusion": "C4",
+      "stated_computation": "2 * 80 = 160",
+      "cot_quote": "Therefore, the cost of the mini cupcakes is 2 * $80 = $160.",
+      "id": "S2",
+      "english": "Because Toula bought 2 dozen mini cupcakes at $80 per dozen; and since for any person x, any item i, any numbers d, p, c: if x bought d dozen i at $p per dozen and c = d \u00d7 p, then the cost of the i x bought is $c: the cost of the mini cupcakes Toula bought is $160 (2 * 80 = 160).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "toula",
+        "i": "mini_cupcakes",
+        "d": "2",
+        "p": "80",
+        "c": "160"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Therefore, the cost of the mini cheesecakes is 6 * $55 = $330.",
+      "premises": [
+        "C5"
+      ],
+      "warrant": "I1",
+      "conclusion": "C6",
+      "stated_computation": "6 * 55 = 330",
+      "cot_quote": "Therefore, the cost of the mini cheesecakes is 6 * $55 = $330.",
+      "id": "S3",
+      "english": "Because Toula bought 6 dozen mini cheesecakes at $55 per dozen; and since for any person x, any item i, any numbers d, p, c: if x bought d dozen i at $p per dozen and c = d \u00d7 p, then the cost of the i x bought is $c: the cost of the mini cheesecakes Toula bought is $330 (6 * 55 = 330).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "toula",
+        "i": "mini_cheesecakes",
+        "d": "6",
+        "p": "55",
+        "c": "330"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "aggregate",
+      "text": "Finally, we add up all the costs to find the total cost.",
+      "premises": [
+        "C2",
+        "C4",
+        "C6"
+      ],
+      "warrant": "I2",
+      "conclusion": "C7",
+      "stated_computation": "204 + 160 + 330 = 694",
+      "cot_quote": "Finally, we add up all the costs to find the total cost.",
+      "id": "S4",
+      "english": "Because the cost of the donuts Toula bought is $204; and the cost of the mini cupcakes Toula bought is $160; and the cost of the mini cheesecakes Toula bought is $330; and since the only X such that \"X is one of the items Toula bought\" are donuts, mini cupcakes and mini cheesecakes; there are no others: the total cost of everything Toula bought is $694 (204 + 160 + 330 = 694).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "parts": {
+          "donuts": "204",
+          "mini_cupcakes": "160",
+          "mini_cheesecakes": "330"
+        },
+        "total": "694"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

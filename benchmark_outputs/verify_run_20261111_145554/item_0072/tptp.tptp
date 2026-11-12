@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, instructions(first_recipe, n_20)).
+fof(fact_2, axiom, twice_as(second_recipe, first_recipe)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_20, n_40)).
+fof(op_2, axiom, sum(n_20, n_40, n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,M] : ((twice_as(X, Y) & instructions(Y, N) & product(n_2, N, M)) => instructions(X, M))).
+fof(rule_2, axiom, ! [X,Y,N,M,T] : ((instructions(X, N) & instructions(Y, M) & sum(N, M, T)) => total(X, Y, T))).
+
+% --- INFERENCES ---
+% From fact_2, fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, instructions(second_recipe, n_40)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total(first_recipe, second_recipe, n_60)).

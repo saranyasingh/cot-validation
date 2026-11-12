@@ -1,0 +1,142 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Trixie has had 12 adopted kittens",
+      "formula": "AdoptedKittens(trixie, 12)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem says Trixie \"has had 12\" kittens (her own litter), not \"12 adopted kittens\"; labeling them as \"adopted\" misattributes the adopted-kitten quality to Trixie's litter.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Patchy has had thrice the number of adopted kittens as Trixie",
+      "formula": "TimesAsMany(patchy, trixie, 3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states Patchy had thrice \"the number of adopted kittens\" (i.e., thrice the 7 kittens the sisters adopted), not thrice Trixie's kitten count. This misreads which quantity is being tripled.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Initially, the family had 7 kittens",
+      "formula": "InitialKittens(doubtfire_family, 7)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 \u00d7 12 = 36",
+      "formula": "Product(3, 12, 36)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "36 + 12 = 48",
+      "formula": "Sum(36, 12, 48)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "7 + 48 = 55",
+      "formula": "Sum(7, 48, 55)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n times as many adopted kittens as y, and y has m adopted kittens, and n\u00d7m=p, then x has p adopted kittens",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200p (TimesAsMany(x,y,n) \u2227 AdoptedKittens(y,m) \u2227 Product(n,m,p) \u2192 AdoptedKittens(x,p))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It computes Patchy's kittens as thrice Trixie's count (y), but the problem actually specifies thrice the number of adopted kittens (7), independent of Trixie's litter size.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If one cat has p adopted kittens and another cat has m adopted kittens, and p+m=s, then the family has s adopted kittens total",
+      "formula": "\u2200x\u2200y\u2200s\u2200p\u2200m (AdoptedKittens(x,p) \u2227 AdoptedKittens(y,m) \u2227 Sum(p,m,s) \u2192 AdoptedKittens(doubtfire_family, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If a family initially had n kittens and has had s adopted kittens, and n+s=r, then the family now has r total kittens",
+      "formula": "\u2200x\u2200n\u2200s\u2200r (InitialKittens(x,n) \u2227 AdoptedKittens(x,s) \u2227 Sum(n,s,r) \u2192 TotalKittens(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Patchy has 36 adopted kittens, from FACT-2, FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "AdoptedKittens(patchy, 36)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The Doubtfire family has 48 adopted kittens total, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "AdoptedKittens(doubtfire_family, 48)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The Doubtfire family has 55 total kittens, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalKittens(doubtfire_family, 55)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "The problem says Trixie \"has had 12\" kittens (her own litter), not \"12 adopted kittens\"; labeling them as \"adopted\" misattributes the adopted-kitten quality to Trixie's litter."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "The problem states Patchy had thrice \"the number of adopted kittens\" (i.e., thrice the 7 kittens the sisters adopted), not thrice Trixie's kitten count. This misreads which quantity is being tripled."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "It computes Patchy's kittens as thrice Trixie's count (y), but the problem actually specifies thrice the number of adopted kittens (7), independent of Trixie's litter size."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

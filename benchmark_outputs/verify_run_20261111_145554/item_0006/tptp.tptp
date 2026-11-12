@@ -1,0 +1,33 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost(first_glass, n_5)).
+fof(fact_2, axiom, rate(first_glass, second_glass, n_0_6)).
+fof(fact_3, axiom, wants(kylar, n_16)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_6, n_5, n_3)).
+fof(op_2, axiom, quotient(n_16, n_2, n_8)).
+fof(op_3, axiom, product(n_8, n_3, n_24)).
+fof(op_4, axiom, product(n_8, n_5, n_40)).
+fof(op_5, axiom, sum(n_40, n_24, n_64)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,M,P] : ((cost(X, N) & rate(X, Y, M) & product(M, N, P)) => cost(Y, P))).
+fof(rule_2, axiom, ! [X,N,H] : ((wants(X, N) & quotient(N, n_2, H)) => (count(first_glass, H) & count(second_glass, H)))).
+fof(rule_3, axiom, ! [X,N,C,T] : ((count(X, N) & cost(X, C) & product(N, C, T)) => total_cost(X, T))).
+fof(rule_4, axiom, ! [X,Y,T1,T2,S] : ((total_cost(X, T1) & total_cost(Y, T2) & sum(T1, T2, S)) => total_cost(kylar, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(second_glass, n_3)).
+
+% From fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, (count(first_glass, n_8) & count(second_glass, n_8))).
+
+% From inf_2, inf_1, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_cost(second_glass, n_24)).
+
+% From inf_2, fact_1, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total_cost(first_glass, n_40)).
+
+% From inf_4, inf_3, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, total_cost(kylar, n_64)).

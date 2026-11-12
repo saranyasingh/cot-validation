@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+InitialAmount(x, n) — x started with n dollars
+Allowance(x, n) — x receives n dollars per week as allowance
+Weeks(x, n) — x received the allowance for n weeks
+Earned(x, n) — x earned a total of n dollars from the allowance over the weeks
+TotalAfter(x, n) — x has n dollars after receiving the allowance
+
+Constants:
+bailey, 5, 8, 40, 100, 60
+
+## FACTS
+FACT-1: Bailey received a weekly allowance of $5 :: Allowance(bailey, 5)
+FACT-2: Bailey received the allowance for 8 weeks :: Weeks(bailey, 8)
+FACT-3: Bailey's total amount of money after the 8 weeks is $100 :: TotalAfter(bailey, 100)
+
+## OPERATIONS
+OP-1: 5 dollars/week times 8 weeks is 40 dollars :: Product(5, 8, 40)
+OP-2: 100 minus 40 is 60 :: Difference(100, 40, 60)
+
+## RULES
+RULE-1: If x receives n dollars per week for w weeks and n × w = p, then x earned p dollars in total :: ∀x∀n∀w∀p (Allowance(x,n) ∧ Weeks(x,w) ∧ Product(n,w,p) → Earned(x,p))
+RULE-2: If x earned e dollars total, has t dollars after receiving it, and t − e = b, then x started with b dollars :: ∀x∀e∀t∀b (Earned(x,e) ∧ TotalAfter(x,t) ∧ Difference(t,e,b) → InitialAmount(x,b))
+
+## INFERENCES
+INF-1: Bailey earned 40 dollars from her allowance, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Earned(bailey, 40)
+INF-2: Bailey started with 60 dollars, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: InitialAmount(bailey, 60)

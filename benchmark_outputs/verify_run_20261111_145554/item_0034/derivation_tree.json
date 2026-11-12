@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Gretchen has 110 coins",
+      "formula": "TotalCoins(gretchen, 110)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 30 more gold coins than silver coins",
+      "formula": "GoldMoreThanSilver(gretchen, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "110 minus 30 is 80",
+      "formula": "Difference(110, 30, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "80 divided by 2 is 40",
+      "formula": "Quotient(80, 2, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "40 plus 30 is 70",
+      "formula": "Sum(40, 30, 70)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has t coins total, has d more gold than silver coins, t \u2212 d = s, and s \u00f7 2 = half, then x has half silver coins",
+      "formula": "\u2200x\u2200t\u2200d\u2200s\u2200half (TotalCoins(x,t) \u2227 GoldMoreThanSilver(x,d) \u2227 Difference(t,d,s) \u2227 Quotient(s,2,half) \u2192 Silver(x,half))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has s silver coins, has d more gold than silver coins, and s + d = g, then x has g gold coins",
+      "formula": "\u2200x\u2200s\u2200d\u2200g (Silver(x,s) \u2227 GoldMoreThanSilver(x,d) \u2227 Sum(s,d,g) \u2192 Gold(x,g))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Gretchen has 40 silver coins, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Silver(gretchen, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Gretchen has 70 gold coins, from INF-1, FACT-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Gold(gretchen, 70)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

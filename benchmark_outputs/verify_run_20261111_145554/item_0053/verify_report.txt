@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — This rule uses the full 15 pounds total as the weight to be removed by toys alone, without subtracting the weight already removed by the 30 comic books. This double-counts the comic weight toward the 15-pound total and would require combining with RULE-1's result correctly (n should be 15 minus the comic weight, not 15).

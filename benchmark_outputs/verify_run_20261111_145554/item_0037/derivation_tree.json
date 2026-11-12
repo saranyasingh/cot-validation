@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Terry consumes 2 yogurts per day",
+      "formula": "ConsumesPerDay(terry, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Terry considers a period of 30 days",
+      "formula": "Days(terry, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "4 yogurts cost $5.00 per set",
+      "formula": "SetInfo(4, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 yogurts/day * 30 days = 60 yogurts",
+      "formula": "Product(2, 30, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "60 yogurts / 4 yogurts per set = 15 sets",
+      "formula": "Quotient(60, 4, 15)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "15 sets * $5.00/set = $75.00",
+      "formula": "Product(15, 5, 75)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x consumes n yogurts per day over d days and n \u00d7 d = t, then x consumes a total of t yogurts",
+      "formula": "\u2200x\u2200n\u2200d\u2200t (ConsumesPerDay(x,n) \u2227 Days(x,d) \u2227 Product(n,d,t) \u2192 TotalYogurts(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x consumes a total of t yogurts, a set of s yogurts costs p dollars, t \u00f7 s = k sets, and k \u00d7 p = c, then x's total cost is c dollars",
+      "formula": "\u2200x\u2200t\u2200s\u2200p\u2200k\u2200c (TotalYogurts(x,t) \u2227 SetInfo(s,p) \u2227 Quotient(t,s,k) \u2227 Product(k,p,c) \u2192 TotalCost(x,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Terry consumes a total of 60 yogurts, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalYogurts(terry, 60)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Terry's total cost is $75, from INF-1, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(terry, 75)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

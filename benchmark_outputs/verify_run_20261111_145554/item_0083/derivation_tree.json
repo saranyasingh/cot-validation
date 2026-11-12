@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Grace's weight is 125 pounds",
+      "formula": "Weighs(grace, 125)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 times 125 is 500",
+      "formula": "Product(4, 125, 500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "500 minus 2 is 498",
+      "formula": "Difference(500, 2, 498)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "125 plus 498 is 623",
+      "formula": "Sum(125, 498, 623)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If Grace weighs n pounds, 4 times n is p, and p minus 2 is a, then Alex weighs a pounds",
+      "formula": "\u2200n\u2200p\u2200a (Weighs(grace, n) \u2227 Product(4, n, p) \u2227 Difference(p, 2, a) \u2192 Weighs(alex, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Grace weighs n pounds and Alex weighs m pounds and n plus m is s, then the combined weight of Grace and Alex is s pounds",
+      "formula": "\u2200n\u2200m\u2200s (Weighs(grace, n) \u2227 Weighs(alex, m) \u2227 Sum(n, m, s) \u2192 Combined(grace, alex, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Alex weighs 498 pounds, from FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Weighs(alex, 498)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The combined weight of Grace and Alex is 623 pounds, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Combined(grace, alex, 623)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,14 @@
+% OP-1: Product(6, 60, 360)
+tff(op_1, conjecture, $product(6/1, 60/1) = 360/1).
+% OP-2: Product(4, 40, 160)
+tff(op_2, conjecture, $product(4/1, 40/1) = 160/1).
+% OP-3: Sum(360, 160, 520)
+tff(op_3, conjecture, $sum(360/1, 160/1) = 520/1).
+% OP-4: Product(12, 40, 480)
+tff(op_4, conjecture, $product(12/1, 40/1) = 480/1).
+% OP-5: Product(0, 60, 0)
+tff(op_5, conjecture, $product(0/1, 60/1) = 0/1).
+% OP-6: Sum(480, 0, 480)
+tff(op_6, conjecture, $sum(480/1, 0/1) = 480/1).
+% OP-7: Difference(520, 480, 40)
+tff(op_7, conjecture, $difference(520/1, 480/1) = 40/1).

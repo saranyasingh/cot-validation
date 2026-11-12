@@ -1,0 +1,31 @@
+% Declarations
+tff(feeding_set_type, type, feeding_set: $tType).
+tff(meal_type, type, meal: $tType).
+tff(person_type, type, person: $tType).
+tff(wendi_decl, type, wendi: person).
+tff(morning_decl, type, morning: meal).
+tff(afternoon_decl, type, afternoon: meal).
+tff(so_far_decl, type, so_far: feeding_set).
+tff(per_chicken_feed_decl, type, per_chicken_feed: (person * $rat) > $o).
+tff(flock_size_decl, type, flock_size: (person * $rat) > $o).
+tff(daily_requirement_decl, type, daily_requirement: (person * $rat) > $o).
+tff(meal_feed_decl, type, meal_feed: (meal * $rat) > $o).
+tff(includes_meal_decl, type, includes_meal: (feeding_set * meal) > $o).
+tff(total_given_decl, type, total_given: (feeding_set * $rat) > $o).
+tff(final_meal_covers_rest_decl, type, final_meal_covers_rest: (person * feeding_set) > $o).
+tff(remaining_needed_decl, type, remaining_needed: (person * $rat) > $o).
+tff(morning_neq_afternoon, axiom, morning != afternoon).
+
+% Statements
+tff(c1, axiom, per_chicken_feed(wendi, 3/1)).
+tff(c2, axiom, flock_size(wendi, 20/1)).
+tff(c3, lemma, daily_requirement(wendi, 60/1)).
+tff(c4, axiom, meal_feed(morning, 15/1)).
+tff(c5, axiom, meal_feed(afternoon, 25/1)).
+tff(c6, lemma, total_given(so_far, 40/1)).
+tff(c7, lemma, remaining_needed(wendi, 20/1)).
+tff(i1, axiom, ![V_x: person, V_a: $rat, V_n: $rat, V_c: $rat]: ((per_chicken_feed(V_x, V_a) & flock_size(V_x, V_n) & V_c = $product(V_n, V_a)) => daily_requirement(V_x, V_c))).
+tff(i2, axiom, ![V_m: meal]: (includes_meal(so_far, V_m) <=> (V_m = morning | V_m = afternoon))).
+tff(i3, axiom, ![V_x: person, V_s: feeding_set, V_a: $rat, V_b: $rat, V_c: $rat]: ((daily_requirement(V_x, V_a) & total_given(V_s, V_b) & final_meal_covers_rest(V_x, V_s) & V_c = $difference(V_a, V_b)) => remaining_needed(V_x, V_c))).
+tff(i4, axiom, final_meal_covers_rest(wendi, so_far)).
+tff(s2_agg, axiom, ![N1: $rat, N2: $rat]: ((meal_feed(morning, N1) & meal_feed(afternoon, N2)) => total_given(so_far, $sum(N1, N2)))).

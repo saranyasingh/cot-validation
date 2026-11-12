@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+TotalCoins(x, n) — x has n coins in total
+GoldMoreThanSilver(x, n) — x has n more gold coins than silver coins
+Silver(x, n) — x has n silver coins
+Gold(x, n) — x has n gold coins
+
+Constants:
+gretchen, 110, 30, 80, 40, 70, 2
+
+## FACTS
+FACT-1: Gretchen has 110 coins :: TotalCoins(gretchen, 110)
+FACT-2: There are 30 more gold coins than silver coins :: GoldMoreThanSilver(gretchen, 30)
+
+## OPERATIONS
+OP-1: 110 minus 30 is 80 :: Difference(110, 30, 80)
+OP-2: 80 divided by 2 is 40 :: Quotient(80, 2, 40)
+OP-3: 40 plus 30 is 70 :: Sum(40, 30, 70)
+
+## RULES
+RULE-1: If x has t coins total, has d more gold than silver coins, t − d = s, and s ÷ 2 = half, then x has half silver coins :: ∀x∀t∀d∀s∀half (TotalCoins(x,t) ∧ GoldMoreThanSilver(x,d) ∧ Difference(t,d,s) ∧ Quotient(s,2,half) → Silver(x,half))
+RULE-2: If x has s silver coins, has d more gold than silver coins, and s + d = g, then x has g gold coins :: ∀x∀s∀d∀g (Silver(x,s) ∧ GoldMoreThanSilver(x,d) ∧ Sum(s,d,g) → Gold(x,g))
+
+## INFERENCES
+INF-1: Gretchen has 40 silver coins, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Silver(gretchen, 40)
+INF-2: Gretchen has 70 gold coins, from INF-1, FACT-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Gold(gretchen, 70)

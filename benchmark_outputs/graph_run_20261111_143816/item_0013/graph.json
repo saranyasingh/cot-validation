@@ -1,0 +1,527 @@
+{
+  "question": "Carlos is planting a lemon tree. The tree will cost $90 to plant. Each year it will grow 7 lemons, which he can sell for $1.5 each. It costs $3 a year to water and feed the tree. How many years will it take before he starts earning money on the lemon tree?",
+  "cot": "To solve this problem, let's break down the costs and revenues over time.\n\n1. **Initial Cost**: The tree costs $90 to plant.\n2. **Annual Costs**: Each year, Carlos incurs an additional cost of $3 for watering and feeding the tree.\n3. **Annual Revenue**: Each year, the tree produces 7 lemons, which he sells at $1.5 per lemon, generating $10.5 in revenue annually.\n4. **Net Annual Profit**: To find out when Carlos starts earning money, we need to calculate the net profit each year after subtracting the annual costs from the annual revenue. This gives us a net profit of $10.5 - $3 = $7.5 per year.\n5. **Time to Break Even**: We need to determine how many years it takes for the net profit to cover the initial cost of $90. This can be calculated by dividing the initial cost by the net annual profit: $90 / $7.5 = 12 years.\n\nThe answer is: 12",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "tree": {
+      "description": "a lemon tree"
+    }
+  },
+  "entities": {
+    "carlos": {
+      "sort": "person",
+      "name": "Carlos"
+    },
+    "tree": {
+      "sort": "tree",
+      "name": "the tree"
+    }
+  },
+  "relations": {
+    "planting_cost": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{t} costs ${amount} to plant"
+    },
+    "annual_upkeep_cost": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "watering and feeding {t} costs ${amount} each year"
+    },
+    "annual_lemons": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{t} produces {count} lemons each year"
+    },
+    "lemon_price": {
+      "slots": [
+        [
+          "seller",
+          "person"
+        ],
+        [
+          "price",
+          "num"
+        ]
+      ],
+      "sentence": "{seller} sells lemons at ${price} per lemon"
+    },
+    "annual_revenue": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{t} generates ${amount} in revenue annually"
+    },
+    "annual_net_profit": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the net profit from {t} is ${amount} per year"
+    },
+    "constant_annual_profit": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the net profit from {t} is the same ${amount} every year, so cumulative profit grows linearly with years"
+    },
+    "years_to_break_even": {
+      "slots": [
+        [
+          "t",
+          "tree"
+        ],
+        [
+          "years",
+          "num"
+        ]
+      ],
+      "sentence": "it takes {years} years for {t} to break even"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "The tree costs $90 to plant.",
+      "cot_quote": "The tree costs $90 to plant.",
+      "content": {
+        "relation": "planting_cost",
+        "args": [
+          "tree",
+          90
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "The tree will cost $90 to plant.",
+      "label": "assumption",
+      "english": "The tree costs $90 to plant."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Each year, Carlos incurs an additional cost of $3 for watering and feeding the tree.",
+      "cot_quote": "Each year, Carlos incurs an additional cost of $3 for watering and feeding the tree.",
+      "content": {
+        "relation": "annual_upkeep_cost",
+        "args": [
+          "tree",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "It costs $3 a year to water and feed the tree.",
+      "label": "assumption",
+      "english": "Watering and feeding the tree costs $3 each year."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Each year, the tree produces 7 lemons.",
+      "cot_quote": "Each year, the tree produces 7 lemons",
+      "content": {
+        "relation": "annual_lemons",
+        "args": [
+          "tree",
+          7
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C3",
+      "question_quote": "Each year it will grow 7 lemons",
+      "label": "assumption",
+      "english": "The tree produces 7 lemons each year."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "He sells lemons at $1.5 per lemon.",
+      "cot_quote": "which he sells at $1.5 per lemon",
+      "content": {
+        "relation": "lemon_price",
+        "args": [
+          "carlos",
+          1.5
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "which he can sell for $1.5 each",
+      "label": "assumption",
+      "english": "Carlos sells lemons at $1.5 per lemon."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "The tree generates $10.5 in revenue annually.",
+      "cot_quote": "generating $10.5 in revenue annually",
+      "content": {
+        "relation": "annual_revenue",
+        "args": [
+          "tree",
+          10.5
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "The tree generates $10.5 in revenue annually."
+    },
+    "C6": {
+      "shape": "rule",
+      "text": "Net profit each year is the annual revenue minus the annual costs.",
+      "cot_quote": "calculate the net profit each year after subtracting the annual costs from the annual revenue",
+      "content": {
+        "vars": {
+          "t": "tree",
+          "r": "num",
+          "c": "num",
+          "p": "num"
+        },
+        "if": [
+          {
+            "relation": "annual_revenue",
+            "args": [
+              "t",
+              "r"
+            ]
+          },
+          {
+            "relation": "annual_upkeep_cost",
+            "args": [
+              "t",
+              "c"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "r",
+              "c"
+            ],
+            "result": "p"
+          }
+        ],
+        "then": [
+          {
+            "relation": "annual_net_profit",
+            "args": [
+              "t",
+              "p"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any tree t, any numbers r, c, p: if t generates $r in revenue annually and watering and feeding t costs $c each year and p = r - c, then the net profit from t is $p per year."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Net profit is $7.5 per year.",
+      "cot_quote": "This gives us a net profit of $10.5 - $3 = $7.5 per year.",
+      "content": {
+        "relation": "annual_net_profit",
+        "args": [
+          "tree",
+          7.5
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The net profit from the tree is $7.5 per year."
+    },
+    "C8": {
+      "shape": "rule",
+      "text": "The years to break even are calculated by dividing the initial cost by the net annual profit.",
+      "cot_quote": "This can be calculated by dividing the initial cost by the net annual profit",
+      "content": {
+        "vars": {
+          "t": "tree",
+          "i": "num",
+          "p": "num",
+          "y": "num"
+        },
+        "if": [
+          {
+            "relation": "planting_cost",
+            "args": [
+              "t",
+              "i"
+            ]
+          },
+          {
+            "relation": "annual_net_profit",
+            "args": [
+              "t",
+              "p"
+            ]
+          },
+          {
+            "relation": "constant_annual_profit",
+            "args": [
+              "t",
+              "p"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "i",
+              "p"
+            ],
+            "result": "y"
+          }
+        ],
+        "then": [
+          {
+            "relation": "years_to_break_even",
+            "args": [
+              "t",
+              "y"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C8",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any tree t, any numbers i, p, y: if t costs $i to plant and the net profit from t is $p per year and the net profit from t is the same $p every year, so cumulative profit grows linearly with years and y = i \u00f7 p, then it takes y years for t to break even."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "It takes 12 years to break even.",
+      "cot_quote": "$90 / $7.5 = 12 years",
+      "content": {
+        "relation": "years_to_break_even",
+        "args": [
+          "tree",
+          12
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "It takes 12 years for the tree to break even."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Annual revenue equals the number of lemons sold per year times the price per lemon.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "t": "tree",
+          "s": "person",
+          "n": "num",
+          "r": "num",
+          "v": "num"
+        },
+        "if": [
+          {
+            "relation": "annual_lemons",
+            "args": [
+              "t",
+              "n"
+            ]
+          },
+          {
+            "relation": "lemon_price",
+            "args": [
+              "s",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "n",
+              "r"
+            ],
+            "result": "v"
+          }
+        ],
+        "then": [
+          {
+            "relation": "annual_revenue",
+            "args": [
+              "t",
+              "v"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any tree t, any person s, any numbers n, r, v: if t produces n lemons each year and s sells lemons at $r per lemon and v = n \u00d7 r, then t generates $v in revenue annually."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "The net profit is the same $7.5 every year, so cumulative profit grows linearly with years.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "constant_annual_profit",
+        "args": [
+          "tree",
+          7.5
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "The net profit from the tree is the same $7.5 every year, so cumulative profit grows linearly with years."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "7 lemons at $1.5 each generate $10.5 in revenue annually.",
+      "premises": [
+        "C3",
+        "C4"
+      ],
+      "warrant": "I1",
+      "conclusion": "C5",
+      "stated_computation": null,
+      "cot_quote": "which he sells at $1.5 per lemon, generating $10.5 in revenue annually",
+      "id": "S1",
+      "english": "Because the tree produces 7 lemons each year; and Carlos sells lemons at $1.5 per lemon; and since for any tree t, any person s, any numbers n, r, v: if t produces n lemons each year and s sells lemons at $r per lemon and v = n \u00d7 r, then t generates $v in revenue annually: the tree generates $10.5 in revenue annually.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "tree",
+        "n": "7",
+        "s": "carlos",
+        "r": "1.5",
+        "v": "10.5"
+      },
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for annual_lemons of type (tree * $rat) > $o"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Subtract the annual costs from the annual revenue to get the net profit per year.",
+      "premises": [
+        "C5",
+        "C2"
+      ],
+      "warrant": "C6",
+      "conclusion": "C7",
+      "stated_computation": "$10.5 - $3 = $7.5",
+      "cot_quote": "This gives us a net profit of $10.5 - $3 = $7.5 per year.",
+      "id": "S2",
+      "english": "Because the tree generates $10.5 in revenue annually; and watering and feeding the tree costs $3 each year; and since for any tree t, any numbers r, c, p: if t generates $r in revenue annually and watering and feeding t costs $c each year and p = r - c, then the net profit from t is $p per year: the net profit from the tree is $7.5 per year ($10.5 - $3 = $7.5).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "tree",
+        "r": "10.5",
+        "c": "3",
+        "p": "7.5"
+      },
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for annual_revenue of type (tree * $rat) > $o"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Divide the initial cost by the net annual profit to get the years to break even.",
+      "premises": [
+        "C1",
+        "C7",
+        "I2"
+      ],
+      "warrant": "C8",
+      "conclusion": "C9",
+      "stated_computation": "$90 / $7.5 = 12",
+      "cot_quote": "dividing the initial cost by the net annual profit: $90 / $7.5 = 12 years",
+      "id": "S3",
+      "english": "Because the tree costs $90 to plant; and the net profit from the tree is $7.5 per year; and the net profit from the tree is the same $7.5 every year, so cumulative profit grows linearly with years; and since for any tree t, any numbers i, p, y: if t costs $i to plant and the net profit from t is $p per year and the net profit from t is the same $p every year, so cumulative profit grows linearly with years and y = i \u00f7 p, then it takes y years for t to break even: it takes 12 years for the tree to break even ($90 / $7.5 = 12).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "tree",
+        "i": "90",
+        "p": "7.5",
+        "y": "12"
+      },
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for planting_cost of type (tree * $rat) > $o"
+    }
+  },
+  "errors": []
+}

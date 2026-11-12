@@ -1,0 +1,8 @@
+% OP-1: Product(250, 5, 1250)
+tff(op_1, conjecture, $product(250/1, 5/1) = 1250/1).
+% OP-2: Difference(2000, 1800, 200)
+tff(op_2, conjecture, $difference(2000/1, 1800/1) = 200/1).
+% OP-3: Quotient(1250, 300, 4.17)
+tff(op_3, conjecture, ($lesseq($difference($quotient(1250/1, 300/1), 417/100), 1/200) & $lesseq($difference(417/100, $quotient(1250/1, 300/1)), 1/200))).
+% OP-4: Quotient(200, 4.17, 47.96)
+tff(op_4, conjecture, ($lesseq($difference($quotient(200/1, 417/100), 1199/25), 1/200) & $lesseq($difference(1199/25, $quotient(200/1, 417/100)), 1/200))).

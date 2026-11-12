@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total number of Grade 5 students is 200",
+      "formula": "Count(grade5, total, 200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "2/5 of the Grade 5 students are boys",
+      "formula": "FractionOf(grade5, total, boys, 2, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "2/3 of the girls are in the Girl Scout organization",
+      "formula": "FractionOf(grade5, girls, girl_scouts, 2, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 200 is 400",
+      "formula": "Product(2, 200, 400)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "400 divided by 5 is 80",
+      "formula": "Quotient(400, 5, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "200 minus 80 is 120",
+      "formula": "Difference(200, 80, 120)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "2 times 120 is 240",
+      "formula": "Product(2, 120, 240)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "240 divided by 3 is 80",
+      "formula": "Quotient(240, 3, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "120 minus 80 is 40",
+      "formula": "Difference(120, 80, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the count of category c1 within x is n, a/b of c1 are c2, a\u00d7n = p, and p\u00f7b = q, then the count of c2 within x is q",
+      "formula": "\u2200x\u2200c1\u2200c2\u2200a\u2200b\u2200n\u2200p\u2200q (Count(x,c1,n) \u2227 FractionOf(x,c1,c2,a,b) \u2227 Product(a,n,p) \u2227 Quotient(p,b,q) \u2192 Count(x,c2,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the total count within x is n, the count of boys within x is m, and n\u2212m = r, then the count of girls within x is r",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Count(x,total,n) \u2227 Count(x,boys,m) \u2227 Difference(n,m,r) \u2192 Count(x,girls,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the count of girls within x is n, the count of girl scouts within x is m, and n\u2212m = r, then the count of non-scouts within x is r",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Count(x,girls,n) \u2227 Count(x,girl_scouts,m) \u2227 Difference(n,m,r) \u2192 Count(x,non_scouts,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The number of boys in Grade 5 is 80, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(grade5, boys, 80)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The number of girls in Grade 5 is 120, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(grade5, girls, 120)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The number of girls in the Girl Scout organization is 80, from INF-2, FACT-3, OP-4, OP-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(grade5, girl_scouts, 80)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "OP-4",
+        "OP-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The number of girls not in the Girl Scout organization is 40, from INF-2, INF-3, OP-6, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(grade5, non_scouts, 40)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-6",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,4 @@
+% OP-1: Difference(60, 20, 40)
+tff(op_1, conjecture, $difference(60/1, 20/1) = 40/1).
+% OP-2: Sum(40, 15, 55)
+tff(op_2, conjecture, $sum(40/1, 15/1) = 55/1).

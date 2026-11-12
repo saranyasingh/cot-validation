@@ -1,0 +1,22 @@
+## VOCABULARY
+Predicates:
+TimesAsMany(x, y, n) — x sold n times as many copies as y
+TotalSold(x, y, t) — x and y together sold t copies
+Sold(x, n) — x sold n copies
+
+Constants:
+marilyn, harald, 10, 1, 11, 88000, 8000
+
+## FACTS
+FACT-1: Marilyn sold 10 times as many copies as Harald :: TimesAsMany(marilyn, harald, 10)
+FACT-2: Together, Marilyn and Harald sold 88,000 copies :: TotalSold(marilyn, harald, 88000)
+
+## OPERATIONS
+OP-1: Combine like terms, 10H + H = 11H, i.e. 10 + 1 = 11 :: Sum(10, 1, 11)
+OP-2: Solve for H by dividing 88,000 by 11 :: Quotient(88000, 11, 8000)
+
+## RULES
+RULE-1: If x sold n times as many copies as y, and x and y together sold t copies, and n+1 = k, and t divided by k equals h, then y sold h copies :: ∀x∀y∀n∀t∀k∀h (TimesAsMany(x,y,n) ∧ TotalSold(x,y,t) ∧ Sum(n,1,k) ∧ Quotient(t,k,h) → Sold(y,h))
+
+## INFERENCES
+INF-1: Harald sold 8,000 copies, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Sold(harald, 8000)

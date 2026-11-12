@@ -1,0 +1,43 @@
+% --- FACTS ---
+fof(fact_1, axiom, team_players(a, girls, n_5)).
+fof(fact_2, axiom, team_players(a, boys, n_5)).
+fof(fact_3, axiom, team_players(b, girls, n_5)).
+fof(fact_4, axiom, team_players(b, boys, n_5)).
+fof(fact_5, axiom, team_players(c, girls, n_5)).
+fof(fact_6, axiom, team_players(c, boys, n_5)).
+fof(fact_7, axiom, team_players(d, girls, n_5)).
+fof(fact_8, axiom, team_players(d, boys, n_5)).
+fof(fact_9, axiom, coaches(a, n_2)).
+fof(fact_10, axiom, coaches(b, n_2)).
+fof(fact_11, axiom, coaches(c, n_2)).
+fof(fact_12, axiom, coaches(d, n_2)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_5, n_5, n_10)).
+fof(op_2, axiom, sum(n_10, n_2, n_12)).
+fof(op_3, axiom, product(n_12, n_4, n_48)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((team_players(X, girls, N) & team_players(X, boys, M) & sum(N, M, P)) => players(X, P))).
+fof(rule_2, axiom, ! [X,P,C,I] : ((players(X, P) & coaches(X, C) & sum(P, C, I)) => individuals(X, I))).
+fof(rule_3, axiom, ! [I,T] : ((individuals(a, I) & individuals(b, I) & individuals(c, I) & individuals(d, I) & product(I, n_4, T)) => total_individuals(T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, players(a, n_10)).
+% From fact_3, fact_4, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, players(b, n_10)).
+% From fact_5, fact_6, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, players(c, n_10)).
+% From fact_7, fact_8, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, players(d, n_10)).
+% From inf_1, fact_9, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, individuals(a, n_12)).
+% From inf_2, fact_10, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, individuals(b, n_12)).
+% From inf_3, fact_11, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_7, axiom, individuals(c, n_12)).
+% From inf_4, fact_12, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_8, axiom, individuals(d, n_12)).
+% From inf_5, inf_6, inf_7, inf_8, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_9, axiom, total_individuals(n_48)).

@@ -1,0 +1,34 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(property_type, type, property: $tType).
+tff(josh_decl, type, josh: person).
+tff(house_decl, type, house: property).
+tff(purchase_price_decl, type, purchase_price: (person * property * $rat) > $o).
+tff(repair_cost_decl, type, repair_cost: (person * property * $rat) > $o).
+tff(value_increase_pct_decl, type, value_increase_pct: (property * $rat) > $o).
+tff(total_cost_decl, type, total_cost: (person * property * $rat) > $o).
+tff(original_value_decl, type, original_value: (property * $rat) > $o).
+tff(increase_pct_of_original_decl, type, increase_pct_of_original: (property * $rat * $rat) > $o).
+tff(pct_decimal_decl, type, pct_decimal: ($rat * $rat) > $o).
+tff(value_increase_decl, type, value_increase: (property * $rat) > $o).
+tff(new_value_decl, type, new_value: (property * $rat) > $o).
+tff(return_is_new_value_decl, type, return_is_new_value: (person * property) > $o).
+tff(profit_decl, type, profit: (person * property * $rat) > $o).
+
+% Statements
+tff(c1, axiom, purchase_price(josh, house, 80000/1)).
+tff(c2, axiom, repair_cost(josh, house, 50000/1)).
+tff(c3, axiom, value_increase_pct(house, 150/1)).
+tff(c4, axiom, ![V_x: person, V_h: property, V_a: $rat, V_b: $rat, V_c: $rat]: ((purchase_price(V_x, V_h, V_a) & repair_cost(V_x, V_h, V_b) & V_c = $sum(V_a, V_b)) => total_cost(V_x, V_h, V_c))).
+tff(c5, lemma, total_cost(josh, house, 130000/1)).
+tff(c6, lemma, increase_pct_of_original(house, 150/1, 80000/1)).
+tff(c7, lemma, value_increase(house, 120000/1)).
+tff(c8, axiom, ![V_x: person, V_h: property, V_v: $rat, V_i: $rat, V_n: $rat]: ((purchase_price(V_x, V_h, V_v) & original_value(V_h, V_v) & value_increase(V_h, V_i) & V_n = $sum(V_v, V_i)) => new_value(V_h, V_n))).
+tff(c9, lemma, new_value(house, 200000/1)).
+tff(c10, axiom, ![V_x: person, V_h: property, V_n: $rat, V_t: $rat, V_p: $rat]: ((new_value(V_h, V_n) & total_cost(V_x, V_h, V_t) & return_is_new_value(V_x, V_h) & V_p = $difference(V_n, V_t)) => profit(V_x, V_h, V_p))).
+tff(c11, lemma, profit(josh, house, 70000/1)).
+tff(i1, axiom, ![V_x: person, V_h: property, V_p: $rat, V_a: $rat, V_v: $rat]: ((value_increase_pct(V_h, V_p) & purchase_price(V_x, V_h, V_a) & original_value(V_h, V_v)) => increase_pct_of_original(V_h, V_p, V_v))).
+tff(i2, axiom, original_value(house, 80000/1)).
+tff(i3, axiom, ![V_h: property, V_p: $rat, V_v: $rat, V_d: $rat, V_c: $rat]: ((increase_pct_of_original(V_h, V_p, V_v) & pct_decimal(V_p, V_d) & V_c = $product(V_d, V_v)) => value_increase(V_h, V_c))).
+tff(i4, axiom, pct_decimal(150/1, 3/2)).
+tff(i5, axiom, return_is_new_value(josh, house)).

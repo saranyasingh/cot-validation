@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — The problem states wicks come bundled with one pound of beeswax (combined $10 cost), not that wicks are purchased separately by the pound.
+FACT-5: UNSUPPORTED — The $10.00 is the combined cost of one pound of beeswax AND the wicks, not the price of beeswax alone.
+FACT-6: UNSUPPORTED — The problem does not state a separate per-pound price for wicks; the $10.00 already covers both beeswax and wicks together.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — This treats wicks as an independently priced-per-pound input, but the problem only gives one combined price for beeswax+wicks together; applying this rule double-counts cost.
+RULE-4: IMPLAUSIBLE — Adding a separate wicks cost to the beeswax cost double-counts, since the $10.00 cost already includes both beeswax and wicks for one pound.
+RULE-5: PLAUSIBLE

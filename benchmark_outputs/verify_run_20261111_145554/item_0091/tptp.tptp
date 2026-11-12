@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, eats_per_person(adult, n_10)).
+fof(fact_2, axiom, count(adult, n_20)).
+fof(fact_3, axiom, count(child, n_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_10, n_2, n_5)).
+fof(op_2, axiom, product(n_10, n_20, n_200)).
+fof(op_3, axiom, product(n_5, n_5, n_25)).
+fof(op_4, axiom, sum(n_200, n_25, n_225)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,M] : ((eats_per_person(adult, N) & quotient(N, n_2, M)) => eats_per_person(child, M))).
+fof(rule_2, axiom, ! [X,N,M,P] : ((eats_per_person(X, N) & count(X, M) & product(N, M, P)) => total(X, P))).
+fof(rule_3, axiom, ! [N,M,P] : ((total(adult, N) & total(child, M) & sum(N, M, P)) => total(ted, P))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, eats_per_person(child, n_5)).
+% From fact_1, fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total(adult, n_200)).
+% From inf_1, fact_3, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(child, n_25)).
+% From inf_2, inf_3, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total(ted, n_225)).

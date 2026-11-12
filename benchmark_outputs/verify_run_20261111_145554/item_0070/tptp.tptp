@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, allowance(bailey, n_5)).
+fof(fact_2, axiom, weeks(bailey, n_8)).
+fof(fact_3, axiom, total_after(bailey, n_100)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5, n_8, n_40)).
+fof(op_2, axiom, difference(n_100, n_40, n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,W,P] : ((allowance(X, N) & weeks(X, W) & product(N, W, P)) => earned(X, P))).
+fof(rule_2, axiom, ! [X,E,T,B] : ((earned(X, E) & total_after(X, T) & difference(T, E, B)) => initial_amount(X, B))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, earned(bailey, n_40)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, initial_amount(bailey, n_60)).

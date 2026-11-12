@@ -1,0 +1,657 @@
+{
+  "question": "A merchant wants to make a choice of purchase between 2 purchase plans: jewelry worth $5,000 or electronic gadgets worth $8,000. His financial advisor speculates that the jewelry market will go up 2.5% while the electronic gadgets market will rise 1.2% within the same month. If the merchant is looking to maximize profit at the end of this month by making a choice, how much profit would this be?",
+  "cot": "EXPLANATION\nTo determine which purchase maximizes profit, we need to calculate the expected value of the profit from both options.\n\nStep 1: Calculate the increase in value for the jewelry.\n- Jewelry value: $5,000\n- Market increase: 2.5%\n- Increase in value = $5,000 * 2.5% = $5,000 * 0.025 = $125\n\nStep 2: Calculate the increase in value for the electronic gadgets.\n- Electronic gadgets value: $8,000\n- Market increase: 1.2%\n- Increase in value = $8,000 * 1.2% = $8,000 * 0.012 = $96\n\nStep 3: Compare the increases in value to determine which option provides more profit.\n- Profit from jewelry = $125\n- Profit from electronic gadgets = $96\n\nSince $125 > $96, the jewelry provides a higher profit.\n\nThe answer is: 125",
+  "sorts": {
+    "item": {
+      "description": "a purchasable item or category of goods"
+    }
+  },
+  "entities": {
+    "jewelry": {
+      "sort": "item",
+      "name": "Jewelry"
+    },
+    "gadgets": {
+      "sort": "item",
+      "name": "Electronic gadgets"
+    }
+  },
+  "relations": {
+    "item_value": {
+      "slots": [
+        [
+          "item",
+          "item"
+        ],
+        [
+          "value",
+          "num"
+        ]
+      ],
+      "sentence": "{item} is worth ${value}"
+    },
+    "market_increase": {
+      "slots": [
+        [
+          "item",
+          "item"
+        ],
+        [
+          "percent",
+          "num"
+        ]
+      ],
+      "sentence": "the market for {item} increases by {percent}%"
+    },
+    "market_rate": {
+      "slots": [
+        [
+          "item",
+          "item"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "the market for {item} increases by a decimal rate of {rate}"
+    },
+    "value_increase": {
+      "slots": [
+        [
+          "item",
+          "item"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the increase in value of {item} is ${amount}"
+    },
+    "profit": {
+      "slots": [
+        [
+          "item",
+          "item"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the profit from {item} is ${amount}"
+    },
+    "higher_profit": {
+      "slots": [
+        [
+          "winner",
+          "item"
+        ],
+        [
+          "loser",
+          "item"
+        ]
+      ],
+      "sentence": "{winner} provides a higher profit than {loser}"
+    },
+    "answer": {
+      "slots": [
+        [
+          "value",
+          "num"
+        ]
+      ],
+      "sentence": "the answer is {value}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Jewelry value: $5,000",
+      "cot_quote": "Jewelry value: $5,000",
+      "content": {
+        "relation": "item_value",
+        "args": [
+          "jewelry",
+          5000
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "jewelry worth $5,000",
+      "label": "assumption",
+      "english": "Jewelry is worth $5000."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Jewelry market increase: 2.5%",
+      "cot_quote": "Market increase: 2.5%",
+      "content": {
+        "relation": "market_increase",
+        "args": [
+          "jewelry",
+          2.5
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "the jewelry market will go up 2.5%",
+      "label": "assumption",
+      "english": "The market for Jewelry increases by 2.5%."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Increase in value of jewelry = $125",
+      "cot_quote": "Increase in value = $5,000 * 2.5% = $5,000 * 0.025 = $125",
+      "content": {
+        "relation": "value_increase",
+        "args": [
+          "jewelry",
+          125
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "The increase in value of Jewelry is $125."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "Electronic gadgets value: $8,000",
+      "cot_quote": "Electronic gadgets value: $8,000",
+      "content": {
+        "relation": "item_value",
+        "args": [
+          "gadgets",
+          8000
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "electronic gadgets worth $8,000",
+      "label": "assumption",
+      "english": "Electronic gadgets is worth $8000."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Electronic gadgets market increase: 1.2%",
+      "cot_quote": "Market increase: 1.2%",
+      "content": {
+        "relation": "market_increase",
+        "args": [
+          "gadgets",
+          1.2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C5",
+      "question_quote": "the electronic gadgets market will rise 1.2%",
+      "label": "assumption",
+      "english": "The market for Electronic gadgets increases by 1.2%."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "Increase in value of electronic gadgets = $96",
+      "cot_quote": "Increase in value = $8,000 * 1.2% = $8,000 * 0.012 = $96",
+      "content": {
+        "relation": "value_increase",
+        "args": [
+          "gadgets",
+          96
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "The increase in value of Electronic gadgets is $96."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Profit from jewelry = $125",
+      "cot_quote": "Profit from jewelry = $125",
+      "content": {
+        "relation": "profit",
+        "args": [
+          "jewelry",
+          125
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The profit from Jewelry is $125."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "Profit from electronic gadgets = $96",
+      "cot_quote": "Profit from electronic gadgets = $96",
+      "content": {
+        "relation": "profit",
+        "args": [
+          "gadgets",
+          96
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C8",
+      "label": "derived",
+      "english": "The profit from Electronic gadgets is $96."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "The jewelry provides a higher profit",
+      "cot_quote": "the jewelry provides a higher profit",
+      "content": {
+        "relation": "higher_profit",
+        "args": [
+          "jewelry",
+          "gadgets"
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "Jewelry provides a higher profit than Electronic gadgets."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "The answer is: 125",
+      "cot_quote": "The answer is: 125",
+      "content": {
+        "relation": "answer",
+        "args": [
+          125
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "The answer is 125."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "The increase in value of an item equals its current value multiplied by the market's percentage increase.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "item",
+          "v": "num",
+          "d": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "item_value",
+            "args": [
+              "x",
+              "v"
+            ]
+          },
+          {
+            "relation": "market_rate",
+            "args": [
+              "x",
+              "d"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "v",
+              "d"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "value_increase",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any item x, any numbers v, d, c: if x is worth $v and the market for x increases by a decimal rate of d and c = v \u00d7 d, then the increase in value of x is $c."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "A percentage p% equals the decimal p/100 (so 2.5% = 0.025 and 1.2% = 0.012).",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "item",
+          "p": "num",
+          "d": "num"
+        },
+        "if": [
+          {
+            "relation": "market_increase",
+            "args": [
+              "x",
+              "p"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "p",
+              100
+            ],
+            "result": "d"
+          }
+        ],
+        "then": [
+          {
+            "relation": "market_rate",
+            "args": [
+              "x",
+              "d"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any item x, any numbers p, d: if the market for x increases by p% and d = p \u00f7 100, then the market for x increases by a decimal rate of d."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "The profit from a purchase equals its increase in value, assuming there are no other costs or fees.",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "item",
+          "a": "num"
+        },
+        "if": [
+          {
+            "relation": "value_increase",
+            "args": [
+              "x",
+              "a"
+            ]
+          }
+        ],
+        "calc": [],
+        "then": [
+          {
+            "relation": "profit",
+            "args": [
+              "x",
+              "a"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any item x, any number a: if the increase in value of x is $a, then the profit from x is $a."
+    },
+    "I4": {
+      "shape": "rule",
+      "text": "Of two options, the one with the larger profit amount gives the higher profit and is the one that maximizes profit.",
+      "kind": "normative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "item",
+          "y": "item",
+          "a": "num",
+          "b": "num"
+        },
+        "if": [
+          {
+            "relation": "profit",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "profit",
+            "args": [
+              "y",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "gt",
+            "args": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "then": [
+          {
+            "relation": "higher_profit",
+            "args": [
+              "x",
+              "y"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "For any items x, y, any numbers a, b: if the profit from x is $a and the profit from y is $b and a is greater than b, then x provides a higher profit than y."
+    },
+    "I5": {
+      "shape": "rule",
+      "text": "The requested answer is the profit amount of the profit-maximizing choice.",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "item",
+          "y": "item",
+          "a": "num"
+        },
+        "if": [
+          {
+            "relation": "higher_profit",
+            "args": [
+              "x",
+              "y"
+            ]
+          },
+          {
+            "relation": "profit",
+            "args": [
+              "x",
+              "a"
+            ]
+          }
+        ],
+        "calc": [],
+        "then": [
+          {
+            "relation": "answer",
+            "args": [
+              "a"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I5",
+      "label": "assumption",
+      "english": "For any items x, y, any number a: if x provides a higher profit than y and the profit from x is $a, then the answer is a."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Calculate the increase in value for the jewelry",
+      "premises": [
+        "C1",
+        "C2",
+        "I2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "$5,000 * 0.025 = $125",
+      "cot_quote": "Increase in value = $5,000 * 2.5% = $5,000 * 0.025 = $125",
+      "id": "S1",
+      "english": "Because Jewelry is worth $5000; and the market for Jewelry increases by 2.5%; and for any item x, any numbers p, d: if the market for x increases by p% and d = p \u00f7 100, then the market for x increases by a decimal rate of d; and since for any item x, any numbers v, d, c: if x is worth $v and the market for x increases by a decimal rate of d and c = v \u00d7 d, then the increase in value of x is $c: the increase in value of Jewelry is $125 ($5,000 * 0.025 = $125).",
+      "status": "gap",
+      "status_detail": "I2 must be a fact for move 'apply'",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Calculate the increase in value for the electronic gadgets",
+      "premises": [
+        "C4",
+        "C5",
+        "I2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C6",
+      "stated_computation": "$8,000 * 0.012 = $96",
+      "cot_quote": "Increase in value = $8,000 * 1.2% = $8,000 * 0.012 = $96",
+      "id": "S2",
+      "english": "Because Electronic gadgets is worth $8000; and the market for Electronic gadgets increases by 1.2%; and for any item x, any numbers p, d: if the market for x increases by p% and d = p \u00f7 100, then the market for x increases by a decimal rate of d; and since for any item x, any numbers v, d, c: if x is worth $v and the market for x increases by a decimal rate of d and c = v \u00d7 d, then the increase in value of x is $c: the increase in value of Electronic gadgets is $96 ($8,000 * 0.012 = $96).",
+      "status": "gap",
+      "status_detail": "I2 must be a fact for move 'apply'",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Take the jewelry's increase in value as its profit",
+      "premises": [
+        "C3"
+      ],
+      "warrant": "I3",
+      "conclusion": "C7",
+      "stated_computation": null,
+      "cot_quote": "Profit from jewelry = $125",
+      "id": "S3",
+      "english": "Because the increase in value of Jewelry is $125; and since for any item x, any number a: if the increase in value of x is $a, then the profit from x is $a: the profit from Jewelry is $125.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "jewelry",
+        "a": "125"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "Take the gadgets' increase in value as their profit",
+      "premises": [
+        "C6"
+      ],
+      "warrant": "I3",
+      "conclusion": "C8",
+      "stated_computation": null,
+      "cot_quote": "Profit from electronic gadgets = $96",
+      "id": "S4",
+      "english": "Because the increase in value of Electronic gadgets is $96; and since for any item x, any number a: if the increase in value of x is $a, then the profit from x is $a: the profit from Electronic gadgets is $96.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "gadgets",
+        "a": "96"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Since $125 > $96, the jewelry provides a higher profit",
+      "premises": [
+        "C7",
+        "C8"
+      ],
+      "warrant": "I4",
+      "conclusion": "C9",
+      "stated_computation": "$125 > $96",
+      "cot_quote": "Since $125 > $96, the jewelry provides a higher profit.",
+      "id": "S5",
+      "english": "Because the profit from Jewelry is $125; and the profit from Electronic gadgets is $96; and since for any items x, y, any numbers a, b: if the profit from x is $a and the profit from y is $b and a is greater than b, then x provides a higher profit than y: Jewelry provides a higher profit than Electronic gadgets ($125 > $96).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "jewelry",
+        "a": "125",
+        "y": "gadgets",
+        "b": "96"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S6": {
+      "move": "apply",
+      "text": "Give the jewelry profit as the answer",
+      "premises": [
+        "C9",
+        "C7"
+      ],
+      "warrant": "I5",
+      "conclusion": "C10",
+      "stated_computation": null,
+      "cot_quote": "The answer is: 125",
+      "id": "S6",
+      "english": "Because Jewelry provides a higher profit than Electronic gadgets; and the profit from Jewelry is $125; and since for any items x, y, any number a: if x provides a higher profit than y and the profit from x is $a, then the answer is a: the answer is 125.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "jewelry",
+        "y": "gadgets",
+        "a": "125"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,270 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "A wooden bridge can carry no more than 5000 pounds",
+      "formula": "MaxLoad(bridge, 5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each box weighs 15 pounds",
+      "formula": "Weighs(box, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The combined weight of the driver and the empty truck is 3755 pounds",
+      "formula": "Weighs(driver_truck, 3755)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5000 minus 3755 is 1245 (the inconsistency check between the two equations)",
+      "formula": "Difference(5000, 3755, 1245)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3755 divided by 15 is approximately 250.33 (approx driver weight)",
+      "formula": "Quotient(3755, 15, 250.33)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "250.33 rounded down is 250",
+      "formula": "Difference(250.33, 0.33, 250)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "5000 minus 250 is 4750 (remaining capacity for boxes)",
+      "formula": "Difference(5000, 250, 4750)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "4750 divided by 15 is approximately 316.67",
+      "formula": "Quotient(4750, 15, 316.67)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "316.67 rounded down is 316",
+      "formula": "Difference(316.67, 0.67, 316)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If something has a maximum load n, the loaded entity's weight is assumed equal to that limit",
+      "formula": "\u2200x\u2200n (MaxLoad(x,n) \u2192 Weighs(truck,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the driver-plus-truck weight is n, that same value is assumed to be the truck's loaded weight",
+      "formula": "\u2200x\u2200n (Weighs(driver_truck,n) \u2192 Weighs(truck,n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "equates the driver+empty-truck weight with the truck's \"loaded\" weight, improperly conflating the unloaded (pre-box) weight with the loaded weight that should include the boxes.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If an entity is assigned two different weights n and m whose difference is d, its weight equations are inconsistent",
+      "formula": "\u2200x\u2200n\u2200m\u2200d (Weighs(x,n) \u2227 Weighs(x,m) \u2227 Difference(n,m,d) \u2192 Inconsistent(x))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the combined weight is n and each box weighs b, and n divided by b is d, then the driver's weight is approximated as d",
+      "formula": "\u2200x\u2200y\u2200n\u2200b\u2200d (Weighs(x,n) \u2227 Weighs(y,b) \u2227 Quotient(n,b,d) \u2192 Weighs(driver,d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "computes \"driver's weight\" by dividing the combined driver+truck weight by the box weight, an operation that combines incompatible quantities and has no valid basis.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If an entity weighs n and n minus a fractional remainder f equals m, then the entity's rounded-down weight is m",
+      "formula": "\u2200x\u2200n\u2200f\u2200m (Weighs(x,n) \u2227 Difference(n,f,m) \u2192 Weighs(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If a structure's max load is n and the driver weighs d, and n minus d equals r, then the remaining capacity for boxes is r",
+      "formula": "\u2200x\u2200y\u2200n\u2200d\u2200r (MaxLoad(x,n) \u2227 Weighs(y,d) \u2227 Difference(n,d,r) \u2192 Capacity(truck,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-7": {
+      "type": "rule",
+      "gloss": "If the remaining capacity is r and each box weighs b, and r divided by b equals c, then the number of boxes that fit is c",
+      "formula": "\u2200x\u2200y\u2200r\u2200b\u2200c (Capacity(x,r) \u2227 Weighs(y,b) \u2227 Quotient(r,b,c) \u2192 BoxCount(x,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-8": {
+      "type": "rule",
+      "gloss": "If a box count is n and n minus a fractional remainder f equals m, then the rounded-down box count is m",
+      "formula": "\u2200x\u2200n\u2200f\u2200m (BoxCount(x,n) \u2227 Difference(n,f,m) \u2192 BoxCount(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The truck's loaded weight is assumed to be 5000, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Weighs(truck, 5000)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The truck's loaded weight is also assumed to be 3755, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Weighs(truck, 3755)",
+      "premises": [
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "These two assignments are inconsistent, from INF-1, INF-2, OP-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Inconsistent(truck)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The approximate driver weight is 250.33, from FACT-3, FACT-2, OP-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Weighs(driver, 250.33)",
+      "premises": [
+        "FACT-3",
+        "FACT-2",
+        "OP-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The driver's weight rounded down is 250, from INF-4, OP-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Weighs(driver, 250)",
+      "premises": [
+        "INF-4",
+        "OP-3",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "The remaining capacity for boxes is 4750, from FACT-1, INF-5, OP-4, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "Capacity(truck, 4750)",
+      "premises": [
+        "FACT-1",
+        "INF-5",
+        "OP-4",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "The computed box count is 316.67, from INF-6, FACT-2, OP-5, and RULE-7 by Universal Instantiation and Modus Ponens",
+      "formula": "BoxCount(truck, 316.67)",
+      "premises": [
+        "INF-6",
+        "FACT-2",
+        "OP-5",
+        "RULE-7"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "The box count rounded down is 316, from INF-7, OP-6, and RULE-8 by Universal Instantiation and Modus Ponens",
+      "formula": "BoxCount(truck, 316)",
+      "premises": [
+        "INF-7",
+        "OP-6",
+        "RULE-8"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "equates the driver+empty-truck weight with the truck's \"loaded\" weight, improperly conflating the unloaded (pre-box) weight with the loaded weight that should include the boxes."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "computes \"driver's weight\" by dividing the combined driver+truck weight by the box weight, an operation that combines incompatible quantities and has no valid basis."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

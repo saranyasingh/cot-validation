@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Count(x, n) — the chest contains n gems of type x
+FewerBy(x, y, n) — type x has n fewer gems than type y
+Twice(x, y) — the count of type x is twice the count of type y
+Total(x, n) — the total number of gems in x is n
+
+Constants:
+diamond, ruby, emerald, chest, 175, 35, 2, 140, 280, 595
+
+## FACTS
+FACT-1: There are 175 diamonds :: Count(diamond, 175)
+FACT-2: There are 35 fewer rubies than diamonds :: FewerBy(ruby, diamond, 35)
+FACT-3: There are twice the number of emeralds as rubies :: Twice(emerald, ruby)
+
+## OPERATIONS
+OP-1: 175 minus 35 is 140 :: Difference(175, 35, 140)
+OP-2: 2 times 140 is 280 :: Product(2, 140, 280)
+OP-3: 175 plus 140 plus 280 is 595 :: Sum(175, 140, 280, 595)
+
+## RULES
+RULE-1: If type y has m gems, type x has n fewer gems than type y, and m − n = r, then type x has r gems :: ∀x∀y∀n∀m∀r (Count(y,m) ∧ FewerBy(x,y,n) ∧ Difference(m,n,r) → Count(x,r))
+RULE-2: If type y has m gems, type x has twice the count of type y, and 2 × m = r, then type x has r gems :: ∀x∀y∀m∀r (Count(y,m) ∧ Twice(x,y) ∧ Product(2,m,r) → Count(x,r))
+RULE-3: If type x has a gems, type y has b gems, type z has c gems, and a + b + c = s, then the chest has a total of s gems :: ∀x∀y∀z∀a∀b∀c∀s (Count(x,a) ∧ Count(y,b) ∧ Count(z,c) ∧ Sum(a,b,c,s) → Total(chest,s))
+
+## INFERENCES
+INF-1: There are 140 rubies, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Count(ruby, 140)
+INF-2: There are 280 emeralds, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Count(emerald, 280)
+INF-3: The total number of gems in the chest is 595, from FACT-1, INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Total(chest, 595)

@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: IMPLAUSIBLE — The 3/4 occupancy fraction applies to total units in the building, not to floors; treating it as occupied floors misapplies the given ratio.
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — This assumes occupancy is determined per whole floor (all units in a floor either occupied or unoccupied), an assumption not supported by the problem, which states occupancy as a fraction of total units.
+RULE-4: PLAUSIBLE
+RULE-5: IMPLAUSIBLE — Subtracting q (already the unoccupied units) from total t yields the occupied units, not the unoccupied units; this inverts the intended relationship.

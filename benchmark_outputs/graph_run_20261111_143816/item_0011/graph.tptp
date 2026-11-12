@@ -1,0 +1,28 @@
+% Declarations
+tff(month_type, type, month: $tType).
+tff(program_type, type, program: $tType).
+tff(program_decl, type, program: program).
+tff(month1_decl, type, month1: month).
+tff(month2_decl, type, month2: month).
+tff(month3_decl, type, month3: month).
+tff(downloads_decl, type, downloads: (program * month * $rat) > $o).
+tff(times_as_many_decl, type, times_as_many: (program * month * month * $rat) > $o).
+tff(reduced_by_percent_decl, type, reduced_by_percent: (program * month * $rat) > $o).
+tff(reduction_base_decl, type, reduction_base: (program * month * month) > $o).
+tff(total_downloads_decl, type, total_downloads: (program * $rat) > $o).
+tff(month1_neq_month2, axiom, month1 != month2).
+tff(month1_neq_month3, axiom, month1 != month3).
+tff(month2_neq_month3, axiom, month2 != month3).
+
+% Statements
+tff(c1, axiom, downloads(program, month1, 60/1)).
+tff(c2, axiom, times_as_many(program, month2, month1, 3/1)).
+tff(c3, lemma, downloads(program, month2, 180/1)).
+tff(c4, axiom, reduced_by_percent(program, month3, 30/1)).
+tff(c5, lemma, downloads(program, month3, 126/1)).
+tff(c6, axiom, ![V_p: program, V_m1: month, V_m2: month, V_m3: month, V_a: $rat, V_b: $rat, V_c: $rat, V_s: $rat, V_t: $rat]: ((downloads(V_p, V_m1, V_a) & downloads(V_p, V_m2, V_b) & downloads(V_p, V_m3, V_c) & V_s = $sum(V_a, V_b) & V_t = $sum(V_s, V_c)) => total_downloads(V_p, V_t))).
+tff(c7, lemma, total_downloads(program, 366/1)).
+tff(i1, axiom, ![V_p: program, V_m: month, V_b: month, V_f: $rat, V_a: $rat, V_c: $rat]: ((times_as_many(V_p, V_m, V_b, V_f) & downloads(V_p, V_b, V_a) & V_c = $product(V_f, V_a)) => downloads(V_p, V_m, V_c))).
+tff(i2, axiom, ![V_p: program, V_m: month, V_b: month, V_a: $rat, V_r: $rat, V_x: $rat, V_y: $rat, V_c: $rat]: ((downloads(V_p, V_b, V_a) & reduced_by_percent(V_p, V_m, V_r) & reduction_base(V_p, V_m, V_b) & V_x = $product(V_a, V_r) & V_y = $quotient(V_x, 100/1) & V_c = $difference(V_a, V_y)) => downloads(V_p, V_m, V_c))).
+tff(i3, axiom, reduction_base(program, month3, month2)).
+tff(s3_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((downloads(program, month1, N1) & downloads(program, month2, N2) & downloads(program, month3, N3)) => total_downloads(program, $sum($sum(N1, N2), N3)))).

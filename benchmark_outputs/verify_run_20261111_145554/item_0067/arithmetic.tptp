@@ -1,0 +1,6 @@
+% OP-1: Sum(5, 5, 10)
+tff(op_1, conjecture, $sum(5/1, 5/1) = 10/1).
+% OP-2: Sum(10, 2, 12)
+tff(op_2, conjecture, $sum(10/1, 2/1) = 12/1).
+% OP-3: Product(12, 4, 48)
+tff(op_3, conjecture, $product(12/1, 4/1) = 48/1).

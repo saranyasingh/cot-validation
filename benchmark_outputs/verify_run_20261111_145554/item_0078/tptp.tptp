@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, times_as_much(sarah, david, n_4)).
+fof(fact_2, axiom, does(sarah, n_400)).
+fof(fact_3, axiom, half_as_much(raymond, sarah)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_400, n_4, n_100)).
+fof(op_2, axiom, quotient(n_400, n_2, n_200)).
+fof(op_3, axiom, difference(n_200, n_100, n_100)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,K,M,N] : ((times_as_much(X, Y, K) & does(X, M) & quotient(M, K, N)) => does(Y, N))).
+fof(rule_2, axiom, ! [X,Y,N,M] : ((half_as_much(X, Y) & does(Y, N) & quotient(N, n_2, M)) => does(X, M))).
+fof(rule_3, axiom, ! [X,Y,P,Q,D] : ((does(X, P) & does(Y, Q) & difference(P, Q, D)) => difference_in_laundry(X, Y, D))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, does(david, n_100)).
+% From fact_3, fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, does(raymond, n_200)).
+% From inf_2, inf_1, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, difference_in_laundry(raymond, david, n_100)).

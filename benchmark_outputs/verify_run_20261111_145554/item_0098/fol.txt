@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+SauceVolume(x, n) — x's batch of tomato sauce made n ounces of sauce
+OriginalVolume(x, n) — the original (pre-cooking) volume of tomatoes needed by x is n ounces
+PerCan(i, n) — each can contains n units of item i (e.g., ounces or tomatoes)
+Uses(x, i, n) — x uses n units of item i (e.g., cans or tomatoes)
+
+Constants:
+freda, 2, 32, 64, 16, 4, 3, 12, ounces, tomatoes, cans
+
+## FACTS
+FACT-1: Freda's last batch of tomato sauce made 32 ounces of sauce :: SauceVolume(freda, 32)
+FACT-2: Each can contains 16 ounces of tomatoes :: PerCan(ounces, 16)
+FACT-3: Each can contains 3 tomatoes :: PerCan(tomatoes, 3)
+
+## OPERATIONS
+OP-1: 2 × 32 = 64 :: Product(2, 32, 64)
+OP-2: 64 ÷ 16 = 4 :: Quotient(64, 16, 4)
+OP-3: 4 × 3 = 12 :: Product(4, 3, 12)
+
+## RULES
+RULE-1: If x's batch made n ounces of sauce and 2 × n = m, then the original volume of tomatoes needed by x is m ounces (since cooking loses half the volume) :: ∀x∀n∀m (SauceVolume(x,n) ∧ Product(2,n,m) → OriginalVolume(x,m))
+RULE-2: If the original volume needed by x is n ounces, each can contains v ounces, and n ÷ v = c, then x uses c cans :: ∀x∀n∀v∀c (OriginalVolume(x,n) ∧ PerCan(ounces,v) ∧ Quotient(n,v,c) → Uses(x,cans,c))
+RULE-3: If x uses c cans, each can contains t tomatoes, and c × t = total, then x uses total tomatoes :: ∀x∀c∀t∀total (Uses(x,cans,c) ∧ PerCan(tomatoes,t) ∧ Product(c,t,total) → Uses(x,tomatoes,total))
+
+## INFERENCES
+INF-1: The original volume of tomatoes needed by Freda is 64 ounces, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: OriginalVolume(freda, 64)
+INF-2: Freda needs 4 cans, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Uses(freda, cans, 4)
+INF-3: Freda used 12 tomatoes in total, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Uses(freda, tomatoes, 12)

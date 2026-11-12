@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+StartTime(x, t) — x's burning starts at time t
+EndTime(x, t) — x's burning ends at time t
+Duration(x, n) — x burns for n hours
+MeltRate(x, n) — x melts at a rate of n centimeters per hour
+TotalMelted(x, n) — x has melted a total of n centimeters
+
+Constants:
+candle, 1, 5, 2, 4, 8
+
+## FACTS
+FACT-1: The candle starts burning at 1:00 PM (hour 1) :: StartTime(candle, 1)
+FACT-2: The candle stops burning at 5:00 PM (hour 5) :: EndTime(candle, 5)
+FACT-3: The candle melts at a rate of 2 centimeters per hour :: MeltRate(candle, 2)
+
+## OPERATIONS
+OP-1: 5 minus 1 is 4 :: Difference(5, 1, 4)
+OP-2: 4 times 2 is 8 :: Product(4, 2, 8)
+
+## RULES
+RULE-1: If x starts burning at time s and ends at time e, and e − s = d, then x burns for duration d :: ∀x∀s∀e∀d (StartTime(x,s) ∧ EndTime(x,e) ∧ Difference(e,s,d) → Duration(x,d))
+RULE-2: If x burns for duration d at rate r, and d × r = m, then x has melted a total of m centimeters :: ∀x∀d∀r∀m (Duration(x,d) ∧ MeltRate(x,r) ∧ Product(d,r,m) → TotalMelted(x,m))
+
+## INFERENCES
+INF-1: The candle burns for 4 hours, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Duration(candle, 4)
+INF-2: The candle has melted a total of 8 centimeters, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalMelted(candle, 8)

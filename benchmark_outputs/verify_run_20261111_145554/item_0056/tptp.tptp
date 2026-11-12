@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, has(jean, n_30)).
+fof(fact_2, axiom, ate(jean, n_2)).
+fof(fact_3, axiom, per_bag(jean, n_2)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_30, n_2, n_28)).
+fof(op_2, axiom, quotient(n_28, n_2, n_14)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,K,R] : ((has(X, N) & ate(X, K) & difference(N, K, R)) => has(X, R))).
+fof(rule_2, axiom, ! [X,N,M,B] : ((has(X, N) & per_bag(X, M) & quotient(N, M, B)) => bags(X, B))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, has(jean, n_28)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, bags(jean, n_14)).

@@ -1,0 +1,6 @@
+Prover: /n/home06/ssingh/cot-validation/tools/linux/vampire
+Verdict: NOT VERIFIED (0/3 steps proved)
+
+S1 (apply): error - User error: Failed to create predicate application for annual_lemons of type (tree * $rat) > $o
+S2 (apply): error - User error: Failed to create predicate application for annual_revenue of type (tree * $rat) > $o
+S3 (apply): error - User error: Failed to create predicate application for planting_cost of type (tree * $rat) > $o

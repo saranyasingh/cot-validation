@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+RequiresBlue(x, n) — robe x requires n bolts of blue fiber
+RequiresWhite(x, n) — robe x requires n bolts of white fiber
+RequiresTotal(x, n) — robe x requires n bolts of fiber in total
+
+Constants:
+robe, 2, 1, 3
+
+## FACTS
+FACT-1: A robe requires 2 bolts of blue fiber :: RequiresBlue(robe, 2)
+
+## OPERATIONS
+OP-1: Half of 2 is 1 :: Quotient(2, 2, 1)
+OP-2: 2 plus 1 is 3 :: Sum(2, 1, 3)
+
+## RULES
+RULE-1: If a robe requires n bolts of blue fiber and n divided by 2 is m, then the robe requires m bolts of white fiber :: ∀x∀n∀m (RequiresBlue(x,n) ∧ Quotient(n,2,m) → RequiresWhite(x,m))
+RULE-2: If a robe requires n bolts of blue fiber and m bolts of white fiber, and n + m = p, then the robe requires p bolts of fiber in total :: ∀x∀n∀m∀p (RequiresBlue(x,n) ∧ RequiresWhite(x,m) ∧ Sum(n,m,p) → RequiresTotal(x,p))
+
+## INFERENCES
+INF-1: The robe requires 1 bolt of white fiber, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: RequiresWhite(robe, 1)
+INF-2: The robe requires 3 bolts of fiber in total, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: RequiresTotal(robe, 3)

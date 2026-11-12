@@ -1,0 +1,175 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Luke builds a 4-level sandcastle",
+      "formula": "Levels(luke, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Level 3 is directly below level 4",
+      "formula": "Below(3, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Level 2 is directly below level 3",
+      "formula": "Below(2, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Level 1 is directly below level 2",
+      "formula": "Below(1, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The top level (level 4) has a square footage of 16",
+      "formula": "SquareFootage(luke, 4, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "16 / 2 = 8",
+      "formula": "Quotient(16, 2, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "8 / 2 = 4",
+      "formula": "Quotient(8, 2, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "4 / 2 = 2",
+      "formula": "Quotient(4, 2, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "16 + 8 + 4 + 2 = 30",
+      "formula": "Sum(16, 8, 4, 2, 30)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "30 / 4 = 7.5",
+      "formula": "Quotient(30, 4, 7.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If level n of x's sandcastle has square footage s, level m is directly below level n, and s divided by 2 equals t, then level m has square footage t",
+      "formula": "\u2200x\u2200n\u2200m\u2200s\u2200t (SquareFootage(x,n,s) \u2227 Below(m,n) \u2227 Quotient(s,2,t) \u2192 SquareFootage(x,m,t))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The problem states the upper level has half the square footage of the level below it, so a lower level should have twice (not half) the square footage of the level above it; dividing by 2 inverts the relationship.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's sandcastle has n levels with square footages s1, s2, s3, s4 for levels 1,2,3,4 respectively, the sum of those square footages is sum, and sum divided by n equals avg, then the average square footage of a level of x's sandcastle is avg",
+      "formula": "\u2200x\u2200n\u2200s1\u2200s2\u2200s3\u2200s4\u2200sum\u2200avg (Levels(x,n) \u2227 SquareFootage(x,1,s1) \u2227 SquareFootage(x,2,s2) \u2227 SquareFootage(x,3,s3) \u2227 SquareFootage(x,4,s4) \u2227 Sum(s1,s2,s3,s4,sum) \u2227 Quotient(sum,n,avg) \u2192 Average(x,avg))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Level 3 of Luke's sandcastle has square footage 8, from FACT-5, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SquareFootage(luke, 3, 8)",
+      "premises": [
+        "FACT-5",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Level 2 of Luke's sandcastle has square footage 4, from INF-1, FACT-3, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SquareFootage(luke, 2, 4)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Level 1 of Luke's sandcastle has square footage 2, from INF-2, FACT-4, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SquareFootage(luke, 1, 2)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The average square footage of a level of Luke's sandcastle is 7.5, from FACT-1, FACT-5, INF-1, INF-2, INF-3, OP-4, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Average(luke, 7.5)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "OP-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The problem states the upper level has half the square footage of the level below it, so a lower level should have twice (not half) the square footage of the level above it; dividing by 2 inverts the relationship."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

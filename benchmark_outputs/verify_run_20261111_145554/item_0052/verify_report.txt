@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — "1 to 4 PM" refers to the time period (1 PM to 4 PM, i.e., 3 hours) during which Tom sails, not a location named "1" to a location named "4". The fact misreads a time span as two distinct locations.
+FACT-4: UNSUPPORTED — depends on the same misreading as FACT-3; there is no "location 4" in the problem, so a return distance "from location 4 back to location 1" is not grounded in the text.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE

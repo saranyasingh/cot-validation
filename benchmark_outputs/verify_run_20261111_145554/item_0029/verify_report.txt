@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — distance between stops should be remaining distance minus the distance before the end (r − s), not r + s; the problem requires subtracting the 15 miles before the end from the remaining 40 miles to get 25, not adding.

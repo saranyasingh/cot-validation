@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, baked(grandma_jones, n_5)).
+fof(fact_2, axiom, cut_into(grandma_jones, n_8)).
+fof(fact_3, axiom, remaining(grandma_jones, n_14)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5, n_8, n_40)).
+fof(op_2, axiom, difference(n_40, n_14, n_26)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((baked(X, N) & cut_into(X, M) & product(N, M, P)) => total_pieces(X, P))).
+fof(rule_2, axiom, ! [X,P,R,T] : ((total_pieces(X, P) & remaining(X, R) & difference(P, R, T)) => taken(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_pieces(grandma_jones, n_40)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, taken(grandma_jones, n_26)).

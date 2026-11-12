@@ -1,0 +1,124 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Sarah does 4 times as much laundry as David",
+      "formula": "TimesAsMuch(sarah, david, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Sarah does 400 pounds of laundry",
+      "formula": "Does(sarah, 400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond does half as much laundry as Sarah",
+      "formula": "HalfAsMuch(raymond, sarah)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "400 \u00f7 4 = 100",
+      "formula": "Quotient(400, 4, 100)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "400 \u00f7 2 = 200",
+      "formula": "Quotient(400, 2, 200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "200 \u2212 100 = 100",
+      "formula": "Difference(200, 100, 100)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x does k times as much laundry as y, and x does m pounds, and m \u00f7 k = n, then y does n pounds",
+      "formula": "\u2200x\u2200y\u2200k\u2200m\u2200n (TimesAsMuch(x,y,k) \u2227 Does(x,m) \u2227 Quotient(m,k,n) \u2192 Does(y,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x does half as much laundry as y, and y does n pounds, and n \u00f7 2 = m, then x does m pounds",
+      "formula": "\u2200x\u2200y\u2200n\u2200m (HalfAsMuch(x,y) \u2227 Does(y,n) \u2227 Quotient(n,2,m) \u2192 Does(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x does p pounds of laundry and y does q pounds, and p \u2212 q = d, then the difference between x's and y's laundry is d pounds",
+      "formula": "\u2200x\u2200y\u2200p\u2200q\u2200d (Does(x,p) \u2227 Does(y,q) \u2227 Difference(p,q,d) \u2192 DifferenceInLaundry(x,y,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "David does 100 pounds of laundry, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Does(david, 100)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Raymond does 200 pounds of laundry, from FACT-3, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Does(raymond, 200)",
+      "premises": [
+        "FACT-3",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The difference between Raymond's and David's laundry is 100 pounds, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "DifferenceInLaundry(raymond, david, 100)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

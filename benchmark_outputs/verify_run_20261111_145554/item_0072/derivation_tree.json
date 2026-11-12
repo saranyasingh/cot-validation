@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "First recipe has 20 instructions",
+      "formula": "Instructions(first_recipe, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Second recipe has twice as many instructions as the first recipe",
+      "formula": "TwiceAs(second_recipe, first_recipe)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 20 is 40",
+      "formula": "Product(2, 20, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "20 plus 40 is 60",
+      "formula": "Sum(20, 40, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If recipe x has twice as many instructions as recipe y, y has n instructions, and 2\u00d7n=m, then x has m instructions",
+      "formula": "\u2200x\u2200y\u2200n\u2200m (TwiceAs(x,y) \u2227 Instructions(y,n) \u2227 Product(2,n,m) \u2192 Instructions(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If recipe x has n instructions, recipe y has m instructions, and n+m=t, then the total instructions to prepare x and y is t",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200t (Instructions(x,n) \u2227 Instructions(y,m) \u2227 Sum(n,m,t) \u2192 Total(x,y,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The second recipe has 40 instructions, from FACT-2, FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Instructions(second_recipe, 40)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The total number of instructions for both recipes is 60, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(first_recipe, second_recipe, 60)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, hourly_rate(jill, teaching, n_20)).
+fof(fact_2, axiom, hours_per_week(jill, teaching, n_35)).
+fof(fact_3, axiom, hourly_rate(jill, coaching, n_30)).
+fof(fact_4, axiom, hours_per_week(jill, coaching, n_15)).
+fof(fact_5, axiom, weeks_per_year(jill, n_50)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_20, n_35, n_700)).
+fof(op_2, axiom, product(n_30, n_15, n_450)).
+fof(op_3, axiom, product(n_700, n_50, n_35000)).
+fof(op_4, axiom, product(n_450, n_50, n_22500)).
+fof(op_5, axiom, sum(n_35000, n_22500, n_57500)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,A,R,H,E] : ((hourly_rate(X, A, R) & hours_per_week(X, A, H) & product(R, H, E)) => weekly_earning(X, A, E))).
+fof(rule_2, axiom, ! [X,A,E,W,P] : ((weekly_earning(X, A, E) & weeks_per_year(X, W) & product(E, W, P)) => annual_earning(X, A, P))).
+fof(rule_3, axiom, ! [X,E1,E2,S] : ((annual_earning(X, teaching, E1) & annual_earning(X, coaching, E2) & sum(E1, E2, S)) => annual_earning(X, total, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, weekly_earning(jill, teaching, n_700)).
+% From fact_3, fact_4, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, weekly_earning(jill, coaching, n_450)).
+% From inf_1, fact_5, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, annual_earning(jill, teaching, n_35000)).
+% From inf_2, fact_5, op_4, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, annual_earning(jill, coaching, n_22500)).
+% From inf_3, inf_4, op_5, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, annual_earning(jill, total, n_57500)).

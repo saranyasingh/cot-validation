@@ -1,0 +1,14 @@
+% OP-1: Product(5, 150, 750)
+tff(op_1, conjecture, $product(5/1, 150/1) = 750/1).
+% OP-2: Quotient(3, 12, 0.25)
+tff(op_2, conjecture, ($lesseq($difference($quotient(3/1, 12/1), 1/4), 1/200) & $lesseq($difference(1/4, $quotient(3/1, 12/1)), 1/200))).
+% OP-3: Product(5, 2, 10)
+tff(op_3, conjecture, $product(5/1, 2/1) = 10/1).
+% OP-4: Quotient(10, 100, 0.1)
+tff(op_4, conjecture, ($lesseq($difference($quotient(10/1, 100/1), 1/10), 1/20) & $lesseq($difference(1/10, $quotient(10/1, 100/1)), 1/20))).
+% OP-5: Product(0.1, 0.25, 0.25)
+tff(op_5, conjecture, ($lesseq($difference($product(1/10, 1/4), 1/4), 1/200) & $lesseq($difference(1/4, $product(1/10, 1/4)), 1/200))).
+% OP-6: Sum(750, 0.25, 750.25)
+tff(op_6, conjecture, ($lesseq($difference($sum(750/1, 1/4), 3001/4), 1/200) & $lesseq($difference(3001/4, $sum(750/1, 1/4)), 1/200))).
+% OP-7: Quotient(750.25, 3, 250.08)
+tff(op_7, conjecture, ($lesseq($difference($quotient(3001/4, 3/1), 6252/25), 1/200) & $lesseq($difference(6252/25, $quotient(3001/4, 3/1)), 1/200))).

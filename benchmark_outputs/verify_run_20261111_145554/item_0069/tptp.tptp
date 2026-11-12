@@ -1,0 +1,21 @@
+% --- FACTS ---
+fof(fact_1, axiom, girls(dr_wertz_school, n_60)).
+fof(fact_2, axiom, per_teacher(dr_wertz_school, n_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_60, n_120)).
+fof(op_2, axiom, sum(n_120, n_60, n_180)).
+fof(op_3, axiom, quotient(n_180, n_5, n_36)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,B] : ((girls(X, N) & product(n_2, N, B)) => boys(X, B))).
+fof(rule_2, axiom, ! [X,B,N,T] : ((boys(X, B) & girls(X, N) & sum(B, N, T)) => total_students(X, T))).
+fof(rule_3, axiom, ! [X,T,P,R] : ((total_students(X, T) & per_teacher(X, P) & quotient(T, P, R)) => teachers(X, R))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, boys(dr_wertz_school, n_120)).
+% From inf_1, fact_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_students(dr_wertz_school, n_180)).
+% From inf_2, fact_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, teachers(dr_wertz_school, n_36)).

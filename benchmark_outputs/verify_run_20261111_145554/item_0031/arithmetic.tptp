@@ -1,0 +1,10 @@
+% OP-1: Sum(7, 11, 18)
+tff(op_1, conjecture, $sum(7/1, 11/1) = 18/1).
+% OP-2: Quotient(162, 18, 9)
+tff(op_2, conjecture, $quotient(162/1, 18/1) = 9/1).
+% OP-3: Product(7, 9, 63)
+tff(op_3, conjecture, $product(7/1, 9/1) = 63/1).
+% OP-4: Product(11, 9, 99)
+tff(op_4, conjecture, $product(11/1, 9/1) = 99/1).
+% OP-5: Sum(99, 10, 109)
+tff(op_5, conjecture, $sum(99/1, 10/1) = 109/1).

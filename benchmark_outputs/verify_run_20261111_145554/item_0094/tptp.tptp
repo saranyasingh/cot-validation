@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, faster_by(lee, gerald, n_2)).
+fof(fact_2, axiom, improved_by(gerald, n_0_10)).
+fof(fact_3, axiom, time(lee, n_38)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_38, n_2, n_40)).
+fof(op_2, axiom, sum(n_1, n_0_10, n_1_10)).
+fof(op_3, axiom, quotient(n_40, n_1_10, n_36_36)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,L,G] : ((faster_by(X,Y,N) & time(X,L) & sum(L,N,G)) => time(Y,G))).
+fof(rule_2, axiom, ! [X,G,P,Q,G2] : ((time(X,G) & improved_by(X,P) & sum(n_1,P,Q) & quotient(G,Q,G2)) => new_time(X,G2))).
+
+% --- INFERENCES ---
+% From fact_1, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, time(gerald, n_40)).
+% From inf_1, fact_2, op_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, new_time(gerald, n_36_36)).

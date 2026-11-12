@@ -1,0 +1,97 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Marcy works for the same company for 40 years",
+      "formula": "WorksYears(marcy, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Marcy gets an annual pension of $50,000/year",
+      "formula": "AnnualPension(marcy, 50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "After working for 20 years, she becomes entitled to 5% of the value of the pension per year",
+      "formula": "EntitledAfterYears(marcy, 20, 0.05)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "She quits after 30 years",
+      "formula": "QuitsAfterYears(marcy, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "30 minus 20 is 10 (years she received the increase, from age 20 to age 30)",
+      "formula": "Difference(30, 20, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "5% of $50,000 is $2,500",
+      "formula": "Product(0.05, 50000, 2500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$50,000 plus $2,500 is $52,500",
+      "formula": "Sum(50000, 2500, 52500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x is entitled to rate r after m years, x quits after n years, x's pension is p, n minus m equals d, r times p equals inc, and p plus inc equals t, then x's final annual pension is t",
+      "formula": "\u2200x\u2200m\u2200n\u2200r\u2200p\u2200d\u2200inc\u2200t (EntitledAfterYears(x,m,r) \u2227 QuitsAfterYears(x,n) \u2227 AnnualPension(x,p) \u2227 Difference(n,m,d) \u2227 Product(r,p,inc) \u2227 Sum(p,inc,t) \u2192 FinalAnnualPension(x,t))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It computes d = n \u2212 m (years entitled) but never uses it in computing inc; inc should be r \u00d7 d \u00d7 p (rate \u00d7 number of years entitled \u00d7 pension), not just r \u00d7 p, so the formula omits a needed multiplication and understates the pension increase.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Marcy's final annual pension is $52,500, from FACT-2, FACT-3, FACT-4, OP-1, OP-2, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FinalAnnualPension(marcy, 52500)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "FACT-4",
+        "OP-1",
+        "OP-2",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "It computes d = n \u2212 m (years entitled) but never uses it in computing inc; inc should be r \u00d7 d \u00d7 p (rate \u00d7 number of years entitled \u00d7 pension), not just r \u00d7 p, so the formula omits a needed multiplication and understates the pension increase."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

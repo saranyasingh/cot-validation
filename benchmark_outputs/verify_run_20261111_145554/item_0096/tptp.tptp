@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, count(grade5, total, n_200)).
+fof(fact_2, axiom, fraction_of(grade5, total, boys, n_2, n_5)).
+fof(fact_3, axiom, fraction_of(grade5, girls, girl_scouts, n_2, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_200, n_400)).
+fof(op_2, axiom, quotient(n_400, n_5, n_80)).
+fof(op_3, axiom, difference(n_200, n_80, n_120)).
+fof(op_4, axiom, product(n_2, n_120, n_240)).
+fof(op_5, axiom, quotient(n_240, n_3, n_80)).
+fof(op_6, axiom, difference(n_120, n_80, n_40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,C1,C2,A,B,N,P,Q] : ((count(X, C1, N) & fraction_of(X, C1, C2, A, B) & product(A, N, P) & quotient(P, B, Q)) => count(X, C2, Q))).
+fof(rule_2, axiom, ! [X,N,M,R] : ((count(X, total, N) & count(X, boys, M) & difference(N, M, R)) => count(X, girls, R))).
+fof(rule_3, axiom, ! [X,N,M,R] : ((count(X, girls, N) & count(X, girl_scouts, M) & difference(N, M, R)) => count(X, non_scouts, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, count(grade5, boys, n_80)).
+% From fact_1, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, count(grade5, girls, n_120)).
+% From inf_2, fact_3, op_4, op_5, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, count(grade5, girl_scouts, n_80)).
+% From inf_2, inf_3, op_6, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, count(grade5, non_scouts, n_40)).

@@ -1,0 +1,33 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost(chicken_meal, n_12)).
+fof(fact_2, axiom, quantity(milk, n_5)).
+fof(fact_3, axiom, price_per(milk, n_3)).
+fof(fact_4, axiom, quantity(apples, n_4)).
+fof(fact_5, axiom, price_per(apples, n_1_5)).
+fof(fact_6, axiom, paid(marie, n_50)).
+fof(fact_7, axiom, price_per(pizza, n_8_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5, n_3, n_15)).
+fof(op_2, axiom, product(n_4, n_1_5, n_6)).
+fof(op_3, axiom, sum(n_12, n_15, n_6, n_33)).
+fof(op_4, axiom, difference(n_50, n_33, n_17)).
+fof(op_5, axiom, quotient(n_17, n_8_5, n_2)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((quantity(X, N) & price_per(X, M) & product(N, M, P)) => cost(X, P))).
+fof(rule_2, axiom, ! [A,B,C,S] : ((cost(chicken_meal, A) & cost(milk, B) & cost(apples, C) & sum(A, B, C, S)) => cost(non_pizza_items, S))).
+fof(rule_3, axiom, ! [X,N,M,R] : ((paid(X, N) & cost(non_pizza_items, M) & difference(N, M, R)) => cost(pizza, R))).
+fof(rule_4, axiom, ! [X,N,M,Q] : ((cost(pizza, N) & price_per(pizza, M) & quotient(N, M, Q)) => boxes(X, Q))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(milk, n_15)).
+% From fact_4, fact_5, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, cost(apples, n_6)).
+% From fact_1, inf_1, inf_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, cost(non_pizza_items, n_33)).
+% From fact_6, inf_3, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, cost(pizza, n_17)).
+% From inf_4, fact_7, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, boxes(marie, n_2)).

@@ -1,0 +1,19 @@
+% Declarations
+tff(fiber_type, type, fiber: $tType).
+tff(garment_type, type, garment: $tType).
+tff(robe_decl, type, robe: garment).
+tff(blue_decl, type, blue: fiber).
+tff(white_decl, type, white: fiber).
+tff(fiber_required_decl, type, fiber_required: (garment * fiber * $rat) > $o).
+tff(half_amount_of_decl, type, half_amount_of: (garment * fiber * fiber) > $o).
+tff(total_fiber_required_decl, type, total_fiber_required: (garment * $rat) > $o).
+tff(blue_neq_white, axiom, blue != white).
+
+% Statements
+tff(c1, axiom, fiber_required(robe, blue, 2/1)).
+tff(c2, axiom, half_amount_of(robe, white, blue)).
+tff(c3, lemma, fiber_required(robe, white, 1/1)).
+tff(c4, axiom, ![V_r: garment, V_a: $rat, V_b: $rat, V_c: $rat]: ((fiber_required(V_r, blue, V_a) & fiber_required(V_r, white, V_b) & V_c = $sum(V_a, V_b)) => total_fiber_required(V_r, V_c))).
+tff(c5, lemma, total_fiber_required(robe, 3/1)).
+tff(i1, axiom, ![V_r: garment, V_f1: fiber, V_f2: fiber, V_a: $rat, V_c: $rat]: ((fiber_required(V_r, V_f1, V_a) & half_amount_of(V_r, V_f2, V_f1) & V_c = $quotient(V_a, 2/1)) => fiber_required(V_r, V_f2, V_c))).
+tff(s2_agg, axiom, ![N1: $rat, N2: $rat]: ((fiber_required(robe, blue, N1) & fiber_required(robe, white, N2)) => total_fiber_required(robe, $sum(N1, N2)))).

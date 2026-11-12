@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, watches(jim, n_2)).
+fof(fact_2, axiom, sessions(jim, n_3)).
+fof(fact_3, axiom, weeks(jim, n_4)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_2, n_2, n_1)).
+fof(op_2, axiom, sum(n_2, n_1, n_3)).
+fof(op_3, axiom, product(n_3, n_3, n_9)).
+fof(op_4, axiom, product(n_9, n_4, n_36)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,R] : ((watches(X, N) & quotient(N, n_2, R)) => reads(X, R))).
+fof(rule_2, axiom, ! [X,N,R,S] : ((watches(X, N) & reads(X, R) & sum(N, R, S)) => total(X, S))).
+fof(rule_3, axiom, ! [X,S,C,W] : ((total(X, S) & sessions(X, C) & product(S, C, W)) => total(X, W))).
+fof(rule_4, axiom, ! [X,W,K,T] : ((total(X, W) & weeks(X, K) & product(W, K, T)) => total(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, reads(jim, n_1)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total(jim, n_3)).
+% From inf_2, fact_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(jim, n_9)).
+% From inf_3, fact_3, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total(jim, n_36)).

@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, ring_duration(first_ring, n_4)).
+fof(fact_2, axiom, multiplier(second_ring, first_ring, n_3)).
+fof(fact_3, axiom, half_of(third_ring, second_ring)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_4, n_12)).
+fof(op_2, axiom, quotient(n_12, n_2, n_6)).
+fof(op_3, axiom, sum(n_4, n_12, n_6, n_22)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,A,B] : ((multiplier(X, Y, N) & ring_duration(Y, A) & product(N, A, B)) => ring_duration(X, B))).
+fof(rule_2, axiom, ! [X,Y,A,B] : ((half_of(X, Y) & ring_duration(Y, A) & quotient(A, n_2, B)) => ring_duration(X, B))).
+fof(rule_3, axiom, ! [X,Y,Z,A,B,C,T] : ((ring_duration(X, A) & ring_duration(Y, B) & ring_duration(Z, C) & sum(A, B, C, T)) => total_duration(alarm, T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, ring_duration(second_ring, n_12)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, ring_duration(third_ring, n_6)).
+% From fact_1, inf_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_duration(alarm, n_22)).

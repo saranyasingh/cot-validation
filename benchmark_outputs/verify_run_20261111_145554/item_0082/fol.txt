@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Has(x, n) — x has n stickers
+Bought(x, n) — x bought n stickers
+Received(x, n) — x received n stickers as a gift
+GaveAway(x, n) — x gave away n stickers
+Used(x, n) — x used n stickers
+
+Constants:
+charlie, 10, 21, 23, 9, 28, 31, 54, 45, 17
+
+## FACTS
+FACT-1: Charlie initially had 10 stickers :: Has(charlie, 10)
+FACT-2: Charlie bought 21 more stickers :: Bought(charlie, 21)
+FACT-3: Charlie received 23 new stickers as a gift :: Received(charlie, 23)
+FACT-4: Charlie gave away 9 stickers to his sister :: GaveAway(charlie, 9)
+FACT-5: Charlie used 28 stickers to decorate a greeting card :: Used(charlie, 28)
+
+## OPERATIONS
+OP-1: 10 plus 21 is 31 :: Sum(10, 21, 31)
+OP-2: 31 plus 23 is 54 :: Sum(31, 23, 54)
+OP-3: 54 minus 9 is 45 :: Difference(54, 9, 45)
+OP-4: 45 minus 28 is 17 :: Difference(45, 28, 17)
+
+## RULES
+RULE-1: If x has n stickers and buys m more and n+m=p, then x has p stickers :: ∀x∀n∀m∀p (Has(x,n) ∧ Bought(x,m) ∧ Sum(n,m,p) → Has(x,p))
+RULE-2: If x has n stickers and receives m more as a gift and n+m=p, then x has p stickers :: ∀x∀n∀m∀p (Has(x,n) ∧ Received(x,m) ∧ Sum(n,m,p) → Has(x,p))
+RULE-3: If x has n stickers and gives away m and n−m=r, then x has r stickers :: ∀x∀n∀m∀r (Has(x,n) ∧ GaveAway(x,m) ∧ Difference(n,m,r) → Has(x,r))
+RULE-4: If x has n stickers and uses m and n−m=r, then x has r stickers :: ∀x∀n∀m∀r (Has(x,n) ∧ Used(x,m) ∧ Difference(n,m,r) → Has(x,r))
+
+## INFERENCES
+INF-1: Charlie has 31 stickers after buying more, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Has(charlie, 31)
+INF-2: Charlie has 54 stickers after receiving the gift, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Has(charlie, 54)
+INF-3: Charlie has 45 stickers after giving some to his sister, from INF-2, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Has(charlie, 45)
+INF-4: Charlie has 17 stickers after using some to decorate a card, from INF-3, FACT-5, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Has(charlie, 17)

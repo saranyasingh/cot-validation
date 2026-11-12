@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+Cost(x, n) — the cost of x is n dollars
+Quantity(x, n) — the quantity of x purchased is n
+PricePer(x, n) — the price per unit of x is n dollars
+Paid(x, n) — x paid a total of n dollars
+Boxes(x, n) — x ordered n boxes of pizza
+
+Constants:
+marie, chicken_meal, milk, apples, pizza, non_pizza_items, 12, 5, 3, 4, 1.5, 50, 8.5, 15, 6, 33, 17, 2
+
+## FACTS
+FACT-1: The chicken meal costs $12 :: Cost(chicken_meal, 12)
+FACT-2: Marie bought 5 packs of milk :: Quantity(milk, 5)
+FACT-3: Each pack of milk costs $3 :: PricePer(milk, 3)
+FACT-4: Marie bought 4 apples :: Quantity(apples, 4)
+FACT-5: Each apple costs $1.50 :: PricePer(apples, 1.5)
+FACT-6: Marie paid $50 in total :: Paid(marie, 50)
+FACT-7: Each box of pizza costs $8.50 :: PricePer(pizza, 8.5)
+
+## OPERATIONS
+OP-1: 5 × 3 = 15 (cost of milk) :: Product(5, 3, 15)
+OP-2: 4 × 1.5 = 6 (cost of apples) :: Product(4, 1.5, 6)
+OP-3: 12 + 15 + 6 = 33 (total non-pizza cost) :: Sum(12, 15, 6, 33)
+OP-4: 50 − 33 = 17 (remaining amount / pizza cost) :: Difference(50, 33, 17)
+OP-5: 17 ÷ 8.5 = 2 (number of pizza boxes) :: Quotient(17, 8.5, 2)
+
+## RULES
+RULE-1: If x's quantity is n and price per unit is m, and n × m = p, then the cost of x is p :: ∀x∀n∀m∀p (Quantity(x,n) ∧ PricePer(x,m) ∧ Product(n,m,p) → Cost(x,p))
+RULE-2: If the chicken meal costs a, milk costs b, apples cost c, and a + b + c = s, then the non-pizza items cost s :: ∀a∀b∀c∀s (Cost(chicken_meal,a) ∧ Cost(milk,b) ∧ Cost(apples,c) ∧ Sum(a,b,c,s) → Cost(non_pizza_items,s))
+RULE-3: If x paid n total and the non-pizza items cost m, and n − m = r, then the pizza cost is r :: ∀x∀n∀m∀r (Paid(x,n) ∧ Cost(non_pizza_items,m) ∧ Difference(n,m,r) → Cost(pizza,r))
+RULE-4: If the pizza cost is n, the price per box is m, and n ÷ m = q, then x ordered q boxes of pizza :: ∀x∀n∀m∀q (Cost(pizza,n) ∧ PricePer(pizza,m) ∧ Quotient(n,m,q) → Boxes(x,q))
+
+## INFERENCES
+INF-1: The cost of milk is $15, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(milk, 15)
+INF-2: The cost of apples is $6, from FACT-4, FACT-5, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(apples, 6)
+INF-3: The cost of non-pizza items is $33, from FACT-1, INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Cost(non_pizza_items, 33)
+INF-4: The cost of pizzas is $17, from FACT-6, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Cost(pizza, 17)
+INF-5: Marie ordered 2 boxes of pizza, from INF-4, FACT-7, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Boxes(marie, 2)

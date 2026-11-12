@@ -1,0 +1,27 @@
+To determine how many bags of dog food Cecilia will use in the first year, we need to break down the problem into two parts: the first 180 days and the remaining days.
+
+**Premise 1:** Cecilia needs to feed the puppy 1 cup of dog food every day for the first 180 days.
+- This means that over these 180 days, the puppy consumes \(1 \text{ cup/day} \times 180 \text{ days} = 180 \text{ cups}\) of dog food.
+
+**Premise 2:** After the first 180 days, the puppy requires 2 cups of dog food every day for the remainder of its life.
+- Let's denote the total lifespan of the puppy as \(T\) days.
+- Therefore, after 180 days, the puppy lives for \(T - 180\) days more.
+- Over these additional \(T - 180\) days, the puppy consumes \(2 \text{ cups/day} \times (T - 180)\) cups of dog food.
+
+**Combining both parts:** The total amount of dog food needed is the sum of the first part and the second part.
+\[ \text{Total Dog Food Needed} = 180 \text{ cups} + 2(T - 180) \]
+
+Since the puppy's lifespan \(T\) is not specified, we cannot calculate an exact number. However, if we assume the puppy lives until it dies at age 365 (a typical lifespan for a small dog), then:
+\[ T = 365 \]
+Substituting this value into our equation:
+\[ \text{Total Dog Food Needed} = 180 + 2(365 - 180) \]
+\[ \text{Total Dog Food Needed} = 180 + 2 \times 185 \]
+\[ \text{Total Dog Food Needed} = 180 + 370 \]
+\[ \text{Total Dog Food Needed} = 550 \text{ cups} \]
+
+Now, given that one bag of dog food contains 110 cups, we can find out how many bags are required:
+\[ \text{Number of Bags} = \frac{\text{Total Dog Food Needed}}{\text{Cups per Bag}} \]
+\[ \text{Number of Bags} = \frac{550}{110} \]
+\[ \text{Number of Bags} = 5 \]
+
+Therefore, the answer is: 5.

@@ -1,0 +1,42 @@
+To solve this problem, we need to follow these steps:
+
+1. **Identify given information:**
+   - Number of rabbits = \( R \)
+   - Combined number of pet dogs + cats = \( D + C \) (where \( D \) is the number of dogs and \( C \) is the number of cats).
+   - Given that \( R = D + C - 12 \) (since it's twelve less than the combined number of dogs and cats).
+   - Number of dogs (\( D \)) = 60.
+   - Cats per dog ratio = 2:1.
+
+2. **Calculate the number of cats:**
+   Since the ratio of cats to dogs is 2:1, if there are 60 dogs, then there must be twice as many cats:
+   \[
+   C = 2 \times D = 2 \times 60 = 120
+   \]
+
+3. **Calculate the total number of pets:**
+   The total number of pets includes both dogs and cats:
+   \[
+   Total \, pets = D + C = 60 + 120 = 180
+   \]
+
+4. **Verify using the given equation for rabbits:**
+   According to the problem statement, the number of rabbits is twelve less than the combined number of pet dogs and cats:
+   \[
+   R = D + C - 12
+   \]
+   Substituting the values of \( D \) and \( C \):
+   \[
+   R = 60 + 120 - 12 = 178
+   \]
+
+5. **Summarize the results:**
+   We have calculated that the total number of pets in the neighborhood is 180.
+
+**Explanation:**
+
+- First, we identified the key pieces of information provided in the problem.
+- Next, we used the given ratio between dogs and cats to determine the exact number of cats based on the number of dogs.
+- Then, we calculated the total number of pets by adding the number of dogs and cats together.
+- Finally, we verified our calculation using the formula provided for the number of rabbits, ensuring all parts of the puzzle fit together correctly.
+
+Therefore, the answer is: 180.

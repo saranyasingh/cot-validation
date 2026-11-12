@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Watches(x, n) — x spends n hours watching TV per session
+Reads(x, n) — x spends n hours reading per session
+Sessions(x, n) — x repeats the watching-and-reading process n times per week
+Weeks(x, n) — x does this routine for n weeks
+Total(x, n) — x spends a total of n hours (in the relevant period under discussion)
+
+Constants:
+jim, 2, 1, 3, 4, 9, 36
+
+## FACTS
+FACT-1: Jim spends 2 hours watching TV per session :: Watches(jim, 2)
+FACT-2: Jim repeats this process 3 times a week :: Sessions(jim, 3)
+FACT-3: Jim does this over 4 weeks :: Weeks(jim, 4)
+
+## OPERATIONS
+OP-1: Half of 2 hours is 1 hour :: Quotient(2, 2, 1)
+OP-2: 2 hours watching plus 1 hour reading is 3 hours :: Sum(2, 1, 3)
+OP-3: 3 hours per session times 3 sessions a week is 9 hours :: Product(3, 3, 9)
+OP-4: 9 hours per week times 4 weeks is 36 hours :: Product(9, 4, 36)
+
+## RULES
+RULE-1: If x watches n hours of TV and half of n is r, then x reads for r hours :: ∀x∀n∀r (Watches(x,n) ∧ Quotient(n,2,r) → Reads(x,r))
+RULE-2: If x watches n hours and reads r hours and n+r=s, then x's total time for the session is s hours :: ∀x∀n∀r∀s (Watches(x,n) ∧ Reads(x,r) ∧ Sum(n,r,s) → Total(x,s))
+RULE-3: If x's session total is s hours and x has c sessions per week and s×c=w, then x's weekly total is w hours :: ∀x∀s∀c∀w (Total(x,s) ∧ Sessions(x,c) ∧ Product(s,c,w) → Total(x,w))
+RULE-4: If x's weekly total is w hours and x does this for k weeks and w×k=t, then x's total over that period is t hours :: ∀x∀w∀k∀t (Total(x,w) ∧ Weeks(x,k) ∧ Product(w,k,t) → Total(x,t))
+
+## INFERENCES
+INF-1: Jim reads for 1 hour per session, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Reads(jim, 1)
+INF-2: Jim spends 3 hours total per session, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(jim, 3)
+INF-3: Jim spends 9 hours per week, from INF-2, FACT-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Total(jim, 9)
+INF-4: Jim spends 36 hours over 4 weeks, from INF-3, FACT-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Total(jim, 36)

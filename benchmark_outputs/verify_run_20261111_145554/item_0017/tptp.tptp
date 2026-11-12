@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, travels_west(train, n_80)).
+fof(fact_2, axiom, travels_north(train, n_150)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_80, n_150, n_230)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,S] : ((travels_west(X, N) & travels_north(X, M) & sum(N, M, S)) => total_distance(X, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_distance(train, n_230)).

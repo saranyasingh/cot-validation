@@ -1,0 +1,41 @@
+% Declarations
+tff(bundle_type, type, bundle: $tType).
+tff(glass_kind_type, type, glass_kind: $tType).
+tff(person_type, type, person: $tType).
+tff(kylar_decl, type, kylar: person).
+tff(first_glass_decl, type, first_glass: glass_kind).
+tff(second_glass_decl, type, second_glass: glass_kind).
+tff(pair_decl, type, pair: bundle).
+tff(price_decl, type, price: (glass_kind * $rat) > $o).
+tff(full_price_decl, type, full_price: (glass_kind * $rat) > $o).
+tff(is_second_decl, type, is_second: glass_kind > $o).
+tff(in_pair_decl, type, in_pair: glass_kind > $o).
+tff(wants_glasses_decl, type, wants_glasses: (person * $rat) > $o).
+tff(pair_count_decl, type, pair_count: (person * $rat) > $o).
+tff(pair_composition_decl, type, pair_composition: (bundle * glass_kind * glass_kind) > $o).
+tff(group_cost_decl, type, group_cost: (bundle * $rat) > $o).
+tff(pairs_cost_decl, type, pairs_cost: (person * $rat) > $o).
+tff(leftover_glasses_decl, type, leftover_glasses: (person * $rat) > $o).
+tff(additional_cost_decl, type, additional_cost: (person * $rat) > $o).
+tff(total_cost_decl, type, total_cost: (person * $rat) > $o).
+tff(first_glass_neq_second_glass, axiom, first_glass != second_glass).
+
+% Statements
+tff(c1, axiom, price(first_glass, 5/1)).
+tff(c2, axiom, ![V_p: $rat, V_q: $rat]: ((price(first_glass, V_p) & V_q = $product(V_p, 3/5)) => price(second_glass, V_q))).
+tff(c3, lemma, price(second_glass, 3/1)).
+tff(c4, axiom, wants_glasses(kylar, 16/1)).
+tff(c5, axiom, ![V_g: glass_kind]: (is_second(V_g) => in_pair(V_g))).
+tff(c6, lemma, pair_count(kylar, 8/1)).
+tff(c7, lemma, group_cost(pair, 8/1)).
+tff(c8, lemma, pairs_cost(kylar, 64/1)).
+tff(c9, axiom, leftover_glasses(kylar, 0/1)).
+tff(c10, lemma, additional_cost(kylar, 0/1)).
+tff(c11, lemma, total_cost(kylar, 64/1)).
+tff(i1, axiom, ![V_x: person, V_n: $rat, V_m: $rat]: ((wants_glasses(V_x, V_n) & V_m = $quotient(V_n, 2/1)) => pair_count(V_x, V_m))).
+tff(i2, axiom, pair_composition(pair, first_glass, second_glass)).
+tff(i3, axiom, full_price(first_glass, 5/1)).
+tff(i4, axiom, ![V_b: bundle, V_f: glass_kind, V_s: glass_kind, V_a: $rat, V_c: $rat, V_t: $rat]: ((pair_composition(V_b, V_f, V_s) & price(V_f, V_a) & price(V_s, V_c) & V_t = $sum(V_a, V_c)) => group_cost(V_b, V_t))).
+tff(i5, axiom, ![V_x: person, V_b: bundle, V_n: $rat, V_c: $rat, V_t: $rat]: ((pair_count(V_x, V_n) & group_cost(V_b, V_c) & V_t = $product(V_n, V_c)) => pairs_cost(V_x, V_t))).
+tff(i6, axiom, ![V_x: person]: (leftover_glasses(V_x, 0/1) => additional_cost(V_x, 0/1))).
+tff(i7, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_t: $rat]: ((pairs_cost(V_x, V_a) & additional_cost(V_x, V_b) & V_t = $sum(V_a, V_b)) => total_cost(V_x, V_t))).

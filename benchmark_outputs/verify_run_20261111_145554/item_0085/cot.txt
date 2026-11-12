@@ -1,0 +1,44 @@
+EXPLANATION
+Let's break down the problem into logical steps.
+
+1. Let W represent the number of wins.
+2. Let L represent the number of losses.
+3. We know that the total number of games played is 22. Therefore, we have the equation:
+   \[
+   W + L = 22
+   \]
+4. According to the problem, the team won 8 more games than they lost. This gives us another equation:
+   \[
+   W = L + 8
+   \]
+
+Now, let's use these two equations to solve for W (the number of wins).
+
+5. Substitute the second equation into the first equation:
+   \[
+   (L + 8) + L = 22
+   \]
+6. Simplify the equation:
+   \[
+   2L + 8 = 22
+   \]
+7. Subtract 8 from both sides:
+   \[
+   2L = 14
+   \]
+8. Divide both sides by 2:
+   \[
+   L = 7
+   \]
+9. Now that we know there were 7 losses, we can find the number of wins using the second original equation:
+   \[
+   W = L + 8
+   \]
+   \[
+   W = 7 + 8
+   \]
+   \[
+   W = 15
+   \]
+
+Therefore, the football team won 15 games. The answer is: 15.

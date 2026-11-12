@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Total(w, n) — the total quantity of water w is n liters
+SharePortion(x, w, d) — x's share of water w is 1/d of the total
+Got(x, n) — x received n liters of water
+Used(w, n) — a cumulative total of n liters of water w has been accounted for/used
+Remaining(w, n) — water w has n liters remaining
+
+Constants: water, girl1, girl2, boy, 24, 6, 4, 8, 14, 10
+
+## FACTS
+FACT-1: The total amount of water is 24 liters :: Total(water, 24)
+FACT-2: Girl1 got 1/6 of the 24 liters of water :: SharePortion(girl1, water, 6)
+FACT-3: Girl2 got 1/6 of the 24 liters of water :: SharePortion(girl2, water, 6)
+FACT-4: The boy got 6 liters of water :: Got(boy, 6)
+
+## OPERATIONS
+OP-1: 24 ÷ 6 = 4 :: Quotient(24, 6, 4)
+OP-2: 4 + 4 = 8 :: Sum(4, 4, 8)
+OP-3: 8 + 6 = 14 :: Sum(8, 6, 14)
+OP-4: 24 − 14 = 10 :: Difference(24, 14, 10)
+
+## RULES
+RULE-1: If the total of water w is n liters and x's share is 1/d of it, and n ÷ d = m, then x got m liters :: ∀x∀w∀n∀d∀m (Total(w,n) ∧ SharePortion(x,w,d) ∧ Quotient(n,d,m) → Got(x,m))
+RULE-2: If x got n1 liters and y got n2 liters, and n1 + n2 = n3, then n3 liters of water w have been used :: ∀x∀y∀w∀n1∀n2∀n3 (Got(x,n1) ∧ Got(y,n2) ∧ Sum(n1,n2,n3) → Used(w,n3))
+RULE-3: If n1 liters of water w have been used and x got n2 more liters, and n1 + n2 = n3, then n3 liters of water w have been used :: ∀x∀w∀n1∀n2∀n3 (Used(w,n1) ∧ Got(x,n2) ∧ Sum(n1,n2,n3) → Used(w,n3))
+RULE-4: If the total of water w is n liters and u liters have been used, and n − u = r, then r liters of water w remain :: ∀w∀n∀u∀r (Total(w,n) ∧ Used(w,u) ∧ Difference(n,u,r) → Remaining(w,r))
+
+## INFERENCES
+INF-1: Girl1 got 4 liters of water, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Got(girl1, 4)
+INF-2: Girl2 got 4 liters of water, from FACT-1, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Got(girl2, 4)
+INF-3: The two girls together used 8 liters of water, from INF-1, INF-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Used(water, 8)
+INF-4: A total of 14 liters of water have been used, from INF-3, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Used(water, 14)
+INF-5: 10 liters of water remain, from FACT-1, INF-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Remaining(water, 10)

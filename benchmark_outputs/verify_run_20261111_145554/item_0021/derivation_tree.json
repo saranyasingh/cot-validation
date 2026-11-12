@@ -1,0 +1,225 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The original orange drink has a volume of 10 liters",
+      "formula": "Volume(orange_drink, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The fraction of the orange drink that is water is 2/3",
+      "formula": "WaterFraction(orange_drink, 2/3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "1 liter of the orange drink was spilled",
+      "formula": "Spilled(orange_drink, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The pineapple drink has a volume of 15 liters",
+      "formula": "Volume(pineapple_drink, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The fraction of the pineapple drink that is water is 3/5",
+      "formula": "WaterFraction(pineapple_drink, 3/5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "10 \u00d7 2/3 = 20/3, water in the original orange drink",
+      "formula": "Product(10, 2/3, 20/3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "10 \u2212 1 = 9, orange drink remaining after spilling",
+      "formula": "Difference(10, 1, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "9 \u00d7 2/3 = 6, water in the remaining orange drink",
+      "formula": "Product(9, 2/3, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "15 \u00d7 3/5 = 9, water in the pineapple drink",
+      "formula": "Product(15, 3/5, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "20/3 + 9 = 47/3, total water before pouring out",
+      "formula": "Sum(20/3, 9, 47/3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "47/3 \u2212 1 = 44/3, remaining water after spillage",
+      "formula": "Difference(47/3, 1, 44/3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drink x has volume n, a water fraction f, and n \u00d7 f = w, then the amount of water in x is w",
+      "formula": "\u2200x\u2200n\u2200f\u2200w (Volume(x,n) \u2227 WaterFraction(x,f) \u2227 Product(n,f,w) \u2192 WaterAmount(x,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a drink x has volume n, s liters are spilled from it, and n \u2212 s = r, then the remaining volume of x is r",
+      "formula": "\u2200x\u2200n\u2200s\u2200r (Volume(x,n) \u2227 Spilled(x,s) \u2227 Difference(n,s,r) \u2192 Volume(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If drink x has water amount w1, drink y has water amount w2, and w1 + w2 = t, then the total water before pouring out is t",
+      "formula": "\u2200x\u2200y\u2200w1\u2200w2\u2200t (WaterAmount(x,w1) \u2227 WaterAmount(y,w2) \u2227 Sum(w1,w2,t) \u2192 TotalWater(before_pour, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the total water before pouring out is t, s liters of orange drink were spilled, and t \u2212 s = r, then the final remaining water is r",
+      "formula": "\u2200t\u2200s\u2200r (TotalWater(before_pour, t) \u2227 Spilled(orange_drink, s) \u2227 Difference(t,s,r) \u2192 TotalWater(final_answer, r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The spilled liter is orange drink (only 2/3 water), not pure water, so subtracting the full spilled volume s from total water t incorrectly treats the spill as 100% water instead of accounting for only its water fraction.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Water in the original orange drink is 20/3 liters, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(orange_drink, 20/3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Remaining orange drink volume is 9 liters, from FACT-1, FACT-3, OP-2, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Volume(orange_drink, 9)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Water in the remaining orange drink is 6 liters, from INF-2, FACT-2, OP-3, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(orange_drink, 6)",
+      "premises": [
+        "INF-2",
+        "FACT-2",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Water in the pineapple drink is 9 liters, from FACT-4, FACT-5, OP-4, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WaterAmount(pineapple_drink, 9)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Total water before pouring out is 47/3 liters, from INF-1, INF-4, OP-5, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalWater(before_pour, 47/3)",
+      "premises": [
+        "INF-1",
+        "INF-4",
+        "OP-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Final remaining water is 44/3 liters, from INF-5, FACT-3, OP-6, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalWater(final_answer, 44/3)",
+      "premises": [
+        "INF-5",
+        "FACT-3",
+        "OP-6",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "The spilled liter is orange drink (only 2/3 water), not pure water, so subtracting the full spilled volume s from total water t incorrectly treats the spill as 100% water instead of accounting for only its water fraction."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

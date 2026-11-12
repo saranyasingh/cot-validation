@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, customers(billy, n_8)).
+fof(fact_2, axiom, group_size(billy, first_group, n_3)).
+fof(fact_3, axiom, buys_per_customer(billy, first_group, n_1)).
+fof(fact_4, axiom, group_size(billy, second_group, n_2)).
+fof(fact_5, axiom, buys_per_customer(billy, second_group, n_2)).
+fof(fact_6, axiom, group_size(billy, third_group, n_3)).
+fof(fact_7, axiom, buys_per_customer(billy, third_group, n_0)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_3, n_1, n_3)).
+fof(op_2, axiom, product(n_2, n_2, n_4)).
+fof(op_3, axiom, product(n_3, n_0, n_0)).
+fof(op_4, axiom, sum(n_3, n_4, n_0, n_7)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,G,N,K,P] : ((group_size(X, G, N) & buys_per_customer(X, G, K) & product(N, K, P)) => group_dvds(X, G, P))).
+fof(rule_2, axiom, ! [X,G1,G2,G3,N1,N2,N3,S] : ((group_dvds(X, G1, N1) & group_dvds(X, G2, N2) & group_dvds(X, G3, N3) & sum(N1, N2, N3, S)) => total_sold(X, S))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, group_dvds(billy, first_group, n_3)).
+% From fact_4, fact_5, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, group_dvds(billy, second_group, n_4)).
+% From fact_6, fact_7, op_3, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, group_dvds(billy, third_group, n_0)).
+% From inf_1, inf_2, inf_3, op_4, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total_sold(billy, n_7)).

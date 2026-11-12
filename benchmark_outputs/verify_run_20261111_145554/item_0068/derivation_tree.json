@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 175 diamonds",
+      "formula": "Count(diamond, 175)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 35 fewer rubies than diamonds",
+      "formula": "FewerBy(ruby, diamond, 35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are twice the number of emeralds as rubies",
+      "formula": "Twice(emerald, ruby)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "175 minus 35 is 140",
+      "formula": "Difference(175, 35, 140)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "2 times 140 is 280",
+      "formula": "Product(2, 140, 280)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "175 plus 140 plus 280 is 595",
+      "formula": "Sum(175, 140, 280, 595)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If type y has m gems, type x has n fewer gems than type y, and m \u2212 n = r, then type x has r gems",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (Count(y,m) \u2227 FewerBy(x,y,n) \u2227 Difference(m,n,r) \u2192 Count(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If type y has m gems, type x has twice the count of type y, and 2 \u00d7 m = r, then type x has r gems",
+      "formula": "\u2200x\u2200y\u2200m\u2200r (Count(y,m) \u2227 Twice(x,y) \u2227 Product(2,m,r) \u2192 Count(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If type x has a gems, type y has b gems, type z has c gems, and a + b + c = s, then the chest has a total of s gems",
+      "formula": "\u2200x\u2200y\u2200z\u2200a\u2200b\u2200c\u2200s (Count(x,a) \u2227 Count(y,b) \u2227 Count(z,c) \u2227 Sum(a,b,c,s) \u2192 Total(chest,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "There are 140 rubies, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(ruby, 140)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "There are 280 emeralds, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(emerald, 280)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total number of gems in the chest is 595, from FACT-1, INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(chest, 595)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

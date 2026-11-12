@@ -1,0 +1,17 @@
+EXPLANATION
+1. Mike played ping pong for a total of 40 minutes.
+   Premise: Mike's total playing time is given as 40 minutes.
+
+2. For the first 20 minutes, Mike scored 4 points.
+   Premise: According to the problem statement, Mike scored 4 points during the first 20 minutes.
+
+3. During the next 20 minutes (second half), Mike scored 25% more points than what he scored in the first half.
+   Calculation: First calculate 25% of 4 points: \( 4 \times 0.25 = 1 \) point.
+   Conclusion: Therefore, Mike scored an additional 1 point during the second 20 minutes.
+
+4. To find the total points scored, add the points from both halves of his game:
+   Total Points = Points in first half + Points in second half
+                 = 4 + 1
+                 = 5
+
+THE ANSWER IS: 5

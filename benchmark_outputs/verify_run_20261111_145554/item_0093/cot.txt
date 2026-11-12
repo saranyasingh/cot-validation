@@ -1,0 +1,16 @@
+Explanation:
+1. We know that Emily has four children named Amy, Jackson, Corey, and James.
+2. We also know that Amy is 5 years older than Jackson.
+3. Additionally, we learn that Amy is 2 years younger than Corey.
+4. From these two pieces of information, we can establish relationships between their ages.
+   - Let's denote Amy's age as A, Jackson's age as J, Corey's age as C, and James' age as K (which is given as 10).
+5. Since Amy is 5 years older than Jackson, we have the equation: A = J + 5.
+6. Also, since Amy is 2 years younger than Corey, we have another equation: A = C - 2.
+7. We already know that James is 10 and is 1 year younger than Corey, so we can write: K = C - 1.
+8. Substituting K = 10 into the third equation gives us: 10 = C - 1, which simplifies to C = 11.
+9. Now that we know Corey's age is 11, we can use this to find Amy's age using either of our equations. Using A = C - 2, we get A = 11 - 2, which simplifies to A = 9.
+10. Finally, substituting A = 9 into A = J + 5 gives us 9 = J + 5, which simplifies to J = 4.
+
+Therefore, Jackson is 4 years old.
+
+The answer is: 4

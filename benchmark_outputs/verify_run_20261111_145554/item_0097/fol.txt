@@ -1,0 +1,22 @@
+## VOCABULARY
+Predicates:
+Slept(x, n) — x slept n hours
+MoreSleep(x, y, n) — x slept n more hours than y
+
+Constants:
+harry, james, 9, 2, 3, 6, 3
+
+## FACTS
+FACT-1: Harry slept 9 hours :: Slept(harry, 9)
+
+## OPERATIONS
+OP-1: 9 times 2/3 is 6 :: Product(9, 0.666666667, 6)
+OP-2: 9 minus 6 is 3 :: Difference(9, 6, 3)
+
+## RULES
+RULE-1: If Harry slept n hours and James slept 2/3 of that amount m, then James slept m hours :: ∀n∀m (Slept(harry,n) ∧ Product(n, 0.666666667, m) → Slept(james, m))
+RULE-2: If Harry slept n hours and James slept m hours and n − m = d, then Harry slept d more hours than James :: ∀n∀m∀d (Slept(harry,n) ∧ Slept(james,m) ∧ Difference(n,m,d) → MoreSleep(harry, james, d))
+
+## INFERENCES
+INF-1: James slept 6 hours, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Slept(james, 6)
+INF-2: Harry slept 3 more hours than James, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: MoreSleep(harry, james, 3)

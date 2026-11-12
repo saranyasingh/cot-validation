@@ -1,0 +1,21 @@
+Explanation:
+1. First, we need to determine how many roses Dan has in total.
+   - He planted 3 rose bushes.
+   - Each rose bush has 25 roses.
+
+   Therefore, the total number of roses is calculated as follows:
+   \[
+   3 \text{ bushes} \times 25 \text{ roses per bush} = 75 \text{ roses}
+   \]
+
+2. Next, we need to find out how many thorns are on all these roses combined.
+   - Each rose has 8 thorns.
+
+   To find the total number of thorns, we multiply the total number of roses by the number of thorns per rose:
+   \[
+   75 \text{ roses} \times 8 \text{ thorns per rose} = 600 \text{ thorns}
+   \]
+
+Therefore, the total number of thorns is 600.
+
+The answer is: 600

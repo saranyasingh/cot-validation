@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Speed(t, s) — the speed during the driving portion of trip t is s (mph)
+DrivingTime(t, h) — the time actually spent driving during trip t is h (hours)
+TrafficTime(t, h) — the time spent stuck in traffic during trip t is h (hours)
+TotalTime(t, h) — the total elapsed time for trip t (driving + traffic) is h (hours)
+Distance(t, d) — the distance covered on trip t (or overall) is d (miles)
+
+Constants:
+leg1, leg2, total_trip, 60, 3, 180, 4, 2, 30, 240
+
+## FACTS
+FACT-1: John drives at 60 mph on the first leg :: Speed(leg1, 60)
+FACT-2: John drives for 3 hours on the first leg :: DrivingTime(leg1, 3)
+FACT-3: The second leg (return trip) takes 4 hours total :: TotalTime(leg2, 4)
+FACT-4: Of that, 2 hours are spent in traffic on the second leg :: TrafficTime(leg2, 2)
+FACT-5: John drives at 30 mph on the second leg (after traffic) :: Speed(leg2, 30)
+
+## OPERATIONS
+OP-1: 4 minus 2 is 2 :: Difference(4, 2, 2)
+OP-2: 60 times 3 is 180 :: Product(60, 3, 180)
+OP-3: 30 times 2 is 60 :: Product(30, 2, 60)
+OP-4: 180 plus 60 is 240 :: Sum(180, 60, 240)
+
+## RULES
+RULE-1: If a trip has speed s and driving time h, and s × h = d, then the distance covered on that trip is d :: ∀t∀s∀h∀d (Speed(t,s) ∧ DrivingTime(t,h) ∧ Product(s,h,d) → Distance(t,d))
+RULE-2: If a trip has total time tt and traffic time tr, and tt − tr = dt, then the actual driving time on that trip is dt :: ∀t∀tt∀tr∀dt (TotalTime(t,tt) ∧ TrafficTime(t,tr) ∧ Difference(tt,tr,dt) → DrivingTime(t,dt))
+RULE-3: If two legs of a journey have distances d1 and d2, and d1 + d2 = dtot, then the total distance traveled on the overall trip is dtot :: ∀t1∀t2∀d1∀d2∀dtot (Distance(t1,d1) ∧ Distance(t2,d2) ∧ Sum(d1,d2,dtot) → Distance(total_trip,dtot))
+
+## INFERENCES
+INF-1: The driving time on the second leg is 2 hours, from FACT-3, FACT-4, OP-1, and RULE-2 by Universal Instantiation and Modus Ponens :: DrivingTime(leg2, 2)
+INF-2: The distance covered on the first leg is 180 miles, from FACT-1, FACT-2, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg1, 180)
+INF-3: The distance covered on the second leg is 60 miles, from FACT-5, INF-1, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Distance(leg2, 60)
+INF-4: The total distance John traveled (and his resulting distance from home) is 240 miles, from INF-2, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Distance(total_trip, 240)

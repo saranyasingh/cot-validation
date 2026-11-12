@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, consumes_per_day(terry, n_2)).
+fof(fact_2, axiom, days(terry, n_30)).
+fof(fact_3, axiom, set_info(n_4, n_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_30, n_60)).
+fof(op_2, axiom, quotient(n_60, n_4, n_15)).
+fof(op_3, axiom, product(n_15, n_5, n_75)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,D,T] : ((consumes_per_day(X, N) & days(X, D) & product(N, D, T)) => total_yogurts(X, T))).
+fof(rule_2, axiom, ! [X,T,S,P,K,C] : ((total_yogurts(X, T) & set_info(S, P) & quotient(T, S, K) & product(K, P, C)) => total_cost(X, C))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_yogurts(terry, n_60)).
+% From inf_1, fact_3, op_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_cost(terry, n_75)).

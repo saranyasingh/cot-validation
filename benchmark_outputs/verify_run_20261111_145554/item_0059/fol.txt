@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+InitialBill(x, n) — x's initial bill amount is n
+FeePercent(x, n) — x is charged a fee of n (as a decimal fraction) on the bill
+DeliveryFee(x, n) — x is charged a delivery fee of n
+Tip(x, n) — x pays a tip of n
+Total(x, n) — x's running total (bill, adjusted total, or final total) is n
+
+Constants:
+stephen, 40, 0.25, 10, 50, 3, 47, 4, 51
+
+## FACTS
+FACT-1: Stephen's initial bill is $40.00 :: InitialBill(stephen, 40)
+FACT-2: Stephen is charged a 25% fee on the bill :: FeePercent(stephen, 0.25)
+FACT-3: Stephen is charged a $3.00 delivery fee :: DeliveryFee(stephen, 3)
+FACT-4: Stephen pays a $4.00 tip :: Tip(stephen, 4)
+
+## OPERATIONS
+OP-1: 25% of $40.00 is $10.00 :: Product(0.25, 40, 10)
+OP-2: $40.00 plus $10.00 is $50.00 :: Sum(40, 10, 50)
+OP-3: $50.00 minus $3.00 is $47.00 :: Difference(50, 3, 47)
+OP-4: $47.00 plus $4.00 is $51.00 :: Sum(47, 4, 51)
+
+## RULES
+RULE-1: If x's initial bill is n, x's fee percent is p, and p times n equals f, and n plus f equals t, then x's total is t :: ∀x∀n∀p∀f∀t (InitialBill(x,n) ∧ FeePercent(x,p) ∧ Product(p,n,f) ∧ Sum(n,f,t) → Total(x,t))
+RULE-2: If x's total is t, x's delivery fee is d, and t minus d equals a, then x's total is a :: ∀x∀t∀d∀a (Total(x,t) ∧ DeliveryFee(x,d) ∧ Difference(t,d,a) → Total(x,a))
+RULE-3: If x's total is a, x's tip is g, and a plus g equals s, then x's total is s :: ∀x∀a∀g∀s (Total(x,a) ∧ Tip(x,g) ∧ Sum(a,g,s) → Total(x,s))
+
+## INFERENCES
+INF-1: Stephen's total after the fee is $50.00, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Total(stephen, 50)
+INF-2: Stephen's adjusted total after the delivery fee is $47.00, from INF-1, FACT-3, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(stephen, 47)
+INF-3: Stephen's final total including the tip is $51.00, from INF-2, FACT-4, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Total(stephen, 51)

@@ -1,0 +1,20 @@
+To determine how many vacuum cleaners Melanie started with, we need to work backwards through the information given.
+
+**Premise 1:** Melanie ended up with 5 vacuum cleaners after selling some at different houses.
+- Let's denote the total number of vacuum cleaners she started with as \( N \).
+
+**Premise 2:** At the orange house, she sold half of what was left after selling at the green and red houses.
+- After selling at the green house (a third), she had two-thirds left.
+- Then, she sold 2 more to the red house.
+- Therefore, before selling 2 more to the red house, she must have had:
+\[ \frac{2}{3} + 2 = \frac{2}{3} + \frac{6}{3} = \frac{8}{3} \]
+
+**Premise 3:** This amount represents half of what she originally had before the orange sale.
+- Since this is half of her original amount, let's call it \( x \):
+\[ \frac{x}{2} = \frac{8}{3} \]
+- Solving for \( x \):
+\[ x = \frac{8}{3} \times 2 = \frac{16}{3} \]
+
+**Conclusion:** Melanie started with \( \frac{16}{3} \) vacuum cleaners.
+
+Therefore, the answer is: 16

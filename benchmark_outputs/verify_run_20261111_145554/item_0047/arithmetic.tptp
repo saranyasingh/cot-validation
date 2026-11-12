@@ -1,0 +1,4 @@
+% OP-1: Sum(80, 220, 300)
+tff(op_1, conjecture, $sum(80/1, 220/1) = 300/1).
+% OP-2: Sum(80, 220, 23, 323)
+tff(op_2, conjecture, $sum($sum(80/1, 220/1), 23/1) = 323/1).

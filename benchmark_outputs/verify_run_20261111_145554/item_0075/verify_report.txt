@@ -1,0 +1,8 @@
+FACT-1: UNSUPPORTED — the problem states prices are rounded to the nearest dollar before selling; the actual price used should be $3, not the original $2.74.
+FACT-2: UNSUPPORTED — prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $1.87.
+FACT-3: UNSUPPORTED — prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $2.12.
+FACT-4: UNSUPPORTED — the problem does not ask to round the total revenue to the nearest dollar; it asks to round the individual prices before computing revenue.
+
+RULE-1: IMPLAUSIBLE — uses the unrounded original price p instead of the rounded price Artie actually charges, misapplying the problem's instruction.
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — rounds the total revenue to the nearest dollar, but the problem specifies rounding each price, not the total.

@@ -1,0 +1,43 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(segment_type, type, segment: $tType).
+tff(trip_type, type, trip: $tType).
+tff(john_decl, type, john: person).
+tff(outbound_decl, type, outbound: segment).
+tff(standstill_decl, type, standstill: segment).
+tff(slow_decl, type, slow: segment).
+tff(fast_decl, type, fast: segment).
+tff(return_trip_decl, type, return_trip: trip).
+tff(drives_decl, type, drives: (person * segment * $rat * $rat) > $o).
+tff(seg_speed_decl, type, seg_speed: (person * segment * $rat) > $o).
+tff(seg_time_decl, type, seg_time: (person * segment * $rat) > $o).
+tff(seg_distance_decl, type, seg_distance: (person * segment * $rat) > $o).
+tff(dist_from_home_after_decl, type, dist_from_home_after: (person * segment * $rat) > $o).
+tff(return_plan_decl, type, return_plan: (person * trip * $rat * segment * $rat) > $o).
+tff(at_destination_dist_equals_decl, type, at_destination_dist_equals: (person * segment) > $o).
+tff(drives_toward_home_decl, type, drives_toward_home: (person * trip) > $o).
+tff(outbound_neq_standstill, axiom, outbound != standstill).
+tff(outbound_neq_slow, axiom, outbound != slow).
+tff(outbound_neq_fast, axiom, outbound != fast).
+tff(standstill_neq_slow, axiom, standstill != slow).
+tff(standstill_neq_fast, axiom, standstill != fast).
+tff(slow_neq_fast, axiom, slow != fast).
+
+% Statements
+tff(c1, axiom, drives(john, outbound, 3/1, 60/1)).
+tff(c2, axiom, ![V_p: person, V_s: segment, V_t: $rat, V_v: $rat, V_d: $rat]: ((drives(V_p, V_s, V_t, V_v) & V_d = $product(V_v, V_t)) => seg_distance(V_p, V_s, V_d))).
+tff(c3, lemma, seg_distance(john, outbound, 180/1)).
+tff(c4, axiom, return_plan(john, return_trip, 4/1, standstill, 2/1)).
+tff(c5, axiom, ![V_p: person, V_r: trip, V_total: $rat, V_s: segment, V_stuck: $rat]: (return_plan(V_p, V_r, V_total, V_s, V_stuck) => seg_distance(V_p, V_s, 0/1))).
+tff(c6, lemma, dist_from_home_after(john, standstill, 180/1)).
+tff(c7, axiom, drives(john, slow, 1/2, 30/1)).
+tff(c8, lemma, seg_distance(john, slow, 15/1)).
+tff(c9, lemma, dist_from_home_after(john, slow, 165/1)).
+tff(c10, axiom, seg_speed(john, fast, 80/1)).
+tff(c11, lemma, seg_time(john, fast, 3/2)).
+tff(c12, lemma, seg_distance(john, fast, 120/1)).
+tff(c13, lemma, dist_from_home_after(john, fast, 45/1)).
+tff(i1, axiom, at_destination_dist_equals(john, outbound)).
+tff(i2, axiom, ![V_p: person, V_s1: segment, V_s2: segment, V_r: trip, V_a: $rat, V_b: $rat, V_c: $rat]: ((dist_from_home_after(V_p, V_s1, V_a) & seg_distance(V_p, V_s2, V_b) & drives_toward_home(V_p, V_r) & V_c = $difference(V_a, V_b)) => dist_from_home_after(V_p, V_s2, V_c))).
+tff(i3, axiom, drives_toward_home(john, return_trip)).
+tff(i4, axiom, ![V_p: person, V_r: trip, V_total: $rat, V_s1: segment, V_stuck: $rat, V_s2: segment, V_t2: $rat, V_v2: $rat, V_s3: segment, V_v3: $rat, V_x: $rat, V_y: $rat]: ((return_plan(V_p, V_r, V_total, V_s1, V_stuck) & drives(V_p, V_s2, V_t2, V_v2) & seg_speed(V_p, V_s3, V_v3) & V_x = $difference(V_total, V_stuck) & V_y = $difference(V_x, V_t2)) => seg_time(V_p, V_s3, V_y))).

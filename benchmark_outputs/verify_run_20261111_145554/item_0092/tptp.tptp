@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, pets(cindy, n_4)).
+fof(fact_2, axiom, more_than(marcia, cindy, n_2)).
+fof(fact_3, axiom, times_as_many(jan, marcia, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_4, n_2, n_6)).
+fof(op_2, axiom, product(n_3, n_6, n_18)).
+fof(op_3, axiom, sum3(n_18, n_6, n_4, n_28)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,M,R] : ((more_than(X,Y,N) & pets(Y,M) & sum(M,N,R)) => pets(X,R))).
+fof(rule_2, axiom, ! [X,Y,N,M,R] : ((times_as_many(X,Y,N) & pets(Y,M) & product(N,M,R)) => pets(X,R))).
+fof(rule_3, axiom, ! [X,Y,Z,N,M,P,R] : ((pets(X,N) & pets(Y,M) & pets(Z,P) & sum3(N,M,P,R)) => total(R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, pets(marcia, n_6)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, pets(jan, n_18)).
+% From inf_2, inf_1, fact_1, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total(n_28)).

@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+PlayTime(x, n) — x played ping pong for a total of n minutes
+HalfTime(x, h, n) — during half h of the game, x played for n minutes
+Score(x, h, n) — during half h of the game, x scored n points
+TotalScore(x, n) — x scored n points in total
+
+Constants:
+mike, first, second, 40, 20, 4, 0.25, 1, 5
+
+## FACTS
+FACT-1: Mike played ping pong for a total of 40 minutes :: PlayTime(mike, 40)
+FACT-2: During the first half, Mike played for 20 minutes :: HalfTime(mike, first, 20)
+FACT-3: During the second half, Mike played for 20 minutes :: HalfTime(mike, second, 20)
+FACT-4: Mike scored 4 points in the first half :: Score(mike, first, 4)
+
+## OPERATIONS
+OP-1: 4 times 0.25 is 1 :: Product(4, 0.25, 1)
+OP-2: 4 plus 1 is 5 :: Sum(4, 1, 5)
+
+## RULES
+RULE-1: If x scored n points in the first half and n × 0.25 = r, then x scored r points in the second half :: ∀x∀n∀r (Score(x, first, n) ∧ Product(n, 0.25, r) → Score(x, second, r))
+RULE-2: If x scored n points in the first half and m points in the second half and n + m = t, then x scored t points in total :: ∀x∀n∀m∀t (Score(x, first, n) ∧ Score(x, second, m) ∧ Sum(n, m, t) → TotalScore(x, t))
+
+## INFERENCES
+INF-1: Mike scored 1 point in the second half, from FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Score(mike, second, 1)
+INF-2: Mike scored 5 points in total, from FACT-4, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalScore(mike, 5)

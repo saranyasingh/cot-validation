@@ -1,0 +1,5 @@
+FACT-1: SUPPORTED
+FACT-2: UNSUPPORTED — The problem states the 5 cars take an exit before driving through the jam (so they skip it), not after driving through it.
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — This computes i − r (which equals the 5 exiting cars, not the first-15-minute count) and ignores the 20 cars from the second 15 minutes; the correct relationship should subtract the 20 cars from the remaining total to get the first-15-minute count.

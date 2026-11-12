@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, weighs(grace, n_125)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_4, n_125, n_500)).
+fof(op_2, axiom, difference(n_500, n_2, n_498)).
+fof(op_3, axiom, sum(n_125, n_498, n_623)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,P,A] : ((weighs(grace, N) & product(n_4, N, P) & difference(P, n_2, A)) => weighs(alex, A))).
+fof(rule_2, axiom, ! [N,M,S] : ((weighs(grace, N) & weighs(alex, M) & sum(N, M, S)) => combined(grace, alex, S))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, weighs(alex, n_498)).
+% From fact_1, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, combined(grace, alex, n_623)).

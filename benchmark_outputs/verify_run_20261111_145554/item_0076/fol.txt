@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Levels(x, n) — x's sandcastle has n levels
+SquareFootage(x, n, s) — level n of x's sandcastle has square footage s
+Below(m, n) — level m is directly below level n
+Average(x, s) — the average square footage of a level of x's sandcastle is s
+
+Constants:
+luke, 1, 2, 3, 4, 8, 16, 30, 7.5
+
+## FACTS
+FACT-1: Luke builds a 4-level sandcastle :: Levels(luke, 4)
+FACT-2: Level 3 is directly below level 4 :: Below(3, 4)
+FACT-3: Level 2 is directly below level 3 :: Below(2, 3)
+FACT-4: Level 1 is directly below level 2 :: Below(1, 2)
+FACT-5: The top level (level 4) has a square footage of 16 :: SquareFootage(luke, 4, 16)
+
+## OPERATIONS
+OP-1: 16 / 2 = 8 :: Quotient(16, 2, 8)
+OP-2: 8 / 2 = 4 :: Quotient(8, 2, 4)
+OP-3: 4 / 2 = 2 :: Quotient(4, 2, 2)
+OP-4: 16 + 8 + 4 + 2 = 30 :: Sum(16, 8, 4, 2, 30)
+OP-5: 30 / 4 = 7.5 :: Quotient(30, 4, 7.5)
+
+## RULES
+RULE-1: If level n of x's sandcastle has square footage s, level m is directly below level n, and s divided by 2 equals t, then level m has square footage t :: ∀x∀n∀m∀s∀t (SquareFootage(x,n,s) ∧ Below(m,n) ∧ Quotient(s,2,t) → SquareFootage(x,m,t))
+RULE-2: If x's sandcastle has n levels with square footages s1, s2, s3, s4 for levels 1,2,3,4 respectively, the sum of those square footages is sum, and sum divided by n equals avg, then the average square footage of a level of x's sandcastle is avg :: ∀x∀n∀s1∀s2∀s3∀s4∀sum∀avg (Levels(x,n) ∧ SquareFootage(x,1,s1) ∧ SquareFootage(x,2,s2) ∧ SquareFootage(x,3,s3) ∧ SquareFootage(x,4,s4) ∧ Sum(s1,s2,s3,s4,sum) ∧ Quotient(sum,n,avg) → Average(x,avg))
+
+## INFERENCES
+INF-1: Level 3 of Luke's sandcastle has square footage 8, from FACT-5, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: SquareFootage(luke, 3, 8)
+INF-2: Level 2 of Luke's sandcastle has square footage 4, from INF-1, FACT-3, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: SquareFootage(luke, 2, 4)
+INF-3: Level 1 of Luke's sandcastle has square footage 2, from INF-2, FACT-4, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: SquareFootage(luke, 1, 2)
+INF-4: The average square footage of a level of Luke's sandcastle is 7.5, from FACT-1, FACT-5, INF-1, INF-2, INF-3, OP-4, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens :: Average(luke, 7.5)

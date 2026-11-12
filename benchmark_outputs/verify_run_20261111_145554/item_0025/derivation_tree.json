@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "He paid $19.50 for the book",
+      "formula": "Paid(book, 19.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "He paid 75% of the original price (due to the 25% discount)",
+      "formula": "DiscountFraction(book, 0.75)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$19.50 divided by 0.75 equals $26.00",
+      "formula": "Quotient(19.50, 0.75, 26.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x paid n for the book and n represents fraction f of the original price, and n divided by f equals p, then the original price of x's book is p",
+      "formula": "\u2200x\u2200n\u2200f\u2200p (Paid(x,n) \u2227 DiscountFraction(x,f) \u2227 Quotient(n,f,p) \u2192 OriginalPrice(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The original price of the book was $26.00, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "OriginalPrice(book, 26.00)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

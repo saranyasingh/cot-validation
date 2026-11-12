@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Baked(x, n) — x baked n pies
+CutInto(x, n) — each pie baked by x was cut into n pieces
+TotalPieces(x, n) — x had a total of n pie pieces
+Remaining(x, n) — n pieces remained at the end of the evening for x
+Taken(x, n) — n pieces were taken by guests from x
+
+Constants:
+grandma_jones, 5, 8, 14, 40, 26
+
+## FACTS
+FACT-1: Grandma Jones baked 5 apple pies :: Baked(grandma_jones, 5)
+FACT-2: Each pie was cut into 8 pieces :: CutInto(grandma_jones, 8)
+FACT-3: There were 14 pieces remaining at the end of the evening :: Remaining(grandma_jones, 14)
+
+## OPERATIONS
+OP-1: 5 times 8 is 40 :: Product(5, 8, 40)
+OP-2: 40 minus 14 is 26 :: Difference(40, 14, 26)
+
+## RULES
+RULE-1: If x baked n pies and each pie was cut into m pieces and n × m = p, then x had a total of p pie pieces :: ∀x∀n∀m∀p (Baked(x,n) ∧ CutInto(x,m) ∧ Product(n,m,p) → TotalPieces(x,p))
+RULE-2: If x had a total of p pie pieces and r pieces remained and p − r = t, then t pieces were taken by guests from x :: ∀x∀p∀r∀t (TotalPieces(x,p) ∧ Remaining(x,r) ∧ Difference(p,r,t) → Taken(x,t))
+
+## INFERENCES
+INF-1: Grandma Jones had a total of 40 pie pieces, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalPieces(grandma_jones, 40)
+INF-2: 26 pieces were taken by guests from Grandma Jones, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Taken(grandma_jones, 26)

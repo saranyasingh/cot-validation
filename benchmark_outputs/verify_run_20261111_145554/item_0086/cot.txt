@@ -1,0 +1,11 @@
+EXPLANATION
+
+1. Gene starts his journey at age 23.
+2. He continues to go on vacations until he reaches age 34.
+   - Calculation: \(34 - 23 = 11\) years passed.
+3. Since he went on four vacations per year, we calculate the total number of vacations as follows:
+   - Total vacations = Number of vacations per year \(\times\) Years passed = \(4 \times 11 = 44\)
+4. Each vacation results in one unique shirt being used for the quilt.
+5. Therefore, the total number of quilt blocks (which correspond to the shirts) is equal to the total number of vacations.
+
+The answer is: 44

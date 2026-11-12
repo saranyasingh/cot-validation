@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Cynthia eats one serving of ice cream per night (per day)",
+      "formula": "Eats(cynthia, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Cynthia considers a period of 60 days",
+      "formula": "Period(cynthia, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each carton contains 15 servings and costs $4.00",
+      "formula": "CartonSpec(15, 4.00)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "60 days \u00d7 1 serving per day = 60 servings",
+      "formula": "Product(60, 1, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "60 servings \u00f7 15 servings per carton = 4 cartons",
+      "formula": "Quotient(60, 15, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "4 cartons \u00d7 $4.00 per carton = $16.00",
+      "formula": "Product(4, 4.00, 16.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x eats n servings per day over a period of d days, and d \u00d7 n = t, then x consumes t servings in total",
+      "formula": "\u2200x\u2200n\u2200d\u2200t (Eats(x,n) \u2227 Period(x,d) \u2227 Product(d,n,t) \u2192 Consumes(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x consumes t servings in total, each carton contains s servings and costs c dollars, t \u00f7 s = k, and k \u00d7 c = m, then x spends m dollars in total",
+      "formula": "\u2200x\u2200t\u2200s\u2200c\u2200k\u2200m (Consumes(x,t) \u2227 CartonSpec(s,c) \u2227 Quotient(t,s,k) \u2227 Product(k,c,m) \u2192 Spends(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Cynthia consumes 60 servings in total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Consumes(cynthia, 60)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Cynthia spends $16.00 in total, from INF-1, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Spends(cynthia, 16.00)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

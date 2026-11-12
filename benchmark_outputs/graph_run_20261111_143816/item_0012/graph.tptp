@@ -1,0 +1,26 @@
+% Declarations
+tff(item_type, type, item: $tType).
+tff(person_type, type, person: $tType).
+tff(toula_decl, type, toula: person).
+tff(donuts_decl, type, donuts: item).
+tff(mini_cupcakes_decl, type, mini_cupcakes: item).
+tff(mini_cheesecakes_decl, type, mini_cheesecakes: item).
+tff(bought_dozens_decl, type, bought_dozens: (person * item * $rat * $rat) > $o).
+tff(item_cost_decl, type, item_cost: (person * item * $rat) > $o).
+tff(bought_item_decl, type, bought_item: (person * item) > $o).
+tff(total_cost_decl, type, total_cost: (person * $rat) > $o).
+tff(donuts_neq_mini_cupcakes, axiom, donuts != mini_cupcakes).
+tff(donuts_neq_mini_cheesecakes, axiom, donuts != mini_cheesecakes).
+tff(mini_cupcakes_neq_mini_cheesecakes, axiom, mini_cupcakes != mini_cheesecakes).
+
+% Statements
+tff(c1, axiom, bought_dozens(toula, donuts, 3/1, 68/1)).
+tff(c2, lemma, item_cost(toula, donuts, 204/1)).
+tff(c3, axiom, bought_dozens(toula, mini_cupcakes, 2/1, 80/1)).
+tff(c4, lemma, item_cost(toula, mini_cupcakes, 160/1)).
+tff(c5, axiom, bought_dozens(toula, mini_cheesecakes, 6/1, 55/1)).
+tff(c6, lemma, item_cost(toula, mini_cheesecakes, 330/1)).
+tff(c7, lemma, total_cost(toula, 694/1)).
+tff(i1, axiom, ![V_x: person, V_i: item, V_d: $rat, V_p: $rat, V_c: $rat]: ((bought_dozens(V_x, V_i, V_d, V_p) & V_c = $product(V_d, V_p)) => item_cost(V_x, V_i, V_c))).
+tff(i2, axiom, ![V_m: item]: (bought_item(toula, V_m) <=> (V_m = donuts | V_m = mini_cupcakes | V_m = mini_cheesecakes))).
+tff(s4_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((item_cost(toula, donuts, N1) & item_cost(toula, mini_cupcakes, N2) & item_cost(toula, mini_cheesecakes, N3)) => total_cost(toula, $sum($sum(N1, N2), N3)))).

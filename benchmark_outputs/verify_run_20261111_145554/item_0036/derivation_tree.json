@@ -1,0 +1,108 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mike played ping pong for a total of 40 minutes",
+      "formula": "PlayTime(mike, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "During the first half, Mike played for 20 minutes",
+      "formula": "HalfTime(mike, first, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "During the second half, Mike played for 20 minutes",
+      "formula": "HalfTime(mike, second, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Mike scored 4 points in the first half",
+      "formula": "Score(mike, first, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 times 0.25 is 1",
+      "formula": "Product(4, 0.25, 1)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 plus 1 is 5",
+      "formula": "Sum(4, 1, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x scored n points in the first half and n \u00d7 0.25 = r, then x scored r points in the second half",
+      "formula": "\u2200x\u2200n\u2200r (Score(x, first, n) \u2227 Product(n, 0.25, r) \u2192 Score(x, second, r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "\"25% more\" means n + 0.25n, not just 0.25n; this rule computes only the increase, not the second-half total.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x scored n points in the first half and m points in the second half and n + m = t, then x scored t points in total",
+      "formula": "\u2200x\u2200n\u2200m\u2200t (Score(x, first, n) \u2227 Score(x, second, m) \u2227 Sum(n, m, t) \u2192 TotalScore(x, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Mike scored 1 point in the second half, from FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Score(mike, second, 1)",
+      "premises": [
+        "FACT-4",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Mike scored 5 points in total, from FACT-4, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalScore(mike, 5)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "\"25% more\" means n + 0.25n, not just 0.25n; this rule computes only the increase, not the second-half total."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+RunsMilesPerWeek(x, n) — x runs n miles a week
+RunsDaysPerWeek(x, n) — x runs n days a week
+RunsHoursOnDay(x, d, n) — x runs n hours on day d
+TotalTime(x, n) — x's total running time over the week period is n hours
+Speed(x, n) — x's average running speed is n miles per hour
+
+Constants:
+john, day1, day2, day3, 60, 3, 0.5, 1.5, 6, 10
+
+## FACTS
+FACT-1: John runs 60 miles a week :: RunsMilesPerWeek(john, 60)
+FACT-2: John runs 3 days a week :: RunsDaysPerWeek(john, 3)
+FACT-3: John runs 3 hours on the first day :: RunsHoursOnDay(john, day1, 3)
+
+## OPERATIONS
+OP-1: Half of 3 hours is 1.5 hours :: Product(0.5, 3, 1.5)
+OP-2: 3 + 1.5 + 1.5 = 6 total hours :: Sum(3, 1.5, 1.5, 6)
+OP-3: 60 miles divided by 6 hours is 10 mph :: Quotient(60, 6, 10)
+
+## RULES
+RULE-1: If x runs n hours on day1 and half of n is t, then x runs t hours on day2 :: ∀x∀n∀t (RunsHoursOnDay(x, day1, n) ∧ Product(0.5, n, t) → RunsHoursOnDay(x, day2, t))
+RULE-2: If x runs n hours on day1 and half of n is t, then x runs t hours on day3 :: ∀x∀n∀t (RunsHoursOnDay(x, day1, n) ∧ Product(0.5, n, t) → RunsHoursOnDay(x, day3, t))
+RULE-3: If x runs t1 hours on day1, t2 hours on day2, t3 hours on day3, and t1+t2+t3=s, then x's total time is s :: ∀x∀t1∀t2∀t3∀s (RunsHoursOnDay(x, day1, t1) ∧ RunsHoursOnDay(x, day2, t2) ∧ RunsHoursOnDay(x, day3, t3) ∧ Sum(t1, t2, t3, s) → TotalTime(x, s))
+RULE-4: If x runs m miles a week, x's total time is t hours, and m divided by t is s, then x's average speed is s mph :: ∀x∀m∀t∀s (RunsMilesPerWeek(x, m) ∧ TotalTime(x, t) ∧ Quotient(m, t, s) → Speed(x, s))
+
+## INFERENCES
+INF-1: John runs 1.5 hours on day2, from FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: RunsHoursOnDay(john, day2, 1.5)
+INF-2: John runs 1.5 hours on day3, from FACT-3, OP-1, and RULE-2 by Universal Instantiation and Modus Ponens :: RunsHoursOnDay(john, day3, 1.5)
+INF-3: John's total running time is 6 hours, from FACT-3, INF-1, INF-2, OP-2, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalTime(john, 6)
+INF-4: John's average speed is 10 mph, from FACT-1, INF-3, OP-3, and RULE-4 by Universal Instantiation and Modus Ponens :: Speed(john, 10)

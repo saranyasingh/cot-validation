@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+ConsumesPerDay(x, n) — x consumes n yogurts per day
+Days(x, n) — x considers a period of n days
+TotalYogurts(x, n) — x consumes a total of n yogurts
+SetInfo(n, p) — a set of n yogurts costs p dollars
+TotalCost(x, p) — x's total cost is p dollars
+
+Constants:
+terry, 2, 30, 60, 4, 5, 15, 75
+
+## FACTS
+FACT-1: Terry consumes 2 yogurts per day :: ConsumesPerDay(terry, 2)
+FACT-2: Terry considers a period of 30 days :: Days(terry, 30)
+FACT-3: 4 yogurts cost $5.00 per set :: SetInfo(4, 5)
+
+## OPERATIONS
+OP-1: 2 yogurts/day * 30 days = 60 yogurts :: Product(2, 30, 60)
+OP-2: 60 yogurts / 4 yogurts per set = 15 sets :: Quotient(60, 4, 15)
+OP-3: 15 sets * $5.00/set = $75.00 :: Product(15, 5, 75)
+
+## RULES
+RULE-1: If x consumes n yogurts per day over d days and n × d = t, then x consumes a total of t yogurts :: ∀x∀n∀d∀t (ConsumesPerDay(x,n) ∧ Days(x,d) ∧ Product(n,d,t) → TotalYogurts(x,t))
+RULE-2: If x consumes a total of t yogurts, a set of s yogurts costs p dollars, t ÷ s = k sets, and k × p = c, then x's total cost is c dollars :: ∀x∀t∀s∀p∀k∀c (TotalYogurts(x,t) ∧ SetInfo(s,p) ∧ Quotient(t,s,k) ∧ Product(k,p,c) → TotalCost(x,c))
+
+## INFERENCES
+INF-1: Terry consumes a total of 60 yogurts, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalYogurts(terry, 60)
+INF-2: Terry's total cost is $75, from INF-1, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalCost(terry, 75)

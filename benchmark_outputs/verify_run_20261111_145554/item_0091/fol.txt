@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+EatsPerPerson(x, n) — each individual of type x eats n lbs of potato salad
+Count(x, n) — there are n individuals of type x
+Total(x, n) — the total amount of potato salad for x is n lbs
+
+Constants:
+adult, child, ted, 10, 20, 5, 200, 25, 225, 2
+
+## FACTS
+FACT-1: Each adult eats 10 lbs :: EatsPerPerson(adult, 10)
+FACT-2: There are 20 adults :: Count(adult, 20)
+FACT-3: There are 5 children :: Count(child, 5)
+
+## OPERATIONS
+OP-1: 10 divided by 2 is 5 (half as much) :: Quotient(10, 2, 5)
+OP-2: 10 times 20 is 200 :: Product(10, 20, 200)
+OP-3: 5 times 5 is 25 :: Product(5, 5, 25)
+OP-4: 200 plus 25 is 225 :: Sum(200, 25, 225)
+
+## RULES
+RULE-1: If each adult eats n lbs and n divided by 2 is m, then each child eats m lbs :: ∀n∀m (EatsPerPerson(adult, n) ∧ Quotient(n, 2, m) → EatsPerPerson(child, m))
+RULE-2: If each individual of type x eats n lbs and there are m of them, and n times m is p, then the total for x is p lbs :: ∀x∀n∀m∀p (EatsPerPerson(x, n) ∧ Count(x, m) ∧ Product(n, m, p) → Total(x, p))
+RULE-3: If the total for adults is n lbs and the total for children is m lbs, and n plus m is p, then Ted needs to bring p lbs :: ∀n∀m∀p (Total(adult, n) ∧ Total(child, m) ∧ Sum(n, m, p) → Total(ted, p))
+
+## INFERENCES
+INF-1: Each child eats 5 lbs, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: EatsPerPerson(child, 5)
+INF-2: The total for adults is 200 lbs, from FACT-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(adult, 200)
+INF-3: The total for children is 25 lbs, from INF-1, FACT-3, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(child, 25)
+INF-4: Ted needs to bring 225 lbs, from INF-2, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Total(ted, 225)

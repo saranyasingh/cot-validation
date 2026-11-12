@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_games(n_22)).
+fof(fact_2, axiom, win_margin(n_8)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_22, n_8, n_14)).
+fof(op_2, axiom, quotient(n_14, n_2, n_7)).
+fof(op_3, axiom, sum(n_7, n_8, n_15)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [N,M,D,L] : ((total_games(N) & win_margin(M) & difference(N,M,D) & quotient(D,n_2,L)) => losses(L))).
+fof(rule_2, axiom, ! [L,M,W] : ((losses(L) & win_margin(M) & sum(L,M,W)) => wins(W))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, losses(n_7)).
+% From inf_1, fact_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, wins(n_15)).

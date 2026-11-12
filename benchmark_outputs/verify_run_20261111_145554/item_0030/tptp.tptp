@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, cost(first_pair, n_33)).
+fof(fact_2, axiom, twice_as_much(second_pair, first_pair)).
+fof(fact_3, axiom, combined_of(heels_total, first_pair, second_pair)).
+fof(fact_4, axiom, less_than_by(heels_total, boots, n_5)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_33, n_66)).
+fof(op_2, axiom, sum(n_33, n_66, n_99)).
+fof(op_3, axiom, sum(n_99, n_5, n_104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,M,P] : ((twice_as_much(X, Y) & cost(Y, M) & product(n_2, M, P)) => cost(X, P))).
+fof(rule_2, axiom, ! [X,Y,Z,N,M,S] : ((combined_of(Z, X, Y) & cost(X, N) & cost(Y, M) & sum(N, M, S)) => cost(Z, S))).
+fof(rule_3, axiom, ! [X,Y,N,M,S] : ((less_than_by(X, Y, N) & cost(X, M) & sum(M, N, S)) => cost(Y, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(second_pair, n_66)).
+% From fact_3, fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, cost(heels_total, n_99)).
+% From fact_4, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, cost(boots, n_104)).

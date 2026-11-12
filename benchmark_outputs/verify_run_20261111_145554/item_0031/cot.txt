@@ -1,0 +1,42 @@
+To solve this problem, we need to follow these steps:
+
+**Premise 1:** Darrell and Allen's ages are in the ratio of 7:11.
+
+Let's denote Darrell's age as \( D \) and Allen's age as \( A \).
+
+According to the given ratio,
+\[ \frac{D}{A} = \frac{7}{11} \]
+
+This means that for every 7 parts of Darrell's age, Allen's age has 11 parts. Therefore, if we let \( x \) represent the common multiple (the product of the ratios), then:
+\[ D = 7x \]
+\[ A = 11x \]
+
+**Premise 2:** Their total age now is 162.
+
+So, we have:
+\[ D + A = 162 \]
+
+Substituting \( D \) and \( A \) from Premise 1 into this equation gives us:
+\[ 7x + 11x = 162 \]
+
+Combining like terms, we get:
+\[ 18x = 162 \]
+
+Solving for \( x \):
+\[ x = \frac{162}{18} \]
+\[ x = 9 \]
+
+Now, using the value of \( x \) to find the current ages of both Darrell and Allen:
+\[ D = 7x = 7 \times 9 = 63 \]
+\[ A = 11x = 11 \times 9 = 99 \]
+
+Therefore, currently, Darrell is 63 years old and Allen is 99 years old.
+
+**Premise 3:** Calculate Allen's age 10 years from now.
+
+In 10 years, Allen’s age will be:
+\[ A_{\text{future}} = A + 10 \]
+\[ A_{\text{future}} = 99 + 10 \]
+\[ A_{\text{future}} = 109 \]
+
+Thus, Allen's age 10 years from now will be **109**.

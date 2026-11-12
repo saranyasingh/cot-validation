@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Pets(x, n) — x has n pets
+MoreThan(x, y, n) — x has n more pets than y
+TimesAsMany(x, y, n) — x has n times as many pets as y
+Total(n) — the total number of pets (among Jan, Marcia, and Cindy) is n
+
+Constants:
+cindy, marcia, jan, 4, 2, 6, 3, 18, 28
+
+## FACTS
+FACT-1: Cindy has 4 pets :: Pets(cindy, 4)
+FACT-2: Marcia has two more pets than Cindy :: MoreThan(marcia, cindy, 2)
+FACT-3: Jan has three times the number of pets as Marcia :: TimesAsMany(jan, marcia, 3)
+
+## OPERATIONS
+OP-1: 4 + 2 = 6 :: Sum(4, 2, 6)
+OP-2: 3 × 6 = 18 :: Product(3, 6, 18)
+OP-3: 18 + 6 + 4 = 28 :: Sum(18, 6, 4, 28)
+
+## RULES
+RULE-1: If x has n more pets than y, and y has m pets, and m + n = r, then x has r pets :: ∀x∀y∀n∀m∀r (MoreThan(x,y,n) ∧ Pets(y,m) ∧ Sum(m,n,r) → Pets(x,r))
+RULE-2: If x has n times as many pets as y, and y has m pets, and n × m = r, then x has r pets :: ∀x∀y∀n∀m∀r (TimesAsMany(x,y,n) ∧ Pets(y,m) ∧ Product(n,m,r) → Pets(x,r))
+RULE-3: If x has n pets, y has m pets, z has p pets, and n + m + p = r, then the total number of pets is r :: ∀x∀y∀z∀n∀m∀p∀r (Pets(x,n) ∧ Pets(y,m) ∧ Pets(z,p) ∧ Sum(n,m,p,r) → Total(r))
+
+## INFERENCES
+INF-1: Marcia has 6 pets, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Pets(marcia, 6)
+INF-2: Jan has 18 pets, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Pets(jan, 18)
+INF-3: The total number of pets is 28, from INF-2, INF-1, FACT-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Total(28)

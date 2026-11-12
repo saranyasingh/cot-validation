@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, length_feet(tracy, n_4)).
+fof(fact_2, axiom, piece_length(tracy, n_6)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_4, n_12, n_48)).
+fof(op_2, axiom, quotient(n_48, n_6, n_8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,F,I] : ((length_feet(X, F) & product(F, n_12, I)) => length_inches(X, I))).
+fof(rule_2, axiom, ! [X,I,P,N] : ((length_inches(X, I) & piece_length(X, P) & quotient(I, P, N)) => num_pieces(X, N))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, length_inches(tracy, n_48)).
+% From inf_1, fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, num_pieces(tracy, n_8)).

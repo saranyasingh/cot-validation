@@ -1,0 +1,191 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each serving of the bag has 250 calories",
+      "formula": "Amount(bag, calories_per_serving, 250)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The bag has 5 servings",
+      "formula": "Amount(bag, servings, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The bag weighs 300 grams",
+      "formula": "Amount(bag, weight, 300)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Your daily calorie target is 2000 calories",
+      "formula": "Amount(you, daily_limit, 2000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "You have already consumed 1800 calories",
+      "formula": "Amount(you, consumed, 1800)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "250 calories/serving \u00d7 5 servings = 1250 calories",
+      "formula": "Product(250, 5, 1250)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "2000 \u2212 1800 = 200 remaining calories",
+      "formula": "Difference(2000, 1800, 200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "1250 \u00f7 300 \u2248 4.17 calories per gram",
+      "formula": "Quotient(1250, 300, 4.17)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "200 \u00f7 4.17 \u2248 47.96 grams",
+      "formula": "Quotient(200, 4.17, 47.96)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n calories per serving and m servings and n\u00d7m=p, then x has p total calories",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Amount(x, calories_per_serving, n) \u2227 Amount(x, servings, m) \u2227 Product(n, m, p) \u2192 Amount(x, total_calories, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has a daily calorie limit of n and has consumed m, and n\u2212m=r, then x has r remaining calories",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Amount(x, daily_limit, n) \u2227 Amount(x, consumed, m) \u2227 Difference(n, m, r) \u2192 Amount(x, remaining_calories, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has n total calories and weighs m grams, and n\u00f7m=r, then x has a calorie-per-gram rate of r",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Amount(x, total_calories, n) \u2227 Amount(x, weight, m) \u2227 Quotient(n, m, r) \u2192 Amount(x, calories_per_gram, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If y has n remaining calories and x has a calorie-per-gram rate of m, and n\u00f7m=r, then y is allowed r grams",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (Amount(y, remaining_calories, n) \u2227 Amount(x, calories_per_gram, m) \u2227 Quotient(n, m, r) \u2192 Amount(y, grams_allowed, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The bag has 1250 total calories, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(bag, total_calories, 1250)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "You have 200 remaining calories, from FACT-4, FACT-5, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(you, remaining_calories, 200)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The bag's calorie-per-gram rate is 4.17, from INF-1, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(bag, calories_per_gram, 4.17)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "You are allowed approximately 47.96 grams of chips, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(you, grams_allowed, 47.96)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Rounding 47.96 grams gives 48 grams allowed, from INF-4 by Rounding",
+      "formula": "Amount(you, grams_allowed, 48)",
+      "premises": [
+        "INF-4"
+      ],
+      "inference_rule": "Rounding",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "INF-5",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

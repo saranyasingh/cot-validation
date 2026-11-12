@@ -1,0 +1,26 @@
+EXPLANATION
+To determine the total number of gems in the chest, we need to calculate the quantity of each type of gem separately and then sum them up.
+
+First, let's find out how many rubies there are. We know that there are 175 diamonds and 35 fewer rubies than diamonds. Therefore, the number of rubies can be calculated as follows:
+\[ \text{Number of rubies} = \text{Number of diamonds} - 35 \]
+Substituting the given value for diamonds:
+\[ \text{Number of rubies} = 175 - 35 = 140 \]
+
+Next, we need to find out how many emeralds there are. We know that there are twice the number of emeralds as rubies. Therefore, the number of emeralds can be calculated as follows:
+\[ \text{Number of emeralds} = 2 \times \text{Number of rubies} \]
+Substituting the previously calculated value for rubies:
+\[ \text{Number of emeralds} = 2 \times 140 = 280 \]
+
+Now, we have all the quantities of the gems:
+- Diamonds: 175
+- Rubies: 140
+- Emeralds: 280
+
+To find the total number of gems, we add these quantities together:
+\[ \text{Total number of gems} = \text{Number of diamonds} + \text{Number of rubies} + \text{Number of emeralds} \]
+Substituting the values we calculated:
+\[ \text{Total number of gems} = 175 + 140 + 280 = 595 \]
+
+Therefore, the total number of gems in the chest is 595.
+
+The answer is: 595

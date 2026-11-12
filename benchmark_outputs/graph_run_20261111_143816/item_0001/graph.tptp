@@ -1,0 +1,33 @@
+% Declarations
+tff(egg_use_type, type, egg_use: $tType).
+tff(person_type, type, person: $tType).
+tff(janet_decl, type, janet: person).
+tff(breakfast_decl, type, breakfast: egg_use).
+tff(baking_decl, type, baking: egg_use).
+tff(eggs_laid_decl, type, eggs_laid: (person * $rat) > $o).
+tff(eggs_used_for_decl, type, eggs_used_for: (person * egg_use * $rat) > $o).
+tff(egg_use_of_decl, type, egg_use_of: (person * egg_use) > $o).
+tff(total_eggs_used_decl, type, total_eggs_used: (person * $rat) > $o).
+tff(remaining_eggs_decl, type, remaining_eggs: (person * $rat) > $o).
+tff(price_per_egg_decl, type, price_per_egg: (person * $rat) > $o).
+tff(sells_remaining_decl, type, sells_remaining: person > $o).
+tff(daily_revenue_decl, type, daily_revenue: (person * $rat) > $o).
+tff(answer_decl, type, answer: $rat > $o).
+tff(breakfast_neq_baking, axiom, breakfast != baking).
+
+% Statements
+tff(c1, axiom, eggs_laid(janet, 16/1)).
+tff(c2, axiom, eggs_used_for(janet, breakfast, 3/1)).
+tff(c3, axiom, eggs_used_for(janet, baking, 4/1)).
+tff(c4, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((eggs_used_for(V_x, breakfast, V_a) & eggs_used_for(V_x, baking, V_b) & V_c = $sum(V_a, V_b)) => total_eggs_used(V_x, V_c))).
+tff(c5, lemma, total_eggs_used(janet, 7/1)).
+tff(c6, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((eggs_laid(V_x, V_a) & total_eggs_used(V_x, V_b) & V_c = $difference(V_a, V_b)) => remaining_eggs(V_x, V_c))).
+tff(c7, lemma, remaining_eggs(janet, 9/1)).
+tff(c8, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((remaining_eggs(V_x, V_a) & price_per_egg(V_x, V_b) & sells_remaining(V_x) & V_c = $product(V_a, V_b)) => daily_revenue(V_x, V_c))).
+tff(c9, axiom, price_per_egg(janet, 2/1)).
+tff(c10, lemma, daily_revenue(janet, 18/1)).
+tff(c11, lemma, answer(18/1)).
+tff(i1, axiom, ![V_m: egg_use]: (egg_use_of(janet, V_m) <=> (V_m = breakfast | V_m = baking))).
+tff(i2, axiom, sells_remaining(janet)).
+tff(i3, axiom, ![V_x: person, V_a: $rat]: (daily_revenue(V_x, V_a) => answer(V_a))).
+tff(s1_agg, axiom, ![N1: $rat, N2: $rat]: ((eggs_used_for(janet, breakfast, N1) & eggs_used_for(janet, baking, N2)) => total_eggs_used(janet, $sum(N1, N2)))).

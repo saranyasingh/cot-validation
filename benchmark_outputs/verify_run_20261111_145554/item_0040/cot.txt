@@ -1,0 +1,21 @@
+Explanation:
+1. Let's denote Dana's walking speed as \( W \) mph.
+2. According to the problem, Dana runs at a speed that is four times her walking speed, so her running speed \( R \) is \( 4W \).
+3. It is also given that Dana skips at a speed that is half as fast as she runs, which means her skipping speed \( S \) is \( \frac{R}{2} = \frac{4W}{2} = 2W \).
+4. We know from the problem statement that Dana's skipping speed is 3 mph. Therefore, we can set up the equation \( 2W = 3 \) to find her walking speed.
+5. Solving for \( W \), we get \( W = \frac{3}{2} = 1.5 \) mph.
+6. Now, let's calculate the distance Dana covers while running and walking.
+7. In one third of the total time (two hours), she runs at 4 mph for 2 hours. Distance covered while running \( D_{\text{run}} \) is calculated as:
+   \[
+   D_{\text{run}} = R \times t = 4W \times \frac{2}{3} = 4(1.5) \times \frac{2}{3} = 2 \text{ miles}
+   \]
+8. In the remaining two thirds of the total time (four hours), she walks at 1.5 mph for 4 hours. Distance covered while walking \( D_{\text{walk}} \) is calculated as:
+   \[
+   D_{\text{walk}} = W \times t = 1.5 \times 4 = 6 \text{ miles}
+   \]
+9. Adding these distances together gives us the total distance traveled:
+   \[
+   D_{\text{total}} = D_{\text{run}} + D_{\text{walk}} = 2 + 6 = 8 \text{ miles}
+   \]
+
+Therefore, the answer is: 8.

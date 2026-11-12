@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Weighs(y, n) — each unit of item y weighs n pounds
+Removes(x, y, n) — x removes n units of item y
+NeedsToRemove(x, n) — x needs to remove a total weight of n pounds
+TotalWeight(x, y, n) — the total weight of items y that x removes is n pounds
+
+Constants:
+uriah, comic_book, toy, 30, 0.25, 0.5, 15, 7.5
+
+## FACTS
+FACT-1: Each comic book weighs 1/4 pound :: Weighs(comic_book, 0.25)
+FACT-2: Uriah is removing 30 comic books :: Removes(uriah, comic_book, 30)
+FACT-3: Each toy weighs 1/2 pound :: Weighs(toy, 0.5)
+FACT-4: Uriah needs to remove a total weight of 15 pounds :: NeedsToRemove(uriah, 15)
+
+## OPERATIONS
+OP-1: 30 times 1/4 is 7.5 :: Product(30, 0.25, 7.5)
+OP-2: 15 divided by 1/2 is 30 :: Quotient(15, 0.5, 30)
+
+## RULES
+RULE-1: If x removes n units of y, each y weighs w pounds, and n × w = p, then the total weight of y removed by x is p pounds :: ∀x∀y∀n∀w∀p (Removes(x,y,n) ∧ Weighs(y,w) ∧ Product(n,w,p) → TotalWeight(x,y,p))
+RULE-2: If x needs to remove a total weight of n pounds, each unit of y weighs w pounds, and n ÷ w = c, then x must remove c units of y :: ∀x∀y∀n∀w∀c (NeedsToRemove(x,n) ∧ Weighs(y,w) ∧ Quotient(n,w,c) → Removes(x,y,c))
+
+## INFERENCES
+INF-1: The total weight of comic books removed by Uriah is 7.5 pounds, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalWeight(uriah, comic_book, 7.5)
+INF-2: Uriah must remove 30 toys, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Removes(uriah, toy, 30)

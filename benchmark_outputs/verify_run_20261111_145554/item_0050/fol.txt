@@ -1,0 +1,36 @@
+## VOCABULARY
+Predicates:
+Floors(x, n) — building x has n total floors
+OccupiedFraction(x, f) — the fraction of building x's floors that are occupied is f
+UnitsPerFloor(x, n) — building x has n units on each floor
+Quantity(x, t, n) — the quantity of type t for building x equals n
+
+Constants:
+building, 15, 0.75, 8, 11.25, 0.25, 11, 4, 32, 120, 88, occupied_floors, unoccupied_floors, unoccupied_units_floors, total_units, unoccupied_units_total
+
+## FACTS
+FACT-1: The building has 15 floors in total :: Floors(building, 15)
+FACT-2: 3/4 of the building is occupied :: OccupiedFraction(building, 0.75)
+FACT-3: There are 8 units per floor :: UnitsPerFloor(building, 8)
+
+## OPERATIONS
+OP-1: (3/4) * 15 = 11.25 :: Product(0.75, 15, 11.25)
+OP-2: Rounding 11.25 down to 11 by removing the 0.25 fractional part :: Difference(11.25, 0.25, 11)
+OP-3: 15 - 11 = 4 unoccupied floors :: Difference(15, 11, 4)
+OP-4: 8 * 4 = 32 unoccupied units on unoccupied floors :: Product(8, 4, 32)
+OP-5: 15 * 8 = 120 total units in the building :: Product(15, 8, 120)
+OP-6: 120 - 32 = 88 unoccupied units in the entire building :: Difference(120, 32, 88)
+
+## RULES
+RULE-1: If a building has n floors and fraction f occupied, f×n=p, and p rounds down to r, then the building has r occupied floors :: ∀x∀n∀f∀p∀c∀r (Floors(x,n) ∧ OccupiedFraction(x,f) ∧ Product(f,n,p) ∧ Difference(p,c,r) → Quantity(x,occupied_floors,r))
+RULE-2: If a building has n total floors and o occupied floors, and n−o=u, then the building has u unoccupied floors :: ∀x∀n∀o∀u (Floors(x,n) ∧ Quantity(x,occupied_floors,o) ∧ Difference(n,o,u) → Quantity(x,unoccupied_floors,u))
+RULE-3: If a building has m units per floor and u unoccupied floors, and m×u=q, then the building has q unoccupied units on those floors :: ∀x∀m∀u∀q (UnitsPerFloor(x,m) ∧ Quantity(x,unoccupied_floors,u) ∧ Product(m,u,q) → Quantity(x,unoccupied_units_floors,q))
+RULE-4: If a building has n total floors and m units per floor, and n×m=t, then the building has t total units :: ∀x∀n∀m∀t (Floors(x,n) ∧ UnitsPerFloor(x,m) ∧ Product(n,m,t) → Quantity(x,total_units,t))
+RULE-5: If a building has t total units and q unoccupied units on unoccupied floors, and t−q=r, then the building has r unoccupied units in total :: ∀x∀t∀q∀r (Quantity(x,total_units,t) ∧ Quantity(x,unoccupied_units_floors,q) ∧ Difference(t,q,r) → Quantity(x,unoccupied_units_total,r))
+
+## INFERENCES
+INF-1: The building has 11 occupied floors, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Quantity(building, occupied_floors, 11)
+INF-2: The building has 4 unoccupied floors, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Quantity(building, unoccupied_floors, 4)
+INF-3: The building has 32 unoccupied units on unoccupied floors, from FACT-3, INF-2, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Quantity(building, unoccupied_units_floors, 32)
+INF-4: The building has 120 total units, from FACT-1, FACT-3, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Quantity(building, total_units, 120)
+INF-5: The building has 88 unoccupied units in total, from INF-4, INF-3, OP-6, and RULE-5 by Universal Instantiation and Modus Ponens :: Quantity(building, unoccupied_units_total, 88)

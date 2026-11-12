@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 6 clusters",
+      "formula": "Clusters(bush, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each cluster contains 20 fruits",
+      "formula": "PerCluster(bush, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 67 individual fruits",
+      "formula": "Individual(bush, 67)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "6 times 20 is 120",
+      "formula": "Product(6, 20, 120)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "120 plus 67 is 187",
+      "formula": "Sum(120, 67, 187)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n clusters with m fruits each and n \u00d7 m = p, then x has p fruits from clusters",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Clusters(x,n) \u2227 PerCluster(x,m) \u2227 Product(n,m,p) \u2192 Total(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has p fruits from clusters and k individual fruits and p + k = r, then x has a total of r raspberries",
+      "formula": "\u2200x\u2200p\u2200k\u2200r (Total(x,p) \u2227 Individual(x,k) \u2227 Sum(p,k,r) \u2192 Total(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The bush has 120 fruits from clusters, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(bush, 120)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The bush has a total of 187 raspberries, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(bush, 187)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

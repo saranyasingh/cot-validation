@@ -1,0 +1,6 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — "25% more" means n + 0.25n, not just 0.25n; this rule computes only the increase, not the second-half total.
+RULE-2: PLAUSIBLE

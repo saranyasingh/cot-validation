@@ -1,0 +1,20 @@
+% OP-1: Product(600, 1.10, 660)
+tff(op_1, conjecture, $product(600/1, 11/10) = 660/1).
+% OP-2: Product(660, 1.10, 726)
+tff(op_2, conjecture, $product(660/1, 11/10) = 726/1).
+% OP-3: Product(726, 1.10, 800)
+tff(op_3, conjecture, $product(726/1, 11/10) = 800/1).
+% OP-4: Product(800, 1.10, 880)
+tff(op_4, conjecture, $product(800/1, 11/10) = 880/1).
+% OP-5: Product(880, 1.10, 968)
+tff(op_5, conjecture, $product(880/1, 11/10) = 968/1).
+% OP-6: Sum(0, 1, 1)
+tff(op_6, conjecture, $sum(0/1, 1/1) = 1/1).
+% OP-7: Sum(1, 1, 2)
+tff(op_7, conjecture, $sum(1/1, 1/1) = 2/1).
+% OP-8: Sum(2, 1, 3)
+tff(op_8, conjecture, $sum(2/1, 1/1) = 3/1).
+% OP-9: Sum(3, 1, 4)
+tff(op_9, conjecture, $sum(3/1, 1/1) = 4/1).
+% OP-10: Sum(4, 1, 5)
+tff(op_10, conjecture, $sum(4/1, 1/1) = 5/1).

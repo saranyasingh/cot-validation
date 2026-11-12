@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Sheep(x, n) — x has n sheep
+TimesAsMany(x, y, n) — x has n times as many sheep as y
+Total(x, y, z, n) — the total number of sheep of x, y, and z combined is n
+
+Constants:
+seattle, charleston, toulouse, 20, 4, 2, 80, 160, 260
+
+## FACTS
+FACT-1: Seattle has 20 sheep :: Sheep(seattle, 20)
+FACT-2: Charleston has 4 times as many sheep as Seattle :: TimesAsMany(charleston, seattle, 4)
+FACT-3: Toulouse has 2 times as many sheep as Charleston :: TimesAsMany(toulouse, charleston, 2)
+
+## OPERATIONS
+OP-1: 4 times 20 is 80 :: Product(4, 20, 80)
+OP-2: 2 times 80 is 160 :: Product(2, 80, 160)
+OP-3: 20 plus 80 plus 160 is 260 :: Sum(20, 80, 160, 260)
+
+## RULES
+RULE-1: If x has n times as many sheep as y, y has m sheep, and n × m = p, then x has p sheep :: ∀x∀y∀n∀m∀p (TimesAsMany(x,y,n) ∧ Sheep(y,m) ∧ Product(n,m,p) → Sheep(x,p))
+RULE-2: If x has a sheep, y has b sheep, z has c sheep, and a + b + c = s, then the total sheep of x, y, z is s :: ∀x∀y∀z∀a∀b∀c∀s (Sheep(x,a) ∧ Sheep(y,b) ∧ Sheep(z,c) ∧ Sum(a,b,c,s) → Total(x,y,z,s))
+
+## INFERENCES
+INF-1: Charleston has 80 sheep, from FACT-2, FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Sheep(charleston, 80)
+INF-2: Toulouse has 160 sheep, from FACT-3, INF-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Sheep(toulouse, 160)
+INF-3: The total number of sheep in Seattle, Charleston, and Toulouse is 260, from FACT-1, INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(seattle, charleston, toulouse, 260)

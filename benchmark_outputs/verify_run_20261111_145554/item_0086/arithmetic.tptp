@@ -1,0 +1,4 @@
+% OP-1: Difference(34, 23, 11)
+tff(op_1, conjecture, $difference(34/1, 23/1) = 11/1).
+% OP-2: Product(4, 11, 44)
+tff(op_2, conjecture, $product(4/1, 11/1) = 44/1).

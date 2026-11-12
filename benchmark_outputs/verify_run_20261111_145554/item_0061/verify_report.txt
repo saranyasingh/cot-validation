@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The problem states 1 orange is bad as a separate category from unripe and sour; this rule omits that orange and incorrectly defines "bad" as only unripe+sour, undercounting the total non-good oranges.
+RULE-3: PLAUSIBLE

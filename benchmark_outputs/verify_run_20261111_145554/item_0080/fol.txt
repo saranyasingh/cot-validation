@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+OriginalPrice(x, n) — the original grooming price for x is n
+DiscountRate(x, n) — the discount rate applied for x is n
+DiscountAmount(x, n) — the discount amount for x is n
+FinalPrice(x, n) — the final price x pays after discount is n
+Constants:
+john, 100, 0.30, 30, 70
+
+## FACTS
+FACT-1: The original price of grooming is $100 :: OriginalPrice(john, 100)
+FACT-2: The discount offered is 30% :: DiscountRate(john, 0.30)
+
+## OPERATIONS
+OP-1: $100 * 0.30 = $30 :: Product(100, 0.30, 30)
+OP-2: $100 - $30 = $70 :: Difference(100, 30, 70)
+
+## RULES
+RULE-1: If x's original price is p and discount rate is r, and p × r = d, then x's discount amount is d :: ∀x∀p∀r∀d (OriginalPrice(x,p) ∧ DiscountRate(x,r) ∧ Product(p,r,d) → DiscountAmount(x,d))
+RULE-2: If x's original price is p and discount amount is d, and p − d = f, then x's final price is f :: ∀x∀p∀d∀f (OriginalPrice(x,p) ∧ DiscountAmount(x,d) ∧ Difference(p,d,f) → FinalPrice(x,f))
+
+## INFERENCES
+INF-1: The discount amount for John is 30, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: DiscountAmount(john, 30)
+INF-2: The final price John pays is 70, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: FinalPrice(john, 70)

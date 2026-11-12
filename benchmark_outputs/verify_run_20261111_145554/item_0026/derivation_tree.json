@@ -1,0 +1,211 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The chicken meal costs $12",
+      "formula": "Cost(chicken_meal, 12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Marie bought 5 packs of milk",
+      "formula": "Quantity(milk, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each pack of milk costs $3",
+      "formula": "PricePer(milk, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Marie bought 4 apples",
+      "formula": "Quantity(apples, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Each apple costs $1.50",
+      "formula": "PricePer(apples, 1.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Marie paid $50 in total",
+      "formula": "Paid(marie, 50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Each box of pizza costs $8.50",
+      "formula": "PricePer(pizza, 8.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 \u00d7 3 = 15 (cost of milk)",
+      "formula": "Product(5, 3, 15)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 \u00d7 1.5 = 6 (cost of apples)",
+      "formula": "Product(4, 1.5, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "12 + 15 + 6 = 33 (total non-pizza cost)",
+      "formula": "Sum(12, 15, 6, 33)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "50 \u2212 33 = 17 (remaining amount / pizza cost)",
+      "formula": "Difference(50, 33, 17)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "17 \u00f7 8.5 = 2 (number of pizza boxes)",
+      "formula": "Quotient(17, 8.5, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's quantity is n and price per unit is m, and n \u00d7 m = p, then the cost of x is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x,n) \u2227 PricePer(x,m) \u2227 Product(n,m,p) \u2192 Cost(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the chicken meal costs a, milk costs b, apples cost c, and a + b + c = s, then the non-pizza items cost s",
+      "formula": "\u2200a\u2200b\u2200c\u2200s (Cost(chicken_meal,a) \u2227 Cost(milk,b) \u2227 Cost(apples,c) \u2227 Sum(a,b,c,s) \u2192 Cost(non_pizza_items,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x paid n total and the non-pizza items cost m, and n \u2212 m = r, then the pizza cost is r",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Paid(x,n) \u2227 Cost(non_pizza_items,m) \u2227 Difference(n,m,r) \u2192 Cost(pizza,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the pizza cost is n, the price per box is m, and n \u00f7 m = q, then x ordered q boxes of pizza",
+      "formula": "\u2200x\u2200n\u2200m\u2200q (Cost(pizza,n) \u2227 PricePer(pizza,m) \u2227 Quotient(n,m,q) \u2192 Boxes(x,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The cost of milk is $15, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(milk, 15)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The cost of apples is $6, from FACT-4, FACT-5, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(apples, 6)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The cost of non-pizza items is $33, from FACT-1, INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(non_pizza_items, 33)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The cost of pizzas is $17, from FACT-6, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(pizza, 17)",
+      "premises": [
+        "FACT-6",
+        "INF-3",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Marie ordered 2 boxes of pizza, from INF-4, FACT-7, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Boxes(marie, 2)",
+      "premises": [
+        "INF-4",
+        "FACT-7",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

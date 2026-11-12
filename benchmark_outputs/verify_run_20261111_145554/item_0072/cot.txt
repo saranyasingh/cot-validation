@@ -1,0 +1,28 @@
+Explanation:
+1. Let's start by identifying the given information:
+   - First recipe has 20 instructions.
+   - Second recipe has twice as many instructions as the first.
+
+2. To find out how many instructions the second recipe has, we need to multiply the number of instructions in the first recipe by 2.
+   
+3. Calculating the number of instructions in the second recipe:
+   \[
+   \text{Instructions in second recipe} = 2 \times \text{Instructions in first recipe}
+   \]
+   Substituting the value from step 1:
+   \[
+   \text{Instructions in second recipe} = 2 \times 20 = 40
+   \]
+
+4. Now that we know both recipes have their respective numbers of instructions, we can add them together to get the total number of instructions Kelian needs to read to prepare both dishes.
+
+5. Adding the instructions from both recipes:
+   \[
+   \text{Total instructions} = \text{Instructions in first recipe} + \text{Instructions in second recipe}
+   \]
+   Substituting the values from steps 1 and 3:
+   \[
+   \text{Total instructions} = 20 + 40 = 60
+   \]
+
+Therefore, the answer is: 60

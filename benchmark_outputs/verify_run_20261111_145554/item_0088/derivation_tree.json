@@ -1,0 +1,213 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Sylvie's initial monthly salary is 600",
+      "formula": "MonthlySalary(sylvie, 600)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "600 times 1.10 is 660",
+      "formula": "Product(600, 1.10, 660)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "660 times 1.10 is 726",
+      "formula": "Product(660, 1.10, 726)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "726 times 1.10 is 800",
+      "formula": "Product(726, 1.10, 800)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "726 * 1.1 = 798.6, not 800",
+      "error": true
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "800 times 1.10 is 880",
+      "formula": "Product(800, 1.10, 880)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "880 times 1.10 is 968",
+      "formula": "Product(880, 1.10, 968)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "0 plus 1 is 1",
+      "formula": "Sum(0, 1, 1)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "1 plus 1 is 2",
+      "formula": "Sum(1, 1, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-8": {
+      "type": "operation",
+      "gloss": "2 plus 1 is 3",
+      "formula": "Sum(2, 1, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-9": {
+      "type": "operation",
+      "gloss": "3 plus 1 is 4",
+      "formula": "Sum(3, 1, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-10": {
+      "type": "operation",
+      "gloss": "4 plus 1 is 5",
+      "formula": "Sum(4, 1, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's initial monthly salary is s, then x's salary after 0 years of service is s",
+      "formula": "\u2200x\u2200s (MonthlySalary(x,s) \u2192 Salary(x,0,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's salary after n years is s, and s times 1.10 equals s2, and n plus 1 equals m, then x's salary after m years is s2",
+      "formula": "\u2200x\u2200n\u2200m\u2200s\u2200s2 (Salary(x,n,s) \u2227 Product(s,1.10,s2) \u2227 Sum(n,1,m) \u2192 Salary(x,m,s2))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The problem states the raise is 10% of the *initial* salary each year (a fixed flat increase), not 10% of the current salary compounded annually. Using s \u00d7 1.10 incorrectly compounds the raise instead of adding a constant amount (0.10 \u00d7 initial salary) each year.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 0 years is 600, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 0, 600)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 1 year is 660, from INF-1, OP-1, OP-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 1, 660)",
+      "premises": [
+        "INF-1",
+        "OP-1",
+        "OP-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 2 years is 726, from INF-2, OP-2, OP-7, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 2, 726)",
+      "premises": [
+        "INF-2",
+        "OP-2",
+        "OP-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 3 years is 800, from INF-3, OP-3, OP-8, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 3, 800)",
+      "premises": [
+        "INF-3",
+        "OP-3",
+        "OP-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 4 years is 880, from INF-4, OP-4, OP-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 4, 880)",
+      "premises": [
+        "INF-4",
+        "OP-4",
+        "OP-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Sylvie's salary after 5 years is 968, from INF-5, OP-5, OP-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Salary(sylvie, 5, 968)",
+      "premises": [
+        "INF-5",
+        "OP-5",
+        "OP-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "OP-3",
+      "stage": "arithmetic",
+      "message": "726 * 1.1 = 798.6, not 800"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The problem states the raise is 10% of the *initial* salary each year (a fixed flat increase), not 10% of the current salary compounded annually. Using s \u00d7 1.10 incorrectly compounds the raise instead of adding a constant amount (0.10 \u00d7 initial salary) each year."
+    }
+  ],
+  "error_stages": [
+    "arithmetic",
+    "verify"
+  ]
+}

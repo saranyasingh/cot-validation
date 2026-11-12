@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John runs 60 miles a week",
+      "formula": "RunsMilesPerWeek(john, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "John runs 3 days a week",
+      "formula": "RunsDaysPerWeek(john, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "John runs 3 hours on the first day",
+      "formula": "RunsHoursOnDay(john, day1, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Half of 3 hours is 1.5 hours",
+      "formula": "Product(0.5, 3, 1.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3 + 1.5 + 1.5 = 6 total hours",
+      "formula": "Sum(3, 1.5, 1.5, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "60 miles divided by 6 hours is 10 mph",
+      "formula": "Quotient(60, 6, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x runs n hours on day1 and half of n is t, then x runs t hours on day2",
+      "formula": "\u2200x\u2200n\u2200t (RunsHoursOnDay(x, day1, n) \u2227 Product(0.5, n, t) \u2192 RunsHoursOnDay(x, day2, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x runs n hours on day1 and half of n is t, then x runs t hours on day3",
+      "formula": "\u2200x\u2200n\u2200t (RunsHoursOnDay(x, day1, n) \u2227 Product(0.5, n, t) \u2192 RunsHoursOnDay(x, day3, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x runs t1 hours on day1, t2 hours on day2, t3 hours on day3, and t1+t2+t3=s, then x's total time is s",
+      "formula": "\u2200x\u2200t1\u2200t2\u2200t3\u2200s (RunsHoursOnDay(x, day1, t1) \u2227 RunsHoursOnDay(x, day2, t2) \u2227 RunsHoursOnDay(x, day3, t3) \u2227 Sum(t1, t2, t3, s) \u2192 TotalTime(x, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x runs m miles a week, x's total time is t hours, and m divided by t is s, then x's average speed is s mph",
+      "formula": "\u2200x\u2200m\u2200t\u2200s (RunsMilesPerWeek(x, m) \u2227 TotalTime(x, t) \u2227 Quotient(m, t, s) \u2192 Speed(x, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "John runs 1.5 hours on day2, from FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "RunsHoursOnDay(john, day2, 1.5)",
+      "premises": [
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "John runs 1.5 hours on day3, from FACT-3, OP-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "RunsHoursOnDay(john, day3, 1.5)",
+      "premises": [
+        "FACT-3",
+        "OP-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "John's total running time is 6 hours, from FACT-3, INF-1, INF-2, OP-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalTime(john, 6)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "INF-2",
+        "OP-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "John's average speed is 10 mph, from FACT-1, INF-3, OP-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Speed(john, 10)",
+      "premises": [
+        "FACT-1",
+        "INF-3",
+        "OP-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

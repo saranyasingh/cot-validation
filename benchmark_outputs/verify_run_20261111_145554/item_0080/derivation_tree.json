@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The original price of grooming is $100",
+      "formula": "OriginalPrice(john, 100)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The discount offered is 30%",
+      "formula": "DiscountRate(john, 0.30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$100 * 0.30 = $30",
+      "formula": "Product(100, 0.30, 30)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$100 - $30 = $70",
+      "formula": "Difference(100, 30, 70)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's original price is p and discount rate is r, and p \u00d7 r = d, then x's discount amount is d",
+      "formula": "\u2200x\u2200p\u2200r\u2200d (OriginalPrice(x,p) \u2227 DiscountRate(x,r) \u2227 Product(p,r,d) \u2192 DiscountAmount(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's original price is p and discount amount is d, and p \u2212 d = f, then x's final price is f",
+      "formula": "\u2200x\u2200p\u2200d\u2200f (OriginalPrice(x,p) \u2227 DiscountAmount(x,d) \u2227 Difference(p,d,f) \u2192 FinalPrice(x,f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The discount amount for John is 30, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "DiscountAmount(john, 30)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The final price John pays is 70, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "FinalPrice(john, 70)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

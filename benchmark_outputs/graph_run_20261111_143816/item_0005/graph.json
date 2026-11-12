@@ -1,0 +1,501 @@
+{
+  "question": "Every day, Wendi feeds each of her chickens three cups of mixed chicken feed, containing seeds, mealworms and vegetables to help keep them healthy.  She gives the chickens their feed in three separate meals. In the morning, she gives her flock of chickens 15 cups of feed.  In the afternoon, she gives her chickens another 25 cups of feed.  How many cups of feed does she need to give her chickens in the final meal of the day if the size of Wendi's flock is 20 chickens?",
+  "cot": "Let's break down the problem step by step using logical syllogism.\n\n1. Each chicken gets 3 cups of feed per day.\n2. Wendi has 20 chickens.\n3. Therefore, the total daily feed requirement for all chickens is \\(20 \\text{ chickens} \\times 3 \\text{ cups/chicken} = 60 \\text{ cups}\\).\n4. In the morning, Wendi gives 15 cups of feed.\n5. In the afternoon, Wendi gives 25 cups of feed.\n6. The total feed given in the morning and afternoon is \\(15 \\text{ cups} + 25 \\text{ cups} = 40 \\text{ cups}\\).\n7. To meet the total daily requirement of 60 cups, the remaining amount of feed needed is \\(60 \\text{ cups} - 40 \\text{ cups} = 20 \\text{ cups}\\).\n\nThe answer is: 20",
+  "sorts": {
+    "person": {
+      "description": "a person who keeps chickens"
+    },
+    "meal": {
+      "description": "a feeding given at a particular time of day"
+    },
+    "feeding_set": {
+      "description": "a collection of feedings given during a day"
+    }
+  },
+  "entities": {
+    "wendi": {
+      "sort": "person",
+      "name": "Wendi"
+    },
+    "morning": {
+      "sort": "meal",
+      "name": "Morning feeding"
+    },
+    "afternoon": {
+      "sort": "meal",
+      "name": "Afternoon feeding"
+    },
+    "so_far": {
+      "sort": "feeding_set",
+      "name": "Feedings given so far that day"
+    }
+  },
+  "relations": {
+    "per_chicken_feed": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "each of {owner}'s chickens gets {amount} cups of feed per day"
+    },
+    "flock_size": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} has {count} chickens"
+    },
+    "daily_requirement": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total daily feed requirement for all of {owner}'s chickens is {amount} cups"
+    },
+    "meal_feed": {
+      "slots": [
+        [
+          "meal",
+          "meal"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the {meal} gives {amount} cups of feed"
+    },
+    "includes_meal": {
+      "slots": [
+        [
+          "whole",
+          "feeding_set"
+        ],
+        [
+          "member",
+          "meal"
+        ]
+      ],
+      "sentence": "{whole} includes {member}"
+    },
+    "total_given": {
+      "slots": [
+        [
+          "set",
+          "feeding_set"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total feed given in {set} is {amount} cups"
+    },
+    "final_meal_covers_rest": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "set",
+          "feeding_set"
+        ]
+      ],
+      "sentence": "{owner}'s full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in {set}"
+    },
+    "remaining_needed": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the remaining amount of feed {owner} needs to give to meet the daily requirement is {amount} cups"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Each chicken gets 3 cups of feed per day.",
+      "cot_quote": "Each chicken gets 3 cups of feed per day.",
+      "content": {
+        "relation": "per_chicken_feed",
+        "args": [
+          "wendi",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "Wendi feeds each of her chickens three cups of mixed chicken feed",
+      "label": "assumption",
+      "english": "Each of Wendi's chickens gets 3 cups of feed per day."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Wendi has 20 chickens.",
+      "cot_quote": "Wendi has 20 chickens.",
+      "content": {
+        "relation": "flock_size",
+        "args": [
+          "wendi",
+          20
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "the size of Wendi's flock is 20 chickens",
+      "label": "assumption",
+      "english": "Wendi has 20 chickens."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The total daily feed requirement for all chickens is 60 cups.",
+      "cot_quote": "the total daily feed requirement for all chickens is \\(20 \\text{ chickens} \\times 3 \\text{ cups/chicken} = 60 \\text{ cups}\\)",
+      "content": {
+        "relation": "daily_requirement",
+        "args": [
+          "wendi",
+          60
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "The total daily feed requirement for all of Wendi's chickens is 60 cups."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "In the morning, Wendi gives 15 cups of feed.",
+      "cot_quote": "In the morning, Wendi gives 15 cups of feed.",
+      "content": {
+        "relation": "meal_feed",
+        "args": [
+          "morning",
+          15
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "In the morning, she gives her flock of chickens 15 cups of feed.",
+      "label": "assumption",
+      "english": "The Morning feeding gives 15 cups of feed."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "In the afternoon, Wendi gives 25 cups of feed.",
+      "cot_quote": "In the afternoon, Wendi gives 25 cups of feed.",
+      "content": {
+        "relation": "meal_feed",
+        "args": [
+          "afternoon",
+          25
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C5",
+      "question_quote": "In the afternoon, she gives her chickens another 25 cups of feed.",
+      "label": "assumption",
+      "english": "The Afternoon feeding gives 25 cups of feed."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "The total feed given in the morning and afternoon is 40 cups.",
+      "cot_quote": "The total feed given in the morning and afternoon is \\(15 \\text{ cups} + 25 \\text{ cups} = 40 \\text{ cups}\\).",
+      "content": {
+        "relation": "total_given",
+        "args": [
+          "so_far",
+          40
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "The total feed given in Feedings given so far that day is 40 cups."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "The remaining amount of feed needed to meet the total daily requirement of 60 cups is 20 cups.",
+      "cot_quote": "the remaining amount of feed needed is \\(60 \\text{ cups} - 40 \\text{ cups} = 20 \\text{ cups}\\)",
+      "content": {
+        "relation": "remaining_needed",
+        "args": [
+          "wendi",
+          20
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The remaining amount of feed Wendi needs to give to meet the daily requirement is 20 cups."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "If each of N items receives a fixed amount per day, the total daily amount equals N times that per-item amount.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "n": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "per_chicken_feed",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "flock_size",
+            "args": [
+              "x",
+              "n"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "n",
+              "a"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "daily_requirement",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person x, any numbers a, n, c: if each of x's chickens gets a cups of feed per day and x has n chickens and c = n \u00d7 a, then the total daily feed requirement for all of x's chickens is c cups."
+    },
+    "I2": {
+      "shape": "closure",
+      "text": "The morning and afternoon feedings are the only feed given so far that day.",
+      "kind": "closure",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "whole": "so_far",
+        "relation": "includes_meal",
+        "members": [
+          "morning",
+          "afternoon"
+        ]
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "The only X such that \"Feedings given so far that day includes X\" are Morning feeding and Afternoon feeding; there are no others."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "The amount still needed equals the total required minus the amount already given.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "s": "feeding_set",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "daily_requirement",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "total_given",
+            "args": [
+              "s",
+              "b"
+            ]
+          },
+          {
+            "relation": "final_meal_covers_rest",
+            "args": [
+              "x",
+              "s"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "remaining_needed",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any person x, any feeding_set s, any numbers a, b, c: if the total daily feed requirement for all of x's chickens is a cups and the total feed given in s is b cups and x's full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in s and c = a - b, then the remaining amount of feed x needs to give to meet the daily requirement is c cups."
+    },
+    "I4": {
+      "shape": "fact",
+      "text": "The full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in the morning and afternoon.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "final_meal_covers_rest",
+        "args": [
+          "wendi",
+          "so_far"
+        ],
+        "negated": false
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "Wendi's full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in Feedings given so far that day."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Therefore, the total daily feed requirement for all chickens is 20 chickens x 3 cups/chicken = 60 cups.",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "20 x 3 = 60",
+      "cot_quote": "Therefore, the total daily feed requirement for all chickens is \\(20 \\text{ chickens} \\times 3 \\text{ cups/chicken} = 60 \\text{ cups}\\).",
+      "id": "S1",
+      "english": "Because each of Wendi's chickens gets 3 cups of feed per day; and Wendi has 20 chickens; and since for any person x, any numbers a, n, c: if each of x's chickens gets a cups of feed per day and x has n chickens and c = n \u00d7 a, then the total daily feed requirement for all of x's chickens is c cups: the total daily feed requirement for all of Wendi's chickens is 60 cups (20 x 3 = 60).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "wendi",
+        "a": "3",
+        "n": "20",
+        "c": "60"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "aggregate",
+      "text": "The total feed given in the morning and afternoon is 15 cups + 25 cups = 40 cups.",
+      "premises": [
+        "C4",
+        "C5"
+      ],
+      "warrant": "I2",
+      "conclusion": "C6",
+      "stated_computation": "15 + 25 = 40",
+      "cot_quote": "The total feed given in the morning and afternoon is \\(15 \\text{ cups} + 25 \\text{ cups} = 40 \\text{ cups}\\).",
+      "id": "S2",
+      "english": "Because the Morning feeding gives 15 cups of feed; and the Afternoon feeding gives 25 cups of feed; and since the only X such that \"Feedings given so far that day includes X\" are Morning feeding and Afternoon feeding; there are no others: the total feed given in Feedings given so far that day is 40 cups (15 + 25 = 40).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "parts": {
+          "morning": "15",
+          "afternoon": "25"
+        },
+        "total": "40"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "To meet the total daily requirement of 60 cups, the remaining amount of feed needed is 60 cups - 40 cups = 20 cups.",
+      "premises": [
+        "C3",
+        "C6",
+        "I4"
+      ],
+      "warrant": "I3",
+      "conclusion": "C7",
+      "stated_computation": "60 - 40 = 20",
+      "cot_quote": "To meet the total daily requirement of 60 cups, the remaining amount of feed needed is \\(60 \\text{ cups} - 40 \\text{ cups} = 20 \\text{ cups}\\).",
+      "id": "S3",
+      "english": "Because the total daily feed requirement for all of Wendi's chickens is 60 cups; and the total feed given in Feedings given so far that day is 40 cups; and Wendi's full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in Feedings given so far that day; and since for any person x, any feeding_set s, any numbers a, b, c: if the total daily feed requirement for all of x's chickens is a cups and the total feed given in s is b cups and x's full daily requirement must be met by the end of the day, with the final meal supplying whatever was not given in s and c = a - b, then the remaining amount of feed x needs to give to meet the daily requirement is c cups: the remaining amount of feed Wendi needs to give to meet the daily requirement is 20 cups (60 - 40 = 20).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "wendi",
+        "a": "60",
+        "s": "so_far",
+        "b": "40",
+        "c": "20"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

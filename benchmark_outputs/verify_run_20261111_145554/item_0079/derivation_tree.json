@@ -1,0 +1,152 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Vincent buys 18 flowers",
+      "formula": "Buys(vincent, 18)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Packages of 3 flowers",
+      "formula": "PackageSize(package3, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Packages of 3 cost $2.50 each",
+      "formula": "PackagePrice(package3, 2.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Packages of 2 flowers",
+      "formula": "PackageSize(package2, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Packages of 2 cost $1 each",
+      "formula": "PackagePrice(package2, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "18 divided by 3 is 6",
+      "formula": "Quotient(18, 3, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "6 times 2.50 is 15",
+      "formula": "Product(6, 2.50, 15)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "18 divided by 2 is 9",
+      "formula": "Quotient(18, 2, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "9 times 1 is 9",
+      "formula": "Product(9, 1, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "15 minus 9 is 6",
+      "formula": "Difference(15, 9, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x buys n flowers and package p holds s flowers at price pr, and n\u00f7s=q and q\u00d7pr=c, then x's total cost using package p is c",
+      "formula": "\u2200x\u2200p\u2200n\u2200s\u2200pr\u2200q\u2200c (Buys(x,n) \u2227 PackageSize(p,s) \u2227 PackagePrice(p,pr) \u2227 Quotient(n,s,q) \u2227 Product(q,pr,c) \u2192 Cost(x,p,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's cost using package p1 is c1 and using package p2 is c2, and c1\u2212c2=s, then x saves s dollars by choosing p2",
+      "formula": "\u2200x\u2200p1\u2200p2\u2200c1\u2200c2\u2200s (Cost(x,p1,c1) \u2227 Cost(x,p2,c2) \u2227 Difference(c1,c2,s) \u2192 Saves(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Vincent's total cost using packages of 3 is $15, from FACT-1, FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(vincent, package3, 15)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Vincent's total cost using packages of 2 is $9, from FACT-1, FACT-4, FACT-5, OP-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(vincent, package2, 9)",
+      "premises": [
+        "FACT-1",
+        "FACT-4",
+        "FACT-5",
+        "OP-3",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Vincent saves $6 by choosing packages of 2, from INF-1, INF-2, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Saves(vincent, 6)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,31 @@
+To determine the total number of kittens in the Doubtfire family, we need to follow these steps based on the information provided.
+
+**Premise 1:** The mother informs the sisters that their two house cats have just had kittens.
+- This establishes that there are at least two cats involved.
+
+**Premise 2:** Patchy (the first cat) has had thrice the number of adopted kittens as Trixie (the other cat).
+- Let's denote the number of adopted kittens Trixie has as \( T \). According to Premise 2, Patchy has \( 3T \) kittens.
+
+**Premise 3:** Trixie has had 12 adopted kittens.
+- Therefore, \( T = 12 \).
+
+**Step-by-step Reasoning:**
+
+1. **Calculate the number of kittens Patchy has:**
+   - Since \( T = 12 \), Patchy has \( 3T = 3 \times 12 = 36 \) kittens.
+
+2. **Calculate the total number of adopted kittens:**
+   - Total adopted kittens = Kittens from Patchy + Kittens from Trixie
+   - Total adopted kittens = \( 36 + 12 = 48 \)
+
+3. **Determine the initial number of kittens before any were adopted:**
+   - Initially, they had 7 kittens.
+
+4. **Add the adopted kittens to the initial number of kittens:**
+   - Total kittens after adoption = Initial kittens + Adopted kittens
+   - Total kittens after adoption = \( 7 + 48 = 55 \)
+
+**Conclusion:**
+The total number of kittens in the Doubtfire family now is **55**.
+
+Answer: 55

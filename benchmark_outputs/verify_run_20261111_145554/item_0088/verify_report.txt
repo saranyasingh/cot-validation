@@ -1,0 +1,3 @@
+FACT-1: SUPPORTED
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — The problem states the raise is 10% of the *initial* salary each year (a fixed flat increase), not 10% of the current salary compounded annually. Using s × 1.10 incorrectly compounds the raise instead of adding a constant amount (0.10 × initial salary) each year.

@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+MonthlySalary(x, s) — x's initial monthly salary is s
+Salary(x, n, s) — x's salary after n years of service is s
+
+Constants:
+sylvie, 600, 1.10, 660, 726, 800, 880, 968, 0, 1, 2, 3, 4, 5
+
+## FACTS
+FACT-1: Sylvie's initial monthly salary is 600 :: MonthlySalary(sylvie, 600)
+
+## OPERATIONS
+OP-1: 600 times 1.10 is 660 :: Product(600, 1.10, 660)
+OP-2: 660 times 1.10 is 726 :: Product(660, 1.10, 726)
+OP-3: 726 times 1.10 is 800 :: Product(726, 1.10, 800)
+OP-4: 800 times 1.10 is 880 :: Product(800, 1.10, 880)
+OP-5: 880 times 1.10 is 968 :: Product(880, 1.10, 968)
+OP-6: 0 plus 1 is 1 :: Sum(0, 1, 1)
+OP-7: 1 plus 1 is 2 :: Sum(1, 1, 2)
+OP-8: 2 plus 1 is 3 :: Sum(2, 1, 3)
+OP-9: 3 plus 1 is 4 :: Sum(3, 1, 4)
+OP-10: 4 plus 1 is 5 :: Sum(4, 1, 5)
+
+## RULES
+RULE-1: If x's initial monthly salary is s, then x's salary after 0 years of service is s :: ∀x∀s (MonthlySalary(x,s) → Salary(x,0,s))
+RULE-2: If x's salary after n years is s, and s times 1.10 equals s2, and n plus 1 equals m, then x's salary after m years is s2 :: ∀x∀n∀m∀s∀s2 (Salary(x,n,s) ∧ Product(s,1.10,s2) ∧ Sum(n,1,m) → Salary(x,m,s2))
+
+## INFERENCES
+INF-1: Sylvie's salary after 0 years is 600, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 0, 600)
+INF-2: Sylvie's salary after 1 year is 660, from INF-1, OP-1, OP-6, and RULE-2 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 1, 660)
+INF-3: Sylvie's salary after 2 years is 726, from INF-2, OP-2, OP-7, and RULE-2 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 2, 726)
+INF-4: Sylvie's salary after 3 years is 800, from INF-3, OP-3, OP-8, and RULE-2 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 3, 800)
+INF-5: Sylvie's salary after 4 years is 880, from INF-4, OP-4, OP-9, and RULE-2 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 4, 880)
+INF-6: Sylvie's salary after 5 years is 968, from INF-5, OP-5, OP-10, and RULE-2 by Universal Instantiation and Modus Ponens :: Salary(sylvie, 5, 968)

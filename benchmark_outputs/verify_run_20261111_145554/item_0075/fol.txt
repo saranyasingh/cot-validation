@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Sold(x, n, p) — Artie sold n pots of flower type x at p dollars per pot
+Revenue(x, r) — the revenue earned from selling flower type x is r dollars
+TotalRevenue(r) — the combined total revenue from all flower types is r dollars
+RoundedDollar(r, m) — r dollars rounded to the nearest whole dollar is m dollars
+Makes(m) — Artie will make m dollars
+
+Constants:
+marigold, petunia, begonia, 2.74, 12, 1.87, 9, 2.12, 17, 32.88, 16.83, 36.04, 85.75, 60
+
+## FACTS
+FACT-1: Artie sold 12 pots of marigolds at $2.74 per pot :: Sold(marigold, 12, 2.74)
+FACT-2: Artie sold 9 pots of petunias at $1.87 per pot :: Sold(petunia, 9, 1.87)
+FACT-3: Artie sold 17 pots of begonias at $2.12 per pot :: Sold(begonia, 17, 2.12)
+FACT-4: The total revenue of $85.75 rounds to the nearest dollar as $60 :: RoundedDollar(85.75, 60)
+
+## OPERATIONS
+OP-1: 2.74 times 12 is 32.88 :: Product(2.74, 12, 32.88)
+OP-2: 1.87 times 9 is 16.83 :: Product(1.87, 9, 16.83)
+OP-3: 2.12 times 17 is 36.04 :: Product(2.12, 17, 36.04)
+OP-4: 32.88 plus 16.83 plus 36.04 is 85.75 :: Sum(32.88, 16.83, 36.04, 85.75)
+
+## RULES
+RULE-1: If flower type x sold n pots at p dollars each and p times n equals r, then the revenue from x is r dollars :: ∀x∀n∀p∀r (Sold(x,n,p) ∧ Product(p,n,r) → Revenue(x,r))
+RULE-2: If the revenues from marigolds, petunias, and begonias are r1, r2, r3 respectively and they sum to t, then the total revenue is t dollars :: ∀r1∀r2∀r3∀t (Revenue(marigold,r1) ∧ Revenue(petunia,r2) ∧ Revenue(begonia,r3) ∧ Sum(r1,r2,r3,t) → TotalRevenue(t))
+RULE-3: If the total revenue is t dollars and t rounds to m dollars, then Artie will make m dollars :: ∀t∀m (TotalRevenue(t) ∧ RoundedDollar(t,m) → Makes(m))
+
+## INFERENCES
+INF-1: The revenue from marigolds is $32.88, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(marigold, 32.88)
+INF-2: The revenue from petunias is $16.83, from FACT-2, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(petunia, 16.83)
+INF-3: The revenue from begonias is $36.04, from FACT-3, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(begonia, 36.04)
+INF-4: The total revenue is $85.75, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalRevenue(85.75)
+INF-5: Artie will make $60, from INF-4, FACT-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Makes(60)

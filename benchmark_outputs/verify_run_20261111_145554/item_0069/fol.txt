@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Girls(x, n) — school x has n girls
+Boys(x, n) — school x has n boys
+TotalStudents(x, n) — school x has n total students
+PerTeacher(x, n) — school x has n students per teacher
+Teachers(x, n) — school x has n teachers
+
+Constants:
+dr_wertz_school, 60, 2, 120, 180, 5, 36
+
+## FACTS
+FACT-1: There are 60 girls at Dr. Wertz's school :: Girls(dr_wertz_school, 60)
+FACT-2: There are 5 students per teacher at Dr. Wertz's school :: PerTeacher(dr_wertz_school, 5)
+
+## OPERATIONS
+OP-1: 2 times 60 is 120 :: Product(2, 60, 120)
+OP-2: 120 plus 60 is 180 :: Sum(120, 60, 180)
+OP-3: 180 divided by 5 is 36 :: Quotient(180, 5, 36)
+
+## RULES
+RULE-1: If a school has n girls and twice n is b, then the school has b boys :: ∀x∀n∀b (Girls(x,n) ∧ Product(2,n,b) → Boys(x,b))
+RULE-2: If a school has b boys and n girls and b+n = t, then the school has t total students :: ∀x∀b∀n∀t (Boys(x,b) ∧ Girls(x,n) ∧ Sum(b,n,t) → TotalStudents(x,t))
+RULE-3: If a school has t total students and p students per teacher, and t ÷ p = r, then the school has r teachers :: ∀x∀t∀p∀r (TotalStudents(x,t) ∧ PerTeacher(x,p) ∧ Quotient(t,p,r) → Teachers(x,r))
+
+## INFERENCES
+INF-1: Dr. Wertz's school has 120 boys, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Boys(dr_wertz_school, 120)
+INF-2: Dr. Wertz's school has 180 total students, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalStudents(dr_wertz_school, 180)
+INF-3: Dr. Wertz's school has 36 teachers, from INF-2, FACT-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Teachers(dr_wertz_school, 36)

@@ -1,0 +1,237 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Marissa walked 4 miles in 1 hour",
+      "formula": "Walked(marissa, 4, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Marissa walked 2 miles in another hour",
+      "formula": "Walked(marissa, 2, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The total trail distance is 12 miles",
+      "formula": "TotalDistance(marissa, 12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Marissa has spent 3 hours hiking so far",
+      "formula": "TimeSpent(marissa, 3)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "Marissa walked 1 hour + 1 hour = 2 hours so far, not 3 hours; the problem does not state she has spent 3 hours hiking.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Marissa's goal average speed over the entire trail is 4 mph",
+      "formula": "Speed(marissa, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 + 2 = 6 (distance covered by the two segments)",
+      "formula": "Sum(4, 2, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "12 \u2212 3 = 9 (used for \"9 more miles left\")",
+      "formula": "Difference(12, 3, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "6 \u00f7 3 = 2 (current speed)",
+      "formula": "Quotient(6, 3, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "12 \u2212 6 = 6 (remaining distance)",
+      "formula": "Difference(12, 6, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "6 \u00f7 4 = 1.5 (remaining time needed)",
+      "formula": "Quotient(6, 4, 1.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "6 \u00f7 1.5 = 4 (required speed)",
+      "formula": "Quotient(6, 1.5, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x walked d1 miles in one segment and d2 miles in another segment, their sum is d, and x has spent time t overall, then x has walked distance d in time t",
+      "formula": "\u2200x\u2200d1\u2200t1\u2200d2\u2200t2\u2200d\u2200t (Walked(x,d1,t1) \u2227 Walked(x,d2,t2) \u2227 Sum(d1,d2,d) \u2227 TimeSpent(x,t) \u2192 Walked(x,d,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x walked distance d in time t and d/t = s, then x's speed is s",
+      "formula": "\u2200x\u2200d\u2200t\u2200s (Walked(x,d,t) \u2227 Quotient(d,t,s) \u2192 Speed(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's total trail distance is d and x has spent time t, and d \u2212 t = r, then x has r miles remaining",
+      "formula": "\u2200x\u2200d\u2200t\u2200r (TotalDistance(x,d) \u2227 TimeSpent(x,t) \u2227 Difference(d,t,r) \u2192 RemainingDistance(x,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "subtracts elapsed time t from total distance d to get remaining distance, which mixes incompatible units (miles minus hours); remaining distance should be total distance minus distance already walked.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's total trail distance is d and x has walked distance c in some time t, and d \u2212 c = r, then x has r miles remaining",
+      "formula": "\u2200x\u2200d\u2200c\u2200t\u2200r (TotalDistance(x,d) \u2227 Walked(x,c,t) \u2227 Difference(d,c,r) \u2192 RemainingDistance(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x has r miles remaining, x's goal speed is s, and r/s = t, then x needs to walk r miles in time t",
+      "formula": "\u2200x\u2200r\u2200s\u2200t (RemainingDistance(x,r) \u2227 Speed(x,s) \u2227 Quotient(r,s,t) \u2192 Walked(x,r,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Marissa has walked 6 miles in 3 hours (aggregate), from FACT-1, FACT-2, OP-1, FACT-4, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Walked(marissa, 6, 3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Marissa's current speed is 2 mph, from INF-1, OP-3, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Speed(marissa, 2)",
+      "premises": [
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Marissa has 9 miles remaining (as stated), from FACT-3, FACT-4, OP-2, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingDistance(marissa, 9)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Marissa has 6 miles remaining (used in final formula), from FACT-3, INF-1, OP-4, RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingDistance(marissa, 6)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Marissa needs to walk 6 miles in 1.5 hours to meet her goal, from INF-4, FACT-5, OP-5, RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Walked(marissa, 6, 1.5)",
+      "premises": [
+        "INF-4",
+        "FACT-5",
+        "OP-5",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Marissa's required speed for the remaining 6 miles is 4 mph, from INF-5, OP-6, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Speed(marissa, 4)",
+      "premises": [
+        "INF-5",
+        "OP-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "Marissa walked 1 hour + 1 hour = 2 hours so far, not 3 hours; the problem does not state she has spent 3 hours hiking."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "subtracts elapsed time t from total distance d to get remaining distance, which mixes incompatible units (miles minus hours); remaining distance should be total distance minus distance already walked."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

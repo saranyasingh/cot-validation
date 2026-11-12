@@ -1,0 +1,123 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Josh buys the house for $80,000",
+      "formula": "BoughtFor(josh, 80000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Josh spends $50,000 on repairs",
+      "formula": "SpentRepairs(josh, 50000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$80,000 + $50,000 = $130,000",
+      "formula": "Sum(80000, 50000, 130000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$130,000 \u00d7 1.5 = $195,000",
+      "formula": "Product(130000, 1.5, 195000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$195,000 \u2212 $130,000 = $65,000",
+      "formula": "Difference(195000, 130000, 65000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x bought the house for n and spent m on repairs, and n + m = p, then x's total initial investment is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (BoughtFor(x,n) \u2227 SpentRepairs(x,m) \u2227 Sum(n,m,p) \u2192 TotalInvestment(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's total initial investment is t, and t \u00d7 1.5 = f, then the final value of x's house is f",
+      "formula": "\u2200x\u2200t\u2200f (TotalInvestment(x,t) \u2227 Product(t,1.5,f) \u2192 FinalValue(x,f))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The 150% value increase should be based on the original purchase price ($80,000), not the total initial investment (purchase + repairs), and \"increased by 150%\" means new value = original + 1.5\u00d7original = 2.5\u00d7original, not 1.5\u00d7(total investment).",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the final value of x's house is f, x's total initial investment is t, and f \u2212 t = r, then x's profit is r",
+      "formula": "\u2200x\u2200f\u2200t\u2200r (FinalValue(x,f) \u2227 TotalInvestment(x,t) \u2227 Difference(f,t,r) \u2192 Profit(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Josh's total initial investment is $130,000, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalInvestment(josh, 130000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The final value of Josh's house is $195,000, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "FinalValue(josh, 195000)",
+      "premises": [
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Josh's profit is $65,000, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Profit(josh, 65000)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The 150% value increase should be based on the original purchase price ($80,000), not the total initial investment (purchase + repairs), and \"increased by 150%\" means new value = original + 1.5\u00d7original = 2.5\u00d7original, not 1.5\u00d7(total investment)."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

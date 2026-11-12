@@ -1,0 +1,12 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: IMPLAUSIBLE — equates the driver+empty-truck weight with the truck's "loaded" weight, improperly conflating the unloaded (pre-box) weight with the loaded weight that should include the boxes.
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — computes "driver's weight" by dividing the combined driver+truck weight by the box weight, an operation that combines incompatible quantities and has no valid basis.
+RULE-5: PLAUSIBLE
+RULE-6: PLAUSIBLE
+RULE-7: PLAUSIBLE
+RULE-8: PLAUSIBLE

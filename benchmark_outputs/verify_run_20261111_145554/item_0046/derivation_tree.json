@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Meredith wrote 5 articles on Monday",
+      "formula": "Wrote(meredith, monday, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Meredith spends an average of 4 hours researching and writing each article",
+      "formula": "TimePerArticle(meredith, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2/5 of 5 is 2",
+      "formula": "Product(0.4, 5, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "5 plus 2 is 7",
+      "formula": "Sum(5, 2, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "2 times 7 is 14",
+      "formula": "Product(2, 7, 14)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "5 plus 7 plus 14 is 26",
+      "formula": "Sum(5, 7, 14, 26)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "26 times 4 is 104",
+      "formula": "Product(26, 4, 104)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x wrote m articles on Monday, and 2/5 of m is f, and m plus f is t, then x wrote t articles on Tuesday",
+      "formula": "\u2200x\u2200m\u2200f\u2200t (Wrote(x, monday, m) \u2227 Product(0.4, m, f) \u2227 Sum(m, f, t) \u2192 Wrote(x, tuesday, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x wrote t articles on Tuesday, and twice t is w, then x wrote w articles on Wednesday",
+      "formula": "\u2200x\u2200t\u2200w (Wrote(x, tuesday, t) \u2227 Product(2, t, w) \u2192 Wrote(x, wednesday, w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x wrote m articles on Monday, t articles on Tuesday, w articles on Wednesday, and m plus t plus w is s, then x wrote a total of s articles",
+      "formula": "\u2200x\u2200m\u2200t\u2200w\u2200s (Wrote(x, monday, m) \u2227 Wrote(x, tuesday, t) \u2227 Wrote(x, wednesday, w) \u2227 Sum(m, t, w, s) \u2192 TotalArticles(x, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x wrote a total of s articles, spends p hours per article, and s times p is h, then x spent a total of h hours writing",
+      "formula": "\u2200x\u2200s\u2200p\u2200h (TotalArticles(x, s) \u2227 TimePerArticle(x, p) \u2227 Product(s, p, h) \u2192 TotalTime(x, h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Meredith wrote 7 articles on Tuesday, from FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Wrote(meredith, tuesday, 7)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Meredith wrote 14 articles on Wednesday, from INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Wrote(meredith, wednesday, 14)",
+      "premises": [
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Meredith wrote a total of 26 articles, from FACT-1, INF-1, INF-2, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalArticles(meredith, 26)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Meredith spent a total of 104 hours writing articles, from INF-3, FACT-2, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalTime(meredith, 104)",
+      "premises": [
+        "INF-3",
+        "FACT-2",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

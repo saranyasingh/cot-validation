@@ -1,0 +1,616 @@
+{
+  "question": "In a dance class of 20 students, 20% enrolled in contemporary dance, 25% of the remaining enrolled in jazz dance, and the rest enrolled in hip-hop dance. What percentage of the entire students enrolled in hip-hop dance?",
+  "cot": "EXPLANATION\n1. Let's start by calculating the number of students who enrolled in contemporary dance.\n   - Total students = 20\n   - Percentage enrolled in contemporary dance = 20%\n   - Number of students in contemporary dance = 20 * 20% = 4 students\n\n2. Now we calculate the number of students remaining after those who enrolled in contemporary dance.\n   - Remaining students = Total students - Students in contemporary dance\n   - Remaining students = 20 - 4 = 16 students\n\n3. Next, we determine how many of the remaining students enrolled in jazz dance.\n   - Percentage of remaining students who enrolled in jazz dance = 25%\n   - Number of students in jazz dance = 16 * 25% = 4 students\n\n4. We now calculate the number of students who enrolled in hip-hop dance.\n   - Students in hip-hop dance = Remaining students - Students in jazz dance\n   - Students in hip-hop dance = 16 - 4 = 12 students\n\n5. Finally, we find the percentage of the entire class that enrolled in hip-hop dance.\n   - Percentage of students in hip-hop dance = (Students in hip-hop dance / Total students) * 100\n   - Percentage of students in hip-hop dance = (12 / 20) * 100 = 60%\n\nThe answer is: 60",
+  "sorts": {
+    "group": {
+      "description": "a group of students in the dance class"
+    }
+  },
+  "entities": {
+    "dance_class": {
+      "sort": "group",
+      "name": "Total students"
+    },
+    "contemporary": {
+      "sort": "group",
+      "name": "Students in contemporary dance"
+    },
+    "remaining": {
+      "sort": "group",
+      "name": "Remaining students"
+    },
+    "jazz": {
+      "sort": "group",
+      "name": "Students in jazz dance"
+    },
+    "hip_hop": {
+      "sort": "group",
+      "name": "Students in hip-hop dance"
+    }
+  },
+  "relations": {
+    "group_count": {
+      "slots": [
+        [
+          "g",
+          "group"
+        ],
+        [
+          "n",
+          "num"
+        ]
+      ],
+      "sentence": "the number of {g} is {n}"
+    },
+    "group_percent": {
+      "slots": [
+        [
+          "g",
+          "group"
+        ],
+        [
+          "base",
+          "group"
+        ],
+        [
+          "p",
+          "num"
+        ]
+      ],
+      "sentence": "{g} make up {p}% of {base}"
+    },
+    "excluded_from": {
+      "slots": [
+        [
+          "g1",
+          "group"
+        ],
+        [
+          "g2",
+          "group"
+        ]
+      ],
+      "sentence": "{g1} are not among {g2}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Total students = 20",
+      "cot_quote": "Total students = 20",
+      "content": {
+        "relation": "group_count",
+        "args": [
+          "dance_class",
+          20
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "In a dance class of 20 students",
+      "label": "assumption",
+      "english": "The number of Total students is 20."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Percentage enrolled in contemporary dance = 20%",
+      "cot_quote": "Percentage enrolled in contemporary dance = 20%",
+      "content": {
+        "relation": "group_percent",
+        "args": [
+          "contemporary",
+          "dance_class",
+          20
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "20% enrolled in contemporary dance",
+      "label": "assumption",
+      "english": "Students in contemporary dance make up 20% of Total students."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Number of students in contemporary dance = 4 students",
+      "cot_quote": "Number of students in contemporary dance = 20 * 20% = 4 students",
+      "content": {
+        "relation": "group_count",
+        "args": [
+          "contemporary",
+          4
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "The number of Students in contemporary dance is 4."
+    },
+    "C4": {
+      "shape": "rule",
+      "text": "Remaining students = Total students - Students in contemporary dance",
+      "cot_quote": "Remaining students = Total students - Students in contemporary dance",
+      "content": {
+        "vars": {
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "group_count",
+            "args": [
+              "dance_class",
+              "a"
+            ]
+          },
+          {
+            "relation": "group_count",
+            "args": [
+              "contemporary",
+              "b"
+            ]
+          },
+          {
+            "relation": "excluded_from",
+            "args": [
+              "contemporary",
+              "remaining"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_count",
+            "args": [
+              "remaining",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any numbers a, b, c: if the number of Total students is a and the number of Students in contemporary dance is b and Students in contemporary dance are not among Remaining students and c = a - b, then the number of Remaining students is c."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Remaining students = 16 students",
+      "cot_quote": "Remaining students = 20 - 4 = 16 students",
+      "content": {
+        "relation": "group_count",
+        "args": [
+          "remaining",
+          16
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "The number of Remaining students is 16."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "Percentage of remaining students who enrolled in jazz dance = 25%",
+      "cot_quote": "Percentage of remaining students who enrolled in jazz dance = 25%",
+      "content": {
+        "relation": "group_percent",
+        "args": [
+          "jazz",
+          "remaining",
+          25
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": "25% of the remaining enrolled in jazz dance",
+      "label": "assumption",
+      "english": "Students in jazz dance make up 25% of Remaining students."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Number of students in jazz dance = 4 students",
+      "cot_quote": "Number of students in jazz dance = 16 * 25% = 4 students",
+      "content": {
+        "relation": "group_count",
+        "args": [
+          "jazz",
+          4
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The number of Students in jazz dance is 4."
+    },
+    "C8": {
+      "shape": "rule",
+      "text": "Students in hip-hop dance = Remaining students - Students in jazz dance",
+      "cot_quote": "Students in hip-hop dance = Remaining students - Students in jazz dance",
+      "content": {
+        "vars": {
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "group_count",
+            "args": [
+              "remaining",
+              "a"
+            ]
+          },
+          {
+            "relation": "group_count",
+            "args": [
+              "jazz",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_count",
+            "args": [
+              "hip_hop",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C8",
+      "question_quote": "the rest enrolled in hip-hop dance",
+      "label": "assumption",
+      "english": "For any numbers a, b, c: if the number of Remaining students is a and the number of Students in jazz dance is b and c = a - b, then the number of Students in hip-hop dance is c."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "Students in hip-hop dance = 12 students",
+      "cot_quote": "Students in hip-hop dance = 16 - 4 = 12 students",
+      "content": {
+        "relation": "group_count",
+        "args": [
+          "hip_hop",
+          12
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "The number of Students in hip-hop dance is 12."
+    },
+    "C10": {
+      "shape": "rule",
+      "text": "Percentage of students in hip-hop dance = (Students in hip-hop dance / Total students) * 100",
+      "cot_quote": "Percentage of students in hip-hop dance = (Students in hip-hop dance / Total students) * 100",
+      "content": {
+        "vars": {
+          "a": "num",
+          "b": "num",
+          "q": "num",
+          "p": "num"
+        },
+        "if": [
+          {
+            "relation": "group_count",
+            "args": [
+              "hip_hop",
+              "a"
+            ]
+          },
+          {
+            "relation": "group_count",
+            "args": [
+              "dance_class",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "q"
+          },
+          {
+            "op": "product",
+            "args": [
+              "q",
+              100
+            ],
+            "result": "p"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_percent",
+            "args": [
+              "hip_hop",
+              "dance_class",
+              "p"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C10",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any numbers a, b, q, p: if the number of Students in hip-hop dance is a and the number of Total students is b and q = a \u00f7 b and p = q \u00d7 100, then Students in hip-hop dance make up p% of Total students."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "Percentage of students in hip-hop dance = 60%",
+      "cot_quote": "Percentage of students in hip-hop dance = (12 / 20) * 100 = 60%",
+      "content": {
+        "relation": "group_percent",
+        "args": [
+          "hip_hop",
+          "dance_class",
+          60
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "Students in hip-hop dance make up 60% of Total students."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "p% of a quantity N equals N * p/100",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "g": "group",
+          "base": "group",
+          "n": "num",
+          "p": "num",
+          "t": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "group_count",
+            "args": [
+              "base",
+              "n"
+            ]
+          },
+          {
+            "relation": "group_percent",
+            "args": [
+              "g",
+              "base",
+              "p"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "n",
+              "p"
+            ],
+            "result": "t"
+          },
+          {
+            "op": "quotient",
+            "args": [
+              "t",
+              100
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_count",
+            "args": [
+              "g",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any groups g, base, any numbers n, p, t, c: if the number of base is n and g make up p% of base and t = n \u00d7 p and c = t \u00f7 100, then the number of g is c."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "Each student enrolled in exactly one dance style, so students in contemporary dance are not among the remaining students",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "excluded_from",
+        "args": [
+          "contemporary",
+          "remaining"
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "Students in contemporary dance are not among Remaining students."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Number of students in contemporary dance = 20 * 20% = 4 students",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "20 * 20% = 4",
+      "cot_quote": "Number of students in contemporary dance = 20 * 20% = 4 students",
+      "id": "S1",
+      "english": "Because the number of Total students is 20; and Students in contemporary dance make up 20% of Total students; and since for any groups g, base, any numbers n, p, t, c: if the number of base is n and g make up p% of base and t = n \u00d7 p and c = t \u00f7 100, then the number of g is c: the number of Students in contemporary dance is 4 (20 * 20% = 4).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "base": "dance_class",
+        "n": "20",
+        "g": "contemporary",
+        "p": "20",
+        "c": "4",
+        "t": "400"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Remaining students = 20 - 4 = 16 students",
+      "premises": [
+        "C1",
+        "C3",
+        "I2"
+      ],
+      "warrant": "C4",
+      "conclusion": "C5",
+      "stated_computation": "20 - 4 = 16",
+      "cot_quote": "Remaining students = 20 - 4 = 16 students",
+      "id": "S2",
+      "english": "Because the number of Total students is 20; and the number of Students in contemporary dance is 4; and Students in contemporary dance are not among Remaining students; and since for any numbers a, b, c: if the number of Total students is a and the number of Students in contemporary dance is b and Students in contemporary dance are not among Remaining students and c = a - b, then the number of Remaining students is c: the number of Remaining students is 16 (20 - 4 = 16).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "a": "20",
+        "b": "4",
+        "c": "16"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Number of students in jazz dance = 16 * 25% = 4 students",
+      "premises": [
+        "C5",
+        "C6"
+      ],
+      "warrant": "I1",
+      "conclusion": "C7",
+      "stated_computation": "16 * 25% = 4",
+      "cot_quote": "Number of students in jazz dance = 16 * 25% = 4 students",
+      "id": "S3",
+      "english": "Because the number of Remaining students is 16; and Students in jazz dance make up 25% of Remaining students; and since for any groups g, base, any numbers n, p, t, c: if the number of base is n and g make up p% of base and t = n \u00d7 p and c = t \u00f7 100, then the number of g is c: the number of Students in jazz dance is 4 (16 * 25% = 4).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "base": "remaining",
+        "n": "16",
+        "g": "jazz",
+        "p": "25",
+        "c": "4",
+        "t": "400"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "Students in hip-hop dance = 16 - 4 = 12 students",
+      "premises": [
+        "C5",
+        "C7"
+      ],
+      "warrant": "C8",
+      "conclusion": "C9",
+      "stated_computation": "16 - 4 = 12",
+      "cot_quote": "Students in hip-hop dance = 16 - 4 = 12 students",
+      "id": "S4",
+      "english": "Because the number of Remaining students is 16; and the number of Students in jazz dance is 4; and since for any numbers a, b, c: if the number of Remaining students is a and the number of Students in jazz dance is b and c = a - b, then the number of Students in hip-hop dance is c: the number of Students in hip-hop dance is 12 (16 - 4 = 12).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "a": "16",
+        "b": "4",
+        "c": "12"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Percentage of students in hip-hop dance = (12 / 20) * 100 = 60%",
+      "premises": [
+        "C9",
+        "C1"
+      ],
+      "warrant": "C10",
+      "conclusion": "C11",
+      "stated_computation": "(12 / 20) * 100 = 60",
+      "cot_quote": "Percentage of students in hip-hop dance = (12 / 20) * 100 = 60%",
+      "id": "S5",
+      "english": "Because the number of Students in hip-hop dance is 12; and the number of Total students is 20; and since for any numbers a, b, q, p: if the number of Students in hip-hop dance is a and the number of Total students is b and q = a \u00f7 b and p = q \u00d7 100, then Students in hip-hop dance make up p% of Total students: Students in hip-hop dance make up 60% of Total students ((12 / 20) * 100 = 60).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "a": "12",
+        "b": "20",
+        "p": "60",
+        "q": "0.6"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

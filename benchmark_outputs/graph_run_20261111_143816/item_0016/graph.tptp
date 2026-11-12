@@ -1,0 +1,29 @@
+% Declarations
+tff(item_type, type, item: $tType).
+tff(jewelry_decl, type, jewelry: item).
+tff(gadgets_decl, type, gadgets: item).
+tff(item_value_decl, type, item_value: (item * $rat) > $o).
+tff(market_increase_decl, type, market_increase: (item * $rat) > $o).
+tff(market_rate_decl, type, market_rate: (item * $rat) > $o).
+tff(value_increase_decl, type, value_increase: (item * $rat) > $o).
+tff(profit_decl, type, profit: (item * $rat) > $o).
+tff(higher_profit_decl, type, higher_profit: (item * item) > $o).
+tff(answer_decl, type, answer: $rat > $o).
+tff(jewelry_neq_gadgets, axiom, jewelry != gadgets).
+
+% Statements
+tff(c1, axiom, item_value(jewelry, 5000/1)).
+tff(c2, axiom, market_increase(jewelry, 5/2)).
+tff(c3, lemma, value_increase(jewelry, 125/1)).
+tff(c4, axiom, item_value(gadgets, 8000/1)).
+tff(c5, axiom, market_increase(gadgets, 6/5)).
+tff(c6, lemma, value_increase(gadgets, 96/1)).
+tff(c7, lemma, profit(jewelry, 125/1)).
+tff(c8, lemma, profit(gadgets, 96/1)).
+tff(c9, lemma, higher_profit(jewelry, gadgets)).
+tff(c10, lemma, answer(125/1)).
+tff(i1, axiom, ![V_x: item, V_v: $rat, V_d: $rat, V_c: $rat]: ((item_value(V_x, V_v) & market_rate(V_x, V_d) & V_c = $product(V_v, V_d)) => value_increase(V_x, V_c))).
+tff(i2, axiom, ![V_x: item, V_p: $rat, V_d: $rat]: ((market_increase(V_x, V_p) & V_d = $quotient(V_p, 100/1)) => market_rate(V_x, V_d))).
+tff(i3, axiom, ![V_x: item, V_a: $rat]: (value_increase(V_x, V_a) => profit(V_x, V_a))).
+tff(i4, axiom, ![V_x: item, V_y: item, V_a: $rat, V_b: $rat]: ((profit(V_x, V_a) & profit(V_y, V_b) & $greater(V_a, V_b)) => higher_profit(V_x, V_y))).
+tff(i5, axiom, ![V_x: item, V_y: item, V_a: $rat]: ((higher_profit(V_x, V_y) & profit(V_x, V_a)) => answer(V_a))).

@@ -1,0 +1,196 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jewelry's initial value is $5,000",
+      "formula": "InitialValue(jewelry, 5000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jewelry's growth rate is 2.5%",
+      "formula": "GrowthRate(jewelry, 0.025)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Gadgets' initial value is $8,000",
+      "formula": "InitialValue(gadgets, 8000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Gadgets' growth rate is 1.2%",
+      "formula": "GrowthRate(gadgets, 0.012)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$5,000 \u00d7 0.025 = $125 (jewelry increase)",
+      "formula": "Product(5000, 0.025, 125)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$5,000 + $125 = $5,125 (jewelry future value)",
+      "formula": "Sum(5000, 125, 5125)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$8,000 \u00d7 0.012 = $96 (gadgets increase)",
+      "formula": "Product(8000, 0.012, 96)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "$8,000 + $96 = $8,096 (gadgets future value)",
+      "formula": "Sum(8000, 96, 8096)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "$5,125 \u2212 $5,000 = $125 (jewelry profit)",
+      "formula": "Difference(5125, 5000, 125)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "$8,096 \u2212 $8,000 = $96 (gadgets profit)",
+      "formula": "Difference(8096, 8000, 96)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "$125 \u2212 $96 = $29 (profit comparison)",
+      "formula": "Difference(125, 96, 29)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has initial value n, grows at rate r, the increase i = n \u00d7 r, and the future value f = n + i, then x's future value is f",
+      "formula": "\u2200x\u2200n\u2200r\u2200i\u2200f (InitialValue(x,n) \u2227 GrowthRate(x,r) \u2227 Product(n,r,i) \u2227 Sum(n,i,f) \u2192 FutureValue(x,f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has initial value n, future value f, and f \u2212 n = p, then x's profit is p",
+      "formula": "\u2200x\u2200n\u2200f\u2200p (InitialValue(x,n) \u2227 FutureValue(x,f) \u2227 Difference(f,n,p) \u2192 Profit(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has profit p, y has profit q, and p \u2212 q = d, then x yields greater profit than y",
+      "formula": "\u2200x\u2200y\u2200p\u2200q\u2200d (Profit(x,p) \u2227 Profit(y,q) \u2227 Difference(p,q,d) \u2192 GreaterProfit(x,y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Jewelry's future value is $5,125, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FutureValue(jewelry, 5125)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Gadgets' future value is $8,096, from FACT-3, FACT-4, OP-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FutureValue(gadgets, 8096)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-3",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Jewelry's profit is $125, from FACT-1, INF-1, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Profit(jewelry, 125)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Gadgets' profit is $96, from FACT-3, INF-2, OP-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Profit(gadgets, 96)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "OP-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Jewelry yields greater profit than gadgets, from INF-3, INF-4, OP-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "GreaterProfit(jewelry, gadgets)",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "OP-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

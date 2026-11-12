@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Bailey received a weekly allowance of $5",
+      "formula": "Allowance(bailey, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Bailey received the allowance for 8 weeks",
+      "formula": "Weeks(bailey, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Bailey's total amount of money after the 8 weeks is $100",
+      "formula": "TotalAfter(bailey, 100)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 dollars/week times 8 weeks is 40 dollars",
+      "formula": "Product(5, 8, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "100 minus 40 is 60",
+      "formula": "Difference(100, 40, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x receives n dollars per week for w weeks and n \u00d7 w = p, then x earned p dollars in total",
+      "formula": "\u2200x\u2200n\u2200w\u2200p (Allowance(x,n) \u2227 Weeks(x,w) \u2227 Product(n,w,p) \u2192 Earned(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x earned e dollars total, has t dollars after receiving it, and t \u2212 e = b, then x started with b dollars",
+      "formula": "\u2200x\u2200e\u2200t\u2200b (Earned(x,e) \u2227 TotalAfter(x,t) \u2227 Difference(t,e,b) \u2192 InitialAmount(x,b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Bailey earned 40 dollars from her allowance, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Earned(bailey, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Bailey started with 60 dollars, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "InitialAmount(bailey, 60)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

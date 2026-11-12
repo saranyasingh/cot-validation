@@ -1,0 +1,6 @@
+% OP-1: Sum(500, 800, 1300)
+tff(op_1, conjecture, $sum(500/1, 800/1) = 1300/1).
+% OP-2: Product(0.10, 1300, 130)
+tff(op_2, conjecture, $product(1/10, 1300/1) = 130/1).
+% OP-3: Sum(500, 800, 130, 1430)
+tff(op_3, conjecture, $sum($sum(500/1, 800/1), 130/1) = 1430/1).

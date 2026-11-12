@@ -1,0 +1,30 @@
+EXPLANATION
+
+1. **Premise 1:** John runs 60 miles a week.
+   - This establishes the total distance John runs.
+
+2. **Premise 2:** John runs 3 days a week.
+   - This tells us how many days per week he runs.
+
+3. **Premise 3:** He runs 3 hours on the first day.
+   - This gives us the duration for the first day's running.
+
+4. **Premise 4:** On the other two days, he runs half as much time as the first day.
+   - If we denote the time spent running on the second day as \( t \), then \( t = \frac{1}{2} \times 3 \) hours.
+     Therefore, \( t = 1.5 \) hours.
+
+5. **Conclusion:** To find out how fast John runs, we need to calculate his average speed over the three days.
+
+Now let's calculate the total time John spends running over the three days:
+- First day: 3 hours
+- Second day: 1.5 hours
+- Third day: 1.5 hours (same as the second day)
+
+Total time spent running = 3 + 1.5 + 1.5 = 6 hours
+
+To find his average speed, we divide the total distance by the total time:
+Average speed = Total distance / Total time
+                = 60 miles / 6 hours
+                = 10 miles per hour
+
+Therefore, the answer is: 10.

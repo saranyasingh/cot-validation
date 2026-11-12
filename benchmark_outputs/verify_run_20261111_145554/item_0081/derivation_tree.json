@@ -1,0 +1,178 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The total amount of water is 24 liters",
+      "formula": "Total(water, 24)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Girl1 got 1/6 of the 24 liters of water",
+      "formula": "SharePortion(girl1, water, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Girl2 got 1/6 of the 24 liters of water",
+      "formula": "SharePortion(girl2, water, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The boy got 6 liters of water",
+      "formula": "Got(boy, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "24 \u00f7 6 = 4",
+      "formula": "Quotient(24, 6, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 + 4 = 8",
+      "formula": "Sum(4, 4, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "8 + 6 = 14",
+      "formula": "Sum(8, 6, 14)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "24 \u2212 14 = 10",
+      "formula": "Difference(24, 14, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the total of water w is n liters and x's share is 1/d of it, and n \u00f7 d = m, then x got m liters",
+      "formula": "\u2200x\u2200w\u2200n\u2200d\u2200m (Total(w,n) \u2227 SharePortion(x,w,d) \u2227 Quotient(n,d,m) \u2192 Got(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x got n1 liters and y got n2 liters, and n1 + n2 = n3, then n3 liters of water w have been used",
+      "formula": "\u2200x\u2200y\u2200w\u2200n1\u2200n2\u2200n3 (Got(x,n1) \u2227 Got(y,n2) \u2227 Sum(n1,n2,n3) \u2192 Used(w,n3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If n1 liters of water w have been used and x got n2 more liters, and n1 + n2 = n3, then n3 liters of water w have been used",
+      "formula": "\u2200x\u2200w\u2200n1\u2200n2\u2200n3 (Used(w,n1) \u2227 Got(x,n2) \u2227 Sum(n1,n2,n3) \u2192 Used(w,n3))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the total of water w is n liters and u liters have been used, and n \u2212 u = r, then r liters of water w remain",
+      "formula": "\u2200w\u2200n\u2200u\u2200r (Total(w,n) \u2227 Used(w,u) \u2227 Difference(n,u,r) \u2192 Remaining(w,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Girl1 got 4 liters of water, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Got(girl1, 4)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Girl2 got 4 liters of water, from FACT-1, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Got(girl2, 4)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The two girls together used 8 liters of water, from INF-1, INF-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Used(water, 8)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "A total of 14 liters of water have been used, from INF-3, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Used(water, 14)",
+      "premises": [
+        "INF-3",
+        "FACT-4",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "10 liters of water remain, from FACT-1, INF-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Remaining(water, 10)",
+      "premises": [
+        "FACT-1",
+        "INF-4",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

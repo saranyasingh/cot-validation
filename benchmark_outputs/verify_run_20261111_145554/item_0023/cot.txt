@@ -1,0 +1,20 @@
+EXPLANATION
+1. **Premise 1:** Billy has 8 customers on Tuesday.
+   - This establishes the total number of customers he deals with.
+
+2. **Premise 2:** His first 3 customers buy one DVD each.
+   - Each of these three customers buys 1 DVD, contributing \(3 \times 1 = 3\) DVDs to his sales.
+
+3. **Premise 3:** His next 2 customers buy 2 DVDs each.
+   - Each of these two customers buys 2 DVDs, contributing \(2 \times 2 = 4\) DVDs to his sales.
+
+4. **Premise 4:** His last 3 customers do not buy any DVDs.
+   - These three customers contribute 0 DVDs to his sales because they buy nothing.
+
+5. **Conclusion:** To find out how many DVDs Billy sold on Tuesday, we add up all the DVDs bought by his customers.
+   
+   Total DVDs sold = DVDs from first 3 customers + DVDs from next 2 customers + DVDs from last 3 customers
+                     = 3 + 4 + 0
+                     = 7 DVDs
+
+Therefore, the answer is: 7

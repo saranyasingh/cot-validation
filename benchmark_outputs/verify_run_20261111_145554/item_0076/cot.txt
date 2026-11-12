@@ -1,0 +1,27 @@
+Explanation:
+Let's start by understanding the given information and how we can use it to find the average square footage of a level.
+
+Premise 1: Luke builds a 4-level sandcastle.
+Premise 2: Each level has half the square footage of the level below it.
+Premise 3: The top level (level 4) has a square footage of 16.
+
+From Premise 3, we know the top level (level 4) is 16 square feet. Since each subsequent level has half the square footage of the level above it, we can calculate the square footage of each level starting from the bottom up:
+
+Level 4 = 16 square feet (given)
+Level 3 = Level 4 / 2 = 16 / 2 = 8 square feet
+Level 2 = Level 3 / 2 = 8 / 2 = 4 square feet
+Level 1 = Level 2 / 2 = 4 / 2 = 2 square feet
+
+Now we have the square footage of all four levels: 16, 8, 4, and 2 square feet.
+
+To find the average square footage, we sum these values and divide by the total number of levels:
+
+Average square footage = (Total square footage) / (Number of levels)
+
+Sum of square footages = 16 + 8 + 4 + 2 = 30 square feet
+
+Number of levels = 4
+
+Average square footage = 30 / 4 = 7.5 square feet
+
+Therefore, the average square footage of a level is 7.5 square feet.

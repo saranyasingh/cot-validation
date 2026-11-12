@@ -1,0 +1,28 @@
+% Declarations
+tff(block_type, type, block: $tType).
+tff(person_type, type, person: $tType).
+tff(eliza_decl, type, eliza: person).
+tff(first_40_hours_decl, type, first_40_hours: block).
+tff(overtime_decl, type, overtime: block).
+tff(regular_rate_decl, type, regular_rate: (person * $rat) > $o).
+tff(hours_worked_decl, type, hours_worked: (person * $rat) > $o).
+tff(block_hours_decl, type, block_hours: (person * block * $rat) > $o).
+tff(block_rate_decl, type, block_rate: (person * block * $rat) > $o).
+tff(block_earnings_decl, type, block_earnings: (person * block * $rat) > $o).
+tff(total_earnings_decl, type, total_earnings: (person * $rat) > $o).
+tff(first_40_hours_neq_overtime, axiom, first_40_hours != overtime).
+
+% Statements
+tff(c1, axiom, regular_rate(eliza, 10/1)).
+tff(c2, axiom, ![V_p: person, V_r: $rat, V_e: $rat]: ((regular_rate(V_p, V_r) & V_e = $product(40/1, V_r)) => block_earnings(V_p, first_40_hours, V_e))).
+tff(c3, lemma, block_earnings(eliza, first_40_hours, 400/1)).
+tff(c4, axiom, hours_worked(eliza, 45/1)).
+tff(c5, lemma, block_hours(eliza, overtime, 5/1)).
+tff(c6, axiom, ![V_p: person, V_r: $rat, V_o: $rat]: ((regular_rate(V_p, V_r) & V_o = $product(6/5, V_r)) => block_rate(V_p, overtime, V_o))).
+tff(c7, lemma, block_rate(eliza, overtime, 12/1)).
+tff(c8, lemma, block_earnings(eliza, overtime, 60/1)).
+tff(c9, axiom, ![V_p: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((block_earnings(V_p, first_40_hours, V_a) & block_earnings(V_p, overtime, V_b) & V_c = $sum(V_a, V_b)) => total_earnings(V_p, V_c))).
+tff(c10, lemma, total_earnings(eliza, 460/1)).
+tff(i1, axiom, ![V_p: person, V_h: $rat, V_o: $rat]: ((hours_worked(V_p, V_h) & V_o = $difference(V_h, 40/1)) => block_hours(V_p, overtime, V_o))).
+tff(i2, axiom, ![V_p: person, V_b: block, V_h: $rat, V_r: $rat, V_e: $rat]: ((block_hours(V_p, V_b, V_h) & block_rate(V_p, V_b, V_r) & V_e = $product(V_h, V_r)) => block_earnings(V_p, V_b, V_e))).
+tff(s5_agg, axiom, ![N1: $rat, N2: $rat]: ((block_earnings(eliza, first_40_hours, N1) & block_earnings(eliza, overtime, N2)) => total_earnings(eliza, $sum(N1, N2)))).

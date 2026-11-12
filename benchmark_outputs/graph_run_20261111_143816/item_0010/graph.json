@@ -1,0 +1,625 @@
+{
+  "question": "Eliza's rate per hour for the first 40 hours she works each week is $10. She also receives an overtime pay of 1.2 times her regular hourly rate. If Eliza worked for 45 hours this week, how much are her earnings for this week?",
+  "cot": "EXPLANATION\n1. Eliza's regular hourly rate is $10.\n2. For the first 40 hours, Eliza earns at her regular rate of $10 per hour.\n3. Therefore, for the first 40 hours, Eliza earns 40 * $10 = $400.\n4. Eliza worked for 45 hours this week, which means she worked 5 hours of overtime.\n5. Overtime pay is 1.2 times her regular hourly rate, so her overtime rate is 1.2 * $10 = $12 per hour.\n6. For the 5 hours of overtime, Eliza earns 5 * $12 = $60.\n7. Therefore, her total earnings for the week are the sum of her regular earnings and her overtime earnings, which is $400 + $60 = $460.\n\nThe answer is: 460",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "block": {
+      "description": "a block of hours worked in a week"
+    }
+  },
+  "entities": {
+    "eliza": {
+      "sort": "person",
+      "name": "Eliza"
+    },
+    "first_40_hours": {
+      "sort": "block",
+      "name": "the first 40 hours"
+    },
+    "overtime": {
+      "sort": "block",
+      "name": "overtime"
+    }
+  },
+  "relations": {
+    "regular_rate": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "{p}'s regular hourly rate is {rate} dollars"
+    },
+    "hours_worked": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "hours",
+          "num"
+        ]
+      ],
+      "sentence": "{p} worked {hours} hours this week"
+    },
+    "block_hours": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "b",
+          "block"
+        ],
+        [
+          "hours",
+          "num"
+        ]
+      ],
+      "sentence": "{p} worked {hours} hours of {b}"
+    },
+    "block_rate": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "b",
+          "block"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "{p} earns {rate} dollars per hour for {b}"
+    },
+    "block_earnings": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "b",
+          "block"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{p} earns {amount} dollars for {b}"
+    },
+    "total_earnings": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{p}'s total earnings for the week are {amount} dollars"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Eliza's regular hourly rate is $10.",
+      "cot_quote": "Eliza's regular hourly rate is $10.",
+      "content": {
+        "relation": "regular_rate",
+        "args": [
+          "eliza",
+          10
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "Eliza's rate per hour for the first 40 hours she works each week is $10.",
+      "label": "assumption",
+      "english": "Eliza's regular hourly rate is 10 dollars."
+    },
+    "C2": {
+      "shape": "rule",
+      "text": "For the first 40 hours, Eliza earns at her regular rate of $10 per hour.",
+      "cot_quote": "For the first 40 hours, Eliza earns at her regular rate of $10 per hour.",
+      "content": {
+        "vars": {
+          "p": "person",
+          "r": "num",
+          "e": "num"
+        },
+        "if": [
+          {
+            "relation": "regular_rate",
+            "args": [
+              "p",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              40,
+              "r"
+            ],
+            "result": "e"
+          }
+        ],
+        "then": [
+          {
+            "relation": "block_earnings",
+            "args": [
+              "p",
+              "first_40_hours",
+              "e"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "Eliza's rate per hour for the first 40 hours she works each week is $10.",
+      "label": "assumption",
+      "english": "For any person p, any numbers r, e: if p's regular hourly rate is r dollars and e = 40 \u00d7 r, then p earns e dollars for the first 40 hours."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "For the first 40 hours, Eliza earns $400.",
+      "cot_quote": "Therefore, for the first 40 hours, Eliza earns 40 * $10 = $400.",
+      "content": {
+        "relation": "block_earnings",
+        "args": [
+          "eliza",
+          "first_40_hours",
+          400
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "Eliza earns 400 dollars for the first 40 hours."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "Eliza worked for 45 hours this week.",
+      "cot_quote": "Eliza worked for 45 hours this week",
+      "content": {
+        "relation": "hours_worked",
+        "args": [
+          "eliza",
+          45
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "Eliza worked for 45 hours this week",
+      "label": "assumption",
+      "english": "Eliza worked 45 hours this week."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "She worked 5 hours of overtime.",
+      "cot_quote": "which means she worked 5 hours of overtime.",
+      "content": {
+        "relation": "block_hours",
+        "args": [
+          "eliza",
+          "overtime",
+          5
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "Eliza worked 5 hours of overtime."
+    },
+    "C6": {
+      "shape": "rule",
+      "text": "Overtime pay is 1.2 times her regular hourly rate.",
+      "cot_quote": "Overtime pay is 1.2 times her regular hourly rate",
+      "content": {
+        "vars": {
+          "p": "person",
+          "r": "num",
+          "o": "num"
+        },
+        "if": [
+          {
+            "relation": "regular_rate",
+            "args": [
+              "p",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              1.2,
+              "r"
+            ],
+            "result": "o"
+          }
+        ],
+        "then": [
+          {
+            "relation": "block_rate",
+            "args": [
+              "p",
+              "overtime",
+              "o"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": "overtime pay of 1.2 times her regular hourly rate",
+      "label": "assumption",
+      "english": "For any person p, any numbers r, o: if p's regular hourly rate is r dollars and o = 1.2 \u00d7 r, then p earns o dollars per hour for overtime."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Her overtime rate is $12 per hour.",
+      "cot_quote": "so her overtime rate is 1.2 * $10 = $12 per hour.",
+      "content": {
+        "relation": "block_rate",
+        "args": [
+          "eliza",
+          "overtime",
+          12
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "Eliza earns 12 dollars per hour for overtime."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "For the 5 hours of overtime, Eliza earns $60.",
+      "cot_quote": "For the 5 hours of overtime, Eliza earns 5 * $12 = $60.",
+      "content": {
+        "relation": "block_earnings",
+        "args": [
+          "eliza",
+          "overtime",
+          60
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C8",
+      "label": "derived",
+      "english": "Eliza earns 60 dollars for overtime."
+    },
+    "C9": {
+      "shape": "rule",
+      "text": "Her total earnings for the week are the sum of her regular earnings and her overtime earnings.",
+      "cot_quote": "her total earnings for the week are the sum of her regular earnings and her overtime earnings",
+      "content": {
+        "vars": {
+          "p": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "block_earnings",
+            "args": [
+              "p",
+              "first_40_hours",
+              "a"
+            ]
+          },
+          {
+            "relation": "block_earnings",
+            "args": [
+              "p",
+              "overtime",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_earnings",
+            "args": [
+              "p",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C9",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person p, any numbers a, b, c: if p earns a dollars for the first 40 hours and p earns b dollars for overtime and c = a + b, then p's total earnings for the week are c dollars."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "Her total earnings for the week are $460.",
+      "cot_quote": "which is $400 + $60 = $460.",
+      "content": {
+        "relation": "total_earnings",
+        "args": [
+          "eliza",
+          460
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "Eliza's total earnings for the week are 460 dollars."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Overtime hours are the hours worked beyond the first 40 hours in a week.",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "h": "num",
+          "o": "num"
+        },
+        "if": [
+          {
+            "relation": "hours_worked",
+            "args": [
+              "p",
+              "h"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "h",
+              40
+            ],
+            "result": "o"
+          }
+        ],
+        "then": [
+          {
+            "relation": "block_hours",
+            "args": [
+              "p",
+              "overtime",
+              "o"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person p, any numbers h, o: if p worked h hours this week and o = h - 40, then p worked o hours of overtime."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "Earnings for a block of hours equal the number of hours times the hourly rate for those hours.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "b": "block",
+          "h": "num",
+          "r": "num",
+          "e": "num"
+        },
+        "if": [
+          {
+            "relation": "block_hours",
+            "args": [
+              "p",
+              "b",
+              "h"
+            ]
+          },
+          {
+            "relation": "block_rate",
+            "args": [
+              "p",
+              "b",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "h",
+              "r"
+            ],
+            "result": "e"
+          }
+        ],
+        "then": [
+          {
+            "relation": "block_earnings",
+            "args": [
+              "p",
+              "b",
+              "e"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any person p, any block b, any numbers h, r, e: if p worked h hours of b and p earns r dollars per hour for b and e = h \u00d7 r, then p earns e dollars for b."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "For the first 40 hours, Eliza earns 40 * $10 = $400.",
+      "premises": [
+        "C1"
+      ],
+      "warrant": "C2",
+      "conclusion": "C3",
+      "stated_computation": "40 * $10 = $400",
+      "cot_quote": "Therefore, for the first 40 hours, Eliza earns 40 * $10 = $400.",
+      "id": "S1",
+      "english": "Because Eliza's regular hourly rate is 10 dollars; and since for any person p, any numbers r, e: if p's regular hourly rate is r dollars and e = 40 \u00d7 r, then p earns e dollars for the first 40 hours: Eliza earns 400 dollars for the first 40 hours (40 * $10 = $400).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "eliza",
+        "r": "10",
+        "e": "400"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Worked 45 hours, which means 5 hours of overtime.",
+      "premises": [
+        "C4"
+      ],
+      "warrant": "I1",
+      "conclusion": "C5",
+      "stated_computation": null,
+      "cot_quote": "Eliza worked for 45 hours this week, which means she worked 5 hours of overtime.",
+      "id": "S2",
+      "english": "Because Eliza worked 45 hours this week; and since for any person p, any numbers h, o: if p worked h hours this week and o = h - 40, then p worked o hours of overtime: Eliza worked 5 hours of overtime.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "eliza",
+        "h": "45",
+        "o": "5"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Overtime rate is 1.2 * $10 = $12 per hour.",
+      "premises": [
+        "C1"
+      ],
+      "warrant": "C6",
+      "conclusion": "C7",
+      "stated_computation": "1.2 * $10 = $12",
+      "cot_quote": "so her overtime rate is 1.2 * $10 = $12 per hour.",
+      "id": "S3",
+      "english": "Because Eliza's regular hourly rate is 10 dollars; and since for any person p, any numbers r, o: if p's regular hourly rate is r dollars and o = 1.2 \u00d7 r, then p earns o dollars per hour for overtime: Eliza earns 12 dollars per hour for overtime (1.2 * $10 = $12).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "eliza",
+        "r": "10",
+        "o": "12"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "For the 5 hours of overtime, Eliza earns 5 * $12 = $60.",
+      "premises": [
+        "C5",
+        "C7"
+      ],
+      "warrant": "I2",
+      "conclusion": "C8",
+      "stated_computation": "5 * $12 = $60",
+      "cot_quote": "For the 5 hours of overtime, Eliza earns 5 * $12 = $60.",
+      "id": "S4",
+      "english": "Because Eliza worked 5 hours of overtime; and Eliza earns 12 dollars per hour for overtime; and since for any person p, any block b, any numbers h, r, e: if p worked h hours of b and p earns r dollars per hour for b and e = h \u00d7 r, then p earns e dollars for b: Eliza earns 60 dollars for overtime (5 * $12 = $60).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "eliza",
+        "b": "overtime",
+        "h": "5",
+        "r": "12",
+        "e": "60"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "aggregate",
+      "text": "Total earnings are regular plus overtime earnings, $400 + $60 = $460.",
+      "premises": [
+        "C3",
+        "C8"
+      ],
+      "warrant": "C9",
+      "conclusion": "C10",
+      "stated_computation": "$400 + $60 = $460",
+      "cot_quote": "Therefore, her total earnings for the week are the sum of her regular earnings and her overtime earnings, which is $400 + $60 = $460.",
+      "id": "S5",
+      "english": "Because Eliza earns 400 dollars for the first 40 hours; and Eliza earns 60 dollars for overtime; and since for any person p, any numbers a, b, c: if p earns a dollars for the first 40 hours and p earns b dollars for overtime and c = a + b, then p's total earnings for the week are c dollars: Eliza's total earnings for the week are 460 dollars ($400 + $60 = $460).",
+      "status": "gap",
+      "status_detail": "aggregate needs a closure statement as its warrant",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": [
+    "S5: an aggregate step needs a closure statement as its warrant"
+  ]
+}

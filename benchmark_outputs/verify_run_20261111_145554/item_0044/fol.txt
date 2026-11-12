@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Amount(x, a, n) — the quantity associated with attribute a for entity x is n
+
+Constants:
+bag, you, calories_per_serving, servings, weight, total_calories, daily_limit, consumed, remaining_calories, calories_per_gram, grams_allowed, 250, 5, 300, 2000, 1800, 200, 1250, 4.17, 47.96, 48
+
+## FACTS
+FACT-1: Each serving of the bag has 250 calories :: Amount(bag, calories_per_serving, 250)
+FACT-2: The bag has 5 servings :: Amount(bag, servings, 5)
+FACT-3: The bag weighs 300 grams :: Amount(bag, weight, 300)
+FACT-4: Your daily calorie target is 2000 calories :: Amount(you, daily_limit, 2000)
+FACT-5: You have already consumed 1800 calories :: Amount(you, consumed, 1800)
+
+## OPERATIONS
+OP-1: 250 calories/serving × 5 servings = 1250 calories :: Product(250, 5, 1250)
+OP-2: 2000 − 1800 = 200 remaining calories :: Difference(2000, 1800, 200)
+OP-3: 1250 ÷ 300 ≈ 4.17 calories per gram :: Quotient(1250, 300, 4.17)
+OP-4: 200 ÷ 4.17 ≈ 47.96 grams :: Quotient(200, 4.17, 47.96)
+
+## RULES
+RULE-1: If x has n calories per serving and m servings and n×m=p, then x has p total calories :: ∀x∀n∀m∀p (Amount(x, calories_per_serving, n) ∧ Amount(x, servings, m) ∧ Product(n, m, p) → Amount(x, total_calories, p))
+RULE-2: If x has a daily calorie limit of n and has consumed m, and n−m=r, then x has r remaining calories :: ∀x∀n∀m∀r (Amount(x, daily_limit, n) ∧ Amount(x, consumed, m) ∧ Difference(n, m, r) → Amount(x, remaining_calories, r))
+RULE-3: If x has n total calories and weighs m grams, and n÷m=r, then x has a calorie-per-gram rate of r :: ∀x∀n∀m∀r (Amount(x, total_calories, n) ∧ Amount(x, weight, m) ∧ Quotient(n, m, r) → Amount(x, calories_per_gram, r))
+RULE-4: If y has n remaining calories and x has a calorie-per-gram rate of m, and n÷m=r, then y is allowed r grams :: ∀x∀y∀n∀m∀r (Amount(y, remaining_calories, n) ∧ Amount(x, calories_per_gram, m) ∧ Quotient(n, m, r) → Amount(y, grams_allowed, r))
+
+## INFERENCES
+INF-1: The bag has 1250 total calories, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(bag, total_calories, 1250)
+INF-2: You have 200 remaining calories, from FACT-4, FACT-5, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(you, remaining_calories, 200)
+INF-3: The bag's calorie-per-gram rate is 4.17, from INF-1, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(bag, calories_per_gram, 4.17)
+INF-4: You are allowed approximately 47.96 grams of chips, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(you, grams_allowed, 47.96)
+INF-5: Rounding 47.96 grams gives 48 grams allowed, from INF-4 by Rounding :: Amount(you, grams_allowed, 48)

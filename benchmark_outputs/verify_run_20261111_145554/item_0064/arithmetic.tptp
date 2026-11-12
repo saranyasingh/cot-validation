@@ -1,0 +1,10 @@
+% OP-1: Product(6, 140, 840)
+tff(op_1, conjecture, $product(6/1, 140/1) = 840/1).
+% OP-2: Difference(1, 0.10, 0.90)
+tff(op_2, conjecture, ($lesseq($difference($difference(1/1, 1/10), 9/10), 1/200) & $lesseq($difference(9/10, $difference(1/1, 1/10)), 1/200))).
+% OP-3: Product(140, 0.90, 126)
+tff(op_3, conjecture, $product(140/1, 9/10) = 126/1).
+% OP-4: Product(6, 126, 756)
+tff(op_4, conjecture, $product(6/1, 126/1) = 756/1).
+% OP-5: Sum(840, 756, 1596)
+tff(op_5, conjecture, $sum(840/1, 756/1) = 1596/1).

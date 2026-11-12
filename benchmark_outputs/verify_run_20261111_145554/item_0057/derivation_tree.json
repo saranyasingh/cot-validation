@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Peter's total weekly budget for entertainment is $42",
+      "formula": "Budget(peter, 42)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The cost of one movie session (ticket + popcorn) for Peter is $7",
+      "formula": "CostPerVisit(peter, 7)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states ticket costs $7 AND popcorn costs $7, so one movie session costs $14, not $7.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "42 divided by 7 is 6",
+      "formula": "Quotient(42, 7, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has a budget b, the cost per visit is c, and b \u00f7 c = v, then x can make v visits",
+      "formula": "\u2200x\u2200b\u2200c\u2200v (Budget(x,b) \u2227 CostPerVisit(x,c) \u2227 Quotient(b,c,v) \u2192 Visits(x,v))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Peter can make 6 movie visits, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Visits(peter, 6)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "The problem states ticket costs $7 AND popcorn costs $7, so one movie session costs $14, not $7."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

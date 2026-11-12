@@ -1,0 +1,20 @@
+## VOCABULARY
+Predicates:
+Sprints(x, n) — x runs n sprints per week
+DistancePerSprint(x, n) — each sprint x runs is n meters long
+TotalDistance(x, n) — x runs n meters total per week
+Constants:
+james, 3, 60, 180
+
+## FACTS
+FACT-1: James runs 3 sprints :: Sprints(james, 3)
+FACT-2: Each sprint is 60 meters long :: DistancePerSprint(james, 60)
+
+## OPERATIONS
+OP-1: 60 meters per sprint times 3 sprints per week is 180 meters per week :: Product(60, 3, 180)
+
+## RULES
+RULE-1: If x runs n sprints per week, each sprint is m meters long, and n × m = p, then x runs p total meters per week :: ∀x∀n∀m∀p (Sprints(x,n) ∧ DistancePerSprint(x,m) ∧ Product(m,n,p) → TotalDistance(x,p))
+
+## INFERENCES
+INF-1: James runs 180 total meters per week, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalDistance(james, 180)

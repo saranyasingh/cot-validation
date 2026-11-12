@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+FireReach(x, n) — creature x can breathe fire up to n feet
+ThrowDistance(x, n) — x can throw the javelin n feet when not holding the gemstone
+ThrowWithGem(x, n) — x can throw the javelin n feet when holding the gemstone
+ExtraReach(x, n) — x can stand n feet beyond the dragon's fire reach and still hit it with the javelin
+
+Constants:
+perg, polly, 1000, 400, 3, 1200, 200
+
+## FACTS
+FACT-1: The great dragon Perg breathes fire up to 1000 feet :: FireReach(perg, 1000)
+FACT-2: Polly throws the javelin 400 feet when not holding the gemstone :: ThrowDistance(polly, 400)
+
+## OPERATIONS
+OP-1: 400 times 3 is 1200 :: Product(400, 3, 1200)
+OP-2: 1200 minus 1000 is 200 :: Difference(1200, 1000, 200)
+
+## RULES
+RULE-1: If x throws the javelin n feet without the gemstone, and n times 3 is m, then x can throw the javelin m feet while holding the gemstone :: ∀x∀n∀m (ThrowDistance(x,n) ∧ Product(n,3,m) → ThrowWithGem(x,m))
+RULE-2: If a creature y has fire reach n, x can throw the javelin m feet while holding the gemstone, and m minus n is r, then x can stand r feet beyond y's fire reach and still hit it :: ∀x∀y∀n∀m∀r (FireReach(y,n) ∧ ThrowWithGem(x,m) ∧ Difference(m,n,r) → ExtraReach(x,r))
+
+## INFERENCES
+INF-1: Polly can throw the javelin 1200 feet while holding the gemstone, from FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: ThrowWithGem(polly, 1200)
+INF-2: Polly can stand 200 feet beyond Perg's fire reach and still hit it with the javelin while holding the gemstone, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: ExtraReach(polly, 200)

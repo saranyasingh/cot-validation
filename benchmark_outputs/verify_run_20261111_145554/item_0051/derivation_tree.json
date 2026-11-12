@@ -1,0 +1,114 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Lloyd's chickens produce 252 eggs per day",
+      "formula": "EggsPerDay(lloyd, 252)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Lloyd sells eggs at 2 dollars per dozen",
+      "formula": "PricePerDozen(lloyd, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "252 divided by 12 is 21",
+      "formula": "Quotient(252, 12, 21)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "21 times 2 is 42",
+      "formula": "Product(21, 2, 42)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "42 times 7 is 294",
+      "formula": "Product(42, 7, 294)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's chickens produce e eggs per day and e \u00f7 12 = d, then x's chickens produce d dozens of eggs per day",
+      "formula": "\u2200x\u2200e\u2200d (EggsPerDay(x,e) \u2227 Quotient(e,12,d) \u2192 DozensPerDay(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x produces d dozens of eggs per day and sells at p dollars per dozen, and d \u00d7 p = r, then x earns r dollars per day",
+      "formula": "\u2200x\u2200d\u2200p\u2200r (DozensPerDay(x,d) \u2227 PricePerDozen(x,p) \u2227 Product(d,p,r) \u2192 EarnsPerDay(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x earns r dollars per day and r \u00d7 7 = w, then x earns w dollars per week",
+      "formula": "\u2200x\u2200r\u2200w (EarnsPerDay(x,r) \u2227 Product(r,7,w) \u2192 EarnsPerWeek(x,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Lloyd's chickens produce 21 dozens of eggs per day, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "DozensPerDay(lloyd, 21)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Lloyd earns 42 dollars per day, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "EarnsPerDay(lloyd, 42)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Lloyd earns 294 dollars per week, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "EarnsPerWeek(lloyd, 294)",
+      "premises": [
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

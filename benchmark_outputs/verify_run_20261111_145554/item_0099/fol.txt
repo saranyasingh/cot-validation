@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+InitialCars(n) — n cars were initially on the motorway
+ExitedCars(n) — n cars exited the line
+RemainingCars(n) — n cars remained on the motorway after the exit/after 15 minutes
+DroveThrough(n) — n cars drove through the traffic jam in the first 15 minutes
+
+Constants:
+30, 5, 25
+
+## FACTS
+FACT-1: Initially there are 30 cars on the motorway :: InitialCars(30)
+FACT-2: After driving through the traffic jam, 5 cars exit the line :: ExitedCars(5)
+
+## OPERATIONS
+OP-1: 30 minus 5 is 25 :: Difference(30, 5, 25)
+OP-2: 30 minus 25 is 5 :: Difference(30, 25, 5)
+
+## RULES
+RULE-1: If there are i initial cars and e cars exit, and i − e = r, then r cars remain :: ∀i∀e∀r (InitialCars(i) ∧ ExitedCars(e) ∧ Difference(i,e,r) → RemainingCars(r))
+RULE-2: If there are i initial cars and r cars remain, and i − r = d, then d cars drove through the traffic jam in the first 15 minutes :: ∀i∀r∀d (InitialCars(i) ∧ RemainingCars(r) ∧ Difference(i,r,d) → DroveThrough(d))
+
+## INFERENCES
+INF-1: 25 cars remain on the motorway, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: RemainingCars(25)
+INF-2: 5 cars drove through the traffic jam in the first 15 minutes, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: DroveThrough(5)

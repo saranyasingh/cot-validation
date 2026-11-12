@@ -1,0 +1,45 @@
+## VOCABULARY
+Predicates:
+TeamPlayers(x, t, n) — school x's team of type t has n players
+Coaches(x, n) — school x sends n coaches
+Players(x, n) — school x has n players in total (girls' + boys' team)
+Individuals(x, n) — school x sends n individuals in total (players + coaches)
+TotalIndividuals(n) — the total number of individuals across all schools is n
+
+Constants:
+a, b, c, d, girls, boys, 5, 2, 10, 12, 4, 48
+
+## FACTS
+FACT-1: School A sends a girls' team with 5 players :: TeamPlayers(a, girls, 5)
+FACT-2: School A sends a boys' team with 5 players :: TeamPlayers(a, boys, 5)
+FACT-3: School B sends a girls' team with 5 players :: TeamPlayers(b, girls, 5)
+FACT-4: School B sends a boys' team with 5 players :: TeamPlayers(b, boys, 5)
+FACT-5: School C sends a girls' team with 5 players :: TeamPlayers(c, girls, 5)
+FACT-6: School C sends a boys' team with 5 players :: TeamPlayers(c, boys, 5)
+FACT-7: School D sends a girls' team with 5 players :: TeamPlayers(d, girls, 5)
+FACT-8: School D sends a boys' team with 5 players :: TeamPlayers(d, boys, 5)
+FACT-9: School A sends 2 coaches :: Coaches(a, 2)
+FACT-10: School B sends 2 coaches :: Coaches(b, 2)
+FACT-11: School C sends 2 coaches :: Coaches(c, 2)
+FACT-12: School D sends 2 coaches :: Coaches(d, 2)
+
+## OPERATIONS
+OP-1: 5 + 5 = 10 (players per school) :: Sum(5, 5, 10)
+OP-2: 10 + 2 = 12 (individuals per school) :: Sum(10, 2, 12)
+OP-3: 12 × 4 = 48 (total individuals) :: Product(12, 4, 48)
+
+## RULES
+RULE-1: If school x's girls' team has n players and boys' team has m players and n + m = p, then school x has p players total :: ∀x∀n∀m∀p (TeamPlayers(x, girls, n) ∧ TeamPlayers(x, boys, m) ∧ Sum(n, m, p) → Players(x, p))
+RULE-2: If school x has p players and c coaches and p + c = i, then school x sends i individuals :: ∀x∀p∀c∀i (Players(x, p) ∧ Coaches(x, c) ∧ Sum(p, c, i) → Individuals(x, i))
+RULE-3: If each of the four schools A, B, C, D sends i individuals and i × 4 = t, then the total number of individuals is t :: ∀i∀t (Individuals(a, i) ∧ Individuals(b, i) ∧ Individuals(c, i) ∧ Individuals(d, i) ∧ Product(i, 4, t) → TotalIndividuals(t))
+
+## INFERENCES
+INF-1: School A has 10 players total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Players(a, 10)
+INF-2: School B has 10 players total, from FACT-3, FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Players(b, 10)
+INF-3: School C has 10 players total, from FACT-5, FACT-6, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Players(c, 10)
+INF-4: School D has 10 players total, from FACT-7, FACT-8, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Players(d, 10)
+INF-5: School A sends 12 individuals, from INF-1, FACT-9, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Individuals(a, 12)
+INF-6: School B sends 12 individuals, from INF-2, FACT-10, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Individuals(b, 12)
+INF-7: School C sends 12 individuals, from INF-3, FACT-11, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Individuals(c, 12)
+INF-8: School D sends 12 individuals, from INF-4, FACT-12, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Individuals(d, 12)
+INF-9: The total number of individuals is 48, from INF-5, INF-6, INF-7, INF-8, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalIndividuals(48)

@@ -1,0 +1,24 @@
+EXPLANATION
+1. First, we need to determine how long it would normally take to download the entire file at the normal rate of 2 GB/minute.
+   - Total file size = 200 GB
+   - Normal download speed = 2 GB/minute
+   - Time to download the whole file normally = 200 GB / 2 GB/minute = 100 minutes
+
+2. Next, we calculate how much of the file is downloaded before the restart.
+   - 40% of the file = 0.40 * 200 GB = 80 GB
+   - Time to download 80 GB at 2 GB/minute = 80 GB / 2 GB/minute = 40 minutes
+
+3. After downloading 80 GB, the download is interrupted due to the system update installation, which takes 20 minutes.
+
+4. After the update installation, Carla has to restart the download from the beginning, meaning she needs to redownload the entire 200 GB.
+   - Time to redownload the whole file = 100 minutes
+
+5. Therefore, the total time taken for the entire process includes:
+   - Initial download (80 GB) = 40 minutes
+   - Update installation = 20 minutes
+   - Redownload (200 GB) = 100 minutes
+
+6. Adding these times together gives the total time:
+   - Total time = 40 minutes + 20 minutes + 100 minutes = 160 minutes
+
+The answer is: 160

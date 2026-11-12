@@ -1,0 +1,152 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The first friend's guess is 80",
+      "formula": "Guess(friend1, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The second friend's guess is defined as 20 more than half the first friend's guess",
+      "formula": "SecondRule(friend2, friend1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The third friend's guess is defined as 25% more than the first friend's guess",
+      "formula": "ThirdRule(friend3, friend1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Half of 80 is 40",
+      "formula": "Quotient(80, 2, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 plus 20 is 60",
+      "formula": "Sum(40, 20, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "25% of 80 is 20",
+      "formula": "Product(0.25, 80, 20)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "80 plus 20 is 100",
+      "formula": "Sum(80, 20, 100)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "80 plus 60 plus 100 is 240",
+      "formula": "Sum(80, 60, 100, 240)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "240 divided by 3 is 80",
+      "formula": "Quotient(240, 3, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's guess is defined as 20 more than half of y's guess, y's guess is n, half of n is h, and h plus 20 is r, then x's guess is r",
+      "formula": "\u2200x\u2200y\u2200n\u2200h\u2200r (SecondRule(x,y) \u2227 Guess(y,n) \u2227 Quotient(n,2,h) \u2227 Sum(h,20,r) \u2192 Guess(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's guess is defined as 25% more than y's guess, y's guess is n, 25% of n is p, and n plus p is r, then x's guess is r",
+      "formula": "\u2200x\u2200y\u2200n\u2200p\u2200r (ThirdRule(x,y) \u2227 Guess(y,n) \u2227 Product(0.25,n,p) \u2227 Sum(n,p,r) \u2192 Guess(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's guess is n1, y's guess is n2, z's guess is n3, the sum of n1, n2, n3 is s, and s divided by 3 is avg, then avg is the average guess of x, y, z",
+      "formula": "\u2200x\u2200y\u2200z\u2200n1\u2200n2\u2200n3\u2200s\u2200avg (Guess(x,n1) \u2227 Guess(y,n2) \u2227 Guess(z,n3) \u2227 Sum(n1,n2,n3,s) \u2227 Quotient(s,3,avg) \u2192 AverageGuess(x,y,z,avg))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The second friend's guess is 60, from FACT-1, FACT-2, OP-1, OP-2, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Guess(friend2, 60)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The third friend's guess is 100, from FACT-1, FACT-3, OP-3, OP-4, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Guess(friend3, 100)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-3",
+        "OP-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The average guess of the three friends is 80, from FACT-1, INF-1, INF-2, OP-5, OP-6, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "AverageGuess(friend1, friend2, friend3, 80)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "INF-2",
+        "OP-5",
+        "OP-6",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

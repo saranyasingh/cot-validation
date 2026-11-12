@@ -1,0 +1,749 @@
+{
+  "question": "Carla is downloading a 200 GB file. Normally she can download 2 GB/minute, but 40% of the way through the download, Windows forces a restart to install updates, which takes 20 minutes. Then Carla has to restart the download from the beginning. How load does it take to download the file?",
+  "cot": "EXPLANATION\n1. First, we need to determine how long it would normally take to download the entire file at the normal rate of 2 GB/minute.\n   - Total file size = 200 GB\n   - Normal download speed = 2 GB/minute\n   - Time to download the whole file normally = 200 GB / 2 GB/minute = 100 minutes\n\n2. Next, we calculate how much of the file is downloaded before the restart.\n   - 40% of the file = 0.40 * 200 GB = 80 GB\n   - Time to download 80 GB at 2 GB/minute = 80 GB / 2 GB/minute = 40 minutes\n\n3. After downloading 80 GB, the download is interrupted due to the system update installation, which takes 20 minutes.\n\n4. After the update installation, Carla has to restart the download from the beginning, meaning she needs to redownload the entire 200 GB.\n   - Time to redownload the whole file = 100 minutes\n\n5. Therefore, the total time taken for the entire process includes:\n   - Initial download (80 GB) = 40 minutes\n   - Update installation = 20 minutes\n   - Redownload (200 GB) = 100 minutes\n\n6. Adding these times together gives the total time:\n   - Total time = 40 minutes + 20 minutes + 100 minutes = 160 minutes\n\nThe answer is: 160",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "task": {
+      "description": "a segment of work, such as a download or an installation"
+    },
+    "process": {
+      "description": "an overall process made up of tasks"
+    }
+  },
+  "entities": {
+    "carla": {
+      "sort": "person",
+      "name": "Carla"
+    },
+    "full_download": {
+      "sort": "task",
+      "name": "normal download of the whole file"
+    },
+    "initial_download": {
+      "sort": "task",
+      "name": "initial download"
+    },
+    "update_install": {
+      "sort": "task",
+      "name": "update installation"
+    },
+    "redownload": {
+      "sort": "task",
+      "name": "redownload"
+    },
+    "entire_process": {
+      "sort": "process",
+      "name": "entire process"
+    }
+  },
+  "relations": {
+    "data_amount": {
+      "slots": [
+        [
+          "task",
+          "task"
+        ],
+        [
+          "gb",
+          "num"
+        ]
+      ],
+      "sentence": "{task} involves {gb} GB of the file"
+    },
+    "download_rate": {
+      "slots": [
+        [
+          "person",
+          "person"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "{person} can normally download {rate} GB/minute"
+    },
+    "task_rate": {
+      "slots": [
+        [
+          "task",
+          "task"
+        ],
+        [
+          "rate",
+          "num"
+        ]
+      ],
+      "sentence": "{task} proceeds at {rate} GB/minute"
+    },
+    "duration": {
+      "slots": [
+        [
+          "task",
+          "task"
+        ],
+        [
+          "minutes",
+          "num"
+        ]
+      ],
+      "sentence": "{task} takes {minutes} minutes"
+    },
+    "percent_of_file": {
+      "slots": [
+        [
+          "task",
+          "task"
+        ],
+        [
+          "pct",
+          "num"
+        ]
+      ],
+      "sentence": "{pct}% of the file is downloaded in {task} before the restart"
+    },
+    "restarts_from_beginning": {
+      "slots": [
+        [
+          "person",
+          "person"
+        ]
+      ],
+      "sentence": "after the update installation, {person} has to restart the download from the beginning"
+    },
+    "part_of": {
+      "slots": [
+        [
+          "whole",
+          "process"
+        ],
+        [
+          "member",
+          "task"
+        ]
+      ],
+      "sentence": "{member} is part of {whole}"
+    },
+    "total_time": {
+      "slots": [
+        [
+          "process",
+          "process"
+        ],
+        [
+          "minutes",
+          "num"
+        ]
+      ],
+      "sentence": "{process} takes {minutes} minutes in total"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Total file size = 200 GB",
+      "cot_quote": "Total file size = 200 GB",
+      "content": {
+        "relation": "data_amount",
+        "args": [
+          "full_download",
+          200
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "Carla is downloading a 200 GB file.",
+      "label": "assumption",
+      "english": "Normal download of the whole file involves 200 GB of the file."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Normal download speed = 2 GB/minute",
+      "cot_quote": "Normal download speed = 2 GB/minute",
+      "content": {
+        "relation": "download_rate",
+        "args": [
+          "carla",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "Normally she can download 2 GB/minute",
+      "label": "assumption",
+      "english": "Carla can normally download 2 GB/minute."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Time to download the whole file normally = 100 minutes",
+      "cot_quote": "Time to download the whole file normally = 200 GB / 2 GB/minute = 100 minutes",
+      "content": {
+        "relation": "duration",
+        "args": [
+          "full_download",
+          100
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "Normal download of the whole file takes 100 minutes."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "40% of the file is downloaded before the restart",
+      "cot_quote": "how much of the file is downloaded before the restart",
+      "content": {
+        "relation": "percent_of_file",
+        "args": [
+          "initial_download",
+          40
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "40% of the way through the download, Windows forces a restart",
+      "label": "assumption",
+      "english": "40% of the file is downloaded in initial download before the restart."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "40% of the file = 80 GB",
+      "cot_quote": "40% of the file = 0.40 * 200 GB = 80 GB",
+      "content": {
+        "relation": "data_amount",
+        "args": [
+          "initial_download",
+          80
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "Initial download involves 80 GB of the file."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "Time to download 80 GB at 2 GB/minute = 40 minutes",
+      "cot_quote": "Time to download 80 GB at 2 GB/minute = 80 GB / 2 GB/minute = 40 minutes",
+      "content": {
+        "relation": "duration",
+        "args": [
+          "initial_download",
+          40
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "Initial download takes 40 minutes."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "The system update installation takes 20 minutes",
+      "cot_quote": "the download is interrupted due to the system update installation, which takes 20 minutes",
+      "content": {
+        "relation": "duration",
+        "args": [
+          "update_install",
+          20
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C7",
+      "question_quote": "which takes 20 minutes",
+      "label": "assumption",
+      "english": "Update installation takes 20 minutes."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "After the update installation, Carla has to restart the download from the beginning",
+      "cot_quote": "Carla has to restart the download from the beginning",
+      "content": {
+        "relation": "restarts_from_beginning",
+        "args": [
+          "carla"
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C8",
+      "question_quote": "Then Carla has to restart the download from the beginning.",
+      "label": "assumption",
+      "english": "After the update installation, Carla has to restart the download from the beginning."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "She needs to redownload the entire 200 GB",
+      "cot_quote": "meaning she needs to redownload the entire 200 GB",
+      "content": {
+        "relation": "data_amount",
+        "args": [
+          "redownload",
+          200
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "Redownload involves 200 GB of the file."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "Time to redownload the whole file = 100 minutes",
+      "cot_quote": "Time to redownload the whole file = 100 minutes",
+      "content": {
+        "relation": "duration",
+        "args": [
+          "redownload",
+          100
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "Redownload takes 100 minutes."
+    },
+    "C11": {
+      "shape": "closure",
+      "text": "The total time taken for the entire process includes initial download, update installation, and redownload",
+      "cot_quote": "the total time taken for the entire process includes:",
+      "content": {
+        "whole": "entire_process",
+        "relation": "part_of",
+        "members": [
+          "initial_download",
+          "update_install",
+          "redownload"
+        ]
+      },
+      "kind": "closure",
+      "stated_in_cot": true,
+      "id": "C11",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "The only X such that \"X is part of entire process\" are initial download, update installation and redownload; there are no others."
+    },
+    "C12": {
+      "shape": "fact",
+      "text": "Total time = 160 minutes",
+      "cot_quote": "Total time = 40 minutes + 20 minutes + 100 minutes = 160 minutes",
+      "content": {
+        "relation": "total_time",
+        "args": [
+          "entire_process",
+          160
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C12",
+      "label": "derived",
+      "english": "Entire process takes 160 minutes in total."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Download time equals amount of data divided by download rate",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "t": "task",
+          "p": "person",
+          "a": "num",
+          "r": "num",
+          "m": "num"
+        },
+        "if": [
+          {
+            "relation": "data_amount",
+            "args": [
+              "t",
+              "a"
+            ]
+          },
+          {
+            "relation": "download_rate",
+            "args": [
+              "p",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "a",
+              "r"
+            ],
+            "result": "m"
+          }
+        ],
+        "then": [
+          {
+            "relation": "duration",
+            "args": [
+              "t",
+              "m"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any task t, any person p, any numbers a, r, m: if t involves a GB of the file and p can normally download r GB/minute and m = a \u00f7 r, then t takes m minutes."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "A percentage of a quantity equals the percentage as a decimal multiplied by the quantity",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "t": "task",
+          "pct": "num",
+          "s": "num",
+          "d": "num",
+          "a": "num"
+        },
+        "if": [
+          {
+            "relation": "percent_of_file",
+            "args": [
+              "t",
+              "pct"
+            ]
+          },
+          {
+            "relation": "data_amount",
+            "args": [
+              "full_download",
+              "s"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "pct",
+              100
+            ],
+            "result": "d"
+          },
+          {
+            "op": "product",
+            "args": [
+              "d",
+              "s"
+            ],
+            "result": "a"
+          }
+        ],
+        "then": [
+          {
+            "relation": "data_amount",
+            "args": [
+              "t",
+              "a"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any task t, any numbers pct, s, d, a: if pct% of the file is downloaded in t before the restart and normal download of the whole file involves s GB of the file and d = pct \u00f7 100 and a = d \u00d7 s, then t involves a GB of the file."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "Restarting a download from the beginning means none of the previously downloaded data is kept, so the whole file must be downloaded again",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "s": "num"
+        },
+        "if": [
+          {
+            "relation": "restarts_from_beginning",
+            "args": [
+              "p"
+            ]
+          },
+          {
+            "relation": "data_amount",
+            "args": [
+              "full_download",
+              "s"
+            ]
+          }
+        ],
+        "then": [
+          {
+            "relation": "data_amount",
+            "args": [
+              "redownload",
+              "s"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any person p, any number s: if after the update installation, p has to restart the download from the beginning and normal download of the whole file involves s GB of the file, then redownload involves s GB of the file."
+    },
+    "I4": {
+      "shape": "fact",
+      "text": "The redownload proceeds at the normal rate of 2 GB/minute",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "task_rate",
+        "args": [
+          "redownload",
+          2
+        ],
+        "negated": false
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "Redownload proceeds at 2 GB/minute."
+    },
+    "I5": {
+      "shape": "rule",
+      "text": "Downloading the same amount of data at the same rate takes the same time",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "t": "task",
+          "u": "task",
+          "a": "num",
+          "m": "num",
+          "r": "num"
+        },
+        "if": [
+          {
+            "relation": "data_amount",
+            "args": [
+              "t",
+              "a"
+            ]
+          },
+          {
+            "relation": "duration",
+            "args": [
+              "u",
+              "m"
+            ]
+          },
+          {
+            "relation": "task_rate",
+            "args": [
+              "t",
+              "r"
+            ]
+          }
+        ],
+        "then": [
+          {
+            "relation": "duration",
+            "args": [
+              "t",
+              "m"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I5",
+      "label": "assumption",
+      "english": "For any tasks t, u, any numbers a, m, r: if t involves a GB of the file and u takes m minutes and t proceeds at r GB/minute, then t takes m minutes."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Time to download the whole file normally",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "200 GB / 2 GB/minute = 100 minutes",
+      "cot_quote": "Time to download the whole file normally = 200 GB / 2 GB/minute = 100 minutes",
+      "id": "S1",
+      "english": "Because normal download of the whole file involves 200 GB of the file; and Carla can normally download 2 GB/minute; and since for any task t, any person p, any numbers a, r, m: if t involves a GB of the file and p can normally download r GB/minute and m = a \u00f7 r, then t takes m minutes: normal download of the whole file takes 100 minutes (200 GB / 2 GB/minute = 100 minutes).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "full_download",
+        "a": "200",
+        "p": "carla",
+        "r": "2",
+        "m": "100"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "40% of the file",
+      "premises": [
+        "C4",
+        "C1"
+      ],
+      "warrant": "I2",
+      "conclusion": "C5",
+      "stated_computation": "0.40 * 200 GB = 80 GB",
+      "cot_quote": "40% of the file = 0.40 * 200 GB = 80 GB",
+      "id": "S2",
+      "english": "Because 40% of the file is downloaded in initial download before the restart; and normal download of the whole file involves 200 GB of the file; and since for any task t, any numbers pct, s, d, a: if pct% of the file is downloaded in t before the restart and normal download of the whole file involves s GB of the file and d = pct \u00f7 100 and a = d \u00d7 s, then t involves a GB of the file: initial download involves 80 GB of the file (0.40 * 200 GB = 80 GB).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "initial_download",
+        "pct": "40",
+        "s": "200",
+        "a": "80",
+        "d": "0.4"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Time to download 80 GB at 2 GB/minute",
+      "premises": [
+        "C5",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C6",
+      "stated_computation": "80 GB / 2 GB/minute = 40 minutes",
+      "cot_quote": "Time to download 80 GB at 2 GB/minute = 80 GB / 2 GB/minute = 40 minutes",
+      "id": "S3",
+      "english": "Because initial download involves 80 GB of the file; and Carla can normally download 2 GB/minute; and since for any task t, any person p, any numbers a, r, m: if t involves a GB of the file and p can normally download r GB/minute and m = a \u00f7 r, then t takes m minutes: initial download takes 40 minutes (80 GB / 2 GB/minute = 40 minutes).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "initial_download",
+        "a": "80",
+        "p": "carla",
+        "r": "2",
+        "m": "40"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "define",
+      "text": "restart from the beginning, meaning she needs to redownload the entire 200 GB",
+      "premises": [
+        "C8",
+        "C1"
+      ],
+      "warrant": "I3",
+      "conclusion": "C9",
+      "stated_computation": null,
+      "cot_quote": "Carla has to restart the download from the beginning, meaning she needs to redownload the entire 200 GB",
+      "id": "S4",
+      "english": "Because after the update installation, Carla has to restart the download from the beginning; and normal download of the whole file involves 200 GB of the file; and since for any person p, any number s: if after the update installation, p has to restart the download from the beginning and normal download of the whole file involves s GB of the file, then redownload involves s GB of the file: redownload involves 200 GB of the file.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "carla",
+        "s": "200"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Time to redownload the whole file = 100 minutes",
+      "premises": [
+        "C9",
+        "C3",
+        "I4"
+      ],
+      "warrant": "I5",
+      "conclusion": "C10",
+      "stated_computation": null,
+      "cot_quote": "Time to redownload the whole file = 100 minutes",
+      "id": "S5",
+      "english": "Because redownload involves 200 GB of the file; and normal download of the whole file takes 100 minutes; and redownload proceeds at 2 GB/minute; and since for any tasks t, u, any numbers a, m, r: if t involves a GB of the file and u takes m minutes and t proceeds at r GB/minute, then t takes m minutes: redownload takes 100 minutes.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "t": "redownload",
+        "a": "200",
+        "u": "full_download",
+        "m": "100",
+        "r": "2"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S6": {
+      "move": "aggregate",
+      "text": "Adding these times together gives the total time",
+      "premises": [
+        "C6",
+        "C7",
+        "C10"
+      ],
+      "warrant": "C11",
+      "conclusion": "C12",
+      "stated_computation": "40 + 20 + 100 = 160 minutes",
+      "cot_quote": "Adding these times together gives the total time",
+      "id": "S6",
+      "english": "Because initial download takes 40 minutes; and update installation takes 20 minutes; and redownload takes 100 minutes; and since the only X such that \"X is part of entire process\" are initial download, update installation and redownload; there are no others: entire process takes 160 minutes in total (40 + 20 + 100 = 160 minutes).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "parts": {
+          "initial_download": "40",
+          "update_install": "20",
+          "redownload": "100"
+        },
+        "total": "160"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

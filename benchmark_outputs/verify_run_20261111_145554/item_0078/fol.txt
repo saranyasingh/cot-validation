@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Does(x, n) — x does n pounds of laundry
+TimesAsMuch(x, y, k) — x does k times as much laundry as y
+HalfAsMuch(x, y) — x does half as much laundry as y
+DifferenceInLaundry(x, y, n) — the difference between the laundry amounts done by x and y is n pounds
+
+Constants:
+sarah, david, raymond, 4, 400, 100, 200, 2
+
+## FACTS
+FACT-1: Sarah does 4 times as much laundry as David :: TimesAsMuch(sarah, david, 4)
+FACT-2: Sarah does 400 pounds of laundry :: Does(sarah, 400)
+FACT-3: Raymond does half as much laundry as Sarah :: HalfAsMuch(raymond, sarah)
+
+## OPERATIONS
+OP-1: 400 ÷ 4 = 100 :: Quotient(400, 4, 100)
+OP-2: 400 ÷ 2 = 200 :: Quotient(400, 2, 200)
+OP-3: 200 − 100 = 100 :: Difference(200, 100, 100)
+
+## RULES
+RULE-1: If x does k times as much laundry as y, and x does m pounds, and m ÷ k = n, then y does n pounds :: ∀x∀y∀k∀m∀n (TimesAsMuch(x,y,k) ∧ Does(x,m) ∧ Quotient(m,k,n) → Does(y,n))
+RULE-2: If x does half as much laundry as y, and y does n pounds, and n ÷ 2 = m, then x does m pounds :: ∀x∀y∀n∀m (HalfAsMuch(x,y) ∧ Does(y,n) ∧ Quotient(n,2,m) → Does(x,m))
+RULE-3: If x does p pounds of laundry and y does q pounds, and p − q = d, then the difference between x's and y's laundry is d pounds :: ∀x∀y∀p∀q∀d (Does(x,p) ∧ Does(y,q) ∧ Difference(p,q,d) → DifferenceInLaundry(x,y,d))
+
+## INFERENCES
+INF-1: David does 100 pounds of laundry, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Does(david, 100)
+INF-2: Raymond does 200 pounds of laundry, from FACT-3, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Does(raymond, 200)
+INF-3: The difference between Raymond's and David's laundry is 100 pounds, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: DifferenceInLaundry(raymond, david, 100)

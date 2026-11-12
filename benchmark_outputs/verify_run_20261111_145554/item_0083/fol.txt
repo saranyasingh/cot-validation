@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+Weighs(x, n) — x weighs n pounds
+Combined(x, y, n) — the combined weight of x and y is n pounds
+
+Constants:
+grace, alex, 125, 4, 2, 500, 498, 623
+
+## FACTS
+FACT-1: Grace's weight is 125 pounds :: Weighs(grace, 125)
+
+## OPERATIONS
+OP-1: 4 times 125 is 500 :: Product(4, 125, 500)
+OP-2: 500 minus 2 is 498 :: Difference(500, 2, 498)
+OP-3: 125 plus 498 is 623 :: Sum(125, 498, 623)
+
+## RULES
+RULE-1: If Grace weighs n pounds, 4 times n is p, and p minus 2 is a, then Alex weighs a pounds :: ∀n∀p∀a (Weighs(grace, n) ∧ Product(4, n, p) ∧ Difference(p, 2, a) → Weighs(alex, a))
+RULE-2: If Grace weighs n pounds and Alex weighs m pounds and n plus m is s, then the combined weight of Grace and Alex is s pounds :: ∀n∀m∀s (Weighs(grace, n) ∧ Weighs(alex, m) ∧ Sum(n, m, s) → Combined(grace, alex, s))
+
+## INFERENCES
+INF-1: Alex weighs 498 pounds, from FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Weighs(alex, 498)
+INF-2: The combined weight of Grace and Alex is 623 pounds, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Combined(grace, alex, 623)

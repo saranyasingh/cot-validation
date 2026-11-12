@@ -1,0 +1,43 @@
+## VOCABULARY
+Predicates:
+MaxLoad(x, n) — x can carry at most n pounds
+Weighs(x, n) — x weighs (or is assumed to weigh) n pounds
+Capacity(x, n) — x has n pounds of remaining weight capacity available for boxes
+BoxCount(x, n) — n boxes can be loaded onto x
+Inconsistent(x) — the weight equations derived for x are inconsistent
+
+Constants:
+bridge, box, driver, driver_truck, truck, 5000, 15, 3755, 1245, 250.33, 0.33, 250, 4750, 316.67, 0.67, 316
+
+## FACTS
+FACT-1: A wooden bridge can carry no more than 5000 pounds :: MaxLoad(bridge, 5000)
+FACT-2: Each box weighs 15 pounds :: Weighs(box, 15)
+FACT-3: The combined weight of the driver and the empty truck is 3755 pounds :: Weighs(driver_truck, 3755)
+
+## OPERATIONS
+OP-1: 5000 minus 3755 is 1245 (the inconsistency check between the two equations) :: Difference(5000, 3755, 1245)
+OP-2: 3755 divided by 15 is approximately 250.33 (approx driver weight) :: Quotient(3755, 15, 250.33)
+OP-3: 250.33 rounded down is 250 :: Difference(250.33, 0.33, 250)
+OP-4: 5000 minus 250 is 4750 (remaining capacity for boxes) :: Difference(5000, 250, 4750)
+OP-5: 4750 divided by 15 is approximately 316.67 :: Quotient(4750, 15, 316.67)
+OP-6: 316.67 rounded down is 316 :: Difference(316.67, 0.67, 316)
+
+## RULES
+RULE-1: If something has a maximum load n, the loaded entity's weight is assumed equal to that limit :: ∀x∀n (MaxLoad(x,n) → Weighs(truck,n))
+RULE-2: If the driver-plus-truck weight is n, that same value is assumed to be the truck's loaded weight :: ∀x∀n (Weighs(driver_truck,n) → Weighs(truck,n))
+RULE-3: If an entity is assigned two different weights n and m whose difference is d, its weight equations are inconsistent :: ∀x∀n∀m∀d (Weighs(x,n) ∧ Weighs(x,m) ∧ Difference(n,m,d) → Inconsistent(x))
+RULE-4: If the combined weight is n and each box weighs b, and n divided by b is d, then the driver's weight is approximated as d :: ∀x∀y∀n∀b∀d (Weighs(x,n) ∧ Weighs(y,b) ∧ Quotient(n,b,d) → Weighs(driver,d))
+RULE-5: If an entity weighs n and n minus a fractional remainder f equals m, then the entity's rounded-down weight is m :: ∀x∀n∀f∀m (Weighs(x,n) ∧ Difference(n,f,m) → Weighs(x,m))
+RULE-6: If a structure's max load is n and the driver weighs d, and n minus d equals r, then the remaining capacity for boxes is r :: ∀x∀y∀n∀d∀r (MaxLoad(x,n) ∧ Weighs(y,d) ∧ Difference(n,d,r) → Capacity(truck,r))
+RULE-7: If the remaining capacity is r and each box weighs b, and r divided by b equals c, then the number of boxes that fit is c :: ∀x∀y∀r∀b∀c (Capacity(x,r) ∧ Weighs(y,b) ∧ Quotient(r,b,c) → BoxCount(x,c))
+RULE-8: If a box count is n and n minus a fractional remainder f equals m, then the rounded-down box count is m :: ∀x∀n∀f∀m (BoxCount(x,n) ∧ Difference(n,f,m) → BoxCount(x,m))
+
+## INFERENCES
+INF-1: The truck's loaded weight is assumed to be 5000, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Weighs(truck, 5000)
+INF-2: The truck's loaded weight is also assumed to be 3755, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: Weighs(truck, 3755)
+INF-3: These two assignments are inconsistent, from INF-1, INF-2, OP-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Inconsistent(truck)
+INF-4: The approximate driver weight is 250.33, from FACT-3, FACT-2, OP-2, and RULE-4 by Universal Instantiation and Modus Ponens :: Weighs(driver, 250.33)
+INF-5: The driver's weight rounded down is 250, from INF-4, OP-3, and RULE-5 by Universal Instantiation and Modus Ponens :: Weighs(driver, 250)
+INF-6: The remaining capacity for boxes is 4750, from FACT-1, INF-5, OP-4, and RULE-6 by Universal Instantiation and Modus Ponens :: Capacity(truck, 4750)
+INF-7: The computed box count is 316.67, from INF-6, FACT-2, OP-5, and RULE-7 by Universal Instantiation and Modus Ponens :: BoxCount(truck, 316.67)
+INF-8: The box count rounded down is 316, from INF-7, OP-6, and RULE-8 by Universal Instantiation and Modus Ponens :: BoxCount(truck, 316)

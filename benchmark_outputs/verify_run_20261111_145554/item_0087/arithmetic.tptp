@@ -1,0 +1,6 @@
+% OP-1: Product(3, 4, 12)
+tff(op_1, conjecture, $product(3/1, 4/1) = 12/1).
+% OP-2: Quotient(12, 2, 6)
+tff(op_2, conjecture, $quotient(12/1, 2/1) = 6/1).
+% OP-3: Sum(4, 12, 6, 22)
+tff(op_3, conjecture, $sum($sum(4/1, 12/1), 6/1) = 22/1).

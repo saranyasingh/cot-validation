@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, sauce_volume(freda, n_32)).
+fof(fact_2, axiom, per_can(ounces, n_16)).
+fof(fact_3, axiom, per_can(tomatoes, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_32, n_64)).
+fof(op_2, axiom, quotient(n_64, n_16, n_4)).
+fof(op_3, axiom, product(n_4, n_3, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M] : ((sauce_volume(X, N) & product(n_2, N, M)) => original_volume(X, M))).
+fof(rule_2, axiom, ! [X,N,V,C] : ((original_volume(X, N) & per_can(ounces, V) & quotient(N, V, C)) => uses(X, cans, C))).
+fof(rule_3, axiom, ! [X,C,T,TOTAL] : ((uses(X, cans, C) & per_can(tomatoes, T) & product(C, T, TOTAL)) => uses(X, tomatoes, TOTAL))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, original_volume(freda, n_64)).
+% From inf_1, fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, uses(freda, cans, n_4)).
+% From inf_2, fact_3, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, uses(freda, tomatoes, n_12)).

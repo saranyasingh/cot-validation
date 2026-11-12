@@ -1,0 +1,133 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "One pair of heels costs $33",
+      "formula": "Cost(first_pair, 33)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The other pair of heels costs twice as much as the first pair",
+      "formula": "TwiceAsMuch(second_pair, first_pair)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The combined total represents the cost of both pairs of heels together",
+      "formula": "CombinedOf(heels_total, first_pair, second_pair)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The combined cost of the two pairs of heels is $5 less than the cost of the boots",
+      "formula": "LessThanBy(heels_total, boots, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 33 is 66",
+      "formula": "Product(2, 33, 66)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "33 plus 66 is 99",
+      "formula": "Sum(33, 66, 99)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "99 plus 5 is 104",
+      "formula": "Sum(99, 5, 104)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x costs twice as much as y, and y costs m, and 2\u00d7m = p, then x costs p",
+      "formula": "\u2200x\u2200y\u2200m\u2200p (TwiceAsMuch(x,y) \u2227 Cost(y,m) \u2227 Product(2,m,p) \u2192 Cost(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If z is the combined cost of x and y, x costs n, y costs m, and n+m = s, then z costs s",
+      "formula": "\u2200x\u2200y\u2200z\u2200n\u2200m\u2200s (CombinedOf(z,x,y) \u2227 Cost(x,n) \u2227 Cost(y,m) \u2227 Sum(n,m,s) \u2192 Cost(z,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's cost is n less than y's cost, x costs m, and m+n = s, then y costs s",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200s (LessThanBy(x,y,n) \u2227 Cost(x,m) \u2227 Sum(m,n,s) \u2192 Cost(y,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The second pair of heels costs $66, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(second_pair, 66)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The combined heels cost $99, from FACT-3, FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(heels_total, 99)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The boots cost $104, from FACT-4, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(boots, 104)",
+      "premises": [
+        "FACT-4",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

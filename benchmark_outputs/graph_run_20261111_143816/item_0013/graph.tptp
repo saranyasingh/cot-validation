@@ -1,0 +1,26 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(tree_type, type, tree: $tType).
+tff(carlos_decl, type, carlos: person).
+tff(tree_decl, type, tree: tree).
+tff(planting_cost_decl, type, planting_cost: (tree * $rat) > $o).
+tff(annual_upkeep_cost_decl, type, annual_upkeep_cost: (tree * $rat) > $o).
+tff(annual_lemons_decl, type, annual_lemons: (tree * $rat) > $o).
+tff(lemon_price_decl, type, lemon_price: (person * $rat) > $o).
+tff(annual_revenue_decl, type, annual_revenue: (tree * $rat) > $o).
+tff(annual_net_profit_decl, type, annual_net_profit: (tree * $rat) > $o).
+tff(constant_annual_profit_decl, type, constant_annual_profit: (tree * $rat) > $o).
+tff(years_to_break_even_decl, type, years_to_break_even: (tree * $rat) > $o).
+
+% Statements
+tff(c1, axiom, planting_cost(tree, 90/1)).
+tff(c2, axiom, annual_upkeep_cost(tree, 3/1)).
+tff(c3, axiom, annual_lemons(tree, 7/1)).
+tff(c4, axiom, lemon_price(carlos, 3/2)).
+tff(c5, lemma, annual_revenue(tree, 21/2)).
+tff(c6, axiom, ![V_t: tree, V_r: $rat, V_c: $rat, V_p: $rat]: ((annual_revenue(V_t, V_r) & annual_upkeep_cost(V_t, V_c) & V_p = $difference(V_r, V_c)) => annual_net_profit(V_t, V_p))).
+tff(c7, lemma, annual_net_profit(tree, 15/2)).
+tff(c8, axiom, ![V_t: tree, V_i: $rat, V_p: $rat, V_y: $rat]: ((planting_cost(V_t, V_i) & annual_net_profit(V_t, V_p) & constant_annual_profit(V_t, V_p) & V_y = $quotient(V_i, V_p)) => years_to_break_even(V_t, V_y))).
+tff(c9, lemma, years_to_break_even(tree, 12/1)).
+tff(i1, axiom, ![V_t: tree, V_s: person, V_n: $rat, V_r: $rat, V_v: $rat]: ((annual_lemons(V_t, V_n) & lemon_price(V_s, V_r) & V_v = $product(V_n, V_r)) => annual_revenue(V_t, V_v))).
+tff(i2, axiom, constant_annual_profit(tree, 15/2)).

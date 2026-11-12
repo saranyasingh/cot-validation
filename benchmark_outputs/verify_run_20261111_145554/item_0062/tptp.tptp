@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, material_cost(janet, n_500)).
+fof(fact_2, axiom, construction_cost(janet, n_800)).
+fof(fact_3, axiom, insurance_rate(janet, n_0_10)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_500, n_800, n_1300)).
+fof(op_2, axiom, product(n_0_10, n_1300, n_130)).
+fof(op_3, axiom, sum(n_500, n_800, n_130, n_1430)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,M,C,T] : ((material_cost(X, M) & construction_cost(X, C) & sum(M, C, T)) => total_cost(X, T))).
+fof(rule_2, axiom, ! [X,T,R,M,C,I,P] : ((total_cost(X, T) & insurance_rate(X, R) & material_cost(X, M) & construction_cost(X, C) & product(R, T, I) & sum(M, C, I, P)) => total_paid(X, P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, total_cost(janet, n_1300)).
+% From inf_1, fact_1, fact_2, fact_3, op_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_paid(janet, n_1430)).

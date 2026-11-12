@@ -1,0 +1,16 @@
+To solve this problem, we need to determine the age of Brandon's iPhone based on the given relationships between the ages of Brandon's, Ben's, and Suzy's iPhones.
+
+**Premise 1:** Brandon's iPhone is four times as old as Ben's iPhone.
+This means if \( B \) represents the age of Ben's iPhone, then Brandon's iPhone (\( Br \)) would be \( 4B \).
+
+**Premise 2:** Ben's iPhone is two times older than Suzy's iPhone.
+If \( S \) represents the age of Suzy's iPhone, then \( B = 2S \). Given that Suzy’s iPhone is 1 year old, we have:
+\[ B = 2 \times 1 = 2 \text{ years} \]
+
+**Premise 3:** Using Premises 1 and 2, we substitute the value of \( B \):
+Since \( B = 2 \), substituting into Premise 1 gives us:
+\[ Br = 4B = 4 \times 2 = 8 \text{ years} \]
+
+Therefore, Brandon's iPhone is **8 years old**.
+
+The answer is: 8

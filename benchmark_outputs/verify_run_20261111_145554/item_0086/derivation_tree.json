@@ -1,0 +1,113 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Gene starts his journey at age 23 and continues until age 34",
+      "formula": "AgeRange(gene, 23, 34)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Gene goes on 4 vacations per year",
+      "formula": "VacationsPerYear(gene, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "34 minus 23 is 11",
+      "formula": "Difference(34, 23, 11)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 times 11 is 44",
+      "formula": "Product(4, 11, 44)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's age range is from s to e and e \u2212 s = n, then n years passed for x",
+      "formula": "\u2200x\u2200s\u2200e\u2200n (AgeRange(x,s,e) \u2227 Difference(e,s,n) \u2192 YearsPassed(x,n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Since Gene vacations every year from age 23 through age 34 inclusive, the number of years should be e \u2212 s + 1 (12 years), not e \u2212 s (11 years); this undercounts by one year.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x goes on n vacations per year, m years passed, and n \u00d7 m = p, then x took p total vacations",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (VacationsPerYear(x,n) \u2227 YearsPassed(x,m) \u2227 Product(n,m,p) \u2192 TotalVacations(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x took n total vacations, then x's quilt has n blocks",
+      "formula": "\u2200x\u2200n (TotalVacations(x,n) \u2192 QuiltBlocks(x,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "11 years passed for Gene, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "YearsPassed(gene, 11)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Gene took 44 total vacations, from FACT-2, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalVacations(gene, 44)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Gene's quilt has 44 blocks, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "QuiltBlocks(gene, 44)",
+      "premises": [
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "Since Gene vacations every year from age 23 through age 34 inclusive, the number of years should be e \u2212 s + 1 (12 years), not e \u2212 s (11 years); this undercounts by one year."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

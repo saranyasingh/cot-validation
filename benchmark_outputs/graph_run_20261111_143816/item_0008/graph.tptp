@@ -1,0 +1,44 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(process_type, type, process: $tType).
+tff(task_type, type, task: $tType).
+tff(carla_decl, type, carla: person).
+tff(full_download_decl, type, full_download: task).
+tff(initial_download_decl, type, initial_download: task).
+tff(update_install_decl, type, update_install: task).
+tff(redownload_decl, type, redownload: task).
+tff(entire_process_decl, type, entire_process: process).
+tff(data_amount_decl, type, data_amount: (task * $rat) > $o).
+tff(download_rate_decl, type, download_rate: (person * $rat) > $o).
+tff(task_rate_decl, type, task_rate: (task * $rat) > $o).
+tff(duration_decl, type, duration: (task * $rat) > $o).
+tff(percent_of_file_decl, type, percent_of_file: (task * $rat) > $o).
+tff(restarts_from_beginning_decl, type, restarts_from_beginning: person > $o).
+tff(part_of_decl, type, part_of: (process * task) > $o).
+tff(total_time_decl, type, total_time: (process * $rat) > $o).
+tff(full_download_neq_initial_download, axiom, full_download != initial_download).
+tff(full_download_neq_update_install, axiom, full_download != update_install).
+tff(full_download_neq_redownload, axiom, full_download != redownload).
+tff(initial_download_neq_update_install, axiom, initial_download != update_install).
+tff(initial_download_neq_redownload, axiom, initial_download != redownload).
+tff(update_install_neq_redownload, axiom, update_install != redownload).
+
+% Statements
+tff(c1, axiom, data_amount(full_download, 200/1)).
+tff(c2, axiom, download_rate(carla, 2/1)).
+tff(c3, lemma, duration(full_download, 100/1)).
+tff(c4, axiom, percent_of_file(initial_download, 40/1)).
+tff(c5, lemma, data_amount(initial_download, 80/1)).
+tff(c6, lemma, duration(initial_download, 40/1)).
+tff(c7, axiom, duration(update_install, 20/1)).
+tff(c8, axiom, restarts_from_beginning(carla)).
+tff(c9, lemma, data_amount(redownload, 200/1)).
+tff(c10, lemma, duration(redownload, 100/1)).
+tff(c11, axiom, ![V_m: task]: (part_of(entire_process, V_m) <=> (V_m = initial_download | V_m = update_install | V_m = redownload))).
+tff(c12, lemma, total_time(entire_process, 160/1)).
+tff(i1, axiom, ![V_t: task, V_p: person, V_a: $rat, V_r: $rat, V_m: $rat]: ((data_amount(V_t, V_a) & download_rate(V_p, V_r) & V_m = $quotient(V_a, V_r)) => duration(V_t, V_m))).
+tff(i2, axiom, ![V_t: task, V_pct: $rat, V_s: $rat, V_d: $rat, V_a: $rat]: ((percent_of_file(V_t, V_pct) & data_amount(full_download, V_s) & V_d = $quotient(V_pct, 100/1) & V_a = $product(V_d, V_s)) => data_amount(V_t, V_a))).
+tff(i3, axiom, ![V_p: person, V_s: $rat]: ((restarts_from_beginning(V_p) & data_amount(full_download, V_s)) => data_amount(redownload, V_s))).
+tff(i4, axiom, task_rate(redownload, 2/1)).
+tff(i5, axiom, ![V_t: task, V_u: task, V_a: $rat, V_m: $rat, V_r: $rat]: ((data_amount(V_t, V_a) & duration(V_u, V_m) & task_rate(V_t, V_r)) => duration(V_t, V_m))).
+tff(s6_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((duration(initial_download, N1) & duration(update_install, N2) & duration(redownload, N3)) => total_time(entire_process, $sum($sum(N1, N2), N3)))).

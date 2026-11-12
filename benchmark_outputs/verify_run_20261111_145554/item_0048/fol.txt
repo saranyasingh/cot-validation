@@ -1,0 +1,40 @@
+## VOCABULARY
+Predicates:
+Price(x, n) — the price of item x is n dollars
+Spent(p, x, n) — person p spent n dollars on item x
+Bought(p, x, n) — person p bought n units of item x
+PercentMore(x, y, pct) — item x costs pct (fractional) more than item y
+DoubleCount(p, x, y) — person p buys twice as many of item x as of item y
+
+Constants:
+john, blue_tie, red_tie, all_ties, 40, 200, 0.5, 2, 5, 10, 20, 60, 600, 800
+
+## FACTS
+FACT-1: The price of a blue tie is $40 :: Price(blue_tie, 40)
+FACT-2: John spends $200 on blue ties :: Spent(john, blue_tie, 200)
+FACT-3: Red ties cost 50% more than blue ties :: PercentMore(red_tie, blue_tie, 0.5)
+FACT-4: John buys twice as many red ties as blue ties :: DoubleCount(john, red_tie, blue_tie)
+
+## OPERATIONS
+OP-1: 0.5 × 40 = 20 :: Product(0.5, 40, 20)
+OP-2: 40 + 20 = 60 :: Sum(40, 20, 60)
+OP-3: 200 ÷ 40 = 5 :: Quotient(200, 40, 5)
+OP-4: 2 × 5 = 10 :: Product(2, 5, 10)
+OP-5: 5 × 40 = 200 :: Product(5, 40, 200)
+OP-6: 10 × 60 = 600 :: Product(10, 60, 600)
+OP-7: 200 + 600 = 800 :: Sum(200, 600, 800)
+
+## RULES
+RULE-1: If x costs pct more than y, y's price is n, pct×n = m, and n+m = p, then x's price is p :: ∀x∀y∀pct∀n∀m∀p (PercentMore(x,y,pct) ∧ Price(y,n) ∧ Product(pct,n,m) ∧ Sum(n,m,p) → Price(x,p))
+RULE-2: If p spent n dollars on x, x's price is "price", and n ÷ price = count, then p bought count units of x :: ∀p∀x∀n∀price∀count (Spent(p,x,n) ∧ Price(x,price) ∧ Quotient(n,price,count) → Bought(p,x,count))
+RULE-3: If p buys twice as many x as y, p bought n of y, and 2×n = m, then p bought m of x :: ∀p∀x∀y∀n∀m (DoubleCount(p,x,y) ∧ Bought(p,y,n) ∧ Product(2,n,m) → Bought(p,x,m))
+RULE-4: If p bought n units of x, x's price is "price", and n×price = total, then p spent total on x :: ∀p∀x∀n∀price∀total (Bought(p,x,n) ∧ Price(x,price) ∧ Product(n,price,total) → Spent(p,x,total))
+RULE-5: If p spent n on x and m on y, and n+m = t, then p spent t on all ties :: ∀p∀x∀y∀n∀m∀t (Spent(p,x,n) ∧ Spent(p,y,m) ∧ Sum(n,m,t) → Spent(p,all_ties,t))
+
+## INFERENCES
+INF-1: The price of a red tie is $60, from FACT-3, FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Price(red_tie, 60)
+INF-2: John bought 5 blue ties, from FACT-2, FACT-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Bought(john, blue_tie, 5)
+INF-3: John bought 10 red ties, from FACT-4, INF-2, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Bought(john, red_tie, 10)
+INF-4: John spent $200 on blue ties, from INF-2, FACT-1, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Spent(john, blue_tie, 200)
+INF-5: John spent $600 on red ties, from INF-3, INF-1, OP-6, and RULE-4 by Universal Instantiation and Modus Ponens :: Spent(john, red_tie, 600)
+INF-6: John spent $800 in total on ties, from INF-4, INF-5, OP-7, and RULE-5 by Universal Instantiation and Modus Ponens :: Spent(john, all_ties, 800)

@@ -1,0 +1,4 @@
+% OP-1: Product(4, 0.25, 1)
+tff(op_1, conjecture, $product(4/1, 1/4) = 1/1).
+% OP-2: Sum(4, 1, 5)
+tff(op_2, conjecture, $sum(4/1, 1/1) = 5/1).

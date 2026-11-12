@@ -1,0 +1,210 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Judy teaches 5 dance classes per day on weekdays",
+      "formula": "Quantity(judy, weekday_classes_per_day, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Judy teaches on 5 weekdays per week",
+      "formula": "Quantity(judy, weekday_days, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Judy teaches 8 dance classes on Saturday",
+      "formula": "Quantity(judy, saturday_classes, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Judy teaches on 1 Saturday per week",
+      "formula": "Quantity(judy, saturday_days, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Each class has 15 students",
+      "formula": "Quantity(judy, students_per_class, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Judy charges $15.00 per student",
+      "formula": "Quantity(judy, price_per_student, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 classes/day * 5 days/week = 25 classes/week",
+      "formula": "Product(5, 5, 25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "8 classes/Saturday * 1 Saturday/week = 8 classes/week",
+      "formula": "Product(8, 1, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "25 classes/week + 8 classes/week = 33 classes/week",
+      "formula": "Sum(25, 8, 33)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "33 classes/week * 15 students/class = 495 students/week",
+      "formula": "Product(33, 15, 495)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "495 students * $15.00/student = $7,425.00",
+      "formula": "Product(495, 15, 7425)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x teaches n classes per weekday and works m weekdays per week, and n*m=p, then x's total weekday classes is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x, weekday_classes_per_day, n) \u2227 Quantity(x, weekday_days, m) \u2227 Product(n, m, p) \u2192 Quantity(x, total_weekday_classes, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x teaches n classes per Saturday and works m Saturdays per week, and n*m=p, then x's total weekend classes is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x, saturday_classes, n) \u2227 Quantity(x, saturday_days, m) \u2227 Product(n, m, p) \u2192 Quantity(x, total_weekend_classes, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's total weekday classes is n and total weekend classes is m, and n+m=p, then x's total classes is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x, total_weekday_classes, n) \u2227 Quantity(x, total_weekend_classes, m) \u2227 Sum(n, m, p) \u2192 Quantity(x, total_classes, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's total classes is n and students per class is m, and n*m=p, then x's total students is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x, total_classes, n) \u2227 Quantity(x, students_per_class, m) \u2227 Product(n, m, p) \u2192 Quantity(x, total_students, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x's total students is n and price per student is m, and n*m=p, then x's total earnings is p",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Quantity(x, total_students, n) \u2227 Quantity(x, price_per_student, m) \u2227 Product(n, m, p) \u2192 Quantity(x, total_earnings, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Judy's total weekday classes is 25, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Quantity(judy, total_weekday_classes, 25)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Judy's total weekend classes is 8, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Quantity(judy, total_weekend_classes, 8)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Judy's total classes in one week is 33, from INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Quantity(judy, total_classes, 33)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Judy's total students in one week is 495, from INF-3, FACT-5, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Quantity(judy, total_students, 495)",
+      "premises": [
+        "INF-3",
+        "FACT-5",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Judy's total earnings in one week is 7425, from INF-4, FACT-6, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Quantity(judy, total_earnings, 7425)",
+      "premises": [
+        "INF-4",
+        "FACT-6",
+        "OP-5",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,124 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Tommy sold 43 brownies",
+      "formula": "Sold(tommy, brownies, 43)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each brownie costs $3",
+      "formula": "Price(brownies, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Tommy sold 23 cheesecakes",
+      "formula": "Sold(tommy, cheesecakes, 23)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each cheesecake costs $4",
+      "formula": "Price(cheesecakes, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "43 times 3 is 129",
+      "formula": "Product(43, 3, 129)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "23 times 4 is 92",
+      "formula": "Product(23, 4, 92)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "129 plus 92 is 221",
+      "formula": "Sum(129, 92, 221)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x sold n units of item at price p per unit, and n \u00d7 p = r, then the revenue from item is r",
+      "formula": "\u2200x\u2200item\u2200n\u2200p\u2200r (Sold(x,item,n) \u2227 Price(item,p) \u2227 Product(n,p,r) \u2192 Revenue(item,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the revenue from brownies is r1 and the revenue from cheesecakes is r2, and r1 + r2 = t, then x raised a total of t dollars",
+      "formula": "\u2200x\u2200r1\u2200r2\u2200t (Revenue(brownies,r1) \u2227 Revenue(cheesecakes,r2) \u2227 Sum(r1,r2,t) \u2192 TotalRaised(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The revenue from brownies is 129 dollars, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(brownies, 129)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The revenue from cheesecakes is 92 dollars, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(cheesecakes, 92)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Tommy raised a total of 221 dollars, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalRaised(tommy, 221)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

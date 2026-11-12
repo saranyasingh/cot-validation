@@ -1,0 +1,36 @@
+## VOCABULARY
+Predicates:
+HourlyRate(x, a, r) — x earns r dollars per hour for activity a
+HoursPerWeek(x, a, h) — x works h hours per week on activity a
+WeeksPerYear(x, w) — x works w weeks per year
+WeeklyEarning(x, a, e) — x earns e dollars per week from activity a
+AnnualEarning(x, a, e) — x earns e dollars per year from activity a
+
+Constants:
+jill, teaching, coaching, total, 20, 35, 30, 15, 50, 700, 450, 35000, 22500, 57500
+
+## FACTS
+FACT-1: Jill earns $20 per hour teaching :: HourlyRate(jill, teaching, 20)
+FACT-2: Jill teaches 35 hours per week :: HoursPerWeek(jill, teaching, 35)
+FACT-3: Jill earns $30 per hour coaching :: HourlyRate(jill, coaching, 30)
+FACT-4: Jill coaches 15 hours per week :: HoursPerWeek(jill, coaching, 15)
+FACT-5: Jill works 50 weeks a year :: WeeksPerYear(jill, 50)
+
+## OPERATIONS
+OP-1: $20/hour × 35 hours = $700/week :: Product(20, 35, 700)
+OP-2: $30/hour × 15 hours = $450/week :: Product(30, 15, 450)
+OP-3: $700/week × 50 weeks = $35,000/year :: Product(700, 50, 35000)
+OP-4: $450/week × 50 weeks = $22,500/year :: Product(450, 50, 22500)
+OP-5: $35,000 + $22,500 = $57,500 :: Sum(35000, 22500, 57500)
+
+## RULES
+RULE-1: If x earns r per hour for activity a and works h hours per week on a, and r×h=e, then x earns e per week from a :: ∀x∀a∀r∀h∀e (HourlyRate(x,a,r) ∧ HoursPerWeek(x,a,h) ∧ Product(r,h,e) → WeeklyEarning(x,a,e))
+RULE-2: If x earns e per week from activity a and works w weeks per year, and e×w=p, then x earns p per year from a :: ∀x∀a∀e∀w∀p (WeeklyEarning(x,a,e) ∧ WeeksPerYear(x,w) ∧ Product(e,w,p) → AnnualEarning(x,a,p))
+RULE-3: If x earns e1 per year from teaching and e2 per year from coaching, and e1+e2=s, then x earns s per year in total :: ∀x∀e1∀e2∀s (AnnualEarning(x,teaching,e1) ∧ AnnualEarning(x,coaching,e2) ∧ Sum(e1,e2,s) → AnnualEarning(x,total,s))
+
+## INFERENCES
+INF-1: Jill earns $700/week from teaching, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: WeeklyEarning(jill, teaching, 700)
+INF-2: Jill earns $450/week from coaching, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens :: WeeklyEarning(jill, coaching, 450)
+INF-3: Jill earns $35,000/year from teaching, from INF-1, FACT-5, OP-3, RULE-2 by Universal Instantiation and Modus Ponens :: AnnualEarning(jill, teaching, 35000)
+INF-4: Jill earns $22,500/year from coaching, from INF-2, FACT-5, OP-4, RULE-2 by Universal Instantiation and Modus Ponens :: AnnualEarning(jill, coaching, 22500)
+INF-5: Jill's total annual salary is $57,500, from INF-3, INF-4, OP-5, RULE-3 by Universal Instantiation and Modus Ponens :: AnnualEarning(jill, total, 57500)

@@ -1,0 +1,146 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each adult eats 10 lbs",
+      "formula": "EatsPerPerson(adult, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "There are 20 adults",
+      "formula": "Count(adult, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There are 5 children",
+      "formula": "Count(child, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "10 divided by 2 is 5 (half as much)",
+      "formula": "Quotient(10, 2, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "10 times 20 is 200",
+      "formula": "Product(10, 20, 200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "5 times 5 is 25",
+      "formula": "Product(5, 5, 25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "200 plus 25 is 225",
+      "formula": "Sum(200, 25, 225)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If each adult eats n lbs and n divided by 2 is m, then each child eats m lbs",
+      "formula": "\u2200n\u2200m (EatsPerPerson(adult, n) \u2227 Quotient(n, 2, m) \u2192 EatsPerPerson(child, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If each individual of type x eats n lbs and there are m of them, and n times m is p, then the total for x is p lbs",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (EatsPerPerson(x, n) \u2227 Count(x, m) \u2227 Product(n, m, p) \u2192 Total(x, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the total for adults is n lbs and the total for children is m lbs, and n plus m is p, then Ted needs to bring p lbs",
+      "formula": "\u2200n\u2200m\u2200p (Total(adult, n) \u2227 Total(child, m) \u2227 Sum(n, m, p) \u2192 Total(ted, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Each child eats 5 lbs, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "EatsPerPerson(child, 5)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The total for adults is 200 lbs, from FACT-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(adult, 200)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total for children is 25 lbs, from INF-1, FACT-3, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(child, 25)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Ted needs to bring 225 lbs, from INF-2, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(ted, 225)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

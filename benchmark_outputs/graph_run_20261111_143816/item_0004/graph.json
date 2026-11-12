@@ -1,0 +1,336 @@
+{
+  "question": "James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?",
+  "cot": "EXPLANATION\n1. James runs 3 sprints each time he exercises.\n2. He exercises 3 times a week.\n3. Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week.\n4. Each sprint is 60 meters long.\n5. Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week.\n\nThe answer is: 540",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    }
+  },
+  "entities": {
+    "james": {
+      "sort": "person",
+      "name": "James"
+    }
+  },
+  "relations": {
+    "sprints_per_session": {
+      "slots": [
+        [
+          "runner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{runner} runs {count} sprints each time he exercises"
+    },
+    "sessions_per_week": {
+      "slots": [
+        [
+          "runner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{runner} exercises {count} times a week"
+    },
+    "sprints_per_week": {
+      "slots": [
+        [
+          "runner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{runner} runs {count} sprints in a week"
+    },
+    "meters_per_sprint": {
+      "slots": [
+        [
+          "runner",
+          "person"
+        ],
+        [
+          "length",
+          "num"
+        ]
+      ],
+      "sentence": "each sprint {runner} runs is {length} meters long"
+    },
+    "meters_per_week": {
+      "slots": [
+        [
+          "runner",
+          "person"
+        ],
+        [
+          "distance",
+          "num"
+        ]
+      ],
+      "sentence": "{runner} runs a total of {distance} meters in a week"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "James runs 3 sprints each time he exercises.",
+      "cot_quote": "James runs 3 sprints each time he exercises.",
+      "content": {
+        "relation": "sprints_per_session",
+        "args": [
+          "james",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "run 3 sprints 3 times a week",
+      "label": "assumption",
+      "english": "James runs 3 sprints each time he exercises."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "He exercises 3 times a week.",
+      "cot_quote": "He exercises 3 times a week.",
+      "content": {
+        "relation": "sessions_per_week",
+        "args": [
+          "james",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "3 times a week",
+      "label": "assumption",
+      "english": "James exercises 3 times a week."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The total number of sprints he runs in a week is 9 sprints/week.",
+      "cot_quote": "the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week",
+      "content": {
+        "relation": "sprints_per_week",
+        "args": [
+          "james",
+          9
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "James runs 9 sprints in a week."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "Each sprint is 60 meters long.",
+      "cot_quote": "Each sprint is 60 meters long.",
+      "content": {
+        "relation": "meters_per_sprint",
+        "args": [
+          "james",
+          60
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "He runs 60 meters each sprint",
+      "label": "assumption",
+      "english": "Each sprint James runs is 60 meters long."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "The total distance he runs in a week is 540 meters/week.",
+      "cot_quote": "the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week",
+      "content": {
+        "relation": "meters_per_week",
+        "args": [
+          "james",
+          540
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "James runs a total of 540 meters in a week."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "If a fixed number of items occurs per event and a fixed number of events occurs per period, the total items per period is the product of the two rates.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "sprints_per_session",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "sessions_per_week",
+            "args": [
+              "x",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "sprints_per_week",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, c: if x runs a sprints each time he exercises and x exercises b times a week and c = a \u00d7 b, then x runs c sprints in a week."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "Total distance equals the number of equal-length units multiplied by the length of each unit.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "sprints_per_week",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "meters_per_sprint",
+            "args": [
+              "x",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "meters_per_week",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, c: if x runs a sprints in a week and each sprint x runs is b meters long and c = a \u00d7 b, then x runs a total of c meters in a week."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Multiply sprints per session by sessions per week to get sprints per week.",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "3 * 3 = 9",
+      "cot_quote": "Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week.",
+      "id": "S1",
+      "english": "Because James runs 3 sprints each time he exercises; and James exercises 3 times a week; and since for any person x, any numbers a, b, c: if x runs a sprints each time he exercises and x exercises b times a week and c = a \u00d7 b, then x runs c sprints in a week: James runs 9 sprints in a week (3 * 3 = 9).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "james",
+        "a": "3",
+        "b": "3",
+        "c": "9"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Multiply sprints per week by meters per sprint to get meters per week.",
+      "premises": [
+        "C3",
+        "C4"
+      ],
+      "warrant": "I2",
+      "conclusion": "C5",
+      "stated_computation": "9 * 60 = 540",
+      "cot_quote": "Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week.",
+      "id": "S2",
+      "english": "Because James runs 9 sprints in a week; and each sprint James runs is 60 meters long; and since for any person x, any numbers a, b, c: if x runs a sprints in a week and each sprint x runs is b meters long and c = a \u00d7 b, then x runs a total of c meters in a week: James runs a total of 540 meters in a week (9 * 60 = 540).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "james",
+        "a": "9",
+        "b": "60",
+        "c": "540"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

@@ -1,0 +1,288 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Sheila bought 5 cell phones",
+      "formula": "NumPhones(sheila, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each cell phone costs $150",
+      "formula": "PricePerPhone(sheila, 150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The interest rate applied is 2 percent",
+      "formula": "RatePercent(sheila, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The time period is 3 months",
+      "formula": "Amount(sheila, time_period_months, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The number of quarters to divide the payment over is 3",
+      "formula": "Quarters(sheila, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 * 150 = 750 (total cost)",
+      "formula": "Product(5, 150, 750)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3 / 12 = 0.25 (time period in years)",
+      "formula": "Quotient(3, 12, 0.25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "5 * 2 = 10 (units times rate)",
+      "formula": "Product(5, 2, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "10 / 100 = 0.1 (rate as fraction)",
+      "formula": "Quotient(10, 100, 0.1)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "0.1 * 0.25 = 0.25 (interest, as stated)",
+      "formula": "Product(0.1, 0.25, 0.25)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "0.1 * 0.25 = 0.025, not 0.25",
+      "error": true
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "750 + 0.25 = 750.25 (overall amount)",
+      "formula": "Sum(750, 0.25, 750.25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "750.25 / 3 = 250.08 (monthly payment)",
+      "formula": "Quotient(750.25, 3, 250.08)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x bought n phones at price p each and n*p = c, then x's total cost is c",
+      "formula": "\u2200x\u2200n\u2200p\u2200c (NumPhones(x,n) \u2227 PricePerPhone(x,p) \u2227 Product(n,p,c) \u2192 Amount(x,total_cost,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's time period in months is m and m/12 = y, then x's time period in years is y",
+      "formula": "\u2200x\u2200m\u2200y (Amount(x,time_period_months,m) \u2227 Quotient(m,12,y) \u2192 Amount(x,time_period_years,y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x bought n phones at rate r percent and n*r = t, then x's units-times-rate value is t",
+      "formula": "\u2200x\u2200n\u2200r\u2200t (NumPhones(x,n) \u2227 RatePercent(x,r) \u2227 Product(n,r,t) \u2192 Amount(x,units_times_rate,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's units-times-rate value is t and t/100 = d, then x's rate fraction is d",
+      "formula": "\u2200x\u2200t\u2200d (Amount(x,units_times_rate,t) \u2227 Quotient(t,100,d) \u2192 Amount(x,rate_fraction,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x's rate fraction is d, x's time period in years is y, and d*y = i, then x's interest is i",
+      "formula": "\u2200x\u2200d\u2200y\u2200i (Amount(x,rate_fraction,d) \u2227 Amount(x,time_period_years,y) \u2227 Product(d,y,i) \u2192 Amount(x,interest,i))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Interest should be computed as principal \u00d7 rate fraction \u00d7 time (I = c\u00b7d\u00b7y), but this rule omits the total cost c entirely, producing an interest value with no relation to the actual amount financed.",
+      "error": true
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If x's total cost is c, x's interest is i, and c+i = o, then x's overall amount is o",
+      "formula": "\u2200x\u2200c\u2200i\u2200o (Amount(x,total_cost,c) \u2227 Amount(x,interest,i) \u2227 Sum(c,i,o) \u2192 Amount(x,overall_amount,o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-7": {
+      "type": "rule",
+      "gloss": "If x's overall amount is o, x has q quarters, and o/q = m, then x's monthly payment is m",
+      "formula": "\u2200x\u2200o\u2200q\u2200m (Amount(x,overall_amount,o) \u2227 Quarters(x,q) \u2227 Quotient(o,q,m) \u2192 Amount(x,monthly_payment,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Sheila's total cost is $750, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, total_cost, 750)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Sheila's time period in years is 0.25, from FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, time_period_years, 0.25)",
+      "premises": [
+        "FACT-4",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Sheila's units-times-rate value is 10, from FACT-1, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, units_times_rate, 10)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Sheila's rate fraction is 0.1, from INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, rate_fraction, 0.1)",
+      "premises": [
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Sheila's interest is $0.25, from INF-4, INF-2, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, interest, 0.25)",
+      "premises": [
+        "INF-4",
+        "INF-2",
+        "OP-5",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Sheila's overall amount is $750.25, from INF-1, INF-5, OP-6, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, overall_amount, 750.25)",
+      "premises": [
+        "INF-1",
+        "INF-5",
+        "OP-6",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Sheila's monthly payment is $250.08, from INF-6, FACT-5, OP-7, and RULE-7 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(sheila, monthly_payment, 250.08)",
+      "premises": [
+        "INF-6",
+        "FACT-5",
+        "OP-7",
+        "RULE-7"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Sheila's monthly payment rounds to $250, from INF-7 by approximation",
+      "formula": "Amount(sheila, monthly_payment_rounded, 250)",
+      "premises": [
+        "INF-7"
+      ],
+      "inference_rule": "approximation",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "OP-5",
+      "stage": "arithmetic",
+      "message": "0.1 * 0.25 = 0.025, not 0.25"
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "Interest should be computed as principal \u00d7 rate fraction \u00d7 time (I = c\u00b7d\u00b7y), but this rule omits the total cost c entirely, producing an interest value with no relation to the actual amount financed."
+    }
+  ],
+  "error_stages": [
+    "arithmetic",
+    "verify"
+  ]
+}

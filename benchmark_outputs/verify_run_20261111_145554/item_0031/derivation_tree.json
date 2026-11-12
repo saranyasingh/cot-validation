@@ -1,0 +1,155 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Darrell and Allen's ages are in the ratio of 7:11",
+      "formula": "RatioAge(darrell, allen, 7, 11)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Their total age now is 162",
+      "formula": "TotalAge(darrell, allen, 162)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "7 + 11 = 18",
+      "formula": "Sum(7, 11, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "162 \u00f7 18 = 9",
+      "formula": "Quotient(162, 18, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "7 \u00d7 9 = 63",
+      "formula": "Product(7, 9, 63)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "11 \u00d7 9 = 99",
+      "formula": "Product(11, 9, 99)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "99 + 10 = 109",
+      "formula": "Sum(99, 10, 109)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x and y's ages are in ratio r1:r2, their total age is t, the sum of r1 and r2 is s, and t divided by s is m, then m is the common multiplier for x and y",
+      "formula": "\u2200x\u2200y\u2200r1\u2200r2\u2200t\u2200s\u2200m (RatioAge(x,y,r1,r2) \u2227 TotalAge(x,y,t) \u2227 Sum(r1,r2,s) \u2227 Quotient(t,s,m) \u2192 CommonMultiple(x,y,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x and y's ages are in ratio r1:r2, m is their common multiplier, and r1 times m is n, then x's age is n",
+      "formula": "\u2200x\u2200y\u2200r1\u2200r2\u2200m\u2200n (RatioAge(x,y,r1,r2) \u2227 CommonMultiple(x,y,m) \u2227 Product(r1,m,n) \u2192 Age(x,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x and y's ages are in ratio r1:r2, m is their common multiplier, and r2 times m is n, then y's age is n",
+      "formula": "\u2200x\u2200y\u2200r1\u2200r2\u2200m\u2200n (RatioAge(x,y,r1,r2) \u2227 CommonMultiple(x,y,m) \u2227 Product(r2,m,n) \u2192 Age(y,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's current age is n, and n plus k equals f, then x's age in k years will be f",
+      "formula": "\u2200x\u2200n\u2200k\u2200f (Age(x,n) \u2227 Sum(n,k,f) \u2192 FutureAge(x,k,f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Darrell and Allen's common multiplier is 9, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "CommonMultiple(darrell, allen, 9)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Darrell's current age is 63, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Age(darrell, 63)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Allen's current age is 99, from FACT-1, INF-1, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Age(allen, 99)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Allen's age 10 years from now will be 109, from INF-3, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "FutureAge(allen, 10, 109)",
+      "premises": [
+        "INF-3",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

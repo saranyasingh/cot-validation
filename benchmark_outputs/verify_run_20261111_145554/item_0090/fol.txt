@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Invited(x, n) — x invited n guests
+NoShowFraction(x, n) — fraction n of x's invited guests do not show up
+PerGuest(x, n) — x plans to give n gift bags per guest
+PricePerBag(x, n) — each gift bag costs n dollars
+Amount(x, attr, n) — the derived quantity of attribute attr for x is n
+
+Constants:
+christina, 16, 0.25, 0.75, 1, 12, 2, 9, 18, attend_fraction, attending, bags_needed, total_cost
+
+## FACTS
+FACT-1: Christina invited 16 friends :: Invited(christina, 16)
+FACT-2: 1/4 of the invited guests don't show up :: NoShowFraction(christina, 0.25)
+FACT-3: Christina plans to give 0.75 gift bags per guest :: PerGuest(christina, 0.75)
+FACT-4: Each gift bag costs $2 :: PricePerBag(christina, 2)
+
+## OPERATIONS
+OP-1: 1 minus 0.25 equals 0.75 (fraction attending) :: Difference(1, 0.25, 0.75)
+OP-2: 16 times 0.75 equals 12 (attending guests) :: Product(16, 0.75, 12)
+OP-3: 12 times 0.75 equals 9 (gift bags needed) :: Product(12, 0.75, 9)
+OP-4: 9 times 2 equals 18 (total cost) :: Product(9, 2, 18)
+
+## RULES
+RULE-1: If x invited n guests with no-show fraction f, and 1 − f = a, then the fraction of guests attending is a :: ∀x∀n∀f∀a (Invited(x,n) ∧ NoShowFraction(x,f) ∧ Difference(1,f,a) → Amount(x, attend_fraction, a))
+RULE-2: If x invited n guests and the fraction attending is a, and n × a = g, then x has g attending guests :: ∀x∀n∀a∀g (Invited(x,n) ∧ Amount(x, attend_fraction, a) ∧ Product(n,a,g) → Amount(x, attending, g))
+RULE-3: If x has g attending guests and gives p gift bags per guest, and g × p = b, then x needs b gift bags :: ∀x∀g∀p∀b (Amount(x, attending, g) ∧ PerGuest(x,p) ∧ Product(g,p,b) → Amount(x, bags_needed, b))
+RULE-4: If x needs b gift bags and each costs c, and b × c = t, then x's total cost is t :: ∀x∀b∀c∀t (Amount(x, bags_needed, b) ∧ PricePerBag(x,c) ∧ Product(b,c,t) → Amount(x, total_cost, t))
+
+## INFERENCES
+INF-1: The fraction of guests attending is 0.75, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(christina, attend_fraction, 0.75)
+INF-2: The number of attending guests is 12, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(christina, attending, 12)
+INF-3: The number of gift bags needed is 9, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(christina, bags_needed, 9)
+INF-4: The total cost is 18, from INF-3, FACT-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(christina, total_cost, 18)

@@ -1,0 +1,186 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jill earns $20 per hour teaching",
+      "formula": "HourlyRate(jill, teaching, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jill teaches 35 hours per week",
+      "formula": "HoursPerWeek(jill, teaching, 35)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jill earns $30 per hour coaching",
+      "formula": "HourlyRate(jill, coaching, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Jill coaches 15 hours per week",
+      "formula": "HoursPerWeek(jill, coaching, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Jill works 50 weeks a year",
+      "formula": "WeeksPerYear(jill, 50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "$20/hour \u00d7 35 hours = $700/week",
+      "formula": "Product(20, 35, 700)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$30/hour \u00d7 15 hours = $450/week",
+      "formula": "Product(30, 15, 450)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$700/week \u00d7 50 weeks = $35,000/year",
+      "formula": "Product(700, 50, 35000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "$450/week \u00d7 50 weeks = $22,500/year",
+      "formula": "Product(450, 50, 22500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "$35,000 + $22,500 = $57,500",
+      "formula": "Sum(35000, 22500, 57500)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x earns r per hour for activity a and works h hours per week on a, and r\u00d7h=e, then x earns e per week from a",
+      "formula": "\u2200x\u2200a\u2200r\u2200h\u2200e (HourlyRate(x,a,r) \u2227 HoursPerWeek(x,a,h) \u2227 Product(r,h,e) \u2192 WeeklyEarning(x,a,e))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x earns e per week from activity a and works w weeks per year, and e\u00d7w=p, then x earns p per year from a",
+      "formula": "\u2200x\u2200a\u2200e\u2200w\u2200p (WeeklyEarning(x,a,e) \u2227 WeeksPerYear(x,w) \u2227 Product(e,w,p) \u2192 AnnualEarning(x,a,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x earns e1 per year from teaching and e2 per year from coaching, and e1+e2=s, then x earns s per year in total",
+      "formula": "\u2200x\u2200e1\u2200e2\u2200s (AnnualEarning(x,teaching,e1) \u2227 AnnualEarning(x,coaching,e2) \u2227 Sum(e1,e2,s) \u2192 AnnualEarning(x,total,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Jill earns $700/week from teaching, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WeeklyEarning(jill, teaching, 700)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Jill earns $450/week from coaching, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "WeeklyEarning(jill, coaching, 450)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Jill earns $35,000/year from teaching, from INF-1, FACT-5, OP-3, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "AnnualEarning(jill, teaching, 35000)",
+      "premises": [
+        "INF-1",
+        "FACT-5",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Jill earns $22,500/year from coaching, from INF-2, FACT-5, OP-4, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "AnnualEarning(jill, coaching, 22500)",
+      "premises": [
+        "INF-2",
+        "FACT-5",
+        "OP-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Jill's total annual salary is $57,500, from INF-3, INF-4, OP-5, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "AnnualEarning(jill, total, 57500)",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "OP-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

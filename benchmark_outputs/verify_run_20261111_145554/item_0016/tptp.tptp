@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, initial_value(jewelry, n_5000)).
+fof(fact_2, axiom, growth_rate(jewelry, n_0_025)).
+fof(fact_3, axiom, initial_value(gadgets, n_8000)).
+fof(fact_4, axiom, growth_rate(gadgets, n_0_012)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5000, n_0_025, n_125)).
+fof(op_2, axiom, sum(n_5000, n_125, n_5125)).
+fof(op_3, axiom, product(n_8000, n_0_012, n_96)).
+fof(op_4, axiom, sum(n_8000, n_96, n_8096)).
+fof(op_5, axiom, difference(n_5125, n_5000, n_125)).
+fof(op_6, axiom, difference(n_8096, n_8000, n_96)).
+fof(op_7, axiom, difference(n_125, n_96, n_29)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,R,I,F] : ((initial_value(X, N) & growth_rate(X, R) & product(N, R, I) & sum(N, I, F)) => future_value(X, F))).
+fof(rule_2, axiom, ! [X,N,F,P] : ((initial_value(X, N) & future_value(X, F) & difference(F, N, P)) => profit(X, P))).
+fof(rule_3, axiom, ! [X,Y,P,Q,D] : ((profit(X, P) & profit(Y, Q) & difference(P, Q, D)) => greater_profit(X, Y))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, future_value(jewelry, n_5125)).
+% From fact_3, fact_4, op_3, op_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, future_value(gadgets, n_8096)).
+% From fact_1, inf_1, op_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, profit(jewelry, n_125)).
+% From fact_3, inf_2, op_6, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, profit(gadgets, n_96)).
+% From inf_3, inf_4, op_7, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, greater_profit(jewelry, gadgets)).

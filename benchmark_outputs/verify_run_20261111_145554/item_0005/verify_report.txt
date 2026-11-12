@@ -1,0 +1,7 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: SUPPORTED
+RULE-1: IMPLAUSIBLE — Morning + afternoon feed is not the "daily total feed"; the daily total must include the final meal too, and the true daily total is determined by 3 cups/chicken × number of chickens, not by summing only two of the three meals.
+RULE-2: IMPLAUSIBLE — The 15 and 25 cup figures are already flock-wide totals, not per-chicken amounts; multiplying this (already incorrect) "daily total" by the number of chickens again double-counts the flock size.
+RULE-3: IMPLAUSIBLE — Dividing an (already incorrectly derived) total by 3 assumes the three meals are equal in size, but the problem gives unequal morning/afternoon amounts, so the final meal should be found by subtracting known meals from the true total feed, not by dividing by 3.

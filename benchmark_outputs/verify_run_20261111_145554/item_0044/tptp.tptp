@@ -1,0 +1,30 @@
+% --- FACTS ---
+fof(fact_1, axiom, amount(bag, calories_per_serving, n_250)).
+fof(fact_2, axiom, amount(bag, servings, n_5)).
+fof(fact_3, axiom, amount(bag, weight, n_300)).
+fof(fact_4, axiom, amount(you, daily_limit, n_2000)).
+fof(fact_5, axiom, amount(you, consumed, n_1800)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_250, n_5, n_1250)).
+fof(op_2, axiom, difference(n_2000, n_1800, n_200)).
+fof(op_3, axiom, quotient(n_1250, n_300, n_4_17)).
+fof(op_4, axiom, quotient(n_200, n_4_17, n_47_96)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((amount(X, calories_per_serving, N) & amount(X, servings, M) & product(N, M, P)) => amount(X, total_calories, P))).
+fof(rule_2, axiom, ! [X,N,M,R] : ((amount(X, daily_limit, N) & amount(X, consumed, M) & difference(N, M, R)) => amount(X, remaining_calories, R))).
+fof(rule_3, axiom, ! [X,N,M,R] : ((amount(X, total_calories, N) & amount(X, weight, M) & quotient(N, M, R)) => amount(X, calories_per_gram, R))).
+fof(rule_4, axiom, ! [X,Y,N,M,R] : ((amount(Y, remaining_calories, N) & amount(X, calories_per_gram, M) & quotient(N, M, R)) => amount(Y, grams_allowed, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, amount(bag, total_calories, n_1250)).
+% From fact_4, fact_5, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, amount(you, remaining_calories, n_200)).
+% From inf_1, fact_3, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, amount(bag, calories_per_gram, n_4_17)).
+% From inf_2, inf_3, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, amount(you, grams_allowed, n_47_96)).
+% From inf_4 by Rounding
+fof(inf_5, axiom, amount(you, grams_allowed, n_48)).

@@ -1,0 +1,29 @@
+% --- FACTS ---
+fof(fact_1, axiom, total(water, n_24)).
+fof(fact_2, axiom, share_portion(girl1, water, n_6)).
+fof(fact_3, axiom, share_portion(girl2, water, n_6)).
+fof(fact_4, axiom, got(boy, n_6)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_24, n_6, n_4)).
+fof(op_2, axiom, sum(n_4, n_4, n_8)).
+fof(op_3, axiom, sum(n_8, n_6, n_14)).
+fof(op_4, axiom, difference(n_24, n_14, n_10)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,W,N,D,M] : ((total(W, N) & share_portion(X, W, D) & quotient(N, D, M)) => got(X, M))).
+fof(rule_2, axiom, ! [X,Y,W,N1,N2,N3] : ((got(X, N1) & got(Y, N2) & sum(N1, N2, N3)) => used(W, N3))).
+fof(rule_3, axiom, ! [X,W,N1,N2,N3] : ((used(W, N1) & got(X, N2) & sum(N1, N2, N3)) => used(W, N3))).
+fof(rule_4, axiom, ! [W,N,U,R] : ((total(W, N) & used(W, U) & difference(N, U, R)) => remaining(W, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, got(girl1, n_4)).
+% From fact_1, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, got(girl2, n_4)).
+% From inf_1, inf_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, used(water, n_8)).
+% From inf_3, fact_4, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, used(water, n_14)).
+% From fact_1, inf_4, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, remaining(water, n_10)).

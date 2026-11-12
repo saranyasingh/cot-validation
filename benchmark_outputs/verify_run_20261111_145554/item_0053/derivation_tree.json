@@ -1,0 +1,109 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each comic book weighs 1/4 pound",
+      "formula": "Weighs(comic_book, 0.25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Uriah is removing 30 comic books",
+      "formula": "Removes(uriah, comic_book, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each toy weighs 1/2 pound",
+      "formula": "Weighs(toy, 0.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Uriah needs to remove a total weight of 15 pounds",
+      "formula": "NeedsToRemove(uriah, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "30 times 1/4 is 7.5",
+      "formula": "Product(30, 0.25, 7.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "15 divided by 1/2 is 30",
+      "formula": "Quotient(15, 0.5, 30)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x removes n units of y, each y weighs w pounds, and n \u00d7 w = p, then the total weight of y removed by x is p pounds",
+      "formula": "\u2200x\u2200y\u2200n\u2200w\u2200p (Removes(x,y,n) \u2227 Weighs(y,w) \u2227 Product(n,w,p) \u2192 TotalWeight(x,y,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x needs to remove a total weight of n pounds, each unit of y weighs w pounds, and n \u00f7 w = c, then x must remove c units of y",
+      "formula": "\u2200x\u2200y\u2200n\u2200w\u2200c (NeedsToRemove(x,n) \u2227 Weighs(y,w) \u2227 Quotient(n,w,c) \u2192 Removes(x,y,c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "This rule uses the full 15 pounds total as the weight to be removed by toys alone, without subtracting the weight already removed by the 30 comic books. This double-counts the comic weight toward the 15-pound total and would require combining with RULE-1's result correctly (n should be 15 minus the comic weight, not 15).",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The total weight of comic books removed by Uriah is 7.5 pounds, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalWeight(uriah, comic_book, 7.5)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Uriah must remove 30 toys, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Removes(uriah, toy, 30)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "This rule uses the full 15 pounds total as the weight to be removed by toys alone, without subtracting the weight already removed by the 30 comic books. This double-counts the comic weight toward the 15-pound total and would require combining with RULE-1's result correctly (n should be 15 minus the comic weight, not 15)."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

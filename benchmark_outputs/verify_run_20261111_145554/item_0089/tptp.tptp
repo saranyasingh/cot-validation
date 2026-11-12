@@ -1,0 +1,14 @@
+% --- FACTS ---
+fof(fact_1, axiom, times_as_many(marilyn, harald, n_10)).
+fof(fact_2, axiom, total_sold(marilyn, harald, n_88000)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_10, n_1, n_11)).
+fof(op_2, axiom, quotient(n_88000, n_11, n_8000)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,T,K,H] : ((times_as_many(X, Y, N) & total_sold(X, Y, T) & sum(N, n_1, K) & quotient(T, K, H)) => sold(Y, H))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, sold(harald, n_8000)).

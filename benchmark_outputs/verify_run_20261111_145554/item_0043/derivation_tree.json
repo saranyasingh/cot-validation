@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Grandma Jones baked 5 apple pies",
+      "formula": "Baked(grandma_jones, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each pie was cut into 8 pieces",
+      "formula": "CutInto(grandma_jones, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There were 14 pieces remaining at the end of the evening",
+      "formula": "Remaining(grandma_jones, 14)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 times 8 is 40",
+      "formula": "Product(5, 8, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 minus 14 is 26",
+      "formula": "Difference(40, 14, 26)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x baked n pies and each pie was cut into m pieces and n \u00d7 m = p, then x had a total of p pie pieces",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Baked(x,n) \u2227 CutInto(x,m) \u2227 Product(n,m,p) \u2192 TotalPieces(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x had a total of p pie pieces and r pieces remained and p \u2212 r = t, then t pieces were taken by guests from x",
+      "formula": "\u2200x\u2200p\u2200r\u2200t (TotalPieces(x,p) \u2227 Remaining(x,r) \u2227 Difference(p,r,t) \u2192 Taken(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Grandma Jones had a total of 40 pie pieces, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalPieces(grandma_jones, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "26 pieces were taken by guests from Grandma Jones, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Taken(grandma_jones, 26)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

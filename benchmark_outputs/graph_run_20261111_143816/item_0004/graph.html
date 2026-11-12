@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Inference graph</title>
+<script src="https://unpkg.com/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+<script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+<script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         font-size: 13px; color: #222; display: flex; height: 100vh; }
+  #cy { flex: 1; background: #fafafa; }
+  #side { width: 460px; border-left: 1px solid #ddd; overflow-y: auto; padding: 14px 16px; }
+  h2 { font-size: 15px; margin: 4px 0 10px; }
+  h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #666;
+       margin: 16px 0 6px; }
+  pre { background: #f3f3f3; padding: 8px; border-radius: 4px; white-space: pre-wrap;
+        word-break: break-word; font-size: 11.5px; margin: 0; }
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 10px; margin: 0 4px 4px 0;
+           font-size: 11px; border: 1px solid #ccc; background: #fff; }
+  .text { line-height: 1.45; }
+  .err { color: #b00020; }
+  .legend span { display: inline-block; margin: 0 10px 4px 0; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px;
+        vertical-align: -2px; margin-right: 4px; border: 1px solid #888; }
+  button { font-size: 12px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<div id="cy"></div>
+<div id="side"></div>
+<script>
+const DATA = {"elements": [{"data": {"id": "C1", "type": "statement", "shape": "fact", "label_kind": "assumption", "kind": "from_problem", "unstated": false, "display": "C1  James runs 3 sprints each time he exercises."}}, {"data": {"id": "C2", "type": "statement", "shape": "fact", "label_kind": "assumption", "kind": "from_problem", "unstated": false, "display": "C2  He exercises 3 times a week."}}, {"data": {"id": "C3", "type": "statement", "shape": "fact", "label_kind": "derived", "kind": "", "unstated": false, "display": "C3  The total number of sprints he runs in a week is 9 sprints/week."}}, {"data": {"id": "C4", "type": "statement", "shape": "fact", "label_kind": "assumption", "kind": "from_problem", "unstated": false, "display": "C4  Each sprint is 60 meters long."}}, {"data": {"id": "C5", "type": "statement", "shape": "fact", "label_kind": "derived", "kind": "", "unstated": false, "display": "C5  The total distance he runs in a week is 540 meters/week."}}, {"data": {"id": "I1", "type": "statement", "shape": "rule", "label_kind": "assumption", "kind": "math_principle", "unstated": true, "display": "I1  If a fixed number of items occurs per event and a fixed number of events occurs per period, the total items per period is the product of the two rates."}}, {"data": {"id": "I2", "type": "statement", "shape": "rule", "label_kind": "assumption", "kind": "math_principle", "unstated": true, "display": "I2  Total distance equals the number of equal-length units multiplied by the length of each unit."}}, {"data": {"id": "S1", "type": "step", "status": "matched", "display": "S1\napply"}}, {"data": {"id": "C1->S1", "source": "C1", "target": "S1", "role": "premise"}}, {"data": {"id": "C2->S1", "source": "C2", "target": "S1", "role": "premise"}}, {"data": {"id": "I1=>S1", "source": "I1", "target": "S1", "role": "warrant"}}, {"data": {"id": "S1->C3", "source": "S1", "target": "C3", "role": "conclusion"}}, {"data": {"id": "S2", "type": "step", "status": "matched", "display": "S2\napply"}}, {"data": {"id": "C3->S2", "source": "C3", "target": "S2", "role": "premise"}}, {"data": {"id": "C4->S2", "source": "C4", "target": "S2", "role": "premise"}}, {"data": {"id": "I2=>S2", "source": "I2", "target": "S2", "role": "warrant"}}, {"data": {"id": "S2->C5", "source": "S2", "target": "C5", "role": "conclusion"}}], "details": {"C1": {"shape": "fact", "text": "James runs 3 sprints each time he exercises.", "cot_quote": "James runs 3 sprints each time he exercises.", "content": {"relation": "sprints_per_session", "args": ["james", 3], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C1", "question_quote": "run 3 sprints 3 times a week", "label": "assumption", "english": "James runs 3 sprints each time he exercises.", "tptp": "tff(c1, axiom, sprints_per_session(james, 3/1))."}, "C2": {"shape": "fact", "text": "He exercises 3 times a week.", "cot_quote": "He exercises 3 times a week.", "content": {"relation": "sessions_per_week", "args": ["james", 3], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C2", "question_quote": "3 times a week", "label": "assumption", "english": "James exercises 3 times a week.", "tptp": "tff(c2, axiom, sessions_per_week(james, 3/1))."}, "C3": {"shape": "fact", "text": "The total number of sprints he runs in a week is 9 sprints/week.", "cot_quote": "the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week", "content": {"relation": "sprints_per_week", "args": ["james", 9], "negated": false}, "kind": null, "stated_in_cot": true, "id": "C3", "label": "derived", "english": "James runs 9 sprints in a week.", "tptp": "tff(c3, lemma, sprints_per_week(james, 9/1))."}, "C4": {"shape": "fact", "text": "Each sprint is 60 meters long.", "cot_quote": "Each sprint is 60 meters long.", "content": {"relation": "meters_per_sprint", "args": ["james", 60], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C4", "question_quote": "He runs 60 meters each sprint", "label": "assumption", "english": "Each sprint James runs is 60 meters long.", "tptp": "tff(c4, axiom, meters_per_sprint(james, 60/1))."}, "C5": {"shape": "fact", "text": "The total distance he runs in a week is 540 meters/week.", "cot_quote": "the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week", "content": {"relation": "meters_per_week", "args": ["james", 540], "negated": false}, "kind": null, "stated_in_cot": true, "id": "C5", "label": "derived", "english": "James runs a total of 540 meters in a week.", "tptp": "tff(c5, lemma, meters_per_week(james, 540/1))."}, "I1": {"shape": "rule", "text": "If a fixed number of items occurs per event and a fixed number of events occurs per period, the total items per period is the product of the two rates.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": {"vars": {"x": "person", "a": "num", "b": "num", "c": "num"}, "if": [{"relation": "sprints_per_session", "args": ["x", "a"]}, {"relation": "sessions_per_week", "args": ["x", "b"]}], "calc": [{"op": "product", "args": ["a", "b"], "result": "c"}], "then": [{"relation": "sprints_per_week", "args": ["x", "c"]}], "form": "implies"}, "id": "I1", "label": "assumption", "english": "For any person x, any numbers a, b, c: if x runs a sprints each time he exercises and x exercises b times a week and c = a \u00d7 b, then x runs c sprints in a week.", "tptp": "tff(i1, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_session(V_x, V_a) & sessions_per_week(V_x, V_b) & V_c = $product(V_a, V_b)) => sprints_per_week(V_x, V_c)))."}, "I2": {"shape": "rule", "text": "Total distance equals the number of equal-length units multiplied by the length of each unit.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": {"vars": {"x": "person", "a": "num", "b": "num", "c": "num"}, "if": [{"relation": "sprints_per_week", "args": ["x", "a"]}, {"relation": "meters_per_sprint", "args": ["x", "b"]}], "calc": [{"op": "product", "args": ["a", "b"], "result": "c"}], "then": [{"relation": "meters_per_week", "args": ["x", "c"]}], "form": "implies"}, "id": "I2", "label": "assumption", "english": "For any person x, any numbers a, b, c: if x runs a sprints in a week and each sprint x runs is b meters long and c = a \u00d7 b, then x runs a total of c meters in a week.", "tptp": "tff(i2, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_week(V_x, V_a) & meters_per_sprint(V_x, V_b) & V_c = $product(V_a, V_b)) => meters_per_week(V_x, V_c)))."}, "S1": {"move": "apply", "text": "Multiply sprints per session by sessions per week to get sprints per week.", "premises": ["C1", "C2"], "warrant": "I1", "conclusion": "C3", "stated_computation": "3 * 3 = 9", "cot_quote": "Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week.", "id": "S1", "english": "Because James runs 3 sprints each time he exercises; and James exercises 3 times a week; and since for any person x, any numbers a, b, c: if x runs a sprints each time he exercises and x exercises b times a week and c = a \u00d7 b, then x runs c sprints in a week: James runs 9 sprints in a week (3 * 3 = 9).", "status": "matched", "status_detail": "", "binding": {"x": "james", "a": "3", "b": "3", "c": "9"}, "prover": "proved", "prover_detail": "the premises and warrant entail the conclusion", "tptp": "% Step S1 (apply)\ntff(person_type, type, person: $tType).\ntff(james_decl, type, james: person).\ntff(sprints_per_session_decl, type, sprints_per_session: (person * $rat) > $o).\ntff(sessions_per_week_decl, type, sessions_per_week: (person * $rat) > $o).\ntff(sprints_per_week_decl, type, sprints_per_week: (person * $rat) > $o).\ntff(meters_per_sprint_decl, type, meters_per_sprint: (person * $rat) > $o).\ntff(meters_per_week_decl, type, meters_per_week: (person * $rat) > $o).\ntff(c1, axiom, sprints_per_session(james, 3/1)).\ntff(c2, axiom, sessions_per_week(james, 3/1)).\ntff(i1, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_session(V_x, V_a) & sessions_per_week(V_x, V_b) & V_c = $product(V_a, V_b)) => sprints_per_week(V_x, V_c))).\ntff(c3, conjecture, sprints_per_week(james, 9/1)).\n"}, "S2": {"move": "apply", "text": "Multiply sprints per week by meters per sprint to get meters per week.", "premises": ["C3", "C4"], "warrant": "I2", "conclusion": "C5", "stated_computation": "9 * 60 = 540", "cot_quote": "Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week.", "id": "S2", "english": "Because James runs 9 sprints in a week; and each sprint James runs is 60 meters long; and since for any person x, any numbers a, b, c: if x runs a sprints in a week and each sprint x runs is b meters long and c = a \u00d7 b, then x runs a total of c meters in a week: James runs a total of 540 meters in a week (9 * 60 = 540).", "status": "matched", "status_detail": "", "binding": {"x": "james", "a": "9", "b": "60", "c": "540"}, "prover": "proved", "prover_detail": "the premises and warrant entail the conclusion", "tptp": "% Step S2 (apply)\ntff(person_type, type, person: $tType).\ntff(james_decl, type, james: person).\ntff(sprints_per_session_decl, type, sprints_per_session: (person * $rat) > $o).\ntff(sessions_per_week_decl, type, sessions_per_week: (person * $rat) > $o).\ntff(sprints_per_week_decl, type, sprints_per_week: (person * $rat) > $o).\ntff(meters_per_sprint_decl, type, meters_per_sprint: (person * $rat) > $o).\ntff(meters_per_week_decl, type, meters_per_week: (person * $rat) > $o).\ntff(c3, axiom, sprints_per_week(james, 9/1)).\ntff(c4, axiom, meters_per_sprint(james, 60/1)).\ntff(i2, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_week(V_x, V_a) & meters_per_sprint(V_x, V_b) & V_c = $product(V_a, V_b)) => meters_per_week(V_x, V_c))).\ntff(c5, conjecture, meters_per_week(james, 540/1)).\n"}}, "question": "James decides to run 3 sprints 3 times a week.  He runs 60 meters each sprint.  How many total meters does he run a week?", "cot": "EXPLANATION\n1. James runs 3 sprints each time he exercises.\n2. He exercises 3 times a week.\n3. Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week.\n4. Each sprint is 60 meters long.\n5. Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week.\n\nThe answer is: 540", "errors": [], "prover_verdict": "VERIFIED", "dictionary": {"sorts": {"person": {"description": "a person"}}, "entities": {"james": {"sort": "person", "name": "James"}}, "relations": {"sprints_per_session": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} runs {count} sprints each time he exercises"}, "sessions_per_week": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} exercises {count} times a week"}, "sprints_per_week": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} runs {count} sprints in a week"}, "meters_per_sprint": {"slots": [["runner", "person"], ["length", "num"]], "sentence": "each sprint {runner} runs is {length} meters long"}, "meters_per_week": {"slots": [["runner", "person"], ["distance", "num"]], "sentence": "{runner} runs a total of {distance} meters in a week"}}}, "tptp": "% Declarations\ntff(person_type, type, person: $tType).\ntff(james_decl, type, james: person).\ntff(sprints_per_session_decl, type, sprints_per_session: (person * $rat) > $o).\ntff(sessions_per_week_decl, type, sessions_per_week: (person * $rat) > $o).\ntff(sprints_per_week_decl, type, sprints_per_week: (person * $rat) > $o).\ntff(meters_per_sprint_decl, type, meters_per_sprint: (person * $rat) > $o).\ntff(meters_per_week_decl, type, meters_per_week: (person * $rat) > $o).\n\n% Statements\ntff(c1, axiom, sprints_per_session(james, 3/1)).\ntff(c2, axiom, sessions_per_week(james, 3/1)).\ntff(c3, lemma, sprints_per_week(james, 9/1)).\ntff(c4, axiom, meters_per_sprint(james, 60/1)).\ntff(c5, lemma, meters_per_week(james, 540/1)).\ntff(i1, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_session(V_x, V_a) & sessions_per_week(V_x, V_b) & V_c = $product(V_a, V_b)) => sprints_per_week(V_x, V_c))).\ntff(i2, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_week(V_x, V_a) & meters_per_sprint(V_x, V_b) & V_c = $product(V_a, V_b)) => meters_per_week(V_x, V_c))).\n", "oplog": [{"seq": 1, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "statements", "id": "C1", "value": {"shape": "fact", "text": "James runs 3 sprints each time he exercises.", "cot_quote": "James runs 3 sprints each time he exercises.", "content": null, "kind": null, "stated_in_cot": true}}, {"seq": 2, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "statements", "id": "C2", "value": {"shape": "fact", "text": "He exercises 3 times a week.", "cot_quote": "He exercises 3 times a week.", "content": null, "kind": null, "stated_in_cot": true}}, {"seq": 3, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "statements", "id": "C3", "value": {"shape": "fact", "text": "The total number of sprints he runs in a week is 9 sprints/week.", "cot_quote": "the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week", "content": null, "kind": null, "stated_in_cot": true}}, {"seq": 4, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "statements", "id": "C4", "value": {"shape": "fact", "text": "Each sprint is 60 meters long.", "cot_quote": "Each sprint is 60 meters long.", "content": null, "kind": null, "stated_in_cot": true}}, {"seq": 5, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "statements", "id": "C5", "value": {"shape": "fact", "text": "The total distance he runs in a week is 540 meters/week.", "cot_quote": "the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week", "content": null, "kind": null, "stated_in_cot": true}}, {"seq": 6, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "steps", "id": "S1", "value": {"move": "apply", "text": "Multiply sprints per session by sessions per week to get sprints per week.", "premises": ["C1", "C2"], "warrant": null, "conclusion": "C3", "stated_computation": "3 * 3 = 9", "cot_quote": "Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week."}}, {"seq": 7, "time": "2026-11-11T14:40:42", "agent": "structurer", "op": "put", "collection": "steps", "id": "S2", "value": {"move": "apply", "text": "Multiply sprints per week by meters per sprint to get meters per week.", "premises": ["C3", "C4"], "warrant": null, "conclusion": "C5", "stated_computation": "9 * 60 = 540", "cot_quote": "Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week."}}, {"seq": 8, "time": "2026-11-11T14:40:45", "agent": "classifier", "op": "put", "collection": "statements", "id": "C1", "value": {"shape": "fact", "text": "James runs 3 sprints each time he exercises.", "cot_quote": "James runs 3 sprints each time he exercises.", "content": null, "kind": "from_problem", "stated_in_cot": true, "id": "C1", "label": "assumption", "english": "[unknown relation None].", "question_quote": "run 3 sprints 3 times a week"}}, {"seq": 9, "time": "2026-11-11T14:40:45", "agent": "classifier", "op": "put", "collection": "statements", "id": "C2", "value": {"shape": "fact", "text": "He exercises 3 times a week.", "cot_quote": "He exercises 3 times a week.", "content": null, "kind": "from_problem", "stated_in_cot": true, "id": "C2", "label": "assumption", "english": "[unknown relation None].", "question_quote": "3 times a week"}}, {"seq": 10, "time": "2026-11-11T14:40:45", "agent": "classifier", "op": "put", "collection": "statements", "id": "C4", "value": {"shape": "fact", "text": "Each sprint is 60 meters long.", "cot_quote": "Each sprint is 60 meters long.", "content": null, "kind": "from_problem", "stated_in_cot": true, "id": "C4", "label": "assumption", "english": "[unknown relation None].", "question_quote": "He runs 60 meters each sprint"}}, {"seq": 11, "time": "2026-11-11T14:40:50", "agent": "implicit", "op": "put", "collection": "statements", "id": "I1", "value": {"shape": "rule", "text": "If a fixed number of items occurs per event and a fixed number of events occurs per period, the total items per period is the product of the two rates.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": null}}, {"seq": 12, "time": "2026-11-11T14:40:50", "agent": "implicit", "op": "put", "collection": "statements", "id": "I2", "value": {"shape": "rule", "text": "Total distance equals the number of equal-length units multiplied by the length of each unit.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": null}}, {"seq": 13, "time": "2026-11-11T14:40:50", "agent": "implicit", "op": "put", "collection": "steps", "id": "S1", "value": {"move": "apply", "text": "Multiply sprints per session by sessions per week to get sprints per week.", "premises": ["C1", "C2"], "warrant": "I1", "conclusion": "C3", "stated_computation": "3 * 3 = 9", "cot_quote": "Therefore, the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week."}}, {"seq": 14, "time": "2026-11-11T14:40:50", "agent": "implicit", "op": "put", "collection": "steps", "id": "S2", "value": {"move": "apply", "text": "Multiply sprints per week by meters per sprint to get meters per week.", "premises": ["C3", "C4"], "warrant": "I2", "conclusion": "C5", "stated_computation": "9 * 60 = 540", "cot_quote": "Thus, the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week."}}, {"seq": 15, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "sorts", "id": "person", "value": {"description": "a person"}}, {"seq": 16, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "entities", "id": "james", "value": {"sort": "person", "name": "James"}}, {"seq": 17, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "relations", "id": "sprints_per_session", "value": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} runs {count} sprints each time he exercises"}}, {"seq": 18, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "relations", "id": "sessions_per_week", "value": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} exercises {count} times a week"}}, {"seq": 19, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "relations", "id": "sprints_per_week", "value": {"slots": [["runner", "person"], ["count", "num"]], "sentence": "{runner} runs {count} sprints in a week"}}, {"seq": 20, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "relations", "id": "meters_per_sprint", "value": {"slots": [["runner", "person"], ["length", "num"]], "sentence": "each sprint {runner} runs is {length} meters long"}}, {"seq": 21, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "relations", "id": "meters_per_week", "value": {"slots": [["runner", "person"], ["distance", "num"]], "sentence": "{runner} runs a total of {distance} meters in a week"}}, {"seq": 22, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "C1", "value": {"shape": "fact", "text": "James runs 3 sprints each time he exercises.", "cot_quote": "James runs 3 sprints each time he exercises.", "content": {"relation": "sprints_per_session", "args": ["james", 3], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C1", "question_quote": "run 3 sprints 3 times a week", "label": "assumption", "english": "[unknown relation None]."}}, {"seq": 23, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "C2", "value": {"shape": "fact", "text": "He exercises 3 times a week.", "cot_quote": "He exercises 3 times a week.", "content": {"relation": "sessions_per_week", "args": ["james", 3], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C2", "question_quote": "3 times a week", "label": "assumption", "english": "[unknown relation None]."}}, {"seq": 24, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "C3", "value": {"shape": "fact", "text": "The total number of sprints he runs in a week is 9 sprints/week.", "cot_quote": "the total number of sprints he runs in a week is 3 sprints/time * 3 times/week = 9 sprints/week", "content": {"relation": "sprints_per_week", "args": ["james", 9], "negated": false}, "kind": null, "stated_in_cot": true, "id": "C3", "label": "derived", "english": "[unknown relation None]."}}, {"seq": 25, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "C4", "value": {"shape": "fact", "text": "Each sprint is 60 meters long.", "cot_quote": "Each sprint is 60 meters long.", "content": {"relation": "meters_per_sprint", "args": ["james", 60], "negated": false}, "kind": "from_problem", "stated_in_cot": true, "id": "C4", "question_quote": "He runs 60 meters each sprint", "label": "assumption", "english": "[unknown relation None]."}}, {"seq": 26, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "C5", "value": {"shape": "fact", "text": "The total distance he runs in a week is 540 meters/week.", "cot_quote": "the total distance he runs in a week is 9 sprints/week * 60 meters/sprint = 540 meters/week", "content": {"relation": "meters_per_week", "args": ["james", 540], "negated": false}, "kind": null, "stated_in_cot": true, "id": "C5", "label": "derived", "english": "[unknown relation None]."}}, {"seq": 27, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "I1", "value": {"shape": "rule", "text": "If a fixed number of items occurs per event and a fixed number of events occurs per period, the total items per period is the product of the two rates.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": {"vars": {"x": "person", "a": "num", "b": "num", "c": "num"}, "if": [{"relation": "sprints_per_session", "args": ["x", "a"]}, {"relation": "sessions_per_week", "args": ["x", "b"]}], "calc": [{"op": "product", "args": ["a", "b"], "result": "c"}], "then": [{"relation": "sprints_per_week", "args": ["x", "c"]}], "form": "implies"}, "id": "I1", "label": "assumption", "english": "Either ."}}, {"seq": 28, "time": "2026-11-11T14:40:58", "agent": "encoder", "op": "put", "collection": "statements", "id": "I2", "value": {"shape": "rule", "text": "Total distance equals the number of equal-length units multiplied by the length of each unit.", "kind": "math_principle", "stated_in_cot": false, "cot_quote": null, "content": {"vars": {"x": "person", "a": "num", "b": "num", "c": "num"}, "if": [{"relation": "sprints_per_week", "args": ["x", "a"]}, {"relation": "meters_per_sprint", "args": ["x", "b"]}], "calc": [{"op": "product", "args": ["a", "b"], "result": "c"}], "then": [{"relation": "meters_per_week", "args": ["x", "c"]}], "form": "implies"}, "id": "I2", "label": "assumption", "english": "Either ."}}]};
+
+const KIND_COLORS = {
+  derived: "#f6e27a", from_problem: "#9fd8a0", math_principle: "#9cc3ea",
+  definitional: "#b8a9e6", commonsense: "#8fd3d0", closure: "#f2b880",
+  normative: "#e8a0c8", stipulative: "#f08a8a", unjustified: "#c4c4c4", "": "#dddddd"
+};
+const STATUS_COLORS = { matched: "#2e9d4f", gap: "#d32f2f",
+                        arithmetic_mismatch: "#e98a00", unchecked: "#999999" };
+const PROVER_COLORS = { proved: "#2e9d4f", not_proved: "#d32f2f", contradictory_premises: "#d32f2f",
+                        timeout: "#e98a00", unknown: "#e98a00", error: "#b00020", skipped: "#999999" };
+
+function esc(s) {
+  return String(s ?? "").replace(/[&<>]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;"}[c]));
+}
+
+const cy = cytoscape({
+  container: document.getElementById("cy"),
+  elements: DATA.elements,
+  wheelSensitivity: 0.2,
+  style: [
+    { selector: "node[type='statement']", style: {
+        "shape": "round-rectangle", "label": "data(display)", "text-wrap": "wrap",
+        "text-max-width": 230, "font-size": 11, "text-valign": "center", "text-halign": "center",
+        "width": "label", "height": "label", "padding": 10, "border-width": 1.5,
+        "border-color": "#666",
+        "background-color": ele => KIND_COLORS[ele.data("label_kind") === "derived"
+                                               ? "derived" : ele.data("kind")] || "#ddd" } },
+    { selector: "node[shape='rule']", style: { "shape": "cut-rectangle" } },
+    { selector: "node[shape='closure']", style: { "shape": "hexagon", "padding": 16 } },
+    { selector: "node[?unstated]", style: { "border-style": "dashed", "border-width": 2.5,
+                                             "border-color": "#333" } },
+    { selector: "node[type='step']", style: {
+        "shape": "diamond", "label": "data(display)", "text-wrap": "wrap", "font-size": 10,
+        "font-weight": "bold", "text-valign": "center", "width": 62, "height": 62,
+        "background-color": "#ffffff", "border-width": 3,
+        "border-color": ele => STATUS_COLORS[ele.data("status")] || "#999" } },
+    { selector: "edge", style: {
+        "width": 1.6, "curve-style": "bezier", "target-arrow-shape": "triangle",
+        "line-color": "#888", "target-arrow-color": "#888", "label": "data(role)",
+        "font-size": 9, "color": "#666", "text-background-color": "#fafafa",
+        "text-background-opacity": 1, "text-background-padding": 1 } },
+    { selector: "edge[role='warrant']", style: { "line-style": "dashed",
+        "line-color": "#5b7fbf", "target-arrow-color": "#5b7fbf" } },
+    { selector: "edge[role='conclusion']", style: { "width": 2.4, "line-color": "#444",
+        "target-arrow-color": "#444" } },
+    { selector: ":selected", style: { "overlay-color": "#3b82f6", "overlay-opacity": 0.18 } },
+  ],
+  layout: { name: "dagre", rankDir: "LR", nodeSep: 18, rankSep: 70 },
+});
+
+function section(title, html) { return `<h3>${title}</h3>${html}`; }
+function pre(obj) {
+  return `<pre>${esc(typeof obj === "string" ? obj : JSON.stringify(obj, null, 2))}</pre>`;
+}
+
+function legend() {
+  const kinds = Object.entries(KIND_COLORS).filter(([k]) => k)
+    .map(([k, c]) => `<span><i class="sw" style="background:${c}"></i>${k}</span>`).join("");
+  const statuses = Object.entries(STATUS_COLORS)
+    .map(([k, c]) => `<span><i class="sw" style="border:3px solid ${c};background:#fff"></i>step ${k}</span>`).join("");
+  return `<div class="legend">${kinds}<br>${statuses}<br>
+    <span>rounded = fact, cut corners = rule, hexagon = closure, dashed border = unstated in CoT</span></div>`;
+}
+
+function overview() {
+  const steps = Object.values(DATA.details).filter(d => d.move !== undefined);
+  const counts = {};
+  steps.forEach(s => counts[s.status] = (counts[s.status] || 0) + 1);
+  const statusLine = Object.entries(counts).map(([k, v]) => `<span class="badge">${k}: ${v}</span>`).join("");
+  const errors = DATA.errors.length
+    ? DATA.errors.map(e => `<div class="err">• ${esc(e)}</div>`).join("")
+    : "<div>none</div>";
+  const problems = steps.filter(s => s.status !== "matched")
+    .map(s => `<div><b>${esc(s.id)}</b> ${esc(s.status)}: ${esc(s.status_detail)}</div>`).join("") || "<div>none</div>";
+  const proverProblems = steps.filter(s => s.prover && s.prover !== "proved")
+    .map(s => `<div><b>${esc(s.id)}</b> ${esc(s.prover)}: ${esc(s.prover_detail)}</div>`).join("") || "<div>none</div>";
+  const verdictColor = {VERIFIED: "#2e9d4f", "NOT VERIFIED": "#d32f2f"}[DATA.prover_verdict] || "#999";
+  document.getElementById("side").innerHTML =
+    `<h2>Inference graph</h2>${statusLine}` +
+    `<div><span class="badge" style="border:2px solid ${verdictColor}">prover: ${esc(DATA.prover_verdict)}</span></div>` +
+    section("Legend", legend()) +
+    section("Validation errors", errors) +
+    section("Steps that did not match", problems) +
+    section("Steps not proved by Vampire", proverProblems) +
+    section("Question", `<div class="text">${esc(DATA.question)}</div>`) +
+    section("Chain of thought", pre(DATA.cot)) +
+    section("Dictionary", pre(DATA.dictionary)) +
+    section("Full TPTP", pre(DATA.tptp)) +
+    section(`Edit log (${DATA.oplog.length} ops)`,
+            pre(DATA.oplog.map(o => `#${o.seq} ${o.agent}: ${o.op} ${o.collection}/${o.id}`).join("\n")));
+}
+
+function showNode(id) {
+  const d = DATA.details[id];
+  const back = `<button onclick="cy.elements().unselect(); overview()">&larr; overview</button>`;
+  let html = back;
+  if (d.move !== undefined) {
+    html += `<h2>${esc(id)} · step (${esc(d.move)})</h2>` +
+      `<span class="badge" style="border-color:${STATUS_COLORS[d.status]}">${esc(d.status)}</span>` +
+      (d.status_detail ? `<div class="err">${esc(d.status_detail)}</div>` : "") +
+      (d.prover ? section("Prover (Vampire)",
+        `<span class="badge" style="border-color:${PROVER_COLORS[d.prover] || "#999"}">${esc(d.prover)}</span>` +
+        `<div class="text">${esc(d.prover_detail)}</div>`) : "") +
+      section("Authored text", `<div class="text">${esc(d.text)}</div>`) +
+      section("Generated English", `<div class="text">${esc(d.english)}</div>`) +
+      section("CoT quote", `<div class="text">${esc(d.cot_quote)}</div>`) +
+      section("Stated computation", `<div class="text">${esc(d.stated_computation)}</div>`) +
+      section("Premises / warrant / conclusion",
+              pre({premises: d.premises, warrant: d.warrant, conclusion: d.conclusion})) +
+      section("Binding (computed)", pre(d.binding || {})) +
+      section("TPTP problem for this step", pre(d.tptp));
+  } else {
+    const badges = [d.shape, d.label, d.kind, d.label === "assumption"
+                     ? (d.stated_in_cot ? "stated in CoT" : "unstated in CoT") : null]
+      .filter(Boolean).map(b => `<span class="badge">${esc(b)}</span>`).join("");
+    html += `<h2>${esc(id)} · statement</h2>${badges}` +
+      section("Authored text", `<div class="text">${esc(d.text)}</div>`) +
+      section("Generated English", `<div class="text">${esc(d.english)}</div>`) +
+      (d.question_quote ? section("Question quote", `<div class="text">${esc(d.question_quote)}</div>`) : "") +
+      (d.cot_quote ? section("CoT quote", `<div class="text">${esc(d.cot_quote)}</div>`) : "") +
+      section("Content", pre(d.content)) +
+      section("TPTP", pre(d.tptp));
+  }
+  document.getElementById("side").innerHTML = html;
+}
+
+cy.on("tap", "node", evt => showNode(evt.target.id()));
+cy.on("tap", evt => { if (evt.target === cy) overview(); });
+overview();
+</script>
+</body>
+</html>

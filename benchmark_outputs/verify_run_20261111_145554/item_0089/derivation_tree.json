@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Marilyn sold 10 times as many copies as Harald",
+      "formula": "TimesAsMany(marilyn, harald, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Together, Marilyn and Harald sold 88,000 copies",
+      "formula": "TotalSold(marilyn, harald, 88000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Combine like terms, 10H + H = 11H, i.e. 10 + 1 = 11",
+      "formula": "Sum(10, 1, 11)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "Solve for H by dividing 88,000 by 11",
+      "formula": "Quotient(88000, 11, 8000)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x sold n times as many copies as y, and x and y together sold t copies, and n+1 = k, and t divided by k equals h, then y sold h copies",
+      "formula": "\u2200x\u2200y\u2200n\u2200t\u2200k\u2200h (TimesAsMany(x,y,n) \u2227 TotalSold(x,y,t) \u2227 Sum(n,1,k) \u2227 Quotient(t,k,h) \u2192 Sold(y,h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Harald sold 8,000 copies, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Sold(harald, 8000)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

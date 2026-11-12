@@ -1,0 +1,84 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The great dragon Perg breathes fire up to 1000 feet",
+      "formula": "FireReach(perg, 1000)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Polly throws the javelin 400 feet when not holding the gemstone",
+      "formula": "ThrowDistance(polly, 400)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "400 times 3 is 1200",
+      "formula": "Product(400, 3, 1200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1200 minus 1000 is 200",
+      "formula": "Difference(1200, 1000, 200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x throws the javelin n feet without the gemstone, and n times 3 is m, then x can throw the javelin m feet while holding the gemstone",
+      "formula": "\u2200x\u2200n\u2200m (ThrowDistance(x,n) \u2227 Product(n,3,m) \u2192 ThrowWithGem(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a creature y has fire reach n, x can throw the javelin m feet while holding the gemstone, and m minus n is r, then x can stand r feet beyond y's fire reach and still hit it",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (FireReach(y,n) \u2227 ThrowWithGem(x,m) \u2227 Difference(m,n,r) \u2192 ExtraReach(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Polly can throw the javelin 1200 feet while holding the gemstone, from FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "ThrowWithGem(polly, 1200)",
+      "premises": [
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Polly can stand 200 feet beyond Perg's fire reach and still hit it with the javelin while holding the gemstone, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "ExtraReach(polly, 200)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

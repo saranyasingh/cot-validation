@@ -1,0 +1,62 @@
+{
+  "dataset": "GSM8K",
+  "run_id": "verify_run_20261111_145554",
+  "total": 100,
+  "skip_tptp": false,
+  "reasoning_client": "vllm",
+  "verifier_client": "bedrock",
+  "reasoning_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "verifier_model": "anthropic.claude-sonnet-5",
+  "cot": {
+    "correct": 67,
+    "incorrect": 33,
+    "accuracy": 0.67
+  },
+  "verification": {
+    "marked_incorrect": 38,
+    "marked_correct": 62,
+    "failed_fact_rule_check": 32,
+    "failed_arithmetic_check": 6,
+    "failed_tptp_check": 3
+  },
+  "judgment": {
+    "incorrect_marked_incorrect": 31,
+    "correct_marked_correct": 60,
+    "incorrect_marked_correct": 2,
+    "correct_marked_incorrect": 7,
+    "judged_correct": 91,
+    "accuracy": 0.91
+  },
+  "error_detection": {
+    "true_positives": 31,
+    "false_positives": 7,
+    "false_negatives": 2,
+    "true_negatives": 60,
+    "precision": 0.8158,
+    "recall": 0.9394,
+    "f1": 0.8732
+  },
+  "cost": {
+    "calls": 365,
+    "input_tokens": 776397,
+    "output_tokens": 527626,
+    "total_cost_usd": 9.715932,
+    "unpriced_calls": 0,
+    "by_model": {
+      "Qwen/Qwen2.5-1.5B-Instruct": {
+        "client": "vllm",
+        "calls": 100,
+        "input_tokens": 20223,
+        "output_tokens": 31132,
+        "cost_usd": 0.0
+      },
+      "anthropic.claude-sonnet-5": {
+        "client": "bedrock",
+        "calls": 265,
+        "input_tokens": 756174,
+        "output_tokens": 496494,
+        "cost_usd": 9.715932
+      }
+    }
+  }
+}

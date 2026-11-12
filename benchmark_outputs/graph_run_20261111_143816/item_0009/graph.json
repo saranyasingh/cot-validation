@@ -1,0 +1,864 @@
+{
+  "question": "John drives for 3 hours at a speed of 60 mph and then turns around because he realizes he forgot something very important at home.  He tries to get home in 4 hours but spends the first 2 hours in standstill traffic.  He spends the next half-hour driving at a speed of 30mph, before being able to drive the remaining time of the 4 hours going at 80 mph.  How far is he from home at the end of those 4 hours?",
+  "cot": "EXPLANATION\nFirst, we calculate the distance John initially travels to his destination.\n- Premise 1: John drives for 3 hours at a speed of 60 mph.\n- Premise 2: Distance = Speed \u00d7 Time, so the distance to the destination is \\(60 \\text{ mph} \\times 3 \\text{ hours} = 180 \\text{ miles}\\).\n\nNext, we analyze John's return trip.\n- Premise 3: John tries to get home in 4 hours but spends the first 2 hours in standstill traffic.\n- Premise 4: Standstill traffic means he does not cover any additional distance during this time, so he remains 180 miles away from home after 2 hours.\n\nThen, we consider the next part of his journey.\n- Premise 5: He spends the next half-hour (0.5 hours) driving at a speed of 30 mph.\n- Premise 6: Distance covered in this period = \\(30 \\text{ mph} \\times 0.5 \\text{ hours} = 15 \\text{ miles}\\).\n- Premise 7: Therefore, the remaining distance from home after this period is \\(180 \\text{ miles} - 15 \\text{ miles} = 165 \\text{ miles}\\).\n\nFinally, we account for the last part of his journey.\n- Premise 8: He spends the remaining time (4 hours total - 2 hours in standstill - 0.5 hours driving at 30 mph) driving at 80 mph.\n- Premise 9: Remaining time = \\(4 \\text{ hours} - 2 \\text{ hours} - 0.5 \\text{ hours} = 1.5 \\text{ hours}\\).\n- Premise 10: Distance covered in this period = \\(80 \\text{ mph} \\times 1.5 \\text{ hours} = 120 \\text{ miles}\\).\n- Premise 11: Therefore, the remaining distance from home after this period is \\(165 \\text{ miles} - 120 \\text{ miles} = 45 \\text{ miles}\\).\n\nThe answer is: 45",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "segment": {
+      "description": "a segment of driving or waiting time during a journey"
+    },
+    "trip": {
+      "description": "a journey made up of segments"
+    }
+  },
+  "entities": {
+    "john": {
+      "sort": "person",
+      "name": "John"
+    },
+    "outbound": {
+      "sort": "segment",
+      "name": "drive to destination"
+    },
+    "standstill": {
+      "sort": "segment",
+      "name": "standstill traffic"
+    },
+    "slow": {
+      "sort": "segment",
+      "name": "30 mph half-hour"
+    },
+    "fast": {
+      "sort": "segment",
+      "name": "80 mph remaining time"
+    },
+    "return_trip": {
+      "sort": "trip",
+      "name": "return trip"
+    }
+  },
+  "relations": {
+    "drives": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "t",
+          "num"
+        ],
+        [
+          "v",
+          "num"
+        ]
+      ],
+      "sentence": "{p} drives during {s} for {t} hours at a speed of {v} mph"
+    },
+    "seg_speed": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "v",
+          "num"
+        ]
+      ],
+      "sentence": "{p} spends the remaining time, {s}, driving at {v} mph"
+    },
+    "seg_time": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "t",
+          "num"
+        ]
+      ],
+      "sentence": "{s} of {p}'s journey lasts {t} hours"
+    },
+    "seg_distance": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "d",
+          "num"
+        ]
+      ],
+      "sentence": "{p} covers {d} miles during {s}"
+    },
+    "dist_from_home_after": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "d",
+          "num"
+        ]
+      ],
+      "sentence": "{p} is {d} miles from home after {s}"
+    },
+    "return_plan": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "r",
+          "trip"
+        ],
+        [
+          "total",
+          "num"
+        ],
+        [
+          "s",
+          "segment"
+        ],
+        [
+          "stuck",
+          "num"
+        ]
+      ],
+      "sentence": "{p} tries to complete {r} in {total} hours but spends the first {stuck} hours, {s}, in standstill traffic"
+    },
+    "at_destination_dist_equals": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "s",
+          "segment"
+        ]
+      ],
+      "sentence": "upon finishing {s} and reaching the destination, {p}'s distance from home equals the distance covered in {s}"
+    },
+    "drives_toward_home": {
+      "slots": [
+        [
+          "p",
+          "person"
+        ],
+        [
+          "r",
+          "trip"
+        ]
+      ],
+      "sentence": "during the driving segments of {r}, {p} drives toward home along the same route"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "John drives for 3 hours at a speed of 60 mph.",
+      "cot_quote": "John drives for 3 hours at a speed of 60 mph.",
+      "content": {
+        "relation": "drives",
+        "args": [
+          "john",
+          "outbound",
+          3,
+          60
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "John drives for 3 hours at a speed of 60 mph",
+      "label": "assumption",
+      "english": "John drives during drive to destination for 3 hours at a speed of 60 mph."
+    },
+    "C2": {
+      "shape": "rule",
+      "text": "Distance = Speed \u00d7 Time.",
+      "cot_quote": "Distance = Speed \u00d7 Time",
+      "content": {
+        "vars": {
+          "p": "person",
+          "s": "segment",
+          "t": "num",
+          "v": "num",
+          "d": "num"
+        },
+        "if": [
+          {
+            "relation": "drives",
+            "args": [
+              "p",
+              "s",
+              "t",
+              "v"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "v",
+              "t"
+            ],
+            "result": "d"
+          }
+        ],
+        "then": [
+          {
+            "relation": "seg_distance",
+            "args": [
+              "p",
+              "s",
+              "d"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person p, any segment s, any numbers t, v, d: if p drives during s for t hours at a speed of v mph and d = v \u00d7 t, then p covers d miles during s."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The distance to the destination is 180 miles.",
+      "cot_quote": "the distance to the destination is \\(60 \\text{ mph} \\times 3 \\text{ hours} = 180 \\text{ miles}\\)",
+      "content": {
+        "relation": "seg_distance",
+        "args": [
+          "john",
+          "outbound",
+          180
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "John covers 180 miles during drive to destination."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "John tries to get home in 4 hours but spends the first 2 hours in standstill traffic.",
+      "cot_quote": "John tries to get home in 4 hours but spends the first 2 hours in standstill traffic.",
+      "content": {
+        "relation": "return_plan",
+        "args": [
+          "john",
+          "return_trip",
+          4,
+          "standstill",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "He tries to get home in 4 hours but spends the first 2 hours in standstill traffic.",
+      "label": "assumption",
+      "english": "John tries to complete return trip in 4 hours but spends the first 2 hours, standstill traffic, in standstill traffic."
+    },
+    "C5": {
+      "shape": "rule",
+      "text": "Standstill traffic means he does not cover any additional distance during this time.",
+      "cot_quote": "Standstill traffic means he does not cover any additional distance during this time",
+      "content": {
+        "vars": {
+          "p": "person",
+          "r": "trip",
+          "total": "num",
+          "s": "segment",
+          "stuck": "num"
+        },
+        "if": [
+          {
+            "relation": "return_plan",
+            "args": [
+              "p",
+              "r",
+              "total",
+              "s",
+              "stuck"
+            ]
+          }
+        ],
+        "calc": [],
+        "then": [
+          {
+            "relation": "seg_distance",
+            "args": [
+              "p",
+              "s",
+              0
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "definitional",
+      "stated_in_cot": true,
+      "id": "C5",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person p, any trip r, any numbers total, stuck, any segment s: if p tries to complete r in total hours but spends the first stuck hours, s, in standstill traffic, then p covers 0 miles during s."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "He remains 180 miles away from home after 2 hours.",
+      "cot_quote": "he remains 180 miles away from home after 2 hours",
+      "content": {
+        "relation": "dist_from_home_after",
+        "args": [
+          "john",
+          "standstill",
+          180
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "John is 180 miles from home after standstill traffic."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "He spends the next half-hour (0.5 hours) driving at a speed of 30 mph.",
+      "cot_quote": "He spends the next half-hour (0.5 hours) driving at a speed of 30 mph.",
+      "content": {
+        "relation": "drives",
+        "args": [
+          "john",
+          "slow",
+          0.5,
+          30
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C7",
+      "question_quote": "He spends the next half-hour driving at a speed of 30mph",
+      "label": "assumption",
+      "english": "John drives during 30 mph half-hour for 0.5 hours at a speed of 30 mph."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "Distance covered in the half-hour period is 15 miles.",
+      "cot_quote": "Distance covered in this period = \\(30 \\text{ mph} \\times 0.5 \\text{ hours} = 15 \\text{ miles}\\)",
+      "content": {
+        "relation": "seg_distance",
+        "args": [
+          "john",
+          "slow",
+          15
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C8",
+      "label": "derived",
+      "english": "John covers 15 miles during 30 mph half-hour."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "The remaining distance from home after the 30 mph period is 165 miles.",
+      "cot_quote": "the remaining distance from home after this period is \\(180 \\text{ miles} - 15 \\text{ miles} = 165 \\text{ miles}\\)",
+      "content": {
+        "relation": "dist_from_home_after",
+        "args": [
+          "john",
+          "slow",
+          165
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "John is 165 miles from home after 30 mph half-hour."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "He spends the remaining time driving at 80 mph.",
+      "cot_quote": "He spends the remaining time (4 hours total - 2 hours in standstill - 0.5 hours driving at 30 mph) driving at 80 mph.",
+      "content": {
+        "relation": "seg_speed",
+        "args": [
+          "john",
+          "fast",
+          80
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C10",
+      "question_quote": "drive the remaining time of the 4 hours going at 80 mph",
+      "label": "assumption",
+      "english": "John spends the remaining time, 80 mph remaining time, driving at 80 mph."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "Remaining time is 1.5 hours.",
+      "cot_quote": "Remaining time = \\(4 \\text{ hours} - 2 \\text{ hours} - 0.5 \\text{ hours} = 1.5 \\text{ hours}\\)",
+      "content": {
+        "relation": "seg_time",
+        "args": [
+          "john",
+          "fast",
+          1.5
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "80 mph remaining time of John's journey lasts 1.5 hours."
+    },
+    "C12": {
+      "shape": "fact",
+      "text": "Distance covered in the 80 mph period is 120 miles.",
+      "cot_quote": "Distance covered in this period = \\(80 \\text{ mph} \\times 1.5 \\text{ hours} = 120 \\text{ miles}\\)",
+      "content": {
+        "relation": "seg_distance",
+        "args": [
+          "john",
+          "fast",
+          120
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C12",
+      "label": "derived",
+      "english": "John covers 120 miles during 80 mph remaining time."
+    },
+    "C13": {
+      "shape": "fact",
+      "text": "The remaining distance from home after the 80 mph period is 45 miles.",
+      "cot_quote": "the remaining distance from home after this period is \\(165 \\text{ miles} - 120 \\text{ miles} = 45 \\text{ miles}\\)",
+      "content": {
+        "relation": "dist_from_home_after",
+        "args": [
+          "john",
+          "fast",
+          45
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C13",
+      "label": "derived",
+      "english": "John is 45 miles from home after 80 mph remaining time."
+    },
+    "I1": {
+      "shape": "fact",
+      "text": "Upon reaching the destination, John's distance from home equals the distance from home to the destination.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "at_destination_dist_equals",
+        "args": [
+          "john",
+          "outbound"
+        ],
+        "negated": false
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "Upon finishing drive to destination and reaching the destination, John's distance from home equals the distance covered in drive to destination."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "When driving toward home, the remaining distance from home decreases by the distance covered: new remaining distance = previous remaining distance - distance covered.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "s1": "segment",
+          "s2": "segment",
+          "r": "trip",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "dist_from_home_after",
+            "args": [
+              "p",
+              "s1",
+              "a"
+            ]
+          },
+          {
+            "relation": "seg_distance",
+            "args": [
+              "p",
+              "s2",
+              "b"
+            ]
+          },
+          {
+            "relation": "drives_toward_home",
+            "args": [
+              "p",
+              "r"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "dist_from_home_after",
+            "args": [
+              "p",
+              "s2",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any person p, any segments s1, s2, any trip r, any numbers a, b, c: if p is a miles from home after s1 and p covers b miles during s2 and during the driving segments of r, p drives toward home along the same route and c = a - b, then p is c miles from home after s2."
+    },
+    "I3": {
+      "shape": "fact",
+      "text": "During the driving segments of the return trip, John drives toward home along the same route.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "drives_toward_home",
+        "args": [
+          "john",
+          "return_trip"
+        ],
+        "negated": false
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "During the driving segments of return trip, John drives toward home along the same route."
+    },
+    "I4": {
+      "shape": "rule",
+      "text": "The time remaining in a fixed time budget equals the total time minus the durations of the segments already used.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "r": "trip",
+          "total": "num",
+          "s1": "segment",
+          "stuck": "num",
+          "s2": "segment",
+          "t2": "num",
+          "v2": "num",
+          "s3": "segment",
+          "v3": "num",
+          "x": "num",
+          "y": "num"
+        },
+        "if": [
+          {
+            "relation": "return_plan",
+            "args": [
+              "p",
+              "r",
+              "total",
+              "s1",
+              "stuck"
+            ]
+          },
+          {
+            "relation": "drives",
+            "args": [
+              "p",
+              "s2",
+              "t2",
+              "v2"
+            ]
+          },
+          {
+            "relation": "seg_speed",
+            "args": [
+              "p",
+              "s3",
+              "v3"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "total",
+              "stuck"
+            ],
+            "result": "x"
+          },
+          {
+            "op": "difference",
+            "args": [
+              "x",
+              "t2"
+            ],
+            "result": "y"
+          }
+        ],
+        "then": [
+          {
+            "relation": "seg_time",
+            "args": [
+              "p",
+              "s3",
+              "y"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "For any person p, any trip r, any numbers total, stuck, t2, v2, v3, x, y, any segments s1, s2, s3: if p tries to complete r in total hours but spends the first stuck hours, s1, in standstill traffic and p drives during s2 for t2 hours at a speed of v2 mph and p spends the remaining time, s3, driving at v3 mph and x = total - stuck and y = x - t2, then s3 of p's journey lasts y hours."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Distance = Speed \u00d7 Time, so the distance to the destination is 180 miles.",
+      "premises": [
+        "C1"
+      ],
+      "warrant": "C2",
+      "conclusion": "C3",
+      "stated_computation": "60 \u00d7 3 = 180",
+      "cot_quote": "Distance = Speed \u00d7 Time, so the distance to the destination is \\(60 \\text{ mph} \\times 3 \\text{ hours} = 180 \\text{ miles}\\)",
+      "id": "S1",
+      "english": "Because John drives during drive to destination for 3 hours at a speed of 60 mph; and since for any person p, any segment s, any numbers t, v, d: if p drives during s for t hours at a speed of v mph and d = v \u00d7 t, then p covers d miles during s: John covers 180 miles during drive to destination (60 \u00d7 3 = 180).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "john",
+        "s": "outbound",
+        "t": "3",
+        "v": "60",
+        "d": "180"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "define",
+      "text": "Standstill traffic means no distance covered, so he remains 180 miles away after 2 hours.",
+      "premises": [
+        "C4",
+        "C3",
+        "I1"
+      ],
+      "warrant": "C5",
+      "conclusion": "C6",
+      "stated_computation": null,
+      "cot_quote": "Standstill traffic means he does not cover any additional distance during this time, so he remains 180 miles away from home after 2 hours.",
+      "id": "S2",
+      "english": "Because John tries to complete return trip in 4 hours but spends the first 2 hours, standstill traffic, in standstill traffic; and John covers 180 miles during drive to destination; and upon finishing drive to destination and reaching the destination, John's distance from home equals the distance covered in drive to destination; and since for any person p, any trip r, any numbers total, stuck, any segment s: if p tries to complete r in total hours but spends the first stuck hours, s, in standstill traffic, then p covers 0 miles during s: John is 180 miles from home after standstill traffic.",
+      "status": "gap",
+      "status_detail": "rule C5 does not connect the premises to the conclusion; relations not mentioned by the rule: ['at_destination_dist_equals', 'dist_from_home_after']",
+      "binding": {},
+      "prover": "unknown",
+      "prover_detail": "prover gave up (SZS status Timeout)"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Distance covered in this period = 30 mph \u00d7 0.5 hours = 15 miles.",
+      "premises": [
+        "C7"
+      ],
+      "warrant": "C2",
+      "conclusion": "C8",
+      "stated_computation": "30 \u00d7 0.5 = 15",
+      "cot_quote": "Distance covered in this period = \\(30 \\text{ mph} \\times 0.5 \\text{ hours} = 15 \\text{ miles}\\)",
+      "id": "S3",
+      "english": "Because John drives during 30 mph half-hour for 0.5 hours at a speed of 30 mph; and since for any person p, any segment s, any numbers t, v, d: if p drives during s for t hours at a speed of v mph and d = v \u00d7 t, then p covers d miles during s: John covers 15 miles during 30 mph half-hour (30 \u00d7 0.5 = 15).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "john",
+        "s": "slow",
+        "t": "0.5",
+        "v": "30",
+        "d": "15"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "Therefore, the remaining distance from home is 180 - 15 = 165 miles.",
+      "premises": [
+        "C6",
+        "C8",
+        "I3"
+      ],
+      "warrant": "I2",
+      "conclusion": "C9",
+      "stated_computation": "180 - 15 = 165",
+      "cot_quote": "Therefore, the remaining distance from home after this period is \\(180 \\text{ miles} - 15 \\text{ miles} = 165 \\text{ miles}\\).",
+      "id": "S4",
+      "english": "Because John is 180 miles from home after standstill traffic; and John covers 15 miles during 30 mph half-hour; and during the driving segments of return trip, John drives toward home along the same route; and since for any person p, any segments s1, s2, any trip r, any numbers a, b, c: if p is a miles from home after s1 and p covers b miles during s2 and during the driving segments of r, p drives toward home along the same route and c = a - b, then p is c miles from home after s2: John is 165 miles from home after 30 mph half-hour (180 - 15 = 165).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "john",
+        "s1": "standstill",
+        "a": "180",
+        "s2": "slow",
+        "b": "15",
+        "r": "return_trip",
+        "c": "165"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Remaining time = 4 - 2 - 0.5 = 1.5 hours.",
+      "premises": [
+        "C4",
+        "C7",
+        "C10"
+      ],
+      "warrant": "I4",
+      "conclusion": "C11",
+      "stated_computation": "4 - 2 - 0.5 = 1.5",
+      "cot_quote": "Remaining time = \\(4 \\text{ hours} - 2 \\text{ hours} - 0.5 \\text{ hours} = 1.5 \\text{ hours}\\)",
+      "id": "S5",
+      "english": "Because John tries to complete return trip in 4 hours but spends the first 2 hours, standstill traffic, in standstill traffic; and John drives during 30 mph half-hour for 0.5 hours at a speed of 30 mph; and John spends the remaining time, 80 mph remaining time, driving at 80 mph; and since for any person p, any trip r, any numbers total, stuck, t2, v2, v3, x, y, any segments s1, s2, s3: if p tries to complete r in total hours but spends the first stuck hours, s1, in standstill traffic and p drives during s2 for t2 hours at a speed of v2 mph and p spends the remaining time, s3, driving at v3 mph and x = total - stuck and y = x - t2, then s3 of p's journey lasts y hours: 80 mph remaining time of John's journey lasts 1.5 hours (4 - 2 - 0.5 = 1.5).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "john",
+        "r": "return_trip",
+        "total": "4",
+        "s1": "standstill",
+        "stuck": "2",
+        "s2": "slow",
+        "t2": "0.5",
+        "v2": "30",
+        "s3": "fast",
+        "v3": "80",
+        "y": "1.5",
+        "x": "2"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S6": {
+      "move": "apply",
+      "text": "Distance covered in this period = 80 mph \u00d7 1.5 hours = 120 miles.",
+      "premises": [
+        "C10",
+        "C11"
+      ],
+      "warrant": "C2",
+      "conclusion": "C12",
+      "stated_computation": "80 \u00d7 1.5 = 120",
+      "cot_quote": "Distance covered in this period = \\(80 \\text{ mph} \\times 1.5 \\text{ hours} = 120 \\text{ miles}\\)",
+      "id": "S6",
+      "english": "Because John spends the remaining time, 80 mph remaining time, driving at 80 mph; and 80 mph remaining time of John's journey lasts 1.5 hours; and since for any person p, any segment s, any numbers t, v, d: if p drives during s for t hours at a speed of v mph and d = v \u00d7 t, then p covers d miles during s: John covers 120 miles during 80 mph remaining time (80 \u00d7 1.5 = 120).",
+      "status": "gap",
+      "status_detail": "rule C2 does not connect the premises to the conclusion; relations not mentioned by the rule: ['seg_speed', 'seg_time']",
+      "binding": {},
+      "prover": "unknown",
+      "prover_detail": "prover gave up (SZS status Timeout)"
+    },
+    "S7": {
+      "move": "apply",
+      "text": "Therefore, the remaining distance from home is 165 - 120 = 45 miles.",
+      "premises": [
+        "C9",
+        "C12",
+        "I3"
+      ],
+      "warrant": "I2",
+      "conclusion": "C13",
+      "stated_computation": "165 - 120 = 45",
+      "cot_quote": "Therefore, the remaining distance from home after this period is \\(165 \\text{ miles} - 120 \\text{ miles} = 45 \\text{ miles}\\).",
+      "id": "S7",
+      "english": "Because John is 165 miles from home after 30 mph half-hour; and John covers 120 miles during 80 mph remaining time; and during the driving segments of return trip, John drives toward home along the same route; and since for any person p, any segments s1, s2, any trip r, any numbers a, b, c: if p is a miles from home after s1 and p covers b miles during s2 and during the driving segments of r, p drives toward home along the same route and c = a - b, then p is c miles from home after s2: John is 45 miles from home after 80 mph remaining time (165 - 120 = 45).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "john",
+        "s1": "slow",
+        "a": "165",
+        "s2": "fast",
+        "b": "120",
+        "r": "return_trip",
+        "c": "45"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

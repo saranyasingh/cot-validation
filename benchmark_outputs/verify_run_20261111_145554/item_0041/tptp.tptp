@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, times_as_old(brandon, ben, n_4)).
+fof(fact_2, axiom, times_as_old(ben, suzy, n_2)).
+fof(fact_3, axiom, age_of(suzy, n_1)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_2, n_1, n_2)).
+fof(op_2, axiom, product(n_4, n_2, n_8)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,A,B] : ((times_as_old(X, Y, N) & age_of(Y, A) & product(N, A, B)) => age_of(X, B))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, age_of(ben, n_2)).
+% From fact_1, inf_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, age_of(brandon, n_8)).

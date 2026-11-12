@@ -1,0 +1,177 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The streaming company charges Aleena $140 per month for the first six months",
+      "formula": "RatePerMonth(aleena, first_half, 140)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The first period lasts 6 months",
+      "formula": "Months(aleena, first_half, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The second period lasts 6 months",
+      "formula": "Months(aleena, second_half, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "On the second half of the year, the company charges 10% less than the initial rate",
+      "formula": "DiscountRate(second_half, 0.10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "6 \u00d7 140 = 840",
+      "formula": "Product(6, 140, 840)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1 \u2212 0.10 = 0.90",
+      "formula": "Difference(1, 0.10, 0.90)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "140 \u00d7 0.90 = 126",
+      "formula": "Product(140, 0.90, 126)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "6 \u00d7 126 = 756",
+      "formula": "Product(6, 126, 756)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "840 + 756 = 1596",
+      "formula": "Sum(840, 756, 1596)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x is charged n dollars per month during period p, that period lasts m months, and n \u00d7 m = c, then x's cost for period p is c",
+      "formula": "\u2200x\u2200p\u2200n\u2200m\u2200c (RatePerMonth(x,p,n) \u2227 Months(x,p,m) \u2227 Product(n,m,c) \u2192 Cost(x,p,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x is charged r dollars per month during period p1, period p2 has a discount rate d relative to p1, 1 \u2212 d = f, and r \u00d7 f = r2, then x is charged r2 dollars per month during period p2",
+      "formula": "\u2200x\u2200p1\u2200p2\u2200r\u2200d\u2200f\u2200r2 (RatePerMonth(x,p1,r) \u2227 DiscountRate(p2,d) \u2227 Difference(1,d,f) \u2227 Product(r,f,r2) \u2192 RatePerMonth(x,p2,r2))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's cost for period p1 is c1, x's cost for period p2 is c2, and c1 + c2 = t, then x's total payment over the year is t",
+      "formula": "\u2200x\u2200p1\u2200p2\u2200c1\u2200c2\u2200t (Cost(x,p1,c1) \u2227 Cost(x,p2,c2) \u2227 Sum(c1,c2,t) \u2192 Total(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Aleena's cost for the first six months is $840, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(aleena, first_half, 840)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Aleena is charged $126 per month during the second half of the year, from FACT-1, FACT-4, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "RatePerMonth(aleena, second_half, 126)",
+      "premises": [
+        "FACT-1",
+        "FACT-4",
+        "OP-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Aleena's cost for the second six months is $756, from INF-2, FACT-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(aleena, second_half, 756)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Aleena's total payment over the year is $1596, from INF-1, INF-3, OP-5, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(aleena, 1596)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "OP-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "INF-1",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    },
+    {
+      "node": "INF-3",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

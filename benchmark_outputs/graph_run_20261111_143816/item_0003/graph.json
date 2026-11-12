@@ -1,0 +1,824 @@
+{
+  "question": "Josh decides to try flipping a house.  He buys a house for $80,000 and then puts in $50,000 in repairs.  This increased the value of the house by 150%.  How much profit did he make?",
+  "cot": "Premise 1: Josh buys a house for $80,000.\nPremise 2: Josh spends $50,000 on repairs.\nPremise 3: The repairs increase the value of the house by 150%.\n\nStep 1: Calculate the total cost of the house including repairs.\n- Total cost = Cost of house + Cost of repairs\n- Total cost = $80,000 + $50,000 = $130,000\n\nStep 2: Determine the new value of the house after repairs.\n- The increase in value is 150% of the original value ($80,000).\n- Increase in value = 150% * $80,000 = 1.5 * $80,000 = $120,000\n- New value of the house = Original value + Increase in value\n- New value of the house = $80,000 + $120,000 = $200,000\n\nStep 3: Calculate the profit made by Josh.\n- Profit = New value of the house - Total cost\n- Profit = $200,000 - $130,000 = $70,000\n\nThe answer is: 70000",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "property": {
+      "description": "a piece of real estate"
+    }
+  },
+  "entities": {
+    "josh": {
+      "sort": "person",
+      "name": "Josh"
+    },
+    "house": {
+      "sort": "property",
+      "name": "the house"
+    }
+  },
+  "relations": {
+    "purchase_price": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{buyer} buys {prop} for {amount} dollars"
+    },
+    "repair_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{buyer} spends {amount} dollars on repairs to {prop}"
+    },
+    "value_increase_pct": {
+      "slots": [
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "pct",
+          "num"
+        ]
+      ],
+      "sentence": "the repairs increase the value of {prop} by {pct} percent"
+    },
+    "total_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total cost to {buyer} of {prop} including repairs is {amount} dollars"
+    },
+    "original_value": {
+      "slots": [
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the original value of {prop} is {amount} dollars"
+    },
+    "increase_pct_of_original": {
+      "slots": [
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "pct",
+          "num"
+        ],
+        [
+          "base",
+          "num"
+        ]
+      ],
+      "sentence": "the increase in value of {prop} is {pct} percent of the original value of {base} dollars"
+    },
+    "pct_decimal": {
+      "slots": [
+        [
+          "pct",
+          "num"
+        ],
+        [
+          "dec",
+          "num"
+        ]
+      ],
+      "sentence": "{pct} percent expressed as a decimal is {dec}"
+    },
+    "value_increase": {
+      "slots": [
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the increase in value of {prop} is {amount} dollars"
+    },
+    "new_value": {
+      "slots": [
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the new value of {prop} after repairs is {amount} dollars"
+    },
+    "return_is_new_value": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "prop",
+          "property"
+        ]
+      ],
+      "sentence": "{owner}'s return from {prop} is its new value after repairs"
+    },
+    "profit": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "prop",
+          "property"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} makes a profit of {amount} dollars on {prop}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Josh buys a house for $80,000.",
+      "cot_quote": "Josh buys a house for $80,000.",
+      "content": {
+        "relation": "purchase_price",
+        "args": [
+          "josh",
+          "house",
+          80000
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "He buys a house for $80,000",
+      "label": "assumption",
+      "english": "Josh buys the house for 80000 dollars."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Josh spends $50,000 on repairs.",
+      "cot_quote": "Josh spends $50,000 on repairs.",
+      "content": {
+        "relation": "repair_cost",
+        "args": [
+          "josh",
+          "house",
+          50000
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "puts in $50,000 in repairs",
+      "label": "assumption",
+      "english": "Josh spends 50000 dollars on repairs to the house."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The repairs increase the value of the house by 150%.",
+      "cot_quote": "The repairs increase the value of the house by 150%.",
+      "content": {
+        "relation": "value_increase_pct",
+        "args": [
+          "house",
+          150
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C3",
+      "question_quote": "This increased the value of the house by 150%.",
+      "label": "assumption",
+      "english": "The repairs increase the value of the house by 150 percent."
+    },
+    "C4": {
+      "shape": "rule",
+      "text": "Total cost = Cost of house + Cost of repairs",
+      "cot_quote": "Total cost = Cost of house + Cost of repairs",
+      "content": {
+        "vars": {
+          "x": "person",
+          "h": "property",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "purchase_price",
+            "args": [
+              "x",
+              "h",
+              "a"
+            ]
+          },
+          {
+            "relation": "repair_cost",
+            "args": [
+              "x",
+              "h",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_cost",
+            "args": [
+              "x",
+              "h",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any property h, any numbers a, b, c: if x buys h for a dollars and x spends b dollars on repairs to h and c = a + b, then the total cost to x of h including repairs is c dollars."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Total cost is $130,000.",
+      "cot_quote": "Total cost = $80,000 + $50,000 = $130,000",
+      "content": {
+        "relation": "total_cost",
+        "args": [
+          "josh",
+          "house",
+          130000
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "The total cost to Josh of the house including repairs is 130000 dollars."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "The increase in value is 150% of the original value ($80,000).",
+      "cot_quote": "The increase in value is 150% of the original value ($80,000).",
+      "content": {
+        "relation": "increase_pct_of_original",
+        "args": [
+          "house",
+          150,
+          80000
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "The increase in value of the house is 150 percent of the original value of 80000 dollars."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Increase in value is $120,000.",
+      "cot_quote": "Increase in value = 150% * $80,000 = 1.5 * $80,000 = $120,000",
+      "content": {
+        "relation": "value_increase",
+        "args": [
+          "house",
+          120000
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The increase in value of the house is 120000 dollars."
+    },
+    "C8": {
+      "shape": "rule",
+      "text": "New value of the house = Original value + Increase in value",
+      "cot_quote": "New value of the house = Original value + Increase in value",
+      "content": {
+        "vars": {
+          "x": "person",
+          "h": "property",
+          "v": "num",
+          "i": "num",
+          "n": "num"
+        },
+        "if": [
+          {
+            "relation": "purchase_price",
+            "args": [
+              "x",
+              "h",
+              "v"
+            ]
+          },
+          {
+            "relation": "original_value",
+            "args": [
+              "h",
+              "v"
+            ]
+          },
+          {
+            "relation": "value_increase",
+            "args": [
+              "h",
+              "i"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "v",
+              "i"
+            ],
+            "result": "n"
+          }
+        ],
+        "then": [
+          {
+            "relation": "new_value",
+            "args": [
+              "h",
+              "n"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C8",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any property h, any numbers v, i, n: if x buys h for v dollars and the original value of h is v dollars and the increase in value of h is i dollars and n = v + i, then the new value of h after repairs is n dollars."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "New value of the house is $200,000.",
+      "cot_quote": "New value of the house = $80,000 + $120,000 = $200,000",
+      "content": {
+        "relation": "new_value",
+        "args": [
+          "house",
+          200000
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C9",
+      "label": "derived",
+      "english": "The new value of the house after repairs is 200000 dollars."
+    },
+    "C10": {
+      "shape": "rule",
+      "text": "Profit = New value of the house - Total cost",
+      "cot_quote": "Profit = New value of the house - Total cost",
+      "content": {
+        "vars": {
+          "x": "person",
+          "h": "property",
+          "n": "num",
+          "t": "num",
+          "p": "num"
+        },
+        "if": [
+          {
+            "relation": "new_value",
+            "args": [
+              "h",
+              "n"
+            ]
+          },
+          {
+            "relation": "total_cost",
+            "args": [
+              "x",
+              "h",
+              "t"
+            ]
+          },
+          {
+            "relation": "return_is_new_value",
+            "args": [
+              "x",
+              "h"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "n",
+              "t"
+            ],
+            "result": "p"
+          }
+        ],
+        "then": [
+          {
+            "relation": "profit",
+            "args": [
+              "x",
+              "h",
+              "p"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "definitional",
+      "stated_in_cot": true,
+      "id": "C10",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any property h, any numbers n, t, p: if the new value of h after repairs is n dollars and the total cost to x of h including repairs is t dollars and x's return from h is its new value after repairs and p = n - t, then x makes a profit of p dollars on h."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "Profit is $70,000.",
+      "cot_quote": "Profit = $200,000 - $130,000 = $70,000",
+      "content": {
+        "relation": "profit",
+        "args": [
+          "josh",
+          "house",
+          70000
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "Josh makes a profit of 70000 dollars on the house."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Increasing a value by X% means the increase equals X% of the original value.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "h": "property",
+          "p": "num",
+          "a": "num",
+          "v": "num"
+        },
+        "if": [
+          {
+            "relation": "value_increase_pct",
+            "args": [
+              "h",
+              "p"
+            ]
+          },
+          {
+            "relation": "purchase_price",
+            "args": [
+              "x",
+              "h",
+              "a"
+            ]
+          },
+          {
+            "relation": "original_value",
+            "args": [
+              "h",
+              "v"
+            ]
+          }
+        ],
+        "then": [
+          {
+            "relation": "increase_pct_of_original",
+            "args": [
+              "h",
+              "p",
+              "v"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person x, any property h, any numbers p, a, v: if the repairs increase the value of h by p percent and x buys h for a dollars and the original value of h is v dollars, then the increase in value of h is p percent of the original value of v dollars."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "The original value of the house equals its purchase price of $80,000.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "original_value",
+        "args": [
+          "house",
+          80000
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "The original value of the house is 80000 dollars."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "Taking a percentage of a quantity means multiplying the quantity by that percentage expressed as a decimal.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "h": "property",
+          "p": "num",
+          "v": "num",
+          "d": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "increase_pct_of_original",
+            "args": [
+              "h",
+              "p",
+              "v"
+            ]
+          },
+          {
+            "relation": "pct_decimal",
+            "args": [
+              "p",
+              "d"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "d",
+              "v"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "value_increase",
+            "args": [
+              "h",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any property h, any numbers p, v, d, c: if the increase in value of h is p percent of the original value of v dollars and p percent expressed as a decimal is d and c = d \u00d7 v, then the increase in value of h is c dollars."
+    },
+    "I4": {
+      "shape": "fact",
+      "text": "150% expressed as a decimal is 1.5.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "pct_decimal",
+        "args": [
+          150,
+          1.5
+        ],
+        "negated": false
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "150 percent expressed as a decimal is 1.5."
+    },
+    "I5": {
+      "shape": "fact",
+      "text": "Josh's return from the house is its new value after repairs (he sells it at that value).",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "return_is_new_value",
+        "args": [
+          "josh",
+          "house"
+        ],
+        "negated": false
+      },
+      "id": "I5",
+      "label": "assumption",
+      "english": "Josh's return from the house is its new value after repairs."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Total cost = $80,000 + $50,000 = $130,000",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "C4",
+      "conclusion": "C5",
+      "stated_computation": "$80,000 + $50,000 = $130,000",
+      "cot_quote": "Total cost = $80,000 + $50,000 = $130,000",
+      "id": "S1",
+      "english": "Because Josh buys the house for 80000 dollars; and Josh spends 50000 dollars on repairs to the house; and since for any person x, any property h, any numbers a, b, c: if x buys h for a dollars and x spends b dollars on repairs to h and c = a + b, then the total cost to x of h including repairs is c dollars: the total cost to Josh of the house including repairs is 130000 dollars ($80,000 + $50,000 = $130,000).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "josh",
+        "h": "house",
+        "a": "80000",
+        "b": "50000",
+        "c": "130000"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "The increase in value is 150% of the original value ($80,000).",
+      "premises": [
+        "C3",
+        "C1",
+        "I2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C6",
+      "stated_computation": null,
+      "cot_quote": "The increase in value is 150% of the original value ($80,000).",
+      "id": "S2",
+      "english": "Because the repairs increase the value of the house by 150 percent; and Josh buys the house for 80000 dollars; and the original value of the house is 80000 dollars; and since for any person x, any property h, any numbers p, a, v: if the repairs increase the value of h by p percent and x buys h for a dollars and the original value of h is v dollars, then the increase in value of h is p percent of the original value of v dollars: the increase in value of the house is 150 percent of the original value of 80000 dollars.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "h": "house",
+        "p": "150",
+        "x": "josh",
+        "a": "80000",
+        "v": "80000"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Increase in value = 150% * $80,000 = $120,000",
+      "premises": [
+        "C6",
+        "I4"
+      ],
+      "warrant": "I3",
+      "conclusion": "C7",
+      "stated_computation": "1.5 * $80,000 = $120,000",
+      "cot_quote": "Increase in value = 150% * $80,000 = 1.5 * $80,000 = $120,000",
+      "id": "S3",
+      "english": "Because the increase in value of the house is 150 percent of the original value of 80000 dollars; and 150 percent expressed as a decimal is 1.5; and since for any property h, any numbers p, v, d, c: if the increase in value of h is p percent of the original value of v dollars and p percent expressed as a decimal is d and c = d \u00d7 v, then the increase in value of h is c dollars: the increase in value of the house is 120000 dollars (1.5 * $80,000 = $120,000).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "h": "house",
+        "p": "150",
+        "v": "80000",
+        "d": "1.5",
+        "c": "120000"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "New value of the house = $80,000 + $120,000 = $200,000",
+      "premises": [
+        "C1",
+        "I2",
+        "C7"
+      ],
+      "warrant": "C8",
+      "conclusion": "C9",
+      "stated_computation": "$80,000 + $120,000 = $200,000",
+      "cot_quote": "New value of the house = $80,000 + $120,000 = $200,000",
+      "id": "S4",
+      "english": "Because Josh buys the house for 80000 dollars; and the original value of the house is 80000 dollars; and the increase in value of the house is 120000 dollars; and since for any person x, any property h, any numbers v, i, n: if x buys h for v dollars and the original value of h is v dollars and the increase in value of h is i dollars and n = v + i, then the new value of h after repairs is n dollars: the new value of the house after repairs is 200000 dollars ($80,000 + $120,000 = $200,000).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "josh",
+        "h": "house",
+        "v": "80000",
+        "i": "120000",
+        "n": "200000"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Profit = $200,000 - $130,000 = $70,000",
+      "premises": [
+        "C9",
+        "C5",
+        "I5"
+      ],
+      "warrant": "C10",
+      "conclusion": "C11",
+      "stated_computation": "$200,000 - $130,000 = $70,000",
+      "cot_quote": "Profit = $200,000 - $130,000 = $70,000",
+      "id": "S5",
+      "english": "Because the new value of the house after repairs is 200000 dollars; and the total cost to Josh of the house including repairs is 130000 dollars; and Josh's return from the house is its new value after repairs; and since for any person x, any property h, any numbers n, t, p: if the new value of h after repairs is n dollars and the total cost to x of h including repairs is t dollars and x's return from h is its new value after repairs and p = n - t, then x makes a profit of p dollars on h: Josh makes a profit of 70000 dollars on the house ($200,000 - $130,000 = $70,000).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "h": "house",
+        "n": "200000",
+        "x": "josh",
+        "t": "130000",
+        "p": "70000"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

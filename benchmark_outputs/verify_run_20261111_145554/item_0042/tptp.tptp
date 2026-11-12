@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, fire_reach(perg, n_1000)).
+fof(fact_2, axiom, throw_distance(polly, n_400)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_400, n_3, n_1200)).
+fof(op_2, axiom, difference(n_1200, n_1000, n_200)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M] : ((throw_distance(X, N) & product(N, n_3, M)) => throw_with_gem(X, M))).
+fof(rule_2, axiom, ! [X,Y,N,M,R] : ((fire_reach(Y, N) & throw_with_gem(X, M) & difference(M, N, R)) => extra_reach(X, R))).
+
+% --- INFERENCES ---
+% From fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, throw_with_gem(polly, n_1200)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, extra_reach(polly, n_200)).

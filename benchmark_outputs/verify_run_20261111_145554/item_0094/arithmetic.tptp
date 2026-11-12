@@ -1,0 +1,6 @@
+% OP-1: Sum(38, 2, 40)
+tff(op_1, conjecture, $sum(38/1, 2/1) = 40/1).
+% OP-2: Sum(1, 0.10, 1.10)
+tff(op_2, conjecture, ($lesseq($difference($sum(1/1, 1/10), 11/10), 1/200) & $lesseq($difference(11/10, $sum(1/1, 1/10)), 1/200))).
+% OP-3: Quotient(40, 1.10, 36.36)
+tff(op_3, conjecture, ($lesseq($difference($quotient(40/1, 11/10), 909/25), 1/200) & $lesseq($difference(909/25, $quotient(40/1, 11/10)), 1/200))).

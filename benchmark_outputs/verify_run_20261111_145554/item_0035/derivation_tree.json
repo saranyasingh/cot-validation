@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Siobhan has 2 fewer jewels than Aaron",
+      "formula": "Fewer(siobhan, aaron, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Aaron has 5 more jewels than half of Raymond's jewels",
+      "formula": "MoreThanHalfOf(aaron, raymond, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond has 40 jewels",
+      "formula": "Has(raymond, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "Half of 40 is 20",
+      "formula": "Quotient(40, 2, 20)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "20 plus 5 is 25",
+      "formula": "Sum(20, 5, 25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "25 minus 2 is 23",
+      "formula": "Difference(25, 2, 23)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n more jewels than half of y's jewels, y has r jewels, half of r is h, and h+n = p, then x has p jewels",
+      "formula": "\u2200x\u2200y\u2200n\u2200r\u2200h\u2200p (MoreThanHalfOf(x,y,n) \u2227 Has(y,r) \u2227 Quotient(r,2,h) \u2227 Sum(h,n,p) \u2192 Has(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has n fewer jewels than y, y has a jewels, and a\u2212n = s, then x has s jewels",
+      "formula": "\u2200x\u2200y\u2200n\u2200a\u2200s (Fewer(x,y,n) \u2227 Has(y,a) \u2227 Difference(a,n,s) \u2192 Has(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Aaron has 25 jewels, from FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Has(aaron, 25)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Siobhan has 23 jewels, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Has(siobhan, 23)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

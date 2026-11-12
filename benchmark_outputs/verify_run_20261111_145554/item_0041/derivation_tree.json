@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Brandon's iPhone is four times as old as Ben's iPhone",
+      "formula": "TimesAsOld(brandon, ben, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Ben's iPhone is two times older than Suzy's iPhone",
+      "formula": "TimesAsOld(ben, suzy, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Suzy's iPhone is 1 year old",
+      "formula": "AgeOf(suzy, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 1 is 2",
+      "formula": "Product(2, 1, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 times 2 is 8",
+      "formula": "Product(4, 2, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's iPhone is n times as old as y's iPhone, y's iPhone is a years old, and n \u00d7 a = b, then x's iPhone is b years old",
+      "formula": "\u2200x\u2200y\u2200n\u2200a\u2200b (TimesAsOld(x,y,n) \u2227 AgeOf(y,a) \u2227 Product(n,a,b) \u2192 AgeOf(x,b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Ben's iPhone is 2 years old, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "AgeOf(ben, 2)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Brandon's iPhone is 8 years old, from FACT-1, INF-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "AgeOf(brandon, 8)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+TimesAsOld(x, y, n) — x's iPhone is n times as old as y's iPhone
+AgeOf(x, n) — x's iPhone is n years old
+
+Constants:
+brandon, ben, suzy, 4, 2, 1, 8
+
+## FACTS
+FACT-1: Brandon's iPhone is four times as old as Ben's iPhone :: TimesAsOld(brandon, ben, 4)
+FACT-2: Ben's iPhone is two times older than Suzy's iPhone :: TimesAsOld(ben, suzy, 2)
+FACT-3: Suzy's iPhone is 1 year old :: AgeOf(suzy, 1)
+
+## OPERATIONS
+OP-1: 2 times 1 is 2 :: Product(2, 1, 2)
+OP-2: 4 times 2 is 8 :: Product(4, 2, 8)
+
+## RULES
+RULE-1: If x's iPhone is n times as old as y's iPhone, y's iPhone is a years old, and n × a = b, then x's iPhone is b years old :: ∀x∀y∀n∀a∀b (TimesAsOld(x,y,n) ∧ AgeOf(y,a) ∧ Product(n,a,b) → AgeOf(x,b))
+
+## INFERENCES
+INF-1: Ben's iPhone is 2 years old, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: AgeOf(ben, 2)
+INF-2: Brandon's iPhone is 8 years old, from FACT-1, INF-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: AgeOf(brandon, 8)

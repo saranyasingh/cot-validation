@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Instructions(x, n) — recipe x has n instructions
+TwiceAs(x, y) — recipe x has twice as many instructions as recipe y
+Total(x, y, n) — the total number of instructions to prepare recipes x and y is n
+
+Constants:
+first_recipe, second_recipe, 20, 2, 40, 60
+
+## FACTS
+FACT-1: First recipe has 20 instructions :: Instructions(first_recipe, 20)
+FACT-2: Second recipe has twice as many instructions as the first recipe :: TwiceAs(second_recipe, first_recipe)
+
+## OPERATIONS
+OP-1: 2 times 20 is 40 :: Product(2, 20, 40)
+OP-2: 20 plus 40 is 60 :: Sum(20, 40, 60)
+
+## RULES
+RULE-1: If recipe x has twice as many instructions as recipe y, y has n instructions, and 2×n=m, then x has m instructions :: ∀x∀y∀n∀m (TwiceAs(x,y) ∧ Instructions(y,n) ∧ Product(2,n,m) → Instructions(x,m))
+RULE-2: If recipe x has n instructions, recipe y has m instructions, and n+m=t, then the total instructions to prepare x and y is t :: ∀x∀y∀n∀m∀t (Instructions(x,n) ∧ Instructions(y,m) ∧ Sum(n,m,t) → Total(x,y,t))
+
+## INFERENCES
+INF-1: The second recipe has 40 instructions, from FACT-2, FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Instructions(second_recipe, 40)
+INF-2: The total number of instructions for both recipes is 60, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(first_recipe, second_recipe, 60)

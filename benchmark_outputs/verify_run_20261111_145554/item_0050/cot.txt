@@ -1,0 +1,16 @@
+Explanation:
+
+1. First, we need to determine how many floors are occupied and how many are unoccupied.
+2. We know that there are 15 floors in total and 3/4 of the building is occupied.
+   - To find out how many floors are occupied, we calculate (3/4) * 15 = 11.25 floors.
+   - Since we cannot have a fraction of a floor, we round this down to 11 floors occupied.
+   - Therefore, 15 - 11 = 4 floors are unoccupied.
+
+3. Next, we need to determine how many units are on these unoccupied floors.
+   - There are 8 units per floor, so we multiply 8 * 4 = 32 unoccupied units.
+
+4. Finally, we subtract the number of unoccupied units from the total number of units to find the total number of unoccupied units in the entire building.
+   - If we assume that all the floors are filled with 8 units each, then there would be 15 * 8 = 120 units in total.
+   - Subtracting the 32 unoccupied units gives us 120 - 32 = 88 unoccupied units in the entire building.
+
+Therefore, the answer is: 88.

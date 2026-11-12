@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+LengthFeet(x, n) — x has a wire of length n feet
+LengthInches(x, n) — x has a wire of length n inches
+PieceLength(x, n) — the pieces cut from x's wire are n inches long
+NumPieces(x, n) — x can obtain n pieces from the wire
+
+Constants:
+tracy, 4, 12, 48, 6, 8
+
+## FACTS
+FACT-1: Tracy has a wire that is 4 feet long :: LengthFeet(tracy, 4)
+FACT-2: The wire needs to be cut into pieces that are 6 inches long :: PieceLength(tracy, 6)
+
+## OPERATIONS
+OP-1: 4 feet times 12 inches per foot is 48 inches :: Product(4, 12, 48)
+OP-2: 48 inches divided by 6 inches per piece is 8 pieces :: Quotient(48, 6, 8)
+
+## RULES
+RULE-1: If x has a wire of length f feet and f × 12 = i, then x has a wire of length i inches :: ∀x∀f∀i (LengthFeet(x,f) ∧ Product(f,12,i) → LengthInches(x,i))
+RULE-2: If x has a wire of length i inches, the pieces to be cut are p inches long, and i ÷ p = n, then x can obtain n pieces :: ∀x∀i∀p∀n (LengthInches(x,i) ∧ PieceLength(x,p) ∧ Quotient(i,p,n) → NumPieces(x,n))
+
+## INFERENCES
+INF-1: Tracy's wire is 48 inches long, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: LengthInches(tracy, 48)
+INF-2: Tracy can obtain 8 pieces of wire, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: NumPieces(tracy, 8)

@@ -1,0 +1,10 @@
+% OP-1: Difference(365, 180, 185)
+tff(op_1, conjecture, $difference(365/1, 180/1) = 185/1).
+% OP-2: Product(1, 180, 180)
+tff(op_2, conjecture, $product(1/1, 180/1) = 180/1).
+% OP-3: Product(2, 185, 370)
+tff(op_3, conjecture, $product(2/1, 185/1) = 370/1).
+% OP-4: Sum(180, 370, 550)
+tff(op_4, conjecture, $sum(180/1, 370/1) = 550/1).
+% OP-5: Quotient(550, 110, 5)
+tff(op_5, conjecture, $quotient(550/1, 110/1) = 5/1).

@@ -1,0 +1,17 @@
+% Declarations
+tff(person_type, type, person: $tType).
+tff(james_decl, type, james: person).
+tff(sprints_per_session_decl, type, sprints_per_session: (person * $rat) > $o).
+tff(sessions_per_week_decl, type, sessions_per_week: (person * $rat) > $o).
+tff(sprints_per_week_decl, type, sprints_per_week: (person * $rat) > $o).
+tff(meters_per_sprint_decl, type, meters_per_sprint: (person * $rat) > $o).
+tff(meters_per_week_decl, type, meters_per_week: (person * $rat) > $o).
+
+% Statements
+tff(c1, axiom, sprints_per_session(james, 3/1)).
+tff(c2, axiom, sessions_per_week(james, 3/1)).
+tff(c3, lemma, sprints_per_week(james, 9/1)).
+tff(c4, axiom, meters_per_sprint(james, 60/1)).
+tff(c5, lemma, meters_per_week(james, 540/1)).
+tff(i1, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_session(V_x, V_a) & sessions_per_week(V_x, V_b) & V_c = $product(V_a, V_b)) => sprints_per_week(V_x, V_c))).
+tff(i2, axiom, ![V_x: person, V_a: $rat, V_b: $rat, V_c: $rat]: ((sprints_per_week(V_x, V_a) & meters_per_sprint(V_x, V_b) & V_c = $product(V_a, V_b)) => meters_per_week(V_x, V_c))).

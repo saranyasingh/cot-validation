@@ -1,0 +1,8 @@
+% OP-1: Quotient(24, 6, 4)
+tff(op_1, conjecture, $quotient(24/1, 6/1) = 4/1).
+% OP-2: Sum(4, 4, 8)
+tff(op_2, conjecture, $sum(4/1, 4/1) = 8/1).
+% OP-3: Sum(8, 6, 14)
+tff(op_3, conjecture, $sum(8/1, 6/1) = 14/1).
+% OP-4: Difference(24, 14, 10)
+tff(op_4, conjecture, $difference(24/1, 14/1) = 10/1).

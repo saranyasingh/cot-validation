@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Count(x, type, n) — the number of x's oranges of category "type" is n
+Percent(x, type, p) — the fraction (percent as decimal) of x's oranges of category "type" is p
+
+Constants:
+oranges, total, unripe, sour, bad, good, 25, 0.2, 2, 5, 7, 18
+
+## FACTS
+FACT-1: There are 25 oranges in total :: Count(oranges, total, 25)
+FACT-2: 20% of the oranges are unripe :: Percent(oranges, unripe, 0.2)
+FACT-3: 2 of the oranges are sour :: Count(oranges, sour, 2)
+
+## OPERATIONS
+OP-1: 25 * 20/100 = 5 :: Product(25, 0.2, 5)
+OP-2: 5 + 2 = 7 :: Sum(5, 2, 7)
+OP-3: 25 - 7 = 18 :: Difference(25, 7, 18)
+
+## RULES
+RULE-1: If x has n total oranges and a fraction p of them are of some category, and n×p = u, then the count of that category is u :: ∀x∀n∀p∀u (Count(x,total,n) ∧ Percent(x,unripe,p) ∧ Product(n,p,u) → Count(x,unripe,u))
+RULE-2: If x has u unripe oranges and s sour oranges, and u+s = b, then the total bad (unripe+sour) count is b :: ∀x∀u∀s∀b (Count(x,unripe,u) ∧ Count(x,sour,s) ∧ Sum(u,s,b) → Count(x,bad,b))
+RULE-3: If x has n total oranges and b bad oranges, and n−b = g, then the count of good oranges is g :: ∀x∀n∀b∀g (Count(x,total,n) ∧ Count(x,bad,b) ∧ Difference(n,b,g) → Count(x,good,g))
+
+## INFERENCES
+INF-1: The number of unripe oranges is 5, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Count(oranges, unripe, 5)
+INF-2: The total number of bad (unripe + sour) oranges is 7, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Count(oranges, bad, 7)
+INF-3: The number of good oranges is 18, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Count(oranges, good, 18)

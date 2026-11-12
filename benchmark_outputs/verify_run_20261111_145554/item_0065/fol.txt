@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+NeedsGas(x, g, m) — x needs g gallons of gas to travel m miles
+Efficiency(x, r) — x's car's fuel efficiency is r miles per gallon
+TankCapacity(x, c) — x's car's total tank capacity is c gallons
+CanDrive(x, d) — x can drive d miles on a single tank of gas
+
+Constants:
+sophia, 4, 100, 25, 12, 300
+
+## FACTS
+FACT-1: Sophia needs 4 gallons of gas to travel 100 miles :: NeedsGas(sophia, 4, 100)
+FACT-2: Sophia's car's total capacity is 12 gallons :: TankCapacity(sophia, 12)
+
+## OPERATIONS
+OP-1: 100 miles / 4 gallons = 25 miles per gallon :: Quotient(100, 4, 25)
+OP-2: 12 × 25 = 300 miles :: Product(12, 25, 300)
+
+## RULES
+RULE-1: If x needs g gallons to travel m miles and m ÷ g = r, then x's car's fuel efficiency is r miles per gallon :: ∀x∀g∀m∀r (NeedsGas(x,g,m) ∧ Quotient(m,g,r) → Efficiency(x,r))
+RULE-2: If x's car has tank capacity c, fuel efficiency r, and c × r = d, then x can drive d miles on a single tank of gas :: ∀x∀c∀r∀d (TankCapacity(x,c) ∧ Efficiency(x,r) ∧ Product(c,r,d) → CanDrive(x,d))
+
+## INFERENCES
+INF-1: Sophia's car's fuel efficiency is 25 miles per gallon, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Efficiency(sophia, 25)
+INF-2: Sophia can drive 300 miles on a single tank of gas, from FACT-2, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: CanDrive(sophia, 300)

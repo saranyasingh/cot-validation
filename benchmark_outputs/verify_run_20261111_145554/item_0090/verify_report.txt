@@ -1,0 +1,9 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — the problem states 0.75 gift bags per *invited* guest (16 invited), not per attending guest; dropping "invited" changes which quantity the rate applies to.
+FACT-4: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — the 0.75 rate is defined per invited guest (already accounting for the 1/4 no-show), so it should be multiplied by the invited count (16), not by the already-reduced attending count; applying it to attending guests double-counts the no-show reduction.
+RULE-4: PLAUSIBLE

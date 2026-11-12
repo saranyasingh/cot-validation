@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Guess(x, n) — x's guess/estimate is the number n
+SecondRule(x, y) — x's guess is defined as 20 more than half of y's guess
+ThirdRule(x, y) — x's guess is defined as 25% more than y's guess
+AverageGuess(x, y, z, n) — n is the average of the guesses of x, y, and z
+
+Constants:
+friend1, friend2, friend3, 80, 40, 20, 60, 25, 100, 240, 3, 0.25, 2
+
+## FACTS
+FACT-1: The first friend's guess is 80 :: Guess(friend1, 80)
+FACT-2: The second friend's guess is defined as 20 more than half the first friend's guess :: SecondRule(friend2, friend1)
+FACT-3: The third friend's guess is defined as 25% more than the first friend's guess :: ThirdRule(friend3, friend1)
+
+## OPERATIONS
+OP-1: Half of 80 is 40 :: Quotient(80, 2, 40)
+OP-2: 40 plus 20 is 60 :: Sum(40, 20, 60)
+OP-3: 25% of 80 is 20 :: Product(0.25, 80, 20)
+OP-4: 80 plus 20 is 100 :: Sum(80, 20, 100)
+OP-5: 80 plus 60 plus 100 is 240 :: Sum(80, 60, 100, 240)
+OP-6: 240 divided by 3 is 80 :: Quotient(240, 3, 80)
+
+## RULES
+RULE-1: If x's guess is defined as 20 more than half of y's guess, y's guess is n, half of n is h, and h plus 20 is r, then x's guess is r :: ∀x∀y∀n∀h∀r (SecondRule(x,y) ∧ Guess(y,n) ∧ Quotient(n,2,h) ∧ Sum(h,20,r) → Guess(x,r))
+RULE-2: If x's guess is defined as 25% more than y's guess, y's guess is n, 25% of n is p, and n plus p is r, then x's guess is r :: ∀x∀y∀n∀p∀r (ThirdRule(x,y) ∧ Guess(y,n) ∧ Product(0.25,n,p) ∧ Sum(n,p,r) → Guess(x,r))
+RULE-3: If x's guess is n1, y's guess is n2, z's guess is n3, the sum of n1, n2, n3 is s, and s divided by 3 is avg, then avg is the average guess of x, y, z :: ∀x∀y∀z∀n1∀n2∀n3∀s∀avg (Guess(x,n1) ∧ Guess(y,n2) ∧ Guess(z,n3) ∧ Sum(n1,n2,n3,s) ∧ Quotient(s,3,avg) → AverageGuess(x,y,z,avg))
+
+## INFERENCES
+INF-1: The second friend's guess is 60, from FACT-1, FACT-2, OP-1, OP-2, RULE-1 by Universal Instantiation and Modus Ponens :: Guess(friend2, 60)
+INF-2: The third friend's guess is 100, from FACT-1, FACT-3, OP-3, OP-4, RULE-2 by Universal Instantiation and Modus Ponens :: Guess(friend3, 100)
+INF-3: The average guess of the three friends is 80, from FACT-1, INF-1, INF-2, OP-5, OP-6, RULE-3 by Universal Instantiation and Modus Ponens :: AverageGuess(friend1, friend2, friend3, 80)

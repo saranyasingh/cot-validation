@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "James runs 3 sprints",
+      "formula": "Sprints(james, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each sprint is 60 meters long",
+      "formula": "DistancePerSprint(james, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "60 meters per sprint times 3 sprints per week is 180 meters per week",
+      "formula": "Product(60, 3, 180)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x runs n sprints per week, each sprint is m meters long, and n \u00d7 m = p, then x runs p total meters per week",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Sprints(x,n) \u2227 DistancePerSprint(x,m) \u2227 Product(m,n,p) \u2192 TotalDistance(x,p))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The rule treats n (3 sprints) as sprints \"per week,\" but the problem states 3 sprints per session run 3 times a week. The rule omits the multiplication by the weekly frequency (3 times/week), leaving out a quantity needed for the correct total.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "James runs 180 total meters per week, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(james, 180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "The rule treats n (3 sprints) as sprints \"per week,\" but the problem states 3 sprints per session run 3 times a week. The rule omits the multiplication by the weekly frequency (3 times/week), leaving out a quantity needed for the correct total."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

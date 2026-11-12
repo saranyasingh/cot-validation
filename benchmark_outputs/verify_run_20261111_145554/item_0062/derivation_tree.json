@@ -1,0 +1,104 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Janet spends $500 on the material",
+      "formula": "MaterialCost(janet, 500)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Janet pays $800 to have the brooch constructed",
+      "formula": "ConstructionCost(janet, 800)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Janet insures the brooch at 10% of its total value",
+      "formula": "InsuranceRate(janet, 0.10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "500 + 800 = 1300",
+      "formula": "Sum(500, 800, 1300)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "0.10 \u00d7 1300 = 130",
+      "formula": "Product(0.10, 1300, 130)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "500 + 800 + 130 = 1430",
+      "formula": "Sum(500, 800, 130, 1430)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's material cost is m, construction cost is c, and m + c = t, then x's total cost before insurance is t",
+      "formula": "\u2200x\u2200m\u2200c\u2200t (MaterialCost(x,m) \u2227 ConstructionCost(x,c) \u2227 Sum(m,c,t) \u2192 TotalCost(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's total cost is t, insurance rate is r, material cost is m, construction cost is c, r \u00d7 t = i, and m + c + i = p, then x's final total payment is p",
+      "formula": "\u2200x\u2200t\u2200r\u2200m\u2200c\u2200i\u2200p (TotalCost(x,t) \u2227 InsuranceRate(x,r) \u2227 MaterialCost(x,m) \u2227 ConstructionCost(x,c) \u2227 Product(r,t,i) \u2227 Sum(m,c,i,p) \u2192 TotalPaid(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Janet's total cost before insurance is 1300, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(janet, 1300)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Janet's final total payment is 1430, from INF-1, FACT-1, FACT-2, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalPaid(janet, 1430)",
+      "premises": [
+        "INF-1",
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "OP-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

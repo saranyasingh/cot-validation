@@ -1,0 +1,8 @@
+% OP-1: Product(2.74, 12, 32.88)
+tff(op_1, conjecture, ($lesseq($difference($product(137/50, 12/1), 822/25), 1/200) & $lesseq($difference(822/25, $product(137/50, 12/1)), 1/200))).
+% OP-2: Product(1.87, 9, 16.83)
+tff(op_2, conjecture, ($lesseq($difference($product(187/100, 9/1), 1683/100), 1/200) & $lesseq($difference(1683/100, $product(187/100, 9/1)), 1/200))).
+% OP-3: Product(2.12, 17, 36.04)
+tff(op_3, conjecture, ($lesseq($difference($product(53/25, 17/1), 901/25), 1/200) & $lesseq($difference(901/25, $product(53/25, 17/1)), 1/200))).
+% OP-4: Sum(32.88, 16.83, 36.04, 85.75)
+tff(op_4, conjecture, ($lesseq($difference($sum($sum(822/25, 1683/100), 901/25), 343/4), 1/200) & $lesseq($difference(343/4, $sum($sum(822/25, 1683/100), 901/25)), 1/200))).

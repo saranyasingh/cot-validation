@@ -1,0 +1,176 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Christina invited 16 friends",
+      "formula": "Invited(christina, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "1/4 of the invited guests don't show up",
+      "formula": "NoShowFraction(christina, 0.25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Christina plans to give 0.75 gift bags per guest",
+      "formula": "PerGuest(christina, 0.75)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem states 0.75 gift bags per *invited* guest (16 invited), not per attending guest; dropping \"invited\" changes which quantity the rate applies to.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each gift bag costs $2",
+      "formula": "PricePerBag(christina, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "1 minus 0.25 equals 0.75 (fraction attending)",
+      "formula": "Difference(1, 0.25, 0.75)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "16 times 0.75 equals 12 (attending guests)",
+      "formula": "Product(16, 0.75, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "12 times 0.75 equals 9 (gift bags needed)",
+      "formula": "Product(12, 0.75, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "9 times 2 equals 18 (total cost)",
+      "formula": "Product(9, 2, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x invited n guests with no-show fraction f, and 1 \u2212 f = a, then the fraction of guests attending is a",
+      "formula": "\u2200x\u2200n\u2200f\u2200a (Invited(x,n) \u2227 NoShowFraction(x,f) \u2227 Difference(1,f,a) \u2192 Amount(x, attend_fraction, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x invited n guests and the fraction attending is a, and n \u00d7 a = g, then x has g attending guests",
+      "formula": "\u2200x\u2200n\u2200a\u2200g (Invited(x,n) \u2227 Amount(x, attend_fraction, a) \u2227 Product(n,a,g) \u2192 Amount(x, attending, g))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has g attending guests and gives p gift bags per guest, and g \u00d7 p = b, then x needs b gift bags",
+      "formula": "\u2200x\u2200g\u2200p\u2200b (Amount(x, attending, g) \u2227 PerGuest(x,p) \u2227 Product(g,p,b) \u2192 Amount(x, bags_needed, b))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "the 0.75 rate is defined per invited guest (already accounting for the 1/4 no-show), so it should be multiplied by the invited count (16), not by the already-reduced attending count; applying it to attending guests double-counts the no-show reduction.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x needs b gift bags and each costs c, and b \u00d7 c = t, then x's total cost is t",
+      "formula": "\u2200x\u2200b\u2200c\u2200t (Amount(x, bags_needed, b) \u2227 PricePerBag(x,c) \u2227 Product(b,c,t) \u2192 Amount(x, total_cost, t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The fraction of guests attending is 0.75, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(christina, attend_fraction, 0.75)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The number of attending guests is 12, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(christina, attending, 12)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The number of gift bags needed is 9, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(christina, bags_needed, 9)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total cost is 18, from INF-3, FACT-4, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(christina, total_cost, 18)",
+      "premises": [
+        "INF-3",
+        "FACT-4",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "the problem states 0.75 gift bags per *invited* guest (16 invited), not per attending guest; dropping \"invited\" changes which quantity the rate applies to."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "the 0.75 rate is defined per invited guest (already accounting for the 1/4 no-show), so it should be multiplied by the invited count (16), not by the already-reduced attending count; applying it to attending guests double-counts the no-show reduction."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

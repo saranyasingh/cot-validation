@@ -1,0 +1,10 @@
+% OP-1: Product(20, 2.00, 40.00)
+tff(op_1, conjecture, ($lesseq($difference($product(20/1, 2/1), 40/1), 1/200) & $lesseq($difference(40/1, $product(20/1, 2/1)), 1/200))).
+% OP-2: Product(2, 10.00, 20.00)
+tff(op_2, conjecture, ($lesseq($difference($product(2/1, 10/1), 20/1), 1/200) & $lesseq($difference(20/1, $product(2/1, 10/1)), 1/200))).
+% OP-3: Product(2, 10.00, 20.00)
+tff(op_3, conjecture, ($lesseq($difference($product(2/1, 10/1), 20/1), 1/200) & $lesseq($difference(20/1, $product(2/1, 10/1)), 1/200))).
+% OP-4: Sum(20.00, 20.00, 40.00)
+tff(op_4, conjecture, ($lesseq($difference($sum(20/1, 20/1), 40/1), 1/200) & $lesseq($difference(40/1, $sum(20/1, 20/1)), 1/200))).
+% OP-5: Difference(40.00, 40.00, 0.00)
+tff(op_5, conjecture, ($lesseq($difference($difference(40/1, 40/1), 0/1), 1/200) & $lesseq($difference(0/1, $difference(40/1, 40/1)), 1/200))).

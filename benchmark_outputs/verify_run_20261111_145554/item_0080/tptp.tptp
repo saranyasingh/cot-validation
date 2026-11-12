@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, original_price(john, n_100)).
+fof(fact_2, axiom, discount_rate(john, n_0_30)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_100, n_0_30, n_30)).
+fof(op_2, axiom, difference(n_100, n_30, n_70)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,P,R,D] : ((original_price(X, P) & discount_rate(X, R) & product(P, R, D)) => discount_amount(X, D))).
+fof(rule_2, axiom, ! [X,P,D,F] : ((original_price(X, P) & discount_amount(X, D) & difference(P, D, F)) => final_price(X, F))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, discount_amount(john, n_30)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, final_price(john, n_70)).

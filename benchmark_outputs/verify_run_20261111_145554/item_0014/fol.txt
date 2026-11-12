@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+EndWith(x, n) — x ended up with n vacuum cleaners after selling at all houses
+RemainingAfterGreen(x, n) — x had n vacuum cleaners left after selling at the green house
+SoldAtRed(x, n) — x sold n vacuum cleaners at the red house
+BeforeRedSale(x, n) — x had n vacuum cleaners before selling to the red house
+StartedWith(x, n) — x started with (originally had) n vacuum cleaners
+
+Constants:
+melanie, 5, 2/3, 2, 8/3, 16/3, 16
+
+## FACTS
+FACT-1: Melanie ended up with 5 vacuum cleaners after selling at the different houses :: EndWith(melanie, 5)
+FACT-2: After selling at the green house (a third), she had two-thirds left :: RemainingAfterGreen(melanie, 2/3)
+FACT-3: She sold 2 more vacuum cleaners to the red house :: SoldAtRed(melanie, 2)
+
+## OPERATIONS
+OP-1: 2/3 + 2 = 8/3 :: Sum(2/3, 2, 8/3)
+OP-2: 8/3 × 2 = 16/3 :: Product(8/3, 2, 16/3)
+
+## RULES
+RULE-1: If x had fraction f left after the green house and sold n more at the red house, and f + n = r, then x had r vacuum cleaners before selling to the red house :: ∀x∀f∀n∀r (RemainingAfterGreen(x,f) ∧ SoldAtRed(x,n) ∧ Sum(f,n,r) → BeforeRedSale(x,r))
+RULE-2: If x had r vacuum cleaners before the red house sale, and this represents half of what x originally had (so r × 2 = s), then x started with s vacuum cleaners :: ∀x∀r∀s (BeforeRedSale(x,r) ∧ Product(r,2,s) → StartedWith(x,s))
+
+## INFERENCES
+INF-1: Before selling 2 more to the red house, Melanie had 8/3 vacuum cleaners, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: BeforeRedSale(melanie, 8/3)
+INF-2: Melanie started with 16/3 vacuum cleaners, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: StartedWith(melanie, 16/3)
+INF-3: The final answer is stated as 16 vacuum cleaners, from INF-2 by Restatement :: StartedWith(melanie, 16)

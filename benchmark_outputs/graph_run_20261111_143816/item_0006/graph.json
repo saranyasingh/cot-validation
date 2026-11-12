@@ -1,0 +1,865 @@
+{
+  "question": "Kylar went to the store to buy glasses for his new apartment. One glass costs $5, but every second glass costs only 60% of the price. Kylar wants to buy 16 glasses. How much does he need to pay for them?",
+  "cot": "EXPLANATION\nFirst, let's break down the cost structure:\n1. The first glass costs $5.\n2. Every second glass costs 60% of $5, which is $5 * 0.6 = $3.\n\nNow, we calculate how many pairs of glasses (first and second) Kylar can get from the 16 glasses he wants to buy:\n3. Since every second glass is part of a pair, the number of such pairs in 16 glasses is 16 / 2 = 8 pairs.\n\nNext, we calculate the total cost for these pairs:\n4. For each pair, the total cost is $5 (first glass) + $3 (second glass) = $8.\n5. Therefore, for 8 pairs, the total cost is 8 * $8 = $64.\n\nFinally, since there are no remaining single glasses after forming all possible pairs, no additional cost needs to be added.\n\nThe answer is: 64",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "glass_kind": {
+      "description": "a kind of glass by its position in the price scheme"
+    },
+    "bundle": {
+      "description": "a group of glasses"
+    }
+  },
+  "entities": {
+    "kylar": {
+      "sort": "person",
+      "name": "Kylar"
+    },
+    "first_glass": {
+      "sort": "glass_kind",
+      "name": "first glass"
+    },
+    "second_glass": {
+      "sort": "glass_kind",
+      "name": "second glass"
+    },
+    "pair": {
+      "sort": "bundle",
+      "name": "pair of glasses"
+    }
+  },
+  "relations": {
+    "price": {
+      "slots": [
+        [
+          "item",
+          "glass_kind"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "a {item} costs ${amount}"
+    },
+    "full_price": {
+      "slots": [
+        [
+          "item",
+          "glass_kind"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "every {item}, not being a second glass, costs the full price of ${amount}"
+    },
+    "is_second": {
+      "slots": [
+        [
+          "item",
+          "glass_kind"
+        ]
+      ],
+      "sentence": "{item} is a second glass"
+    },
+    "in_pair": {
+      "slots": [
+        [
+          "item",
+          "glass_kind"
+        ]
+      ],
+      "sentence": "{item} is part of a pair"
+    },
+    "wants_glasses": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{buyer} wants to buy {count} glasses"
+    },
+    "pair_count": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "the glasses {buyer} wants to buy form {count} pairs"
+    },
+    "pair_composition": {
+      "slots": [
+        [
+          "group",
+          "bundle"
+        ],
+        [
+          "full",
+          "glass_kind"
+        ],
+        [
+          "discounted",
+          "glass_kind"
+        ]
+      ],
+      "sentence": "each {group} consists of one {full} and one {discounted}"
+    },
+    "group_cost": {
+      "slots": [
+        [
+          "group",
+          "bundle"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total cost of each {group} is ${amount}"
+    },
+    "pairs_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total cost of the pairs {buyer} buys is ${amount}"
+    },
+    "leftover_glasses": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{buyer} has {count} remaining single glasses after forming all possible pairs"
+    },
+    "additional_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the additional cost for {buyer}'s leftover glasses is ${amount}"
+    },
+    "total_cost": {
+      "slots": [
+        [
+          "buyer",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "the total cost of all glasses {buyer} buys is ${amount}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "The first glass costs $5.",
+      "cot_quote": "The first glass costs $5.",
+      "content": {
+        "relation": "price",
+        "args": [
+          "first_glass",
+          5
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "One glass costs $5",
+      "label": "assumption",
+      "english": "A first glass costs $5."
+    },
+    "C2": {
+      "shape": "rule",
+      "text": "Every second glass costs 60% of $5.",
+      "cot_quote": "Every second glass costs 60% of $5",
+      "content": {
+        "vars": {
+          "p": "num",
+          "q": "num"
+        },
+        "if": [
+          {
+            "relation": "price",
+            "args": [
+              "first_glass",
+              "p"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "p",
+              0.6
+            ],
+            "result": "q"
+          }
+        ],
+        "then": [
+          {
+            "relation": "price",
+            "args": [
+              "second_glass",
+              "q"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "every second glass costs only 60% of the price",
+      "label": "assumption",
+      "english": "For any numbers p, q: if a first glass costs $p and q = p \u00d7 0.6, then a second glass costs $q."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Every second glass costs $3.",
+      "cot_quote": "which is $5 * 0.6 = $3",
+      "content": {
+        "relation": "price",
+        "args": [
+          "second_glass",
+          3
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "A second glass costs $3."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "Kylar wants to buy 16 glasses.",
+      "cot_quote": "the 16 glasses he wants to buy",
+      "content": {
+        "relation": "wants_glasses",
+        "args": [
+          "kylar",
+          16
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "Kylar wants to buy 16 glasses.",
+      "label": "assumption",
+      "english": "Kylar wants to buy 16 glasses."
+    },
+    "C5": {
+      "shape": "rule",
+      "text": "Every second glass is part of a pair.",
+      "cot_quote": "Since every second glass is part of a pair",
+      "content": {
+        "vars": {
+          "g": "glass_kind"
+        },
+        "if": [
+          {
+            "relation": "is_second",
+            "args": [
+              "g"
+            ]
+          }
+        ],
+        "calc": [],
+        "then": [
+          {
+            "relation": "in_pair",
+            "args": [
+              "g"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C5",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any glass_kind g: if g is a second glass, then g is part of a pair."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "The number of pairs in 16 glasses is 8.",
+      "cot_quote": "the number of such pairs in 16 glasses is 16 / 2 = 8 pairs",
+      "content": {
+        "relation": "pair_count",
+        "args": [
+          "kylar",
+          8
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C6",
+      "label": "derived",
+      "english": "The glasses Kylar wants to buy form 8 pairs."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "For each pair, the total cost is $8.",
+      "cot_quote": "For each pair, the total cost is $5 (first glass) + $3 (second glass) = $8.",
+      "content": {
+        "relation": "group_cost",
+        "args": [
+          "pair",
+          8
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The total cost of each pair of glasses is $8."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "For 8 pairs, the total cost is $64.",
+      "cot_quote": "for 8 pairs, the total cost is 8 * $8 = $64",
+      "content": {
+        "relation": "pairs_cost",
+        "args": [
+          "kylar",
+          64
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C8",
+      "label": "derived",
+      "english": "The total cost of the pairs Kylar buys is $64."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "There are no remaining single glasses after forming all possible pairs.",
+      "cot_quote": "there are no remaining single glasses after forming all possible pairs",
+      "content": {
+        "relation": "leftover_glasses",
+        "args": [
+          "kylar",
+          0
+        ],
+        "negated": false
+      },
+      "kind": "closure",
+      "stated_in_cot": true,
+      "id": "C9",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "Kylar has 0 remaining single glasses after forming all possible pairs."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "No additional cost needs to be added.",
+      "cot_quote": "no additional cost needs to be added",
+      "content": {
+        "relation": "additional_cost",
+        "args": [
+          "kylar",
+          0
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "The additional cost for Kylar's leftover glasses is $0."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "The answer is 64.",
+      "cot_quote": "The answer is: 64",
+      "content": {
+        "relation": "total_cost",
+        "args": [
+          "kylar",
+          64
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "The total cost of all glasses Kylar buys is $64."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Each pair consists of exactly 2 glasses, so the number of pairs is the number of glasses divided by 2.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "n": "num",
+          "m": "num"
+        },
+        "if": [
+          {
+            "relation": "wants_glasses",
+            "args": [
+              "x",
+              "n"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "n",
+              2
+            ],
+            "result": "m"
+          }
+        ],
+        "then": [
+          {
+            "relation": "pair_count",
+            "args": [
+              "x",
+              "m"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person x, any numbers n, m: if x wants to buy n glasses and m = n \u00f7 2, then the glasses x wants to buy form m pairs."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "Each pair consists of one full-price glass and one discounted (second) glass.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "pair_composition",
+        "args": [
+          "pair",
+          "first_glass",
+          "second_glass"
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "Each pair of glasses consists of one first glass and one second glass."
+    },
+    "I3": {
+      "shape": "fact",
+      "text": "Every glass that is not a 'second' glass costs the full price of $5.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "full_price",
+        "args": [
+          "first_glass",
+          5
+        ],
+        "negated": false
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "Every first glass, not being a second glass, costs the full price of $5."
+    },
+    "I4": {
+      "shape": "rule",
+      "text": "The cost of a group of items is the sum of the prices of the items in it.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "b": "bundle",
+          "f": "glass_kind",
+          "s": "glass_kind",
+          "a": "num",
+          "c": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "pair_composition",
+            "args": [
+              "b",
+              "f",
+              "s"
+            ]
+          },
+          {
+            "relation": "price",
+            "args": [
+              "f",
+              "a"
+            ]
+          },
+          {
+            "relation": "price",
+            "args": [
+              "s",
+              "c"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "c"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_cost",
+            "args": [
+              "b",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "For any bundle b, any glass_kinds f, s, any numbers a, c, t: if each b consists of one f and one s and a f costs $a and a s costs $c and t = a + c, then the total cost of each b is $t."
+    },
+    "I5": {
+      "shape": "rule",
+      "text": "The total cost of n groups each costing the same amount is n times the per-group cost.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "b": "bundle",
+          "n": "num",
+          "c": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "pair_count",
+            "args": [
+              "x",
+              "n"
+            ]
+          },
+          {
+            "relation": "group_cost",
+            "args": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "n",
+              "c"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "pairs_cost",
+            "args": [
+              "x",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I5",
+      "label": "assumption",
+      "english": "For any person x, any bundle b, any numbers n, c, t: if the glasses x wants to buy form n pairs and the total cost of each b is $c and t = n \u00d7 c, then the total cost of the pairs x buys is $t."
+    },
+    "I6": {
+      "shape": "rule",
+      "text": "Only glasses left outside the pairs would add cost beyond the cost of the pairs.",
+      "kind": "commonsense",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person"
+        },
+        "if": [
+          {
+            "relation": "leftover_glasses",
+            "args": [
+              "x",
+              0
+            ]
+          }
+        ],
+        "calc": [],
+        "then": [
+          {
+            "relation": "additional_cost",
+            "args": [
+              "x",
+              0
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I6",
+      "label": "assumption",
+      "english": "For any person x: if x has 0 remaining single glasses after forming all possible pairs, then the additional cost for x's leftover glasses is $0."
+    },
+    "I7": {
+      "shape": "rule",
+      "text": "The total cost of all 16 glasses equals the cost of the pairs plus any additional cost for leftover glasses.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "pairs_cost",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "additional_cost",
+            "args": [
+              "x",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_cost",
+            "args": [
+              "x",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I7",
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, t: if the total cost of the pairs x buys is $a and the additional cost for x's leftover glasses is $b and t = a + b, then the total cost of all glasses x buys is $t."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Every second glass costs 60% of $5, which is $3.",
+      "premises": [
+        "C1"
+      ],
+      "warrant": "C2",
+      "conclusion": "C3",
+      "stated_computation": "$5 * 0.6 = $3",
+      "cot_quote": "Every second glass costs 60% of $5, which is $5 * 0.6 = $3.",
+      "id": "S1",
+      "english": "Because a first glass costs $5; and since for any numbers p, q: if a first glass costs $p and q = p \u00d7 0.6, then a second glass costs $q: a second glass costs $3 ($5 * 0.6 = $3).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "5",
+        "q": "3"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Since every second glass is part of a pair, the number of pairs in 16 glasses is 8.",
+      "premises": [
+        "C4",
+        "C5"
+      ],
+      "warrant": "I1",
+      "conclusion": "C6",
+      "stated_computation": "16 / 2 = 8",
+      "cot_quote": "Since every second glass is part of a pair, the number of such pairs in 16 glasses is 16 / 2 = 8 pairs.",
+      "id": "S2",
+      "english": "Because Kylar wants to buy 16 glasses; and for any glass_kind g: if g is a second glass, then g is part of a pair; and since for any person x, any numbers n, m: if x wants to buy n glasses and m = n \u00f7 2, then the glasses x wants to buy form m pairs: the glasses Kylar wants to buy form 8 pairs (16 / 2 = 8).",
+      "status": "gap",
+      "status_detail": "C5 must be a fact for move 'apply'",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "For each pair, the total cost is $5 + $3 = $8.",
+      "premises": [
+        "C1",
+        "C3",
+        "I2",
+        "I3"
+      ],
+      "warrant": "I4",
+      "conclusion": "C7",
+      "stated_computation": "$5 + $3 = $8",
+      "cot_quote": "For each pair, the total cost is $5 (first glass) + $3 (second glass) = $8.",
+      "id": "S3",
+      "english": "Because a first glass costs $5; and a second glass costs $3; and each pair of glasses consists of one first glass and one second glass; and every first glass, not being a second glass, costs the full price of $5; and since for any bundle b, any glass_kinds f, s, any numbers a, c, t: if each b consists of one f and one s and a f costs $a and a s costs $c and t = a + c, then the total cost of each b is $t: the total cost of each pair of glasses is $8 ($5 + $3 = $8).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "b": "pair",
+        "f": "first_glass",
+        "s": "second_glass",
+        "a": "5",
+        "c": "3",
+        "t": "8"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "Therefore, for 8 pairs, the total cost is $64.",
+      "premises": [
+        "C6",
+        "C7"
+      ],
+      "warrant": "I5",
+      "conclusion": "C8",
+      "stated_computation": "8 * $8 = $64",
+      "cot_quote": "Therefore, for 8 pairs, the total cost is 8 * $8 = $64.",
+      "id": "S4",
+      "english": "Because the glasses Kylar wants to buy form 8 pairs; and the total cost of each pair of glasses is $8; and since for any person x, any bundle b, any numbers n, c, t: if the glasses x wants to buy form n pairs and the total cost of each b is $c and t = n \u00d7 c, then the total cost of the pairs x buys is $t: the total cost of the pairs Kylar buys is $64 (8 * $8 = $64).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "kylar",
+        "n": "8",
+        "b": "pair",
+        "c": "8",
+        "t": "64"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Since there are no remaining single glasses, no additional cost needs to be added.",
+      "premises": [
+        "C9"
+      ],
+      "warrant": "I6",
+      "conclusion": "C10",
+      "stated_computation": null,
+      "cot_quote": "since there are no remaining single glasses after forming all possible pairs, no additional cost needs to be added",
+      "id": "S5",
+      "english": "Because Kylar has 0 remaining single glasses after forming all possible pairs; and since for any person x: if x has 0 remaining single glasses after forming all possible pairs, then the additional cost for x's leftover glasses is $0: the additional cost for Kylar's leftover glasses is $0.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "kylar"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S6": {
+      "move": "apply",
+      "text": "The answer is 64.",
+      "premises": [
+        "C8",
+        "C10"
+      ],
+      "warrant": "I7",
+      "conclusion": "C11",
+      "stated_computation": null,
+      "cot_quote": "The answer is: 64",
+      "id": "S6",
+      "english": "Because the total cost of the pairs Kylar buys is $64; and the additional cost for Kylar's leftover glasses is $0; and since for any person x, any numbers a, b, t: if the total cost of the pairs x buys is $a and the additional cost for x's leftover glasses is $b and t = a + b, then the total cost of all glasses x buys is $t: the total cost of all glasses Kylar buys is $64.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "kylar",
+        "a": "64",
+        "b": "0",
+        "t": "64"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": []
+}

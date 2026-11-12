@@ -1,0 +1,33 @@
+Explanation:
+
+1. Let's denote the first friend's guess as \( G_1 \). According to the problem, \( G_1 = 80 \).
+
+2. The second friend says "20 more than half the first one." This means we need to calculate half of \( G_1 \) and then add 20.
+   - Half of \( G_1 \): \( \frac{G_1}{2} = \frac{80}{2} = 40 \)
+   - Adding 20 to this result: \( 40 + 20 = 60 \)
+
+3. The third friend says "25% more than the first one." To find out what this means, we need to calculate 25% of \( G_1 \) and then add it to \( G_1 \).
+   - 25% of \( G_1 \): \( 0.25 \times 80 = 20 \)
+   - Adding this to \( G_1 \): \( 80 + 20 = 100 \)
+
+4. Now that we have the guesses from all three friends:
+   - First friend: \( G_1 = 80 \)
+   - Second friend: \( G_2 = 60 \)
+   - Third friend: \( G_3 = 100 \)
+
+5. To find the average guess, we sum these values and divide by the number of guesses (which is 3):
+   \[
+   \text{Average guess} = \frac{G_1 + G_2 + G_3}{3} = \frac{80 + 60 + 100}{3}
+   \]
+
+6. Performing the addition inside the parentheses:
+   \[
+   80 + 60 + 100 = 240
+   \]
+
+7. Dividing by 3:
+   \[
+   \frac{240}{3} = 80
+   \]
+
+Therefore, the average guess is: 80.

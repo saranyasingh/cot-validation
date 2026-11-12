@@ -1,0 +1,21 @@
+EXPLANATION
+First, we calculate the distance John initially travels to his destination.
+- Premise 1: John drives for 3 hours at a speed of 60 mph.
+- Premise 2: Distance = Speed × Time, so the distance to the destination is \(60 \text{ mph} \times 3 \text{ hours} = 180 \text{ miles}\).
+
+Next, we analyze John's return trip.
+- Premise 3: John tries to get home in 4 hours but spends the first 2 hours in standstill traffic.
+- Premise 4: Standstill traffic means he does not cover any additional distance during this time, so he remains 180 miles away from home after 2 hours.
+
+Then, we consider the next part of his journey.
+- Premise 5: He spends the next half-hour (0.5 hours) driving at a speed of 30 mph.
+- Premise 6: Distance covered in this period = \(30 \text{ mph} \times 0.5 \text{ hours} = 15 \text{ miles}\).
+- Premise 7: Therefore, the remaining distance from home after this period is \(180 \text{ miles} - 15 \text{ miles} = 165 \text{ miles}\).
+
+Finally, we account for the last part of his journey.
+- Premise 8: He spends the remaining time (4 hours total - 2 hours in standstill - 0.5 hours driving at 30 mph) driving at 80 mph.
+- Premise 9: Remaining time = \(4 \text{ hours} - 2 \text{ hours} - 0.5 \text{ hours} = 1.5 \text{ hours}\).
+- Premise 10: Distance covered in this period = \(80 \text{ mph} \times 1.5 \text{ hours} = 120 \text{ miles}\).
+- Premise 11: Therefore, the remaining distance from home after this period is \(165 \text{ miles} - 120 \text{ miles} = 45 \text{ miles}\).
+
+The answer is: 45

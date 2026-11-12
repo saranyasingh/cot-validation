@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+Cost(x, n) — x costs n dollars
+TwiceAsMuch(x, y) — x costs twice as much as y
+CombinedOf(z, x, y) — z represents the combined cost of x and y
+LessThanBy(x, y, n) — x's cost is n dollars less than y's cost
+
+Constants:
+first_pair, second_pair, heels_total, boots, 2, 5, 33, 66, 99, 104
+
+## FACTS
+FACT-1: One pair of heels costs $33 :: Cost(first_pair, 33)
+FACT-2: The other pair of heels costs twice as much as the first pair :: TwiceAsMuch(second_pair, first_pair)
+FACT-3: The combined total represents the cost of both pairs of heels together :: CombinedOf(heels_total, first_pair, second_pair)
+FACT-4: The combined cost of the two pairs of heels is $5 less than the cost of the boots :: LessThanBy(heels_total, boots, 5)
+
+## OPERATIONS
+OP-1: 2 times 33 is 66 :: Product(2, 33, 66)
+OP-2: 33 plus 66 is 99 :: Sum(33, 66, 99)
+OP-3: 99 plus 5 is 104 :: Sum(99, 5, 104)
+
+## RULES
+RULE-1: If x costs twice as much as y, and y costs m, and 2×m = p, then x costs p :: ∀x∀y∀m∀p (TwiceAsMuch(x,y) ∧ Cost(y,m) ∧ Product(2,m,p) → Cost(x,p))
+RULE-2: If z is the combined cost of x and y, x costs n, y costs m, and n+m = s, then z costs s :: ∀x∀y∀z∀n∀m∀s (CombinedOf(z,x,y) ∧ Cost(x,n) ∧ Cost(y,m) ∧ Sum(n,m,s) → Cost(z,s))
+RULE-3: If x's cost is n less than y's cost, x costs m, and m+n = s, then y costs s :: ∀x∀y∀n∀m∀s (LessThanBy(x,y,n) ∧ Cost(x,m) ∧ Sum(m,n,s) → Cost(y,s))
+
+## INFERENCES
+INF-1: The second pair of heels costs $66, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(second_pair, 66)
+INF-2: The combined heels cost $99, from FACT-3, FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Cost(heels_total, 99)
+INF-3: The boots cost $104, from FACT-4, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Cost(boots, 104)

@@ -1,0 +1,384 @@
+{
+  "question": "Toulouse has twice as many sheep as Charleston. Charleston has 4 times as many sheep as Seattle. How many sheep do Toulouse, Charleston, and Seattle have together if Seattle has 20 sheep?",
+  "cot": "EXPLANATION\n1. Let's start by defining the number of sheep Seattle has. According to the problem, Seattle has 20 sheep.\n2. Since Charleston has 4 times as many sheep as Seattle, we can calculate the number of sheep in Charleston as follows: \\( \\text{Charleston's sheep} = 4 \\times \\text{Seattle's sheep} = 4 \\times 20 = 80 \\).\n3. Given that Toulouse has twice as many sheep as Charleston, we can find the number of sheep in Toulouse: \\( \\text{Toulouse's sheep} = 2 \\times \\text{Charleston's sheep} = 2 \\times 80 = 160 \\).\n4. Now, to find the total number of sheep among Toulouse, Charleston, and Seattle, we add the number of sheep each city has: \\( \\text{Total sheep} = \\text{Toulouse's sheep} + \\text{Charleston's sheep} + \\text{Seattle's sheep} = 160 + 80 + 20 = 260 \\).\n\nThe answer is: 260",
+  "sorts": {
+    "city": {
+      "description": "a city that has sheep"
+    },
+    "city_group": {
+      "description": "a group of cities considered together"
+    }
+  },
+  "entities": {
+    "seattle": {
+      "sort": "city",
+      "name": "Seattle"
+    },
+    "charleston": {
+      "sort": "city",
+      "name": "Charleston"
+    },
+    "toulouse": {
+      "sort": "city",
+      "name": "Toulouse"
+    },
+    "three_cities": {
+      "sort": "city_group",
+      "name": "Toulouse, Charleston, and Seattle"
+    }
+  },
+  "relations": {
+    "sheep_count": {
+      "slots": [
+        [
+          "c",
+          "city"
+        ],
+        [
+          "n",
+          "num"
+        ]
+      ],
+      "sentence": "{c} has {n} sheep"
+    },
+    "times_as_many": {
+      "slots": [
+        [
+          "a",
+          "city"
+        ],
+        [
+          "b",
+          "city"
+        ],
+        [
+          "k",
+          "num"
+        ]
+      ],
+      "sentence": "{a} has {k} times as many sheep as {b}"
+    },
+    "group_sheep_total": {
+      "slots": [
+        [
+          "g",
+          "city_group"
+        ],
+        [
+          "n",
+          "num"
+        ]
+      ],
+      "sentence": "the total number of sheep among {g} is {n}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Seattle has 20 sheep.",
+      "cot_quote": "Seattle has 20 sheep",
+      "content": {
+        "relation": "sheep_count",
+        "args": [
+          "seattle",
+          20
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "Seattle has 20 sheep",
+      "label": "assumption",
+      "english": "Seattle has 20 sheep."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Charleston has 4 times as many sheep as Seattle.",
+      "cot_quote": "Charleston has 4 times as many sheep as Seattle",
+      "content": {
+        "relation": "times_as_many",
+        "args": [
+          "charleston",
+          "seattle",
+          4
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "Charleston has 4 times as many sheep as Seattle",
+      "label": "assumption",
+      "english": "Charleston has 4 times as many sheep as Seattle."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Charleston has 80 sheep.",
+      "cot_quote": "\\text{Charleston's sheep} = 4 \\times \\text{Seattle's sheep} = 4 \\times 20 = 80",
+      "content": {
+        "relation": "sheep_count",
+        "args": [
+          "charleston",
+          80
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "Charleston has 80 sheep."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "Toulouse has twice as many sheep as Charleston.",
+      "cot_quote": "Toulouse has twice as many sheep as Charleston",
+      "content": {
+        "relation": "times_as_many",
+        "args": [
+          "toulouse",
+          "charleston",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "Toulouse has twice as many sheep as Charleston",
+      "label": "assumption",
+      "english": "Toulouse has 2 times as many sheep as Charleston."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Toulouse has 160 sheep.",
+      "cot_quote": "\\text{Toulouse's sheep} = 2 \\times \\text{Charleston's sheep} = 2 \\times 80 = 160",
+      "content": {
+        "relation": "sheep_count",
+        "args": [
+          "toulouse",
+          160
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "Toulouse has 160 sheep."
+    },
+    "C6": {
+      "shape": "rule",
+      "text": "To find the total number of sheep among Toulouse, Charleston, and Seattle, add the number of sheep each city has.",
+      "cot_quote": "to find the total number of sheep among Toulouse, Charleston, and Seattle, we add the number of sheep each city has",
+      "content": {
+        "vars": {
+          "a": "num",
+          "b": "num",
+          "c": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "sheep_count",
+            "args": [
+              "toulouse",
+              "a"
+            ]
+          },
+          {
+            "relation": "sheep_count",
+            "args": [
+              "charleston",
+              "b"
+            ]
+          },
+          {
+            "relation": "sheep_count",
+            "args": [
+              "seattle",
+              "c"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b",
+              "c"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "group_sheep_total",
+            "args": [
+              "three_cities",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any numbers a, b, c, t: if Toulouse has a sheep and Charleston has b sheep and Seattle has c sheep and t = a + b + c, then the total number of sheep among Toulouse, Charleston, and Seattle is t."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "The total number of sheep among Toulouse, Charleston, and Seattle is 260.",
+      "cot_quote": "The answer is: 260",
+      "content": {
+        "relation": "group_sheep_total",
+        "args": [
+          "three_cities",
+          260
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The total number of sheep among Toulouse, Charleston, and Seattle is 260."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "If one city has k times as many sheep as another, its number of sheep equals k multiplied by the other city's number of sheep.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "city",
+          "y": "city",
+          "k": "num",
+          "n": "num",
+          "m": "num"
+        },
+        "if": [
+          {
+            "relation": "times_as_many",
+            "args": [
+              "x",
+              "y",
+              "k"
+            ]
+          },
+          {
+            "relation": "sheep_count",
+            "args": [
+              "y",
+              "n"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "k",
+              "n"
+            ],
+            "result": "m"
+          }
+        ],
+        "then": [
+          {
+            "relation": "sheep_count",
+            "args": [
+              "x",
+              "m"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any citys x, y, any numbers k, n, m: if x has k times as many sheep as y and y has n sheep and m = k \u00d7 n, then x has m sheep."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Calculate Charleston's sheep as 4 times Seattle's sheep.",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "4 x 20 = 80",
+      "cot_quote": "we can calculate the number of sheep in Charleston as follows",
+      "id": "S1",
+      "english": "Because Seattle has 20 sheep; and Charleston has 4 times as many sheep as Seattle; and since for any citys x, y, any numbers k, n, m: if x has k times as many sheep as y and y has n sheep and m = k \u00d7 n, then x has m sheep: Charleston has 80 sheep (4 x 20 = 80).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "charleston",
+        "y": "seattle",
+        "k": "4",
+        "n": "20",
+        "m": "80"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Find Toulouse's sheep as 2 times Charleston's sheep.",
+      "premises": [
+        "C3",
+        "C4"
+      ],
+      "warrant": "I1",
+      "conclusion": "C5",
+      "stated_computation": "2 x 80 = 160",
+      "cot_quote": "we can find the number of sheep in Toulouse",
+      "id": "S2",
+      "english": "Because Charleston has 80 sheep; and Toulouse has 2 times as many sheep as Charleston; and since for any citys x, y, any numbers k, n, m: if x has k times as many sheep as y and y has n sheep and m = k \u00d7 n, then x has m sheep: Toulouse has 160 sheep (2 x 80 = 160).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "toulouse",
+        "y": "charleston",
+        "k": "2",
+        "n": "80",
+        "m": "160"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "aggregate",
+      "text": "Add the number of sheep each city has to get the total.",
+      "premises": [
+        "C5",
+        "C3",
+        "C1"
+      ],
+      "warrant": "C6",
+      "conclusion": "C7",
+      "stated_computation": "160 + 80 + 20 = 260",
+      "cot_quote": "\\text{Total sheep} = \\text{Toulouse's sheep} + \\text{Charleston's sheep} + \\text{Seattle's sheep} = 160 + 80 + 20 = 260",
+      "id": "S3",
+      "english": "Because Toulouse has 160 sheep; and Charleston has 80 sheep; and Seattle has 20 sheep; and since for any numbers a, b, c, t: if Toulouse has a sheep and Charleston has b sheep and Seattle has c sheep and t = a + b + c, then the total number of sheep among Toulouse, Charleston, and Seattle is t: the total number of sheep among Toulouse, Charleston, and Seattle is 260 (160 + 80 + 20 = 260).",
+      "status": "gap",
+      "status_detail": "aggregate needs a closure statement as its warrant",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": [
+    "S3: an aggregate step needs a closure statement as its warrant"
+  ]
+}

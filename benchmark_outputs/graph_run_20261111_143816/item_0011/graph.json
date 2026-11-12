@@ -1,0 +1,558 @@
+{
+  "question": "A new program had 60 downloads in the first month. The number of downloads in the second month was three times as many as the downloads in the first month, but then reduced by 30% in the third month. How many downloads did the program have total over the three months?",
+  "cot": "EXPLANATION\n1. The program had 60 downloads in the first month.\n2. In the second month, the number of downloads was three times as many as the first month. Therefore, the number of downloads in the second month = 3 * 60 = 180.\n3. In the third month, the downloads reduced by 30%. Thus, the number of downloads in the third month = 180 - (30% of 180) = 180 - (0.30 * 180) = 180 - 54 = 126.\n4. To find the total number of downloads over the three months, we sum the downloads from each month: 60 + 180 + 126 = 366.\n\nThe answer is: 366",
+  "sorts": {
+    "program": {
+      "description": "a software program"
+    },
+    "month": {
+      "description": "a month in the program's download history"
+    }
+  },
+  "entities": {
+    "program": {
+      "sort": "program",
+      "name": "the program"
+    },
+    "month1": {
+      "sort": "month",
+      "name": "the first month"
+    },
+    "month2": {
+      "sort": "month",
+      "name": "the second month"
+    },
+    "month3": {
+      "sort": "month",
+      "name": "the third month"
+    }
+  },
+  "relations": {
+    "downloads": {
+      "slots": [
+        [
+          "prog",
+          "program"
+        ],
+        [
+          "month",
+          "month"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{prog} had {count} downloads in {month}"
+    },
+    "times_as_many": {
+      "slots": [
+        [
+          "prog",
+          "program"
+        ],
+        [
+          "month",
+          "month"
+        ],
+        [
+          "base_month",
+          "month"
+        ],
+        [
+          "factor",
+          "num"
+        ]
+      ],
+      "sentence": "the downloads of {prog} in {month} were {factor} times as many as in {base_month}"
+    },
+    "reduced_by_percent": {
+      "slots": [
+        [
+          "prog",
+          "program"
+        ],
+        [
+          "month",
+          "month"
+        ],
+        [
+          "pct",
+          "num"
+        ]
+      ],
+      "sentence": "the downloads of {prog} reduced by {pct}% in {month}"
+    },
+    "reduction_base": {
+      "slots": [
+        [
+          "prog",
+          "program"
+        ],
+        [
+          "month",
+          "month"
+        ],
+        [
+          "base_month",
+          "month"
+        ]
+      ],
+      "sentence": "the reduction in downloads of {prog} in {month} is measured relative to the downloads in {base_month}"
+    },
+    "total_downloads": {
+      "slots": [
+        [
+          "prog",
+          "program"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "the total number of downloads of {prog} over the three months is {count}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "The program had 60 downloads in the first month.",
+      "cot_quote": "The program had 60 downloads in the first month.",
+      "content": {
+        "relation": "downloads",
+        "args": [
+          "program",
+          "month1",
+          60
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "A new program had 60 downloads in the first month.",
+      "label": "assumption",
+      "english": "The program had 60 downloads in the first month."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "In the second month, the number of downloads was three times as many as the first month.",
+      "cot_quote": "In the second month, the number of downloads was three times as many as the first month.",
+      "content": {
+        "relation": "times_as_many",
+        "args": [
+          "program",
+          "month2",
+          "month1",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "The number of downloads in the second month was three times as many as the downloads in the first month",
+      "label": "assumption",
+      "english": "The downloads of the program in the second month were 3 times as many as in the first month."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The number of downloads in the second month is 180.",
+      "cot_quote": "the number of downloads in the second month = 3 * 60 = 180",
+      "content": {
+        "relation": "downloads",
+        "args": [
+          "program",
+          "month2",
+          180
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "The program had 180 downloads in the second month."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "In the third month, the downloads reduced by 30%.",
+      "cot_quote": "In the third month, the downloads reduced by 30%.",
+      "content": {
+        "relation": "reduced_by_percent",
+        "args": [
+          "program",
+          "month3",
+          30
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "then reduced by 30% in the third month",
+      "label": "assumption",
+      "english": "The downloads of the program reduced by 30% in the third month."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "The number of downloads in the third month is 126.",
+      "cot_quote": "the number of downloads in the third month = 180 - (30% of 180) = 180 - (0.30 * 180) = 180 - 54 = 126",
+      "content": {
+        "relation": "downloads",
+        "args": [
+          "program",
+          "month3",
+          126
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "The program had 126 downloads in the third month."
+    },
+    "C6": {
+      "shape": "rule",
+      "text": "To find the total number of downloads over the three months, sum the downloads from each month.",
+      "cot_quote": "To find the total number of downloads over the three months, we sum the downloads from each month",
+      "content": {
+        "vars": {
+          "p": "program",
+          "m1": "month",
+          "m2": "month",
+          "m3": "month",
+          "a": "num",
+          "b": "num",
+          "c": "num",
+          "s": "num",
+          "t": "num"
+        },
+        "if": [
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "m1",
+              "a"
+            ]
+          },
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "m2",
+              "b"
+            ]
+          },
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "m3",
+              "c"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "s"
+          },
+          {
+            "op": "sum",
+            "args": [
+              "s",
+              "c"
+            ],
+            "result": "t"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_downloads",
+            "args": [
+              "p",
+              "t"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any program p, any months m1, m2, m3, any numbers a, b, c, s, t: if p had a downloads in m1 and p had b downloads in m2 and p had c downloads in m3 and s = a + b and t = s + c, then the total number of downloads of p over the three months is t."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "The total number of downloads over the three months is 366.",
+      "cot_quote": "The answer is: 366",
+      "content": {
+        "relation": "total_downloads",
+        "args": [
+          "program",
+          366
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "The total number of downloads of the program over the three months is 366."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "If one quantity is 'three times as many as' another, it equals 3 multiplied by that other quantity.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "program",
+          "m": "month",
+          "b": "month",
+          "f": "num",
+          "a": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "times_as_many",
+            "args": [
+              "p",
+              "m",
+              "b",
+              "f"
+            ]
+          },
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "b",
+              "a"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "f",
+              "a"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "m",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any program p, any months m, b, any numbers f, a, c: if the downloads of p in m were f times as many as in b and p had a downloads in b and c = f \u00d7 a, then p had c downloads in m."
+    },
+    "I2": {
+      "shape": "rule",
+      "text": "Reducing a quantity by p% means subtracting p% of that quantity from it.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "program",
+          "m": "month",
+          "b": "month",
+          "a": "num",
+          "r": "num",
+          "x": "num",
+          "y": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "b",
+              "a"
+            ]
+          },
+          {
+            "relation": "reduced_by_percent",
+            "args": [
+              "p",
+              "m",
+              "r"
+            ]
+          },
+          {
+            "relation": "reduction_base",
+            "args": [
+              "p",
+              "m",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "a",
+              "r"
+            ],
+            "result": "x"
+          },
+          {
+            "op": "quotient",
+            "args": [
+              "x",
+              100
+            ],
+            "result": "y"
+          },
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "y"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "downloads",
+            "args": [
+              "p",
+              "m",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "For any program p, any months m, b, any numbers a, r, x, y, c: if p had a downloads in b and the downloads of p reduced by r% in m and the reduction in downloads of p in m is measured relative to the downloads in b and x = a \u00d7 r and y = x \u00f7 100 and c = a - y, then p had c downloads in m."
+    },
+    "I3": {
+      "shape": "fact",
+      "text": "The 30% reduction in the third month is measured relative to the second month's downloads.",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "reduction_base",
+        "args": [
+          "program",
+          "month3",
+          "month2"
+        ],
+        "negated": false
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "The reduction in downloads of the program in the third month is measured relative to the downloads in the second month."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Second month downloads are three times the first month's 60.",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "3 * 60 = 180",
+      "cot_quote": "Therefore, the number of downloads in the second month = 3 * 60 = 180.",
+      "id": "S1",
+      "english": "Because the program had 60 downloads in the first month; and the downloads of the program in the second month were 3 times as many as in the first month; and since for any program p, any months m, b, any numbers f, a, c: if the downloads of p in m were f times as many as in b and p had a downloads in b and c = f \u00d7 a, then p had c downloads in m: the program had 180 downloads in the second month (3 * 60 = 180).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "program",
+        "m": "month2",
+        "b": "month1",
+        "f": "3",
+        "a": "60",
+        "c": "180"
+      },
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for downloads of type (program * month * $rat) > $o"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Third month downloads are 180 reduced by 30%.",
+      "premises": [
+        "C3",
+        "C4",
+        "I3"
+      ],
+      "warrant": "I2",
+      "conclusion": "C5",
+      "stated_computation": "180 - (0.30 * 180) = 180 - 54 = 126",
+      "cot_quote": "Thus, the number of downloads in the third month = 180 - (30% of 180) = 180 - (0.30 * 180) = 180 - 54 = 126.",
+      "id": "S2",
+      "english": "Because the program had 180 downloads in the second month; and the downloads of the program reduced by 30% in the third month; and the reduction in downloads of the program in the third month is measured relative to the downloads in the second month; and since for any program p, any months m, b, any numbers a, r, x, y, c: if p had a downloads in b and the downloads of p reduced by r% in m and the reduction in downloads of p in m is measured relative to the downloads in b and x = a \u00d7 r and y = x \u00f7 100 and c = a - y, then p had c downloads in m: the program had 126 downloads in the third month (180 - (0.30 * 180) = 180 - 54 = 126).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "p": "program",
+        "b": "month2",
+        "a": "180",
+        "m": "month3",
+        "r": "30",
+        "c": "126",
+        "x": "5400",
+        "y": "54"
+      },
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for downloads of type (program * month * $rat) > $o"
+    },
+    "S3": {
+      "move": "aggregate",
+      "text": "Sum the downloads from each month to get the total.",
+      "premises": [
+        "C1",
+        "C3",
+        "C5"
+      ],
+      "warrant": "C6",
+      "conclusion": "C7",
+      "stated_computation": "60 + 180 + 126 = 366",
+      "cot_quote": "we sum the downloads from each month: 60 + 180 + 126 = 366",
+      "id": "S3",
+      "english": "Because the program had 60 downloads in the first month; and the program had 180 downloads in the second month; and the program had 126 downloads in the third month; and since for any program p, any months m1, m2, m3, any numbers a, b, c, s, t: if p had a downloads in m1 and p had b downloads in m2 and p had c downloads in m3 and s = a + b and t = s + c, then the total number of downloads of p over the three months is t: the total number of downloads of the program over the three months is 366 (60 + 180 + 126 = 366).",
+      "status": "gap",
+      "status_detail": "aggregate needs a closure statement as its warrant",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Failed to create predicate application for downloads of type (program * month * $rat) > $o"
+    }
+  },
+  "errors": [
+    "S3: an aggregate step needs a closure statement as its warrant"
+  ]
+}

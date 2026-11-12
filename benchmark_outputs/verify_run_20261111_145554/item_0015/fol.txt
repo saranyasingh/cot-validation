@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+Total(x, n) — x has n total students
+FractionEnrolled(x, s, f) — a fraction f of the relevant population of x enroll in dance style s
+Count(x, s, n) — n students of x are enrolled in dance style s
+Remaining(x, n) — n students of x remain after removing those enrolled in contemporary dance
+PercentOf(x, s, p) — p percent of the total students of x enroll in dance style s
+
+Constants:
+school, contemporary, jazz, hiphop, 20, 0.20, 4, 16, 0.25, 12, 100, 60, 0.6
+
+## FACTS
+FACT-1: The school has 20 total students :: Total(school, 20)
+FACT-2: 20% of the total students enroll in contemporary dance :: FractionEnrolled(school, contemporary, 0.20)
+FACT-3: 25% of the remaining students enroll in jazz dance :: FractionEnrolled(school, jazz, 0.25)
+
+## OPERATIONS
+OP-1: 0.20 × 20 = 4 :: Product(0.20, 20, 4)
+OP-2: 20 − 4 = 16 :: Difference(20, 4, 16)
+OP-3: 0.25 × 16 = 4 :: Product(0.25, 16, 4)
+OP-4: 16 − 4 = 12 :: Difference(16, 4, 12)
+OP-5: 12 ÷ 20 = 0.6 :: Quotient(12, 20, 0.6)
+OP-6: 0.6 × 100 = 60 :: Product(0.6, 100, 60)
+
+## RULES
+RULE-1: If x has n total students and a fraction f of x's total enroll in style s, and f × n = m, then m students of x are enrolled in style s :: ∀x∀s∀n∀f∀m (Total(x,n) ∧ FractionEnrolled(x,s,f) ∧ Product(f,n,m) → Count(x,s,m))
+RULE-2: If x has n total students and m students enrolled in contemporary dance, and n − m = r, then r students remain :: ∀x∀n∀m∀r (Total(x,n) ∧ Count(x,contemporary,m) ∧ Difference(n,m,r) → Remaining(x,r))
+RULE-3: If n students remain for x and a fraction f of those remaining enroll in style s, and f × n = m, then m students of x are enrolled in style s :: ∀x∀s∀n∀f∀m (Remaining(x,n) ∧ FractionEnrolled(x,s,f) ∧ Product(f,n,m) → Count(x,s,m))
+RULE-4: If n students remain for x and m of them enroll in jazz, and n − m = r, then r students of x enroll in hip-hop :: ∀x∀n∀m∀r (Remaining(x,n) ∧ Count(x,jazz,m) ∧ Difference(n,m,r) → Count(x,hiphop,r))
+RULE-5: If n students of x enroll in style s, x has t total students, n ÷ t = q, and q × 100 = p, then p percent of x's total students enroll in style s :: ∀x∀s∀n∀t∀q∀p (Count(x,s,n) ∧ Total(x,t) ∧ Quotient(n,t,q) ∧ Product(q,100,p) → PercentOf(x,s,p))
+
+## INFERENCES
+INF-1: 4 students enroll in contemporary dance, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Count(school, contemporary, 4)
+INF-2: 16 students remain after contemporary dance, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Remaining(school, 16)
+INF-3: 4 students enroll in jazz dance, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Count(school, jazz, 4)
+INF-4: 12 students enroll in hip-hop dance, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Count(school, hiphop, 12)
+INF-5: 60 percent of the total students enroll in hip-hop dance, from INF-4, FACT-1, OP-5, OP-6, and RULE-5 by Universal Instantiation and Modus Ponens :: PercentOf(school, hiphop, 60)

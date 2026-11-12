@@ -1,0 +1,21 @@
+Explanation:
+To determine how many oranges are good, we need to calculate the total number of unripe and sour oranges first, as these make up 30% (1 + 2 = 3) of the total oranges.
+
+Step 1: Calculate the number of unripe oranges.
+20% of 25 oranges are unripe.
+Number of unripe oranges = 25 * 20/100 = 5 oranges.
+
+Step 2: Calculate the number of sour oranges.
+2 out of the 25 oranges are sour.
+Number of sour oranges = 2 oranges.
+
+Step 3: Add the number of unripe and sour oranges together.
+Total unripe and sour oranges = 5 + 2 = 7 oranges.
+
+Step 4: Subtract the total number of unripe and sour oranges from the total number of oranges to find the number of good oranges.
+Number of good oranges = Total oranges - Total unripe and sour oranges
+Number of good oranges = 25 - 7 = 18 oranges.
+
+Therefore, the number of good oranges is 18.
+
+The answer is: 18

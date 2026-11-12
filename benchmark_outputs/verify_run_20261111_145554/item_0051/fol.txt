@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+EggsPerDay(x, n) — x's chickens produce n eggs per day
+DozensPerDay(x, n) — x's chickens produce n dozens of eggs per day
+PricePerDozen(x, n) — x sells eggs at n dollars per dozen
+EarnsPerDay(x, n) — x earns n dollars per day
+EarnsPerWeek(x, n) — x earns n dollars per week
+
+Constants:
+lloyd, 252, 12, 2, 7, 21, 42, 294
+
+## FACTS
+FACT-1: Lloyd's chickens produce 252 eggs per day :: EggsPerDay(lloyd, 252)
+FACT-2: Lloyd sells eggs at 2 dollars per dozen :: PricePerDozen(lloyd, 2)
+
+## OPERATIONS
+OP-1: 252 divided by 12 is 21 :: Quotient(252, 12, 21)
+OP-2: 21 times 2 is 42 :: Product(21, 2, 42)
+OP-3: 42 times 7 is 294 :: Product(42, 7, 294)
+
+## RULES
+RULE-1: If x's chickens produce e eggs per day and e ÷ 12 = d, then x's chickens produce d dozens of eggs per day :: ∀x∀e∀d (EggsPerDay(x,e) ∧ Quotient(e,12,d) → DozensPerDay(x,d))
+RULE-2: If x produces d dozens of eggs per day and sells at p dollars per dozen, and d × p = r, then x earns r dollars per day :: ∀x∀d∀p∀r (DozensPerDay(x,d) ∧ PricePerDozen(x,p) ∧ Product(d,p,r) → EarnsPerDay(x,r))
+RULE-3: If x earns r dollars per day and r × 7 = w, then x earns w dollars per week :: ∀x∀r∀w (EarnsPerDay(x,r) ∧ Product(r,7,w) → EarnsPerWeek(x,w))
+
+## INFERENCES
+INF-1: Lloyd's chickens produce 21 dozens of eggs per day, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: DozensPerDay(lloyd, 21)
+INF-2: Lloyd earns 42 dollars per day, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: EarnsPerDay(lloyd, 42)
+INF-3: Lloyd earns 294 dollars per week, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: EarnsPerWeek(lloyd, 294)

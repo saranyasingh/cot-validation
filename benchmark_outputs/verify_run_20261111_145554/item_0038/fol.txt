@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Count(x, item, n) — x has/owns n units of item
+PriceOf(x, item, n) — each unit of item is priced at n dollars for x
+Money(x, type, n) — x has n dollars of the given type (earned, cost, leftover)
+
+Constants:
+john, legos, games, additional_legos, earned, cost, leftover, 13, 15, 8, 20, 195, 160, 35, 5
+
+## FACTS
+FACT-1: John owns 13 Lego sets :: Count(john, legos, 13)
+FACT-2: Each Lego set sells for $15 :: PriceOf(john, legos, 15)
+FACT-3: John buys 8 video games :: Count(john, games, 8)
+FACT-4: Each video game costs $20 :: PriceOf(john, games, 20)
+
+## OPERATIONS
+OP-1: 13 × 15 = 195 (total earnings from selling Legos) :: Product(13, 15, 195)
+OP-2: 8 × 20 = 160 (total cost of video games) :: Product(8, 20, 160)
+OP-3: 195 − 160 = 35 (money left over) :: Difference(195, 160, 35)
+OP-4: 13 − 8 = 5 (remaining Lego sets) :: Difference(13, 8, 5)
+
+## RULES
+RULE-1: If x owns n units of legos priced at m dollars each and n×m=p, then x has earned p dollars :: ∀x∀n∀m∀p (Count(x, legos, n) ∧ PriceOf(x, legos, m) ∧ Product(n, m, p) → Money(x, earned, p))
+RULE-2: If x buys n video games priced at m dollars each and n×m=p, then x has spent p dollars on cost :: ∀x∀n∀m∀p (Count(x, games, n) ∧ PriceOf(x, games, m) ∧ Product(n, m, p) → Money(x, cost, p))
+RULE-3: If x earned n dollars and spent k dollars on cost, and n−k=r, then x has r dollars leftover :: ∀x∀n∀k∀r (Money(x, earned, n) ∧ Money(x, cost, k) ∧ Difference(n, k, r) → Money(x, leftover, r))
+RULE-4: The number of additional Legos x could have sold equals the number of video games x bought :: ∀x∀n (Count(x, games, n) → Count(x, additional_legos, n))
+RULE-5: If x owns n Lego sets and could have sold m additional Lego sets, and n−m=r, then x is left owning r Lego sets :: ∀x∀n∀m∀r (Count(x, legos, n) ∧ Count(x, additional_legos, m) ∧ Difference(n, m, r) → Count(x, legos, r))
+
+## INFERENCES
+INF-1: John earned $195 from selling Legos, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Money(john, earned, 195)
+INF-2: John spent $160 on video games, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Money(john, cost, 160)
+INF-3: John has $35 left over, from INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Money(john, leftover, 35)
+INF-4: John could have sold 8 additional Lego sets, from FACT-3 and RULE-4 by Universal Instantiation and Modus Ponens :: Count(john, additional_legos, 8)
+INF-5: John is left owning 5 Lego sets, from FACT-1, INF-4, OP-4, and RULE-5 by Universal Instantiation and Modus Ponens :: Count(john, legos, 5)

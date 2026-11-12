@@ -1,0 +1,8 @@
+% OP-1: Product(3, 16.50, 49.50)
+tff(op_1, conjecture, ($lesseq($difference($product(3/1, 33/2), 99/2), 1/200) & $lesseq($difference(99/2, $product(3/1, 33/2)), 1/200))).
+% OP-2: Product(3, 22.50, 67.50)
+tff(op_2, conjecture, ($lesseq($difference($product(3/1, 45/2), 135/2), 1/200) & $lesseq($difference(135/2, $product(3/1, 45/2)), 1/200))).
+% OP-3: Product(3, 42, 126)
+tff(op_3, conjecture, $product(3/1, 42/1) = 126/1).
+% OP-4: Sum(49.50, 67.50, 126, 243)
+tff(op_4, conjecture, $sum($sum(99/2, 135/2), 126/1) = 243/1).

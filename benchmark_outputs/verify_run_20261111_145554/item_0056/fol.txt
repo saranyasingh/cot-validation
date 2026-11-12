@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Has(x, n) — x has n lollipops
+Ate(x, n) — x ate n lollipops
+PerBag(x, n) — x packages n lollipops per bag
+Bags(x, n) — x can fill n bags
+
+Constants:
+jean, 30, 2, 28, 14
+
+## FACTS
+FACT-1: Jean starts with 30 lollipops :: Has(jean, 30)
+FACT-2: Jean eats 2 lollipops :: Ate(jean, 2)
+FACT-3: Jean wants to package 2 lollipops per bag :: PerBag(jean, 2)
+
+## OPERATIONS
+OP-1: 30 - 2 = 28 :: Difference(30, 2, 28)
+OP-2: 28 ÷ 2 = 14 :: Quotient(28, 2, 14)
+
+## RULES
+RULE-1: If x has n lollipops and eats k, and n − k = r, then x has r lollipops left :: ∀x∀n∀k∀r (Has(x,n) ∧ Ate(x,k) ∧ Difference(n,k,r) → Has(x,r))
+RULE-2: If x has n lollipops and packages m per bag, and n ÷ m = b, then x can fill b bags :: ∀x∀n∀m∀b (Has(x,n) ∧ PerBag(x,m) ∧ Quotient(n,m,b) → Bags(x,b))
+
+## INFERENCES
+INF-1: Jean has 28 lollipops left, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Has(jean, 28)
+INF-2: Jean can fill 14 bags, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Bags(jean, 14)

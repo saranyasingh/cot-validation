@@ -1,0 +1,156 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Samantha's current age is 31",
+      "formula": "Age(samantha, 31)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Raymond was born 6 years before Samantha",
+      "formula": "BornBeforeBy(raymond, samantha, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Raymond's son was born 23 years after Raymond's current age",
+      "formula": "SonOffset(raymond, 23)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states Raymond had a son when he was 23 years old, not \"23 years after Raymond's current age\" (which is a different, nonsensical relation mixing a fixed past age with current age).",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Raymond's son is raymond_son",
+      "formula": "SonOf(raymond, raymond_son)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "31 - 6 = 25",
+      "formula": "Difference(31, 6, 25)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "31 - 25 = 6",
+      "formula": "Difference(31, 25, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "25 + 23 = 48",
+      "formula": "Sum(25, 23, 48)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If y's current age is a and x was born n years before y, and a-n=r, then x's current age is r",
+      "formula": "\u2200x\u2200y\u2200a\u2200n\u2200r (Age(y,a) \u2227 BornBeforeBy(x,y,n) \u2227 Difference(a,n,r) \u2192 Age(x,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "If x was born n years before y, x is older, so x's age should be a+n, not a-n.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If y's age is a and x's age is b and a-b=d, then x was born d years before y",
+      "formula": "\u2200x\u2200y\u2200a\u2200b\u2200d (Age(y,a) \u2227 Age(x,b) \u2227 Difference(a,b,d) \u2192 BornBeforeBy(x,y,d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The birth-order difference should be b-a (x's age minus y's age), not a-b; this inverts which cousin is older.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's current age is r, x's son was born n years after x's age, y is x's son, and r+n=s, then y was born s years ago",
+      "formula": "\u2200x\u2200y\u2200r\u2200n\u2200s (Age(x,r) \u2227 SonOffset(x,n) \u2227 SonOf(x,y) \u2227 Sum(r,n,s) \u2192 YearsAgo(y,s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Years since the son's birth should be r-n (current age minus age at which son was born), not r+n.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Raymond's current age is 25, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Age(raymond, 25)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Raymond was born 6 years before Samantha (confirmed via ages), from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "BornBeforeBy(raymond, samantha, 6)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Raymond's son was born 48 years ago, from INF-1, FACT-3, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "YearsAgo(raymond_son, 48)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "FACT-4",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "The problem states Raymond had a son when he was 23 years old, not \"23 years after Raymond's current age\" (which is a different, nonsensical relation mixing a fixed past age with current age)."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "If x was born n years before y, x is older, so x's age should be a+n, not a-n."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The birth-order difference should be b-a (x's age minus y's age), not a-b; this inverts which cousin is older."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Years since the son's birth should be r-n (current age minus age at which son was born), not r+n."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

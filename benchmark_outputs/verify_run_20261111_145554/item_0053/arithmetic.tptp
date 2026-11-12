@@ -1,0 +1,4 @@
+% OP-1: Product(30, 0.25, 7.5)
+tff(op_1, conjecture, ($lesseq($difference($product(30/1, 1/4), 15/2), 1/20) & $lesseq($difference(15/2, $product(30/1, 1/4)), 1/20))).
+% OP-2: Quotient(15, 0.5, 30)
+tff(op_2, conjecture, $quotient(15/1, 1/2) = 30/1).

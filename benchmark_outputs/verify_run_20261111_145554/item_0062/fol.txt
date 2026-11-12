@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+MaterialCost(x, n) — x spent n on material
+ConstructionCost(x, n) — x spent n on construction
+InsuranceRate(x, r) — x insures the brooch at rate r of its total value
+TotalCost(x, n) — x's total cost before insurance is n
+TotalPaid(x, n) — x's final total payment is n
+
+Constants:
+janet, 500, 800, 0.10, 1300, 130, 1430
+
+## FACTS
+FACT-1: Janet spends $500 on the material :: MaterialCost(janet, 500)
+FACT-2: Janet pays $800 to have the brooch constructed :: ConstructionCost(janet, 800)
+FACT-3: Janet insures the brooch at 10% of its total value :: InsuranceRate(janet, 0.10)
+
+## OPERATIONS
+OP-1: 500 + 800 = 1300 :: Sum(500, 800, 1300)
+OP-2: 0.10 × 1300 = 130 :: Product(0.10, 1300, 130)
+OP-3: 500 + 800 + 130 = 1430 :: Sum(500, 800, 130, 1430)
+
+## RULES
+RULE-1: If x's material cost is m, construction cost is c, and m + c = t, then x's total cost before insurance is t :: ∀x∀m∀c∀t (MaterialCost(x,m) ∧ ConstructionCost(x,c) ∧ Sum(m,c,t) → TotalCost(x,t))
+RULE-2: If x's total cost is t, insurance rate is r, material cost is m, construction cost is c, r × t = i, and m + c + i = p, then x's final total payment is p :: ∀x∀t∀r∀m∀c∀i∀p (TotalCost(x,t) ∧ InsuranceRate(x,r) ∧ MaterialCost(x,m) ∧ ConstructionCost(x,c) ∧ Product(r,t,i) ∧ Sum(m,c,i,p) → TotalPaid(x,p))
+
+## INFERENCES
+INF-1: Janet's total cost before insurance is 1300, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalCost(janet, 1300)
+INF-2: Janet's final total payment is 1430, from INF-1, FACT-1, FACT-2, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalPaid(janet, 1430)

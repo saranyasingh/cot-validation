@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Jean starts with 30 lollipops",
+      "formula": "Has(jean, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Jean eats 2 lollipops",
+      "formula": "Ate(jean, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jean wants to package 2 lollipops per bag",
+      "formula": "PerBag(jean, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "30 - 2 = 28",
+      "formula": "Difference(30, 2, 28)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "28 \u00f7 2 = 14",
+      "formula": "Quotient(28, 2, 14)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n lollipops and eats k, and n \u2212 k = r, then x has r lollipops left",
+      "formula": "\u2200x\u2200n\u2200k\u2200r (Has(x,n) \u2227 Ate(x,k) \u2227 Difference(n,k,r) \u2192 Has(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has n lollipops and packages m per bag, and n \u00f7 m = b, then x can fill b bags",
+      "formula": "\u2200x\u2200n\u2200m\u2200b (Has(x,n) \u2227 PerBag(x,m) \u2227 Quotient(n,m,b) \u2192 Bags(x,b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Jean has 28 lollipops left, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Has(jean, 28)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Jean can fill 14 bags, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Bags(jean, 14)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

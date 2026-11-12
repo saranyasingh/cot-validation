@@ -1,0 +1,6 @@
+% OP-1: Product(2, 30, 60)
+tff(op_1, conjecture, $product(2/1, 30/1) = 60/1).
+% OP-2: Quotient(60, 4, 15)
+tff(op_2, conjecture, $quotient(60/1, 4/1) = 15/1).
+% OP-3: Product(15, 5, 75)
+tff(op_3, conjecture, $product(15/1, 5/1) = 75/1).

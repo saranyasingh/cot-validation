@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Eats(x, n) — x eats n servings of ice cream per day
+Period(x, n) — x considers a period of n days
+CartonSpec(s, c) — each carton contains s servings and costs c dollars
+Consumes(x, n) — x consumes n servings of ice cream in total over the period
+Spends(x, n) — x spends n dollars in total
+
+Constants:
+cynthia, 1, 60, 15, 4.00, 16.00, 4
+
+## FACTS
+FACT-1: Cynthia eats one serving of ice cream per night (per day) :: Eats(cynthia, 1)
+FACT-2: Cynthia considers a period of 60 days :: Period(cynthia, 60)
+FACT-3: Each carton contains 15 servings and costs $4.00 :: CartonSpec(15, 4.00)
+
+## OPERATIONS
+OP-1: 60 days × 1 serving per day = 60 servings :: Product(60, 1, 60)
+OP-2: 60 servings ÷ 15 servings per carton = 4 cartons :: Quotient(60, 15, 4)
+OP-3: 4 cartons × $4.00 per carton = $16.00 :: Product(4, 4.00, 16.00)
+
+## RULES
+RULE-1: If x eats n servings per day over a period of d days, and d × n = t, then x consumes t servings in total :: ∀x∀n∀d∀t (Eats(x,n) ∧ Period(x,d) ∧ Product(d,n,t) → Consumes(x,t))
+RULE-2: If x consumes t servings in total, each carton contains s servings and costs c dollars, t ÷ s = k, and k × c = m, then x spends m dollars in total :: ∀x∀t∀s∀c∀k∀m (Consumes(x,t) ∧ CartonSpec(s,c) ∧ Quotient(t,s,k) ∧ Product(k,c,m) → Spends(x,m))
+
+## INFERENCES
+INF-1: Cynthia consumes 60 servings in total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Consumes(cynthia, 60)
+INF-2: Cynthia spends $16.00 in total, from INF-1, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Spends(cynthia, 16.00)

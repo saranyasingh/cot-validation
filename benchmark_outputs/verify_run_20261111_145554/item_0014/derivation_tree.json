@@ -1,0 +1,117 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Melanie ended up with 5 vacuum cleaners after selling at the different houses",
+      "formula": "EndWith(melanie, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "After selling at the green house (a third), she had two-thirds left",
+      "formula": "RemainingAfterGreen(melanie, 2/3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "She sold 2 more vacuum cleaners to the red house",
+      "formula": "SoldAtRed(melanie, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2/3 + 2 = 8/3",
+      "formula": "Sum(2/3, 2, 8/3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "8/3 \u00d7 2 = 16/3",
+      "formula": "Product(8/3, 2, 16/3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x had fraction f left after the green house and sold n more at the red house, and f + n = r, then x had r vacuum cleaners before selling to the red house",
+      "formula": "\u2200x\u2200f\u2200n\u2200r (RemainingAfterGreen(x,f) \u2227 SoldAtRed(x,n) \u2227 Sum(f,n,r) \u2192 BeforeRedSale(x,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It adds a fraction (two-thirds, a ratio) to an absolute count (2 vacuum cleaners sold) as if they were the same unit, and also claims the result equals the amount \"before\" the red-house sale, when in fact the red-house sale should reduce (subtract from) the two-thirds amount, not add to it.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x had r vacuum cleaners before the red house sale, and this represents half of what x originally had (so r \u00d7 2 = s), then x started with s vacuum cleaners",
+      "formula": "\u2200x\u2200r\u2200s (BeforeRedSale(x,r) \u2227 Product(r,2,s) \u2192 StartedWith(x,s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "It incorrectly claims that r (the quantity associated with the red-house stage) represents half of the original total; in the actual problem, the \"half\" relationship applies to the orange-house stage (half of what was left after the red house sale), not to r as defined here. This misattributes the halving relation to the wrong stage/quantity.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Before selling 2 more to the red house, Melanie had 8/3 vacuum cleaners, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "BeforeRedSale(melanie, 8/3)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Melanie started with 16/3 vacuum cleaners, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "StartedWith(melanie, 16/3)",
+      "premises": [
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The final answer is stated as 16 vacuum cleaners, from INF-2 by Restatement",
+      "formula": "StartedWith(melanie, 16)",
+      "premises": [
+        "INF-2"
+      ],
+      "inference_rule": "Restatement",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "It adds a fraction (two-thirds, a ratio) to an absolute count (2 vacuum cleaners sold) as if they were the same unit, and also claims the result equals the amount \"before\" the red-house sale, when in fact the red-house sale should reduce (subtract from) the two-thirds amount, not add to it."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "It incorrectly claims that r (the quantity associated with the red-house stage) represents half of the original total; in the actual problem, the \"half\" relationship applies to the orange-house stage (half of what was left after the red house sale), not to r as defined here. This misattributes the halving relation to the wrong stage/quantity."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

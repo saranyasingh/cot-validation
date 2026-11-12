@@ -1,0 +1,132 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Janet's ducks lay 16 eggs per day",
+      "formula": "LaysEggs(janet, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Janet eats 3 eggs for breakfast every morning",
+      "formula": "Consumes(janet, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Janet uses 4 eggs for baking muffins",
+      "formula": "Consumes(janet, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Janet sells the remaining eggs at $2 per egg",
+      "formula": "PricePerEgg(janet, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "16 minus 3 is 13",
+      "formula": "Difference(16, 3, 13)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "13 minus 4 is 9",
+      "formula": "Difference(13, 4, 9)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "9 times 2 is 18",
+      "formula": "Product(9, 2, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x lays n eggs per day and consumes k of them, and n \u2212 k = r, then x has r eggs remaining",
+      "formula": "\u2200x\u2200n\u2200k\u2200r (LaysEggs(x,n) \u2227 Consumes(x,k) \u2227 Difference(n,k,r) \u2192 Remaining(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has n eggs remaining and consumes k more, and n \u2212 k = r, then x has r eggs remaining",
+      "formula": "\u2200x\u2200n\u2200k\u2200r (Remaining(x,n) \u2227 Consumes(x,k) \u2227 Difference(n,k,r) \u2192 Remaining(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has n eggs remaining and sells each at price p, and n \u00d7 p = r, then x earns r dollars",
+      "formula": "\u2200x\u2200n\u2200p\u2200r (Remaining(x,n) \u2227 PricePerEgg(x,p) \u2227 Product(n,p,r) \u2192 Earnings(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Janet has 13 eggs remaining after breakfast, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Remaining(janet, 13)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Janet has 9 eggs remaining after baking, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Remaining(janet, 9)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Janet earns $18, from INF-2, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(janet, 18)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

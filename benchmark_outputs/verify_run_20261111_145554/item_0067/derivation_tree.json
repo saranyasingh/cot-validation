@@ -1,0 +1,288 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "School A sends a girls' team with 5 players",
+      "formula": "TeamPlayers(a, girls, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "School A sends a boys' team with 5 players",
+      "formula": "TeamPlayers(a, boys, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "School B sends a girls' team with 5 players",
+      "formula": "TeamPlayers(b, girls, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "School B sends a boys' team with 5 players",
+      "formula": "TeamPlayers(b, boys, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "School C sends a girls' team with 5 players",
+      "formula": "TeamPlayers(c, girls, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "School C sends a boys' team with 5 players",
+      "formula": "TeamPlayers(c, boys, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "School D sends a girls' team with 5 players",
+      "formula": "TeamPlayers(d, girls, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "School D sends a boys' team with 5 players",
+      "formula": "TeamPlayers(d, boys, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "School A sends 2 coaches",
+      "formula": "Coaches(a, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "School B sends 2 coaches",
+      "formula": "Coaches(b, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "School C sends 2 coaches",
+      "formula": "Coaches(c, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "School D sends 2 coaches",
+      "formula": "Coaches(d, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "5 + 5 = 10 (players per school)",
+      "formula": "Sum(5, 5, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "10 + 2 = 12 (individuals per school)",
+      "formula": "Sum(10, 2, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "12 \u00d7 4 = 48 (total individuals)",
+      "formula": "Product(12, 4, 48)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If school x's girls' team has n players and boys' team has m players and n + m = p, then school x has p players total",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (TeamPlayers(x, girls, n) \u2227 TeamPlayers(x, boys, m) \u2227 Sum(n, m, p) \u2192 Players(x, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If school x has p players and c coaches and p + c = i, then school x sends i individuals",
+      "formula": "\u2200x\u2200p\u2200c\u2200i (Players(x, p) \u2227 Coaches(x, c) \u2227 Sum(p, c, i) \u2192 Individuals(x, i))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If each of the four schools A, B, C, D sends i individuals and i \u00d7 4 = t, then the total number of individuals is t",
+      "formula": "\u2200i\u2200t (Individuals(a, i) \u2227 Individuals(b, i) \u2227 Individuals(c, i) \u2227 Individuals(d, i) \u2227 Product(i, 4, t) \u2192 TotalIndividuals(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "School A has 10 players total, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Players(a, 10)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "School B has 10 players total, from FACT-3, FACT-4, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Players(b, 10)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "School C has 10 players total, from FACT-5, FACT-6, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Players(c, 10)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "School D has 10 players total, from FACT-7, FACT-8, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Players(d, 10)",
+      "premises": [
+        "FACT-7",
+        "FACT-8",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "School A sends 12 individuals, from INF-1, FACT-9, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Individuals(a, 12)",
+      "premises": [
+        "INF-1",
+        "FACT-9",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "School B sends 12 individuals, from INF-2, FACT-10, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Individuals(b, 12)",
+      "premises": [
+        "INF-2",
+        "FACT-10",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "School C sends 12 individuals, from INF-3, FACT-11, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Individuals(c, 12)",
+      "premises": [
+        "INF-3",
+        "FACT-11",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "School D sends 12 individuals, from INF-4, FACT-12, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Individuals(d, 12)",
+      "premises": [
+        "INF-4",
+        "FACT-12",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-9": {
+      "type": "inference",
+      "gloss": "The total number of individuals is 48, from INF-5, INF-6, INF-7, INF-8, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalIndividuals(48)",
+      "premises": [
+        "INF-5",
+        "INF-6",
+        "INF-7",
+        "INF-8",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-9",
+  "errors": [],
+  "error_stages": []
+}

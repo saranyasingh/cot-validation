@@ -1,0 +1,231 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Tom's ship travels at 10 mph on the outbound journey",
+      "formula": "Speed(tom, outbound, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Tom returns at 6 mph",
+      "formula": "Speed(tom, return, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The distance from location 1 to location 4 (outbound) is D",
+      "formula": "Distance(outbound, d)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "\"1 to 4 PM\" refers to the time period (1 PM to 4 PM, i.e., 3 hours) during which Tom sails, not a location named \"1\" to a location named \"4\". The fact misreads a time span as two distinct locations.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The distance from location 4 back to location 1 (return) is the same D",
+      "formula": "Distance(return, d)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "depends on the same misreading as FACT-3; there is no \"location 4\" in the problem, so a return distance \"from location 4 back to location 1\" is not grounded in the text.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "D/10 = Time_out",
+      "formula": "Quotient(d, 10, time_out)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'd' is not a number",
+      "error": true
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "D/6 = Time_return",
+      "formula": "Quotient(d, 6, time_return)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'd' is not a number",
+      "error": true
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "Total Time = Time_out + Time_return",
+      "formula": "Sum(time_out, time_return, total_time)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'time_out' is not a number",
+      "error": true
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "3 \u00d7 D = 3D",
+      "formula": "Product(3, d, three_d)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'd' is not a number",
+      "error": true
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "5 \u00d7 D = 5D",
+      "formula": "Product(5, d, five_d)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'd' is not a number",
+      "error": true
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "3D + 5D = 8D",
+      "formula": "Sum(three_d, five_d, eight_d)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'three_d' is not a number",
+      "error": true
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "8D/30 = Total Time",
+      "formula": "Quotient(eight_d, 30, total_time)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'eight_d' is not a number",
+      "error": true
+    },
+    "OP-8": {
+      "type": "operation",
+      "gloss": "4 \u00d7 D = 4D",
+      "formula": "Product(4, d, four_d)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'd' is not a number",
+      "error": true
+    },
+    "OP-9": {
+      "type": "operation",
+      "gloss": "4D/15 = Total Time",
+      "formula": "Quotient(four_d, 15, total_time)",
+      "arithmetic_status": "MALFORMED",
+      "arithmetic_reason": "argument 'four_d' is not a number",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For any traveler x on journey j with speed s and distance e, if e \u00f7 s = t then the time taken for journey j is t",
+      "formula": "\u2200x\u2200j\u2200s\u2200e\u2200t (Speed(x,j,s) \u2227 Distance(j,e) \u2227 Quotient(e,s,t) \u2192 Time(j,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For any traveler x with two journeys j1 and j2 taking times t1 and t2, if t1 + t2 = t then x's total round-trip time is t",
+      "formula": "\u2200x\u2200j1\u2200j2\u2200t1\u2200t2\u2200t (Time(j1,t1) \u2227 Time(j2,t2) \u2227 Sum(t1,t2,t) \u2192 TotalTime(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The outbound journey takes time Time_out, from FACT-1, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Time(outbound, time_out)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The return journey takes time Time_return, from FACT-2, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Time(return, time_return)",
+      "premises": [
+        "FACT-2",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Tom's total round-trip time is Total Time, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalTime(tom, total_time)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "\"1 to 4 PM\" refers to the time period (1 PM to 4 PM, i.e., 3 hours) during which Tom sails, not a location named \"1\" to a location named \"4\". The fact misreads a time span as two distinct locations."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "depends on the same misreading as FACT-3; there is no \"location 4\" in the problem, so a return distance \"from location 4 back to location 1\" is not grounded in the text."
+    },
+    {
+      "node": "OP-1",
+      "stage": "arithmetic",
+      "message": "argument 'd' is not a number"
+    },
+    {
+      "node": "OP-2",
+      "stage": "arithmetic",
+      "message": "argument 'd' is not a number"
+    },
+    {
+      "node": "OP-3",
+      "stage": "arithmetic",
+      "message": "argument 'time_out' is not a number"
+    },
+    {
+      "node": "OP-4",
+      "stage": "arithmetic",
+      "message": "argument 'd' is not a number"
+    },
+    {
+      "node": "OP-5",
+      "stage": "arithmetic",
+      "message": "argument 'd' is not a number"
+    },
+    {
+      "node": "OP-6",
+      "stage": "arithmetic",
+      "message": "argument 'three_d' is not a number"
+    },
+    {
+      "node": "OP-7",
+      "stage": "arithmetic",
+      "message": "argument 'eight_d' is not a number"
+    },
+    {
+      "node": "OP-8",
+      "stage": "arithmetic",
+      "message": "argument 'd' is not a number"
+    },
+    {
+      "node": "OP-9",
+      "stage": "arithmetic",
+      "message": "argument 'four_d' is not a number"
+    }
+  ],
+  "error_stages": [
+    "arithmetic",
+    "verify"
+  ]
+}

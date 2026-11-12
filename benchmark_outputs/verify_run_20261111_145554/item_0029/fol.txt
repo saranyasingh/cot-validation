@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+TotalDistance(x, n) — x's total trip distance is n miles
+FirstStopLocation(x, n) — x's first stop occurs at n miles into the journey
+SecondStopBeforeEnd(x, n) — x's second stop is n miles before the end of the trip
+RemainingDistance(x, n) — the remaining distance after x's first stop is n miles
+DistanceBetweenStops(x, n) — the distance x traveled between the first and second stops is n miles
+
+Constants:
+henry, 60, 20, 15, 40, 55
+
+## FACTS
+FACT-1: Henry's total trip distance is 60 miles :: TotalDistance(henry, 60)
+FACT-2: Henry's first stop occurs at 20 miles into his journey :: FirstStopLocation(henry, 20)
+FACT-3: Henry's second stop is 15 miles before the end of the trip :: SecondStopBeforeEnd(henry, 15)
+
+## OPERATIONS
+OP-1: 60 minus 20 is 40 :: Difference(60, 20, 40)
+OP-2: 40 plus 15 is 55 :: Sum(40, 15, 55)
+
+## RULES
+RULE-1: If x's total trip distance is t and x's first stop is at f miles, and t − f = r, then the remaining distance after the first stop is r :: ∀x∀t∀f∀r (TotalDistance(x,t) ∧ FirstStopLocation(x,f) ∧ Difference(t,f,r) → RemainingDistance(x,r))
+RULE-2: If the remaining distance after x's first stop is r and x's second stop is s miles before the end of the trip, and r + s = d, then the distance x traveled between the first and second stops is d :: ∀x∀r∀s∀d (RemainingDistance(x,r) ∧ SecondStopBeforeEnd(x,s) ∧ Sum(r,s,d) → DistanceBetweenStops(x,d))
+
+## INFERENCES
+INF-1: The remaining distance after Henry's first stop is 40 miles, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: RemainingDistance(henry, 40)
+INF-2: The distance Henry traveled between his first and second stops is 55 miles, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: DistanceBetweenStops(henry, 55)

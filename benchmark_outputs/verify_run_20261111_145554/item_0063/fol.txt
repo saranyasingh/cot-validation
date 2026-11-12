@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+WorksYears(x, n) — x works for the same company for n years
+AnnualPension(x, n) — x's annual pension is $n/year
+EntitledAfterYears(x, m, r) — after working m years, x becomes entitled to an increase of rate r (as a fraction) of the pension value per year
+QuitsAfterYears(x, n) — x quits after n years
+FinalAnnualPension(x, n) — x's annual pension after quitting is $n/year
+
+Constants:
+marcy, 40, 50000, 20, 0.05, 30, 10, 2500, 52500
+
+## FACTS
+FACT-1: Marcy works for the same company for 40 years :: WorksYears(marcy, 40)
+FACT-2: Marcy gets an annual pension of $50,000/year :: AnnualPension(marcy, 50000)
+FACT-3: After working for 20 years, she becomes entitled to 5% of the value of the pension per year :: EntitledAfterYears(marcy, 20, 0.05)
+FACT-4: She quits after 30 years :: QuitsAfterYears(marcy, 30)
+
+## OPERATIONS
+OP-1: 30 minus 20 is 10 (years she received the increase, from age 20 to age 30) :: Difference(30, 20, 10)
+OP-2: 5% of $50,000 is $2,500 :: Product(0.05, 50000, 2500)
+OP-3: $50,000 plus $2,500 is $52,500 :: Sum(50000, 2500, 52500)
+
+## RULES
+RULE-1: If x is entitled to rate r after m years, x quits after n years, x's pension is p, n minus m equals d, r times p equals inc, and p plus inc equals t, then x's final annual pension is t :: ∀x∀m∀n∀r∀p∀d∀inc∀t (EntitledAfterYears(x,m,r) ∧ QuitsAfterYears(x,n) ∧ AnnualPension(x,p) ∧ Difference(n,m,d) ∧ Product(r,p,inc) ∧ Sum(p,inc,t) → FinalAnnualPension(x,t))
+
+## INFERENCES
+INF-1: Marcy's final annual pension is $52,500, from FACT-2, FACT-3, FACT-4, OP-1, OP-2, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: FinalAnnualPension(marcy, 52500)

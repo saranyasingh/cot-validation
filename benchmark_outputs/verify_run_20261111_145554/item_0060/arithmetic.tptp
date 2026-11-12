@@ -1,0 +1,4 @@
+% OP-1: Product(6, 20, 120)
+tff(op_1, conjecture, $product(6/1, 20/1) = 120/1).
+% OP-2: Sum(120, 67, 187)
+tff(op_2, conjecture, $sum(120/1, 67/1) = 187/1).

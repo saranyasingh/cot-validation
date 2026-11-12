@@ -1,0 +1,36 @@
+Explanation:
+
+Let's break down the problem into two parts to form our logical syllogism.
+
+**Premise 1:** Gretchen has 110 coins.
+- This is the total number of coins Gretchen possesses.
+
+**Premise 2:** There are 30 more gold coins than silver coins.
+- This statement gives us an additional relationship between the number of gold and silver coins.
+
+To find out how many gold coins Gretchen has, we need to determine the number of silver coins first. Let's denote the number of silver coins as S.
+
+From Premise 2, we know that there are 30 more gold coins than silver coins. Therefore, if we let G represent the number of gold coins, we can write this relationship as:
+\[ G = S + 30 \]
+
+Now, since the total number of coins (G + S) is given as 110, we can set up the following equation:
+\[ G + S = 110 \]
+
+Substituting the expression for G from Premise 2 into this equation, we get:
+\[ (S + 30) + S = 110 \]
+\[ 2S + 30 = 110 \]
+
+Next, we solve for S:
+\[ 2S = 110 - 30 \]
+\[ 2S = 80 \]
+\[ S = 40 \]
+
+So, Gretchen has 40 silver coins.
+
+Finally, using the relationship \( G = S + 30 \), we substitute the value of S back into the equation:
+\[ G = 40 + 30 \]
+\[ G = 70 \]
+
+Therefore, Gretchen has 70 gold coins.
+
+The answer is: 70

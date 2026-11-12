@@ -1,0 +1,84 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Harry slept 9 hours",
+      "formula": "Slept(harry, 9)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "9 times 2/3 is 6",
+      "formula": "Product(9, 0.666666667, 6)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "9 * 0.666667 = 6, not 6",
+      "error": true
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "9 minus 6 is 3",
+      "formula": "Difference(9, 6, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If Harry slept n hours and James slept 2/3 of that amount m, then James slept m hours",
+      "formula": "\u2200n\u2200m (Slept(harry,n) \u2227 Product(n, 0.666666667, m) \u2192 Slept(james, m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Harry slept n hours and James slept m hours and n \u2212 m = d, then Harry slept d more hours than James",
+      "formula": "\u2200n\u2200m\u2200d (Slept(harry,n) \u2227 Slept(james,m) \u2227 Difference(n,m,d) \u2192 MoreSleep(harry, james, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "James slept 6 hours, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Slept(james, 6)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Harry slept 3 more hours than James, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "MoreSleep(harry, james, 3)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "OP-1",
+      "stage": "arithmetic",
+      "message": "9 * 0.666667 = 6, not 6"
+    }
+  ],
+  "error_stages": [
+    "arithmetic"
+  ]
+}

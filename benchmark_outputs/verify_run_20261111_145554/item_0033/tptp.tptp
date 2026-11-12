@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, time_per_day(dog, n_0_5)).
+fof(fact_2, axiom, days_per_week(n_7)).
+fof(fact_3, axiom, num_dogs(john, n_10)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_5, n_7, n_3_5)).
+fof(op_2, axiom, product(n_3_5, n_10, n_35)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,D,W] : ((time_per_day(X, N) & days_per_week(D) & product(N, D, W)) => weekly_time_per_dog(X, W))).
+fof(rule_2, axiom, ! [X,Y,W,K,T] : ((weekly_time_per_dog(Y, W) & num_dogs(X, K) & product(W, K, T)) => total_weekly_time(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, weekly_time_per_dog(dog, n_3_5)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, total_weekly_time(john, n_35)).

@@ -1,0 +1,789 @@
+{
+  "question": "Melanie is a door-to-door saleswoman. She sold a third of her vacuum cleaners at the green house, 2 more to the red house, and half of what was left at the orange house. If Melanie has 5 vacuum cleaners left, how many did she start with?",
+  "cot": "EXPLANATION\nLet's denote the total number of vacuum cleaners Melanie started with as \\( x \\).\n\n1. Melanie sold a third of her vacuum cleaners at the green house. Therefore, after selling at the green house, she had \\( \\frac{2x}{3} \\) vacuum cleaners left.\n2. She then sold 2 more vacuum cleaners to the red house, leaving her with \\( \\frac{2x}{3} - 2 \\) vacuum cleaners.\n3. After selling to the red house, she sold half of what was left at the orange house. This means she sold \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners at the orange house, and thus had \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners left.\n4. According to the problem, after all these sales, she has 5 vacuum cleaners left. Therefore, we set up the equation:\n   \\[\n   \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) = 5\n   \\]\n5. To solve this equation, first multiply both sides by 2:\n   \\[\n   \\frac{2x}{3} - 2 = 10\n   \\]\n6. Then add 2 to both sides:\n   \\[\n   \\frac{2x}{3} = 12\n   \\]\n7. Next, multiply both sides by 3/2:\n   \\[\n   x = 18\n   \\]\n\nThe answer is: 18",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "house": {
+      "description": "a house where vacuum cleaners were sold"
+    }
+  },
+  "entities": {
+    "melanie": {
+      "sort": "person",
+      "name": "Melanie"
+    },
+    "green_house": {
+      "sort": "house",
+      "name": "green house"
+    },
+    "red_house": {
+      "sort": "house",
+      "name": "red house"
+    },
+    "orange_house": {
+      "sort": "house",
+      "name": "orange house"
+    },
+    "x": {
+      "sort": "num",
+      "name": "x"
+    }
+  },
+  "relations": {
+    "start_count": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} started with {count} vacuum cleaners"
+    },
+    "sold_fraction": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "house",
+          "house"
+        ],
+        [
+          "fraction",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} sold {fraction} of what she had at the {house}"
+    },
+    "sold_count": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "house",
+          "house"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} sold {count} vacuum cleaners at the {house}"
+    },
+    "left_after": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "house",
+          "house"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{owner} had {count} vacuum cleaners left after selling at the {house}"
+    },
+    "final_left": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "after all her sales, {owner} has {count} vacuum cleaners left"
+    },
+    "house_sale": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "house",
+          "house"
+        ]
+      ],
+      "sentence": "the {house} is one of the houses where {owner} made a sale"
+    },
+    "value_equals": {
+      "slots": [
+        [
+          "lhs",
+          "num"
+        ],
+        [
+          "rhs",
+          "num"
+        ]
+      ],
+      "sentence": "{lhs} equals {rhs}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Let x denote the total number of vacuum cleaners Melanie started with.",
+      "cot_quote": "Let's denote the total number of vacuum cleaners Melanie started with as \\( x \\).",
+      "content": {
+        "relation": "start_count",
+        "args": [
+          "melanie",
+          "x"
+        ],
+        "negated": false
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "Melanie started with x vacuum cleaners."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Melanie sold a third of her vacuum cleaners at the green house.",
+      "cot_quote": "Melanie sold a third of her vacuum cleaners at the green house.",
+      "content": {
+        "relation": "sold_fraction",
+        "args": [
+          "melanie",
+          "green_house",
+          "1/3"
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "She sold a third of her vacuum cleaners at the green house",
+      "label": "assumption",
+      "english": "Melanie sold 1/3 of what she had at the green house."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "After selling at the green house, she had 2x/3 vacuum cleaners left.",
+      "cot_quote": "after selling at the green house, she had \\( \\frac{2x}{3} \\) vacuum cleaners left",
+      "content": {
+        "relation": "left_after",
+        "args": [
+          "melanie",
+          "green_house",
+          "2*x/3"
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "Melanie had 2*x/3 vacuum cleaners left after selling at the green house."
+    },
+    "C4": {
+      "shape": "fact",
+      "text": "She sold 2 more vacuum cleaners to the red house.",
+      "cot_quote": "She then sold 2 more vacuum cleaners to the red house",
+      "content": {
+        "relation": "sold_count",
+        "args": [
+          "melanie",
+          "red_house",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": "2 more to the red house",
+      "label": "assumption",
+      "english": "Melanie sold 2 vacuum cleaners at the red house."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "After the red house she had 2x/3 - 2 vacuum cleaners.",
+      "cot_quote": "leaving her with \\( \\frac{2x}{3} - 2 \\) vacuum cleaners",
+      "content": {
+        "relation": "left_after",
+        "args": [
+          "melanie",
+          "red_house",
+          "2*x/3 - 2"
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "Melanie had 2*x/3 - 2 vacuum cleaners left after selling at the red house."
+    },
+    "C6": {
+      "shape": "fact",
+      "text": "She sold half of what was left at the orange house.",
+      "cot_quote": "she sold half of what was left at the orange house",
+      "content": {
+        "relation": "sold_fraction",
+        "args": [
+          "melanie",
+          "orange_house",
+          "1/2"
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": "half of what was left at the orange house",
+      "label": "assumption",
+      "english": "Melanie sold 0.5 of what she had at the orange house."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "She sold (1/2)(2x/3 - 2) vacuum cleaners at the orange house.",
+      "cot_quote": "This means she sold \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners at the orange house",
+      "content": {
+        "relation": "sold_count",
+        "args": [
+          "melanie",
+          "orange_house",
+          "(1/2)*(2*x/3 - 2)"
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "Melanie sold (1/2)*(2*x/3 - 2) vacuum cleaners at the orange house."
+    },
+    "C8": {
+      "shape": "fact",
+      "text": "She had (1/2)(2x/3 - 2) vacuum cleaners left after the orange house.",
+      "cot_quote": "thus had \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners left",
+      "content": {
+        "relation": "left_after",
+        "args": [
+          "melanie",
+          "orange_house",
+          "(1/2)*(2*x/3 - 2)"
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C8",
+      "label": "derived",
+      "english": "Melanie had (1/2)*(2*x/3 - 2) vacuum cleaners left after selling at the orange house."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "After all these sales, she has 5 vacuum cleaners left.",
+      "cot_quote": "after all these sales, she has 5 vacuum cleaners left",
+      "content": {
+        "relation": "final_left",
+        "args": [
+          "melanie",
+          5
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C9",
+      "question_quote": "Melanie has 5 vacuum cleaners left",
+      "label": "assumption",
+      "english": "After all her sales, Melanie has 5 vacuum cleaners left."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "(1/2)(2x/3 - 2) = 5",
+      "cot_quote": "we set up the equation",
+      "content": {
+        "relation": "value_equals",
+        "args": [
+          "(1/2)*(2*x/3 - 2)",
+          5
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "(1/2)*(2*x/3 - 2) equals 5."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "2x/3 - 2 = 10",
+      "cot_quote": "first multiply both sides by 2",
+      "content": {
+        "relation": "value_equals",
+        "args": [
+          "2*x/3 - 2",
+          10
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "2*x/3 - 2 equals 10."
+    },
+    "C12": {
+      "shape": "fact",
+      "text": "2x/3 = 12",
+      "cot_quote": "Then add 2 to both sides",
+      "content": {
+        "relation": "value_equals",
+        "args": [
+          "2*x/3",
+          12
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C12",
+      "label": "derived",
+      "english": "2*x/3 equals 12."
+    },
+    "C13": {
+      "shape": "fact",
+      "text": "x = 18; the answer is 18",
+      "cot_quote": "The answer is: 18",
+      "content": {
+        "relation": "value_equals",
+        "args": [
+          "x",
+          18
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C13",
+      "label": "derived",
+      "english": "X equals 18."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "The number of items remaining after a sale equals the number before the sale minus the number sold.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "h1": "house",
+          "h2": "house",
+          "a": "num",
+          "n": "num",
+          "r": "num"
+        },
+        "if": [
+          {
+            "relation": "left_after",
+            "args": [
+              "p",
+              "h1",
+              "a"
+            ]
+          },
+          {
+            "relation": "sold_count",
+            "args": [
+              "p",
+              "h2",
+              "n"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "n"
+            ],
+            "result": "r"
+          }
+        ],
+        "then": [
+          {
+            "relation": "left_after",
+            "args": [
+              "p",
+              "h2",
+              "r"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any person p, any houses h1, h2, any numbers a, n, r: if p had a vacuum cleaners left after selling at the h1 and p sold n vacuum cleaners at the h2 and r = a - n, then p had r vacuum cleaners left after selling at the h2."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "'A third of her vacuum cleaners' means x/3, one third of her starting total x.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "sold_count",
+        "args": [
+          "melanie",
+          "green_house",
+          "x/3"
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "Melanie sold x/3 vacuum cleaners at the green house."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "Half of a quantity q is (1/2)q.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "p": "person",
+          "h1": "house",
+          "h2": "house",
+          "q": "num",
+          "f": "num",
+          "r": "num"
+        },
+        "if": [
+          {
+            "relation": "left_after",
+            "args": [
+              "p",
+              "h1",
+              "q"
+            ]
+          },
+          {
+            "relation": "sold_fraction",
+            "args": [
+              "p",
+              "h2",
+              "f"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "f",
+              "q"
+            ],
+            "result": "r"
+          }
+        ],
+        "then": [
+          {
+            "relation": "sold_count",
+            "args": [
+              "p",
+              "h2",
+              "r"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any person p, any houses h1, h2, any numbers q, f, r: if p had q vacuum cleaners left after selling at the h1 and p sold f of what she had at the h2 and r = f \u00d7 q, then p sold r vacuum cleaners at the h2."
+    },
+    "I4": {
+      "shape": "closure",
+      "text": "The green, red, and orange house sales are all of her sales, and the orange house sale is the last one, so the 5 left is the amount remaining after the orange house.",
+      "kind": "closure",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "whole": "melanie",
+        "relation": "house_sale",
+        "members": [
+          "green_house",
+          "red_house",
+          "orange_house"
+        ]
+      },
+      "id": "I4",
+      "label": "assumption",
+      "english": "The only X such that \"the X is one of the houses where Melanie made a sale\" are green house, red house and orange house; there are no others."
+    },
+    "I5": {
+      "shape": "rule",
+      "text": "Applying the same operation (adding or multiplying by the same nonzero number) to both sides of an equation preserves equality.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "a": "num",
+          "b": "num",
+          "k": "num",
+          "c": "num",
+          "d": "num",
+          "e": "num",
+          "f": "num"
+        },
+        "if": [
+          {
+            "relation": "value_equals",
+            "args": [
+              "a",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "k"
+            ],
+            "result": "c"
+          },
+          {
+            "op": "sum",
+            "args": [
+              "b",
+              "k"
+            ],
+            "result": "d"
+          },
+          {
+            "op": "product",
+            "args": [
+              "a",
+              "k"
+            ],
+            "result": "e"
+          },
+          {
+            "op": "product",
+            "args": [
+              "b",
+              "k"
+            ],
+            "result": "f"
+          }
+        ],
+        "then": [
+          {
+            "relation": "value_equals",
+            "args": [
+              "c",
+              "d"
+            ]
+          },
+          {
+            "relation": "value_equals",
+            "args": [
+              "e",
+              "f"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I5",
+      "label": "assumption",
+      "english": "For any numbers a, b, k, c, d, e, f: if a equals b and c = a + k and d = b + k and e = a \u00d7 k and f = b \u00d7 k, then either c equals d, or e equals f."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "Selling a third leaves 2x/3.",
+      "premises": [
+        "C1",
+        "C2",
+        "I2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "x - x/3 = 2x/3",
+      "cot_quote": "Therefore, after selling at the green house, she had \\( \\frac{2x}{3} \\) vacuum cleaners left.",
+      "id": "S1",
+      "english": "Because Melanie started with x vacuum cleaners; and Melanie sold 1/3 of what she had at the green house; and Melanie sold x/3 vacuum cleaners at the green house; and since for any person p, any houses h1, h2, any numbers a, n, r: if p had a vacuum cleaners left after selling at the h1 and p sold n vacuum cleaners at the h2 and r = a - n, then p had r vacuum cleaners left after selling at the h2: Melanie had 2*x/3 vacuum cleaners left after selling at the green house (x - x/3 = 2x/3).",
+      "status": "gap",
+      "status_detail": "rule I1 does not connect the premises to the conclusion; relations not mentioned by the rule: ['sold_fraction', 'start_count']",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Unexpected end of list at line 1 col 2"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Selling 2 more leaves 2x/3 - 2.",
+      "premises": [
+        "C3",
+        "C4"
+      ],
+      "warrant": "I1",
+      "conclusion": "C5",
+      "stated_computation": "2x/3 - 2",
+      "cot_quote": "leaving her with \\( \\frac{2x}{3} - 2 \\) vacuum cleaners",
+      "id": "S2",
+      "english": "Because Melanie had 2*x/3 vacuum cleaners left after selling at the green house; and Melanie sold 2 vacuum cleaners at the red house; and since for any person p, any houses h1, h2, any numbers a, n, r: if p had a vacuum cleaners left after selling at the h1 and p sold n vacuum cleaners at the h2 and r = a - n, then p had r vacuum cleaners left after selling at the h2: Melanie had 2*x/3 - 2 vacuum cleaners left after selling at the red house (2x/3 - 2).",
+      "status": "gap",
+      "status_detail": "rule I1 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Unexpected end of list at line 1 col 2"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Half of what was left was sold at the orange house.",
+      "premises": [
+        "C5",
+        "C6"
+      ],
+      "warrant": "I3",
+      "conclusion": "C7",
+      "stated_computation": "(1/2)(2x/3 - 2)",
+      "cot_quote": "This means she sold \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners at the orange house",
+      "id": "S3",
+      "english": "Because Melanie had 2*x/3 - 2 vacuum cleaners left after selling at the red house; and Melanie sold 0.5 of what she had at the orange house; and since for any person p, any houses h1, h2, any numbers q, f, r: if p had q vacuum cleaners left after selling at the h1 and p sold f of what she had at the h2 and r = f \u00d7 q, then p sold r vacuum cleaners at the h2: Melanie sold (1/2)*(2*x/3 - 2) vacuum cleaners at the orange house ((1/2)(2x/3 - 2)).",
+      "status": "gap",
+      "status_detail": "rule I3 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Unexpected end of list at line 1 col 2"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "Thus half remained.",
+      "premises": [
+        "C5",
+        "C7"
+      ],
+      "warrant": "I1",
+      "conclusion": "C8",
+      "stated_computation": "(2x/3 - 2) - (1/2)(2x/3 - 2) = (1/2)(2x/3 - 2)",
+      "cot_quote": "and thus had \\( \\frac{1}{2} \\left( \\frac{2x}{3} - 2 \\right) \\) vacuum cleaners left",
+      "id": "S4",
+      "english": "Because Melanie had 2*x/3 - 2 vacuum cleaners left after selling at the red house; and Melanie sold (1/2)*(2*x/3 - 2) vacuum cleaners at the orange house; and since for any person p, any houses h1, h2, any numbers a, n, r: if p had a vacuum cleaners left after selling at the h1 and p sold n vacuum cleaners at the h2 and r = a - n, then p had r vacuum cleaners left after selling at the h2: Melanie had (1/2)*(2*x/3 - 2) vacuum cleaners left after selling at the orange house ((2x/3 - 2) - (1/2)(2x/3 - 2) = (1/2)(2x/3 - 2)).",
+      "status": "gap",
+      "status_detail": "rule I1 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Unexpected end of list at line 1 col 2"
+    },
+    "S5": {
+      "move": "apply",
+      "text": "Set the remaining amount equal to 5.",
+      "premises": [
+        "C8",
+        "C9"
+      ],
+      "warrant": "I4",
+      "conclusion": "C10",
+      "stated_computation": null,
+      "cot_quote": "Therefore, we set up the equation",
+      "id": "S5",
+      "english": "Because Melanie had (1/2)*(2*x/3 - 2) vacuum cleaners left after selling at the orange house; and after all her sales, Melanie has 5 vacuum cleaners left; and since the only X such that \"the X is one of the houses where Melanie made a sale\" are green house, red house and orange house; there are no others: (1/2)*(2*x/3 - 2) equals 5.",
+      "status": "gap",
+      "status_detail": "warrant I4 must be a rule",
+      "binding": {},
+      "prover": "error",
+      "prover_detail": "User error: Unexpected end of list at line 1 col 2"
+    },
+    "S6": {
+      "move": "apply",
+      "text": "Multiply both sides by 2.",
+      "premises": [
+        "C10"
+      ],
+      "warrant": "I5",
+      "conclusion": "C11",
+      "stated_computation": "5 x 2 = 10",
+      "cot_quote": "first multiply both sides by 2",
+      "id": "S6",
+      "english": "Because (1/2)*(2*x/3 - 2) equals 5; and since for any numbers a, b, k, c, d, e, f: if a equals b and c = a + k and d = b + k and e = a \u00d7 k and f = b \u00d7 k, then either c equals d, or e equals f: 2*x/3 - 2 equals 10 (5 x 2 = 10).",
+      "status": "gap",
+      "status_detail": "rule I5 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "unknown",
+      "prover_detail": "prover gave up (SZS status missing)"
+    },
+    "S7": {
+      "move": "apply",
+      "text": "Add 2 to both sides.",
+      "premises": [
+        "C11"
+      ],
+      "warrant": "I5",
+      "conclusion": "C12",
+      "stated_computation": "10 + 2 = 12",
+      "cot_quote": "Then add 2 to both sides",
+      "id": "S7",
+      "english": "Because 2*x/3 - 2 equals 10; and since for any numbers a, b, k, c, d, e, f: if a equals b and c = a + k and d = b + k and e = a \u00d7 k and f = b \u00d7 k, then either c equals d, or e equals f: 2*x/3 equals 12 (10 + 2 = 12).",
+      "status": "gap",
+      "status_detail": "rule I5 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "unknown",
+      "prover_detail": "prover gave up (SZS status missing)"
+    },
+    "S8": {
+      "move": "apply",
+      "text": "Multiply both sides by 3/2.",
+      "premises": [
+        "C12"
+      ],
+      "warrant": "I5",
+      "conclusion": "C13",
+      "stated_computation": "12 x 3/2 = 18",
+      "cot_quote": "Next, multiply both sides by 3/2",
+      "id": "S8",
+      "english": "Because 2*x/3 equals 12; and since for any numbers a, b, k, c, d, e, f: if a equals b and c = a + k and d = b + k and e = a \u00d7 k and f = b \u00d7 k, then either c equals d, or e equals f: x equals 18 (12 x 3/2 = 18).",
+      "status": "gap",
+      "status_detail": "rule I5 does not connect the premises to the conclusion",
+      "binding": {},
+      "prover": "unknown",
+      "prover_detail": "prover gave up (SZS status missing)"
+    }
+  },
+  "errors": [
+    "entity 'x' has invalid sort 'num'",
+    "C1: entity 'x' has sort 'num' but slot 'count' of 'start_count' needs 'num'",
+    "C3: '2*x/3' is not a declared entity, variable or number",
+    "C5: '2*x/3 - 2' is not a declared entity, variable or number",
+    "C7: '(1/2)*(2*x/3 - 2)' is not a declared entity, variable or number",
+    "C8: '(1/2)*(2*x/3 - 2)' is not a declared entity, variable or number",
+    "C10: '(1/2)*(2*x/3 - 2)' is not a declared entity, variable or number",
+    "C11: '2*x/3 - 2' is not a declared entity, variable or number",
+    "C12: '2*x/3' is not a declared entity, variable or number",
+    "C13: entity 'x' has sort 'num' but slot 'lhs' of 'value_equals' needs 'num'",
+    "I2: 'x/3' is not a declared entity, variable or number"
+  ]
+}

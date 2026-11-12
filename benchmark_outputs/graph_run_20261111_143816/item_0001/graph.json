@@ -1,0 +1,624 @@
+{
+  "question": "Janet\u2019s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?",
+  "cot": "EXPLANATION\nStep 1: Determine the total number of eggs laid per day.\nJanet's ducks lay 16 eggs per day.\n\nStep 2: Calculate the number of eggs Janet uses for her personal consumption.\nJanet eats 3 eggs for breakfast every morning.\n\nStep 3: Calculate the number of eggs used for baking muffins.\nJanet bakes muffins with 4 eggs every day.\n\nStep 4: Compute the total number of eggs used (both for eating and baking).\nTotal eggs used = Eggs for breakfast + Eggs for baking muffins\nTotal eggs used = 3 + 4 = 7\n\nStep 5: Calculate the number of eggs remaining after Janet's personal use and baking.\nRemaining eggs = Total eggs laid - Total eggs used\nRemaining eggs = 16 - 7 = 9\n\nStep 6: Calculate the revenue from selling the remaining eggs at the farmers' market.\nRevenue = Remaining eggs * Price per egg\nRevenue = 9 * $2 = $18\n\nThe answer is: 18",
+  "sorts": {
+    "person": {
+      "description": "a person"
+    },
+    "egg_use": {
+      "description": "a way of using eggs"
+    }
+  },
+  "entities": {
+    "janet": {
+      "sort": "person",
+      "name": "Janet"
+    },
+    "breakfast": {
+      "sort": "egg_use",
+      "name": "breakfast"
+    },
+    "baking": {
+      "sort": "egg_use",
+      "name": "baking muffins"
+    }
+  },
+  "relations": {
+    "eggs_laid": {
+      "slots": [
+        [
+          "owner",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{owner}'s ducks lay {count} eggs per day"
+    },
+    "eggs_used_for": {
+      "slots": [
+        [
+          "user",
+          "person"
+        ],
+        [
+          "use",
+          "egg_use"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{user} uses {count} eggs per day for {use}"
+    },
+    "egg_use_of": {
+      "slots": [
+        [
+          "user",
+          "person"
+        ],
+        [
+          "use",
+          "egg_use"
+        ]
+      ],
+      "sentence": "{use} is one of the ways {user} uses eggs each day, apart from selling them"
+    },
+    "total_eggs_used": {
+      "slots": [
+        [
+          "user",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "the total number of eggs {user} uses per day is {count}"
+    },
+    "remaining_eggs": {
+      "slots": [
+        [
+          "user",
+          "person"
+        ],
+        [
+          "count",
+          "num"
+        ]
+      ],
+      "sentence": "{user} has {count} remaining eggs per day"
+    },
+    "price_per_egg": {
+      "slots": [
+        [
+          "seller",
+          "person"
+        ],
+        [
+          "price",
+          "num"
+        ]
+      ],
+      "sentence": "the price per egg {seller} sells at is {price} dollars"
+    },
+    "sells_remaining": {
+      "slots": [
+        [
+          "seller",
+          "person"
+        ]
+      ],
+      "sentence": "{seller} sells all of the remaining eggs at the farmers' market every day"
+    },
+    "daily_revenue": {
+      "slots": [
+        [
+          "seller",
+          "person"
+        ],
+        [
+          "amount",
+          "num"
+        ]
+      ],
+      "sentence": "{seller}'s revenue from selling the remaining eggs is {amount} dollars"
+    },
+    "answer": {
+      "slots": [
+        [
+          "value",
+          "num"
+        ]
+      ],
+      "sentence": "the answer is {value}"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "Janet's ducks lay 16 eggs per day.",
+      "cot_quote": "Janet's ducks lay 16 eggs per day.",
+      "content": {
+        "relation": "eggs_laid",
+        "args": [
+          "janet",
+          16
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "Janet\u2019s ducks lay 16 eggs per day.",
+      "label": "assumption",
+      "english": "Janet's ducks lay 16 eggs per day."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "Janet eats 3 eggs for breakfast every morning.",
+      "cot_quote": "Janet eats 3 eggs for breakfast every morning.",
+      "content": {
+        "relation": "eggs_used_for",
+        "args": [
+          "janet",
+          "breakfast",
+          3
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "She eats three for breakfast every morning",
+      "label": "assumption",
+      "english": "Janet uses 3 eggs per day for breakfast."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "Janet bakes muffins with 4 eggs every day.",
+      "cot_quote": "Janet bakes muffins with 4 eggs every day.",
+      "content": {
+        "relation": "eggs_used_for",
+        "args": [
+          "janet",
+          "baking",
+          4
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C3",
+      "question_quote": "bakes muffins for her friends every day with four",
+      "label": "assumption",
+      "english": "Janet uses 4 eggs per day for baking muffins."
+    },
+    "C4": {
+      "shape": "rule",
+      "text": "Total eggs used = Eggs for breakfast + Eggs for baking muffins",
+      "cot_quote": "Total eggs used = Eggs for breakfast + Eggs for baking muffins",
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "eggs_used_for",
+            "args": [
+              "x",
+              "breakfast",
+              "a"
+            ]
+          },
+          {
+            "relation": "eggs_used_for",
+            "args": [
+              "x",
+              "baking",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_eggs_used",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, c: if x uses a eggs per day for breakfast and x uses b eggs per day for baking muffins and c = a + b, then the total number of eggs x uses per day is c."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "Total eggs used is 7.",
+      "cot_quote": "Total eggs used = 3 + 4 = 7",
+      "content": {
+        "relation": "total_eggs_used",
+        "args": [
+          "janet",
+          7
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "The total number of eggs Janet uses per day is 7."
+    },
+    "C6": {
+      "shape": "rule",
+      "text": "Remaining eggs = Total eggs laid - Total eggs used",
+      "cot_quote": "Remaining eggs = Total eggs laid - Total eggs used",
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "eggs_laid",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "total_eggs_used",
+            "args": [
+              "x",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "difference",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "remaining_eggs",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C6",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, c: if x's ducks lay a eggs per day and the total number of eggs x uses per day is b and c = a - b, then x has c remaining eggs per day."
+    },
+    "C7": {
+      "shape": "fact",
+      "text": "Remaining eggs is 9.",
+      "cot_quote": "Remaining eggs = 16 - 7 = 9",
+      "content": {
+        "relation": "remaining_eggs",
+        "args": [
+          "janet",
+          9
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C7",
+      "label": "derived",
+      "english": "Janet has 9 remaining eggs per day."
+    },
+    "C8": {
+      "shape": "rule",
+      "text": "Revenue = Remaining eggs * Price per egg",
+      "cot_quote": "Revenue = Remaining eggs * Price per egg",
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "remaining_eggs",
+            "args": [
+              "x",
+              "a"
+            ]
+          },
+          {
+            "relation": "price_per_egg",
+            "args": [
+              "x",
+              "b"
+            ]
+          },
+          {
+            "relation": "sells_remaining",
+            "args": [
+              "x"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "product",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "daily_revenue",
+            "args": [
+              "x",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "math_principle",
+      "stated_in_cot": true,
+      "id": "C8",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any person x, any numbers a, b, c: if x has a remaining eggs per day and the price per egg x sells at is b dollars and x sells all of the remaining eggs at the farmers' market every day and c = a \u00d7 b, then x's revenue from selling the remaining eggs is c dollars."
+    },
+    "C9": {
+      "shape": "fact",
+      "text": "The price per egg is $2.",
+      "cot_quote": "9 * $2",
+      "content": {
+        "relation": "price_per_egg",
+        "args": [
+          "janet",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C9",
+      "question_quote": "$2 per fresh duck egg",
+      "label": "assumption",
+      "english": "The price per egg Janet sells at is 2 dollars."
+    },
+    "C10": {
+      "shape": "fact",
+      "text": "Revenue from selling the remaining eggs is $18.",
+      "cot_quote": "Revenue = 9 * $2 = $18",
+      "content": {
+        "relation": "daily_revenue",
+        "args": [
+          "janet",
+          18
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C10",
+      "label": "derived",
+      "english": "Janet's revenue from selling the remaining eggs is 18 dollars."
+    },
+    "C11": {
+      "shape": "fact",
+      "text": "The answer is 18.",
+      "cot_quote": "The answer is: 18",
+      "content": {
+        "relation": "answer",
+        "args": [
+          18
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C11",
+      "label": "derived",
+      "english": "The answer is 18."
+    },
+    "I1": {
+      "shape": "closure",
+      "text": "Eating 3 eggs for breakfast and baking muffins with 4 eggs are the only ways Janet uses eggs each day, apart from selling them.",
+      "kind": "closure",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "whole": "janet",
+        "relation": "egg_use_of",
+        "members": [
+          "breakfast",
+          "baking"
+        ]
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "The only X such that \"X is one of the ways Janet uses eggs each day, apart from selling them\" are breakfast and baking muffins; there are no others."
+    },
+    "I2": {
+      "shape": "fact",
+      "text": "Janet sells all of the remaining eggs at the farmers' market every day.",
+      "kind": "stipulative",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "relation": "sells_remaining",
+        "args": [
+          "janet"
+        ],
+        "negated": false
+      },
+      "id": "I2",
+      "label": "assumption",
+      "english": "Janet sells all of the remaining eggs at the farmers' market every day."
+    },
+    "I3": {
+      "shape": "rule",
+      "text": "The question asks how many dollars Janet makes each day at the farmers' market, so the answer is the daily revenue in dollars.",
+      "kind": "definitional",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "x": "person",
+          "a": "num"
+        },
+        "if": [
+          {
+            "relation": "daily_revenue",
+            "args": [
+              "x",
+              "a"
+            ]
+          }
+        ],
+        "then": [
+          {
+            "relation": "answer",
+            "args": [
+              "a"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I3",
+      "label": "assumption",
+      "english": "For any person x, any number a: if x's revenue from selling the remaining eggs is a dollars, then the answer is a."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "aggregate",
+      "text": "Compute the total number of eggs used (both for eating and baking).",
+      "premises": [
+        "C2",
+        "C3"
+      ],
+      "warrant": "C4",
+      "conclusion": "C5",
+      "stated_computation": "3 + 4 = 7",
+      "cot_quote": "Total eggs used = 3 + 4 = 7",
+      "id": "S1",
+      "english": "Because Janet uses 3 eggs per day for breakfast; and Janet uses 4 eggs per day for baking muffins; and since for any person x, any numbers a, b, c: if x uses a eggs per day for breakfast and x uses b eggs per day for baking muffins and c = a + b, then the total number of eggs x uses per day is c: the total number of eggs Janet uses per day is 7 (3 + 4 = 7).",
+      "status": "gap",
+      "status_detail": "aggregate needs a closure statement as its warrant",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "apply",
+      "text": "Calculate the number of eggs remaining after Janet's personal use and baking.",
+      "premises": [
+        "C1",
+        "C5",
+        "I1"
+      ],
+      "warrant": "C6",
+      "conclusion": "C7",
+      "stated_computation": "16 - 7 = 9",
+      "cot_quote": "Remaining eggs = 16 - 7 = 9",
+      "id": "S2",
+      "english": "Because Janet's ducks lay 16 eggs per day; and the total number of eggs Janet uses per day is 7; and the only X such that \"X is one of the ways Janet uses eggs each day, apart from selling them\" are breakfast and baking muffins; there are no others; and since for any person x, any numbers a, b, c: if x's ducks lay a eggs per day and the total number of eggs x uses per day is b and c = a - b, then x has c remaining eggs per day: Janet has 9 remaining eggs per day (16 - 7 = 9).",
+      "status": "gap",
+      "status_detail": "I1 must be a fact for move 'apply'",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S3": {
+      "move": "apply",
+      "text": "Calculate the revenue from selling the remaining eggs at the farmers' market.",
+      "premises": [
+        "C7",
+        "C9",
+        "I2"
+      ],
+      "warrant": "C8",
+      "conclusion": "C10",
+      "stated_computation": "9 * $2 = $18",
+      "cot_quote": "Revenue = 9 * $2 = $18",
+      "id": "S3",
+      "english": "Because Janet has 9 remaining eggs per day; and the price per egg Janet sells at is 2 dollars; and Janet sells all of the remaining eggs at the farmers' market every day; and since for any person x, any numbers a, b, c: if x has a remaining eggs per day and the price per egg x sells at is b dollars and x sells all of the remaining eggs at the farmers' market every day and c = a \u00d7 b, then x's revenue from selling the remaining eggs is c dollars: Janet's revenue from selling the remaining eggs is 18 dollars (9 * $2 = $18).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "janet",
+        "a": "9",
+        "b": "2",
+        "c": "18"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S4": {
+      "move": "apply",
+      "text": "State the answer from the computed revenue.",
+      "premises": [
+        "C10"
+      ],
+      "warrant": "I3",
+      "conclusion": "C11",
+      "stated_computation": null,
+      "cot_quote": "The answer is: 18",
+      "id": "S4",
+      "english": "Because Janet's revenue from selling the remaining eggs is 18 dollars; and since for any person x, any number a: if x's revenue from selling the remaining eggs is a dollars, then the answer is a: the answer is 18.",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "x": "janet",
+        "a": "18"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": [
+    "S1: an aggregate step needs a closure statement as its warrant"
+  ]
+}

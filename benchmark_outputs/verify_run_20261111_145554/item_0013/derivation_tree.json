@@ -1,0 +1,102 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The cost to plant the lemon tree is $90",
+      "formula": "Invested(carlos, 90)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Carlos sells 7 lemons per year at $1.5 each",
+      "formula": "AnnualSale(carlos, 7, 1.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Watering and feeding the tree costs $3 annually",
+      "formula": "Expense(carlos, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "7 times 1.5 is 10.5",
+      "formula": "Product(7, 1.5, 10.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "10.5 minus 3 is 7.5",
+      "formula": "Difference(10.5, 3, 7.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "90 divided by 7.5 is 12",
+      "formula": "Quotient(90, 7.5, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x sells l lemons per year at p dollars each, pays e dollars in annual expenses, l \u00d7 p = r, and r \u2212 e = np, then x's net profit per year is np",
+      "formula": "\u2200x\u2200l\u2200p\u2200e\u2200r\u2200np (AnnualSale(x,l,p) \u2227 Expense(x,e) \u2227 Product(l,p,r) \u2227 Difference(r,e,np) \u2192 NetProfit(x,np))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x invested i dollars initially, has a net profit of np dollars per year, and i \u00f7 np = n, then x needs n years for total net profit to equal or exceed the investment",
+      "formula": "\u2200x\u2200i\u2200np\u2200n (Invested(x,i) \u2227 NetProfit(x,np) \u2227 Quotient(i,np,n) \u2192 YearsNeeded(x,n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Carlos's net profit per year is $7.5, from FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "NetProfit(carlos, 7.5)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Carlos needs 12 years for his total net profit to equal or exceed his investment, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "YearsNeeded(carlos, 12)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

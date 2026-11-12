@@ -1,0 +1,38 @@
+% Declarations
+tff(house_type, type, house: $tType).
+tff(person_type, type, person: $tType).
+tff(melanie_decl, type, melanie: person).
+tff(green_house_decl, type, green_house: house).
+tff(red_house_decl, type, red_house: house).
+tff(orange_house_decl, type, orange_house: house).
+tff(x_decl, type, x: $rat).
+tff(start_count_decl, type, start_count: (person * $rat) > $o).
+tff(sold_fraction_decl, type, sold_fraction: (person * house * $rat) > $o).
+tff(sold_count_decl, type, sold_count: (person * house * $rat) > $o).
+tff(left_after_decl, type, left_after: (person * house * $rat) > $o).
+tff(final_left_decl, type, final_left: (person * $rat) > $o).
+tff(house_sale_decl, type, house_sale: (person * house) > $o).
+tff(value_equals_decl, type, value_equals: ($rat * $rat) > $o).
+tff(green_house_neq_red_house, axiom, green_house != red_house).
+tff(green_house_neq_orange_house, axiom, green_house != orange_house).
+tff(red_house_neq_orange_house, axiom, red_house != orange_house).
+
+% Statements
+tff(c1, axiom, start_count(melanie, x)).
+tff(c2, axiom, sold_fraction(melanie, green_house, 1/3)).
+tff(c3, lemma, left_after(melanie, green_house, 2*x/3)).
+tff(c4, axiom, sold_count(melanie, red_house, 2/1)).
+tff(c5, lemma, left_after(melanie, red_house, 2*x/3 - 2)).
+tff(c6, axiom, sold_fraction(melanie, orange_house, 1/2)).
+tff(c7, lemma, sold_count(melanie, orange_house, (1/2)*(2*x/3 - 2))).
+tff(c8, lemma, left_after(melanie, orange_house, (1/2)*(2*x/3 - 2))).
+tff(c9, axiom, final_left(melanie, 5/1)).
+tff(c10, lemma, value_equals((1/2)*(2*x/3 - 2), 5/1)).
+tff(c11, lemma, value_equals(2*x/3 - 2, 10/1)).
+tff(c12, lemma, value_equals(2*x/3, 12/1)).
+tff(c13, lemma, value_equals(x, 18/1)).
+tff(i1, axiom, ![V_p: person, V_h1: house, V_h2: house, V_a: $rat, V_n: $rat, V_r: $rat]: ((left_after(V_p, V_h1, V_a) & sold_count(V_p, V_h2, V_n) & V_r = $difference(V_a, V_n)) => left_after(V_p, V_h2, V_r))).
+tff(i2, axiom, sold_count(melanie, green_house, x/3)).
+tff(i3, axiom, ![V_p: person, V_h1: house, V_h2: house, V_q: $rat, V_f: $rat, V_r: $rat]: ((left_after(V_p, V_h1, V_q) & sold_fraction(V_p, V_h2, V_f) & V_r = $product(V_f, V_q)) => sold_count(V_p, V_h2, V_r))).
+tff(i4, axiom, ![V_m: house]: (house_sale(melanie, V_m) <=> (V_m = green_house | V_m = red_house | V_m = orange_house))).
+tff(i5, axiom, ![V_a: $rat, V_b: $rat, V_k: $rat, V_c: $rat, V_d: $rat, V_e: $rat, V_f: $rat]: ((value_equals(V_a, V_b) & V_c = $sum(V_a, V_k) & V_d = $sum(V_b, V_k) & V_e = $product(V_a, V_k) & V_f = $product(V_b, V_k)) => (value_equals(V_c, V_d) | value_equals(V_e, V_f)))).

@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+WeeksPeriod(x, n) — x's time period is n weeks
+DaysPerWeek(n) — there are n days in a week
+PerDay(x, n) — x makes n omelets every day
+EggsPerDozen(n) — there are n eggs in a dozen
+Quantity(x, k, n) — x has a quantity of n units of kind k (where k is a kind constant such as days, omelets, or dozens)
+
+Constants:
+claire, 4, 7, 28, 3, 84, 12, days, omelets, dozens
+
+## FACTS
+FACT-1: Claire's time period is 4 weeks :: WeeksPeriod(claire, 4)
+FACT-2: There are 7 days in a week :: DaysPerWeek(7)
+FACT-3: Claire makes 3 omelets every morning :: PerDay(claire, 3)
+FACT-4: There are 12 eggs in a dozen :: EggsPerDozen(12)
+
+## OPERATIONS
+OP-1: 4 weeks times 7 days per week is 28 days :: Product(4, 7, 28)
+OP-2: 3 omelets per day times 28 days is 84 omelets :: Product(3, 28, 84)
+OP-3: 84 omelets divided by 12 per dozen is 7 dozens :: Quotient(84, 12, 7)
+
+## RULES
+RULE-1: If x's time period is w weeks and there are d days per week and w × d = t, then x's period totals t days :: ∀x∀w∀d∀t (WeeksPeriod(x,w) ∧ DaysPerWeek(d) ∧ Product(w,d,t) → Quantity(x,days,t))
+RULE-2: If x makes p omelets per day and x's period totals t days and p × t = o, then x makes o omelets total :: ∀x∀p∀t∀o (PerDay(x,p) ∧ Quantity(x,days,t) ∧ Product(p,t,o) → Quantity(x,omelets,o))
+RULE-3: If x makes o omelets total and there are e eggs per dozen and o ÷ e = r, then x consumes r dozens :: ∀x∀o∀e∀r (Quantity(x,omelets,o) ∧ EggsPerDozen(e) ∧ Quotient(o,e,r) → Quantity(x,dozens,r))
+
+## INFERENCES
+INF-1: Claire's period totals 28 days, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Quantity(claire, days, 28)
+INF-2: Claire makes 84 omelets total, from FACT-3, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Quantity(claire, omelets, 84)
+INF-3: Claire consumes 7 dozens of eggs, from INF-2, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Quantity(claire, dozens, 7)

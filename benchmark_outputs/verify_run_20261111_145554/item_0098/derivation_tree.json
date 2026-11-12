@@ -1,0 +1,123 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Freda's last batch of tomato sauce made 32 ounces of sauce",
+      "formula": "SauceVolume(freda, 32)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each can contains 16 ounces of tomatoes",
+      "formula": "PerCan(ounces, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Each can contains 3 tomatoes",
+      "formula": "PerCan(tomatoes, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 \u00d7 32 = 64",
+      "formula": "Product(2, 32, 64)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "64 \u00f7 16 = 4",
+      "formula": "Quotient(64, 16, 4)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "4 \u00d7 3 = 12",
+      "formula": "Product(4, 3, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's batch made n ounces of sauce and 2 \u00d7 n = m, then the original volume of tomatoes needed by x is m ounces (since cooking loses half the volume)",
+      "formula": "\u2200x\u2200n\u2200m (SauceVolume(x,n) \u2227 Product(2,n,m) \u2192 OriginalVolume(x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the original volume needed by x is n ounces, each can contains v ounces, and n \u00f7 v = c, then x uses c cans",
+      "formula": "\u2200x\u2200n\u2200v\u2200c (OriginalVolume(x,n) \u2227 PerCan(ounces,v) \u2227 Quotient(n,v,c) \u2192 Uses(x,cans,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x uses c cans, each can contains t tomatoes, and c \u00d7 t = total, then x uses total tomatoes",
+      "formula": "\u2200x\u2200c\u2200t\u2200total (Uses(x,cans,c) \u2227 PerCan(tomatoes,t) \u2227 Product(c,t,total) \u2192 Uses(x,tomatoes,total))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The original volume of tomatoes needed by Freda is 64 ounces, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "OriginalVolume(freda, 64)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Freda needs 4 cans, from INF-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Uses(freda, cans, 4)",
+      "premises": [
+        "INF-1",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Freda used 12 tomatoes in total, from INF-2, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Uses(freda, tomatoes, 12)",
+      "premises": [
+        "INF-2",
+        "FACT-3",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

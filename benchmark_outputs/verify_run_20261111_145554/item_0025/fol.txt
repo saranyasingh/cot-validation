@@ -1,0 +1,21 @@
+## VOCABULARY
+Predicates:
+Paid(x, n) — x paid amount n for the book
+DiscountFraction(x, n) — the fraction n of the original price that x paid after discount
+OriginalPrice(x, n) — the original price of x's book is n
+
+Constants:
+book, 19.50, 0.75, 26.00
+
+## FACTS
+FACT-1: He paid $19.50 for the book :: Paid(book, 19.50)
+FACT-2: He paid 75% of the original price (due to the 25% discount) :: DiscountFraction(book, 0.75)
+
+## OPERATIONS
+OP-1: $19.50 divided by 0.75 equals $26.00 :: Quotient(19.50, 0.75, 26.00)
+
+## RULES
+RULE-1: If x paid n for the book and n represents fraction f of the original price, and n divided by f equals p, then the original price of x's book is p :: ∀x∀n∀f∀p (Paid(x,n) ∧ DiscountFraction(x,f) ∧ Quotient(n,f,p) → OriginalPrice(x,p))
+
+## INFERENCES
+INF-1: The original price of the book was $26.00, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: OriginalPrice(book, 26.00)

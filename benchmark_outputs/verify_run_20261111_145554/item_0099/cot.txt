@@ -1,0 +1,18 @@
+EXPLANATION
+To determine how many cars drove through the traffic jam in the first 15 minutes, we need to follow these steps:
+
+1. **Identify Initial Conditions**: Initially, there are 30 cars on the motorway.
+2. **Exit Cars**: After driving through the traffic jam, 5 cars exit the line. This means that before exiting, there must have been \(30 - 5 = 25\) cars still on the motorway.
+3. **Cars Driven Through First 15 Minutes**: We know that during the first 15 minutes, some cars drove through the traffic jam, leaving 25 cars behind after this period.
+
+Since all the cars that remained after the initial group (which included those that exited) plus the newly driven-through cars equals the total number of cars initially present minus those that took exits, we set up the equation as follows:
+\[ \text{Initial cars} - \text{Cars driven through first 15 mins} = \text{Cars remaining after 15 mins} \]
+\[ 30 - (\text{Cars driven through first 15 mins}) = 25 \]
+
+From this, we can solve for the number of cars driven through the traffic jam in the first 15 minutes:
+\[ 30 - 25 = \text{Cars driven through first 15 mins} \]
+\[ 5 = \text{Cars driven through first 15 mins} \]
+
+Therefore, the number of cars that drove through the traffic jam in the first 15 minutes is 5.
+
+The answer is: 5

@@ -1,0 +1,10 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — The problem states that 40% of the way through the download (progress), not that Carla's speed is reduced by 40%; this misreads the quantity.
+FACT-4: UNSUPPORTED — The problem does not mention a "first minute" download amount of 2 GB; this is a fabricated detail not present in the problem.
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: PLAUSIBLE
+RULE-4: IMPLAUSIBLE — This rule misapplies the 40% progress fraction as a speed reduction, which incorrectly conflates "amount downloaded" with "download speed."
+RULE-5: PLAUSIBLE

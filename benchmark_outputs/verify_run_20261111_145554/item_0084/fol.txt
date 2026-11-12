@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Planted(x, n) — x planted n rose bushes
+RosesPerBush(x, n) — each of x's rose bushes has n roses
+ThornsPerRose(x, n) — each of x's roses has n thorns
+Total(x, n) — x has a total of n of something (roses or thorns, determined by context)
+
+Constants:
+dan, 3, 25, 8, 75, 600
+
+## FACTS
+FACT-1: Dan planted 3 rose bushes :: Planted(dan, 3)
+FACT-2: Each rose bush has 25 roses :: RosesPerBush(dan, 25)
+FACT-3: Each rose has 8 thorns :: ThornsPerRose(dan, 8)
+
+## OPERATIONS
+OP-1: 3 bushes times 25 roses per bush is 75 roses :: Product(3, 25, 75)
+OP-2: 75 roses times 8 thorns per rose is 600 thorns :: Product(75, 8, 600)
+
+## RULES
+RULE-1: If x planted n bushes with m roses per bush and n × m = p, then x has a total of p roses :: ∀x∀n∀m∀p (Planted(x,n) ∧ RosesPerBush(x,m) ∧ Product(n,m,p) → Total(x,p))
+RULE-2: If x has a total of p roses with t thorns per rose and p × t = q, then x has a total of q thorns :: ∀x∀p∀t∀q (Total(x,p) ∧ ThornsPerRose(x,t) ∧ Product(p,t,q) → Total(x,q))
+
+## INFERENCES
+INF-1: Dan has a total of 75 roses, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Total(dan, 75)
+INF-2: Dan has a total of 600 thorns, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(dan, 600)

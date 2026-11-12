@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, fewer(siobhan, aaron, n_2)).
+fof(fact_2, axiom, more_than_half_of(aaron, raymond, n_5)).
+fof(fact_3, axiom, has(raymond, n_40)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_40, n_2, n_20)).
+fof(op_2, axiom, sum(n_20, n_5, n_25)).
+fof(op_3, axiom, difference(n_25, n_2, n_23)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,R,H,P] : ((more_than_half_of(X, Y, N) & has(Y, R) & quotient(R, n_2, H) & sum(H, N, P)) => has(X, P))).
+fof(rule_2, axiom, ! [X,Y,N,A,S] : ((fewer(X, Y, N) & has(Y, A) & difference(A, N, S)) => has(X, S))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, has(aaron, n_25)).
+% From fact_1, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, has(siobhan, n_23)).

@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+RingDuration(x, n) — the duration of ring x is n
+Multiplier(x, y, n) — ring x's duration is n times ring y's duration
+HalfOf(x, y) — ring x's duration is half of ring y's duration
+TotalDuration(x, n) — the total duration of all rings of x is n
+
+Constants:
+first_ring, second_ring, third_ring, alarm, 2, 3, 4, 6, 12, 22
+
+## FACTS
+FACT-1: The alarm rings 4 times/seconds on its first go :: RingDuration(first_ring, 4)
+FACT-2: The alarm rings for three times as long on the second ring as the first ring :: Multiplier(second_ring, first_ring, 3)
+FACT-3: The alarm rings for half as long on the third ring as the second ring :: HalfOf(third_ring, second_ring)
+
+## OPERATIONS
+OP-1: 3 * 4 = 12 :: Product(3, 4, 12)
+OP-2: 1/2 * 12 = 6 :: Quotient(12, 2, 6)
+OP-3: 4 + 12 + 6 = 22 :: Sum(4, 12, 6, 22)
+
+## RULES
+RULE-1: If ring x's duration is n times ring y's duration, and y's duration is a, and n × a = b, then x's duration is b :: ∀x∀y∀n∀a∀b (Multiplier(x,y,n) ∧ RingDuration(y,a) ∧ Product(n,a,b) → RingDuration(x,b))
+RULE-2: If ring x's duration is half of ring y's duration, and y's duration is a, and a ÷ 2 = b, then x's duration is b :: ∀x∀y∀a∀b (HalfOf(x,y) ∧ RingDuration(y,a) ∧ Quotient(a,2,b) → RingDuration(x,b))
+RULE-3: If rings x, y, z have durations a, b, c respectively, and a + b + c = t, then the total duration of the alarm is t :: ∀x∀y∀z∀a∀b∀c∀t (RingDuration(x,a) ∧ RingDuration(y,b) ∧ RingDuration(z,c) ∧ Sum(a,b,c,t) → TotalDuration(alarm,t))
+
+## INFERENCES
+INF-1: The second ring lasts 12 seconds, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: RingDuration(second_ring, 12)
+INF-2: The third ring lasts 6 seconds, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: RingDuration(third_ring, 6)
+INF-3: The total duration of the alarm is 22, from FACT-1, INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalDuration(alarm, 22)

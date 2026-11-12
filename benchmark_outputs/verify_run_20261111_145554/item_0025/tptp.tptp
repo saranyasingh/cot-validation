@@ -1,0 +1,13 @@
+% --- FACTS ---
+fof(fact_1, axiom, paid(book, n_19_50)).
+fof(fact_2, axiom, discount_fraction(book, n_0_75)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_19_50, n_0_75, n_26_00)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,F,P] : ((paid(X, N) & discount_fraction(X, F) & quotient(N, F, P)) => original_price(X, P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, original_price(book, n_26_00)).

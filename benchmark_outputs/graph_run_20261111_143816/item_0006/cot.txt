@@ -1,0 +1,15 @@
+EXPLANATION
+First, let's break down the cost structure:
+1. The first glass costs $5.
+2. Every second glass costs 60% of $5, which is $5 * 0.6 = $3.
+
+Now, we calculate how many pairs of glasses (first and second) Kylar can get from the 16 glasses he wants to buy:
+3. Since every second glass is part of a pair, the number of such pairs in 16 glasses is 16 / 2 = 8 pairs.
+
+Next, we calculate the total cost for these pairs:
+4. For each pair, the total cost is $5 (first glass) + $3 (second glass) = $8.
+5. Therefore, for 8 pairs, the total cost is 8 * $8 = $64.
+
+Finally, since there are no remaining single glasses after forming all possible pairs, no additional cost needs to be added.
+
+The answer is: 64

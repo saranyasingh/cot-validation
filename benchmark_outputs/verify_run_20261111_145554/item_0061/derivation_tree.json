@@ -1,0 +1,132 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "There are 25 oranges in total",
+      "formula": "Count(oranges, total, 25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "20% of the oranges are unripe",
+      "formula": "Percent(oranges, unripe, 0.2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "2 of the oranges are sour",
+      "formula": "Count(oranges, sour, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "25 * 20/100 = 5",
+      "formula": "Product(25, 0.2, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "5 + 2 = 7",
+      "formula": "Sum(5, 2, 7)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "25 - 7 = 18",
+      "formula": "Difference(25, 7, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n total oranges and a fraction p of them are of some category, and n\u00d7p = u, then the count of that category is u",
+      "formula": "\u2200x\u2200n\u2200p\u2200u (Count(x,total,n) \u2227 Percent(x,unripe,p) \u2227 Product(n,p,u) \u2192 Count(x,unripe,u))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has u unripe oranges and s sour oranges, and u+s = b, then the total bad (unripe+sour) count is b",
+      "formula": "\u2200x\u2200u\u2200s\u2200b (Count(x,unripe,u) \u2227 Count(x,sour,s) \u2227 Sum(u,s,b) \u2192 Count(x,bad,b))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The problem states 1 orange is bad as a separate category from unripe and sour; this rule omits that orange and incorrectly defines \"bad\" as only unripe+sour, undercounting the total non-good oranges.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has n total oranges and b bad oranges, and n\u2212b = g, then the count of good oranges is g",
+      "formula": "\u2200x\u2200n\u2200b\u2200g (Count(x,total,n) \u2227 Count(x,bad,b) \u2227 Difference(n,b,g) \u2192 Count(x,good,g))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The number of unripe oranges is 5, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(oranges, unripe, 5)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The total number of bad (unripe + sour) oranges is 7, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(oranges, bad, 7)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The number of good oranges is 18, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(oranges, good, 18)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The problem states 1 orange is bad as a separate category from unripe and sour; this rule omits that orange and incorrectly defines \"bad\" as only unripe+sour, undercounting the total non-good oranges."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

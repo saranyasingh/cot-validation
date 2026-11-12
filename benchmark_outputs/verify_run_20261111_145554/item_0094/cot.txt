@@ -1,0 +1,27 @@
+EXPLANATION
+Let's start by identifying the key information given in the problem:
+
+1. Lee was originally 2 seconds faster than Gerald.
+2. Gerald improved his speed by 10% due to a new diet.
+
+We need to find out how long it takes for Gerald to complete the 400-meter hurdles after improving his speed by 10%.
+
+First, let's denote:
+- \( L \) as Lee's original time (in seconds).
+- \( G \) as Gerald's original time (in seconds).
+
+From the first piece of information, we have:
+\[ L = G - 2 \]
+
+Next, we know that Gerald's speed increased by 10%, so his new time \( G' \) (after improvement) can be calculated using the formula for relative speeds:
+\[ G' = \frac{G}{1 + 0.10} = \frac{G}{1.10} \]
+
+Since Lee runs the 400-meter hurdles in 38 seconds, we can substitute this into our equation for \( L \):
+\[ 38 = G - 2 \]
+Solving for \( G \), we get:
+\[ G = 38 + 2 = 40 \text{ seconds} \]
+
+Now, we need to find out how long it takes for Gerald to run the 400-meter hurdles after his improvement:
+\[ G' = \frac{40}{1.10} \approx 36.36 \text{ seconds} \]
+
+Therefore, the answer is: 36.36.

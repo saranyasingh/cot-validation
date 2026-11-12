@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+RatioAge(x, y, r1, r2) — x and y's ages are in the ratio r1:r2
+TotalAge(x, y, n) — the total of x's and y's ages now is n
+CommonMultiple(x, y, m) — m is the common multiplier used to scale the ratio between x and y's ages
+Age(x, n) — x's current age is n
+FutureAge(x, k, n) — x's age in k years will be n
+
+Constants:
+darrell, allen, 7, 11, 162, 18, 9, 63, 99, 10, 109
+
+## FACTS
+FACT-1: Darrell and Allen's ages are in the ratio of 7:11 :: RatioAge(darrell, allen, 7, 11)
+FACT-2: Their total age now is 162 :: TotalAge(darrell, allen, 162)
+
+## OPERATIONS
+OP-1: 7 + 11 = 18 :: Sum(7, 11, 18)
+OP-2: 162 ÷ 18 = 9 :: Quotient(162, 18, 9)
+OP-3: 7 × 9 = 63 :: Product(7, 9, 63)
+OP-4: 11 × 9 = 99 :: Product(11, 9, 99)
+OP-5: 99 + 10 = 109 :: Sum(99, 10, 109)
+
+## RULES
+RULE-1: If x and y's ages are in ratio r1:r2, their total age is t, the sum of r1 and r2 is s, and t divided by s is m, then m is the common multiplier for x and y :: ∀x∀y∀r1∀r2∀t∀s∀m (RatioAge(x,y,r1,r2) ∧ TotalAge(x,y,t) ∧ Sum(r1,r2,s) ∧ Quotient(t,s,m) → CommonMultiple(x,y,m))
+RULE-2: If x and y's ages are in ratio r1:r2, m is their common multiplier, and r1 times m is n, then x's age is n :: ∀x∀y∀r1∀r2∀m∀n (RatioAge(x,y,r1,r2) ∧ CommonMultiple(x,y,m) ∧ Product(r1,m,n) → Age(x,n))
+RULE-3: If x and y's ages are in ratio r1:r2, m is their common multiplier, and r2 times m is n, then y's age is n :: ∀x∀y∀r1∀r2∀m∀n (RatioAge(x,y,r1,r2) ∧ CommonMultiple(x,y,m) ∧ Product(r2,m,n) → Age(y,n))
+RULE-4: If x's current age is n, and n plus k equals f, then x's age in k years will be f :: ∀x∀n∀k∀f (Age(x,n) ∧ Sum(n,k,f) → FutureAge(x,k,f))
+
+## INFERENCES
+INF-1: Darrell and Allen's common multiplier is 9, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: CommonMultiple(darrell, allen, 9)
+INF-2: Darrell's current age is 63, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Age(darrell, 63)
+INF-3: Allen's current age is 99, from FACT-1, INF-1, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Age(allen, 99)
+INF-4: Allen's age 10 years from now will be 109, from INF-3, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: FutureAge(allen, 10, 109)

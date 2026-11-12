@@ -1,0 +1,18 @@
+% --- FACTS ---
+fof(fact_1, axiom, total_coins(gretchen, n_110)).
+fof(fact_2, axiom, gold_more_than_silver(gretchen, n_30)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_110, n_30, n_80)).
+fof(op_2, axiom, quotient(n_80, n_2, n_40)).
+fof(op_3, axiom, sum(n_40, n_30, n_70)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,T,D,S,HALF] : ((total_coins(X, T) & gold_more_than_silver(X, D) & difference(T, D, S) & quotient(S, n_2, HALF)) => silver(X, HALF))).
+fof(rule_2, axiom, ! [X,S,D,G] : ((silver(X, S) & gold_more_than_silver(X, D) & sum(S, D, G)) => gold(X, G))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, silver(gretchen, n_40)).
+% From inf_1, fact_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, gold(gretchen, n_70)).

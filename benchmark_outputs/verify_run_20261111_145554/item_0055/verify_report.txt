@@ -1,0 +1,11 @@
+FACT-1: UNSUPPORTED — The problem says Trixie "has had 12" kittens (her own litter), not "12 adopted kittens"; labeling them as "adopted" misattributes the adopted-kitten quality to Trixie's litter.
+
+FACT-2: UNSUPPORTED — The problem states Patchy had thrice "the number of adopted kittens" (i.e., thrice the 7 kittens the sisters adopted), not thrice Trixie's kitten count. This misreads which quantity is being tripled.
+
+FACT-3: SUPPORTED
+
+RULE-1: IMPLAUSIBLE — It computes Patchy's kittens as thrice Trixie's count (y), but the problem actually specifies thrice the number of adopted kittens (7), independent of Trixie's litter size.
+
+RULE-2: PLAUSIBLE
+
+RULE-3: PLAUSIBLE

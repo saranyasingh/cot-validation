@@ -1,0 +1,41 @@
+## VOCABULARY
+Predicates:
+Repaired(d, t, n) — n tires of type t were repaired on day d
+ChargePerTire(t, c) — the charge per tire of type t is c dollars
+Revenue(d, t, r) — revenue from tire type t on day d is r dollars
+TotalRevenue(d, r) — total revenue on day d is r dollars
+RevenueDifference(d1, d2, r) — day d1 earned r dollars more revenue than day d2
+
+Constants:
+thursday, friday, truck, car, 6, 60, 4, 40, 12, 0, 360, 160, 520, 480
+
+## FACTS
+FACT-1: Number of truck tires repaired on Thursday is 6 :: Repaired(thursday, truck, 6)
+FACT-2: Charge per truck tire is $60 :: ChargePerTire(truck, 60)
+FACT-3: Number of car tires repaired on Thursday is 4 :: Repaired(thursday, car, 4)
+FACT-4: Charge per car tire is $40 :: ChargePerTire(car, 40)
+FACT-5: Number of car tires repaired on Friday is 12 :: Repaired(friday, car, 12)
+FACT-6: Number of truck tires repaired on Friday is 0 :: Repaired(friday, truck, 0)
+
+## OPERATIONS
+OP-1: 6 × 60 = 360 :: Product(6, 60, 360)
+OP-2: 4 × 40 = 160 :: Product(4, 40, 160)
+OP-3: 360 + 160 = 520 :: Sum(360, 160, 520)
+OP-4: 12 × 40 = 480 :: Product(12, 40, 480)
+OP-5: 0 × 60 = 0 :: Product(0, 60, 0)
+OP-6: 480 + 0 = 480 :: Sum(480, 0, 480)
+OP-7: 520 − 480 = 40 :: Difference(520, 480, 40)
+
+## RULES
+RULE-1: If n tires of type t were repaired on day d, the charge per tire is c, and n × c = r, then revenue from tire type t on day d is r :: ∀d∀t∀n∀c∀r (Repaired(d,t,n) ∧ ChargePerTire(t,c) ∧ Product(n,c,r) → Revenue(d,t,r))
+RULE-2: If revenue from truck tires on day d is r1, revenue from car tires on day d is r2, and r1 + r2 = r, then total revenue on day d is r :: ∀d∀r1∀r2∀r (Revenue(d,truck,r1) ∧ Revenue(d,car,r2) ∧ Sum(r1,r2,r) → TotalRevenue(d,r))
+RULE-3: If total revenue on day d1 is r1, total revenue on day d2 is r2, and r1 − r2 = r, then d1 earned r more revenue than d2 :: ∀d1∀d2∀r1∀r2∀r (TotalRevenue(d1,r1) ∧ TotalRevenue(d2,r2) ∧ Difference(r1,r2,r) → RevenueDifference(d1,d2,r))
+
+## INFERENCES
+INF-1: Revenue from truck tires on Thursday is 360, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(thursday, truck, 360)
+INF-2: Revenue from car tires on Thursday is 160, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(thursday, car, 160)
+INF-3: Total revenue on Thursday is 520, from INF-1, INF-2, OP-3, RULE-2 by Universal Instantiation and Modus Ponens :: TotalRevenue(thursday, 520)
+INF-4: Revenue from car tires on Friday is 480, from FACT-5, FACT-4, OP-4, RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(friday, car, 480)
+INF-5: Revenue from truck tires on Friday is 0, from FACT-6, FACT-2, OP-5, RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(friday, truck, 0)
+INF-6: Total revenue on Friday is 480, from INF-4, INF-5, OP-6, RULE-2 by Universal Instantiation and Modus Ponens :: TotalRevenue(friday, 480)
+INF-7: Thursday earned 40 more revenue than Friday, from INF-3, INF-6, OP-7, RULE-3 by Universal Instantiation and Modus Ponens :: RevenueDifference(thursday, friday, 40)

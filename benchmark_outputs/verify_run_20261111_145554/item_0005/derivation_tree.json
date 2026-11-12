@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Wendi gives 15 cups of feed in the morning",
+      "formula": "Feed(wendi, morning, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Wendi gives 25 cups of feed in the afternoon",
+      "formula": "Feed(wendi, afternoon, 25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Wendi has 20 chickens",
+      "formula": "NumChickens(wendi, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each chicken gets fed 3 cups of mixed feed daily",
+      "formula": "Feed(wendi, per_chicken, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "15 + 25 = 40",
+      "formula": "Sum(15, 25, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 \u00d7 20 = 800",
+      "formula": "Product(40, 20, 800)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "800 \u00f7 3 \u2248 266.67",
+      "formula": "Quotient(800, 3, 266.67)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's morning feed is a and afternoon feed is b and a+b=s, then x's daily total feed is s",
+      "formula": "\u2200x\u2200a\u2200b\u2200s (Feed(x, morning, a) \u2227 Feed(x, afternoon, b) \u2227 Sum(a, b, s) \u2192 Feed(x, daily_total, s))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Morning + afternoon feed is not the \"daily total feed\"; the daily total must include the final meal too, and the true daily total is determined by 3 cups/chicken \u00d7 number of chickens, not by summing only two of the three meals.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's daily total feed is d and x has n chickens and d\u00d7n=p, then x's total feed for all chickens is p",
+      "formula": "\u2200x\u2200d\u2200n\u2200p (Feed(x, daily_total, d) \u2227 NumChickens(x, n) \u2227 Product(d, n, p) \u2192 Feed(x, total_all, p))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "The 15 and 25 cup figures are already flock-wide totals, not per-chicken amounts; multiplying this (already incorrect) \"daily total\" by the number of chickens again double-counts the flock size.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's total feed for all chickens is t and t\u00f73=q, then x's final meal feed is q",
+      "formula": "\u2200x\u2200t\u2200q (Feed(x, total_all, t) \u2227 Quotient(t, 3, q) \u2192 Feed(x, final_meal, q))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Dividing an (already incorrectly derived) total by 3 assumes the three meals are equal in size, but the problem gives unequal morning/afternoon amounts, so the final meal should be found by subtracting known meals from the true total feed, not by dividing by 3.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Wendi's daily total feed is 40 cups, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(wendi, daily_total, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Wendi's total feed for all chickens is 800 cups, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(wendi, total_all, 800)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Wendi's final meal feed is approximately 266.67 cups, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Feed(wendi, final_meal, 266.67)",
+      "premises": [
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "Morning + afternoon feed is not the \"daily total feed\"; the daily total must include the final meal too, and the true daily total is determined by 3 cups/chicken \u00d7 number of chickens, not by summing only two of the three meals."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "The 15 and 25 cup figures are already flock-wide totals, not per-chicken amounts; multiplying this (already incorrect) \"daily total\" by the number of chickens again double-counts the flock size."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "Dividing an (already incorrectly derived) total by 3 assumes the three meals are equal in size, but the problem gives unequal morning/afternoon amounts, so the final meal should be found by subtracting known meals from the true total feed, not by dividing by 3."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

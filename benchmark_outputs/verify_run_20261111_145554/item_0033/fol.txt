@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+TimePerDay(x, n) — dog x takes n hours per day to be walked and cared for
+DaysPerWeek(n) — there are n days in a week
+WeeklyTimePerDog(x, n) — dog x requires n hours of care per week
+NumDogs(x, n) — person x has n dogs
+TotalWeeklyTime(x, n) — person x spends n hours per week caring for all dogs
+
+Constants:
+john, dog, 0.5, 7, 3.5, 10, 35
+
+## FACTS
+FACT-1: Each dog takes 0.5 hours to walk and care for its business each day :: TimePerDay(dog, 0.5)
+FACT-2: There are 7 days in a week :: DaysPerWeek(7)
+FACT-3: John has 10 dogs :: NumDogs(john, 10)
+
+## OPERATIONS
+OP-1: 0.5 hours/day times 7 days/week is 3.5 hours/week :: Product(0.5, 7, 3.5)
+OP-2: 3.5 hours/week/dog times 10 dogs is 35 hours/week :: Product(3.5, 10, 35)
+
+## RULES
+RULE-1: If a dog takes n hours per day and there are d days per week, and n times d equals w, then the dog requires w hours of care per week :: ∀x∀n∀d∀w (TimePerDay(x,n) ∧ DaysPerWeek(d) ∧ Product(n,d,w) → WeeklyTimePerDog(x,w))
+RULE-2: If a dog requires w hours of care per week and person x has k dogs, and w times k equals t, then x spends t hours per week caring for all dogs :: ∀x∀y∀w∀k∀t (WeeklyTimePerDog(y,w) ∧ NumDogs(x,k) ∧ Product(w,k,t) → TotalWeeklyTime(x,t))
+
+## INFERENCES
+INF-1: Each dog requires 3.5 hours of care per week, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: WeeklyTimePerDog(dog, 3.5)
+INF-2: John spends 35 hours per week caring for all his dogs, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalWeeklyTime(john, 35)

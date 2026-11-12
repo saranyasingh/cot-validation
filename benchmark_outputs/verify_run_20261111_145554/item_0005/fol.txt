@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Feed(x, l, n) — x's feed quantity for category l is n cups
+NumChickens(x, n) — x has n chickens
+
+Constants:
+wendi, morning, afternoon, per_chicken, daily_total, total_all, final_meal, 15, 25, 20, 3, 40, 800, 266.67
+
+## FACTS
+FACT-1: Wendi gives 15 cups of feed in the morning :: Feed(wendi, morning, 15)
+FACT-2: Wendi gives 25 cups of feed in the afternoon :: Feed(wendi, afternoon, 25)
+FACT-3: Wendi has 20 chickens :: NumChickens(wendi, 20)
+FACT-4: Each chicken gets fed 3 cups of mixed feed daily :: Feed(wendi, per_chicken, 3)
+
+## OPERATIONS
+OP-1: 15 + 25 = 40 :: Sum(15, 25, 40)
+OP-2: 40 × 20 = 800 :: Product(40, 20, 800)
+OP-3: 800 ÷ 3 ≈ 266.67 :: Quotient(800, 3, 266.67)
+
+## RULES
+RULE-1: If x's morning feed is a and afternoon feed is b and a+b=s, then x's daily total feed is s :: ∀x∀a∀b∀s (Feed(x, morning, a) ∧ Feed(x, afternoon, b) ∧ Sum(a, b, s) → Feed(x, daily_total, s))
+RULE-2: If x's daily total feed is d and x has n chickens and d×n=p, then x's total feed for all chickens is p :: ∀x∀d∀n∀p (Feed(x, daily_total, d) ∧ NumChickens(x, n) ∧ Product(d, n, p) → Feed(x, total_all, p))
+RULE-3: If x's total feed for all chickens is t and t÷3=q, then x's final meal feed is q :: ∀x∀t∀q (Feed(x, total_all, t) ∧ Quotient(t, 3, q) → Feed(x, final_meal, q))
+
+## INFERENCES
+INF-1: Wendi's daily total feed is 40 cups, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Feed(wendi, daily_total, 40)
+INF-2: Wendi's total feed for all chickens is 800 cups, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Feed(wendi, total_all, 800)
+INF-3: Wendi's final meal feed is approximately 266.67 cups, from INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Feed(wendi, final_meal, 266.67)

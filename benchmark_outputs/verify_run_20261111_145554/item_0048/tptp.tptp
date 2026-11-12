@@ -1,0 +1,35 @@
+% --- FACTS ---
+fof(fact_1, axiom, price(blue_tie, n_40)).
+fof(fact_2, axiom, spent(john, blue_tie, n_200)).
+fof(fact_3, axiom, percent_more(red_tie, blue_tie, n_0_5)).
+fof(fact_4, axiom, double_count(john, red_tie, blue_tie)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_5, n_40, n_20)).
+fof(op_2, axiom, sum(n_40, n_20, n_60)).
+fof(op_3, axiom, quotient(n_200, n_40, n_5)).
+fof(op_4, axiom, product(n_2, n_5, n_10)).
+fof(op_5, axiom, product(n_5, n_40, n_200)).
+fof(op_6, axiom, product(n_10, n_60, n_600)).
+fof(op_7, axiom, sum(n_200, n_600, n_800)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,PCT,N,M,P] : ((percent_more(X,Y,PCT) & price(Y,N) & product(PCT,N,M) & sum(N,M,P)) => price(X,P))).
+fof(rule_2, axiom, ! [P,X,N,PRICE,COUNT] : ((spent(P,X,N) & price(X,PRICE) & quotient(N,PRICE,COUNT)) => bought(P,X,COUNT))).
+fof(rule_3, axiom, ! [P,X,Y,N,M] : ((double_count(P,X,Y) & bought(P,Y,N) & product(n_2,N,M)) => bought(P,X,M))).
+fof(rule_4, axiom, ! [P,X,N,PRICE,TOTAL] : ((bought(P,X,N) & price(X,PRICE) & product(N,PRICE,TOTAL)) => spent(P,X,TOTAL))).
+fof(rule_5, axiom, ! [P,X,Y,N,M,T] : ((spent(P,X,N) & spent(P,Y,M) & sum(N,M,T)) => spent(P,all_ties,T))).
+
+% --- INFERENCES ---
+% From fact_3, fact_1, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, price(red_tie, n_60)).
+% From fact_2, fact_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, bought(john, blue_tie, n_5)).
+% From fact_4, inf_2, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, bought(john, red_tie, n_10)).
+% From inf_2, fact_1, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, spent(john, blue_tie, n_200)).
+% From inf_3, inf_1, op_6, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, spent(john, red_tie, n_600)).
+% From inf_4, inf_5, op_7, rule_5 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, spent(john, all_ties, n_800)).

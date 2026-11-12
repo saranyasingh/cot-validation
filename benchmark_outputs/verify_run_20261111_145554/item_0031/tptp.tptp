@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, ratio_age(darrell, allen, n_7, n_11)).
+fof(fact_2, axiom, total_age(darrell, allen, n_162)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_7, n_11, n_18)).
+fof(op_2, axiom, quotient(n_162, n_18, n_9)).
+fof(op_3, axiom, product(n_7, n_9, n_63)).
+fof(op_4, axiom, product(n_11, n_9, n_99)).
+fof(op_5, axiom, sum(n_99, n_10, n_109)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,R1,R2,T,S,M] : ((ratio_age(X,Y,R1,R2) & total_age(X,Y,T) & sum(R1,R2,S) & quotient(T,S,M)) => common_multiple(X,Y,M))).
+fof(rule_2, axiom, ! [X,Y,R1,R2,M,N] : ((ratio_age(X,Y,R1,R2) & common_multiple(X,Y,M) & product(R1,M,N)) => age(X,N))).
+fof(rule_3, axiom, ! [X,Y,R1,R2,M,N] : ((ratio_age(X,Y,R1,R2) & common_multiple(X,Y,M) & product(R2,M,N)) => age(Y,N))).
+fof(rule_4, axiom, ! [X,N,K,F] : ((age(X,N) & sum(N,K,F)) => future_age(X,K,F))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, common_multiple(darrell, allen, n_9)).
+% From fact_1, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, age(darrell, n_63)).
+% From fact_1, inf_1, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, age(allen, n_99)).
+% From inf_3, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, future_age(allen, n_10, n_109)).

@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+LaysEggs(x, n) — x's ducks lay n eggs per day
+Consumes(x, n) — x consumes n eggs (for breakfast or baking)
+Remaining(x, n) — x has n eggs remaining
+PricePerEgg(x, n) — x sells eggs at n dollars each
+Earnings(x, n) — x earns n dollars
+
+Constants:
+janet, 16, 3, 4, 2, 13, 9, 18
+
+## FACTS
+FACT-1: Janet's ducks lay 16 eggs per day :: LaysEggs(janet, 16)
+FACT-2: Janet eats 3 eggs for breakfast every morning :: Consumes(janet, 3)
+FACT-3: Janet uses 4 eggs for baking muffins :: Consumes(janet, 4)
+FACT-4: Janet sells the remaining eggs at $2 per egg :: PricePerEgg(janet, 2)
+
+## OPERATIONS
+OP-1: 16 minus 3 is 13 :: Difference(16, 3, 13)
+OP-2: 13 minus 4 is 9 :: Difference(13, 4, 9)
+OP-3: 9 times 2 is 18 :: Product(9, 2, 18)
+
+## RULES
+RULE-1: If x lays n eggs per day and consumes k of them, and n − k = r, then x has r eggs remaining :: ∀x∀n∀k∀r (LaysEggs(x,n) ∧ Consumes(x,k) ∧ Difference(n,k,r) → Remaining(x,r))
+RULE-2: If x has n eggs remaining and consumes k more, and n − k = r, then x has r eggs remaining :: ∀x∀n∀k∀r (Remaining(x,n) ∧ Consumes(x,k) ∧ Difference(n,k,r) → Remaining(x,r))
+RULE-3: If x has n eggs remaining and sells each at price p, and n × p = r, then x earns r dollars :: ∀x∀n∀p∀r (Remaining(x,n) ∧ PricePerEgg(x,p) ∧ Product(n,p,r) → Earnings(x,r))
+
+## INFERENCES
+INF-1: Janet has 13 eggs remaining after breakfast, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Remaining(janet, 13)
+INF-2: Janet has 9 eggs remaining after baking, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Remaining(janet, 9)
+INF-3: Janet earns $18, from INF-2, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Earnings(janet, 18)

@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Buys(x, n) — x buys n flowers
+PackageSize(p, n) — package p contains n flowers
+PackagePrice(p, n) — package p costs n dollars
+Cost(x, p, n) — x's total cost buying all flowers using package p is n dollars
+Saves(x, n) — x saves n dollars
+
+Constants:
+vincent, package3, package2, 18, 3, 2.50, 6, 2, 1, 9, 15
+
+## FACTS
+FACT-1: Vincent buys 18 flowers :: Buys(vincent, 18)
+FACT-2: Packages of 3 flowers :: PackageSize(package3, 3)
+FACT-3: Packages of 3 cost $2.50 each :: PackagePrice(package3, 2.50)
+FACT-4: Packages of 2 flowers :: PackageSize(package2, 2)
+FACT-5: Packages of 2 cost $1 each :: PackagePrice(package2, 1)
+
+## OPERATIONS
+OP-1: 18 divided by 3 is 6 :: Quotient(18, 3, 6)
+OP-2: 6 times 2.50 is 15 :: Product(6, 2.50, 15)
+OP-3: 18 divided by 2 is 9 :: Quotient(18, 2, 9)
+OP-4: 9 times 1 is 9 :: Product(9, 1, 9)
+OP-5: 15 minus 9 is 6 :: Difference(15, 9, 6)
+
+## RULES
+RULE-1: If x buys n flowers and package p holds s flowers at price pr, and n÷s=q and q×pr=c, then x's total cost using package p is c :: ∀x∀p∀n∀s∀pr∀q∀c (Buys(x,n) ∧ PackageSize(p,s) ∧ PackagePrice(p,pr) ∧ Quotient(n,s,q) ∧ Product(q,pr,c) → Cost(x,p,c))
+RULE-2: If x's cost using package p1 is c1 and using package p2 is c2, and c1−c2=s, then x saves s dollars by choosing p2 :: ∀x∀p1∀p2∀c1∀c2∀s (Cost(x,p1,c1) ∧ Cost(x,p2,c2) ∧ Difference(c1,c2,s) → Saves(x,s))
+
+## INFERENCES
+INF-1: Vincent's total cost using packages of 3 is $15, from FACT-1, FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(vincent, package3, 15)
+INF-2: Vincent's total cost using packages of 2 is $9, from FACT-1, FACT-4, FACT-5, OP-3, OP-4, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(vincent, package2, 9)
+INF-3: Vincent saves $6 by choosing packages of 2, from INF-1, INF-2, OP-5, and RULE-2 by Universal Instantiation and Modus Ponens :: Saves(vincent, 6)

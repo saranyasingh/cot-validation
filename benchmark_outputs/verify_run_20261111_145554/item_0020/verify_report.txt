@@ -1,0 +1,11 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: SUPPORTED
+FACT-4: UNSUPPORTED — Marissa walked 1 hour + 1 hour = 2 hours so far, not 3 hours; the problem does not state she has spent 3 hours hiking.
+FACT-5: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — subtracts elapsed time t from total distance d to get remaining distance, which mixes incompatible units (miles minus hours); remaining distance should be total distance minus distance already walked.
+RULE-4: PLAUSIBLE
+RULE-5: PLAUSIBLE

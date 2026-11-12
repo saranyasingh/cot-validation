@@ -1,0 +1,23 @@
+EXPLANATION
+
+To determine how many years Carlos needs to start earning money from his lemon tree, we need to calculate the net profit per year after accounting for the initial investment and ongoing expenses.
+
+1. **Initial Investment**: The cost to plant the lemon tree is $90.
+2. **Annual Revenue**: Each year, Carlos sells 7 lemons at $1.5 each, so the revenue per year is \(7 \times 1.5 = \$10.5\).
+3. **Annual Expenses**: Watering and feeding the tree costs $3 annually.
+4. **Net Profit per Year**: Subtract the annual expenses from the annual revenue to find the net profit. This is calculated as \(10.5 - 3 = \$7.5\) per year.
+
+Now, let's set up the equation to find out when the net profit equals or exceeds the initial investment. We want to find the number of years (let's call this \(n\)) required for the total net profit to equal or exceed $90.
+
+The total net profit after \(n\) years is given by the sum of the net profits over those years. Since the net profit per year is constant at $7.5, the total net profit after \(n\) years is \(7.5n\).
+
+We need this to be greater than or equal to the initial investment of $90:
+\[ 7.5n \geq 90 \]
+
+To solve for \(n\), divide both sides of the inequality by 7.5:
+\[ n \geq \frac{90}{7.5} \]
+\[ n \geq 12 \]
+
+Therefore, Carlos will start earning money on the lemon tree after 12 years.
+
+The answer is: 12

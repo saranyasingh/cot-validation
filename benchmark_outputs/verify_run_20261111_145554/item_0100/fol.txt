@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Receives(x, n) — x receives n new potted plants
+PerLedge(x, n) — x has n potted plants on each ledge
+NumLedges(x, n) — x has n window ledges
+GivesAwayPerLedge(x, n) — x gives away n potted plants per ledge
+Has(x, n) — x has n potted plants
+
+Constants:
+mary, 18, 2, 40, 1, 80
+
+## FACTS
+FACT-1: Mary receives 18 new potted plants :: Receives(mary, 18)
+FACT-2: Mary has 2 potted plants on each ledge :: PerLedge(mary, 2)
+FACT-3: Mary has 40 window ledges :: NumLedges(mary, 40)
+FACT-4: Mary gives away 1 potted plant per ledge :: GivesAwayPerLedge(mary, 1)
+
+## OPERATIONS
+OP-1: 2 times 40 is 80 :: Product(2, 40, 80)
+OP-2: 1 times 40 is 40 :: Product(1, 40, 40)
+OP-3: 80 minus 40 is 40 :: Difference(80, 40, 40)
+
+## RULES
+RULE-1: If x has n potted plants per ledge and m ledges, and n × m = p, then x currently has p potted plants :: ∀x∀n∀m∀p (PerLedge(x,n) ∧ NumLedges(x,m) ∧ Product(n,m,p) → Has(x,p))
+RULE-2: If x currently has c potted plants, gives away n per ledge over m ledges with n × m = g, and c − g = r, then x has r potted plants remaining :: ∀x∀c∀n∀m∀g∀r (Has(x,c) ∧ GivesAwayPerLedge(x,n) ∧ NumLedges(x,m) ∧ Product(n,m,g) ∧ Difference(c,g,r) → Has(x,r))
+
+## INFERENCES
+INF-1: Mary currently has 80 potted plants, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Has(mary, 80)
+INF-2: Mary has 40 potted plants remaining, from INF-1, FACT-4, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Has(mary, 40)

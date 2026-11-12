@@ -1,0 +1,22 @@
+% --- FACTS ---
+fof(fact_1, axiom, sold(tommy, brownies, n_43)).
+fof(fact_2, axiom, price(brownies, n_3)).
+fof(fact_3, axiom, sold(tommy, cheesecakes, n_23)).
+fof(fact_4, axiom, price(cheesecakes, n_4)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_43, n_3, n_129)).
+fof(op_2, axiom, product(n_23, n_4, n_92)).
+fof(op_3, axiom, sum(n_129, n_92, n_221)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,ITEM,N,P,R] : ((sold(X, ITEM, N) & price(ITEM, P) & product(N, P, R)) => revenue(ITEM, R))).
+fof(rule_2, axiom, ! [X,R1,R2,T] : ((revenue(brownies, R1) & revenue(cheesecakes, R2) & sum(R1, R2, T)) => total_raised(X, T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, revenue(brownies, n_129)).
+% From fact_3, fact_4, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, revenue(cheesecakes, n_92)).
+% From inf_1, inf_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_raised(tommy, n_221)).

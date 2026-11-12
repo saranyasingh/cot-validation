@@ -1,0 +1,25 @@
+To determine how many jewels Siobhan has, we need to follow the given information step by step.
+
+**Premise 1:** Siobhan has 2 fewer jewels than Aaron.
+Let \( S \) represent the number of jewels Siobhan has.
+
+**Premise 2:** Aaron has 5 more jewels than half of Raymond's jewels.
+Given that Raymond has 40 jewels, first find half of Raymond's jewels:
+\[
+\frac{1}{2} \times 40 = 20
+\]
+Then add 5 to this amount to get the total number of jewels Aaron has:
+\[
+20 + 5 = 25
+\]
+
+**Conclusion:** Since Aaron has 25 jewels, according to Premise 1, Siobhan must have 2 fewer jewels than Aaron.
+
+**Calculation:**
+\[
+S = 25 - 2 = 23
+\]
+
+Therefore, Siobhan has 23 jewels.
+
+The answer is: 23

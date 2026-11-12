@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Time(x, n) — x's original time (in seconds) to run the 400-meter hurdles is n
+FasterBy(x, y, n) — x is n seconds faster than y (based on original times)
+ImprovedBy(x, p) — x improved their speed by fraction p (p as a decimal)
+NewTime(x, n) — x's new time (in seconds) after the improvement is n
+
+Constants:
+lee, gerald, 2, 38, 40, 0.10, 1, 1.10, 36.36
+
+## FACTS
+FACT-1: Lee was originally 2 seconds faster than Gerald :: FasterBy(lee, gerald, 2)
+FACT-2: Gerald improved his speed by 10% due to a new diet :: ImprovedBy(gerald, 0.10)
+FACT-3: Lee runs the 400-meter hurdles in 38 seconds :: Time(lee, 38)
+
+## OPERATIONS
+OP-1: 38 + 2 = 40 :: Sum(38, 2, 40)
+OP-2: 1 + 0.10 = 1.10 :: Sum(1, 0.10, 1.10)
+OP-3: 40 ÷ 1.10 ≈ 36.36 :: Quotient(40, 1.10, 36.36)
+
+## RULES
+RULE-1: If x is n seconds faster than y, and x's time is l, and l + n = g, then y's time is g :: ∀x∀y∀n∀l∀g (FasterBy(x,y,n) ∧ Time(x,l) ∧ Sum(l,n,g) → Time(y,g))
+RULE-2: If x's original time is g, x improved speed by fraction p, 1 + p = q, and g ÷ q = g2, then x's new time is g2 :: ∀x∀g∀p∀q∀g2 (Time(x,g) ∧ ImprovedBy(x,p) ∧ Sum(1,p,q) ∧ Quotient(g,q,g2) → NewTime(x,g2))
+
+## INFERENCES
+INF-1: Gerald's original time is 40 seconds, from FACT-1, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Time(gerald, 40)
+INF-2: Gerald's new time after the 10% improvement is approximately 36.36 seconds, from INF-1, FACT-2, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: NewTime(gerald, 36.36)

@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+BoughtFor(x, n) — x bought the house for n dollars
+SpentRepairs(x, n) — x spent n dollars on repairs
+TotalInvestment(x, n) — x's total initial investment is n dollars
+FinalValue(x, n) — the final value of x's house is n dollars
+Profit(x, n) — x's profit is n dollars
+
+Constants:
+josh, 80000, 50000, 1.5, 130000, 195000, 65000
+
+## FACTS
+FACT-1: Josh buys the house for $80,000 :: BoughtFor(josh, 80000)
+FACT-2: Josh spends $50,000 on repairs :: SpentRepairs(josh, 50000)
+
+## OPERATIONS
+OP-1: $80,000 + $50,000 = $130,000 :: Sum(80000, 50000, 130000)
+OP-2: $130,000 × 1.5 = $195,000 :: Product(130000, 1.5, 195000)
+OP-3: $195,000 − $130,000 = $65,000 :: Difference(195000, 130000, 65000)
+
+## RULES
+RULE-1: If x bought the house for n and spent m on repairs, and n + m = p, then x's total initial investment is p :: ∀x∀n∀m∀p (BoughtFor(x,n) ∧ SpentRepairs(x,m) ∧ Sum(n,m,p) → TotalInvestment(x,p))
+RULE-2: If x's total initial investment is t, and t × 1.5 = f, then the final value of x's house is f :: ∀x∀t∀f (TotalInvestment(x,t) ∧ Product(t,1.5,f) → FinalValue(x,f))
+RULE-3: If the final value of x's house is f, x's total initial investment is t, and f − t = r, then x's profit is r :: ∀x∀f∀t∀r (FinalValue(x,f) ∧ TotalInvestment(x,t) ∧ Difference(f,t,r) → Profit(x,r))
+
+## INFERENCES
+INF-1: Josh's total initial investment is $130,000, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalInvestment(josh, 130000)
+INF-2: The final value of Josh's house is $195,000, from INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: FinalValue(josh, 195000)
+INF-3: Josh's profit is $65,000, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Profit(josh, 65000)

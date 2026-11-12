@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, runs_miles_per_week(john, n_60)).
+fof(fact_2, axiom, runs_days_per_week(john, n_3)).
+fof(fact_3, axiom, runs_hours_on_day(john, day1, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_5, n_3, n_1_5)).
+fof(op_2, axiom, sum(n_3, n_1_5, n_1_5, n_6)).
+fof(op_3, axiom, quotient(n_60, n_6, n_10)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,T] : ((runs_hours_on_day(X, day1, N) & product(n_0_5, N, T)) => runs_hours_on_day(X, day2, T))).
+fof(rule_2, axiom, ! [X,N,T] : ((runs_hours_on_day(X, day1, N) & product(n_0_5, N, T)) => runs_hours_on_day(X, day3, T))).
+fof(rule_3, axiom, ! [X,T1,T2,T3,S] : ((runs_hours_on_day(X, day1, T1) & runs_hours_on_day(X, day2, T2) & runs_hours_on_day(X, day3, T3) & sum(T1, T2, T3, S)) => total_time(X, S))).
+fof(rule_4, axiom, ! [X,M,T,S] : ((runs_miles_per_week(X, M) & total_time(X, T) & quotient(M, T, S)) => speed(X, S))).
+
+% --- INFERENCES ---
+% From fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, runs_hours_on_day(john, day2, n_1_5)).
+% From fact_3, op_1, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, runs_hours_on_day(john, day3, n_1_5)).
+% From fact_3, inf_1, inf_2, op_2, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_time(john, n_6)).
+% From fact_1, inf_3, op_3, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, speed(john, n_10)).

@@ -1,0 +1,192 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "John owns 13 Lego sets",
+      "formula": "Count(john, legos, 13)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each Lego set sells for $15",
+      "formula": "PriceOf(john, legos, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "John buys 8 video games",
+      "formula": "Count(john, games, 8)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Each video game costs $20",
+      "formula": "PriceOf(john, games, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "13 \u00d7 15 = 195 (total earnings from selling Legos)",
+      "formula": "Product(13, 15, 195)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "8 \u00d7 20 = 160 (total cost of video games)",
+      "formula": "Product(8, 20, 160)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "195 \u2212 160 = 35 (money left over)",
+      "formula": "Difference(195, 160, 35)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "13 \u2212 8 = 5 (remaining Lego sets)",
+      "formula": "Difference(13, 8, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x owns n units of legos priced at m dollars each and n\u00d7m=p, then x has earned p dollars",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Count(x, legos, n) \u2227 PriceOf(x, legos, m) \u2227 Product(n, m, p) \u2192 Money(x, earned, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x buys n video games priced at m dollars each and n\u00d7m=p, then x has spent p dollars on cost",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (Count(x, games, n) \u2227 PriceOf(x, games, m) \u2227 Product(n, m, p) \u2192 Money(x, cost, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x earned n dollars and spent k dollars on cost, and n\u2212k=r, then x has r dollars leftover",
+      "formula": "\u2200x\u2200n\u2200k\u2200r (Money(x, earned, n) \u2227 Money(x, cost, k) \u2227 Difference(n, k, r) \u2192 Money(x, leftover, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The number of additional Legos x could have sold equals the number of video games x bought",
+      "formula": "\u2200x\u2200n (Count(x, games, n) \u2192 Count(x, additional_legos, n))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "There is no basis for equating the number of Lego sets sold with the number of video games bought; the actual number sold must be derived from the money spent and left over (total spent + leftover = revenue from sales), not from the count of video games purchased.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x owns n Lego sets and could have sold m additional Lego sets, and n\u2212m=r, then x is left owning r Lego sets",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Count(x, legos, n) \u2227 Count(x, additional_legos, m) \u2227 Difference(n, m, r) \u2192 Count(x, legos, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "John earned $195 from selling Legos, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Money(john, earned, 195)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "John spent $160 on video games, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Money(john, cost, 160)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "John has $35 left over, from INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Money(john, leftover, 35)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "John could have sold 8 additional Lego sets, from FACT-3 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(john, additional_legos, 8)",
+      "premises": [
+        "FACT-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "John is left owning 5 Lego sets, from FACT-1, INF-4, OP-4, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(john, legos, 5)",
+      "premises": [
+        "FACT-1",
+        "INF-4",
+        "OP-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "There is no basis for equating the number of Lego sets sold with the number of video games bought; the actual number sold must be derived from the money spent and left over (total spent + leftover = revenue from sales), not from the count of video games purchased."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

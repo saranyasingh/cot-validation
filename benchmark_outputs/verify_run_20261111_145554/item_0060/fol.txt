@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Clusters(x, n) — x has n clusters of raspberries
+PerCluster(x, n) — each of x's clusters contains n fruits
+Individual(x, n) — x has n individual fruits scattered on it
+Total(x, n) — x has a total of n raspberries
+
+Constants:
+bush, 6, 20, 67, 120, 187
+
+## FACTS
+FACT-1: There are 6 clusters :: Clusters(bush, 6)
+FACT-2: Each cluster contains 20 fruits :: PerCluster(bush, 20)
+FACT-3: There are 67 individual fruits :: Individual(bush, 67)
+
+## OPERATIONS
+OP-1: 6 times 20 is 120 :: Product(6, 20, 120)
+OP-2: 120 plus 67 is 187 :: Sum(120, 67, 187)
+
+## RULES
+RULE-1: If x has n clusters with m fruits each and n × m = p, then x has p fruits from clusters :: ∀x∀n∀m∀p (Clusters(x,n) ∧ PerCluster(x,m) ∧ Product(n,m,p) → Total(x,p))
+RULE-2: If x has p fruits from clusters and k individual fruits and p + k = r, then x has a total of r raspberries :: ∀x∀p∀k∀r (Total(x,p) ∧ Individual(x,k) ∧ Sum(p,k,r) → Total(x,r))
+
+## INFERENCES
+INF-1: The bush has 120 fruits from clusters, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Total(bush, 120)
+INF-2: The bush has a total of 187 raspberries, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Total(bush, 187)

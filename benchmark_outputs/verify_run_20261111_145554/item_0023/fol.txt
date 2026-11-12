@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Customers(x, n) — x has n customers on a given day
+GroupSize(x, g, n) — x's group g consists of n customers
+BuysPerCustomer(x, g, k) — each customer in group g of x buys k DVDs
+GroupDVDs(x, g, n) — group g of x contributes n DVDs in total
+TotalSold(x, n) — x sold n DVDs in total
+
+Constants:
+billy, 8, 3, 2, 1, 4, 0, 7, first_group, second_group, third_group
+
+## FACTS
+FACT-1: Billy has 8 customers on Tuesday :: Customers(billy, 8)
+FACT-2: Billy's first group consists of 3 customers :: GroupSize(billy, first_group, 3)
+FACT-3: Each customer in the first group buys 1 DVD :: BuysPerCustomer(billy, first_group, 1)
+FACT-4: Billy's second group consists of 2 customers :: GroupSize(billy, second_group, 2)
+FACT-5: Each customer in the second group buys 2 DVDs :: BuysPerCustomer(billy, second_group, 2)
+FACT-6: Billy's third group consists of 3 customers :: GroupSize(billy, third_group, 3)
+FACT-7: Each customer in the third group buys 0 DVDs :: BuysPerCustomer(billy, third_group, 0)
+
+## OPERATIONS
+OP-1: 3 times 1 is 3 :: Product(3, 1, 3)
+OP-2: 2 times 2 is 4 :: Product(2, 2, 4)
+OP-3: 3 times 0 is 0 :: Product(3, 0, 0)
+OP-4: 3 plus 4 plus 0 is 7 :: Sum(3, 4, 0, 7)
+
+## RULES
+RULE-1: If x's group g has n customers each buying k DVDs and n × k = p, then group g contributes p DVDs :: ∀x∀g∀n∀k∀p (GroupSize(x,g,n) ∧ BuysPerCustomer(x,g,k) ∧ Product(n,k,p) → GroupDVDs(x,g,p))
+RULE-2: If x's three groups contribute n1, n2, n3 DVDs respectively and n1 + n2 + n3 = s, then x sold s DVDs in total :: ∀x∀g1∀g2∀g3∀n1∀n2∀n3∀s (GroupDVDs(x,g1,n1) ∧ GroupDVDs(x,g2,n2) ∧ GroupDVDs(x,g3,n3) ∧ Sum(n1,n2,n3,s) → TotalSold(x,s))
+
+## INFERENCES
+INF-1: The first group contributes 3 DVDs, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupDVDs(billy, first_group, 3)
+INF-2: The second group contributes 4 DVDs, from FACT-4, FACT-5, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupDVDs(billy, second_group, 4)
+INF-3: The third group contributes 0 DVDs, from FACT-6, FACT-7, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: GroupDVDs(billy, third_group, 0)
+INF-4: Billy sold 7 DVDs in total, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalSold(billy, 7)

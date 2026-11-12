@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Count(x, c, n) — the number of people in category c within x is n
+FractionOf(x, c1, c2, a, b) — a/b of category c1 within x are category c2
+
+Constants:
+grade5, total, boys, girls, girl_scouts, non_scouts, 200, 2, 5, 3, 80, 120, 240, 400, 40
+
+## FACTS
+FACT-1: The total number of Grade 5 students is 200 :: Count(grade5, total, 200)
+FACT-2: 2/5 of the Grade 5 students are boys :: FractionOf(grade5, total, boys, 2, 5)
+FACT-3: 2/3 of the girls are in the Girl Scout organization :: FractionOf(grade5, girls, girl_scouts, 2, 3)
+
+## OPERATIONS
+OP-1: 2 times 200 is 400 :: Product(2, 200, 400)
+OP-2: 400 divided by 5 is 80 :: Quotient(400, 5, 80)
+OP-3: 200 minus 80 is 120 :: Difference(200, 80, 120)
+OP-4: 2 times 120 is 240 :: Product(2, 120, 240)
+OP-5: 240 divided by 3 is 80 :: Quotient(240, 3, 80)
+OP-6: 120 minus 80 is 40 :: Difference(120, 80, 40)
+
+## RULES
+RULE-1: If the count of category c1 within x is n, a/b of c1 are c2, a×n = p, and p÷b = q, then the count of c2 within x is q :: ∀x∀c1∀c2∀a∀b∀n∀p∀q (Count(x,c1,n) ∧ FractionOf(x,c1,c2,a,b) ∧ Product(a,n,p) ∧ Quotient(p,b,q) → Count(x,c2,q))
+RULE-2: If the total count within x is n, the count of boys within x is m, and n−m = r, then the count of girls within x is r :: ∀x∀n∀m∀r (Count(x,total,n) ∧ Count(x,boys,m) ∧ Difference(n,m,r) → Count(x,girls,r))
+RULE-3: If the count of girls within x is n, the count of girl scouts within x is m, and n−m = r, then the count of non-scouts within x is r :: ∀x∀n∀m∀r (Count(x,girls,n) ∧ Count(x,girl_scouts,m) ∧ Difference(n,m,r) → Count(x,non_scouts,r))
+
+## INFERENCES
+INF-1: The number of boys in Grade 5 is 80, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Count(grade5, boys, 80)
+INF-2: The number of girls in Grade 5 is 120, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Count(grade5, girls, 120)
+INF-3: The number of girls in the Girl Scout organization is 80, from INF-2, FACT-3, OP-4, OP-5, and RULE-1 by Universal Instantiation and Modus Ponens :: Count(grade5, girl_scouts, 80)
+INF-4: The number of girls not in the Girl Scout organization is 40, from INF-2, INF-3, OP-6, and RULE-3 by Universal Instantiation and Modus Ponens :: Count(grade5, non_scouts, 40)

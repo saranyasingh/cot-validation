@@ -1,0 +1,101 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Henry's total trip distance is 60 miles",
+      "formula": "TotalDistance(henry, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Henry's first stop occurs at 20 miles into his journey",
+      "formula": "FirstStopLocation(henry, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Henry's second stop is 15 miles before the end of the trip",
+      "formula": "SecondStopBeforeEnd(henry, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "60 minus 20 is 40",
+      "formula": "Difference(60, 20, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 plus 15 is 55",
+      "formula": "Sum(40, 15, 55)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's total trip distance is t and x's first stop is at f miles, and t \u2212 f = r, then the remaining distance after the first stop is r",
+      "formula": "\u2200x\u2200t\u2200f\u2200r (TotalDistance(x,t) \u2227 FirstStopLocation(x,f) \u2227 Difference(t,f,r) \u2192 RemainingDistance(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the remaining distance after x's first stop is r and x's second stop is s miles before the end of the trip, and r + s = d, then the distance x traveled between the first and second stops is d",
+      "formula": "\u2200x\u2200r\u2200s\u2200d (RemainingDistance(x,r) \u2227 SecondStopBeforeEnd(x,s) \u2227 Sum(r,s,d) \u2192 DistanceBetweenStops(x,d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "distance between stops should be remaining distance minus the distance before the end (r \u2212 s), not r + s; the problem requires subtracting the 15 miles before the end from the remaining 40 miles to get 25, not adding.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The remaining distance after Henry's first stop is 40 miles, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "RemainingDistance(henry, 40)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The distance Henry traveled between his first and second stops is 55 miles, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "DistanceBetweenStops(henry, 55)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "distance between stops should be remaining distance minus the distance before the end (r \u2212 s), not r + s; the problem requires subtracting the 15 miles before the end from the remaining 40 miles to get 25, not adding."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

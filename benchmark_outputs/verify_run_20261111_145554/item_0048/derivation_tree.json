@@ -1,0 +1,226 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The price of a blue tie is $40",
+      "formula": "Price(blue_tie, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "John spends $200 on blue ties",
+      "formula": "Spent(john, blue_tie, 200)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Red ties cost 50% more than blue ties",
+      "formula": "PercentMore(red_tie, blue_tie, 0.5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "John buys twice as many red ties as blue ties",
+      "formula": "DoubleCount(john, red_tie, blue_tie)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "0.5 \u00d7 40 = 20",
+      "formula": "Product(0.5, 40, 20)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "40 + 20 = 60",
+      "formula": "Sum(40, 20, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "200 \u00f7 40 = 5",
+      "formula": "Quotient(200, 40, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "2 \u00d7 5 = 10",
+      "formula": "Product(2, 5, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "5 \u00d7 40 = 200",
+      "formula": "Product(5, 40, 200)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "10 \u00d7 60 = 600",
+      "formula": "Product(10, 60, 600)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "200 + 600 = 800",
+      "formula": "Sum(200, 600, 800)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x costs pct more than y, y's price is n, pct\u00d7n = m, and n+m = p, then x's price is p",
+      "formula": "\u2200x\u2200y\u2200pct\u2200n\u2200m\u2200p (PercentMore(x,y,pct) \u2227 Price(y,n) \u2227 Product(pct,n,m) \u2227 Sum(n,m,p) \u2192 Price(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If p spent n dollars on x, x's price is \"price\", and n \u00f7 price = count, then p bought count units of x",
+      "formula": "\u2200p\u2200x\u2200n\u2200price\u2200count (Spent(p,x,n) \u2227 Price(x,price) \u2227 Quotient(n,price,count) \u2192 Bought(p,x,count))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If p buys twice as many x as y, p bought n of y, and 2\u00d7n = m, then p bought m of x",
+      "formula": "\u2200p\u2200x\u2200y\u2200n\u2200m (DoubleCount(p,x,y) \u2227 Bought(p,y,n) \u2227 Product(2,n,m) \u2192 Bought(p,x,m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If p bought n units of x, x's price is \"price\", and n\u00d7price = total, then p spent total on x",
+      "formula": "\u2200p\u2200x\u2200n\u2200price\u2200total (Bought(p,x,n) \u2227 Price(x,price) \u2227 Product(n,price,total) \u2192 Spent(p,x,total))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If p spent n on x and m on y, and n+m = t, then p spent t on all ties",
+      "formula": "\u2200p\u2200x\u2200y\u2200n\u2200m\u2200t (Spent(p,x,n) \u2227 Spent(p,y,m) \u2227 Sum(n,m,t) \u2192 Spent(p,all_ties,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The price of a red tie is $60, from FACT-3, FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Price(red_tie, 60)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "John bought 5 blue ties, from FACT-2, FACT-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Bought(john, blue_tie, 5)",
+      "premises": [
+        "FACT-2",
+        "FACT-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "John bought 10 red ties, from FACT-4, INF-2, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Bought(john, red_tie, 10)",
+      "premises": [
+        "FACT-4",
+        "INF-2",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "John spent $200 on blue ties, from INF-2, FACT-1, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Spent(john, blue_tie, 200)",
+      "premises": [
+        "INF-2",
+        "FACT-1",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "John spent $600 on red ties, from INF-3, INF-1, OP-6, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Spent(john, red_tie, 600)",
+      "premises": [
+        "INF-3",
+        "INF-1",
+        "OP-6",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "John spent $800 in total on ties, from INF-4, INF-5, OP-7, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Spent(john, all_ties, 800)",
+      "premises": [
+        "INF-4",
+        "INF-5",
+        "OP-7",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [],
+  "error_stages": []
+}

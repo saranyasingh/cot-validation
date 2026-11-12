@@ -1,0 +1,164 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shorts",
+      "formula": "Bought(mishka, shorts, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "One pair of shorts costs $16.50",
+      "formula": "PricePerUnit(shorts, 16.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of pants",
+      "formula": "Bought(mishka, pants, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "One pair of pants costs $22.50",
+      "formula": "PricePerUnit(pants, 22.50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Mishka bought 3 pairs of shoes",
+      "formula": "Bought(mishka, shoes, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "One pair of shoes costs $42",
+      "formula": "PricePerUnit(shoes, 42)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "3 times 16.50 is 49.50",
+      "formula": "Product(3, 16.50, 49.50)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3 times 22.50 is 67.50",
+      "formula": "Product(3, 22.50, 67.50)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "3 times 42 is 126",
+      "formula": "Product(3, 42, 126)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "49.50 plus 67.50 plus 126 is 243",
+      "formula": "Sum(49.50, 67.50, 126, 243)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x bought n units of item i at price p per unit and n \u00d7 p = c, then x's total cost for item i is c",
+      "formula": "\u2200x\u2200i\u2200n\u2200p\u2200c (Bought(x,i,n) \u2227 PricePerUnit(i,p) \u2227 Product(n,p,c) \u2192 TotalCost(x,i,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's total costs for three items sum to s, then x's total spending is s",
+      "formula": "\u2200x\u2200i1\u2200i2\u2200i3\u2200c1\u2200c2\u2200c3\u2200s (TotalCost(x,i1,c1) \u2227 TotalCost(x,i2,c2) \u2227 TotalCost(x,i3,c3) \u2227 Sum(c1,c2,c3,s) \u2192 TotalSpent(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Mishka's total cost for shorts is $49.50, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(mishka, shorts, 49.50)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Mishka's total cost for pants is $67.50, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(mishka, pants, 67.50)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Mishka's total cost for shoes is $126, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(mishka, shoes, 126)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Mishka spent a total of $243, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalSpent(mishka, 243)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

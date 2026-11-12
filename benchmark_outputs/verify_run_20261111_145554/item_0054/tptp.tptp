@@ -1,0 +1,37 @@
+% --- FACTS ---
+fof(fact_1, axiom, repaired(thursday, truck, n_6)).
+fof(fact_2, axiom, charge_per_tire(truck, n_60)).
+fof(fact_3, axiom, repaired(thursday, car, n_4)).
+fof(fact_4, axiom, charge_per_tire(car, n_40)).
+fof(fact_5, axiom, repaired(friday, car, n_12)).
+fof(fact_6, axiom, repaired(friday, truck, n_0)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_6, n_60, n_360)).
+fof(op_2, axiom, product(n_4, n_40, n_160)).
+fof(op_3, axiom, sum(n_360, n_160, n_520)).
+fof(op_4, axiom, product(n_12, n_40, n_480)).
+fof(op_5, axiom, product(n_0, n_60, n_0)).
+fof(op_6, axiom, sum(n_480, n_0, n_480)).
+fof(op_7, axiom, difference(n_520, n_480, n_40)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,T,N,C,R] : ((repaired(D,T,N) & charge_per_tire(T,C) & product(N,C,R)) => revenue(D,T,R))).
+fof(rule_2, axiom, ! [D,R1,R2,R] : ((revenue(D,truck,R1) & revenue(D,car,R2) & sum(R1,R2,R)) => total_revenue(D,R))).
+fof(rule_3, axiom, ! [D1,D2,R1,R2,R] : ((total_revenue(D1,R1) & total_revenue(D2,R2) & difference(R1,R2,R)) => revenue_difference(D1,D2,R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, revenue(thursday, truck, n_360)).
+% From fact_3, fact_4, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, revenue(thursday, car, n_160)).
+% From inf_1, inf_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_revenue(thursday, n_520)).
+% From fact_5, fact_4, op_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, revenue(friday, car, n_480)).
+% From fact_6, fact_2, op_5, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, revenue(friday, truck, n_0)).
+% From inf_4, inf_5, op_6, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, total_revenue(friday, n_480)).
+% From inf_3, inf_6, op_7, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_7, axiom, revenue_difference(thursday, friday, n_40)).

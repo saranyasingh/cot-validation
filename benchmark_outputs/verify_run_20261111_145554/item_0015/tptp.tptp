@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, total(school, n_20)).
+fof(fact_2, axiom, fraction_enrolled(school, contemporary, n_0_20)).
+fof(fact_3, axiom, fraction_enrolled(school, jazz, n_0_25)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_20, n_20, n_4)).
+fof(op_2, axiom, difference(n_20, n_4, n_16)).
+fof(op_3, axiom, product(n_0_25, n_16, n_4)).
+fof(op_4, axiom, difference(n_16, n_4, n_12)).
+fof(op_5, axiom, quotient(n_12, n_20, n_0_6)).
+fof(op_6, axiom, product(n_0_6, n_100, n_60)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,S,N,F,M] : ((total(X, N) & fraction_enrolled(X, S, F) & product(F, N, M)) => count(X, S, M))).
+fof(rule_2, axiom, ! [X,N,M,R] : ((total(X, N) & count(X, contemporary, M) & difference(N, M, R)) => remaining(X, R))).
+fof(rule_3, axiom, ! [X,S,N,F,M] : ((remaining(X, N) & fraction_enrolled(X, S, F) & product(F, N, M)) => count(X, S, M))).
+fof(rule_4, axiom, ! [X,N,M,R] : ((remaining(X, N) & count(X, jazz, M) & difference(N, M, R)) => count(X, hiphop, R))).
+fof(rule_5, axiom, ! [X,S,N,T,Q,P] : ((count(X, S, N) & total(X, T) & quotient(N, T, Q) & product(Q, n_100, P)) => percent_of(X, S, P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, count(school, contemporary, n_4)).
+% From fact_1, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, remaining(school, n_16)).
+% From inf_2, fact_3, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, count(school, jazz, n_4)).
+% From inf_2, inf_3, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, count(school, hiphop, n_12)).
+% From inf_4, fact_1, op_5, op_6, rule_5 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, percent_of(school, hiphop, n_60)).

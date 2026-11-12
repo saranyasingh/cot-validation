@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Wrote(x, d, n) — x wrote n articles on day d
+TimePerArticle(x, n) — x spends n hours researching and writing each article
+TotalArticles(x, n) — x wrote a total of n articles over the three days
+TotalTime(x, n) — x spent a total of n hours writing articles over the three days
+
+Constants:
+meredith, monday, tuesday, wednesday, 5, 4, 0.4, 2, 7, 14, 26, 104
+
+## FACTS
+FACT-1: Meredith wrote 5 articles on Monday :: Wrote(meredith, monday, 5)
+FACT-2: Meredith spends an average of 4 hours researching and writing each article :: TimePerArticle(meredith, 4)
+
+## OPERATIONS
+OP-1: 2/5 of 5 is 2 :: Product(0.4, 5, 2)
+OP-2: 5 plus 2 is 7 :: Sum(5, 2, 7)
+OP-3: 2 times 7 is 14 :: Product(2, 7, 14)
+OP-4: 5 plus 7 plus 14 is 26 :: Sum(5, 7, 14, 26)
+OP-5: 26 times 4 is 104 :: Product(26, 4, 104)
+
+## RULES
+RULE-1: If x wrote m articles on Monday, and 2/5 of m is f, and m plus f is t, then x wrote t articles on Tuesday :: ∀x∀m∀f∀t (Wrote(x, monday, m) ∧ Product(0.4, m, f) ∧ Sum(m, f, t) → Wrote(x, tuesday, t))
+RULE-2: If x wrote t articles on Tuesday, and twice t is w, then x wrote w articles on Wednesday :: ∀x∀t∀w (Wrote(x, tuesday, t) ∧ Product(2, t, w) → Wrote(x, wednesday, w))
+RULE-3: If x wrote m articles on Monday, t articles on Tuesday, w articles on Wednesday, and m plus t plus w is s, then x wrote a total of s articles :: ∀x∀m∀t∀w∀s (Wrote(x, monday, m) ∧ Wrote(x, tuesday, t) ∧ Wrote(x, wednesday, w) ∧ Sum(m, t, w, s) → TotalArticles(x, s))
+RULE-4: If x wrote a total of s articles, spends p hours per article, and s times p is h, then x spent a total of h hours writing :: ∀x∀s∀p∀h (TotalArticles(x, s) ∧ TimePerArticle(x, p) ∧ Product(s, p, h) → TotalTime(x, h))
+
+## INFERENCES
+INF-1: Meredith wrote 7 articles on Tuesday, from FACT-1, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Wrote(meredith, tuesday, 7)
+INF-2: Meredith wrote 14 articles on Wednesday, from INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Wrote(meredith, wednesday, 14)
+INF-3: Meredith wrote a total of 26 articles, from FACT-1, INF-1, INF-2, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalArticles(meredith, 26)
+INF-4: Meredith spent a total of 104 hours writing articles, from INF-3, FACT-2, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: TotalTime(meredith, 104)

@@ -1,0 +1,318 @@
+{
+  "question": "A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?",
+  "cot": "EXPLANATION\n1. A robe requires 2 bolts of blue fiber.\n2. The amount of white fiber required is half the amount of blue fiber.\n3. Therefore, the amount of white fiber required is 2 / 2 = 1 bolt.\n4. To find the total amount of fiber required, we add the bolts of blue fiber to the bolts of white fiber.\n5. Thus, the total amount of fiber required is 2 (blue) + 1 (white) = 3 bolts.\n\nThe answer is: 3",
+  "sorts": {
+    "garment": {
+      "description": "a piece of clothing to be made"
+    },
+    "fiber": {
+      "description": "a type of fiber"
+    }
+  },
+  "entities": {
+    "robe": {
+      "sort": "garment",
+      "name": "robe"
+    },
+    "blue": {
+      "sort": "fiber",
+      "name": "blue fiber"
+    },
+    "white": {
+      "sort": "fiber",
+      "name": "white fiber"
+    }
+  },
+  "relations": {
+    "fiber_required": {
+      "slots": [
+        [
+          "item",
+          "garment"
+        ],
+        [
+          "kind",
+          "fiber"
+        ],
+        [
+          "bolts",
+          "num"
+        ]
+      ],
+      "sentence": "{item} requires {bolts} bolts of {kind}"
+    },
+    "half_amount_of": {
+      "slots": [
+        [
+          "item",
+          "garment"
+        ],
+        [
+          "part",
+          "fiber"
+        ],
+        [
+          "base",
+          "fiber"
+        ]
+      ],
+      "sentence": "for {item}, the amount of {part} required is half the amount of {base}"
+    },
+    "total_fiber_required": {
+      "slots": [
+        [
+          "item",
+          "garment"
+        ],
+        [
+          "bolts",
+          "num"
+        ]
+      ],
+      "sentence": "{item} requires {bolts} bolts of fiber in total"
+    }
+  },
+  "statements": {
+    "C1": {
+      "shape": "fact",
+      "text": "A robe requires 2 bolts of blue fiber.",
+      "cot_quote": "A robe requires 2 bolts of blue fiber.",
+      "content": {
+        "relation": "fiber_required",
+        "args": [
+          "robe",
+          "blue",
+          2
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C1",
+      "question_quote": "A robe takes 2 bolts of blue fiber",
+      "label": "assumption",
+      "english": "Robe requires 2 bolts of blue fiber."
+    },
+    "C2": {
+      "shape": "fact",
+      "text": "The amount of white fiber required is half the amount of blue fiber.",
+      "cot_quote": "The amount of white fiber required is half the amount of blue fiber.",
+      "content": {
+        "relation": "half_amount_of",
+        "args": [
+          "robe",
+          "white",
+          "blue"
+        ],
+        "negated": false
+      },
+      "kind": "from_problem",
+      "stated_in_cot": true,
+      "id": "C2",
+      "question_quote": "half that much white fiber",
+      "label": "assumption",
+      "english": "For robe, the amount of white fiber required is half the amount of blue fiber."
+    },
+    "C3": {
+      "shape": "fact",
+      "text": "The amount of white fiber required is 1 bolt.",
+      "cot_quote": "the amount of white fiber required is 2 / 2 = 1 bolt",
+      "content": {
+        "relation": "fiber_required",
+        "args": [
+          "robe",
+          "white",
+          1
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C3",
+      "label": "derived",
+      "english": "Robe requires 1 bolts of white fiber."
+    },
+    "C4": {
+      "shape": "rule",
+      "text": "To find the total amount of fiber required, we add the bolts of blue fiber to the bolts of white fiber.",
+      "cot_quote": "To find the total amount of fiber required, we add the bolts of blue fiber to the bolts of white fiber.",
+      "content": {
+        "vars": {
+          "r": "garment",
+          "a": "num",
+          "b": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "fiber_required",
+            "args": [
+              "r",
+              "blue",
+              "a"
+            ]
+          },
+          {
+            "relation": "fiber_required",
+            "args": [
+              "r",
+              "white",
+              "b"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "sum",
+            "args": [
+              "a",
+              "b"
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "total_fiber_required",
+            "args": [
+              "r",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "kind": "stipulative",
+      "stated_in_cot": true,
+      "id": "C4",
+      "question_quote": null,
+      "label": "assumption",
+      "english": "For any garment r, any numbers a, b, c: if r requires a bolts of blue fiber and r requires b bolts of white fiber and c = a + b, then r requires c bolts of fiber in total."
+    },
+    "C5": {
+      "shape": "fact",
+      "text": "The total amount of fiber required is 3 bolts.",
+      "cot_quote": "the total amount of fiber required is 2 (blue) + 1 (white) = 3 bolts",
+      "content": {
+        "relation": "total_fiber_required",
+        "args": [
+          "robe",
+          3
+        ],
+        "negated": false
+      },
+      "kind": null,
+      "stated_in_cot": true,
+      "id": "C5",
+      "label": "derived",
+      "english": "Robe requires 3 bolts of fiber in total."
+    },
+    "I1": {
+      "shape": "rule",
+      "text": "Half of a quantity equals that quantity divided by 2.",
+      "kind": "math_principle",
+      "stated_in_cot": false,
+      "cot_quote": null,
+      "content": {
+        "vars": {
+          "r": "garment",
+          "f1": "fiber",
+          "f2": "fiber",
+          "a": "num",
+          "c": "num"
+        },
+        "if": [
+          {
+            "relation": "fiber_required",
+            "args": [
+              "r",
+              "f1",
+              "a"
+            ]
+          },
+          {
+            "relation": "half_amount_of",
+            "args": [
+              "r",
+              "f2",
+              "f1"
+            ]
+          }
+        ],
+        "calc": [
+          {
+            "op": "quotient",
+            "args": [
+              "a",
+              2
+            ],
+            "result": "c"
+          }
+        ],
+        "then": [
+          {
+            "relation": "fiber_required",
+            "args": [
+              "r",
+              "f2",
+              "c"
+            ]
+          }
+        ],
+        "form": "implies"
+      },
+      "id": "I1",
+      "label": "assumption",
+      "english": "For any garment r, any fibers f1, f2, any numbers a, c: if r requires a bolts of f1 and for r, the amount of f2 required is half the amount of f1 and c = a \u00f7 2, then r requires c bolts of f2."
+    }
+  },
+  "steps": {
+    "S1": {
+      "move": "apply",
+      "text": "White fiber is half of blue fiber, so white fiber is 2 / 2 = 1 bolt.",
+      "premises": [
+        "C1",
+        "C2"
+      ],
+      "warrant": "I1",
+      "conclusion": "C3",
+      "stated_computation": "2 / 2 = 1",
+      "cot_quote": "Therefore, the amount of white fiber required is 2 / 2 = 1 bolt.",
+      "id": "S1",
+      "english": "Because robe requires 2 bolts of blue fiber; and for robe, the amount of white fiber required is half the amount of blue fiber; and since for any garment r, any fibers f1, f2, any numbers a, c: if r requires a bolts of f1 and for r, the amount of f2 required is half the amount of f1 and c = a \u00f7 2, then r requires c bolts of f2: robe requires 1 bolts of white fiber (2 / 2 = 1).",
+      "status": "matched",
+      "status_detail": "",
+      "binding": {
+        "r": "robe",
+        "f1": "blue",
+        "a": "2",
+        "f2": "white",
+        "c": "1"
+      },
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    },
+    "S2": {
+      "move": "aggregate",
+      "text": "Add blue and white bolts to get total fiber of 3 bolts.",
+      "premises": [
+        "C1",
+        "C3"
+      ],
+      "warrant": "C4",
+      "conclusion": "C5",
+      "stated_computation": "2 + 1 = 3",
+      "cot_quote": "Thus, the total amount of fiber required is 2 (blue) + 1 (white) = 3 bolts.",
+      "id": "S2",
+      "english": "Because robe requires 2 bolts of blue fiber; and robe requires 1 bolts of white fiber; and since for any garment r, any numbers a, b, c: if r requires a bolts of blue fiber and r requires b bolts of white fiber and c = a + b, then r requires c bolts of fiber in total: robe requires 3 bolts of fiber in total (2 + 1 = 3).",
+      "status": "gap",
+      "status_detail": "aggregate needs a closure statement as its warrant",
+      "binding": {},
+      "prover": "proved",
+      "prover_detail": "the premises and warrant entail the conclusion"
+    }
+  },
+  "errors": [
+    "S2: an aggregate step needs a closure statement as its warrant"
+  ]
+}

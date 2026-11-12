@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Invested(x, n) — x invested n dollars initially to plant the tree
+AnnualSale(x, l, p) — x sells l lemons per year at p dollars each
+Expense(x, n) — x pays n dollars annually for watering and feeding
+NetProfit(x, n) — x's net profit per year is n dollars
+YearsNeeded(x, n) — x needs n years for total net profit to equal or exceed the initial investment
+
+Constants:
+carlos, 90, 7, 1.5, 3, 10.5, 7.5, 12
+
+## FACTS
+FACT-1: The cost to plant the lemon tree is $90 :: Invested(carlos, 90)
+FACT-2: Carlos sells 7 lemons per year at $1.5 each :: AnnualSale(carlos, 7, 1.5)
+FACT-3: Watering and feeding the tree costs $3 annually :: Expense(carlos, 3)
+
+## OPERATIONS
+OP-1: 7 times 1.5 is 10.5 :: Product(7, 1.5, 10.5)
+OP-2: 10.5 minus 3 is 7.5 :: Difference(10.5, 3, 7.5)
+OP-3: 90 divided by 7.5 is 12 :: Quotient(90, 7.5, 12)
+
+## RULES
+RULE-1: If x sells l lemons per year at p dollars each, pays e dollars in annual expenses, l × p = r, and r − e = np, then x's net profit per year is np :: ∀x∀l∀p∀e∀r∀np (AnnualSale(x,l,p) ∧ Expense(x,e) ∧ Product(l,p,r) ∧ Difference(r,e,np) → NetProfit(x,np))
+RULE-2: If x invested i dollars initially, has a net profit of np dollars per year, and i ÷ np = n, then x needs n years for total net profit to equal or exceed the investment :: ∀x∀i∀np∀n (Invested(x,i) ∧ NetProfit(x,np) ∧ Quotient(i,np,n) → YearsNeeded(x,n))
+
+## INFERENCES
+INF-1: Carlos's net profit per year is $7.5, from FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: NetProfit(carlos, 7.5)
+INF-2: Carlos needs 12 years for his total net profit to equal or exceed his investment, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: YearsNeeded(carlos, 12)

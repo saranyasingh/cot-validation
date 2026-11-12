@@ -1,0 +1,38 @@
+## VOCABULARY
+Predicates:
+SpeedFactor(x, y, k) — x's speed is k times y's speed
+HalfSpeed(x, y) — x's speed is half of y's speed
+Speed(x, n) — x's speed is n mph
+Time(x, n) — Dana spends n hours engaged in activity x
+Distance(x, n) — Dana covers n miles during activity x
+
+Constants:
+walking, running, skipping, total, 4, 2, 3, 1.5, 0.6667, 6, 8
+
+## FACTS
+FACT-1: Running speed is four times walking speed :: SpeedFactor(running, walking, 4)
+FACT-2: Skipping speed is half as fast as running speed :: HalfSpeed(skipping, running)
+FACT-3: Skipping speed is 3 mph :: Speed(skipping, 3)
+FACT-4: Dana runs for 2 hours (one third of the total time) :: Time(running, 2)
+FACT-5: Dana walks for 4 hours (the remaining two thirds of the total time) :: Time(walking, 4)
+
+## OPERATIONS
+OP-1: 4 divided by 2 is 2 (S = R/2 = 4W/2 = 2W) :: Quotient(4, 2, 2)
+OP-2: 3 divided by 2 is 1.5 (solving 2W = 3 for W) :: Quotient(3, 2, 1.5)
+OP-3: 4 × 1.5 × 2/3 is 2 (running distance, as stated) :: Product(4, 1.5, 0.6667, 2)
+OP-4: 1.5 × 4 is 6 (walking distance) :: Product(1.5, 4, 6)
+OP-5: 2 + 6 is 8 (total distance) :: Sum(2, 6, 8)
+
+## RULES
+RULE-1: If y's speed is k times z's speed, x's speed is half of y's speed, and k divided by 2 equals c, then x's speed is c times z's speed :: ∀x∀y∀z∀k∀c (SpeedFactor(y,z,k) ∧ HalfSpeed(x,y) ∧ Quotient(k,2,c) → SpeedFactor(x,z,c))
+RULE-2: If x's speed is k times y's speed, x's speed is n, and n divided by k equals w, then y's speed is w :: ∀x∀y∀k∀n∀w (SpeedFactor(x,y,k) ∧ Speed(x,n) ∧ Quotient(n,k,w) → Speed(y,w))
+RULE-3: If x's speed is k times walking's speed, walking's speed is w, and k × w × f equals d, then x's distance is d :: ∀x∀k∀w∀f∀d (SpeedFactor(x, walking, k) ∧ Speed(walking, w) ∧ Product(k,w,f,d) → Distance(x,d))
+RULE-4: If x's speed is n, x's time is t, and n × t equals d, then x's distance is d :: ∀x∀n∀t∀d (Speed(x,n) ∧ Time(x,t) ∧ Product(n,t,d) → Distance(x,d))
+RULE-5: If x's distance is a, y's distance is b, and a + b equals s, then the total distance is s :: ∀x∀y∀a∀b∀s (Distance(x,a) ∧ Distance(y,b) ∧ Sum(a,b,s) → Distance(total,s))
+
+## INFERENCES
+INF-1: Skipping speed is 2 times walking speed, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: SpeedFactor(skipping, walking, 2)
+INF-2: Walking speed is 1.5 mph, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Speed(walking, 1.5)
+INF-3: Running distance is 2 miles, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Distance(running, 2)
+INF-4: Walking distance is 6 miles, from INF-2, FACT-5, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Distance(walking, 6)
+INF-5: Total distance is 8 miles, from INF-3, INF-4, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens :: Distance(total, 8)

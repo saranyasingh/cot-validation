@@ -1,0 +1,26 @@
+% --- FACTS ---
+fof(fact_1, axiom, wrote(meredith, monday, n_5)).
+fof(fact_2, axiom, time_per_article(meredith, n_4)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_0_4, n_5, n_2)).
+fof(op_2, axiom, sum(n_5, n_2, n_7)).
+fof(op_3, axiom, product(n_2, n_7, n_14)).
+fof(op_4, axiom, sum(n_5, n_7, n_14, n_26)).
+fof(op_5, axiom, product(n_26, n_4, n_104)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,M,F,T] : ((wrote(X, monday, M) & product(n_0_4, M, F) & sum(M, F, T)) => wrote(X, tuesday, T))).
+fof(rule_2, axiom, ! [X,T,W] : ((wrote(X, tuesday, T) & product(n_2, T, W)) => wrote(X, wednesday, W))).
+fof(rule_3, axiom, ! [X,M,T,W,S] : ((wrote(X, monday, M) & wrote(X, tuesday, T) & wrote(X, wednesday, W) & sum(M, T, W, S)) => total_articles(X, S))).
+fof(rule_4, axiom, ! [X,S,P,H] : ((total_articles(X, S) & time_per_article(X, P) & product(S, P, H)) => total_time(X, H))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, wrote(meredith, tuesday, n_7)).
+% From inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, wrote(meredith, wednesday, n_14)).
+% From fact_1, inf_1, inf_2, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, total_articles(meredith, n_26)).
+% From inf_3, fact_2, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total_time(meredith, n_104)).

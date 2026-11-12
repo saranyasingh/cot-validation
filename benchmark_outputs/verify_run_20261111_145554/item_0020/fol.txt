@@ -1,0 +1,40 @@
+## VOCABULARY
+Predicates:
+Walked(x, d, t) — x walks/covers distance d (miles) in time t (hours)
+TotalDistance(x, d) — x's total trail distance is d miles
+TimeSpent(x, t) — x has already spent t hours hiking
+RemainingDistance(x, d) — x has d miles remaining to hike
+Speed(x, s) — x's speed (current, goal, or required) is s miles per hour
+
+Constants:
+marissa, 4, 1, 2, 12, 3, 6, 9, 1.5
+
+## FACTS
+FACT-1: Marissa walked 4 miles in 1 hour :: Walked(marissa, 4, 1)
+FACT-2: Marissa walked 2 miles in another hour :: Walked(marissa, 2, 1)
+FACT-3: The total trail distance is 12 miles :: TotalDistance(marissa, 12)
+FACT-4: Marissa has spent 3 hours hiking so far :: TimeSpent(marissa, 3)
+FACT-5: Marissa's goal average speed over the entire trail is 4 mph :: Speed(marissa, 4)
+
+## OPERATIONS
+OP-1: 4 + 2 = 6 (distance covered by the two segments) :: Sum(4, 2, 6)
+OP-2: 12 − 3 = 9 (used for "9 more miles left") :: Difference(12, 3, 9)
+OP-3: 6 ÷ 3 = 2 (current speed) :: Quotient(6, 3, 2)
+OP-4: 12 − 6 = 6 (remaining distance) :: Difference(12, 6, 6)
+OP-5: 6 ÷ 4 = 1.5 (remaining time needed) :: Quotient(6, 4, 1.5)
+OP-6: 6 ÷ 1.5 = 4 (required speed) :: Quotient(6, 1.5, 4)
+
+## RULES
+RULE-1: If x walked d1 miles in one segment and d2 miles in another segment, their sum is d, and x has spent time t overall, then x has walked distance d in time t :: ∀x∀d1∀t1∀d2∀t2∀d∀t (Walked(x,d1,t1) ∧ Walked(x,d2,t2) ∧ Sum(d1,d2,d) ∧ TimeSpent(x,t) → Walked(x,d,t))
+RULE-2: If x walked distance d in time t and d/t = s, then x's speed is s :: ∀x∀d∀t∀s (Walked(x,d,t) ∧ Quotient(d,t,s) → Speed(x,s))
+RULE-3: If x's total trail distance is d and x has spent time t, and d − t = r, then x has r miles remaining :: ∀x∀d∀t∀r (TotalDistance(x,d) ∧ TimeSpent(x,t) ∧ Difference(d,t,r) → RemainingDistance(x,r))
+RULE-4: If x's total trail distance is d and x has walked distance c in some time t, and d − c = r, then x has r miles remaining :: ∀x∀d∀c∀t∀r (TotalDistance(x,d) ∧ Walked(x,c,t) ∧ Difference(d,c,r) → RemainingDistance(x,r))
+RULE-5: If x has r miles remaining, x's goal speed is s, and r/s = t, then x needs to walk r miles in time t :: ∀x∀r∀s∀t (RemainingDistance(x,r) ∧ Speed(x,s) ∧ Quotient(r,s,t) → Walked(x,r,t))
+
+## INFERENCES
+INF-1: Marissa has walked 6 miles in 3 hours (aggregate), from FACT-1, FACT-2, OP-1, FACT-4, RULE-1 by Universal Instantiation and Modus Ponens :: Walked(marissa, 6, 3)
+INF-2: Marissa's current speed is 2 mph, from INF-1, OP-3, RULE-2 by Universal Instantiation and Modus Ponens :: Speed(marissa, 2)
+INF-3: Marissa has 9 miles remaining (as stated), from FACT-3, FACT-4, OP-2, RULE-3 by Universal Instantiation and Modus Ponens :: RemainingDistance(marissa, 9)
+INF-4: Marissa has 6 miles remaining (used in final formula), from FACT-3, INF-1, OP-4, RULE-4 by Universal Instantiation and Modus Ponens :: RemainingDistance(marissa, 6)
+INF-5: Marissa needs to walk 6 miles in 1.5 hours to meet her goal, from INF-4, FACT-5, OP-5, RULE-5 by Universal Instantiation and Modus Ponens :: Walked(marissa, 6, 1.5)
+INF-6: Marissa's required speed for the remaining 6 miles is 4 mph, from INF-5, OP-6, RULE-2 by Universal Instantiation and Modus Ponens :: Speed(marissa, 4)

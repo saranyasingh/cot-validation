@@ -1,0 +1,17 @@
+% --- FACTS ---
+fof(fact_1, axiom, needs_gas(sophia, n_4, n_100)).
+fof(fact_2, axiom, tank_capacity(sophia, n_12)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_100, n_4, n_25)).
+fof(op_2, axiom, product(n_12, n_25, n_300)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,G,M,R] : ((needs_gas(X, G, M) & quotient(M, G, R)) => efficiency(X, R))).
+fof(rule_2, axiom, ! [X,C,R,D] : ((tank_capacity(X, C) & efficiency(X, R) & product(C, R, D)) => can_drive(X, D))).
+
+% --- INFERENCES ---
+% From fact_1, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, efficiency(sophia, n_25)).
+% From fact_2, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, can_drive(sophia, n_300)).

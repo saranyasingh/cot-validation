@@ -1,0 +1,12 @@
+% OP-1: Difference(5000, 3755, 1245)
+tff(op_1, conjecture, $difference(5000/1, 3755/1) = 1245/1).
+% OP-2: Quotient(3755, 15, 250.33)
+tff(op_2, conjecture, ($lesseq($difference($quotient(3755/1, 15/1), 25033/100), 1/200) & $lesseq($difference(25033/100, $quotient(3755/1, 15/1)), 1/200))).
+% OP-3: Difference(250.33, 0.33, 250)
+tff(op_3, conjecture, $difference(25033/100, 33/100) = 250/1).
+% OP-4: Difference(5000, 250, 4750)
+tff(op_4, conjecture, $difference(5000/1, 250/1) = 4750/1).
+% OP-5: Quotient(4750, 15, 316.67)
+tff(op_5, conjecture, ($lesseq($difference($quotient(4750/1, 15/1), 31667/100), 1/200) & $lesseq($difference(31667/100, $quotient(4750/1, 15/1)), 1/200))).
+% OP-6: Difference(316.67, 0.67, 316)
+tff(op_6, conjecture, $difference(31667/100, 67/100) = 316/1).

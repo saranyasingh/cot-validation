@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, older_than(amy, jackson, n_5)).
+fof(fact_2, axiom, younger_than(amy, corey, n_2)).
+fof(fact_3, axiom, age(james, n_10)).
+fof(fact_4, axiom, younger_than(james, corey, n_1)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_10, n_1, n_11)).
+fof(op_2, axiom, difference(n_11, n_2, n_9)).
+fof(op_3, axiom, difference(n_9, n_5, n_4)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,Y,N,A,B] : ((younger_than(X,Y,N) & age(X,A) & sum(A,N,B)) => age(Y,B))).
+fof(rule_2, axiom, ! [X,Y,N,A,B] : ((younger_than(X,Y,N) & age(Y,B) & difference(B,N,A)) => age(X,A))).
+fof(rule_3, axiom, ! [X,Y,N,A,B] : ((older_than(X,Y,N) & age(X,A) & difference(A,N,B)) => age(Y,B))).
+
+% --- INFERENCES ---
+% From fact_4, fact_3, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, age(corey, n_11)).
+% From fact_2, inf_1, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, age(amy, n_9)).
+% From fact_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, age(jackson, n_4)).

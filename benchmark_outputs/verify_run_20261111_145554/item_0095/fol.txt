@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+NumberOf(x, n) — the number of x is n
+Ratio(x, y, n) — the number of x is n times the number of y
+LessThanCombinedBy(x, n) — the number of x is n less than the combined number of dogs and cats
+TotalPets(n) — the total number of pets (dogs + cats) is n
+
+Constants:
+dogs, cats, rabbits, 60, 2, 12, 120, 178, 180
+
+## FACTS
+FACT-1: The number of dogs is 60 :: NumberOf(dogs, 60)
+FACT-2: The ratio of cats to dogs is 2:1 :: Ratio(cats, dogs, 2)
+FACT-3: The number of rabbits is twelve less than the combined number of dogs and cats :: LessThanCombinedBy(rabbits, 12)
+
+## OPERATIONS
+OP-1: 2 times 60 is 120 :: Product(2, 60, 120)
+OP-2: 60 plus 120 is 180 :: Sum(60, 120, 180)
+OP-3: 180 minus 12 is 178 :: Difference(180, 12, 178)
+
+## RULES
+RULE-1: If the ratio of x to y is n and the number of y is m, and n times m is p, then the number of x is p :: ∀x∀y∀n∀m∀p (Ratio(x,y,n) ∧ NumberOf(y,m) ∧ Product(n,m,p) → NumberOf(x,p))
+RULE-2: If the number of dogs is n and the number of cats is m, and n plus m is p, then the total number of pets is p :: ∀n∀m∀p (NumberOf(dogs,n) ∧ NumberOf(cats,m) ∧ Sum(n,m,p) → TotalPets(p))
+RULE-3: If x's count is n less than the combined number of dogs and cats, and the total number of pets is p, and p minus n is q, then the number of x is q :: ∀x∀n∀p∀q (LessThanCombinedBy(x,n) ∧ TotalPets(p) ∧ Difference(p,n,q) → NumberOf(x,q))
+
+## INFERENCES
+INF-1: The number of cats is 120, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: NumberOf(cats, 120)
+INF-2: The total number of pets is 180, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalPets(180)
+INF-3: The number of rabbits is 178, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: NumberOf(rabbits, 178)

@@ -1,0 +1,200 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Artie sold 12 pots of marigolds at $2.74 per pot",
+      "formula": "Sold(marigold, 12, 2.74)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem states prices are rounded to the nearest dollar before selling; the actual price used should be $3, not the original $2.74.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Artie sold 9 pots of petunias at $1.87 per pot",
+      "formula": "Sold(petunia, 9, 1.87)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $1.87.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Artie sold 17 pots of begonias at $2.12 per pot",
+      "formula": "Sold(begonia, 17, 2.12)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $2.12.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The total revenue of $85.75 rounds to the nearest dollar as $60",
+      "formula": "RoundedDollar(85.75, 60)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "the problem does not ask to round the total revenue to the nearest dollar; it asks to round the individual prices before computing revenue.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2.74 times 12 is 32.88",
+      "formula": "Product(2.74, 12, 32.88)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1.87 times 9 is 16.83",
+      "formula": "Product(1.87, 9, 16.83)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "2.12 times 17 is 36.04",
+      "formula": "Product(2.12, 17, 36.04)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "32.88 plus 16.83 plus 36.04 is 85.75",
+      "formula": "Sum(32.88, 16.83, 36.04, 85.75)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If flower type x sold n pots at p dollars each and p times n equals r, then the revenue from x is r dollars",
+      "formula": "\u2200x\u2200n\u2200p\u2200r (Sold(x,n,p) \u2227 Product(p,n,r) \u2192 Revenue(x,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "uses the unrounded original price p instead of the rounded price Artie actually charges, misapplying the problem's instruction.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the revenues from marigolds, petunias, and begonias are r1, r2, r3 respectively and they sum to t, then the total revenue is t dollars",
+      "formula": "\u2200r1\u2200r2\u2200r3\u2200t (Revenue(marigold,r1) \u2227 Revenue(petunia,r2) \u2227 Revenue(begonia,r3) \u2227 Sum(r1,r2,r3,t) \u2192 TotalRevenue(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the total revenue is t dollars and t rounds to m dollars, then Artie will make m dollars",
+      "formula": "\u2200t\u2200m (TotalRevenue(t) \u2227 RoundedDollar(t,m) \u2192 Makes(m))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "rounds the total revenue to the nearest dollar, but the problem specifies rounding each price, not the total.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The revenue from marigolds is $32.88, from FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(marigold, 32.88)",
+      "premises": [
+        "FACT-1",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The revenue from petunias is $16.83, from FACT-2, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(petunia, 16.83)",
+      "premises": [
+        "FACT-2",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The revenue from begonias is $36.04, from FACT-3, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(begonia, 36.04)",
+      "premises": [
+        "FACT-3",
+        "OP-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total revenue is $85.75, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalRevenue(85.75)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Artie will make $60, from INF-4, FACT-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Makes(60)",
+      "premises": [
+        "INF-4",
+        "FACT-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "the problem states prices are rounded to the nearest dollar before selling; the actual price used should be $3, not the original $2.74."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $1.87."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "prices are rounded to the nearest dollar before selling; the actual price used should be $2, not the original $2.12."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "the problem does not ask to round the total revenue to the nearest dollar; it asks to round the individual prices before computing revenue."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "uses the unrounded original price p instead of the rounded price Artie actually charges, misapplying the problem's instruction."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "rounds the total revenue to the nearest dollar, but the problem specifies rounding each price, not the total."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

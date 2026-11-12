@@ -1,0 +1,4 @@
+% OP-1: Sum(2/3, 2, 8/3)
+tff(op_1, conjecture, $sum(2/3, 2/1) = 8/3).
+% OP-2: Product(8/3, 2, 16/3)
+tff(op_2, conjecture, $product(8/3, 2/1) = 16/3).

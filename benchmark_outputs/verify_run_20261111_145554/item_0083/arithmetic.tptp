@@ -1,0 +1,6 @@
+% OP-1: Product(4, 125, 500)
+tff(op_1, conjecture, $product(4/1, 125/1) = 500/1).
+% OP-2: Difference(500, 2, 498)
+tff(op_2, conjecture, $difference(500/1, 2/1) = 498/1).
+% OP-3: Sum(125, 498, 623)
+tff(op_3, conjecture, $sum(125/1, 498/1) = 623/1).

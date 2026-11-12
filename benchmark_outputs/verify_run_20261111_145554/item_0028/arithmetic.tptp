@@ -1,0 +1,6 @@
+% OP-1: Product(60, 1, 60)
+tff(op_1, conjecture, $product(60/1, 1/1) = 60/1).
+% OP-2: Quotient(60, 15, 4)
+tff(op_2, conjecture, $quotient(60/1, 15/1) = 4/1).
+% OP-3: Product(4, 4.00, 16.00)
+tff(op_3, conjecture, ($lesseq($difference($product(4/1, 4/1), 16/1), 1/200) & $lesseq($difference(16/1, $product(4/1, 4/1)), 1/200))).

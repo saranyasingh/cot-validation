@@ -1,0 +1,12 @@
+% OP-1: Product(2, 200, 400)
+tff(op_1, conjecture, $product(2/1, 200/1) = 400/1).
+% OP-2: Quotient(400, 5, 80)
+tff(op_2, conjecture, $quotient(400/1, 5/1) = 80/1).
+% OP-3: Difference(200, 80, 120)
+tff(op_3, conjecture, $difference(200/1, 80/1) = 120/1).
+% OP-4: Product(2, 120, 240)
+tff(op_4, conjecture, $product(2/1, 120/1) = 240/1).
+% OP-5: Quotient(240, 3, 80)
+tff(op_5, conjecture, $quotient(240/1, 3/1) = 80/1).
+% OP-6: Difference(120, 80, 40)
+tff(op_6, conjecture, $difference(120/1, 80/1) = 40/1).

@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Has(x, n) — x has n jewels
+Fewer(x, y, n) — x has n fewer jewels than y
+MoreThanHalfOf(x, y, n) — x has n more jewels than half of y's jewels
+
+Constants:
+siobhan, aaron, raymond, 2, 5, 40, 20, 25, 23
+
+## FACTS
+FACT-1: Siobhan has 2 fewer jewels than Aaron :: Fewer(siobhan, aaron, 2)
+FACT-2: Aaron has 5 more jewels than half of Raymond's jewels :: MoreThanHalfOf(aaron, raymond, 5)
+FACT-3: Raymond has 40 jewels :: Has(raymond, 40)
+
+## OPERATIONS
+OP-1: Half of 40 is 20 :: Quotient(40, 2, 20)
+OP-2: 20 plus 5 is 25 :: Sum(20, 5, 25)
+OP-3: 25 minus 2 is 23 :: Difference(25, 2, 23)
+
+## RULES
+RULE-1: If x has n more jewels than half of y's jewels, y has r jewels, half of r is h, and h+n = p, then x has p jewels :: ∀x∀y∀n∀r∀h∀p (MoreThanHalfOf(x,y,n) ∧ Has(y,r) ∧ Quotient(r,2,h) ∧ Sum(h,n,p) → Has(x,p))
+RULE-2: If x has n fewer jewels than y, y has a jewels, and a−n = s, then x has s jewels :: ∀x∀y∀n∀a∀s (Fewer(x,y,n) ∧ Has(y,a) ∧ Difference(a,n,s) → Has(x,s))
+
+## INFERENCES
+INF-1: Aaron has 25 jewels, from FACT-2, FACT-3, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Has(aaron, 25)
+INF-2: Siobhan has 23 jewels, from FACT-1, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Has(siobhan, 23)

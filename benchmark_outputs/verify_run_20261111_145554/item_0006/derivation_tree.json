@@ -1,0 +1,177 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The first glass costs $5",
+      "formula": "Cost(first_glass, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Every second glass costs 60% of the price of the first glass",
+      "formula": "Rate(first_glass, second_glass, 0.6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Kylar wants to buy 16 glasses",
+      "formula": "Wants(kylar, 16)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "0.60 \u00d7 5 = 3",
+      "formula": "Product(0.6, 5, 3)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "16 \u00f7 2 = 8",
+      "formula": "Quotient(16, 2, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "8 \u00d7 3 = 24",
+      "formula": "Product(8, 3, 24)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "8 \u00d7 5 = 40",
+      "formula": "Product(8, 5, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "40 + 24 = 64",
+      "formula": "Sum(40, 24, 64)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If glass type x costs n dollars and glass type y's price is m times x's price, and m \u00d7 n = p, then glass type y costs p dollars",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200p (Cost(x,n) \u2227 Rate(x,y,m) \u2227 Product(m,n,p) \u2192 Cost(y,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a person wants n glasses total and half of n is h, then there are h glasses of the first type and h glasses of the second type",
+      "formula": "\u2200x\u2200n\u2200h (Wants(x,n) \u2227 Quotient(n,2,h) \u2192 Count(first_glass,h) \u2227 Count(second_glass,h))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If there are n glasses of type x, each costing c dollars, and n \u00d7 c = t, then the total cost for type x is t dollars",
+      "formula": "\u2200x\u2200n\u2200c\u2200t (Count(x,n) \u2227 Cost(x,c) \u2227 Product(n,c,t) \u2192 TotalCost(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If the total cost for type x is t1 dollars and the total cost for type y is t2 dollars, and t1 + t2 = s, then Kylar's total cost is s dollars",
+      "formula": "\u2200x\u2200y\u2200t1\u2200t2\u2200s (TotalCost(x,t1) \u2227 TotalCost(y,t2) \u2227 Sum(t1,t2,s) \u2192 TotalCost(kylar,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The second glass costs $3, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Cost(second_glass, 3)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "There are 8 first-type glasses and 8 second-type glasses, from FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Count(first_glass, 8) \u2227 Count(second_glass, 8)",
+      "premises": [
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total cost for the second-type glasses is $24, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(second_glass, 24)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The total cost for the first-type glasses is $40, from INF-2, FACT-1, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(first_glass, 40)",
+      "premises": [
+        "INF-2",
+        "FACT-1",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Kylar's total cost is $64, from INF-4, INF-3, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalCost(kylar, 64)",
+      "premises": [
+        "INF-4",
+        "INF-3",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

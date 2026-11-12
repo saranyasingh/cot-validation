@@ -1,0 +1,8 @@
+% OP-1: Product(13, 15, 195)
+tff(op_1, conjecture, $product(13/1, 15/1) = 195/1).
+% OP-2: Product(8, 20, 160)
+tff(op_2, conjecture, $product(8/1, 20/1) = 160/1).
+% OP-3: Difference(195, 160, 35)
+tff(op_3, conjecture, $difference(195/1, 160/1) = 35/1).
+% OP-4: Difference(13, 8, 5)
+tff(op_4, conjecture, $difference(13/1, 8/1) = 5/1).

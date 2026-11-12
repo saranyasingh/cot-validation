@@ -1,0 +1,46 @@
+## VOCABULARY
+Predicates:
+NumPhones(x, n) — x bought n cell phones
+PricePerPhone(x, p) — each cell phone costs p dollars for x
+RatePercent(x, r) — the interest rate percent applied to x's purchase is r
+Quarters(x, q) — the number of quarters over which x's payment is divided is q
+Amount(x, label, n) — the financial quantity identified by label, associated with x, equals n
+
+Constants:
+sheila, 5, 150, 2, 3, 12, 100, 10, 0.1, 0.25, 750, 750.25, 250.08, 250,
+total_cost, time_period_months, time_period_years, units_times_rate, rate_fraction, interest, overall_amount, monthly_payment, monthly_payment_rounded
+
+## FACTS
+FACT-1: Sheila bought 5 cell phones :: NumPhones(sheila, 5)
+FACT-2: Each cell phone costs $150 :: PricePerPhone(sheila, 150)
+FACT-3: The interest rate applied is 2 percent :: RatePercent(sheila, 2)
+FACT-4: The time period is 3 months :: Amount(sheila, time_period_months, 3)
+FACT-5: The number of quarters to divide the payment over is 3 :: Quarters(sheila, 3)
+
+## OPERATIONS
+OP-1: 5 * 150 = 750 (total cost) :: Product(5, 150, 750)
+OP-2: 3 / 12 = 0.25 (time period in years) :: Quotient(3, 12, 0.25)
+OP-3: 5 * 2 = 10 (units times rate) :: Product(5, 2, 10)
+OP-4: 10 / 100 = 0.1 (rate as fraction) :: Quotient(10, 100, 0.1)
+OP-5: 0.1 * 0.25 = 0.25 (interest, as stated) :: Product(0.1, 0.25, 0.25)
+OP-6: 750 + 0.25 = 750.25 (overall amount) :: Sum(750, 0.25, 750.25)
+OP-7: 750.25 / 3 = 250.08 (monthly payment) :: Quotient(750.25, 3, 250.08)
+
+## RULES
+RULE-1: If x bought n phones at price p each and n*p = c, then x's total cost is c :: ∀x∀n∀p∀c (NumPhones(x,n) ∧ PricePerPhone(x,p) ∧ Product(n,p,c) → Amount(x,total_cost,c))
+RULE-2: If x's time period in months is m and m/12 = y, then x's time period in years is y :: ∀x∀m∀y (Amount(x,time_period_months,m) ∧ Quotient(m,12,y) → Amount(x,time_period_years,y))
+RULE-3: If x bought n phones at rate r percent and n*r = t, then x's units-times-rate value is t :: ∀x∀n∀r∀t (NumPhones(x,n) ∧ RatePercent(x,r) ∧ Product(n,r,t) → Amount(x,units_times_rate,t))
+RULE-4: If x's units-times-rate value is t and t/100 = d, then x's rate fraction is d :: ∀x∀t∀d (Amount(x,units_times_rate,t) ∧ Quotient(t,100,d) → Amount(x,rate_fraction,d))
+RULE-5: If x's rate fraction is d, x's time period in years is y, and d*y = i, then x's interest is i :: ∀x∀d∀y∀i (Amount(x,rate_fraction,d) ∧ Amount(x,time_period_years,y) ∧ Product(d,y,i) → Amount(x,interest,i))
+RULE-6: If x's total cost is c, x's interest is i, and c+i = o, then x's overall amount is o :: ∀x∀c∀i∀o (Amount(x,total_cost,c) ∧ Amount(x,interest,i) ∧ Sum(c,i,o) → Amount(x,overall_amount,o))
+RULE-7: If x's overall amount is o, x has q quarters, and o/q = m, then x's monthly payment is m :: ∀x∀o∀q∀m (Amount(x,overall_amount,o) ∧ Quarters(x,q) ∧ Quotient(o,q,m) → Amount(x,monthly_payment,m))
+
+## INFERENCES
+INF-1: Sheila's total cost is $750, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(sheila, total_cost, 750)
+INF-2: Sheila's time period in years is 0.25, from FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(sheila, time_period_years, 0.25)
+INF-3: Sheila's units-times-rate value is 10, from FACT-1, FACT-3, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(sheila, units_times_rate, 10)
+INF-4: Sheila's rate fraction is 0.1, from INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(sheila, rate_fraction, 0.1)
+INF-5: Sheila's interest is $0.25, from INF-4, INF-2, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens :: Amount(sheila, interest, 0.25)
+INF-6: Sheila's overall amount is $750.25, from INF-1, INF-5, OP-6, and RULE-6 by Universal Instantiation and Modus Ponens :: Amount(sheila, overall_amount, 750.25)
+INF-7: Sheila's monthly payment is $250.08, from INF-6, FACT-5, OP-7, and RULE-7 by Universal Instantiation and Modus Ponens :: Amount(sheila, monthly_payment, 250.08)
+INF-8: Sheila's monthly payment rounds to $250, from INF-7 by approximation :: Amount(sheila, monthly_payment_rounded, 250)

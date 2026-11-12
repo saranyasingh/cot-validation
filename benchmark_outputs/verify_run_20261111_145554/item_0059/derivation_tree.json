@@ -1,0 +1,149 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Stephen's initial bill is $40.00",
+      "formula": "InitialBill(stephen, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Stephen is charged a 25% fee on the bill",
+      "formula": "FeePercent(stephen, 0.25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Stephen is charged a $3.00 delivery fee",
+      "formula": "DeliveryFee(stephen, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Stephen pays a $4.00 tip",
+      "formula": "Tip(stephen, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "25% of $40.00 is $10.00",
+      "formula": "Product(0.25, 40, 10)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "$40.00 plus $10.00 is $50.00",
+      "formula": "Sum(40, 10, 50)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "$50.00 minus $3.00 is $47.00",
+      "formula": "Difference(50, 3, 47)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "$47.00 plus $4.00 is $51.00",
+      "formula": "Sum(47, 4, 51)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's initial bill is n, x's fee percent is p, and p times n equals f, and n plus f equals t, then x's total is t",
+      "formula": "\u2200x\u2200n\u2200p\u2200f\u2200t (InitialBill(x,n) \u2227 FeePercent(x,p) \u2227 Product(p,n,f) \u2227 Sum(n,f,t) \u2192 Total(x,t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's total is t, x's delivery fee is d, and t minus d equals a, then x's total is a",
+      "formula": "\u2200x\u2200t\u2200d\u2200a (Total(x,t) \u2227 DeliveryFee(x,d) \u2227 Difference(t,d,a) \u2192 Total(x,a))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "delivery fee should be added to the total, not subtracted.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's total is a, x's tip is g, and a plus g equals s, then x's total is s",
+      "formula": "\u2200x\u2200a\u2200g\u2200s (Total(x,a) \u2227 Tip(x,g) \u2227 Sum(a,g,s) \u2192 Total(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Stephen's total after the fee is $50.00, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(stephen, 50)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Stephen's adjusted total after the delivery fee is $47.00, from INF-1, FACT-3, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(stephen, 47)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Stephen's final total including the tip is $51.00, from INF-2, FACT-4, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(stephen, 51)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "delivery fee should be added to the total, not subtracted."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

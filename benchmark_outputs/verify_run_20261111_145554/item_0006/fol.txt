@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Cost(x, n) — glass type x costs n dollars each
+Rate(x, y, n) — glass type y's price is n times glass type x's price
+Wants(x, n) — x wants to buy n glasses total
+Count(x, n) — there are n glasses of type x among those bought
+TotalCost(x, n) — the total cost associated with x is n dollars
+
+Constants:
+kylar, first_glass, second_glass, 5, 0.6, 3, 16, 2, 8, 24, 40, 64
+
+## FACTS
+FACT-1: The first glass costs $5 :: Cost(first_glass, 5)
+FACT-2: Every second glass costs 60% of the price of the first glass :: Rate(first_glass, second_glass, 0.6)
+FACT-3: Kylar wants to buy 16 glasses :: Wants(kylar, 16)
+
+## OPERATIONS
+OP-1: 0.60 × 5 = 3 :: Product(0.6, 5, 3)
+OP-2: 16 ÷ 2 = 8 :: Quotient(16, 2, 8)
+OP-3: 8 × 3 = 24 :: Product(8, 3, 24)
+OP-4: 8 × 5 = 40 :: Product(8, 5, 40)
+OP-5: 40 + 24 = 64 :: Sum(40, 24, 64)
+
+## RULES
+RULE-1: If glass type x costs n dollars and glass type y's price is m times x's price, and m × n = p, then glass type y costs p dollars :: ∀x∀y∀n∀m∀p (Cost(x,n) ∧ Rate(x,y,m) ∧ Product(m,n,p) → Cost(y,p))
+RULE-2: If a person wants n glasses total and half of n is h, then there are h glasses of the first type and h glasses of the second type :: ∀x∀n∀h (Wants(x,n) ∧ Quotient(n,2,h) → Count(first_glass,h) ∧ Count(second_glass,h))
+RULE-3: If there are n glasses of type x, each costing c dollars, and n × c = t, then the total cost for type x is t dollars :: ∀x∀n∀c∀t (Count(x,n) ∧ Cost(x,c) ∧ Product(n,c,t) → TotalCost(x,t))
+RULE-4: If the total cost for type x is t1 dollars and the total cost for type y is t2 dollars, and t1 + t2 = s, then Kylar's total cost is s dollars :: ∀x∀y∀t1∀t2∀s (TotalCost(x,t1) ∧ TotalCost(y,t2) ∧ Sum(t1,t2,s) → TotalCost(kylar,s))
+
+## INFERENCES
+INF-1: The second glass costs $3, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Cost(second_glass, 3)
+INF-2: There are 8 first-type glasses and 8 second-type glasses, from FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Count(first_glass, 8) ∧ Count(second_glass, 8)
+INF-3: The total cost for the second-type glasses is $24, from INF-2, INF-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalCost(second_glass, 24)
+INF-4: The total cost for the first-type glasses is $40, from INF-2, FACT-1, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalCost(first_glass, 40)
+INF-5: Kylar's total cost is $64, from INF-4, INF-3, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: TotalCost(kylar, 64)

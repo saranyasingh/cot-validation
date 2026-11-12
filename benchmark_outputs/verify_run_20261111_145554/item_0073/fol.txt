@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Sold(x, item, n) — x sold n units of item
+Price(item, p) — item costs p dollars
+Revenue(item, r) — the revenue from item is r dollars
+TotalRaised(x, r) — x raised a total of r dollars
+
+Constants:
+tommy, brownies, cheesecakes, 43, 3, 23, 4, 129, 92, 221
+
+## FACTS
+FACT-1: Tommy sold 43 brownies :: Sold(tommy, brownies, 43)
+FACT-2: Each brownie costs $3 :: Price(brownies, 3)
+FACT-3: Tommy sold 23 cheesecakes :: Sold(tommy, cheesecakes, 23)
+FACT-4: Each cheesecake costs $4 :: Price(cheesecakes, 4)
+
+## OPERATIONS
+OP-1: 43 times 3 is 129 :: Product(43, 3, 129)
+OP-2: 23 times 4 is 92 :: Product(23, 4, 92)
+OP-3: 129 plus 92 is 221 :: Sum(129, 92, 221)
+
+## RULES
+RULE-1: If x sold n units of item at price p per unit, and n × p = r, then the revenue from item is r :: ∀x∀item∀n∀p∀r (Sold(x,item,n) ∧ Price(item,p) ∧ Product(n,p,r) → Revenue(item,r))
+RULE-2: If the revenue from brownies is r1 and the revenue from cheesecakes is r2, and r1 + r2 = t, then x raised a total of t dollars :: ∀x∀r1∀r2∀t (Revenue(brownies,r1) ∧ Revenue(cheesecakes,r2) ∧ Sum(r1,r2,t) → TotalRaised(x,t))
+
+## INFERENCES
+INF-1: The revenue from brownies is 129 dollars, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(brownies, 129)
+INF-2: The revenue from cheesecakes is 92 dollars, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Revenue(cheesecakes, 92)
+INF-3: Tommy raised a total of 221 dollars, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalRaised(tommy, 221)

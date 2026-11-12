@@ -1,0 +1,16 @@
+EXPLANATION
+
+1. **First Ring**: The alarm rings 4 times on its first go.
+2. **Second Ring**: The alarm then rings for three times as long as the first ring.
+   - Length of second ring = 3 * 4 = 12 seconds.
+
+3. **Third Ring**: The alarm next rings for half as long as the second ring.
+   - Length of third ring = 1/2 * 12 = 6 seconds.
+
+4. **Total Rings**: To find the total number of rings, we add up the durations of each ring.
+   - Total rings = First ring + Second ring + Third ring
+   - Total rings = 4 seconds + 12 seconds + 6 seconds = 22 seconds.
+
+Therefore, the alarm rang a total of 22 times.
+
+The answer is: 22

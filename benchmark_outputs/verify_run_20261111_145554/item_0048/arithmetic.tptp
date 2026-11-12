@@ -1,0 +1,14 @@
+% OP-1: Product(0.5, 40, 20)
+tff(op_1, conjecture, $product(1/2, 40/1) = 20/1).
+% OP-2: Sum(40, 20, 60)
+tff(op_2, conjecture, $sum(40/1, 20/1) = 60/1).
+% OP-3: Quotient(200, 40, 5)
+tff(op_3, conjecture, $quotient(200/1, 40/1) = 5/1).
+% OP-4: Product(2, 5, 10)
+tff(op_4, conjecture, $product(2/1, 5/1) = 10/1).
+% OP-5: Product(5, 40, 200)
+tff(op_5, conjecture, $product(5/1, 40/1) = 200/1).
+% OP-6: Product(10, 60, 600)
+tff(op_6, conjecture, $product(10/1, 60/1) = 600/1).
+% OP-7: Sum(200, 600, 800)
+tff(op_7, conjecture, $sum(200/1, 600/1) = 800/1).

@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+TotalGames(n) — the total number of games played is n
+WinMargin(n) — the team won n more games than they lost
+Losses(n) — the number of losses is n
+Wins(n) — the number of wins is n
+
+Constants:
+22, 8, 14, 2, 7, 15
+
+## FACTS
+FACT-1: The total number of games played is 22 :: TotalGames(22)
+FACT-2: The team won 8 more games than they lost :: WinMargin(8)
+
+## OPERATIONS
+OP-1: Subtract 8 from 22 to get 14 :: Difference(22, 8, 14)
+OP-2: Divide 14 by 2 to get 7 :: Quotient(14, 2, 7)
+OP-3: Add 7 and 8 to get 15 :: Sum(7, 8, 15)
+
+## RULES
+RULE-1: If the total games is n, the win margin is m, n minus m equals d, and d divided by 2 equals l, then the number of losses is l :: ∀n∀m∀d∀l (TotalGames(n) ∧ WinMargin(m) ∧ Difference(n,m,d) ∧ Quotient(d,2,l) → Losses(l))
+RULE-2: If the number of losses is l, the win margin is m, and l plus m equals w, then the number of wins is w :: ∀l∀m∀w (Losses(l) ∧ WinMargin(m) ∧ Sum(l,m,w) → Wins(w))
+
+## INFERENCES
+INF-1: The number of losses is 7, from FACT-1, FACT-2, OP-1, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Losses(7)
+INF-2: The number of wins is 15, from INF-1, FACT-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Wins(15)

@@ -1,0 +1,132 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The number of dogs is 60",
+      "formula": "NumberOf(dogs, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The ratio of cats to dogs is 2:1",
+      "formula": "Ratio(cats, dogs, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The number of rabbits is twelve less than the combined number of dogs and cats",
+      "formula": "LessThanCombinedBy(rabbits, 12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 60 is 120",
+      "formula": "Product(2, 60, 120)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "60 plus 120 is 180",
+      "formula": "Sum(60, 120, 180)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "180 minus 12 is 178",
+      "formula": "Difference(180, 12, 178)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "180 - 12 = 168, not 178",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the ratio of x to y is n and the number of y is m, and n times m is p, then the number of x is p",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200p (Ratio(x,y,n) \u2227 NumberOf(y,m) \u2227 Product(n,m,p) \u2192 NumberOf(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If the number of dogs is n and the number of cats is m, and n plus m is p, then the total number of pets is p",
+      "formula": "\u2200n\u2200m\u2200p (NumberOf(dogs,n) \u2227 NumberOf(cats,m) \u2227 Sum(n,m,p) \u2192 TotalPets(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's count is n less than the combined number of dogs and cats, and the total number of pets is p, and p minus n is q, then the number of x is q",
+      "formula": "\u2200x\u2200n\u2200p\u2200q (LessThanCombinedBy(x,n) \u2227 TotalPets(p) \u2227 Difference(p,n,q) \u2192 NumberOf(x,q))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The number of cats is 120, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "NumberOf(cats, 120)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The total number of pets is 180, from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalPets(180)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The number of rabbits is 178, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "NumberOf(rabbits, 178)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "OP-3",
+      "stage": "arithmetic",
+      "message": "180 - 12 = 168, not 178"
+    }
+  ],
+  "error_stages": [
+    "arithmetic"
+  ]
+}

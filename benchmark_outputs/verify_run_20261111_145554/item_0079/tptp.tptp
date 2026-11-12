@@ -1,0 +1,25 @@
+% --- FACTS ---
+fof(fact_1, axiom, buys(vincent, n_18)).
+fof(fact_2, axiom, package_size(package3, n_3)).
+fof(fact_3, axiom, package_price(package3, n_2_50)).
+fof(fact_4, axiom, package_size(package2, n_2)).
+fof(fact_5, axiom, package_price(package2, n_1)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, quotient(n_18, n_3, n_6)).
+fof(op_2, axiom, product(n_6, n_2_50, n_15)).
+fof(op_3, axiom, quotient(n_18, n_2, n_9)).
+fof(op_4, axiom, product(n_9, n_1, n_9)).
+fof(op_5, axiom, difference(n_15, n_9, n_6)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,P,N,S,PR,Q,C] : ((buys(X, N) & package_size(P, S) & package_price(P, PR) & quotient(N, S, Q) & product(Q, PR, C)) => cost(X, P, C))).
+fof(rule_2, axiom, ! [X,P1,P2,C1,C2,S] : ((cost(X, P1, C1) & cost(X, P2, C2) & difference(C1, C2, S)) => saves(X, S))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, fact_3, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(vincent, package3, n_15)).
+% From fact_1, fact_4, fact_5, op_3, op_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, cost(vincent, package2, n_9)).
+% From inf_1, inf_2, op_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, saves(vincent, n_6)).

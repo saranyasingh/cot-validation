@@ -1,0 +1,33 @@
+% --- FACTS ---
+fof(fact_1, axiom, quantity(judy, weekday_classes_per_day, n_5)).
+fof(fact_2, axiom, quantity(judy, weekday_days, n_5)).
+fof(fact_3, axiom, quantity(judy, saturday_classes, n_8)).
+fof(fact_4, axiom, quantity(judy, saturday_days, n_1)).
+fof(fact_5, axiom, quantity(judy, students_per_class, n_15)).
+fof(fact_6, axiom, quantity(judy, price_per_student, n_15)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_5, n_5, n_25)).
+fof(op_2, axiom, product(n_8, n_1, n_8)).
+fof(op_3, axiom, sum(n_25, n_8, n_33)).
+fof(op_4, axiom, product(n_33, n_15, n_495)).
+fof(op_5, axiom, product(n_495, n_15, n_7425)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((quantity(X, weekday_classes_per_day, N) & quantity(X, weekday_days, M) & product(N, M, P)) => quantity(X, total_weekday_classes, P))).
+fof(rule_2, axiom, ! [X,N,M,P] : ((quantity(X, saturday_classes, N) & quantity(X, saturday_days, M) & product(N, M, P)) => quantity(X, total_weekend_classes, P))).
+fof(rule_3, axiom, ! [X,N,M,P] : ((quantity(X, total_weekday_classes, N) & quantity(X, total_weekend_classes, M) & sum(N, M, P)) => quantity(X, total_classes, P))).
+fof(rule_4, axiom, ! [X,N,M,P] : ((quantity(X, total_classes, N) & quantity(X, students_per_class, M) & product(N, M, P)) => quantity(X, total_students, P))).
+fof(rule_5, axiom, ! [X,N,M,P] : ((quantity(X, total_students, N) & quantity(X, price_per_student, M) & product(N, M, P)) => quantity(X, total_earnings, P))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, quantity(judy, total_weekday_classes, n_25)).
+% From fact_3, fact_4, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, quantity(judy, total_weekend_classes, n_8)).
+% From inf_1, inf_2, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, quantity(judy, total_classes, n_33)).
+% From inf_3, fact_5, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, quantity(judy, total_students, n_495)).
+% From inf_4, fact_6, op_5, rule_5 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, quantity(judy, total_earnings, n_7425)).

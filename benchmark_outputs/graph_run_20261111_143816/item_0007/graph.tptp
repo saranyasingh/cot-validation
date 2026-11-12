@@ -1,0 +1,24 @@
+% Declarations
+tff(city_type, type, city: $tType).
+tff(city_group_type, type, city_group: $tType).
+tff(seattle_decl, type, seattle: city).
+tff(charleston_decl, type, charleston: city).
+tff(toulouse_decl, type, toulouse: city).
+tff(three_cities_decl, type, three_cities: city_group).
+tff(sheep_count_decl, type, sheep_count: (city * $rat) > $o).
+tff(times_as_many_decl, type, times_as_many: (city * city * $rat) > $o).
+tff(group_sheep_total_decl, type, group_sheep_total: (city_group * $rat) > $o).
+tff(seattle_neq_charleston, axiom, seattle != charleston).
+tff(seattle_neq_toulouse, axiom, seattle != toulouse).
+tff(charleston_neq_toulouse, axiom, charleston != toulouse).
+
+% Statements
+tff(c1, axiom, sheep_count(seattle, 20/1)).
+tff(c2, axiom, times_as_many(charleston, seattle, 4/1)).
+tff(c3, lemma, sheep_count(charleston, 80/1)).
+tff(c4, axiom, times_as_many(toulouse, charleston, 2/1)).
+tff(c5, lemma, sheep_count(toulouse, 160/1)).
+tff(c6, axiom, ![V_a: $rat, V_b: $rat, V_c: $rat, V_t: $rat]: ((sheep_count(toulouse, V_a) & sheep_count(charleston, V_b) & sheep_count(seattle, V_c) & V_t = $sum($sum(V_a, V_b), V_c)) => group_sheep_total(three_cities, V_t))).
+tff(c7, lemma, group_sheep_total(three_cities, 260/1)).
+tff(i1, axiom, ![V_x: city, V_y: city, V_k: $rat, V_n: $rat, V_m: $rat]: ((times_as_many(V_x, V_y, V_k) & sheep_count(V_y, V_n) & V_m = $product(V_k, V_n)) => sheep_count(V_x, V_m))).
+tff(s3_agg, axiom, ![N1: $rat, N2: $rat, N3: $rat]: ((sheep_count(toulouse, N1) & sheep_count(charleston, N2) & sheep_count(seattle, N3)) => group_sheep_total(three_cities, $sum($sum(N1, N2), N3)))).

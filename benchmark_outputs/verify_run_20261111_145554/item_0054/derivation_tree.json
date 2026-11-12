@@ -1,0 +1,248 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Number of truck tires repaired on Thursday is 6",
+      "formula": "Repaired(thursday, truck, 6)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charge per truck tire is $60",
+      "formula": "ChargePerTire(truck, 60)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Number of car tires repaired on Thursday is 4",
+      "formula": "Repaired(thursday, car, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Charge per car tire is $40",
+      "formula": "ChargePerTire(car, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Number of car tires repaired on Friday is 12",
+      "formula": "Repaired(friday, car, 12)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Number of truck tires repaired on Friday is 0",
+      "formula": "Repaired(friday, truck, 0)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "6 \u00d7 60 = 360",
+      "formula": "Product(6, 60, 360)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "4 \u00d7 40 = 160",
+      "formula": "Product(4, 40, 160)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "360 + 160 = 520",
+      "formula": "Sum(360, 160, 520)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "12 \u00d7 40 = 480",
+      "formula": "Product(12, 40, 480)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "0 \u00d7 60 = 0",
+      "formula": "Product(0, 60, 0)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-6": {
+      "type": "operation",
+      "gloss": "480 + 0 = 480",
+      "formula": "Sum(480, 0, 480)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-7": {
+      "type": "operation",
+      "gloss": "520 \u2212 480 = 40",
+      "formula": "Difference(520, 480, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If n tires of type t were repaired on day d, the charge per tire is c, and n \u00d7 c = r, then revenue from tire type t on day d is r",
+      "formula": "\u2200d\u2200t\u2200n\u2200c\u2200r (Repaired(d,t,n) \u2227 ChargePerTire(t,c) \u2227 Product(n,c,r) \u2192 Revenue(d,t,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If revenue from truck tires on day d is r1, revenue from car tires on day d is r2, and r1 + r2 = r, then total revenue on day d is r",
+      "formula": "\u2200d\u2200r1\u2200r2\u2200r (Revenue(d,truck,r1) \u2227 Revenue(d,car,r2) \u2227 Sum(r1,r2,r) \u2192 TotalRevenue(d,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If total revenue on day d1 is r1, total revenue on day d2 is r2, and r1 \u2212 r2 = r, then d1 earned r more revenue than d2",
+      "formula": "\u2200d1\u2200d2\u2200r1\u2200r2\u2200r (TotalRevenue(d1,r1) \u2227 TotalRevenue(d2,r2) \u2227 Difference(r1,r2,r) \u2192 RevenueDifference(d1,d2,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Revenue from truck tires on Thursday is 360, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(thursday, truck, 360)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Revenue from car tires on Thursday is 160, from FACT-3, FACT-4, OP-2, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(thursday, car, 160)",
+      "premises": [
+        "FACT-3",
+        "FACT-4",
+        "OP-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Total revenue on Thursday is 520, from INF-1, INF-2, OP-3, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalRevenue(thursday, 520)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Revenue from car tires on Friday is 480, from FACT-5, FACT-4, OP-4, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(friday, car, 480)",
+      "premises": [
+        "FACT-5",
+        "FACT-4",
+        "OP-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Revenue from truck tires on Friday is 0, from FACT-6, FACT-2, OP-5, RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Revenue(friday, truck, 0)",
+      "premises": [
+        "FACT-6",
+        "FACT-2",
+        "OP-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Total revenue on Friday is 480, from INF-4, INF-5, OP-6, RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalRevenue(friday, 480)",
+      "premises": [
+        "INF-4",
+        "INF-5",
+        "OP-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT PROVED",
+      "tptp_reason": "inference does not follow from axioms",
+      "error": true
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Thursday earned 40 more revenue than Friday, from INF-3, INF-6, OP-7, RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "RevenueDifference(thursday, friday, 40)",
+      "premises": [
+        "INF-3",
+        "INF-6",
+        "OP-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "INF-6",
+      "stage": "tptp",
+      "message": "inference does not follow from axioms"
+    }
+  ],
+  "error_stages": [
+    "tptp"
+  ]
+}

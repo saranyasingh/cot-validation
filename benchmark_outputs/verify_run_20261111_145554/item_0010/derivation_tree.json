@@ -1,0 +1,163 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Eliza's regular hourly rate is $10",
+      "formula": "Rate(eliza, regular, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Eliza worked 40 regular hours",
+      "formula": "Hours(eliza, regular, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Eliza's overtime multiplier is 1.2",
+      "formula": "Multiplier(eliza, 1.2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Eliza worked 5 overtime hours",
+      "formula": "Hours(eliza, overtime, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "40 hours times $10/hour is $400",
+      "formula": "Product(40, 10, 400)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1.2 times $10 is $12/hour",
+      "formula": "Product(1.2, 10, 12)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "5 hours times $12/hour is $60",
+      "formula": "Product(5, 12, 60)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "$400 plus $60 is $460",
+      "formula": "Sum(400, 60, 460)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x's regular rate is n and x worked h regular hours and h\u00d7n=p, then x earns p from regular work",
+      "formula": "\u2200x\u2200n\u2200h\u2200p (Rate(x,regular,n) \u2227 Hours(x,regular,h) \u2227 Product(h,n,p) \u2192 Earnings(x,regular,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's overtime multiplier is m and x's regular rate is n and m\u00d7n=r, then x's overtime rate is r",
+      "formula": "\u2200x\u2200m\u2200n\u2200r (Multiplier(x,m) \u2227 Rate(x,regular,n) \u2227 Product(m,n,r) \u2192 Rate(x,overtime,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x worked h overtime hours and x's overtime rate is n and h\u00d7n=p, then x earns p from overtime",
+      "formula": "\u2200x\u2200h\u2200n\u2200p (Hours(x,overtime,h) \u2227 Rate(x,overtime,n) \u2227 Product(h,n,p) \u2192 Earnings(x,overtime,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x earns a from regular work and b from overtime and a+b=s, then x's total earnings are s",
+      "formula": "\u2200x\u2200a\u2200b\u2200s (Earnings(x,regular,a) \u2227 Earnings(x,overtime,b) \u2227 Sum(a,b,s) \u2192 Earnings(x,total,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Eliza earns $400 from regular work, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(eliza, regular, 400)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Eliza's overtime rate is $12/hour, from FACT-3, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Rate(eliza, overtime, 12)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Eliza earns $60 from overtime, from FACT-4, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(eliza, overtime, 60)",
+      "premises": [
+        "FACT-4",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Eliza's total earnings are $460, from INF-1, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Earnings(eliza, total, 460)",
+      "premises": [
+        "INF-1",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [],
+  "error_stages": []
+}

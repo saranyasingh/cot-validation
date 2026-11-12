@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Speed(x, j, s) — x travels at speed s during journey j
+Distance(j, e) — journey j covers distance e
+Time(j, t) — journey j takes time t
+TotalTime(x, t) — x's total round-trip time is t
+
+Constants:
+tom, outbound, return, 10, 6, d, 3, 5, 30, 8, 4, 15, time_out, time_return, total_time, three_d, five_d, eight_d, four_d
+
+## FACTS
+FACT-1: Tom's ship travels at 10 mph on the outbound journey :: Speed(tom, outbound, 10)
+FACT-2: Tom returns at 6 mph :: Speed(tom, return, 6)
+FACT-3: The distance from location 1 to location 4 (outbound) is D :: Distance(outbound, d)
+FACT-4: The distance from location 4 back to location 1 (return) is the same D :: Distance(return, d)
+
+## OPERATIONS
+OP-1: D/10 = Time_out :: Quotient(d, 10, time_out)
+OP-2: D/6 = Time_return :: Quotient(d, 6, time_return)
+OP-3: Total Time = Time_out + Time_return :: Sum(time_out, time_return, total_time)
+OP-4: 3 × D = 3D :: Product(3, d, three_d)
+OP-5: 5 × D = 5D :: Product(5, d, five_d)
+OP-6: 3D + 5D = 8D :: Sum(three_d, five_d, eight_d)
+OP-7: 8D/30 = Total Time :: Quotient(eight_d, 30, total_time)
+OP-8: 4 × D = 4D :: Product(4, d, four_d)
+OP-9: 4D/15 = Total Time :: Quotient(four_d, 15, total_time)
+
+## RULES
+RULE-1: For any traveler x on journey j with speed s and distance e, if e ÷ s = t then the time taken for journey j is t :: ∀x∀j∀s∀e∀t (Speed(x,j,s) ∧ Distance(j,e) ∧ Quotient(e,s,t) → Time(j,t))
+RULE-2: For any traveler x with two journeys j1 and j2 taking times t1 and t2, if t1 + t2 = t then x's total round-trip time is t :: ∀x∀j1∀j2∀t1∀t2∀t (Time(j1,t1) ∧ Time(j2,t2) ∧ Sum(t1,t2,t) → TotalTime(x,t))
+
+## INFERENCES
+INF-1: The outbound journey takes time Time_out, from FACT-1, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Time(outbound, time_out)
+INF-2: The return journey takes time Time_return, from FACT-2, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Time(return, time_return)
+INF-3: Tom's total round-trip time is Total Time, from INF-1, INF-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalTime(tom, total_time)

@@ -1,0 +1,46 @@
+EXPLANATION
+To determine how many toys Uriah needs to remove, we first calculate the total weight reduction from removing the comic books.
+
+1. **Calculate the total weight of the comic books removed**:
+   - Each comic book weighs \( \frac{1}{4} \) pound.
+   - Uriah is removing 30 comic books.
+   
+   Therefore,
+   \[
+   \text{Total weight of comic books removed} = 30 \times \frac{1}{4} = 7.5 \text{ pounds}
+   \]
+
+2. **Determine the remaining weight after removing the comic books**:
+   - Uriah originally had some weight to remove, which was 15 pounds.
+   - After removing the comic books, the remaining weight is calculated as:
+   
+   Let \( W_{\text{comic}} \) be the initial weight of the book bag.
+   
+   \[
+   W_{\text{remaining}} = W_{\text{original}} - 15
+   \]
+   
+   Since \( W_{\text{remaining}} \) must equal the original weight minus the total weight of the comic books (which is 7.5 pounds):
+   
+   \[
+   W_{\text{remaining}} = W_{\text{original}} - 7.5
+   \]
+
+3. **Set up an equation for the toy weights**:
+   - Each toy weighs \( \frac{1}{2} \) pound.
+   - We know that the total weight removal needed is still 15 pounds.
+   
+   Thus, if \( x \) is the number of toys removed, then:
+   
+   \[
+   \left( \frac{1}{2} \right)x = 15
+   \]
+
+4. **Solve for \( x \)**:
+   \[
+   x = 15 \div \frac{1}{2} = 15 \times 2 = 30
+   \]
+
+Therefore, Uriah needs to remove 30 toys from his book bag.
+
+The answer is: 30

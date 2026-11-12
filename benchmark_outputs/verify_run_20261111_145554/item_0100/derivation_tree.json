@@ -1,0 +1,119 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Mary receives 18 new potted plants",
+      "formula": "Receives(mary, 18)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Mary has 2 potted plants on each ledge",
+      "formula": "PerLedge(mary, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Mary has 40 window ledges",
+      "formula": "NumLedges(mary, 40)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Mary gives away 1 potted plant per ledge",
+      "formula": "GivesAwayPerLedge(mary, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "2 times 40 is 80",
+      "formula": "Product(2, 40, 80)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1 times 40 is 40",
+      "formula": "Product(1, 40, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "80 minus 40 is 40",
+      "formula": "Difference(80, 40, 40)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n potted plants per ledge and m ledges, and n \u00d7 m = p, then x currently has p potted plants",
+      "formula": "\u2200x\u2200n\u2200m\u2200p (PerLedge(x,n) \u2227 NumLedges(x,m) \u2227 Product(n,m,p) \u2192 Has(x,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x currently has c potted plants, gives away n per ledge over m ledges with n \u00d7 m = g, and c \u2212 g = r, then x has r potted plants remaining",
+      "formula": "\u2200x\u2200c\u2200n\u2200m\u2200g\u2200r (Has(x,c) \u2227 GivesAwayPerLedge(x,n) \u2227 NumLedges(x,m) \u2227 Product(n,m,g) \u2227 Difference(c,g,r) \u2192 Has(x,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "c (\"currently has\") is never defined to include the 18 new plants from FACT-1; the 18 plants are not incorporated into the total before subtracting the given-away amount, leaving out a quantity.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Mary currently has 80 potted plants, from FACT-2, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Has(mary, 80)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Mary has 40 potted plants remaining, from INF-1, FACT-4, FACT-3, OP-2, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Has(mary, 40)",
+      "premises": [
+        "INF-1",
+        "FACT-4",
+        "FACT-3",
+        "OP-2",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "c (\"currently has\") is never defined to include the 18 new plants from FACT-1; the 18 plants are not incorporated into the total before subtracting the given-away amount, leaving out a quantity."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,36 @@
+EXPLANATION
+
+1. Let's start by defining the variables:
+   - \( M \) = Number of articles Meredith wrote on Monday (given as 5)
+   - \( T \) = Number of articles Meredith wrote on Tuesday
+   - \( W \) = Number of articles Meredith wrote on Wednesday
+
+2. According to the problem, Meredith wrote \( \frac{2}{5} \) times more articles on Tuesday than on Monday. This means:
+   \[
+   T = M + \frac{2}{5}M = \frac{7}{5}M
+   \]
+   Since \( M = 5 \):
+   \[
+   T = \frac{7}{5} \times 5 = 7
+   \]
+
+3. On Wednesday, she wrote twice the number of articles she wrote on Tuesday:
+   \[
+   W = 2T = 2 \times 7 = 14
+   \]
+
+4. Now we have all the necessary information to calculate the total number of hours spent writing articles over the three days:
+   - Total articles written = Articles on Monday + Articles on Tuesday + Articles on Wednesday
+     \[
+     \text{Total articles} = M + T + W = 5 + 7 + 14 = 26
+     \]
+
+5. Each article takes an average of 4 hours to research and write:
+   \[
+   \text{Total time spent} = \text{Total articles} \times \text{Time per article}
+   \]
+   \[
+   \text{Total time spent} = 26 \times 4 = 104 \text{ hours}
+   \]
+
+THE ANSWER IS: 104

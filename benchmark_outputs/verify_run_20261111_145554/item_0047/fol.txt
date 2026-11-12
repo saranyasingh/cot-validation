@@ -1,0 +1,23 @@
+## VOCABULARY
+Predicates:
+Initial(x, n) — x started with n post-it notes
+PlacedAtWork(x, n) — x placed n post-it notes on cups of coffee at work
+Remaining(x, n) — x had n post-it notes remaining after placing them at work
+Purchased(x, n) — x purchased a package containing n post-it notes
+Constants:
+candice, 80, 220, 23, 300, 323
+
+## FACTS
+FACT-1: Candice started with 80 post-it notes :: Initial(candice, 80)
+FACT-2: She placed 220 post-it notes on the cups of coffee :: PlacedAtWork(candice, 220)
+FACT-3: Candice had 23 post-it notes remaining after placing them on the cups of coffee :: Remaining(candice, 23)
+
+## OPERATIONS
+OP-1: 80 + 220 = 300 :: Sum(80, 220, 300)
+OP-2: 80 + 220 + 23 = 323 :: Sum(80, 220, 23, 323)
+
+## RULES
+RULE-1: If x started with a post-it notes, placed b post-it notes at work, had c post-it notes remaining, and a + b + c = p, then x purchased a package of p post-it notes :: ∀x∀a∀b∀c∀p (Initial(x,a) ∧ PlacedAtWork(x,b) ∧ Remaining(x,c) ∧ Sum(a,b,c,p) → Purchased(x,p))
+
+## INFERENCES
+INF-1: Candice purchased a package of 323 post-it notes, from FACT-1, FACT-2, FACT-3, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Purchased(candice, 323)

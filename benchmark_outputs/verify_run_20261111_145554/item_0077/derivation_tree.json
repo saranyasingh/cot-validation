@@ -1,0 +1,194 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The puppy needs 1 cup of dog food per day during period1 (first 180 days)",
+      "formula": "DailyRate(puppy, period1, 1)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Period1 lasts 180 days",
+      "formula": "Days(puppy, period1, 180)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The puppy needs 2 cups of dog food per day during period2 (the rest of its life)",
+      "formula": "DailyRate(puppy, period2, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Assumed total lifespan of the puppy is 365 days",
+      "formula": "Lifespan(puppy, 365)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "One bag of dog food contains 110 cups",
+      "formula": "CupsPerBag(110)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "365 \u2212 180 = 185",
+      "formula": "Difference(365, 180, 185)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "1 \u00d7 180 = 180",
+      "formula": "Product(1, 180, 180)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "2 \u00d7 185 = 370",
+      "formula": "Product(2, 185, 370)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "180 + 370 = 550",
+      "formula": "Sum(180, 370, 550)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "550 \u00f7 110 = 5",
+      "formula": "Quotient(550, 110, 5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has total lifespan n, period1 lasts m days, and n \u2212 m = r, then period2 lasts r days for x",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Lifespan(x,n) \u2227 Days(x,period1,m) \u2227 Difference(n,m,r) \u2192 Days(x,period2,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x consumes n cups per day during period p, period p lasts m days, and n \u00d7 m = r, then x consumes r cups during period p",
+      "formula": "\u2200x\u2200p\u2200n\u2200m\u2200r (DailyRate(x,p,n) \u2227 Days(x,p,m) \u2227 Product(n,m,r) \u2192 Amount(x,p,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x consumes n cups during period1 and m cups during period2, and n + m = r, then x consumes r cups total",
+      "formula": "\u2200x\u2200n\u2200m\u2200r (Amount(x,period1,n) \u2227 Amount(x,period2,m) \u2227 Sum(n,m,r) \u2192 Amount(x,total,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's total cup consumption is n, each bag holds c cups, and n \u00f7 c = b, then x needs b bags",
+      "formula": "\u2200x\u2200n\u2200c\u2200b (Amount(x,total,n) \u2227 CupsPerBag(c) \u2227 Quotient(n,c,b) \u2192 Amount(x,bags,b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Period2 lasts 185 days for the puppy, from FACT-4, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Days(puppy, period2, 185)",
+      "premises": [
+        "FACT-4",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The puppy consumes 180 cups during period1, from FACT-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(puppy, period1, 180)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The puppy consumes 370 cups during period2, from FACT-3, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(puppy, period2, 370)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "OP-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The puppy consumes 550 cups in total, from INF-2, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(puppy, total, 550)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "The puppy needs 5 bags of dog food, from INF-4, FACT-5, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(puppy, bags, 5)",
+      "premises": [
+        "INF-4",
+        "FACT-5",
+        "OP-5",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [],
+  "error_stages": []
+}

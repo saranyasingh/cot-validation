@@ -1,0 +1,40 @@
+## VOCABULARY
+Predicates:
+Speed(x, n) — x's download speed is n GB per minute
+FileSize(x, n) — the total size of the file x is downloading is n GB
+Reduction(x, n) — x's download speed is reduced by fraction n
+Amount(x, n) — an amount of data of n GB is associated with x (downloaded or remaining)
+Time(x, n) — x takes n minutes for a download phase or total
+
+Constants:
+carla, 2, 200, 0.4, 1, 0.6, 198, 1.2, 165, 166
+
+## FACTS
+FACT-1: Carla's normal download speed is 2 GB per minute :: Speed(carla, 2)
+FACT-2: The total file size is 200 GB :: FileSize(carla, 200)
+FACT-3: Carla's speed is reduced by 40% (0.4) after the restart :: Reduction(carla, 0.4)
+FACT-4: The amount of data downloaded in the first minute before the restart is 2 GB :: Amount(carla, 2)
+
+## OPERATIONS
+OP-1: 2 GB ÷ 2 GB/min = 1 minute :: Quotient(2, 2, 1)
+OP-2: 2 GB/min × 1 minute = 2 GB :: Product(2, 1, 2)
+OP-3: 200 GB − 2 GB = 198 GB :: Difference(200, 2, 198)
+OP-4: 1 − 0.4 = 0.6 :: Difference(1, 0.4, 0.6)
+OP-5: 2 GB/min × 0.6 = 1.2 GB/min :: Product(2, 0.6, 1.2)
+OP-6: 198 GB ÷ 1.2 GB/min = 165 minutes :: Quotient(198, 1.2, 165)
+OP-7: 1 minute + 165 minutes = 166 minutes :: Sum(1, 165, 166)
+
+## RULES
+RULE-1: If x has downloaded amount d at speed s, and d ÷ s = t, then x took t minutes :: ∀x∀d∀s∀t (Amount(x,d) ∧ Speed(x,s) ∧ Quotient(d,s,t) → Time(x,t))
+RULE-2: If x downloads at speed s for time t, and s × t = d, then x has downloaded amount d :: ∀x∀s∀t∀d (Speed(x,s) ∧ Time(x,t) ∧ Product(s,t,d) → Amount(x,d))
+RULE-3: If x's file size is f, x has downloaded amount d, and f − d = r, then x has remaining amount r :: ∀x∀f∀d∀r (FileSize(x,f) ∧ Amount(x,d) ∧ Difference(f,d,r) → Amount(x,r))
+RULE-4: If x's speed is s, x's speed is reduced by fraction n, 1 − n = q, and s × q = s2, then x's new speed is s2 :: ∀x∀s∀n∀q∀s2 (Speed(x,s) ∧ Reduction(x,n) ∧ Difference(1,n,q) ∧ Product(s,q,s2) → Speed(x,s2))
+RULE-5: If x took t1 minutes for one phase and t2 minutes for another, and t1 + t2 = t, then x's total time is t :: ∀x∀t1∀t2∀t (Time(x,t1) ∧ Time(x,t2) ∧ Sum(t1,t2,t) → Time(x,t))
+
+## INFERENCES
+INF-1: Time before the restart is 1 minute, from FACT-4, FACT-1, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: Time(carla, 1)
+INF-2: The amount of data downloaded before the restart is confirmed to be 2 GB, from FACT-1, INF-1, OP-2, RULE-2 by Universal Instantiation and Modus Ponens :: Amount(carla, 2)
+INF-3: The remaining data to download is 198 GB, from FACT-2, INF-2, OP-3, RULE-3 by Universal Instantiation and Modus Ponens :: Amount(carla, 198)
+INF-4: Carla's new download speed is 1.2 GB per minute, from FACT-1, FACT-3, OP-4, OP-5, RULE-4 by Universal Instantiation and Modus Ponens :: Speed(carla, 1.2)
+INF-5: Time to download the remaining data is 165 minutes, from INF-3, INF-4, OP-6, RULE-1 by Universal Instantiation and Modus Ponens :: Time(carla, 165)
+INF-6: Total time to download the file is 166 minutes, from INF-1, INF-5, OP-7, RULE-5 by Universal Instantiation and Modus Ponens :: Time(carla, 166)

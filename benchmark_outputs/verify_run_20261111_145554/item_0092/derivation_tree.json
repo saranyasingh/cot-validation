@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Cindy has 4 pets",
+      "formula": "Pets(cindy, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Marcia has two more pets than Cindy",
+      "formula": "MoreThan(marcia, cindy, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Jan has three times the number of pets as Marcia",
+      "formula": "TimesAsMany(jan, marcia, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 + 2 = 6",
+      "formula": "Sum(4, 2, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3 \u00d7 6 = 18",
+      "formula": "Product(3, 6, 18)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "18 + 6 + 4 = 28",
+      "formula": "Sum(18, 6, 4, 28)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x has n more pets than y, and y has m pets, and m + n = r, then x has r pets",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (MoreThan(x,y,n) \u2227 Pets(y,m) \u2227 Sum(m,n,r) \u2192 Pets(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x has n times as many pets as y, and y has m pets, and n \u00d7 m = r, then x has r pets",
+      "formula": "\u2200x\u2200y\u2200n\u2200m\u2200r (TimesAsMany(x,y,n) \u2227 Pets(y,m) \u2227 Product(n,m,r) \u2192 Pets(x,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x has n pets, y has m pets, z has p pets, and n + m + p = r, then the total number of pets is r",
+      "formula": "\u2200x\u2200y\u2200z\u2200n\u2200m\u2200p\u2200r (Pets(x,n) \u2227 Pets(y,m) \u2227 Pets(z,p) \u2227 Sum(n,m,p,r) \u2192 Total(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Marcia has 6 pets, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Pets(marcia, 6)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Jan has 18 pets, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Pets(jan, 18)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The total number of pets is 28, from INF-2, INF-1, FACT-1, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Total(28)",
+      "premises": [
+        "INF-2",
+        "INF-1",
+        "FACT-1",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

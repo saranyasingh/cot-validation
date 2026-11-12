@@ -1,0 +1,4 @@
+% OP-1: Product(9, 0.666666667, 6)
+tff(op_1, conjecture, $product(9/1, 666666667/1000000000) = 6/1).
+% OP-2: Difference(9, 6, 3)
+tff(op_2, conjecture, $difference(9/1, 6/1) = 3/1).

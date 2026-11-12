@@ -1,0 +1,6 @@
+% OP-1: Quotient(400, 4, 100)
+tff(op_1, conjecture, $quotient(400/1, 4/1) = 100/1).
+% OP-2: Quotient(400, 2, 200)
+tff(op_2, conjecture, $quotient(400/1, 2/1) = 200/1).
+% OP-3: Difference(200, 100, 100)
+tff(op_3, conjecture, $difference(200/1, 100/1) = 100/1).

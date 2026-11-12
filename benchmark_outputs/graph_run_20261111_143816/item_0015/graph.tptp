@@ -1,0 +1,35 @@
+% Declarations
+tff(group_type, type, group: $tType).
+tff(dance_class_decl, type, dance_class: group).
+tff(contemporary_decl, type, contemporary: group).
+tff(remaining_decl, type, remaining: group).
+tff(jazz_decl, type, jazz: group).
+tff(hip_hop_decl, type, hip_hop: group).
+tff(group_count_decl, type, group_count: (group * $rat) > $o).
+tff(group_percent_decl, type, group_percent: (group * group * $rat) > $o).
+tff(excluded_from_decl, type, excluded_from: (group * group) > $o).
+tff(dance_class_neq_contemporary, axiom, dance_class != contemporary).
+tff(dance_class_neq_remaining, axiom, dance_class != remaining).
+tff(dance_class_neq_jazz, axiom, dance_class != jazz).
+tff(dance_class_neq_hip_hop, axiom, dance_class != hip_hop).
+tff(contemporary_neq_remaining, axiom, contemporary != remaining).
+tff(contemporary_neq_jazz, axiom, contemporary != jazz).
+tff(contemporary_neq_hip_hop, axiom, contemporary != hip_hop).
+tff(remaining_neq_jazz, axiom, remaining != jazz).
+tff(remaining_neq_hip_hop, axiom, remaining != hip_hop).
+tff(jazz_neq_hip_hop, axiom, jazz != hip_hop).
+
+% Statements
+tff(c1, axiom, group_count(dance_class, 20/1)).
+tff(c2, axiom, group_percent(contemporary, dance_class, 20/1)).
+tff(c3, lemma, group_count(contemporary, 4/1)).
+tff(c4, axiom, ![V_a: $rat, V_b: $rat, V_c: $rat]: ((group_count(dance_class, V_a) & group_count(contemporary, V_b) & excluded_from(contemporary, remaining) & V_c = $difference(V_a, V_b)) => group_count(remaining, V_c))).
+tff(c5, lemma, group_count(remaining, 16/1)).
+tff(c6, axiom, group_percent(jazz, remaining, 25/1)).
+tff(c7, lemma, group_count(jazz, 4/1)).
+tff(c8, axiom, ![V_a: $rat, V_b: $rat, V_c: $rat]: ((group_count(remaining, V_a) & group_count(jazz, V_b) & V_c = $difference(V_a, V_b)) => group_count(hip_hop, V_c))).
+tff(c9, lemma, group_count(hip_hop, 12/1)).
+tff(c10, axiom, ![V_a: $rat, V_b: $rat, V_q: $rat, V_p: $rat]: ((group_count(hip_hop, V_a) & group_count(dance_class, V_b) & V_q = $quotient(V_a, V_b) & V_p = $product(V_q, 100/1)) => group_percent(hip_hop, dance_class, V_p))).
+tff(c11, lemma, group_percent(hip_hop, dance_class, 60/1)).
+tff(i1, axiom, ![V_g: group, V_base: group, V_n: $rat, V_p: $rat, V_t: $rat, V_c: $rat]: ((group_count(V_base, V_n) & group_percent(V_g, V_base, V_p) & V_t = $product(V_n, V_p) & V_c = $quotient(V_t, 100/1)) => group_count(V_g, V_c))).
+tff(i2, axiom, excluded_from(contemporary, remaining)).

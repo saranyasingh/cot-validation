@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, daily_rate(puppy, period1, n_1)).
+fof(fact_2, axiom, days(puppy, period1, n_180)).
+fof(fact_3, axiom, daily_rate(puppy, period2, n_2)).
+fof(fact_4, axiom, lifespan(puppy, n_365)).
+fof(fact_5, axiom, cups_per_bag(n_110)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, difference(n_365, n_180, n_185)).
+fof(op_2, axiom, product(n_1, n_180, n_180)).
+fof(op_3, axiom, product(n_2, n_185, n_370)).
+fof(op_4, axiom, sum(n_180, n_370, n_550)).
+fof(op_5, axiom, quotient(n_550, n_110, n_5)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,R] : ((lifespan(X, N) & days(X, period1, M) & difference(N, M, R)) => days(X, period2, R))).
+fof(rule_2, axiom, ! [X,P,N,M,R] : ((daily_rate(X, P, N) & days(X, P, M) & product(N, M, R)) => amount(X, P, R))).
+fof(rule_3, axiom, ! [X,N,M,R] : ((amount(X, period1, N) & amount(X, period2, M) & sum(N, M, R)) => amount(X, total, R))).
+fof(rule_4, axiom, ! [X,N,C,B] : ((amount(X, total, N) & cups_per_bag(C) & quotient(N, C, B)) => amount(X, bags, B))).
+
+% --- INFERENCES ---
+% From fact_4, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, days(puppy, period2, n_185)).
+% From fact_1, fact_2, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, amount(puppy, period1, n_180)).
+% From fact_3, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, amount(puppy, period2, n_370)).
+% From inf_2, inf_3, op_4, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, amount(puppy, total, n_550)).
+% From inf_4, fact_5, op_5, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, amount(puppy, bags, n_5)).

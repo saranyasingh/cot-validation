@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+Volume(x, n) — the volume of drink x is n liters
+WaterFraction(x, f) — the fraction f of drink x's volume is water
+WaterAmount(x, w) — the amount of water in drink x is w liters
+Spilled(x, s) — s liters of drink x were spilled
+TotalWater(x, t) — the total water amount at stage x is t liters
+
+Constants:
+orange_drink, pineapple_drink, before_pour, final_answer, 10, 1, 9, 6, 15, 2/3, 3/5, 20/3, 47/3, 44/3
+
+## FACTS
+FACT-1: The original orange drink has a volume of 10 liters :: Volume(orange_drink, 10)
+FACT-2: The fraction of the orange drink that is water is 2/3 :: WaterFraction(orange_drink, 2/3)
+FACT-3: 1 liter of the orange drink was spilled :: Spilled(orange_drink, 1)
+FACT-4: The pineapple drink has a volume of 15 liters :: Volume(pineapple_drink, 15)
+FACT-5: The fraction of the pineapple drink that is water is 3/5 :: WaterFraction(pineapple_drink, 3/5)
+
+## OPERATIONS
+OP-1: 10 × 2/3 = 20/3, water in the original orange drink :: Product(10, 2/3, 20/3)
+OP-2: 10 − 1 = 9, orange drink remaining after spilling :: Difference(10, 1, 9)
+OP-3: 9 × 2/3 = 6, water in the remaining orange drink :: Product(9, 2/3, 6)
+OP-4: 15 × 3/5 = 9, water in the pineapple drink :: Product(15, 3/5, 9)
+OP-5: 20/3 + 9 = 47/3, total water before pouring out :: Sum(20/3, 9, 47/3)
+OP-6: 47/3 − 1 = 44/3, remaining water after spillage :: Difference(47/3, 1, 44/3)
+
+## RULES
+RULE-1: If a drink x has volume n, a water fraction f, and n × f = w, then the amount of water in x is w :: ∀x∀n∀f∀w (Volume(x,n) ∧ WaterFraction(x,f) ∧ Product(n,f,w) → WaterAmount(x,w))
+RULE-2: If a drink x has volume n, s liters are spilled from it, and n − s = r, then the remaining volume of x is r :: ∀x∀n∀s∀r (Volume(x,n) ∧ Spilled(x,s) ∧ Difference(n,s,r) → Volume(x,r))
+RULE-3: If drink x has water amount w1, drink y has water amount w2, and w1 + w2 = t, then the total water before pouring out is t :: ∀x∀y∀w1∀w2∀t (WaterAmount(x,w1) ∧ WaterAmount(y,w2) ∧ Sum(w1,w2,t) → TotalWater(before_pour, t))
+RULE-4: If the total water before pouring out is t, s liters of orange drink were spilled, and t − s = r, then the final remaining water is r :: ∀t∀s∀r (TotalWater(before_pour, t) ∧ Spilled(orange_drink, s) ∧ Difference(t,s,r) → TotalWater(final_answer, r))
+
+## INFERENCES
+INF-1: Water in the original orange drink is 20/3 liters, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(orange_drink, 20/3)
+INF-2: Remaining orange drink volume is 9 liters, from FACT-1, FACT-3, OP-2, RULE-2 by Universal Instantiation and Modus Ponens :: Volume(orange_drink, 9)
+INF-3: Water in the remaining orange drink is 6 liters, from INF-2, FACT-2, OP-3, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(orange_drink, 6)
+INF-4: Water in the pineapple drink is 9 liters, from FACT-4, FACT-5, OP-4, RULE-1 by Universal Instantiation and Modus Ponens :: WaterAmount(pineapple_drink, 9)
+INF-5: Total water before pouring out is 47/3 liters, from INF-1, INF-4, OP-5, RULE-3 by Universal Instantiation and Modus Ponens :: TotalWater(before_pour, 47/3)
+INF-6: Final remaining water is 44/3 liters, from INF-5, FACT-3, OP-6, RULE-4 by Universal Instantiation and Modus Ponens :: TotalWater(final_answer, 44/3)

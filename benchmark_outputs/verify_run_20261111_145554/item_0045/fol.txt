@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+Quantity(x, item, n) — x has/uses n units of item (candles made, pounds of beeswax, pounds of wicks)
+PricePerUnit(x, item, n) — the price per unit of item for x is n dollars
+Amount(x, label, n) — the dollar amount associated with label (revenue, beeswax_cost, wicks_cost, total_cost, profit) for x is n
+
+Constants:
+charlie, candles, beeswax, wicks, revenue, beeswax_cost, wicks_cost, total_cost, profit, 20, 2.00, 2, 10.00, 40.00, 20.00, 0.00
+
+## FACTS
+FACT-1: Charlie makes 20 candles :: Quantity(charlie, candles, 20)
+FACT-2: Charlie sells each candle for $2.00 :: PricePerUnit(charlie, candles, 2.00)
+FACT-3: Charlie uses 2 pounds of beeswax :: Quantity(charlie, beeswax, 2)
+FACT-4: Charlie uses 2 pounds of wicks :: Quantity(charlie, wicks, 2)
+FACT-5: The price per pound of beeswax is $10.00 :: PricePerUnit(charlie, beeswax, 10.00)
+FACT-6: The price per pound of wicks is $10.00 :: PricePerUnit(charlie, wicks, 10.00)
+
+## OPERATIONS
+OP-1: 20 × 2.00 = 40.00 (total revenue) :: Product(20, 2.00, 40.00)
+OP-2: 2 × 10.00 = 20.00 (beeswax cost) :: Product(2, 10.00, 20.00)
+OP-3: 2 × 10.00 = 20.00 (wicks cost) :: Product(2, 10.00, 20.00)
+OP-4: 20.00 + 20.00 = 40.00 (total cost) :: Sum(20.00, 20.00, 40.00)
+OP-5: 40.00 − 40.00 = 0.00 (net profit) :: Difference(40.00, 40.00, 0.00)
+
+## RULES
+RULE-1: If x makes n candles priced at p dollars each and n×p=r, then x's revenue is r :: ∀x∀n∀p∀r (Quantity(x,candles,n) ∧ PricePerUnit(x,candles,p) ∧ Product(n,p,r) → Amount(x,revenue,r))
+RULE-2: If x uses n pounds of beeswax priced at p dollars per pound and n×p=r, then x's beeswax cost is r :: ∀x∀n∀p∀r (Quantity(x,beeswax,n) ∧ PricePerUnit(x,beeswax,p) ∧ Product(n,p,r) → Amount(x,beeswax_cost,r))
+RULE-3: If x uses n pounds of wicks priced at p dollars per pound and n×p=r, then x's wicks cost is r :: ∀x∀n∀p∀r (Quantity(x,wicks,n) ∧ PricePerUnit(x,wicks,p) ∧ Product(n,p,r) → Amount(x,wicks_cost,r))
+RULE-4: If x's beeswax cost is b and wicks cost is w and b+w=t, then x's total cost is t :: ∀x∀b∀w∀t (Amount(x,beeswax_cost,b) ∧ Amount(x,wicks_cost,w) ∧ Sum(b,w,t) → Amount(x,total_cost,t))
+RULE-5: If x's revenue is rv and total cost is c and rv−c=p, then x's profit is p :: ∀x∀rv∀c∀p (Amount(x,revenue,rv) ∧ Amount(x,total_cost,c) ∧ Difference(rv,c,p) → Amount(x,profit,p))
+
+## INFERENCES
+INF-1: Charlie's total revenue is 40.00, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Amount(charlie, revenue, 40.00)
+INF-2: Charlie's beeswax cost is 20.00, from FACT-3, FACT-5, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(charlie, beeswax_cost, 20.00)
+INF-3: Charlie's wicks cost is 20.00, from FACT-4, FACT-6, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(charlie, wicks_cost, 20.00)
+INF-4: Charlie's total cost is 40.00, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(charlie, total_cost, 40.00)
+INF-5: Charlie's net profit is 0.00, from INF-1, INF-4, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens :: Amount(charlie, profit, 0.00)

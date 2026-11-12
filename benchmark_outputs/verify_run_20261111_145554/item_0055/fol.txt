@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+AdoptedKittens(x, n) — x has had n adopted kittens
+TimesAsMany(x, y, n) — x has had n times as many adopted kittens as y
+InitialKittens(x, n) — x initially had n kittens before any adoption
+TotalKittens(x, n) — x has a total of n kittens now
+
+Constants:
+trixie, patchy, doubtfire_family, 3, 12, 36, 48, 7, 55
+
+## FACTS
+FACT-1: Trixie has had 12 adopted kittens :: AdoptedKittens(trixie, 12)
+FACT-2: Patchy has had thrice the number of adopted kittens as Trixie :: TimesAsMany(patchy, trixie, 3)
+FACT-3: Initially, the family had 7 kittens :: InitialKittens(doubtfire_family, 7)
+
+## OPERATIONS
+OP-1: 3 × 12 = 36 :: Product(3, 12, 36)
+OP-2: 36 + 12 = 48 :: Sum(36, 12, 48)
+OP-3: 7 + 48 = 55 :: Sum(7, 48, 55)
+
+## RULES
+RULE-1: If x has n times as many adopted kittens as y, and y has m adopted kittens, and n×m=p, then x has p adopted kittens :: ∀x∀y∀n∀m∀p (TimesAsMany(x,y,n) ∧ AdoptedKittens(y,m) ∧ Product(n,m,p) → AdoptedKittens(x,p))
+RULE-2: If one cat has p adopted kittens and another cat has m adopted kittens, and p+m=s, then the family has s adopted kittens total :: ∀x∀y∀s∀p∀m (AdoptedKittens(x,p) ∧ AdoptedKittens(y,m) ∧ Sum(p,m,s) → AdoptedKittens(doubtfire_family, s))
+RULE-3: If a family initially had n kittens and has had s adopted kittens, and n+s=r, then the family now has r total kittens :: ∀x∀n∀s∀r (InitialKittens(x,n) ∧ AdoptedKittens(x,s) ∧ Sum(n,s,r) → TotalKittens(x,r))
+
+## INFERENCES
+INF-1: Patchy has 36 adopted kittens, from FACT-2, FACT-1, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: AdoptedKittens(patchy, 36)
+INF-2: The Doubtfire family has 48 adopted kittens total, from INF-1, FACT-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: AdoptedKittens(doubtfire_family, 48)
+INF-3: The Doubtfire family has 55 total kittens, from FACT-3, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: TotalKittens(doubtfire_family, 55)

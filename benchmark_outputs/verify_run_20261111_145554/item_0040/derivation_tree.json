@@ -1,0 +1,210 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Running speed is four times walking speed",
+      "formula": "SpeedFactor(running, walking, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Skipping speed is half as fast as running speed",
+      "formula": "HalfSpeed(skipping, running)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Skipping speed is 3 mph",
+      "formula": "Speed(skipping, 3)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Dana runs for 2 hours (one third of the total time)",
+      "formula": "Time(running, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Dana walks for 4 hours (the remaining two thirds of the total time)",
+      "formula": "Time(walking, 4)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "4 divided by 2 is 2 (S = R/2 = 4W/2 = 2W)",
+      "formula": "Quotient(4, 2, 2)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "3 divided by 2 is 1.5 (solving 2W = 3 for W)",
+      "formula": "Quotient(3, 2, 1.5)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "4 \u00d7 1.5 \u00d7 2/3 is 2 (running distance, as stated)",
+      "formula": "Product(4, 1.5, 0.6667, 2)",
+      "arithmetic_status": "INCORRECT",
+      "arithmetic_reason": "4 * 1.5 * 0.6667 = 4.0002, not 2",
+      "error": true
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "1.5 \u00d7 4 is 6 (walking distance)",
+      "formula": "Product(1.5, 4, 6)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "2 + 6 is 8 (total distance)",
+      "formula": "Sum(2, 6, 8)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If y's speed is k times z's speed, x's speed is half of y's speed, and k divided by 2 equals c, then x's speed is c times z's speed",
+      "formula": "\u2200x\u2200y\u2200z\u2200k\u2200c (SpeedFactor(y,z,k) \u2227 HalfSpeed(x,y) \u2227 Quotient(k,2,c) \u2192 SpeedFactor(x,z,c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x's speed is k times y's speed, x's speed is n, and n divided by k equals w, then y's speed is w",
+      "formula": "\u2200x\u2200y\u2200k\u2200n\u2200w (SpeedFactor(x,y,k) \u2227 Speed(x,n) \u2227 Quotient(n,k,w) \u2192 Speed(y,w))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x's speed is k times walking's speed, walking's speed is w, and k \u00d7 w \u00d7 f equals d, then x's distance is d",
+      "formula": "\u2200x\u2200k\u2200w\u2200f\u2200d (SpeedFactor(x, walking, k) \u2227 Speed(walking, w) \u2227 Product(k,w,f,d) \u2192 Distance(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's speed is n, x's time is t, and n \u00d7 t equals d, then x's distance is d",
+      "formula": "\u2200x\u2200n\u2200t\u2200d (Speed(x,n) \u2227 Time(x,t) \u2227 Product(n,t,d) \u2192 Distance(x,d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x's distance is a, y's distance is b, and a + b equals s, then the total distance is s",
+      "formula": "\u2200x\u2200y\u2200a\u2200b\u2200s (Distance(x,a) \u2227 Distance(y,b) \u2227 Sum(a,b,s) \u2192 Distance(total,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Skipping speed is 2 times walking speed, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "SpeedFactor(skipping, walking, 2)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Walking speed is 1.5 mph, from INF-1, FACT-3, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Speed(walking, 1.5)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Running distance is 2 miles, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(running, 2)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Walking distance is 6 miles, from INF-2, FACT-5, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(walking, 6)",
+      "premises": [
+        "INF-2",
+        "FACT-5",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Total distance is 8 miles, from INF-3, INF-4, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Distance(total, 8)",
+      "premises": [
+        "INF-3",
+        "INF-4",
+        "OP-5",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "OP-3",
+      "stage": "arithmetic",
+      "message": "4 * 1.5 * 0.6667 = 4.0002, not 2"
+    }
+  ],
+  "error_stages": [
+    "arithmetic"
+  ]
+}

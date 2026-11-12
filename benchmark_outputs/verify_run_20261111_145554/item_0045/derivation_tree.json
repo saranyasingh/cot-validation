@@ -1,0 +1,238 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Charlie makes 20 candles",
+      "formula": "Quantity(charlie, candles, 20)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Charlie sells each candle for $2.00",
+      "formula": "PricePerUnit(charlie, candles, 2.00)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Charlie uses 2 pounds of beeswax",
+      "formula": "Quantity(charlie, beeswax, 2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Charlie uses 2 pounds of wicks",
+      "formula": "Quantity(charlie, wicks, 2)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem states wicks come bundled with one pound of beeswax (combined $10 cost), not that wicks are purchased separately by the pound.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The price per pound of beeswax is $10.00",
+      "formula": "PricePerUnit(charlie, beeswax, 10.00)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The $10.00 is the combined cost of one pound of beeswax AND the wicks, not the price of beeswax alone.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The price per pound of wicks is $10.00",
+      "formula": "PricePerUnit(charlie, wicks, 10.00)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "The problem does not state a separate per-pound price for wicks; the $10.00 already covers both beeswax and wicks together.",
+      "error": true
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "20 \u00d7 2.00 = 40.00 (total revenue)",
+      "formula": "Product(20, 2.00, 40.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-2": {
+      "type": "operation",
+      "gloss": "2 \u00d7 10.00 = 20.00 (beeswax cost)",
+      "formula": "Product(2, 10.00, 20.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-3": {
+      "type": "operation",
+      "gloss": "2 \u00d7 10.00 = 20.00 (wicks cost)",
+      "formula": "Product(2, 10.00, 20.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-4": {
+      "type": "operation",
+      "gloss": "20.00 + 20.00 = 40.00 (total cost)",
+      "formula": "Sum(20.00, 20.00, 40.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "OP-5": {
+      "type": "operation",
+      "gloss": "40.00 \u2212 40.00 = 0.00 (net profit)",
+      "formula": "Difference(40.00, 40.00, 0.00)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x makes n candles priced at p dollars each and n\u00d7p=r, then x's revenue is r",
+      "formula": "\u2200x\u2200n\u2200p\u2200r (Quantity(x,candles,n) \u2227 PricePerUnit(x,candles,p) \u2227 Product(n,p,r) \u2192 Amount(x,revenue,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If x uses n pounds of beeswax priced at p dollars per pound and n\u00d7p=r, then x's beeswax cost is r",
+      "formula": "\u2200x\u2200n\u2200p\u2200r (Quantity(x,beeswax,n) \u2227 PricePerUnit(x,beeswax,p) \u2227 Product(n,p,r) \u2192 Amount(x,beeswax_cost,r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If x uses n pounds of wicks priced at p dollars per pound and n\u00d7p=r, then x's wicks cost is r",
+      "formula": "\u2200x\u2200n\u2200p\u2200r (Quantity(x,wicks,n) \u2227 PricePerUnit(x,wicks,p) \u2227 Product(n,p,r) \u2192 Amount(x,wicks_cost,r))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "This treats wicks as an independently priced-per-pound input, but the problem only gives one combined price for beeswax+wicks together; applying this rule double-counts cost.",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "If x's beeswax cost is b and wicks cost is w and b+w=t, then x's total cost is t",
+      "formula": "\u2200x\u2200b\u2200w\u2200t (Amount(x,beeswax_cost,b) \u2227 Amount(x,wicks_cost,w) \u2227 Sum(b,w,t) \u2192 Amount(x,total_cost,t))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "Adding a separate wicks cost to the beeswax cost double-counts, since the $10.00 cost already includes both beeswax and wicks for one pound.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If x's revenue is rv and total cost is c and rv\u2212c=p, then x's profit is p",
+      "formula": "\u2200x\u2200rv\u2200c\u2200p (Amount(x,revenue,rv) \u2227 Amount(x,total_cost,c) \u2227 Difference(rv,c,p) \u2192 Amount(x,profit,p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Charlie's total revenue is 40.00, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(charlie, revenue, 40.00)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Charlie's beeswax cost is 20.00, from FACT-3, FACT-5, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(charlie, beeswax_cost, 20.00)",
+      "premises": [
+        "FACT-3",
+        "FACT-5",
+        "OP-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Charlie's wicks cost is 20.00, from FACT-4, FACT-6, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(charlie, wicks_cost, 20.00)",
+      "premises": [
+        "FACT-4",
+        "FACT-6",
+        "OP-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Charlie's total cost is 40.00, from INF-2, INF-3, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(charlie, total_cost, 40.00)",
+      "premises": [
+        "INF-2",
+        "INF-3",
+        "OP-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Charlie's net profit is 0.00, from INF-1, INF-4, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Amount(charlie, profit, 0.00)",
+      "premises": [
+        "INF-1",
+        "INF-4",
+        "OP-5",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "The problem states wicks come bundled with one pound of beeswax (combined $10 cost), not that wicks are purchased separately by the pound."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "The $10.00 is the combined cost of one pound of beeswax AND the wicks, not the price of beeswax alone."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "The problem does not state a separate per-pound price for wicks; the $10.00 already covers both beeswax and wicks together."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "This treats wicks as an independently priced-per-pound input, but the problem only gives one combined price for beeswax+wicks together; applying this rule double-counts cost."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "Adding a separate wicks cost to the beeswax cost double-counts, since the $10.00 cost already includes both beeswax and wicks for one pound."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

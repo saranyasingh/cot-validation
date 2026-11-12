@@ -1,0 +1,8 @@
+FACT-1: SUPPORTED
+FACT-2: SUPPORTED
+FACT-3: UNSUPPORTED — the problem states Claire makes a 3-egg omelet (one omelet with 3 eggs), not 3 omelets, each morning.
+FACT-4: SUPPORTED
+
+RULE-1: PLAUSIBLE
+RULE-2: PLAUSIBLE
+RULE-3: IMPLAUSIBLE — it treats the number of omelets as the number of eggs, skipping the needed conversion of omelets to eggs (3 eggs per omelet) before dividing by eggs per dozen.

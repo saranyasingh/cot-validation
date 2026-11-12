@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+DailyRate(x, p, n) — during period p, x consumes n cups of dog food per day
+Days(x, p, n) — period p lasts n days for x
+Lifespan(x, n) — x's total lifespan is n days
+CupsPerBag(n) — one bag of dog food contains n cups
+Amount(x, p, n) — the total amount (in cups, or in bags) attributed to x for p is n
+
+Constants:
+puppy, period1, period2, total, bags, 1, 2, 180, 185, 365, 370, 550, 110, 5
+
+## FACTS
+FACT-1: The puppy needs 1 cup of dog food per day during period1 (first 180 days) :: DailyRate(puppy, period1, 1)
+FACT-2: Period1 lasts 180 days :: Days(puppy, period1, 180)
+FACT-3: The puppy needs 2 cups of dog food per day during period2 (the rest of its life) :: DailyRate(puppy, period2, 2)
+FACT-4: Assumed total lifespan of the puppy is 365 days :: Lifespan(puppy, 365)
+FACT-5: One bag of dog food contains 110 cups :: CupsPerBag(110)
+
+## OPERATIONS
+OP-1: 365 − 180 = 185 :: Difference(365, 180, 185)
+OP-2: 1 × 180 = 180 :: Product(1, 180, 180)
+OP-3: 2 × 185 = 370 :: Product(2, 185, 370)
+OP-4: 180 + 370 = 550 :: Sum(180, 370, 550)
+OP-5: 550 ÷ 110 = 5 :: Quotient(550, 110, 5)
+
+## RULES
+RULE-1: If x has total lifespan n, period1 lasts m days, and n − m = r, then period2 lasts r days for x :: ∀x∀n∀m∀r (Lifespan(x,n) ∧ Days(x,period1,m) ∧ Difference(n,m,r) → Days(x,period2,r))
+RULE-2: If x consumes n cups per day during period p, period p lasts m days, and n × m = r, then x consumes r cups during period p :: ∀x∀p∀n∀m∀r (DailyRate(x,p,n) ∧ Days(x,p,m) ∧ Product(n,m,r) → Amount(x,p,r))
+RULE-3: If x consumes n cups during period1 and m cups during period2, and n + m = r, then x consumes r cups total :: ∀x∀n∀m∀r (Amount(x,period1,n) ∧ Amount(x,period2,m) ∧ Sum(n,m,r) → Amount(x,total,r))
+RULE-4: If x's total cup consumption is n, each bag holds c cups, and n ÷ c = b, then x needs b bags :: ∀x∀n∀c∀b (Amount(x,total,n) ∧ CupsPerBag(c) ∧ Quotient(n,c,b) → Amount(x,bags,b))
+
+## INFERENCES
+INF-1: Period2 lasts 185 days for the puppy, from FACT-4, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Days(puppy, period2, 185)
+INF-2: The puppy consumes 180 cups during period1, from FACT-1, FACT-2, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(puppy, period1, 180)
+INF-3: The puppy consumes 370 cups during period2, from FACT-3, INF-1, OP-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Amount(puppy, period2, 370)
+INF-4: The puppy consumes 550 cups in total, from INF-2, INF-3, OP-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Amount(puppy, total, 550)
+INF-5: The puppy needs 5 bags of dog food, from INF-4, FACT-5, OP-5, and RULE-4 by Universal Instantiation and Modus Ponens :: Amount(puppy, bags, 5)

@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Quantity(x, t, n) — the quantity of type t associated with x is n
+
+Constants:
+judy, 5, 8, 1, 15, 25, 33, 495, 7425, weekday_classes_per_day, weekday_days, saturday_classes, saturday_days, total_weekday_classes, total_weekend_classes, total_classes, students_per_class, total_students, price_per_student, total_earnings
+
+## FACTS
+FACT-1: Judy teaches 5 dance classes per day on weekdays :: Quantity(judy, weekday_classes_per_day, 5)
+FACT-2: Judy teaches on 5 weekdays per week :: Quantity(judy, weekday_days, 5)
+FACT-3: Judy teaches 8 dance classes on Saturday :: Quantity(judy, saturday_classes, 8)
+FACT-4: Judy teaches on 1 Saturday per week :: Quantity(judy, saturday_days, 1)
+FACT-5: Each class has 15 students :: Quantity(judy, students_per_class, 15)
+FACT-6: Judy charges $15.00 per student :: Quantity(judy, price_per_student, 15)
+
+## OPERATIONS
+OP-1: 5 classes/day * 5 days/week = 25 classes/week :: Product(5, 5, 25)
+OP-2: 8 classes/Saturday * 1 Saturday/week = 8 classes/week :: Product(8, 1, 8)
+OP-3: 25 classes/week + 8 classes/week = 33 classes/week :: Sum(25, 8, 33)
+OP-4: 33 classes/week * 15 students/class = 495 students/week :: Product(33, 15, 495)
+OP-5: 495 students * $15.00/student = $7,425.00 :: Product(495, 15, 7425)
+
+## RULES
+RULE-1: If x teaches n classes per weekday and works m weekdays per week, and n*m=p, then x's total weekday classes is p :: ∀x∀n∀m∀p (Quantity(x, weekday_classes_per_day, n) ∧ Quantity(x, weekday_days, m) ∧ Product(n, m, p) → Quantity(x, total_weekday_classes, p))
+RULE-2: If x teaches n classes per Saturday and works m Saturdays per week, and n*m=p, then x's total weekend classes is p :: ∀x∀n∀m∀p (Quantity(x, saturday_classes, n) ∧ Quantity(x, saturday_days, m) ∧ Product(n, m, p) → Quantity(x, total_weekend_classes, p))
+RULE-3: If x's total weekday classes is n and total weekend classes is m, and n+m=p, then x's total classes is p :: ∀x∀n∀m∀p (Quantity(x, total_weekday_classes, n) ∧ Quantity(x, total_weekend_classes, m) ∧ Sum(n, m, p) → Quantity(x, total_classes, p))
+RULE-4: If x's total classes is n and students per class is m, and n*m=p, then x's total students is p :: ∀x∀n∀m∀p (Quantity(x, total_classes, n) ∧ Quantity(x, students_per_class, m) ∧ Product(n, m, p) → Quantity(x, total_students, p))
+RULE-5: If x's total students is n and price per student is m, and n*m=p, then x's total earnings is p :: ∀x∀n∀m∀p (Quantity(x, total_students, n) ∧ Quantity(x, price_per_student, m) ∧ Product(n, m, p) → Quantity(x, total_earnings, p))
+
+## INFERENCES
+INF-1: Judy's total weekday classes is 25, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Quantity(judy, total_weekday_classes, 25)
+INF-2: Judy's total weekend classes is 8, from FACT-3, FACT-4, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Quantity(judy, total_weekend_classes, 8)
+INF-3: Judy's total classes in one week is 33, from INF-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Quantity(judy, total_classes, 33)
+INF-4: Judy's total students in one week is 495, from INF-3, FACT-5, OP-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Quantity(judy, total_students, 495)
+INF-5: Judy's total earnings in one week is 7425, from INF-4, FACT-6, OP-5, and RULE-5 by Universal Instantiation and Modus Ponens :: Quantity(judy, total_earnings, 7425)

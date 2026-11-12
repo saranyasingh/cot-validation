@@ -1,0 +1,8 @@
+% OP-1: Difference(1, 0.25, 0.75)
+tff(op_1, conjecture, ($lesseq($difference($difference(1/1, 1/4), 3/4), 1/200) & $lesseq($difference(3/4, $difference(1/1, 1/4)), 1/200))).
+% OP-2: Product(16, 0.75, 12)
+tff(op_2, conjecture, $product(16/1, 3/4) = 12/1).
+% OP-3: Product(12, 0.75, 9)
+tff(op_3, conjecture, $product(12/1, 3/4) = 9/1).
+% OP-4: Product(9, 2, 18)
+tff(op_4, conjecture, $product(9/1, 2/1) = 18/1).

@@ -1,0 +1,19 @@
+% --- FACTS ---
+fof(fact_1, axiom, invested(carlos, n_90)).
+fof(fact_2, axiom, annual_sale(carlos, n_7, n_1_5)).
+fof(fact_3, axiom, expense(carlos, n_3)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_7, n_1_5, n_10_5)).
+fof(op_2, axiom, difference(n_10_5, n_3, n_7_5)).
+fof(op_3, axiom, quotient(n_90, n_7_5, n_12)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,L,P,E,R,NP] : ((annual_sale(X,L,P) & expense(X,E) & product(L,P,R) & difference(R,E,NP)) => net_profit(X,NP))).
+fof(rule_2, axiom, ! [X,I,NP,N] : ((invested(X,I) & net_profit(X,NP) & quotient(I,NP,N)) => years_needed(X,N))).
+
+% --- INFERENCES ---
+% From fact_2, fact_3, op_1, op_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, net_profit(carlos, n_7_5)).
+% From fact_1, inf_1, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, years_needed(carlos, n_12)).

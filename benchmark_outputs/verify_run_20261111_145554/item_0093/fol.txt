@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Age(x, n) — x's age is n
+OlderThan(x, y, n) — x is n years older than y
+YoungerThan(x, y, n) — x is n years younger than y
+
+Constants:
+amy, jackson, corey, james, 1, 2, 5, 9, 10, 11, 4
+
+## FACTS
+FACT-1: Amy is 5 years older than Jackson :: OlderThan(amy, jackson, 5)
+FACT-2: Amy is 2 years younger than Corey :: YoungerThan(amy, corey, 2)
+FACT-3: James is 10 years old :: Age(james, 10)
+FACT-4: James is 1 year younger than Corey :: YoungerThan(james, corey, 1)
+
+## OPERATIONS
+OP-1: 10 + 1 = 11 (solving C − 1 = 10 for C) :: Sum(10, 1, 11)
+OP-2: 11 − 2 = 9 :: Difference(11, 2, 9)
+OP-3: 9 − 5 = 4 :: Difference(9, 5, 4)
+
+## RULES
+RULE-1: If x is n years younger than y, x's age is a, and a + n = b, then y's age is b :: ∀x∀y∀n∀a∀b (YoungerThan(x,y,n) ∧ Age(x,a) ∧ Sum(a,n,b) → Age(y,b))
+RULE-2: If x is n years younger than y, y's age is b, and b − n = a, then x's age is a :: ∀x∀y∀n∀a∀b (YoungerThan(x,y,n) ∧ Age(y,b) ∧ Difference(b,n,a) → Age(x,a))
+RULE-3: If x is n years older than y, x's age is a, and a − n = b, then y's age is b :: ∀x∀y∀n∀a∀b (OlderThan(x,y,n) ∧ Age(x,a) ∧ Difference(a,n,b) → Age(y,b))
+
+## INFERENCES
+INF-1: Corey's age is 11, from FACT-4, FACT-3, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Age(corey, 11)
+INF-2: Amy's age is 9, from FACT-2, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: Age(amy, 9)
+INF-3: Jackson's age is 4, from FACT-1, INF-2, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Age(jackson, 4)

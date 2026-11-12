@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Each train travels westward 80 miles on the first day",
+      "formula": "TravelsWest(train, 80)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Each train travels northward 150 miles on the second day",
+      "formula": "TravelsNorth(train, 150)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": null,
+      "error": false
+    },
+    "OP-1": {
+      "type": "operation",
+      "gloss": "80 miles plus 150 miles is 230 miles",
+      "formula": "Sum(80, 150, 230)",
+      "arithmetic_status": "CORRECT",
+      "arithmetic_reason": null,
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If x travels westward n miles on day one and northward m miles on day two, and n + m = s, then x covers a total distance of s miles over the two days",
+      "formula": "\u2200x\u2200n\u2200m\u2200s (TravelsWest(x,n) \u2227 TravelsNorth(x,m) \u2227 Sum(n,m,s) \u2192 TotalDistance(x,s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": null,
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Each train covers a total distance of 230 miles over the two days, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "TotalDistance(train, 230)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "OP-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [],
+  "error_stages": []
+}

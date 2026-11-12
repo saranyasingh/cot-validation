@@ -1,0 +1,27 @@
+% --- FACTS ---
+fof(fact_1, axiom, rate_per_month(aleena, first_half, n_140)).
+fof(fact_2, axiom, months(aleena, first_half, n_6)).
+fof(fact_3, axiom, months(aleena, second_half, n_6)).
+fof(fact_4, axiom, discount_rate(second_half, n_0_10)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, product(n_6, n_140, n_840)).
+fof(op_2, axiom, difference(n_1, n_0_10, n_0_90)).
+fof(op_3, axiom, product(n_140, n_0_90, n_126)).
+fof(op_4, axiom, product(n_6, n_126, n_756)).
+fof(op_5, axiom, sum(n_840, n_756, n_1596)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,P,N,M,C] : ((rate_per_month(X,P,N) & months(X,P,M) & product(N,M,C)) => cost(X,P,C))).
+fof(rule_2, axiom, ! [X,P1,P2,R,D,F,R2] : ((rate_per_month(X,P1,R) & discount_rate(P2,D) & difference(n_1,D,F) & product(R,F,R2)) => rate_per_month(X,P2,R2))).
+fof(rule_3, axiom, ! [X,P1,P2,C1,C2,T] : ((cost(X,P1,C1) & cost(X,P2,C2) & sum(C1,C2,T)) => total(X,T))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, cost(aleena, first_half, n_840)).
+% From fact_1, fact_4, op_2, op_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, rate_per_month(aleena, second_half, n_126)).
+% From inf_2, fact_3, op_4, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, cost(aleena, second_half, n_756)).
+% From inf_1, inf_3, op_5, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, total(aleena, n_1596)).

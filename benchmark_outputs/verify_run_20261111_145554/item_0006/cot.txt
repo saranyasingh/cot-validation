@@ -1,0 +1,20 @@
+Explanation:
+1. First, let's identify the cost of each glass. We know that the first glass costs $5.
+2. Every second glass costs 60% of the price of the first glass.
+3. To find out how much the second glass costs, we calculate 60% of $5:
+   \[
+   0.60 \times 5 = 3 \text{ dollars}
+   \]
+4. Now, we have two glasses at different prices: the first one costing $5 and the second one costing $3.
+5. Since Kylar wants to buy 16 glasses, half of these would be the second type (the discounted ones).
+6. Therefore, there are 8 of these second-priced glasses.
+7. The total cost for these 8 glasses is:
+   \[
+   8 \times 3 = 24 \text{ dollars}
+   \]
+8. Adding the cost of the first 8 glasses together with the cost of the remaining 8 glasses gives us the total amount Kylar needs to pay:
+   \[
+   8 \times 5 + 8 \times 3 = 40 + 24 = 64 \text{ dollars}
+   \]
+
+Therefore, the answer is: 64.

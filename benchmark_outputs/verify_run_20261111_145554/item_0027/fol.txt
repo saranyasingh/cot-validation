@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Bought(x, i, n) — x bought n units of item i
+PricePerUnit(i, p) — the price per unit of item i is p
+TotalCost(x, i, c) — x spent total c on item i
+TotalSpent(x, s) — x spent total s on all clothing items
+
+Constants:
+mishka, shorts, pants, shoes, 3, 16.50, 22.50, 42, 49.50, 67.50, 126, 243
+
+## FACTS
+FACT-1: Mishka bought 3 pairs of shorts :: Bought(mishka, shorts, 3)
+FACT-2: One pair of shorts costs $16.50 :: PricePerUnit(shorts, 16.50)
+FACT-3: Mishka bought 3 pairs of pants :: Bought(mishka, pants, 3)
+FACT-4: One pair of pants costs $22.50 :: PricePerUnit(pants, 22.50)
+FACT-5: Mishka bought 3 pairs of shoes :: Bought(mishka, shoes, 3)
+FACT-6: One pair of shoes costs $42 :: PricePerUnit(shoes, 42)
+
+## OPERATIONS
+OP-1: 3 times 16.50 is 49.50 :: Product(3, 16.50, 49.50)
+OP-2: 3 times 22.50 is 67.50 :: Product(3, 22.50, 67.50)
+OP-3: 3 times 42 is 126 :: Product(3, 42, 126)
+OP-4: 49.50 plus 67.50 plus 126 is 243 :: Sum(49.50, 67.50, 126, 243)
+
+## RULES
+RULE-1: If x bought n units of item i at price p per unit and n × p = c, then x's total cost for item i is c :: ∀x∀i∀n∀p∀c (Bought(x,i,n) ∧ PricePerUnit(i,p) ∧ Product(n,p,c) → TotalCost(x,i,c))
+RULE-2: If x's total costs for three items sum to s, then x's total spending is s :: ∀x∀i1∀i2∀i3∀c1∀c2∀c3∀s (TotalCost(x,i1,c1) ∧ TotalCost(x,i2,c2) ∧ TotalCost(x,i3,c3) ∧ Sum(c1,c2,c3,s) → TotalSpent(x,s))
+
+## INFERENCES
+INF-1: Mishka's total cost for shorts is $49.50, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalCost(mishka, shorts, 49.50)
+INF-2: Mishka's total cost for pants is $67.50, from FACT-3, FACT-4, OP-2, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalCost(mishka, pants, 67.50)
+INF-3: Mishka's total cost for shoes is $126, from FACT-5, FACT-6, OP-3, and RULE-1 by Universal Instantiation and Modus Ponens :: TotalCost(mishka, shoes, 126)
+INF-4: Mishka spent a total of $243, from INF-1, INF-2, INF-3, OP-4, and RULE-2 by Universal Instantiation and Modus Ponens :: TotalSpent(mishka, 243)

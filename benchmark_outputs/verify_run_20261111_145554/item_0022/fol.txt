@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Age(x, n) — x's current age is n
+BornBeforeBy(x, y, n) — x was born n years before y
+SonOffset(x, n) — x's son was born n years after x's own current age
+SonOf(x, y) — y is x's son
+YearsAgo(x, n) — x was born n years ago
+
+Constants:
+samantha, raymond, raymond_son, 31, 6, 23, 25, 48
+
+## FACTS
+FACT-1: Samantha's current age is 31 :: Age(samantha, 31)
+FACT-2: Raymond was born 6 years before Samantha :: BornBeforeBy(raymond, samantha, 6)
+FACT-3: Raymond's son was born 23 years after Raymond's current age :: SonOffset(raymond, 23)
+FACT-4: Raymond's son is raymond_son :: SonOf(raymond, raymond_son)
+
+## OPERATIONS
+OP-1: 31 - 6 = 25 :: Difference(31, 6, 25)
+OP-2: 31 - 25 = 6 :: Difference(31, 25, 6)
+OP-3: 25 + 23 = 48 :: Sum(25, 23, 48)
+
+## RULES
+RULE-1: If y's current age is a and x was born n years before y, and a-n=r, then x's current age is r :: ∀x∀y∀a∀n∀r (Age(y,a) ∧ BornBeforeBy(x,y,n) ∧ Difference(a,n,r) → Age(x,r))
+RULE-2: If y's age is a and x's age is b and a-b=d, then x was born d years before y :: ∀x∀y∀a∀b∀d (Age(y,a) ∧ Age(x,b) ∧ Difference(a,b,d) → BornBeforeBy(x,y,d))
+RULE-3: If x's current age is r, x's son was born n years after x's age, y is x's son, and r+n=s, then y was born s years ago :: ∀x∀y∀r∀n∀s (Age(x,r) ∧ SonOffset(x,n) ∧ SonOf(x,y) ∧ Sum(r,n,s) → YearsAgo(y,s))
+
+## INFERENCES
+INF-1: Raymond's current age is 25, from FACT-1, FACT-2, OP-1, and RULE-1 by Universal Instantiation and Modus Ponens :: Age(raymond, 25)
+INF-2: Raymond was born 6 years before Samantha (confirmed via ages), from FACT-1, INF-1, OP-2, and RULE-2 by Universal Instantiation and Modus Ponens :: BornBeforeBy(raymond, samantha, 6)
+INF-3: Raymond's son was born 48 years ago, from INF-1, FACT-3, FACT-4, OP-3, and RULE-3 by Universal Instantiation and Modus Ponens :: YearsAgo(raymond_son, 48)

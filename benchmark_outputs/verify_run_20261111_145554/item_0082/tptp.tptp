@@ -1,0 +1,28 @@
+% --- FACTS ---
+fof(fact_1, axiom, has(charlie, n_10)).
+fof(fact_2, axiom, bought(charlie, n_21)).
+fof(fact_3, axiom, received(charlie, n_23)).
+fof(fact_4, axiom, gave_away(charlie, n_9)).
+fof(fact_5, axiom, used(charlie, n_28)).
+
+% --- OPERATIONS ---
+fof(op_1, axiom, sum(n_10, n_21, n_31)).
+fof(op_2, axiom, sum(n_31, n_23, n_54)).
+fof(op_3, axiom, difference(n_54, n_9, n_45)).
+fof(op_4, axiom, difference(n_45, n_28, n_17)).
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X,N,M,P] : ((has(X, N) & bought(X, M) & sum(N, M, P)) => has(X, P))).
+fof(rule_2, axiom, ! [X,N,M,P] : ((has(X, N) & received(X, M) & sum(N, M, P)) => has(X, P))).
+fof(rule_3, axiom, ! [X,N,M,R] : ((has(X, N) & gave_away(X, M) & difference(N, M, R)) => has(X, R))).
+fof(rule_4, axiom, ! [X,N,M,R] : ((has(X, N) & used(X, M) & difference(N, M, R)) => has(X, R))).
+
+% --- INFERENCES ---
+% From fact_1, fact_2, op_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, has(charlie, n_31)).
+% From inf_1, fact_3, op_2, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, has(charlie, n_54)).
+% From inf_2, fact_4, op_3, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, has(charlie, n_45)).
+% From inf_3, fact_5, op_4, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, has(charlie, n_17)).
