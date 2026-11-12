@@ -24,8 +24,7 @@ import json
 import os
 from datetime import datetime
 
-from main_pipeline.main import COT_PROMPT, STRUCTURED_FOL_TEMPLATE, extract_answer
-from main_pipeline.verify import verify_fol
+from main_pipeline.main import MATH_TASK
 from main_pipeline.tptp import check_tptp, convert_and_check
 from main_pipeline.clients import (
     make_client, OpenAILLMClient,
@@ -53,11 +52,13 @@ def run_verify_only(
     verifier_client=None,
     skip_tptp: bool = False,
     formal=None,
+    task=None,
 ) -> dict:
     """
     Generate CoT, convert to FOL, run verification once (no repair).
     `formal` is an optional formal_dspy FormalVerifier whose (optimized) prompts replace
     the FOL extraction and TPTP conversion prompts.
+    `task` supplies the prompts, answer extraction, and fact/rule check (default: MATH_TASK).
 
     Returns:
         cot_text          — raw CoT output
@@ -75,10 +76,12 @@ def run_verify_only(
         reasoning_client = OpenAILLMClient()
     if verifier_client is None:
         verifier_client = OpenAILLMClient()
+    if task is None:
+        task = MATH_TASK
 
     # Stage 1: CoT
-    cot_text = reasoning_client.complete(COT_PROMPT.format(question=question))
-    cot_answer = extract_answer(cot_text)
+    cot_text = reasoning_client.complete(task.cot_prompt.format(question=question))
+    cot_answer = task.extract_answer(cot_text)
 
     if output_dir:
         _write(os.path.join(output_dir, "question.txt"), question)
@@ -88,13 +91,13 @@ def run_verify_only(
     if formal is not None:
         structured_fol = formal.extract(cot_text)
     else:
-        structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
+        structured_fol = verifier_client.complete(task.fol_template.format(cot_text=cot_text))
 
     if output_dir:
         _write(os.path.join(output_dir, "fol.txt"), structured_fol)
 
     # Stage 3: fact/rule verification
-    verify_errors, verify_report = verify_fol(question, structured_fol, client=verifier_client)
+    verify_errors, verify_report = task.verify_fol(question, structured_fol, client=verifier_client)
 
     # Stage 4: arithmetic check of OPERATIONS (theorem prover, no LLM)
     arith_errors, arith_report, arith_tptp = check_operations(structured_fol)
@@ -163,6 +166,7 @@ def run_verify_benchmark(
     reasoning_client_name: str = "openai",
     verifier_client_name: str = "claude",
     formal=None,
+    task=None,
 ) -> dict:
     with open(dataset_path) as f:
         dataset = json.load(f)
@@ -215,6 +219,7 @@ def run_verify_benchmark(
             verifier_client=verifier_client,
             skip_tptp=skip_tptp,
             formal=formal,
+            task=task,
         )
         item_cost = summarize_costs(item_mark)
 

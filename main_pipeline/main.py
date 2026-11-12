@@ -1,5 +1,7 @@
 
 from dotenv import load_dotenv
+from dataclasses import dataclass
+from typing import Callable
 import argparse
 import os
 import re
@@ -260,6 +262,30 @@ def _write(path: str, content: str):
         f.write(content)
 
 
+# ─── Task ─────────────────────────────────────────────────────────────────────
+
+@dataclass
+class Task:
+    """The benchmark-specific pieces of the pipeline: prompts, answer extraction, and the
+    fact/rule check. The loop in run_pipeline is the same for every task."""
+    cot_prompt: str
+    fol_template: str
+    cot_repair_template: str
+    fol_repair_template: str
+    extract_answer: Callable[[str], str]
+    verify_fol: Callable  # (question, structured_fol, client=...) -> (has_errors, report)
+
+
+MATH_TASK = Task(
+    cot_prompt=COT_PROMPT,
+    fol_template=STRUCTURED_FOL_TEMPLATE,
+    cot_repair_template=COT_REPAIR_TEMPLATE,
+    fol_repair_template=FOL_REPAIR_TEMPLATE,
+    extract_answer=extract_answer,
+    verify_fol=verify_module.verify_fol,
+)
+
+
 # ─── Plain Prompt (no CoT / FOL) ──────────────────────────────────────────────
 
 def run_plain(question: str, output_dir: str = None, reasoning_client=None) -> dict:
@@ -288,10 +314,11 @@ def run_plain(question: str, output_dir: str = None, reasoning_client=None) -> d
 # ─── Full Pipeline ─────────────────────────────────────────────────────────────
 
 def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
-                 reasoning_client=None, verifier_client=None) -> dict:
+                 reasoning_client=None, verifier_client=None, task: Task = None) -> dict:
     """
     Run the full CoT → Structured FOL → Verify → TPTP pipeline with error-feedback retries.
     Saves all intermediate outputs to output_dir if provided.
+    `task` supplies the prompts, answer extraction, and fact/rule check (default: MATH_TASK).
 
     Returns:
         answer          — extracted final answer string
@@ -308,6 +335,8 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
         reasoning_client = OpenAILLMClient()
     if verifier_client is None:
         verifier_client = OpenAILLMClient()
+    if task is None:
+        task = MATH_TASK
 
     if output_dir:
         os.makedirs(output_dir, exist_ok=True)
@@ -315,7 +344,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
     # ── Stage 1: Chain-of-Thought ──────────────────────────────────────────────
     print("=== Stage 1: Chain-of-Thought Reasoning ===")
-    cot_text = reasoning_client.complete(COT_PROMPT.format(question=question))
+    cot_text = reasoning_client.complete(task.cot_prompt.format(question=question))
     print(cot_text)
 
     if output_dir:
@@ -323,7 +352,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
     # ── Stage 2: Initial FOL Extraction ───────────────────────────────────────
     print("\n=== Stage 2: Initial FOL Extraction ===")
-    structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
+    structured_fol = verifier_client.complete(task.fol_template.format(cot_text=cot_text))
     print(structured_fol)
 
     verify_reports = []
@@ -345,7 +374,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
         # ── verify.py ─────────────────────────────────────────────────────────
         print("\n[verify] Checking fact grounding and rule plausibility...")
-        verify_errors, verify_report = verify_module.verify_fol(question, structured_fol, client=verifier_client)
+        verify_errors, verify_report = task.verify_fol(question, structured_fol, client=verifier_client)
         verify_reports.append(verify_report)
         print(verify_report)
 
@@ -365,7 +394,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
         if verify_errors or arith_errors:
             print(f"\n[verify] Reasoning errors found. Asking reasoning client to produce new CoT...")
-            cot_text = reasoning_client.complete(COT_REPAIR_TEMPLATE.format(
+            cot_text = reasoning_client.complete(task.cot_repair_template.format(
                 question=question,
                 cot_text=cot_text,
                 error_report=f"{verify_report}\n\n{arith_report}",
@@ -373,7 +402,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
             print("\n[repair] Updated CoT:")
             print(cot_text)
             print("\n[repair] Re-extracting FOL from updated CoT...")
-            structured_fol = verifier_client.complete(STRUCTURED_FOL_TEMPLATE.format(cot_text=cot_text))
+            structured_fol = verifier_client.complete(task.fol_template.format(cot_text=cot_text))
             print(structured_fol)
             if output_dir:
                 _write(os.path.join(output_dir, f"cot_repair_attempt_{attempt}.txt"), cot_text)
@@ -402,7 +431,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
 
         if tptp_errors:
             print(f"\n[tptp] Errors found. Asking LLM to repair...")
-            structured_fol = verifier_client.complete(FOL_REPAIR_TEMPLATE.format(
+            structured_fol = verifier_client.complete(task.fol_repair_template.format(
                 cot_text=cot_text,
                 structured_fol=structured_fol,
                 error_report=f"TPTP/Prover errors:\n{tptp_report}",
@@ -437,7 +466,7 @@ def run_pipeline(question: str, max_retries: int = 5, output_dir: str = None,
     if attempts_used >= max_retries and not (passed_verify and passed_tptp):
         answer = "could not verify the answer"
     else:
-        answer = extract_answer(cot_text)
+        answer = task.extract_answer(cot_text)
     if output_dir:
         _write(os.path.join(output_dir, "pipeline_answer.txt"), answer)
 

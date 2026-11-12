@@ -63,6 +63,7 @@ All pipelines take a client name, defined in `main_pipeline/clients.py`:
 | `deepseek`            | DeepSeek                   | `deepseek-chat` (`DEEPSEEK_MODEL`)               |
 | `kimi`                | Moonshot / Kimi            | `moonshot-v1-8k` (`KIMI_MODEL`)                  |
 | `vllm`                | Local vLLM server          | `Qwen/Qwen2.5-1.5B-Instruct` (`VLLM_MODEL`, `VLLM_BASE_URL`) |
+| `charmchat`           | CharmChat backend (tool-using agent) | backend settings (`CHARMCHAT_PROVIDER`, `CHARMCHAT_MODEL`, `CHARMCHAT_SERVERS`, `CHARMCHAT_API_BASE`) |
 
 Every call records token usage and estimated USD cost; benchmark runs print a cost
 summary at the end.
@@ -133,6 +134,38 @@ python visualize_trees.py benchmark_outputs/verify_run_<timestamp>
 has `summary.json`, `results.json` and one subfolder per item with the question, CoT,
 FOL, verification and prover reports. The verify-only summary reports a confusion
 matrix: correct/incorrect answers against verified/flagged.
+
+### CureBench with a CharmChat verifier
+
+`main_pipeline/curebench_benchmark.py` runs the same pipeline on CureBench
+(`data/curebench_valset_phase1.jsonl`, 459 multiple-choice drug-label questions). The
+verifier is a [CharmChat](https://github.com/charm-bdf/charmchat) agent (`CharmChatClient`),
+which can call MCP tools. `main_pipeline/curebench.py` supplies the CureBench prompts
+(the CoT ends with `ANSWER: X`, and the FOL prompt has a drug-label example) and a
+tool-backed fact/rule check:
+
+- A fact is supported if the question states it, or a tool result confirms it.
+- A rule is plausible if it is purely logical, or a tool result backs it.
+- A verdict that relies on a tool counts only if CharmChat verified the agent's quoted
+  excerpt against the real tool output (its `<provenance>` check). Otherwise it becomes
+  `UNVERIFIED`, which is reported separately from `CONTRADICTED`. Both flag the item.
+
+The report quotes the tool output, so in repair mode the reasoning model gets the evidence.
+
+```bash
+# In the charmchat repo: start the backend (port 3001) with the ToolUniverse MCP server configured
+npm run dev:backend
+
+# Verify-only confusion matrix (default), or the full repair loop with --mode repair
+PYTHONPATH=. python main_pipeline/curebench_benchmark.py -n 20 --client openai \
+    --provider anthropic --model claude-sonnet-4-6 --servers tooluniverse [--skip-tptp]
+PYTHONPATH=. python main_pipeline/curebench_benchmark.py --mode repair -n 20 --max-retries 3
+```
+
+`--servers` lists the MCP servers the agent may use; all others are blocked. Each item
+folder also gets `charmchat_calls.jsonl`, which holds every agent call with its tool calls,
+tool results and provenance report. CharmChat does not report token usage, so these calls
+show as unpriced in the cost summary.
 
 ### Optimizing the formal-verification prompts (DSPy)
 
@@ -260,6 +293,20 @@ The `*_vllm.slurm` scripts start a vLLM server on the allocated GPU, wait for it
 come up, use it as the reasoning client, and shut it down when the job exits. They
 expect a conda environment named `vllm-inference`. The partition and account names
 are cluster-specific, so edit them for your site. Logs go to `slurm_logs/`.
+
+`run_curebench_charmchat.slurm` runs the CureBench pipeline on a CPU node. It clones and
+installs CharmChat into `~/charmchat` on first use (needs `node`/`npm` and `uv`), starts
+its backend with only the MCP servers in `CHARMCHAT_SERVERS` (default `tooluniverse`),
+waits for them to connect, runs `curebench_benchmark.py`, and prints success rates with
+`main_pipeline/curebench_report.py` (also written to `success_rates.json` in the run folder).
+
+```bash
+sbatch --account=amin_lab --export=ALL,NUM_PROBLEMS=20 run_curebench_charmchat.slurm
+sbatch --account=amin_lab --export=ALL,MODE=repair,MAX_RETRIES=3 run_curebench_charmchat.slurm
+```
+
+It also takes `CLIENT`, `START`, `QUESTION_TYPES`, `SKIP_TPTP`, `CHARMCHAT_PROVIDER`
+(default `anthropic`), `CHARMCHAT_MODEL` (default `claude-sonnet-4-6`) and `NODE_MODULE`.
 
 ## Repository layout
 

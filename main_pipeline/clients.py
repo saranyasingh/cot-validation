@@ -8,6 +8,7 @@ Clients:
   kimi      — Moonshot/Kimi Chat Completions API, weaker model for reasoning
   deepseek  — DeepSeek Chat Completions API, weaker model for reasoning
   vllm      — locally-running vLLM server
+  charmchat — a running CharmChat backend, whose agent can call MCP tools (used to verify CureBench)
 
 Every `complete()` call records token usage and USD cost in an in-memory call log
 (and, if `start_cost_log()` was called, appends it as a line to a JSONL file).
@@ -288,6 +289,147 @@ class BedrockLLMClient(ClaudeLLMClient):
         self.max_tokens = int(os.getenv("ANTHROPIC_MAX_TOKENS", "64000"))
 
 
+class CharmChatClient(LLMClient):
+    """Sends each prompt to a running CharmChat backend (https://github.com/charm-bdf/charmchat),
+    whose agent can call MCP tools before answering. Mirrors runQuestion in CharmChat's
+    scripts/run-curebench.ts: POST /api/chat, then read the server-sent events.
+
+    complete() returns the final text with the <provenance> block stripped. Everything else from
+    the call (tool calls with results, the evidence store, and the provenance report in which
+    CharmChat has checked each quoted excerpt against the real tool output) is kept on
+    `last_call` and appended to `calls`. If `transcript_dir` is set, each call is also appended to
+    <transcript_dir>/<item_id>/charmchat_calls.jsonl, using the item_id from set_cost_context().
+
+    Config (arguments override env vars, which override the backend's saved settings):
+      provider / CHARMCHAT_PROVIDER   e.g. anthropic, bedrock, openai
+      model / CHARMCHAT_MODEL         e.g. claude-sonnet-4-6
+      servers / CHARMCHAT_SERVERS     comma-separated MCP servers the agent may use; all others
+                                      are sent as blockedServers (e.g. "tooluniverse")
+      CHARMCHAT_API_BASE              default http://localhost:3001/api
+      CHARMCHAT_TIMEOUT               seconds per call, default 900
+    """
+
+    name = "charmchat"
+
+    def __init__(self, provider=None, model=None, servers=None, blocked_tools=None,
+                 base_url=None, transcript_dir=None):
+        import httpx
+        self.base_url = (base_url or os.getenv("CHARMCHAT_API_BASE", "http://localhost:3001/api")).rstrip("/")
+        timeout = float(os.getenv("CHARMCHAT_TIMEOUT", "900"))
+        self._http = httpx.Client(timeout=httpx.Timeout(timeout, connect=10.0))
+
+        settings = self._get("/settings")
+        self.provider = provider or os.getenv("CHARMCHAT_PROVIDER") or settings["provider"]
+        self.model = model or os.getenv("CHARMCHAT_MODEL") or settings.get("model", "")
+        self.blocked_tools = blocked_tools if blocked_tools is not None else settings.get("blockedTools", [])
+
+        if servers is None and os.getenv("CHARMCHAT_SERVERS"):
+            servers = [s.strip() for s in os.getenv("CHARMCHAT_SERVERS").split(",") if s.strip()]
+        if servers is None:
+            self.blocked_servers = settings.get("blockedServers", [])
+        else:
+            statuses = self._get("/mcp")["servers"]
+            connected = {s["name"] for s in statuses if s.get("status") == "connected"}
+            missing = [s for s in servers if s not in connected]
+            if missing:
+                print(f"WARNING: CharmChat MCP servers not connected: {missing} (connected: {sorted(connected)})")
+            self.blocked_servers = [s["name"] for s in statuses if s["name"] not in servers]
+
+        self.transcript_dir = transcript_dir
+        self.calls: list[dict] = []
+        self.last_call: dict = {}
+
+    def price(self):
+        return None  # CharmChat does not forward token usage, so these calls are logged as unpriced
+
+    def _get(self, path: str):
+        response = self._http.get(self.base_url + path)
+        response.raise_for_status()
+        return response.json()
+
+    def _complete(self, prompt: str):
+        body = {
+            "message": prompt,
+            "history": [],
+            "provider": self.provider,
+            "model": self.model,
+            "blockedServers": self.blocked_servers,
+            "blockedTools": self.blocked_tools,
+        }
+        accumulated = ""
+        done_content = None
+        provenance = None
+        tool_calls: list[dict] = []
+        errors: list[str] = []
+
+        with self._http.stream("POST", self.base_url + "/chat", json=body) as response:
+            if response.status_code != 200:
+                response.read()
+                raise RuntimeError(f"CharmChat /chat error {response.status_code}: {response.text}")
+            event = ""
+            for line in response.iter_lines():
+                if line.startswith("event: "):
+                    event = line[len("event: "):].strip()
+                    continue
+                if not line.startswith("data: ") or not event:
+                    event = "" if line == "" else event
+                    continue
+                try:
+                    data = json.loads(line[len("data: "):])
+                except json.JSONDecodeError:
+                    event = ""
+                    continue
+                if event == "delta":
+                    accumulated += data.get("content") or ""
+                elif event == "tool_call":
+                    tool_calls.append({
+                        "id": data.get("id"),
+                        "name": data.get("name"),
+                        "args": data.get("arguments") or data.get("args") or {},
+                    })
+                elif event == "tool_result":
+                    for tc in tool_calls:
+                        if tc["id"] == data.get("toolCallId") and "result" not in tc:
+                            tc["result"] = data.get("result")
+                            tc["is_error"] = bool(data.get("isError"))
+                            break
+                elif event == "provenance":
+                    provenance = data
+                elif event == "error":
+                    errors.append(data.get("error") or data.get("message") or str(data))
+                elif event == "done":
+                    if isinstance(data.get("content"), str):
+                        done_content = data["content"]
+                    if provenance is None and data.get("provenanceReport"):
+                        provenance = data["provenanceReport"]
+                event = ""
+
+        text = done_content if done_content is not None else accumulated
+        for err in errors:
+            print(f"WARNING: CharmChat stream error: {err}")
+        record = {
+            "timestamp": datetime.now().isoformat(timespec="seconds"),
+            **_cost_context,
+            "provider": self.provider,
+            "model": self.model,
+            "blocked_servers": self.blocked_servers,
+            "prompt": prompt,
+            "content": text,
+            "tool_calls": tool_calls,
+            "provenance": provenance or {},
+            "errors": errors,
+        }
+        self.last_call = record
+        self.calls.append(record)
+        if self.transcript_dir:
+            path = os.path.join(self.transcript_dir, str(_cost_context.get("item_id", "_run")),
+                                "charmchat_calls.jsonl")
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "a") as f:
+                f.write(json.dumps(record) + "\n")
+        return text, 0, 0
+
+
 def make_client(name: str) -> LLMClient:
     if name == "openai":
         return OpenAILLMClient()
@@ -301,4 +443,6 @@ def make_client(name: str) -> LLMClient:
         return VLLMLLMClient()
     if name == "bedrock":
         return BedrockLLMClient()
-    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'claude', 'kimi', 'deepseek', 'vllm', 'anthropic', or 'bedrock'.")
+    if name == "charmchat":
+        return CharmChatClient()
+    raise ValueError(f"Unknown client '{name}'. Choose 'openai', 'claude', 'kimi', 'deepseek', 'vllm', 'anthropic', 'bedrock', or 'charmchat'.")
