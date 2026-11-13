@@ -215,8 +215,12 @@ for dir in $NODE_SERVER_DIRS; do
     fi
 done
 if [[ ",$CHARMCHAT_SERVERS," == *",tooluniverse,"* ]]; then
+    # Whole FDA label sections instead of 2,000-char / 80-char-cell cuts (see patch_charmchat.py).
+    "$PYTHON" "$SLURM_SUBMIT_DIR/patch_charmchat.py" "$CHARMCHAT_DIR" || exit 1
     echo "Syncing ToolUniverse MCP server environment ..."
+    uv lock --directory "$CHARMCHAT_DIR/mcp-servers/tooluniverse-mcp" --upgrade-package tooluniverse || exit 1
     uv sync --directory "$CHARMCHAT_DIR/mcp-servers/tooluniverse-mcp" || exit 1
+    echo "ToolUniverse : $(uv run --directory "$CHARMCHAT_DIR/mcp-servers/tooluniverse-mcp" python -c 'import importlib.metadata as m; print(m.version("tooluniverse"))')"
 fi
 
 # ── CharmChat: start the backend ───────────────────────────────────────────────

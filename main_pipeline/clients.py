@@ -305,8 +305,8 @@ class CharmChatClient(LLMClient):
     scripts/run-curebench.ts: POST /api/chat, then read the server-sent events.
 
     complete() returns the final text with the <provenance> block stripped. Everything else from
-    the call (tool calls with results, the evidence store, and the provenance report in which
-    CharmChat has checked each quoted excerpt against the real tool output) is kept on
+    the call (the raw streamed text including the <provenance> block, tool calls with results,
+    tool outputs keyed by evidence key, and CharmChat's own provenance report) is kept on
     `last_call` and appended to `calls`. If `transcript_dir` is set, each call is also appended to
     <transcript_dir>/<item_id>/charmchat_calls.jsonl, using the item_id from set_cost_context().
 
@@ -380,6 +380,7 @@ class CharmChatClient(LLMClient):
         done_content = None
         provenance = None
         tool_calls: list[dict] = []
+        evidence: dict = {}
         errors: list[str] = []
 
         with self._http.stream("POST", self.base_url + "/chat", json=body) as response:
@@ -413,6 +414,16 @@ class CharmChatClient(LLMClient):
                             tc["result"] = data.get("result")
                             tc["is_error"] = bool(data.get("isError"))
                             break
+                elif event == "trace_entry":
+                    if data.get("evidenceKey"):
+                        evidence[data["evidenceKey"]] = {
+                            "key": data["evidenceKey"],
+                            "toolName": data.get("tool", ""),
+                            "args": data.get("args") or {},
+                            "content": data.get("result") if isinstance(data.get("result"), str)
+                                       else json.dumps(data.get("result")),
+                            "isEmpty": False,
+                        }
                 elif event == "provenance":
                     provenance = data
                 elif event == "error":
@@ -435,7 +446,9 @@ class CharmChatClient(LLMClient):
             "blocked_servers": self.blocked_servers,
             "prompt": prompt,
             "content": text,
+            "raw_text": accumulated,
             "tool_calls": tool_calls,
+            "evidence": evidence,
             "provenance": provenance or {},
             "errors": errors,
         }

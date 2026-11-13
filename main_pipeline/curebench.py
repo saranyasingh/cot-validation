@@ -9,10 +9,15 @@ looks evidence up with tools through a CharmChat agent (clients.CharmChatClient)
   - A RULE is PLAUSIBLE if it is a purely logical principle, or a tool result backs it.
   - Anything with no evidence either way is UNVERIFIED, separately from CONTRADICTED.
 
-The agent cites evidence in CharmChat's <provenance> block, and CharmChat checks each quoted
-excerpt against the real tool output. A verdict that relies on tool evidence counts only if a
-provenance claim with a verified excerpt backs it; otherwise it is downgraded to UNVERIFIED.
+The agent cites evidence in CharmChat's <provenance> block. Each quoted excerpt is checked against
+the real tool outputs here (check_claims), tolerating JSON escapes, whitespace, and punctuation
+differences. A verdict that relies on tool evidence counts only if a provenance claim with a
+verified excerpt backs it; otherwise it is downgraded to UNVERIFIED.
 The report quotes the tool output, so the CoT repair step sees the actual evidence.
+
+The agent is told to make at most MAX_TOOL_CALLS tool calls. If the call fails (an error such as
+CharmChat's iteration limit, an exception, or no verdict lines), it is retried once with a tighter
+budget, and the attempt with more verdicts is used.
 
 Report lines keep verify.py's vocabulary (SUPPORTED / UNSUPPORTED, PLAUSIBLE / IMPLAUSIBLE), with
 UNVERIFIED or CONTRADICTED as the first word of the reason, so derivation_tree.py parses them.
@@ -20,6 +25,7 @@ UNVERIFIED or CONTRADICTED as the first word of the reason, so derivation_tree.p
 
 import json
 import re
+import unicodedata
 
 from main_pipeline.main import (
     Task, STRUCTURED_FOL_TEMPLATE, COT_REPAIR_TEMPLATE, FOL_REPAIR_TEMPLATE,
@@ -161,6 +167,15 @@ indications, dosing, interactions, warnings), and use other sources such as Drug
 the label does not cover it. Judge only from the question and tool results, never from your own background
 knowledge. Whether the inferences follow from these premises is checked separately by a theorem prover.
 
+TOOL BUDGET: make at most {max_tool_calls} tool calls in total, then stop searching and write your verdicts.
+- Prefer the per-section FDA label tools (e.g. FDA_get_adverse_reactions_by_drug_name,
+  FDA_get_warnings_and_cautions_by_drug_name, FDA_get_indications_by_drug_name); use FDA_get_drug_label
+  only when you need several sections of one label.
+- One lookup can cover several facts and rules about the same drug. Never repeat a lookup, and if a drug
+  name returns nothing, try at most one alternative name (brand or generic).
+- When the budget is spent, mark whatever you could not check UNVERIFIED. Verdicts for every FACT and
+  RULE are required; running out of tool calls without writing them wastes all the evidence.
+{retry_note}
 === QUESTION ===
 {story}
 
@@ -193,9 +208,9 @@ RULE-N: UNVERIFIED — <what you searched for>
 
 Then write the <provenance> block. Include one claim for every verdict that cites an [ev-XXXXXX] key:
 - "claim" must start with the label, e.g. "FACT-2: Isotretinoin is contraindicated in pregnancy".
-- "excerpt" must be copied character for character from that tool result: one contiguous span of one or
-  two sentences with no line breaks, no ellipses, and no paraphrasing. It is checked by exact string match,
-  and a verdict whose excerpt does not match is discarded.
+  - "excerpt" must be copied word for word from that tool result: one contiguous span of one or two
+  sentences (at least 5 words) with no ellipses and no paraphrasing. It is checked against the tool
+  output, and a verdict whose excerpt is not found there is discarded.
 
 Output ONLY the verdict lines and the <provenance> block.'''
 
@@ -234,12 +249,166 @@ def _claim_label(claim: dict):
     return m.group(1) if m else None
 
 
+# ─── Quote matching ───────────────────────────────────────────────────────────
+#
+# CharmChat's own check (exact lowercase substring of the raw tool output) misses quotes the agent
+# copied faithfully: tool results are often JSON, so the raw text has \" and \n escapes and the
+# agent's quote does not; whitespace, curly quotes, markdown, and HTML tags differ; and one JSON
+# error in the <provenance> block drops every claim. Claims are re-parsed from the raw response
+# and re-checked against the tool outputs here.
+
+_SHINGLE = 4                # words per shingle for the near-exact match
+_MIN_SHINGLE_COVERAGE = 0.85
+_MIN_QUOTE_WORDS = 5        # shorter quotes ("indicated for the treatment") match almost any label
+_CHAR_MAP = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "–": "-", "—": "-", "‑": "-",
+                           "\u00a0": " ", "*": " ", "`": " ", "#": " "})
+
+
+def _normalize(text: str) -> str:
+    text = unicodedata.normalize("NFKC", text).translate(_CHAR_MAP)
+    text = re.sub(r'</?[a-z][a-z0-9]*(?:\s[^<>]{0,300})?/?>', ' ', text, flags=re.IGNORECASE)
+    return " ".join(text.lower().split())
+
+
+def _words(normalized: str) -> list:
+    return re.findall(r'[a-z0-9]+(?:[.,][0-9]+)*', normalized)
+
+
+def _json_strings(value) -> list:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, dict):
+        return [s for k, v in value.items() for s in [str(k)] + _json_strings(v)]
+    if isinstance(value, list):
+        return [s for v in value for s in _json_strings(v)]
+    return [str(value)] if value is not None else []
+
+
+def _searchable(content: str) -> dict:
+    """The tool output as normalized text and words, with JSON string escapes undone."""
+    variants = [content]
+    try:
+        variants.append(" \n ".join(_json_strings(json.loads(content))))
+    except (json.JSONDecodeError, TypeError, ValueError):
+        unescaped = re.sub(r'\\u([0-9a-fA-F]{4})', lambda m: chr(int(m.group(1), 16)), content)
+        for old, new in (('\\n', '\n'), ('\\t', ' '), ('\\"', '"'), ('\\/', '/'), ('\\\\', '\\')):
+            unescaped = unescaped.replace(old, new)
+        variants.append(unescaped)
+    text = " | ".join(_normalize(v) for v in variants)
+    words = _words(text)
+    shingles = {tuple(words[i:i + _SHINGLE]) for i in range(len(words) - _SHINGLE + 1)}
+    return {"text": text, "display": _normalize(variants[-1]),
+            "words": " " + " ".join(words) + " ", "shingles": shingles}
+
+
+def _match_fragment(fragment: str, searchable: dict):
+    """'exact', 'normalized', or 'near-exact (NN%)' if the fragment is in the tool output, else None."""
+    norm = _normalize(fragment)
+    words = _words(norm)
+    if len(words) < _MIN_QUOTE_WORDS:
+        return None
+    if norm in searchable["text"]:
+        return "exact"
+    if " " + " ".join(words) + " " in searchable["words"]:
+        return "normalized"
+    if len(words) >= _SHINGLE + 2:
+        shingles = [tuple(words[i:i + _SHINGLE]) for i in range(len(words) - _SHINGLE + 1)]
+        coverage = sum(s in searchable["shingles"] for s in shingles) / len(shingles)
+        if coverage >= _MIN_SHINGLE_COVERAGE:
+            return f"near-exact ({coverage:.0%})"
+    return None
+
+
+def match_excerpt(excerpt: str, searchable: dict):
+    """Match a quote against one tool output. Quotes the agent split with ellipses must match
+    piece by piece. Returns the weakest match kind, or None."""
+    fragments = [f for f in re.split(r'\.{3,}|…', excerpt.strip().strip('"\'')) if len(_words(_normalize(f))) >= _MIN_QUOTE_WORDS]
+    if not fragments:
+        return None
+    kinds = [_match_fragment(f, searchable) for f in fragments]
+    if any(k is None for k in kinds):
+        return None
+    for kind in ("near-exact", "normalized", "exact"):
+        hits = [k for k in kinds if k.startswith(kind)]
+        if hits:
+            return hits[0]
+
+
+def parse_provenance(raw_text: str) -> list:
+    """Claims from the last <provenance> block. Falls back to pulling out each claim object on its
+    own when the block as a whole is not valid JSON."""
+    blocks = re.findall(r'<provenance>([\s\S]*?)(?:</provenance>|$)', raw_text or "", re.IGNORECASE)
+    if not blocks:
+        return []
+    block = blocks[-1].strip()
+    block = re.sub(r'^```(?:json)?|```$', '', block).strip()
+    try:
+        parsed = json.loads(block)
+        if isinstance(parsed, list):
+            return [c for c in parsed if isinstance(c, dict) and isinstance(c.get("excerpt"), str)]
+    except json.JSONDecodeError:
+        pass
+    claims = []
+    for obj in re.findall(r'\{[^{}]*\}', block):
+        fields = {}
+        for name in ("claim", "evidenceKey", "excerpt"):
+            m = re.search(rf'"{name}"\s*:\s*"((?:[^"\\]|\\.|"(?!\s*[,}}]))*)"', obj, re.DOTALL)
+            if m:
+                fields[name] = m.group(1).replace('\\"', '"').replace('\\n', ' ')
+        if "excerpt" in fields:
+            claims.append(fields)
+    return claims
+
+
+def check_claims(call: dict) -> tuple[list, dict]:
+    """Re-check every provenance claim from a CharmChatClient call against the tool outputs.
+
+    A claim's key is valid if it names a tool output that returned data. Its excerpt is verified if
+    it matches the cited output, or else any other output from the same call (the agent sometimes
+    cites the wrong key); `matchedKey` and `match` record where and how. Returns (claims, evidence).
+    """
+    provenance = call.get("provenance") or {}
+    evidence = {**call.get("evidence", {}), **provenance.get("evidenceStore", {})}
+    usable = {k: e for k, e in evidence.items() if not e.get("isEmpty") and e.get("content")}
+    searchable = {}
+
+    def lookup(key):
+        if key not in searchable:
+            searchable[key] = _searchable(usable[key]["content"])
+        return searchable[key]
+
+    raw_claims = parse_provenance(call.get("raw_text", "")) or provenance.get("claims", [])
+    checked = []
+    for raw in raw_claims:
+        claim = {
+            "claim": str(raw.get("claim", "")),
+            "evidenceKey": str(raw.get("evidenceKey", "")),
+            "excerpt": str(raw.get("excerpt", "")),
+            "keyValid": raw.get("evidenceKey") in usable,
+            "excerptVerified": False,
+            "matchedKey": None,
+            "match": None,
+        }
+        order = [claim["evidenceKey"]] if claim["keyValid"] else []
+        order += [k for k in usable if k != claim["evidenceKey"]]
+        for key in order:
+            kind = match_excerpt(claim["excerpt"], lookup(key))
+            if kind:
+                where = "" if key == claim["evidenceKey"] else \
+                    f", found in {key} instead of cited {claim['evidenceKey'] or '(no key)'}"
+                claim.update(excerptVerified=True, matchedKey=key, match=f"{kind} match{where}")
+                break
+        checked.append(claim)
+    return checked, evidence
+
+
 def _verified_claims(label: str, keys: list, claims: list) -> list:
-    """Provenance claims for this label whose excerpt CharmChat found in the cited tool output."""
+    """Provenance claims for this label whose excerpt was found in a tool output."""
     return [
         c for c in claims
-        if c.get("keyValid") and c.get("excerptVerified")
-        and (_claim_label(c) == label or (_claim_label(c) is None and c.get("evidenceKey") in keys))
+        if c.get("excerptVerified")
+        and (_claim_label(c) == label
+             or (_claim_label(c) is None and {c.get("evidenceKey"), c.get("matchedKey")} & set(keys)))
     ]
 
 
@@ -251,7 +420,7 @@ def _judge(label: str, is_fact: bool, verdict, claims: list):
 
     word, source, note = verdict["word"], verdict["source"], verdict["note"]
     backing = _verified_claims(label, verdict["keys"], claims)
-    cited = ", ".join(sorted({c["evidenceKey"] for c in backing}))
+    cited = ", ".join(sorted({c["matchedKey"] for c in backing}))
 
     if word in ("SUPPORTED", "PLAUSIBLE"):
         if source:
@@ -275,22 +444,49 @@ def _judge(label: str, is_fact: bool, verdict, claims: list):
 
 
 def _evidence_block(label: str, claim: dict, evidence_store: dict) -> str:
-    entry = evidence_store.get(claim["evidenceKey"], {})
-    content = entry.get("content", "")
+    entry = evidence_store.get(claim["matchedKey"], {})
     excerpt = claim.get("excerpt", "")
-    start = content.lower().find(excerpt.lower()) if excerpt else -1
+    text = _searchable(entry.get("content", ""))["display"]
+    anchor = _normalize(re.split(r'\.{3,}|…', excerpt.strip().strip('"\''))[0])
+    start = text.find(anchor[:80]) if anchor else -1
     if start < 0:
-        window = content[:2 * _EVIDENCE_WINDOW]
+        window = text[:2 * _EVIDENCE_WINDOW]
     else:
         lo = max(0, start - _EVIDENCE_WINDOW)
-        hi = min(len(content), start + len(excerpt) + _EVIDENCE_WINDOW)
-        window = ("…" if lo else "") + content[lo:hi] + ("…" if hi < len(content) else "")
+        hi = min(len(text), start + len(anchor) + _EVIDENCE_WINDOW)
+        window = ("…" if lo else "") + text[lo:hi] + ("…" if hi < len(text) else "")
     tool = entry.get("toolName", "?").split("__")[-1]
     return (
-        f"{label} [{claim['evidenceKey']}] {tool} {json.dumps(entry.get('args', {}))}\n"
-        f"  quote: \"{excerpt}\"\n"
-        f"  tool output: {' '.join(window.split())}"
+        f"{label} [{claim['matchedKey']}] {tool} {json.dumps(entry.get('args', {}))}\n"
+        f"  quote ({claim['match']}): \"{excerpt}\"\n"
+        f"  tool output: {window}"
     )
+
+
+MAX_TOOL_CALLS = 6
+RETRY_MAX_TOOL_CALLS = 4
+RETRY_NOTE = '''
+NOTE: a previous attempt at this check failed ({failure}). This time make at most {max_tool_calls} tool
+calls, the most informative ones first, and write all your verdicts even if some stay UNVERIFIED.
+'''
+
+
+def _verify_attempt(client, prompt_args: dict, max_tool_calls: int, retry_note: str) -> dict:
+    """One verifier call. `failure` says why it produced no usable verdicts (None if it did)."""
+    prompt = VERIFY_PROMPT.format(max_tool_calls=max_tool_calls, retry_note=retry_note, **prompt_args)
+    try:
+        response = client.complete(prompt)
+        call = client.last_call
+    except Exception as e:
+        print(f"WARNING: CharmChat verifier call failed: {e}")
+        response, call = "", {"errors": [f"{type(e).__name__}: {e}"]}
+    verdicts = _parse_verdicts(response)
+    failure = None
+    if call.get("errors"):
+        failure = "; ".join(call["errors"])
+    elif not verdicts:
+        failure = f"no verdict lines in the response after {len(call.get('tool_calls', []))} tool calls"
+    return {"call": call, "verdicts": verdicts, "failure": failure}
 
 
 def verify_fol(story_text: str, structured_fol: str, client=None) -> tuple[bool, str]:
@@ -306,16 +502,18 @@ def verify_fol(story_text: str, structured_fol: str, client=None) -> tuple[bool,
     if not facts and not rules:
         return True, "No FACT or RULE lines found in the structured FOL."
 
-    response = client.complete(VERIFY_PROMPT.format(
+    prompt_args = dict(
         story=story_text,
         facts="\n".join(f"{label}: {gloss}" for label, gloss, _ in facts),
         rules="\n".join(f"{label}: {gloss}" for label, gloss, _ in rules),
-    ))
-    call = client.last_call
-    provenance = call.get("provenance") or {}
-    claims = provenance.get("claims", [])
-    evidence_store = provenance.get("evidenceStore", {})
-    verdicts = _parse_verdicts(response)
+    )
+    attempts = [_verify_attempt(client, prompt_args, MAX_TOOL_CALLS, "")]
+    if attempts[0]["failure"]:
+        retry_note = RETRY_NOTE.format(failure=attempts[0]["failure"], max_tool_calls=RETRY_MAX_TOOL_CALLS)
+        attempts.append(_verify_attempt(client, prompt_args, RETRY_MAX_TOOL_CALLS, retry_note))
+    best = max(attempts, key=lambda a: (len(a["verdicts"]), not a["failure"]))
+    call, verdicts = best["call"], best["verdicts"]
+    claims, evidence_store = check_claims(call)
 
     lines, evidence, has_errors = [], [], False
     for items, is_fact in ((facts, True), (rules, False)):
@@ -327,10 +525,16 @@ def verify_fol(story_text: str, structured_fol: str, client=None) -> tuple[bool,
 
     tool_calls = call.get("tool_calls", [])
     empty = sum(1 for e in evidence_store.values() if e.get("isEmpty"))
-    unverified_quotes = sum(1 for c in claims if not c.get("excerptVerified"))
+    unverified_quotes = [c for c in claims if not c["excerptVerified"]]
     report = "\n".join(lines)
     report += (f"\n\nTool calls: {len(tool_calls)} ({empty} returned no data). "
-               f"Provenance claims: {len(claims)} ({unverified_quotes} with quotes not found in the tool output).")
+               f"Provenance claims: {len(claims)} ({len(unverified_quotes)} with quotes not found in any tool output).")
+    for c in unverified_quotes:
+        report += f"\n  quote not found [{c['evidenceKey'] or 'no key'}]: \"{c['excerpt'][:200]}\""
+    if len(attempts) > 1:
+        report += (f"\nVerifier retried after: {attempts[0]['failure']}. "
+                   f"Retry {'also failed: ' + attempts[1]['failure'] if attempts[1]['failure'] else 'succeeded'}; "
+                   f"verdicts above are from attempt {attempts.index(best) + 1}.")
     if call.get("errors"):
         report += "\nVerifier errors: " + "; ".join(call["errors"])
     if evidence:
