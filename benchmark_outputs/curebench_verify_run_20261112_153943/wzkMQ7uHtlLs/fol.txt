@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+LabelStates(d, s) — drug d's label/insert contains statement s
+Supports(s, o) — statement s supports option o
+CanRuleOut(o) — option o can be ruled out from the available information
+Answer(o) — o is the final answer
+Constants:
+albuterol, stmt_not_indicated_breastfeeding, stmt_plasma_half_adults, stmt_milk_reduction, option_a, option_b, option_c, option_d, none
+
+## FACTS
+FACT-1: The albuterol insert states albuterol is not indicated for use in patients who are breastfeeding :: LabelStates(albuterol, stmt_not_indicated_breastfeeding)
+FACT-2: The albuterol insert states plasma concentrations are approximately half those found in adults :: LabelStates(albuterol, stmt_plasma_half_adults)
+FACT-3: The albuterol insert makes no mention of a significant reduction in milk production :: ¬LabelStates(albuterol, stmt_milk_reduction)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A label stating that the drug is not indicated in breastfeeding supports Option A (contraindicated during lactation) :: ∀d (LabelStates(d, stmt_not_indicated_breastfeeding) → Supports(stmt_not_indicated_breastfeeding, option_a))
+RULE-2: A label stating plasma concentrations are about half of adult levels supports Option B :: ∀d (LabelStates(d, stmt_plasma_half_adults) → Supports(stmt_plasma_half_adults, option_b))
+RULE-3: A statement that is not in the label supports no option :: ∀d∀s∀o (¬LabelStates(d, s) → ¬Supports(s, o))
+RULE-4: An option supported by a label statement cannot be ruled out :: ∀s∀o (Supports(s, o) → ¬CanRuleOut(o))
+RULE-5: If a statement is absent from the label and does not support an option, that option cannot be ruled out without further research :: ∀d∀s∀o ((¬LabelStates(d, s) ∧ ¬Supports(s, o)) → ¬CanRuleOut(o))
+RULE-6: If none of the options A, B, C, D can be ruled out, the answer is None :: (¬CanRuleOut(option_a) ∧ ¬CanRuleOut(option_b) ∧ ¬CanRuleOut(option_c) ∧ ¬CanRuleOut(option_d)) → Answer(none)
+
+## INFERENCES
+INF-1: The insert's breastfeeding statement supports Option A, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Supports(stmt_not_indicated_breastfeeding, option_a)
+INF-2: The insert's plasma concentration statement supports Option B, from FACT-2 and RULE-2 by Universal Instantiation and Modus Ponens :: Supports(stmt_plasma_half_adults, option_b)
+INF-3: The absent milk-production statement does not support Option C, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Supports(stmt_milk_reduction, option_c)
+INF-4: The absent milk-production statement does not support Option D, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Supports(stmt_milk_reduction, option_d)
+INF-5: Option A cannot be ruled out, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens :: ¬CanRuleOut(option_a)
+INF-6: Option B cannot be ruled out, from INF-2 and RULE-4 by Universal Instantiation and Modus Ponens :: ¬CanRuleOut(option_b)
+INF-7: Option C cannot be ruled out, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens :: ¬CanRuleOut(option_c)
+INF-8: Option D cannot be ruled out, from FACT-3, INF-4, and RULE-5 by Universal Instantiation and Modus Ponens :: ¬CanRuleOut(option_d)
+INF-9: The answer is None, from INF-5, INF-6, INF-7, INF-8, and RULE-6 by Conjunction Introduction and Modus Ponens :: Answer(none)

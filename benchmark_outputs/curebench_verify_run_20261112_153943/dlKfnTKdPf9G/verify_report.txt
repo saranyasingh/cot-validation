@@ -1,0 +1,13 @@
+FACT-1: UNSUPPORTED — CONTRADICTED by tool evidence ev-735780: The label lists no contraindications ("None"). Severe allergic reactions appear only as a warning/precaution (hypersensitivity).
+FACT-2: SUPPORTED — stated in the question
+FACT-3: SUPPORTED — stated in the question
+RULE-1: PLAUSIBLE — logical principle, no source needed
+RULE-2: IMPLAUSIBLE — UNVERIFIED: The PERTZYE label has no contraindications. For hypersensitivity it says only "initiate appropriate medical management; consider the risks and benefits of continued treatment." It gives no instruction to stop the drug and seek emergency treatment.
+RULE-3: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 2 (0 returned no data). Provenance claims: 2 (0 with quotes not found in the tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-1 [ev-735780] FDA_get_contraindications_by_drug_name {"drug_name": "PERTZYE", "limit": 3}
+  quote: "4 CONTRAINDICATIONS None. None. ( 4 )"
+  tool output: **Meta:** **Skip:** 0 **Limit:** 3 **Total:** 1 **Results:** - **Openfda.Brand Name:** - PERTZYE **Openfda.Generic Name:** - PANCRELIPASE **Contraindications:** - 4 CONTRAINDICATIONS None. None. ( 4 )

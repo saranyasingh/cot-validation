@@ -1,0 +1,106 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Gadavist's label indicates it contains iodinated contrast material",
+      "formula": "ContainsIodinated(gadavist)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: The label describes Gadavist as a gadolinium-based contrast agent (a macrocyclic non-ionic gadolinium complex). It does not describe it as iodinated.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Patients with a history of allergic disorders may have adverse reactions to iodine-containing contrast agents like Gadavist",
+      "formula": "AdverseRiskIn(gadavist, allergic_disorders)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: Gadavist is a gadolinium-based contrast agent, not an iodine-containing one.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Contrast media such as Gadavist can cause systemic reactions in individuals with pre-existing hypersensitivity, linked to a history of allergic disorders",
+      "formula": "AdverseRiskIn(gadavist, allergic_disorders)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The retrieved label text covers hypersensitivity reactions generally but is truncated. I found no statement tying systemic reactions to a history of allergic disorders.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option B is \"Avoid Gadavist administration entirely\"",
+      "formula": "Describes(option_b, avoid_entirely)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug poses adverse or systemic reaction risk to patients with a condition, those patients should avoid the drug",
+      "formula": "\u2200d\u2200c (AdverseRiskIn(d, c) \u2192 ShouldAvoid(d, c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: The label does not say to avoid Gadavist because of a risk of reactions. It contraindicates it only for a history of severe hypersensitivity to Gadavist itself, and otherwise advises monitoring.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing avoiding gadavist entirely for patients with allergic disorders is the answer if they should avoid it",
+      "formula": "\u2200o (Describes(o, avoid_entirely) \u2227 ShouldAvoid(gadavist, allergic_disorders) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Patients with allergic disorders should avoid Gadavist, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "ShouldAvoid(gadavist, allergic_disorders)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ccfdc8: The label describes Gadavist as a gadolinium-based contrast agent (a macrocyclic non-ionic gadolinium complex). It does not describe it as iodinated."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ccfdc8: Gadavist is a gadolinium-based contrast agent, not an iodine-containing one."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: The retrieved label text covers hypersensitivity reactions generally but is truncated. I found no statement tying systemic reactions to a history of allergic disorders."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ccfdc8: The label does not say to avoid Gadavist because of a risk of reactions. It contraindicates it only for a history of severe hypersensitivity to Gadavist itself, and otherwise advises monitoring."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

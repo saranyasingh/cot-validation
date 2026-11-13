@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Indicated(d, u) — the label of drug d states that d is indicated for use u
+Describes(o, u) — answer option o describes use u
+NotIndicatedFor(d, u) — use u is not an indicated use of drug d
+Answer(o) — option o is the correct answer
+
+Constants:
+up_and_up_ibuprofen, minor_aches_pains, occasional_sleeplessness, chronic_pain, staying_asleep, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is relief of occasional sleeplessness :: Describes(option_a, occasional_sleeplessness)
+FACT-2: Option B is relief of minor aches and pains :: Describes(option_b, minor_aches_pains)
+FACT-3: Option C is treatment of chronic pain conditions :: Describes(option_c, chronic_pain)
+FACT-4: Option D is helping users stay asleep :: Describes(option_d, staying_asleep)
+FACT-5: The label states Up and Up Ibuprofen is indicated to relieve minor aches and pains :: Indicated(up_and_up_ibuprofen, minor_aches_pains)
+FACT-6: Its primary purpose is not aimed at sleeplessness (reasoning's claim for option A) :: ¬Indicated(up_and_up_ibuprofen, occasional_sleeplessness)
+FACT-7: The label does not mention treating chronic pain conditions :: ¬Indicated(up_and_up_ibuprofen, chronic_pain)
+FACT-8: Its main function is not maintaining sleep (reasoning's claim for option D) :: ¬Indicated(up_and_up_ibuprofen, staying_asleep)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A use that the drug is not indicated for is a non-indicated use of the drug :: ∀d∀u (¬Indicated(d, u) → NotIndicatedFor(d, u))
+RULE-2: An option describing an indicated use is not the answer to a "which is NOT indicated" question :: ∀o∀u ((Describes(o, u) ∧ Indicated(up_and_up_ibuprofen, u)) → ¬Answer(o))
+RULE-3: The reasoning picks option D, the final non-indicated use after the stay-asleep analysis, as the answer :: ∀o∀u ((Describes(o, u) ∧ NotIndicatedFor(up_and_up_ibuprofen, u) ∧ ¬Indicated(up_and_up_ibuprofen, u) ∧ Describes(option_d, u)) → Answer(o))
+
+## INFERENCES
+INF-1: Option B is not the answer, from FACT-2, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-2: Staying asleep is a non-indicated use of Up and Up Ibuprofen, from FACT-8 and RULE-1 by Universal Instantiation and Modus Ponens :: NotIndicatedFor(up_and_up_ibuprofen, staying_asleep)
+INF-3: Option D is the answer, from FACT-4, FACT-8, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_d)

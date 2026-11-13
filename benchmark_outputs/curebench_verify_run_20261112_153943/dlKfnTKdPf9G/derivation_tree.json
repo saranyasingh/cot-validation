@@ -1,0 +1,109 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "PERTZYE's label lists severe allergic reactions as a contraindication",
+      "formula": "LabelContraindication(pertzye, severe_allergic_reaction)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-735780: The label lists no contraindications (\"None\"). Severe allergic reactions appear only as a warning/precaution (hypersensitivity).",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "A patient experiences a severe allergic reaction while using PERTZYE",
+      "formula": "Experiences(patient, severe_allergic_reaction, pertzye)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is to stop taking the medication immediately and seek emergency treatment",
+      "formula": "Describes(option_b, stop_and_seek_emergency_treatment)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a patient experiences a condition while using a drug, and the drug's label lists that condition as a contraindication, the condition falls under the label's contraindications",
+      "formula": "\u2200p\u2200c\u2200d (Experiences(p, c, d) \u2227 LabelContraindication(d, c) \u2192 FallsUnderContraindication(c, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a condition experienced while using a drug falls under the drug's label contraindications, the most appropriate action is to stop taking the medication immediately and seek emergency treatment",
+      "formula": "\u2200c\u2200d (FallsUnderContraindication(c, d) \u2192 AppropriateAction(stop_and_seek_emergency_treatment, c, d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: The PERTZYE label has no contraindications. For hypersensitivity it says only \"initiate appropriate medical management; consider the risks and benefits of continued treatment.\" It gives no instruction to stop the drug and seek emergency treatment.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing the most appropriate action is the answer",
+      "formula": "\u2200o\u2200a\u2200c\u2200d (Describes(o, a) \u2227 AppropriateAction(a, c, d) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The severe allergic reaction while using PERTZYE falls under the contraindications on the label, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FallsUnderContraindication(severe_allergic_reaction, pertzye)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The most appropriate action is to stop the medication and seek emergency treatment, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "AppropriateAction(stop_and_seek_emergency_treatment, severe_allergic_reaction, pertzye)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-3, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-735780: The label lists no contraindications (\"None\"). Severe allergic reactions appear only as a warning/precaution (hypersensitivity)."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The PERTZYE label has no contraindications. For hypersensitivity it says only \"initiate appropriate medical management; consider the risks and benefits of continued treatment.\" It gives no instruction to stop the drug and seek emergency treatment."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

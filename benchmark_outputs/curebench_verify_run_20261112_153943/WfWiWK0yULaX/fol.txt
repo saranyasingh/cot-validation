@@ -1,0 +1,36 @@
+## VOCABULARY
+Predicates:
+Contraindicated(d, c) — drug d is contraindicated in patients with condition c
+ListedAvoid(d, c) — the product insert of drug d lists condition c as a reason to avoid the drug
+SideEffect(d, c) — the product insert of drug d lists condition c as a side effect
+Describes(o, c) — answer option o describes condition c
+Answer(o) — option o is the correct answer
+Constants:
+gadavist, mild_hypersensitivity, severe_hypersensitivity, renal_impairment, liver_dysfunction, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is mild hypersensitivity reactions to Gadavist :: Describes(option_a, mild_hypersensitivity)
+FACT-2: Option B is a history of severe hypersensitivity reactions to Gadavist :: Describes(option_b, severe_hypersensitivity)
+FACT-3: Option C is renal impairment :: Describes(option_c, renal_impairment)
+FACT-4: Option D is liver dysfunction :: Describes(option_d, liver_dysfunction)
+FACT-5: The Gadavist product insert lists a history of severe hypersensitivity reactions as a reason to avoid Gadavist :: ListedAvoid(gadavist, severe_hypersensitivity)
+FACT-6: The Gadavist product insert lists renal impairment as a side effect :: SideEffect(gadavist, renal_impairment)
+FACT-7: The Gadavist product insert lists liver dysfunction as a side effect :: SideEffect(gadavist, liver_dysfunction)
+FACT-8: Mild hypersensitivity reactions do not universally preclude the use of Gadavist, because they would typically be managed with antihistamines :: ¬Contraindicated(gadavist, mild_hypersensitivity)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A condition the product insert lists as a reason to avoid a drug is a contraindication of that drug :: ∀d∀c (ListedAvoid(d, c) → Contraindicated(d, c))
+RULE-2: A condition listed as a side effect of a drug is not a contraindication of that drug :: ∀d∀c (SideEffect(d, c) → ¬Contraindicated(d, c))
+RULE-3: The question asks for a contraindication of Gadavist, so an option describing one is the answer :: ∀o∀c ((Describes(o, c) ∧ Contraindicated(gadavist, c)) → Answer(o))
+RULE-4: An option describing a condition Gadavist is not contraindicated in is not the answer :: ∀o∀c ((Describes(o, c) ∧ ¬Contraindicated(gadavist, c)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: A history of severe hypersensitivity reactions is a contraindication of Gadavist, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: Contraindicated(gadavist, severe_hypersensitivity)
+INF-2: Renal impairment is not a contraindication of Gadavist, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Contraindicated(gadavist, renal_impairment)
+INF-3: Liver dysfunction is not a contraindication of Gadavist, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Contraindicated(gadavist, liver_dysfunction)
+INF-4: Option A is not the answer, from FACT-1, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-5: Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+INF-6: Option C is not the answer, from FACT-3, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-7: Option D is not the answer, from FACT-4, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

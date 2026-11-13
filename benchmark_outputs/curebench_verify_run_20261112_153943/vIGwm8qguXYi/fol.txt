@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+SideEffect(d, e) — e is a known adverse effect of drug d, per its label
+SevereAllergic(e) — e is a severe allergic reaction
+LifeThreatening(e) — e is potentially life-threatening if not promptly treated
+Appropriate(o) — option o is the most appropriate action for a patient with a severe allergic reaction to the drug
+Answer(o) — option o is the correct answer
+Constants:
+fosaprepitant, hypotension, bronchospasm, angioedema, urticaria, anaphylaxis, option_b
+
+## FACTS
+FACT-1: Fosaprepitant's label lists hypotension as an adverse effect :: SideEffect(fosaprepitant, hypotension)
+FACT-2: Fosaprepitant's label lists bronchospasm as an adverse effect :: SideEffect(fosaprepitant, bronchospasm)
+FACT-3: Angioedema is a severe allergic reaction and a known side effect of fosaprepitant :: SevereAllergic(angioedema) ∧ SideEffect(fosaprepitant, angioedema)
+FACT-4: Urticaria is a severe allergic reaction and a known side effect of fosaprepitant :: SevereAllergic(urticaria) ∧ SideEffect(fosaprepitant, urticaria)
+FACT-5: Anaphylaxis is a severe allergic reaction and a known side effect of fosaprepitant :: SevereAllergic(anaphylaxis) ∧ SideEffect(fosaprepitant, anaphylaxis)
+FACT-6: Anaphylaxis is life-threatening and can lead to death if not promptly treated :: LifeThreatening(anaphylaxis)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a severe allergic reaction is life-threatening, then informing the healthcare provider immediately and seeking emergency medical care (option B) is the most appropriate action :: ∀e (SevereAllergic(e) ∧ LifeThreatening(e) → Appropriate(option_b))
+RULE-2: The most appropriate action is the correct answer :: ∀o (Appropriate(o) → Answer(o))
+
+## INFERENCES
+INF-1: Option B is the most appropriate action, from FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: Appropriate(option_b)
+INF-2: Option B is the answer, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

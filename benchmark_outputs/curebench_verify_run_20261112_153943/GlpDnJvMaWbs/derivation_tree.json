@@ -1,0 +1,161 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The dose indicator on Stiolto Respimat has reached 0",
+      "formula": "IndicatorZero(stiolto_respimat)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is continuing to use the inhaler until the cartridge is empty",
+      "formula": "Describes(option_a, continue_empty)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is preparing and using a new Stiolto Respimat inhaler",
+      "formula": "Describes(option_b, new_inhaler)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is turning the clear base to reset the dose indicator",
+      "formula": "Describes(option_c, reset_base)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is cleaning the mouthpiece and continuing to use the inhaler",
+      "formula": "Describes(option_d, clean_mouthpiece)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the dose indicator reaches zero, the cartridge is depleted and all doses have been administered",
+      "formula": "\u2200d (IndicatorZero(d) \u2192 CartridgeDepleted(d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-35f7d4",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Once the cartridge is depleted, continuing to use the empty device is not appropriate, since it leads to ineffective treatment and potential harm",
+      "formula": "\u2200d (CartridgeDepleted(d) \u2192 \u00acAppropriate(continue_empty))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-35f7d4",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Once the cartridge is depleted, cleaning the mouthpiece is not appropriate, since it does not address the lack of doses",
+      "formula": "\u2200d (CartridgeDepleted(d) \u2192 \u00acAppropriate(clean_mouthpiece))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-35f7d4",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "Once the cartridge is depleted, turning the clear base to reset the dose indicator aligns with the product's functionality and is a reasonable course of action",
+      "formula": "\u2200d (CartridgeDepleted(d) \u2192 Appropriate(reset_base))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-35f7d4: The label says the locking mechanism is engaged once the labeled actuations are dispensed, so no more actuations can be dispensed and the inhaler is discarded. Turning the clear base cannot reset the indicator or restore doses.",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "An option describing an appropriate action is the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 Appropriate(a) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The Stiolto Respimat cartridge is depleted, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "CartridgeDepleted(stiolto_respimat)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Continuing to use the empty inhaler is not appropriate, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAppropriate(continue_empty)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Cleaning the mouthpiece is not appropriate, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAppropriate(clean_mouthpiece)",
+      "premises": [
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Turning the clear base to reset the dose indicator is appropriate, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Appropriate(reset_base)",
+      "premises": [
+        "INF-1",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-4, INF-4 and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-4",
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-35f7d4: The label says the locking mechanism is engaged once the labeled actuations are dispensed, so no more actuations can be dispensed and the inhaler is discarded. Turning the clear base cannot reset the indicator or restore doses."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

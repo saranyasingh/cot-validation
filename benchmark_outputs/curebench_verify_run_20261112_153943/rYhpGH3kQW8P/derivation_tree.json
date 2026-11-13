@@ -1,0 +1,136 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Inspra (as the reasoning describes it) is used as an adjunctive treatment for hyperkalemia",
+      "formula": "IndicatedFor(inspra, hyperkalemia)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-905510: The label lists only HFrEF after MI and hypertension as indications. It does not list hyperkalemia as an indication, and hyperkalemia is a listed adverse reaction.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Per the label, Inspra is not indicated for the management of hypokalemia",
+      "formula": "\u00acIndicatedFor(inspra, hypokalemia)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label's indications list HFrEF post-MI and hypertension only. It never mentions hypokalemia.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Finding 1 (the label indications) supports Option B",
+      "formula": "Supports(finding_1, option_b)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-905510: The indications are HFrEF post-MI and hypertension, and they say nothing about withholding therapy. The recommendation to withhold comes from the dosing table, not the indications.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Finding 2 (serum potassium of 6.0 mEq/L) rules out Option A",
+      "formula": "RulesOut(finding_2, option_a)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-905510",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Finding 2 (serum potassium of 6.0 mEq/L) rules out Option D",
+      "formula": "RulesOut(finding_2, option_d)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-905510",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Finding 3 (the mechanism of action) does not support Option C",
+      "formula": "\u00acSupports(finding_3, option_c)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-905510",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Finding 3 (the mechanism of action) does not rule out Option C",
+      "formula": "\u00acRulesOut(finding_3, option_c)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-905510",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Any option that a finding rules out is eliminated",
+      "formula": "\u2200f\u2200o (RulesOut(f, o) \u2192 Eliminated(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option that a finding supports is the answer",
+      "formula": "\u2200f\u2200o (Supports(f, o) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is eliminated, from FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Eliminated(option_a)",
+      "premises": [
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option D is eliminated, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Eliminated(option_d)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-905510: The label lists only HFrEF after MI and hypertension as indications. It does not list hyperkalemia as an indication, and hyperkalemia is a listed adverse reaction."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label's indications list HFrEF post-MI and hypertension only. It never mentions hypokalemia."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-905510: The indications are HFrEF post-MI and hypertension, and they say nothing about withholding therapy. The recommendation to withhold comes from the dosing table, not the indications."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

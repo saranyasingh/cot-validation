@@ -1,0 +1,58 @@
+{
+  "run_dir": "/n/home06/ssingh/cot-validation/benchmark_outputs/curebench_verify_run_20261112_153943",
+  "mode": "verify",
+  "reasoning_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "verifier_model": "us.anthropic.claude-sonnet-5-5",
+  "overall": {
+    "items": 10,
+    "cot_accuracy": 0.5,
+    "verified_rate": 0.1,
+    "accuracy_of_verified_answers": 0.0,
+    "wrong_answers_caught": 0.8,
+    "right_answers_rejected": 1.0,
+    "judged_correctly": 0.4,
+    "failed_fact_rule_check": 0.9,
+    "failed_tptp_check": 0.0
+  },
+  "by_question_type": {
+    "multi_choice": {
+      "items": 4,
+      "cot_accuracy": 0.25,
+      "verified_rate": 0.25,
+      "accuracy_of_verified_answers": 0.0,
+      "wrong_answers_caught": 0.6667,
+      "right_answers_rejected": 1.0,
+      "judged_correctly": 0.5,
+      "failed_fact_rule_check": 0.75,
+      "failed_tptp_check": 0.0
+    },
+    "open_ended_multi_choice": {
+      "items": 6,
+      "cot_accuracy": 0.6667,
+      "verified_rate": 0.0,
+      "accuracy_of_verified_answers": null,
+      "wrong_answers_caught": 1.0,
+      "right_answers_rejected": 1.0,
+      "judged_correctly": 0.3333,
+      "failed_fact_rule_check": 1.0,
+      "failed_tptp_check": 0.0
+    }
+  },
+  "premise_verdicts": {
+    "FACT confirmed by tool": 16,
+    "FACT contradicted/implausible": 8,
+    "FACT from question/logic": 24,
+    "FACT unverified": 16,
+    "RULE confirmed by tool": 6,
+    "RULE contradicted/implausible": 2,
+    "RULE from question/logic": 15,
+    "RULE unverified": 8
+  },
+  "tool_usage": {
+    "agent_calls": 21,
+    "tool_calls": 42,
+    "tool_calls_with_no_data": 0,
+    "tool_calls_per_item": 4.2
+  },
+  "cost_usd": 0.0
+}

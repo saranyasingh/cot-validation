@@ -1,0 +1,137 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is relief of occasional sleeplessness",
+      "formula": "Describes(option_a, occasional_sleeplessness)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is relief of minor aches and pains",
+      "formula": "Describes(option_b, minor_aches_pains)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is treatment of chronic pain conditions",
+      "formula": "Describes(option_c, chronic_pain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is helping users stay asleep",
+      "formula": "Describes(option_d, staying_asleep)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The label states Up and Up Ibuprofen is indicated to relieve minor aches and pains",
+      "formula": "Indicated(up_and_up_ibuprofen, minor_aches_pains)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6f8b50",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Its primary purpose is not aimed at sleeplessness (reasoning's claim for option A)",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, occasional_sleeplessness)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6f8b50",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The label does not mention treating chronic pain conditions",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, chronic_pain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6f8b50",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Its main function is not maintaining sleep (reasoning's claim for option D)",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, staying_asleep)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6f8b50",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A use that the drug is not indicated for is a non-indicated use of the drug",
+      "formula": "\u2200d\u2200u (\u00acIndicated(d, u) \u2192 NotIndicatedFor(d, u))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing an indicated use is not the answer to a \"which is NOT indicated\" question",
+      "formula": "\u2200o\u2200u ((Describes(o, u) \u2227 Indicated(up_and_up_ibuprofen, u)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The reasoning picks option D, the final non-indicated use after the stay-asleep analysis, as the answer",
+      "formula": "\u2200o\u2200u ((Describes(o, u) \u2227 NotIndicatedFor(up_and_up_ibuprofen, u) \u2227 \u00acIndicated(up_and_up_ibuprofen, u) \u2227 Describes(option_d, u)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Staying asleep is a non-indicated use of Up and Up Ibuprofen, from FACT-8 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "NotIndicatedFor(up_and_up_ibuprofen, staying_asleep)",
+      "premises": [
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-4, FACT-8, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-8",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

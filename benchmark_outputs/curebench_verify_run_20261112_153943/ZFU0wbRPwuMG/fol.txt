@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+ContainsIodinated(d) — drug d contains iodinated contrast material
+AdverseRiskIn(d, c) — patients with condition c may have adverse or systemic reactions to drug d
+ShouldAvoid(d, c) — patients with condition c should avoid administration of drug d
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+gadavist, allergic_disorders, avoid_entirely, option_b
+
+## FACTS
+FACT-1: Gadavist's label indicates it contains iodinated contrast material :: ContainsIodinated(gadavist)
+FACT-2: Patients with a history of allergic disorders may have adverse reactions to iodine-containing contrast agents like Gadavist :: AdverseRiskIn(gadavist, allergic_disorders)
+FACT-3: Contrast media such as Gadavist can cause systemic reactions in individuals with pre-existing hypersensitivity, linked to a history of allergic disorders :: AdverseRiskIn(gadavist, allergic_disorders)
+FACT-4: Option B is "Avoid Gadavist administration entirely" :: Describes(option_b, avoid_entirely)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug poses adverse or systemic reaction risk to patients with a condition, those patients should avoid the drug :: ∀d∀c (AdverseRiskIn(d, c) → ShouldAvoid(d, c))
+RULE-2: An option describing avoiding gadavist entirely for patients with allergic disorders is the answer if they should avoid it :: ∀o (Describes(o, avoid_entirely) ∧ ShouldAvoid(gadavist, allergic_disorders) → Answer(o))
+
+## INFERENCES
+INF-1: Patients with allergic disorders should avoid Gadavist, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: ShouldAvoid(gadavist, allergic_disorders)
+INF-2: Option B is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

@@ -1,0 +1,148 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is SPF 5",
+      "formula": "Describes(option_a, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is SPF 10",
+      "formula": "Describes(option_b, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is SPF 15",
+      "formula": "Describes(option_c, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is SPF 30",
+      "formula": "Describes(option_d, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The WHO recommends a broad-spectrum sunscreen with an SPF of at least 15",
+      "formula": "WHOMinimum(15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The only source found was an FDA label that recommends a broad-spectrum SPF of 15 or higher. It doesn't name the WHO.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "An SPF of 5 would likely give insufficient protection against UVA and UVB",
+      "formula": "Insufficient(5)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I found no source on how well SPF 5 protects against UVA and UVB.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "An SPF of 10 falls short of the WHO recommendation of at least 15",
+      "formula": "Insufficient(10)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The FDA label gives an SPF 15 minimum, but I found no WHO source to compare SPF 10 against.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "An SPF of 15 meets the basic WHO requirement and is considered adequate protection",
+      "formula": "Adequate(15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-3e768b",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option whose SPF is insufficient is not the answer",
+      "formula": "\u2200o\u2200n ((Describes(o, n) \u2227 Insufficient(n)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-3e768b",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option whose SPF is adequate and equals the WHO-recommended minimum is the answer",
+      "formula": "\u2200o\u2200n ((Describes(o, n) \u2227 Adequate(n) \u2227 WHOMinimum(n)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-3e768b",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-3, FACT-8, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-8",
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: The only source found was an FDA label that recommends a broad-spectrum SPF of 15 or higher. It doesn't name the WHO."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: I found no source on how well SPF 5 protects against UVA and UVB."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The FDA label gives an SPF 15 minimum, but I found no WHO source to compare SPF 10 against."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

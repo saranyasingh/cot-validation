@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+LabelContraindication(d, c) — drug d's label lists condition c as a contraindication
+Experiences(p, c, d) — patient p experiences condition c while using drug d
+FallsUnderContraindication(c, d) — condition c falls under the contraindications on drug d's label
+AppropriateAction(a, c, d) — action a is the most appropriate course of action for condition c while using drug d
+Answer(o) — option o is the correct answer
+
+Constants:
+pertzye, severe_allergic_reaction, patient, stop_and_seek_emergency_treatment, option_b
+
+## FACTS
+FACT-1: PERTZYE's label lists severe allergic reactions as a contraindication :: LabelContraindication(pertzye, severe_allergic_reaction)
+FACT-2: A patient experiences a severe allergic reaction while using PERTZYE :: Experiences(patient, severe_allergic_reaction, pertzye)
+FACT-3: Option B is to stop taking the medication immediately and seek emergency treatment :: Describes(option_b, stop_and_seek_emergency_treatment)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a patient experiences a condition while using a drug, and the drug's label lists that condition as a contraindication, the condition falls under the label's contraindications :: ∀p∀c∀d (Experiences(p, c, d) ∧ LabelContraindication(d, c) → FallsUnderContraindication(c, d))
+RULE-2: If a condition experienced while using a drug falls under the drug's label contraindications, the most appropriate action is to stop taking the medication immediately and seek emergency treatment :: ∀c∀d (FallsUnderContraindication(c, d) → AppropriateAction(stop_and_seek_emergency_treatment, c, d))
+RULE-3: An option describing the most appropriate action is the answer :: ∀o∀a∀c∀d (Describes(o, a) ∧ AppropriateAction(a, c, d) → Answer(o))
+
+## INFERENCES
+INF-1: The severe allergic reaction while using PERTZYE falls under the contraindications on the label, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: FallsUnderContraindication(severe_allergic_reaction, pertzye)
+INF-2: The most appropriate action is to stop the medication and seek emergency treatment, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: AppropriateAction(stop_and_seek_emergency_treatment, severe_allergic_reaction, pertzye)
+INF-3: Option B is the answer, from FACT-3, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+
+Note: FACT-3 and RULE-3 use the predicate `Describes(o, a)`. It is not in the fixed vocabulary above. That breaks the five-predicate limit, because the vocabulary would then need six predicates.
+
+I did not fix this by adding a symbol or changing the logic. The chain of thought gives no way to link option B to the action within the declared predicates.
+
+No tools were called, so there is no provenance to cite.

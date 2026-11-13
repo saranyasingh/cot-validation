@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Describes(o, d) — answer option o names drug d
+PrimaryUse(d, u) — drug d is primarily used for u
+AcneIndicated(d) — drug d is indicated specifically for acne treatment
+Answer(o) — option o is the correct answer
+Constants:
+option_a, option_b, option_c, option_d, option_none, salicylic_acid, minoxidil, ketoconazole, fluocinonide, acne_keratolytic, hair_growth, fungal_infections, inflammatory_skin_conditions
+
+## FACTS
+FACT-1: Option A is Salicylic Acid :: Describes(option_a, salicylic_acid)
+FACT-2: Option B is Minoxidil :: Describes(option_b, minoxidil)
+FACT-3: Option C is Ketoconazole :: Describes(option_c, ketoconazole)
+FACT-4: Option D is Fluocinonide :: Describes(option_d, fluocinonide)
+FACT-5: Salicylic acid is an OTC topical keratolytic agent commonly used for acne :: PrimaryUse(salicylic_acid, acne_keratolytic)
+FACT-6: Minoxidil is primarily used as a hair growth treatment :: PrimaryUse(minoxidil, hair_growth)
+FACT-7: Ketoconazole is an antifungal used for fungal infections :: PrimaryUse(ketoconazole, fungal_infections)
+FACT-8: Fluocinonide is a corticosteroid used for inflammatory skin conditions such as psoriasis and eczema :: PrimaryUse(fluocinonide, inflammatory_skin_conditions)
+FACT-9: After evaluation, salicylic acid is not mentioned as directly indicated for acne :: ¬AcneIndicated(salicylic_acid)
+FACT-10: Minoxidil is not indicated for acne :: ¬AcneIndicated(minoxidil)
+FACT-11: Ketoconazole has no specific indication for acne :: ¬AcneIndicated(ketoconazole)
+FACT-12: Fluocinonide is not indicated for acne :: ¬AcneIndicated(fluocinonide)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option naming a drug not indicated for acne is not the answer :: ∀o∀d ((Describes(o, d) ∧ ¬AcneIndicated(d)) → ¬Answer(o))
+RULE-2: Exhaustive case split: the answer is one of the four drug options or "none of the above" :: ∀x (Answer(option_a) ∨ Answer(option_b) ∨ Answer(option_c) ∨ Answer(option_d) ∨ Answer(option_none))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-1, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option B is not the answer, from FACT-2, FACT-10, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-3: Option C is not the answer, from FACT-3, FACT-11, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-4: Option D is not the answer, from FACT-4, FACT-12, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-5: "None of the above" is the answer, from INF-1, INF-2, INF-3, INF-4, and RULE-2 by Universal Instantiation and Disjunctive Syllogism :: Answer(option_none)

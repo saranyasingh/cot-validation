@@ -1,0 +1,131 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Fosaprepitant's label lists hypotension as an adverse effect",
+      "formula": "SideEffect(fosaprepitant, hypotension)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label text returned was truncated, and I found no mention of hypotension in it.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Fosaprepitant's label lists bronchospasm as an adverse effect",
+      "formula": "SideEffect(fosaprepitant, bronchospasm)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label text returned was truncated, and I found no mention of bronchospasm in it.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Angioedema is a severe allergic reaction and a known side effect of fosaprepitant",
+      "formula": "SevereAllergic(angioedema) \u2227 SideEffect(fosaprepitant, angioedema)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I searched the label and SIDER for angioedema and found nothing. The SIDER table was cut off at 50 of 108 rows.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Urticaria is a severe allergic reaction and a known side effect of fosaprepitant",
+      "formula": "SevereAllergic(urticaria) \u2227 SideEffect(fosaprepitant, urticaria)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I searched the label and SIDER for urticaria and found nothing. The SIDER table was cut off at 50 of 108 rows.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Anaphylaxis is a severe allergic reaction and a known side effect of fosaprepitant",
+      "formula": "SevereAllergic(anaphylaxis) \u2227 SideEffect(fosaprepitant, anaphylaxis)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-e2cbd8",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Anaphylaxis is life-threatening and can lead to death if not promptly treated",
+      "formula": "LifeThreatening(anaphylaxis)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I searched the labels for a statement that anaphylaxis is life-threatening or fatal if untreated and found none.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a severe allergic reaction is life-threatening, then informing the healthcare provider immediately and seeking emergency medical care (option B) is the most appropriate action",
+      "formula": "\u2200e (SevereAllergic(e) \u2227 LifeThreatening(e) \u2192 Appropriate(option_b))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: I searched the labels for patient guidance to seek emergency care. They only say to discontinue the drug if hypersensitivity symptoms occur.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The most appropriate action is the correct answer",
+      "formula": "\u2200o (Appropriate(o) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option B is the most appropriate action, from FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Appropriate(option_b)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label text returned was truncated, and I found no mention of hypotension in it."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label text returned was truncated, and I found no mention of bronchospasm in it."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: I searched the label and SIDER for angioedema and found nothing. The SIDER table was cut off at 50 of 108 rows."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "UNVERIFIED: I searched the label and SIDER for urticaria and found nothing. The SIDER table was cut off at 50 of 108 rows."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: I searched the labels for a statement that anaphylaxis is life-threatening or fatal if untreated and found none."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: I searched the labels for patient guidance to seek emergency care. They only say to discontinue the drug if hypersensitivity symptoms occur."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

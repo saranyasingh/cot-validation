@@ -1,0 +1,15 @@
+FACT-1: UNSUPPORTED — UNVERIFIED: the label text returned was truncated, and I found no mention of hypotension in it.
+FACT-2: UNSUPPORTED — UNVERIFIED: the label text returned was truncated, and I found no mention of bronchospasm in it.
+FACT-3: UNSUPPORTED — UNVERIFIED: I searched the label and SIDER for angioedema and found nothing. The SIDER table was cut off at 50 of 108 rows.
+FACT-4: UNSUPPORTED — UNVERIFIED: I searched the label and SIDER for urticaria and found nothing. The SIDER table was cut off at 50 of 108 rows.
+FACT-5: SUPPORTED — confirmed by tool evidence ev-e2cbd8
+FACT-6: UNSUPPORTED — UNVERIFIED: I searched the labels for a statement that anaphylaxis is life-threatening or fatal if untreated and found none.
+RULE-1: IMPLAUSIBLE — UNVERIFIED: I searched the labels for patient guidance to seek emergency care. They only say to discontinue the drug if hypersensitivity symptoms occur.
+RULE-2: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 5 (0 returned no data). Provenance claims: 1 (0 with quotes not found in the tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-5 [ev-e2cbd8] FDA_get_drug_label {"drug_name": "fosaprepitant"}
+  quote: "Hypersensitivity Reactions (including anaphylaxis and anaphylactic shock) : May occur during or soon after infusion. If symptoms occur, discontinue the drug."
+  tool output: … as QT prolongation, a known adverse reaction of pimozide [see Warnings and Precautions (5.1) ]. Known hypersensitivity to any component of this drug. ( 4 , 5.2 ) Concurrent use with pimozide. (4) **Warnings And Precautions:** 5 WARNINGS AND PRECAUTIONS CYP3A4 Interactions: Fosaprepitant is a weak inhibitor of CYP3A4, and aprepitant, the active moiety, is a substrate, inhibitor, and inducer of CYP3A4; see Full Prescribing Information for recommendations regarding contraindications, risk of adverse reactions, and dosage adjustment of fosaprepitant and concomitant drugs. ( 4 , 5.1 , 7.1 , 7.2 ) Hypersensitivity Reactions (including anaphylaxis and anaphylactic shock) : May occur during or soon after infusion. If symptoms occur, discontinue the drug. Do not reinitiate fosaprepitant if symptoms occur with previous use. ( 4 , 5.2 ) Infusion Site Reactions (including thrombophlebitis, necrosis, and vasculitis): Majority of reactions reported in patients receiving vesicant chemotherapy. Avoid infusion into small veins. Discontinue infusion and administer treatment if a severe reaction develops. (5.3) Warfarin (a CYP2C9 substrate): Risk of decreased INR of prothrombin time; monitor INR in 2–week period, particularly at 7 to 10 days, following initiation of fosaprepitant. ( 5.4, 7.1 ) Hormonal Contraceptives: Efficacy of contraceptives may be r…

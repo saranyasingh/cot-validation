@@ -1,0 +1,209 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is Salicylic Acid",
+      "formula": "Describes(option_a, salicylic_acid)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is Minoxidil",
+      "formula": "Describes(option_b, minoxidil)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is Ketoconazole",
+      "formula": "Describes(option_c, ketoconazole)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is Fluocinonide",
+      "formula": "Describes(option_d, fluocinonide)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Salicylic acid is an OTC topical keratolytic agent commonly used for acne",
+      "formula": "PrimaryUse(salicylic_acid, acne_keratolytic)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-96cdb3",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Minoxidil is primarily used as a hair growth treatment",
+      "formula": "PrimaryUse(minoxidil, hair_growth)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ce012b",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Ketoconazole is an antifungal used for fungal infections",
+      "formula": "PrimaryUse(ketoconazole, fungal_infections)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The ketoconazole labels returned only show an \"Azole Antifungal\" class, and the indication text is cut off. They show no specific fungal infection.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Fluocinonide is a corticosteroid used for inflammatory skin conditions such as psoriasis and eczema",
+      "formula": "PrimaryUse(fluocinonide, inflammatory_skin_conditions)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The fluocinonide labels show a corticosteroid class and a relief-of-inflammatory-manifestations indication that is cut off. Psoriasis and eczema are not named.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "After evaluation, salicylic acid is not mentioned as directly indicated for acne",
+      "formula": "\u00acAcneIndicated(salicylic_acid)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-96cdb3: Salicylic acid labels state directly that it is used for the treatment of acne.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Minoxidil is not indicated for acne",
+      "formula": "\u00acAcneIndicated(minoxidil)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ce012b",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Ketoconazole has no specific indication for acne",
+      "formula": "\u00acAcneIndicated(ketoconazole)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-a0f121",
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "Fluocinonide is not indicated for acne",
+      "formula": "\u00acAcneIndicated(fluocinonide)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-706675",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option naming a drug not indicated for acne is not the answer",
+      "formula": "\u2200o\u2200d ((Describes(o, d) \u2227 \u00acAcneIndicated(d)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Exhaustive case split: the answer is one of the four drug options or \"none of the above\"",
+      "formula": "\u2200x (Answer(option_a) \u2228 Answer(option_b) \u2228 Answer(option_c) \u2228 Answer(option_d) \u2228 Answer(option_none))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-9",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-10, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-10",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, FACT-11, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, FACT-12, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-12",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "\"None of the above\" is the answer, from INF-1, INF-2, INF-3, INF-4, and RULE-2 by Universal Instantiation and Disjunctive Syllogism",
+      "formula": "Answer(option_none)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "INF-3",
+        "INF-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Disjunctive Syllogism",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The ketoconazole labels returned only show an \"Azole Antifungal\" class, and the indication text is cut off. They show no specific fungal infection."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: The fluocinonide labels show a corticosteroid class and a relief-of-inflammatory-manifestations indication that is cut off. Psoriasis and eczema are not named."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-96cdb3: Salicylic acid labels state directly that it is used for the treatment of acne."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

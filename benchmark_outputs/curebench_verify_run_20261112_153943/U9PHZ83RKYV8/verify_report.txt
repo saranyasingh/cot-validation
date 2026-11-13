@@ -1,0 +1,41 @@
+FACT-1: SUPPORTED — stated in the question
+FACT-2: SUPPORTED — stated in the question
+FACT-3: SUPPORTED — stated in the question
+FACT-4: SUPPORTED — stated in the question
+FACT-5: SUPPORTED — confirmed by tool evidence ev-96cdb3
+FACT-6: SUPPORTED — confirmed by tool evidence ev-ce012b
+FACT-7: UNSUPPORTED — UNVERIFIED: The ketoconazole labels returned only show an "Azole Antifungal" class, and the indication text is cut off. They show no specific fungal infection.
+FACT-8: UNSUPPORTED — UNVERIFIED: The fluocinonide labels show a corticosteroid class and a relief-of-inflammatory-manifestations indication that is cut off. Psoriasis and eczema are not named.
+FACT-9: UNSUPPORTED — CONTRADICTED by tool evidence ev-96cdb3: Salicylic acid labels state directly that it is used for the treatment of acne.
+FACT-10: SUPPORTED — confirmed by tool evidence ev-ce012b
+FACT-11: SUPPORTED — confirmed by tool evidence ev-a0f121
+FACT-12: SUPPORTED — confirmed by tool evidence ev-706675
+RULE-1: PLAUSIBLE — logical principle, no source needed
+RULE-2: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 5 (0 returned no data). Provenance claims: 6 (0 with quotes not found in the tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-5 [ev-96cdb3] FDA_search_drug_labels {"drug_name": "salicylic acid", "limit": 5}
+  quote: "| Quick Action | SALICYLIC ACID | Walmart Inc. | TOPICAL | None | ['562600'] | None | Use for the treatment of acne |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | Quick Action | SALICYLIC ACID | Walmart Inc. | TOPICAL | None | ['562600'] | None | Use for the treatment of acne | | CeraVe Developed with Dermatologists Acne Control Cleanser | SALICYLIC ACID | L'Oreal USA Products Inc | TOPICAL | None | ['562600'] | None | Uses clears acne blemishes and allows skin to heal helps prevent new acne blemis | | Replenix Gly-Sal 10-2 cleanser | SALICYLIC ACID | Topiderm, Inc. | TOPICAL | None | ['562600'] | None | Uses Skin cleanser for the treatment of acne. | | HerbaGlow Baiwooxia Anti-Acne Gel | SALICYLIC ACID GEL | Kungpo Health Care & Herbal Center Inc | TOPICAL | None | ['346298'] | None | Uses Anti-acne Tighten skin Moisturize Improve fine lines Whitening | | First Aid…
+
+FACT-6 [ev-ce012b] FDA_search_drug_labels {"drug_name": "minoxidil", "limit": 3}
+  quote: "| hair regrowth treatment | MINOXIDIL | Rite Aid Corporation | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | hair regrowth treatment | MINOXIDIL | Rite Aid Corporation | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of | | kirkland signature minoxidil | MINOXIDIL | Costco Wholesale Company | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of | | MINOXIDIL | MINOXIDIL | AvKARE | ORAL | Arteriolar Vasodilator [EPC] | ['197986', '197987'] | WARNING Minoxidil tablets contain the powerful antihypertensive agent, minoxidil | INDICATIONS AND USAGE Because of the potential for serious adverse effects, mino |
+
+FACT-9 [ev-96cdb3] FDA_search_drug_labels {"drug_name": "salicylic acid", "limit": 5}
+  quote: "| Replenix Gly-Sal 10-2 cleanser | SALICYLIC ACID | Topiderm, Inc. | TOPICAL | None | ['562600'] | None | Uses Skin cleanser for the treatment of acne. |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | Quick Action | SALICYLIC ACID | Walmart Inc. | TOPICAL | None | ['562600'] | None | Use for the treatment of acne | | CeraVe Developed with Dermatologists Acne Control Cleanser | SALICYLIC ACID | L'Oreal USA Products Inc | TOPICAL | None | ['562600'] | None | Uses clears acne blemishes and allows skin to heal helps prevent new acne blemis | | Replenix Gly-Sal 10-2 cleanser | SALICYLIC ACID | Topiderm, Inc. | TOPICAL | None | ['562600'] | None | Uses Skin cleanser for the treatment of acne. | | HerbaGlow Baiwooxia Anti-Acne Gel | SALICYLIC ACID GEL | Kungpo Health Care & Herbal Center Inc | TOPICAL | None | ['346298'] | None | Uses Anti-acne Tighten skin Moisturize Improve fine lines Whitening | | First Aid Beauty FAB Acne Spot Treatment | SALICYLIC ACID | The Procter & Gamble Manufacturing Company | TOPICAL | None | ['346298'] | None | Uses for the treatment of acne |
+
+FACT-10 [ev-ce012b] FDA_search_drug_labels {"drug_name": "minoxidil", "limit": 3}
+  quote: "| kirkland signature minoxidil | MINOXIDIL | Costco Wholesale Company | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | hair regrowth treatment | MINOXIDIL | Rite Aid Corporation | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of | | kirkland signature minoxidil | MINOXIDIL | Costco Wholesale Company | TOPICAL | Arteriolar Vasodilator [EPC] | ['311724'] | None | Use to regrow hair on the top of the scalp (vertex only, see pictures on side of | | MINOXIDIL | MINOXIDIL | AvKARE | ORAL | Arteriolar Vasodilator [EPC] | ['197986', '197987'] | WARNING Minoxidil tablets contain the powerful antihypertensive agent, minoxidil | INDICATIONS AND USAGE Because of the potential for serious adverse effects, mino |
+
+FACT-11 [ev-a0f121] FDA_search_drug_labels {"drug_name": "ketoconazole", "limit": 3}
+  quote: "| Ketoconazole | KETOCONAZOLE | Bryant Ranch Prepack | TOPICAL | Azole Antifungal [EPC] | ['203088'] | None | INDICATIONS AND USAGE Ketoconazole Cream, 2% is indicated for the topical treatm |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | Ketoconazole | KETOCONAZOLE | ANI Pharmaceuticals, Inc. | TOPICAL | Azole Antifungal [EPC] | ['106336'] | None | INDICATIONS & USAGE Ketoconazole shampoo, 2% is indicated for the treatment of t | | Ketoconazole | KETOCONAZOLE | Bryant Ranch Prepack | TOPICAL | Azole Antifungal [EPC] | ['203088'] | None | INDICATIONS AND USAGE Ketoconazole Cream, 2% is indicated for the topical treatm | | Ketoconazole | KETOCONAZOLE CREAM, 2% | NuCare Pharmaceuticals,Inc. | TOPICAL | Azole Antifungal [EPC] | ['203088'] | None | INDICATIONS AND USAGE Ketoconazole Cream, 2% is indicated for the topical treatm |
+
+FACT-12 [ev-706675] FDA_search_drug_labels {"drug_name": "fluocinonide", "limit": 3}
+  quote: "| Fluocinonide | FLUOCINONIDE | Sun Pharmaceutical Industries, Inc. | TOPICAL | Corticosteroid [EPC] | ['485647'] | Important: For skin use only. Do not get Fluocinonide Cream USP, 0.1% in your ey | 1 INDICATIONS AND USAGE Fluocinonide cream USP, 0.1% is a corticosteroid indicat |"
+  tool output: | Brand Name | Generic Name | Manufacturer | Route | Pharm Class | Rxcui | Boxed Warning | Indications And Usage | | --- | --- | --- | --- | --- | --- | --- | --- | | FLUOCINONIDE | FLUOCINONIDE | Zydus Lifesciences Limited | TOPICAL | Corticosteroid [EPC] | ['485647'] | None | None | | Fluocinonide | FLUOCINONIDE | Bryant Ranch Prepack | TOPICAL | Corticosteroid [EPC] | None | None | INDICATIONS AND USAGE Fluocinonide Ointment is indicated for the relief of the i | | Fluocinonide | FLUOCINONIDE | Sun Pharmaceutical Industries, Inc. | TOPICAL | Corticosteroid [EPC] | ['485647'] | Important: For skin use only. Do not get Fluocinonide Cream USP, 0.1% in your ey | 1 INDICATIONS AND USAGE Fluocinonide cream USP, 0.1% is a corticosteroid indicat |

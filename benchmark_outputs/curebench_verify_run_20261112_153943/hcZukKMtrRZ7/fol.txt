@@ -1,0 +1,31 @@
+## VOCABULARY
+Predicates:
+Describes(o, n) — answer option o gives SPF value n
+WHOMinimum(n) — the WHO-recommended minimum SPF for broad-spectrum sunscreen is n
+Insufficient(n) — an SPF of n is insufficient protection against UVA and UVB
+Adequate(n) — an SPF of n is adequate protection against UVA and UVB
+Answer(o) — option o is the correct answer
+
+Constants:
+option_a, option_b, option_c, option_d, 5, 10, 15, 30
+
+## FACTS
+FACT-1: Option A is SPF 5 :: Describes(option_a, 5)
+FACT-2: Option B is SPF 10 :: Describes(option_b, 10)
+FACT-3: Option C is SPF 15 :: Describes(option_c, 15)
+FACT-4: Option D is SPF 30 :: Describes(option_d, 30)
+FACT-5: The WHO recommends a broad-spectrum sunscreen with an SPF of at least 15 :: WHOMinimum(15)
+FACT-6: An SPF of 5 would likely give insufficient protection against UVA and UVB :: Insufficient(5)
+FACT-7: An SPF of 10 falls short of the WHO recommendation of at least 15 :: Insufficient(10)
+FACT-8: An SPF of 15 meets the basic WHO requirement and is considered adequate protection :: Adequate(15)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option whose SPF is insufficient is not the answer :: ∀o∀n ((Describes(o, n) ∧ Insufficient(n)) → ¬Answer(o))
+RULE-2: An option whose SPF is adequate and equals the WHO-recommended minimum is the answer :: ∀o∀n ((Describes(o, n) ∧ Adequate(n) ∧ WHOMinimum(n)) → Answer(o))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-1, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option B is not the answer, from FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-3: Option C is the answer, from FACT-3, FACT-8, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_c)

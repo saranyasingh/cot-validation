@@ -1,0 +1,249 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The albuterol insert states albuterol is not indicated for use in patients who are breastfeeding",
+      "formula": "LabelStates(albuterol, stmt_not_indicated_breastfeeding)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The albuterol insert states plasma concentrations are approximately half those found in adults",
+      "formula": "LabelStates(albuterol, stmt_plasma_half_adults)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The albuterol insert makes no mention of a significant reduction in milk production",
+      "formula": "\u00acLabelStates(albuterol, stmt_milk_reduction)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A label stating that the drug is not indicated in breastfeeding supports Option A (contraindicated during lactation)",
+      "formula": "\u2200d (LabelStates(d, stmt_not_indicated_breastfeeding) \u2192 Supports(stmt_not_indicated_breastfeeding, option_a))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A label stating plasma concentrations are about half of adult levels supports Option B",
+      "formula": "\u2200d (LabelStates(d, stmt_plasma_half_adults) \u2192 Supports(stmt_plasma_half_adults, option_b))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "A statement that is not in the label supports no option",
+      "formula": "\u2200d\u2200s\u2200o (\u00acLabelStates(d, s) \u2192 \u00acSupports(s, o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option supported by a label statement cannot be ruled out",
+      "formula": "\u2200s\u2200o (Supports(s, o) \u2192 \u00acCanRuleOut(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "If a statement is absent from the label and does not support an option, that option cannot be ruled out without further research",
+      "formula": "\u2200d\u2200s\u2200o ((\u00acLabelStates(d, s) \u2227 \u00acSupports(s, o)) \u2192 \u00acCanRuleOut(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "If none of the options A, B, C, D can be ruled out, the answer is None",
+      "formula": "(\u00acCanRuleOut(option_a) \u2227 \u00acCanRuleOut(option_b) \u2227 \u00acCanRuleOut(option_c) \u2227 \u00acCanRuleOut(option_d)) \u2192 Answer(none)",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The insert's breastfeeding statement supports Option A, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Supports(stmt_not_indicated_breastfeeding, option_a)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The insert's plasma concentration statement supports Option B, from FACT-2 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Supports(stmt_plasma_half_adults, option_b)",
+      "premises": [
+        "FACT-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The absent milk-production statement does not support Option C, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupports(stmt_milk_reduction, option_c)",
+      "premises": [
+        "FACT-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "The absent milk-production statement does not support Option D, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupports(stmt_milk_reduction, option_d)",
+      "premises": [
+        "FACT-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A cannot be ruled out, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acCanRuleOut(option_a)",
+      "premises": [
+        "INF-1",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option B cannot be ruled out, from INF-2 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acCanRuleOut(option_b)",
+      "premises": [
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option C cannot be ruled out, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acCanRuleOut(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-3",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option D cannot be ruled out, from FACT-3, INF-4, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acCanRuleOut(option_d)",
+      "premises": [
+        "FACT-3",
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-9": {
+      "type": "inference",
+      "gloss": "The answer is None, from INF-5, INF-6, INF-7, INF-8, and RULE-6 by Conjunction Introduction and Modus Ponens",
+      "formula": "Answer(none)",
+      "premises": [
+        "INF-5",
+        "INF-6",
+        "INF-7",
+        "INF-8",
+        "RULE-6"
+      ],
+      "inference_rule": "Conjunction Introduction and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-9",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    },
+    {
+      "node": "RULE-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: the verifier gave no verdict"
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

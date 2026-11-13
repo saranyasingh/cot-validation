@@ -1,0 +1,65 @@
+{
+  "name": "curebench (curebench_valset_phase1.jsonl)",
+  "items": [
+    {
+      "id": "U9PHZ83RKYV8",
+      "question": "Which drug brand name is associated with the treatment of acne?\n\nOptions:\nA: Salicylic Acid\nB: Minoxidil\nC: Ketoconazole\nD: Fluocinonide",
+      "answer": "A",
+      "question_type": "multi_choice"
+    },
+    {
+      "id": "vIGwm8qguXYi",
+      "question": "What should patients do if they experience severe allergic reactions during or after receiving fosaprepitant for injection?\n\nOptions:\nA: Wait for the symptoms to resolve on their own.\nB: Inform their healthcare provider immediately and seek emergency medical care.\nC: Stop chemotherapy treatment permanently.\nD: Take over-the-counter antihistamines.",
+      "answer": "B",
+      "question_type": "open_ended_multi_choice"
+    },
+    {
+      "id": "GlpDnJvMaWbs",
+      "question": "What should you do if the dose indicator on Stiolto Respimat reaches 0?\n\nOptions:\nA: Continue using the inhaler until the cartridge is empty.\nB: Prepare and use a new Stiolto Respimat inhaler.\nC: Turn the clear base to reset the dose indicator.\nD: Clean the mouthpiece and continue using the inhaler.",
+      "answer": "B",
+      "question_type": "open_ended_multi_choice"
+    },
+    {
+      "id": "WfWiWK0yULaX",
+      "question": "Which of the following conditions is a contraindication for the use of Gadavist?\n\nOptions:\nA: Mild hypersensitivity reactions to Gadavist\nB: History of severe hypersensitivity reactions to Gadavist\nC: Renal impairment\nD: Liver dysfunction",
+      "answer": "B",
+      "question_type": "open_ended_multi_choice"
+    },
+    {
+      "id": "wzkMQ7uHtlLs",
+      "question": "What is the primary consideration for lactating mothers using Albuterol Sulfate HFA?\n\nOptions:\nA: It is contraindicated during lactation.\nB: Plasma levels of albuterol are low, and effects on breastfed children are likely minimal.\nC: It significantly reduces milk production.\nD: It should only be used in emergencies.",
+      "answer": "B",
+      "question_type": "multi_choice"
+    },
+    {
+      "id": "hcZukKMtrRZ7",
+      "question": "What is the minimum SPF value recommended for sunscreens to reduce the risk of skin cancer and early aging, as per the guidelines for the sunscreen branded as '70%'?\n\nOptions:\nA: 5\nB: 10\nC: 15\nD: 30",
+      "answer": "C",
+      "question_type": "multi_choice"
+    },
+    {
+      "id": "cRbl2ruD1WMZ",
+      "question": "Which of the following is NOT an indicated use for 'up and up ibuprofen'?\n\nOptions:\nA: Relief of occasional sleeplessness\nB: Relief of minor aches and pains\nC: Treatment of chronic pain conditions\nD: Helping users stay asleep",
+      "answer": "C",
+      "question_type": "multi_choice"
+    },
+    {
+      "id": "dlKfnTKdPf9G",
+      "question": "What should a patient do if they experience severe allergic reactions while taking PERTZYE?\n\nOptions:\nA: Continue taking the medication and monitor symptoms\nB: Stop taking PERTZYE and seek emergency treatment immediately\nC: Reduce the dose and consult their doctor\nD: Take an over-the-counter antihistamine",
+      "answer": "B",
+      "question_type": "open_ended_multi_choice"
+    },
+    {
+      "id": "rYhpGH3kQW8P",
+      "question": "What is the recommended action if a patient\u2019s serum potassium level reaches 6.0 mEq/L while on Inspra therapy?\n\nOptions:\nA: Reduce the dose to 25 mg every other day\nB: Withhold Inspra therapy\nC: Continue the current dose\nD: Increase the dose to 50 mg once daily",
+      "answer": "B",
+      "question_type": "open_ended_multi_choice"
+    },
+    {
+      "id": "ZFU0wbRPwuMG",
+      "question": "What precaution should be taken for patients with a history of allergic disorders before administering Gadavist?\n\nOptions:\nA: Administer Gadavist in a diluted form\nB: Avoid Gadavist administration entirely\nC: Assess the patient\u2019s history of reactions to contrast media and ensure trained personnel are available for resuscitation\nD: Perform hemodialysis immediately after administration",
+      "answer": "C",
+      "question_type": "open_ended_multi_choice"
+    }
+  ]
+}

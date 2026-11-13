@@ -1,0 +1,24 @@
+% --- FACTS ---
+fof(fact_1, axiom, describes(option_a, occasional_sleeplessness)).
+fof(fact_2, axiom, describes(option_b, minor_aches_pains)).
+fof(fact_3, axiom, describes(option_c, chronic_pain)).
+fof(fact_4, axiom, describes(option_d, staying_asleep)).
+fof(fact_5, axiom, indicated(up_and_up_ibuprofen, minor_aches_pains)).
+fof(fact_6, axiom, ~indicated(up_and_up_ibuprofen, occasional_sleeplessness)).
+fof(fact_7, axiom, ~indicated(up_and_up_ibuprofen, chronic_pain)).
+fof(fact_8, axiom, ~indicated(up_and_up_ibuprofen, staying_asleep)).
+
+% --- OPERATIONS ---
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D,U] : (~indicated(D, U) => not_indicated_for(D, U))).
+fof(rule_2, axiom, ! [O,U] : ((describes(O, U) & indicated(up_and_up_ibuprofen, U)) => ~answer(O))).
+fof(rule_3, axiom, ! [O,U] : ((describes(O, U) & not_indicated_for(up_and_up_ibuprofen, U) & ~indicated(up_and_up_ibuprofen, U) & describes(option_d, U)) => answer(O))).
+
+% --- INFERENCES ---
+% From fact_2, fact_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, ~answer(option_b)).
+% From fact_8, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, not_indicated_for(up_and_up_ibuprofen, staying_asleep)).
+% From fact_4, fact_8, inf_2, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, answer(option_d)).

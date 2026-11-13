@@ -1,0 +1,1984 @@
+[
+  {
+    "id": "U9PHZ83RKYV8",
+    "question": "Which drug brand name is associated with the treatment of acne?\n\nOptions:\nA: Salicylic Acid\nB: Minoxidil\nC: Ketoconazole\nD: Fluocinonide",
+    "expected": "A",
+    "cot_answer": "",
+    "cot_correct": false,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": true,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "TP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 222,
+      "output_tokens": 336,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 222,
+          "output_tokens": 336,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Option A is Salicylic Acid",
+          "formula": "Describes(option_a, salicylic_acid)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Option B is Minoxidil",
+          "formula": "Describes(option_b, minoxidil)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option C is Ketoconazole",
+          "formula": "Describes(option_c, ketoconazole)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option D is Fluocinonide",
+          "formula": "Describes(option_d, fluocinonide)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "Salicylic acid is an OTC topical keratolytic agent commonly used for acne",
+          "formula": "PrimaryUse(salicylic_acid, acne_keratolytic)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-96cdb3",
+          "error": false
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "Minoxidil is primarily used as a hair growth treatment",
+          "formula": "PrimaryUse(minoxidil, hair_growth)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-ce012b",
+          "error": false
+        },
+        "FACT-7": {
+          "type": "fact",
+          "gloss": "Ketoconazole is an antifungal used for fungal infections",
+          "formula": "PrimaryUse(ketoconazole, fungal_infections)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The ketoconazole labels returned only show an \"Azole Antifungal\" class, and the indication text is cut off. They show no specific fungal infection.",
+          "error": true
+        },
+        "FACT-8": {
+          "type": "fact",
+          "gloss": "Fluocinonide is a corticosteroid used for inflammatory skin conditions such as psoriasis and eczema",
+          "formula": "PrimaryUse(fluocinonide, inflammatory_skin_conditions)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The fluocinonide labels show a corticosteroid class and a relief-of-inflammatory-manifestations indication that is cut off. Psoriasis and eczema are not named.",
+          "error": true
+        },
+        "FACT-9": {
+          "type": "fact",
+          "gloss": "After evaluation, salicylic acid is not mentioned as directly indicated for acne",
+          "formula": "\u00acAcneIndicated(salicylic_acid)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-96cdb3: Salicylic acid labels state directly that it is used for the treatment of acne.",
+          "error": true
+        },
+        "FACT-10": {
+          "type": "fact",
+          "gloss": "Minoxidil is not indicated for acne",
+          "formula": "\u00acAcneIndicated(minoxidil)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-ce012b",
+          "error": false
+        },
+        "FACT-11": {
+          "type": "fact",
+          "gloss": "Ketoconazole has no specific indication for acne",
+          "formula": "\u00acAcneIndicated(ketoconazole)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-a0f121",
+          "error": false
+        },
+        "FACT-12": {
+          "type": "fact",
+          "gloss": "Fluocinonide is not indicated for acne",
+          "formula": "\u00acAcneIndicated(fluocinonide)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-706675",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "An option naming a drug not indicated for acne is not the answer",
+          "formula": "\u2200o\u2200d ((Describes(o, d) \u2227 \u00acAcneIndicated(d)) \u2192 \u00acAnswer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "Exhaustive case split: the answer is one of the four drug options or \"none of the above\"",
+          "formula": "\u2200x (Answer(option_a) \u2228 Answer(option_b) \u2228 Answer(option_c) \u2228 Answer(option_d) \u2228 Answer(option_none))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Option A is not the answer, from FACT-1, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_a)",
+          "premises": [
+            "FACT-1",
+            "FACT-9",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Option B is not the answer, from FACT-2, FACT-10, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_b)",
+          "premises": [
+            "FACT-2",
+            "FACT-10",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Option C is not the answer, from FACT-3, FACT-11, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_c)",
+          "premises": [
+            "FACT-3",
+            "FACT-11",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-4": {
+          "type": "inference",
+          "gloss": "Option D is not the answer, from FACT-4, FACT-12, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_d)",
+          "premises": [
+            "FACT-4",
+            "FACT-12",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-5": {
+          "type": "inference",
+          "gloss": "\"None of the above\" is the answer, from INF-1, INF-2, INF-3, INF-4, and RULE-2 by Universal Instantiation and Disjunctive Syllogism",
+          "formula": "Answer(option_none)",
+          "premises": [
+            "INF-1",
+            "INF-2",
+            "INF-3",
+            "INF-4",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Disjunctive Syllogism",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-5",
+      "errors": [
+        {
+          "node": "FACT-7",
+          "stage": "verify",
+          "message": "UNVERIFIED: The ketoconazole labels returned only show an \"Azole Antifungal\" class, and the indication text is cut off. They show no specific fungal infection."
+        },
+        {
+          "node": "FACT-8",
+          "stage": "verify",
+          "message": "UNVERIFIED: The fluocinonide labels show a corticosteroid class and a relief-of-inflammatory-manifestations indication that is cut off. Psoriasis and eczema are not named."
+        },
+        {
+          "node": "FACT-9",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-96cdb3: Salicylic acid labels state directly that it is used for the treatment of acne."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "vIGwm8qguXYi",
+    "question": "What should patients do if they experience severe allergic reactions during or after receiving fosaprepitant for injection?\n\nOptions:\nA: Wait for the symptoms to resolve on their own.\nB: Inform their healthcare provider immediately and seek emergency medical care.\nC: Stop chemotherapy treatment permanently.\nD: Take over-the-counter antihistamines.",
+    "expected": "B",
+    "cot_answer": "B",
+    "cot_correct": true,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": false,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "FP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 246,
+      "output_tokens": 319,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 246,
+          "output_tokens": 319,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Fosaprepitant's label lists hypotension as an adverse effect",
+          "formula": "SideEffect(fosaprepitant, hypotension)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: the label text returned was truncated, and I found no mention of hypotension in it.",
+          "error": true
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Fosaprepitant's label lists bronchospasm as an adverse effect",
+          "formula": "SideEffect(fosaprepitant, bronchospasm)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: the label text returned was truncated, and I found no mention of bronchospasm in it.",
+          "error": true
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Angioedema is a severe allergic reaction and a known side effect of fosaprepitant",
+          "formula": "SevereAllergic(angioedema) \u2227 SideEffect(fosaprepitant, angioedema)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: I searched the label and SIDER for angioedema and found nothing. The SIDER table was cut off at 50 of 108 rows.",
+          "error": true
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Urticaria is a severe allergic reaction and a known side effect of fosaprepitant",
+          "formula": "SevereAllergic(urticaria) \u2227 SideEffect(fosaprepitant, urticaria)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: I searched the label and SIDER for urticaria and found nothing. The SIDER table was cut off at 50 of 108 rows.",
+          "error": true
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "Anaphylaxis is a severe allergic reaction and a known side effect of fosaprepitant",
+          "formula": "SevereAllergic(anaphylaxis) \u2227 SideEffect(fosaprepitant, anaphylaxis)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-e2cbd8",
+          "error": false
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "Anaphylaxis is life-threatening and can lead to death if not promptly treated",
+          "formula": "LifeThreatening(anaphylaxis)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: I searched the labels for a statement that anaphylaxis is life-threatening or fatal if untreated and found none.",
+          "error": true
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "If a severe allergic reaction is life-threatening, then informing the healthcare provider immediately and seeking emergency medical care (option B) is the most appropriate action",
+          "formula": "\u2200e (SevereAllergic(e) \u2227 LifeThreatening(e) \u2192 Appropriate(option_b))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: I searched the labels for patient guidance to seek emergency care. They only say to discontinue the drug if hypersensitivity symptoms occur.",
+          "error": true
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "The most appropriate action is the correct answer",
+          "formula": "\u2200o (Appropriate(o) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Option B is the most appropriate action, from FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "Appropriate(option_b)",
+          "premises": [
+            "FACT-5",
+            "FACT-6",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Option B is the answer, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_b)",
+          "premises": [
+            "INF-1",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-2",
+      "errors": [
+        {
+          "node": "FACT-1",
+          "stage": "verify",
+          "message": "UNVERIFIED: the label text returned was truncated, and I found no mention of hypotension in it."
+        },
+        {
+          "node": "FACT-2",
+          "stage": "verify",
+          "message": "UNVERIFIED: the label text returned was truncated, and I found no mention of bronchospasm in it."
+        },
+        {
+          "node": "FACT-3",
+          "stage": "verify",
+          "message": "UNVERIFIED: I searched the label and SIDER for angioedema and found nothing. The SIDER table was cut off at 50 of 108 rows."
+        },
+        {
+          "node": "FACT-4",
+          "stage": "verify",
+          "message": "UNVERIFIED: I searched the label and SIDER for urticaria and found nothing. The SIDER table was cut off at 50 of 108 rows."
+        },
+        {
+          "node": "FACT-6",
+          "stage": "verify",
+          "message": "UNVERIFIED: I searched the labels for a statement that anaphylaxis is life-threatening or fatal if untreated and found none."
+        },
+        {
+          "node": "RULE-1",
+          "stage": "verify",
+          "message": "UNVERIFIED: I searched the labels for patient guidance to seek emergency care. They only say to discontinue the drug if hypersensitivity symptoms occur."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "GlpDnJvMaWbs",
+    "question": "What should you do if the dose indicator on Stiolto Respimat reaches 0?\n\nOptions:\nA: Continue using the inhaler until the cartridge is empty.\nB: Prepare and use a new Stiolto Respimat inhaler.\nC: Turn the clear base to reset the dose indicator.\nD: Clean the mouthpiece and continue using the inhaler.",
+    "expected": "B",
+    "cot_answer": "C",
+    "cot_correct": false,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": true,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "TP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 253,
+      "output_tokens": 478,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 253,
+          "output_tokens": 478,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "The dose indicator on Stiolto Respimat has reached 0",
+          "formula": "IndicatorZero(stiolto_respimat)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Option A is continuing to use the inhaler until the cartridge is empty",
+          "formula": "Describes(option_a, continue_empty)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option B is preparing and using a new Stiolto Respimat inhaler",
+          "formula": "Describes(option_b, new_inhaler)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option C is turning the clear base to reset the dose indicator",
+          "formula": "Describes(option_c, reset_base)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "Option D is cleaning the mouthpiece and continuing to use the inhaler",
+          "formula": "Describes(option_d, clean_mouthpiece)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "If the dose indicator reaches zero, the cartridge is depleted and all doses have been administered",
+          "formula": "\u2200d (IndicatorZero(d) \u2192 CartridgeDepleted(d))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-35f7d4",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "Once the cartridge is depleted, continuing to use the empty device is not appropriate, since it leads to ineffective treatment and potential harm",
+          "formula": "\u2200d (CartridgeDepleted(d) \u2192 \u00acAppropriate(continue_empty))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-35f7d4",
+          "error": false
+        },
+        "RULE-3": {
+          "type": "rule",
+          "gloss": "Once the cartridge is depleted, cleaning the mouthpiece is not appropriate, since it does not address the lack of doses",
+          "formula": "\u2200d (CartridgeDepleted(d) \u2192 \u00acAppropriate(clean_mouthpiece))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-35f7d4",
+          "error": false
+        },
+        "RULE-4": {
+          "type": "rule",
+          "gloss": "Once the cartridge is depleted, turning the clear base to reset the dose indicator aligns with the product's functionality and is a reasonable course of action",
+          "formula": "\u2200d (CartridgeDepleted(d) \u2192 Appropriate(reset_base))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "CONTRADICTED by tool evidence ev-35f7d4: The label says the locking mechanism is engaged once the labeled actuations are dispensed, so no more actuations can be dispensed and the inhaler is discarded. Turning the clear base cannot reset the indicator or restore doses.",
+          "error": true
+        },
+        "RULE-5": {
+          "type": "rule",
+          "gloss": "An option describing an appropriate action is the answer",
+          "formula": "\u2200o\u2200a (Describes(o, a) \u2227 Appropriate(a) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "The Stiolto Respimat cartridge is depleted, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "CartridgeDepleted(stiolto_respimat)",
+          "premises": [
+            "FACT-1",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Continuing to use the empty inhaler is not appropriate, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAppropriate(continue_empty)",
+          "premises": [
+            "INF-1",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Cleaning the mouthpiece is not appropriate, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAppropriate(clean_mouthpiece)",
+          "premises": [
+            "INF-1",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-4": {
+          "type": "inference",
+          "gloss": "Turning the clear base to reset the dose indicator is appropriate, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "Appropriate(reset_base)",
+          "premises": [
+            "INF-1",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-5": {
+          "type": "inference",
+          "gloss": "Option C is the answer, from FACT-4, INF-4 and RULE-5 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_c)",
+          "premises": [
+            "FACT-4",
+            "INF-4",
+            "RULE-5"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-5",
+      "errors": [
+        {
+          "node": "RULE-4",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-35f7d4: The label says the locking mechanism is engaged once the labeled actuations are dispensed, so no more actuations can be dispensed and the inhaler is discarded. Turning the clear base cannot reset the indicator or restore doses."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "WfWiWK0yULaX",
+    "question": "Which of the following conditions is a contraindication for the use of Gadavist?\n\nOptions:\nA: Mild hypersensitivity reactions to Gadavist\nB: History of severe hypersensitivity reactions to Gadavist\nC: Renal impairment\nD: Liver dysfunction",
+    "expected": "B",
+    "cot_answer": "B",
+    "cot_correct": true,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": false,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "FP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 236,
+      "output_tokens": 522,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 236,
+          "output_tokens": 522,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Option A is mild hypersensitivity reactions to Gadavist",
+          "formula": "Describes(option_a, mild_hypersensitivity)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Option B is a history of severe hypersensitivity reactions to Gadavist",
+          "formula": "Describes(option_b, severe_hypersensitivity)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option C is renal impairment",
+          "formula": "Describes(option_c, renal_impairment)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option D is liver dysfunction",
+          "formula": "Describes(option_d, liver_dysfunction)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "The Gadavist product insert lists a history of severe hypersensitivity reactions as a reason to avoid Gadavist",
+          "formula": "ListedAvoid(gadavist, severe_hypersensitivity)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-01e455",
+          "error": false
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "The Gadavist product insert lists renal impairment as a side effect",
+          "formula": "SideEffect(gadavist, renal_impairment)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-01e455: The label's adverse reactions list headache, nausea and dizziness. Renal impairment is not listed as a side effect. It is a risk factor for nephrogenic systemic fibrosis (NSF), and the label says to avoid use in these patients unless the diagnostic information is essential.",
+          "error": true
+        },
+        "FACT-7": {
+          "type": "fact",
+          "gloss": "The Gadavist product insert lists liver dysfunction as a side effect",
+          "formula": "SideEffect(gadavist, liver_dysfunction)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-01e455: Liver dysfunction does not appear among the listed adverse reactions, which are headache, nausea and dizziness.",
+          "error": true
+        },
+        "FACT-8": {
+          "type": "fact",
+          "gloss": "Mild hypersensitivity reactions do not universally preclude the use of Gadavist, because they would typically be managed with antihistamines",
+          "formula": "\u00acContraindicated(gadavist, mild_hypersensitivity)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The label says hypersensitivity reactions range from mild to severe. It contraindicates only a history of severe reactions. I found no statement about antihistamine management.",
+          "error": true
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "A condition the product insert lists as a reason to avoid a drug is a contraindication of that drug",
+          "formula": "\u2200d\u2200c (ListedAvoid(d, c) \u2192 Contraindicated(d, c))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-01e455",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "A condition listed as a side effect of a drug is not a contraindication of that drug",
+          "formula": "\u2200d\u2200c (SideEffect(d, c) \u2192 \u00acContraindicated(d, c))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-3": {
+          "type": "rule",
+          "gloss": "The question asks for a contraindication of Gadavist, so an option describing one is the answer",
+          "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 Contraindicated(gadavist, c)) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-4": {
+          "type": "rule",
+          "gloss": "An option describing a condition Gadavist is not contraindicated in is not the answer",
+          "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 \u00acContraindicated(gadavist, c)) \u2192 \u00acAnswer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "A history of severe hypersensitivity reactions is a contraindication of Gadavist, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "Contraindicated(gadavist, severe_hypersensitivity)",
+          "premises": [
+            "FACT-5",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Renal impairment is not a contraindication of Gadavist, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acContraindicated(gadavist, renal_impairment)",
+          "premises": [
+            "FACT-6",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Liver dysfunction is not a contraindication of Gadavist, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acContraindicated(gadavist, liver_dysfunction)",
+          "premises": [
+            "FACT-7",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-4": {
+          "type": "inference",
+          "gloss": "Option A is not the answer, from FACT-1, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_a)",
+          "premises": [
+            "FACT-1",
+            "FACT-8",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-5": {
+          "type": "inference",
+          "gloss": "Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_b)",
+          "premises": [
+            "FACT-2",
+            "INF-1",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-6": {
+          "type": "inference",
+          "gloss": "Option C is not the answer, from FACT-3, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_c)",
+          "premises": [
+            "FACT-3",
+            "INF-2",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-7": {
+          "type": "inference",
+          "gloss": "Option D is not the answer, from FACT-4, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_d)",
+          "premises": [
+            "FACT-4",
+            "INF-3",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-7",
+      "errors": [
+        {
+          "node": "FACT-6",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-01e455: The label's adverse reactions list headache, nausea and dizziness. Renal impairment is not listed as a side effect. It is a risk factor for nephrogenic systemic fibrosis (NSF), and the label says to avoid use in these patients unless the diagnostic information is essential."
+        },
+        {
+          "node": "FACT-7",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-01e455: Liver dysfunction does not appear among the listed adverse reactions, which are headache, nausea and dizziness."
+        },
+        {
+          "node": "FACT-8",
+          "stage": "verify",
+          "message": "UNVERIFIED: The label says hypersensitivity reactions range from mild to severe. It contraindicates only a history of severe reactions. I found no statement about antihistamine management."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "wzkMQ7uHtlLs",
+    "question": "What is the primary consideration for lactating mothers using Albuterol Sulfate HFA?\n\nOptions:\nA: It is contraindicated during lactation.\nB: Plasma levels of albuterol are low, and effects on breastfed children are likely minimal.\nC: It significantly reduces milk production.\nD: It should only be used in emergencies.",
+    "expected": "B",
+    "cot_answer": "",
+    "cot_correct": false,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": true,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "TP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 254,
+      "output_tokens": 284,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 254,
+          "output_tokens": 284,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "The albuterol insert states albuterol is not indicated for use in patients who are breastfeeding",
+          "formula": "LabelStates(albuterol, stmt_not_indicated_breastfeeding)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "The albuterol insert states plasma concentrations are approximately half those found in adults",
+          "formula": "LabelStates(albuterol, stmt_plasma_half_adults)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "The albuterol insert makes no mention of a significant reduction in milk production",
+          "formula": "\u00acLabelStates(albuterol, stmt_milk_reduction)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "A label stating that the drug is not indicated in breastfeeding supports Option A (contraindicated during lactation)",
+          "formula": "\u2200d (LabelStates(d, stmt_not_indicated_breastfeeding) \u2192 Supports(stmt_not_indicated_breastfeeding, option_a))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "A label stating plasma concentrations are about half of adult levels supports Option B",
+          "formula": "\u2200d (LabelStates(d, stmt_plasma_half_adults) \u2192 Supports(stmt_plasma_half_adults, option_b))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-3": {
+          "type": "rule",
+          "gloss": "A statement that is not in the label supports no option",
+          "formula": "\u2200d\u2200s\u2200o (\u00acLabelStates(d, s) \u2192 \u00acSupports(s, o))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-4": {
+          "type": "rule",
+          "gloss": "An option supported by a label statement cannot be ruled out",
+          "formula": "\u2200s\u2200o (Supports(s, o) \u2192 \u00acCanRuleOut(o))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-5": {
+          "type": "rule",
+          "gloss": "If a statement is absent from the label and does not support an option, that option cannot be ruled out without further research",
+          "formula": "\u2200d\u2200s\u2200o ((\u00acLabelStates(d, s) \u2227 \u00acSupports(s, o)) \u2192 \u00acCanRuleOut(o))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "RULE-6": {
+          "type": "rule",
+          "gloss": "If none of the options A, B, C, D can be ruled out, the answer is None",
+          "formula": "(\u00acCanRuleOut(option_a) \u2227 \u00acCanRuleOut(option_b) \u2227 \u00acCanRuleOut(option_c) \u2227 \u00acCanRuleOut(option_d)) \u2192 Answer(none)",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: the verifier gave no verdict",
+          "error": true
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "The insert's breastfeeding statement supports Option A, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "Supports(stmt_not_indicated_breastfeeding, option_a)",
+          "premises": [
+            "FACT-1",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "The insert's plasma concentration statement supports Option B, from FACT-2 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "Supports(stmt_plasma_half_adults, option_b)",
+          "premises": [
+            "FACT-2",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "The absent milk-production statement does not support Option C, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acSupports(stmt_milk_reduction, option_c)",
+          "premises": [
+            "FACT-3",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-4": {
+          "type": "inference",
+          "gloss": "The absent milk-production statement does not support Option D, from FACT-3 and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acSupports(stmt_milk_reduction, option_d)",
+          "premises": [
+            "FACT-3",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-5": {
+          "type": "inference",
+          "gloss": "Option A cannot be ruled out, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acCanRuleOut(option_a)",
+          "premises": [
+            "INF-1",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-6": {
+          "type": "inference",
+          "gloss": "Option B cannot be ruled out, from INF-2 and RULE-4 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acCanRuleOut(option_b)",
+          "premises": [
+            "INF-2",
+            "RULE-4"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-7": {
+          "type": "inference",
+          "gloss": "Option C cannot be ruled out, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acCanRuleOut(option_c)",
+          "premises": [
+            "FACT-3",
+            "INF-3",
+            "RULE-5"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-8": {
+          "type": "inference",
+          "gloss": "Option D cannot be ruled out, from FACT-3, INF-4, and RULE-5 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acCanRuleOut(option_d)",
+          "premises": [
+            "FACT-3",
+            "INF-4",
+            "RULE-5"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-9": {
+          "type": "inference",
+          "gloss": "The answer is None, from INF-5, INF-6, INF-7, INF-8, and RULE-6 by Conjunction Introduction and Modus Ponens",
+          "formula": "Answer(none)",
+          "premises": [
+            "INF-5",
+            "INF-6",
+            "INF-7",
+            "INF-8",
+            "RULE-6"
+          ],
+          "inference_rule": "Conjunction Introduction and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-9",
+      "errors": [
+        {
+          "node": "FACT-1",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "FACT-2",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "FACT-3",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-1",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-2",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-3",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-4",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-5",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        },
+        {
+          "node": "RULE-6",
+          "stage": "verify",
+          "message": "UNVERIFIED: the verifier gave no verdict"
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "hcZukKMtrRZ7",
+    "question": "What is the minimum SPF value recommended for sunscreens to reduce the risk of skin cancer and early aging, as per the guidelines for the sunscreen branded as '70%'?\n\nOptions:\nA: 5\nB: 10\nC: 15\nD: 30",
+    "expected": "C",
+    "cot_answer": "C",
+    "cot_correct": true,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": false,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "FP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 240,
+      "output_tokens": 479,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 240,
+          "output_tokens": 479,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Option A is SPF 5",
+          "formula": "Describes(option_a, 5)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Option B is SPF 10",
+          "formula": "Describes(option_b, 10)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option C is SPF 15",
+          "formula": "Describes(option_c, 15)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option D is SPF 30",
+          "formula": "Describes(option_d, 30)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "The WHO recommends a broad-spectrum sunscreen with an SPF of at least 15",
+          "formula": "WHOMinimum(15)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The only source found was an FDA label that recommends a broad-spectrum SPF of 15 or higher. It doesn't name the WHO.",
+          "error": true
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "An SPF of 5 would likely give insufficient protection against UVA and UVB",
+          "formula": "Insufficient(5)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: I found no source on how well SPF 5 protects against UVA and UVB.",
+          "error": true
+        },
+        "FACT-7": {
+          "type": "fact",
+          "gloss": "An SPF of 10 falls short of the WHO recommendation of at least 15",
+          "formula": "Insufficient(10)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The FDA label gives an SPF 15 minimum, but I found no WHO source to compare SPF 10 against.",
+          "error": true
+        },
+        "FACT-8": {
+          "type": "fact",
+          "gloss": "An SPF of 15 meets the basic WHO requirement and is considered adequate protection",
+          "formula": "Adequate(15)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-3e768b",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "An option whose SPF is insufficient is not the answer",
+          "formula": "\u2200o\u2200n ((Describes(o, n) \u2227 Insufficient(n)) \u2192 \u00acAnswer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-3e768b",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "An option whose SPF is adequate and equals the WHO-recommended minimum is the answer",
+          "formula": "\u2200o\u2200n ((Describes(o, n) \u2227 Adequate(n) \u2227 WHOMinimum(n)) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "confirmed by tool evidence ev-3e768b",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Option A is not the answer, from FACT-1, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_a)",
+          "premises": [
+            "FACT-1",
+            "FACT-6",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Option B is not the answer, from FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_b)",
+          "premises": [
+            "FACT-2",
+            "FACT-7",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Option C is the answer, from FACT-3, FACT-8, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_c)",
+          "premises": [
+            "FACT-3",
+            "FACT-8",
+            "FACT-5",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-3",
+      "errors": [
+        {
+          "node": "FACT-5",
+          "stage": "verify",
+          "message": "UNVERIFIED: The only source found was an FDA label that recommends a broad-spectrum SPF of 15 or higher. It doesn't name the WHO."
+        },
+        {
+          "node": "FACT-6",
+          "stage": "verify",
+          "message": "UNVERIFIED: I found no source on how well SPF 5 protects against UVA and UVB."
+        },
+        {
+          "node": "FACT-7",
+          "stage": "verify",
+          "message": "UNVERIFIED: The FDA label gives an SPF 15 minimum, but I found no WHO source to compare SPF 10 against."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "cRbl2ruD1WMZ",
+    "question": "Which of the following is NOT an indicated use for 'up and up ibuprofen'?\n\nOptions:\nA: Relief of occasional sleeplessness\nB: Relief of minor aches and pains\nC: Treatment of chronic pain conditions\nD: Helping users stay asleep",
+    "expected": "C",
+    "cot_answer": "D",
+    "cot_correct": false,
+    "verify_flagged": false,
+    "pipeline_answer": "D",
+    "marked": "correct",
+    "judged_correctly": false,
+    "passed_verify": true,
+    "passed_arithmetic": true,
+    "passed_tptp": true,
+    "outcome": "FN",
+    "cost": {
+      "calls": 4,
+      "input_tokens": 234,
+      "output_tokens": 348,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 3,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 234,
+          "output_tokens": 348,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 3,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Option A is relief of occasional sleeplessness",
+          "formula": "Describes(option_a, occasional_sleeplessness)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Option B is relief of minor aches and pains",
+          "formula": "Describes(option_b, minor_aches_pains)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option C is treatment of chronic pain conditions",
+          "formula": "Describes(option_c, chronic_pain)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option D is helping users stay asleep",
+          "formula": "Describes(option_d, staying_asleep)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "The label states Up and Up Ibuprofen is indicated to relieve minor aches and pains",
+          "formula": "Indicated(up_and_up_ibuprofen, minor_aches_pains)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-6f8b50",
+          "error": false
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "Its primary purpose is not aimed at sleeplessness (reasoning's claim for option A)",
+          "formula": "\u00acIndicated(up_and_up_ibuprofen, occasional_sleeplessness)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-6f8b50",
+          "error": false
+        },
+        "FACT-7": {
+          "type": "fact",
+          "gloss": "The label does not mention treating chronic pain conditions",
+          "formula": "\u00acIndicated(up_and_up_ibuprofen, chronic_pain)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-6f8b50",
+          "error": false
+        },
+        "FACT-8": {
+          "type": "fact",
+          "gloss": "Its main function is not maintaining sleep (reasoning's claim for option D)",
+          "formula": "\u00acIndicated(up_and_up_ibuprofen, staying_asleep)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-6f8b50",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "A use that the drug is not indicated for is a non-indicated use of the drug",
+          "formula": "\u2200d\u2200u (\u00acIndicated(d, u) \u2192 NotIndicatedFor(d, u))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "An option describing an indicated use is not the answer to a \"which is NOT indicated\" question",
+          "formula": "\u2200o\u2200u ((Describes(o, u) \u2227 Indicated(up_and_up_ibuprofen, u)) \u2192 \u00acAnswer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-3": {
+          "type": "rule",
+          "gloss": "The reasoning picks option D, the final non-indicated use after the stay-asleep analysis, as the answer",
+          "formula": "\u2200o\u2200u ((Describes(o, u) \u2227 NotIndicatedFor(up_and_up_ibuprofen, u) \u2227 \u00acIndicated(up_and_up_ibuprofen, u) \u2227 Describes(option_d, u)) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Option B is not the answer, from FACT-2, FACT-5, and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "\u00acAnswer(option_b)",
+          "premises": [
+            "FACT-2",
+            "FACT-5",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "PROVED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Staying asleep is a non-indicated use of Up and Up Ibuprofen, from FACT-8 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "NotIndicatedFor(up_and_up_ibuprofen, staying_asleep)",
+          "premises": [
+            "FACT-8",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "PROVED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Option D is the answer, from FACT-4, FACT-8, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_d)",
+          "premises": [
+            "FACT-4",
+            "FACT-8",
+            "INF-2",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "PROVED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-3",
+      "errors": [],
+      "error_stages": []
+    }
+  },
+  {
+    "id": "dlKfnTKdPf9G",
+    "question": "What should a patient do if they experience severe allergic reactions while taking PERTZYE?\n\nOptions:\nA: Continue taking the medication and monitor symptoms\nB: Stop taking PERTZYE and seek emergency treatment immediately\nC: Reduce the dose and consult their doctor\nD: Take an over-the-counter antihistamine",
+    "expected": "B",
+    "cot_answer": "B",
+    "cot_correct": true,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": false,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "FP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 246,
+      "output_tokens": 131,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 246,
+          "output_tokens": 131,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "PERTZYE's label lists severe allergic reactions as a contraindication",
+          "formula": "LabelContraindication(pertzye, severe_allergic_reaction)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-735780: The label lists no contraindications (\"None\"). Severe allergic reactions appear only as a warning/precaution (hypersensitivity).",
+          "error": true
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "A patient experiences a severe allergic reaction while using PERTZYE",
+          "formula": "Experiences(patient, severe_allergic_reaction, pertzye)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Option B is to stop taking the medication immediately and seek emergency treatment",
+          "formula": "Describes(option_b, stop_and_seek_emergency_treatment)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "If a patient experiences a condition while using a drug, and the drug's label lists that condition as a contraindication, the condition falls under the label's contraindications",
+          "formula": "\u2200p\u2200c\u2200d (Experiences(p, c, d) \u2227 LabelContraindication(d, c) \u2192 FallsUnderContraindication(c, d))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "If a condition experienced while using a drug falls under the drug's label contraindications, the most appropriate action is to stop taking the medication immediately and seek emergency treatment",
+          "formula": "\u2200c\u2200d (FallsUnderContraindication(c, d) \u2192 AppropriateAction(stop_and_seek_emergency_treatment, c, d))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "UNVERIFIED: The PERTZYE label has no contraindications. For hypersensitivity it says only \"initiate appropriate medical management; consider the risks and benefits of continued treatment.\" It gives no instruction to stop the drug and seek emergency treatment.",
+          "error": true
+        },
+        "RULE-3": {
+          "type": "rule",
+          "gloss": "An option describing the most appropriate action is the answer",
+          "formula": "\u2200o\u2200a\u2200c\u2200d (Describes(o, a) \u2227 AppropriateAction(a, c, d) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "The severe allergic reaction while using PERTZYE falls under the contraindications on the label, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "FallsUnderContraindication(severe_allergic_reaction, pertzye)",
+          "premises": [
+            "FACT-1",
+            "FACT-2",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "The most appropriate action is to stop the medication and seek emergency treatment, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "AppropriateAction(stop_and_seek_emergency_treatment, severe_allergic_reaction, pertzye)",
+          "premises": [
+            "INF-1",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Option B is the answer, from FACT-3, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_b)",
+          "premises": [
+            "FACT-3",
+            "INF-2",
+            "RULE-3"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-3",
+      "errors": [
+        {
+          "node": "FACT-1",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-735780: The label lists no contraindications (\"None\"). Severe allergic reactions appear only as a warning/precaution (hypersensitivity)."
+        },
+        {
+          "node": "RULE-2",
+          "stage": "verify",
+          "message": "UNVERIFIED: The PERTZYE label has no contraindications. For hypersensitivity it says only \"initiate appropriate medical management; consider the risks and benefits of continued treatment.\" It gives no instruction to stop the drug and seek emergency treatment."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "rYhpGH3kQW8P",
+    "question": "What is the recommended action if a patient\u2019s serum potassium level reaches 6.0 mEq/L while on Inspra therapy?\n\nOptions:\nA: Reduce the dose to 25 mg every other day\nB: Withhold Inspra therapy\nC: Continue the current dose\nD: Increase the dose to 50 mg once daily",
+    "expected": "B",
+    "cot_answer": "B",
+    "cot_correct": true,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": false,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "FP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 250,
+      "output_tokens": 328,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 250,
+          "output_tokens": 328,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Inspra (as the reasoning describes it) is used as an adjunctive treatment for hyperkalemia",
+          "formula": "IndicatedFor(inspra, hyperkalemia)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-905510: The label lists only HFrEF after MI and hypertension as indications. It does not list hyperkalemia as an indication, and hyperkalemia is a listed adverse reaction.",
+          "error": true
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Per the label, Inspra is not indicated for the management of hypokalemia",
+          "formula": "\u00acIndicatedFor(inspra, hypokalemia)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The label's indications list HFrEF post-MI and hypertension only. It never mentions hypokalemia.",
+          "error": true
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Finding 1 (the label indications) supports Option B",
+          "formula": "Supports(finding_1, option_b)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-905510: The indications are HFrEF post-MI and hypertension, and they say nothing about withholding therapy. The recommendation to withhold comes from the dosing table, not the indications.",
+          "error": true
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Finding 2 (serum potassium of 6.0 mEq/L) rules out Option A",
+          "formula": "RulesOut(finding_2, option_a)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-905510",
+          "error": false
+        },
+        "FACT-5": {
+          "type": "fact",
+          "gloss": "Finding 2 (serum potassium of 6.0 mEq/L) rules out Option D",
+          "formula": "RulesOut(finding_2, option_d)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-905510",
+          "error": false
+        },
+        "FACT-6": {
+          "type": "fact",
+          "gloss": "Finding 3 (the mechanism of action) does not support Option C",
+          "formula": "\u00acSupports(finding_3, option_c)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-905510",
+          "error": false
+        },
+        "FACT-7": {
+          "type": "fact",
+          "gloss": "Finding 3 (the mechanism of action) does not rule out Option C",
+          "formula": "\u00acRulesOut(finding_3, option_c)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "confirmed by tool evidence ev-905510",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "Any option that a finding rules out is eliminated",
+          "formula": "\u2200f\u2200o (RulesOut(f, o) \u2192 Eliminated(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "An option that a finding supports is the answer",
+          "formula": "\u2200f\u2200o (Supports(f, o) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Option A is eliminated, from FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "Eliminated(option_a)",
+          "premises": [
+            "FACT-4",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Option D is eliminated, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "Eliminated(option_d)",
+          "premises": [
+            "FACT-5",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-3": {
+          "type": "inference",
+          "gloss": "Option B is the answer, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_b)",
+          "premises": [
+            "FACT-3",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-3",
+      "errors": [
+        {
+          "node": "FACT-1",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-905510: The label lists only HFrEF after MI and hypertension as indications. It does not list hyperkalemia as an indication, and hyperkalemia is a listed adverse reaction."
+        },
+        {
+          "node": "FACT-2",
+          "stage": "verify",
+          "message": "UNVERIFIED: The label's indications list HFrEF post-MI and hypertension only. It never mentions hypokalemia."
+        },
+        {
+          "node": "FACT-3",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-905510: The indications are HFrEF post-MI and hypertension, and they say nothing about withholding therapy. The recommendation to withhold comes from the dosing table, not the indications."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  },
+  {
+    "id": "ZFU0wbRPwuMG",
+    "question": "What precaution should be taken for patients with a history of allergic disorders before administering Gadavist?\n\nOptions:\nA: Administer Gadavist in a diluted form\nB: Avoid Gadavist administration entirely\nC: Assess the patient\u2019s history of reactions to contrast media and ensure trained personnel are available for resuscitation\nD: Perform hemodialysis immediately after administration",
+    "expected": "C",
+    "cot_answer": "B",
+    "cot_correct": false,
+    "verify_flagged": true,
+    "pipeline_answer": "could not verify the answer",
+    "marked": "incorrect",
+    "judged_correctly": true,
+    "passed_verify": false,
+    "passed_arithmetic": true,
+    "passed_tptp": false,
+    "outcome": "TP",
+    "cost": {
+      "calls": 3,
+      "input_tokens": 255,
+      "output_tokens": 239,
+      "total_cost_usd": 0.0,
+      "unpriced_calls": 2,
+      "by_model": {
+        "Qwen/Qwen2.5-1.5B-Instruct": {
+          "client": "vllm",
+          "calls": 1,
+          "input_tokens": 255,
+          "output_tokens": 239,
+          "cost_usd": 0.0
+        },
+        "us.anthropic.claude-sonnet-5-5": {
+          "client": "charmchat",
+          "calls": 2,
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cost_usd": null
+        }
+      }
+    },
+    "derivation_tree": {
+      "nodes": {
+        "FACT-1": {
+          "type": "fact",
+          "gloss": "Gadavist's label indicates it contains iodinated contrast material",
+          "formula": "ContainsIodinated(gadavist)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: The label describes Gadavist as a gadolinium-based contrast agent (a macrocyclic non-ionic gadolinium complex). It does not describe it as iodinated.",
+          "error": true
+        },
+        "FACT-2": {
+          "type": "fact",
+          "gloss": "Patients with a history of allergic disorders may have adverse reactions to iodine-containing contrast agents like Gadavist",
+          "formula": "AdverseRiskIn(gadavist, allergic_disorders)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: Gadavist is a gadolinium-based contrast agent, not an iodine-containing one.",
+          "error": true
+        },
+        "FACT-3": {
+          "type": "fact",
+          "gloss": "Contrast media such as Gadavist can cause systemic reactions in individuals with pre-existing hypersensitivity, linked to a history of allergic disorders",
+          "formula": "AdverseRiskIn(gadavist, allergic_disorders)",
+          "verify_status": "UNSUPPORTED",
+          "verify_reason": "UNVERIFIED: The retrieved label text covers hypersensitivity reactions generally but is truncated. I found no statement tying systemic reactions to a history of allergic disorders.",
+          "error": true
+        },
+        "FACT-4": {
+          "type": "fact",
+          "gloss": "Option B is \"Avoid Gadavist administration entirely\"",
+          "formula": "Describes(option_b, avoid_entirely)",
+          "verify_status": "SUPPORTED",
+          "verify_reason": "stated in the question",
+          "error": false
+        },
+        "RULE-1": {
+          "type": "rule",
+          "gloss": "If a drug poses adverse or systemic reaction risk to patients with a condition, those patients should avoid the drug",
+          "formula": "\u2200d\u2200c (AdverseRiskIn(d, c) \u2192 ShouldAvoid(d, c))",
+          "verify_status": "IMPLAUSIBLE",
+          "verify_reason": "CONTRADICTED by tool evidence ev-ccfdc8: The label does not say to avoid Gadavist because of a risk of reactions. It contraindicates it only for a history of severe hypersensitivity to Gadavist itself, and otherwise advises monitoring.",
+          "error": true
+        },
+        "RULE-2": {
+          "type": "rule",
+          "gloss": "An option describing avoiding gadavist entirely for patients with allergic disorders is the answer if they should avoid it",
+          "formula": "\u2200o (Describes(o, avoid_entirely) \u2227 ShouldAvoid(gadavist, allergic_disorders) \u2192 Answer(o))",
+          "verify_status": "PLAUSIBLE",
+          "verify_reason": "logical principle, no source needed",
+          "error": false
+        },
+        "INF-1": {
+          "type": "inference",
+          "gloss": "Patients with allergic disorders should avoid Gadavist, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+          "formula": "ShouldAvoid(gadavist, allergic_disorders)",
+          "premises": [
+            "FACT-2",
+            "FACT-3",
+            "RULE-1"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        },
+        "INF-2": {
+          "type": "inference",
+          "gloss": "Option B is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+          "formula": "Answer(option_b)",
+          "premises": [
+            "FACT-4",
+            "INF-1",
+            "RULE-2"
+          ],
+          "inference_rule": "Universal Instantiation and Modus Ponens",
+          "tptp_status": "NOT_CHECKED",
+          "tptp_reason": null,
+          "error": false
+        }
+      },
+      "root": "INF-2",
+      "errors": [
+        {
+          "node": "FACT-1",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-ccfdc8: The label describes Gadavist as a gadolinium-based contrast agent (a macrocyclic non-ionic gadolinium complex). It does not describe it as iodinated."
+        },
+        {
+          "node": "FACT-2",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-ccfdc8: Gadavist is a gadolinium-based contrast agent, not an iodine-containing one."
+        },
+        {
+          "node": "FACT-3",
+          "stage": "verify",
+          "message": "UNVERIFIED: The retrieved label text covers hypersensitivity reactions generally but is truncated. I found no statement tying systemic reactions to a history of allergic disorders."
+        },
+        {
+          "node": "RULE-1",
+          "stage": "verify",
+          "message": "CONTRADICTED by tool evidence ev-ccfdc8: The label does not say to avoid Gadavist because of a risk of reactions. It contraindicates it only for a history of severe hypersensitivity to Gadavist itself, and otherwise advises monitoring."
+        }
+      ],
+      "error_stages": [
+        "verify"
+      ]
+    }
+  }
+]

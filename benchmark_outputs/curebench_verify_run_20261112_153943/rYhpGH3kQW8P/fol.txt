@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+IndicatedFor(d, c) — drug d is indicated for condition c
+Supports(f, o) — finding f supports answer option o
+RulesOut(f, o) — finding f rules out answer option o
+Eliminated(o) — option o is eliminated as the answer
+Answer(o) — option o is the correct answer
+Constants:
+inspra, hyperkalemia, hypokalemia, finding_1, finding_2, finding_3, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Inspra (as the reasoning describes it) is used as an adjunctive treatment for hyperkalemia :: IndicatedFor(inspra, hyperkalemia)
+FACT-2: Per the label, Inspra is not indicated for the management of hypokalemia :: ¬IndicatedFor(inspra, hypokalemia)
+FACT-3: Finding 1 (the label indications) supports Option B :: Supports(finding_1, option_b)
+FACT-4: Finding 2 (serum potassium of 6.0 mEq/L) rules out Option A :: RulesOut(finding_2, option_a)
+FACT-5: Finding 2 (serum potassium of 6.0 mEq/L) rules out Option D :: RulesOut(finding_2, option_d)
+FACT-6: Finding 3 (the mechanism of action) does not support Option C :: ¬Supports(finding_3, option_c)
+FACT-7: Finding 3 (the mechanism of action) does not rule out Option C :: ¬RulesOut(finding_3, option_c)
+
+## OPERATIONS
+
+## RULES
+RULE-1: Any option that a finding rules out is eliminated :: ∀f∀o (RulesOut(f, o) → Eliminated(o))
+RULE-2: An option that a finding supports is the answer :: ∀f∀o (Supports(f, o) → Answer(o))
+
+## INFERENCES
+INF-1: Option A is eliminated, from FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: Eliminated(option_a)
+INF-2: Option D is eliminated, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: Eliminated(option_d)
+INF-3: Option B is the answer, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

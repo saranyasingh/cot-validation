@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+IndicatorZero(d) — the dose indicator on device d reads 0
+CartridgeDepleted(d) — the cartridge of device d is depleted and all its doses have been used
+Describes(o, a) — answer option o describes action a
+Appropriate(a) — action a is a reasonable course of action when the dose indicator reaches 0
+Answer(o) — option o is the correct answer
+Constants:
+stiolto_respimat, option_a, option_b, option_c, option_d, continue_empty, new_inhaler, reset_base, clean_mouthpiece
+
+## FACTS
+FACT-1: The dose indicator on Stiolto Respimat has reached 0 :: IndicatorZero(stiolto_respimat)
+FACT-2: Option A is continuing to use the inhaler until the cartridge is empty :: Describes(option_a, continue_empty)
+FACT-3: Option B is preparing and using a new Stiolto Respimat inhaler :: Describes(option_b, new_inhaler)
+FACT-4: Option C is turning the clear base to reset the dose indicator :: Describes(option_c, reset_base)
+FACT-5: Option D is cleaning the mouthpiece and continuing to use the inhaler :: Describes(option_d, clean_mouthpiece)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If the dose indicator reaches zero, the cartridge is depleted and all doses have been administered :: ∀d (IndicatorZero(d) → CartridgeDepleted(d))
+RULE-2: Once the cartridge is depleted, continuing to use the empty device is not appropriate, since it leads to ineffective treatment and potential harm :: ∀d (CartridgeDepleted(d) → ¬Appropriate(continue_empty))
+RULE-3: Once the cartridge is depleted, cleaning the mouthpiece is not appropriate, since it does not address the lack of doses :: ∀d (CartridgeDepleted(d) → ¬Appropriate(clean_mouthpiece))
+RULE-4: Once the cartridge is depleted, turning the clear base to reset the dose indicator aligns with the product's functionality and is a reasonable course of action :: ∀d (CartridgeDepleted(d) → Appropriate(reset_base))
+RULE-5: An option describing an appropriate action is the answer :: ∀o∀a (Describes(o, a) ∧ Appropriate(a) → Answer(o))
+
+## INFERENCES
+INF-1: The Stiolto Respimat cartridge is depleted, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: CartridgeDepleted(stiolto_respimat)
+INF-2: Continuing to use the empty inhaler is not appropriate, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Appropriate(continue_empty)
+INF-3: Cleaning the mouthpiece is not appropriate, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Appropriate(clean_mouthpiece)
+INF-4: Turning the clear base to reset the dose indicator is appropriate, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens :: Appropriate(reset_base)
+INF-5: Option C is the answer, from FACT-4, INF-4 and RULE-5 by Universal Instantiation and Modus Ponens :: Answer(option_c)
