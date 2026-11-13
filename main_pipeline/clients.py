@@ -286,6 +286,16 @@ class BedrockLLMClient(ClaudeLLMClient):
         from anthropic import AnthropicBedrockMantle
         self._client = AnthropicBedrockMantle(aws_region=os.getenv("AWS_REGION", "us-east-1"))
         self.model = os.getenv("BEDROCK_MODEL", "anthropic.claude-sonnet-5-5")
+        if self.model.startswith("anthropic.") and not self.model.startswith(
+            ("us.anthropic.", "eu.anthropic.", "apac.anthropic.", "global.anthropic.")
+        ):
+            # Bedrock rejects on-demand throughput for Claude models; a bare model ID 404s
+            # ("The model '...' does not exist") and needs a cross-region inference-profile ID
+            # instead. Same fix as CharmChatClient above.
+            fixed = f"us.{self.model}"
+            print(f"WARNING: Bedrock model '{self.model}' is a bare model ID, which Bedrock rejects "
+                  f"for on-demand throughput; using inference profile '{fixed}' instead.")
+            self.model = fixed
         self.max_tokens = int(os.getenv("ANTHROPIC_MAX_TOKENS", "64000"))
 
 
