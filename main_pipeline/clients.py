@@ -321,6 +321,16 @@ class CharmChatClient(LLMClient):
         settings = self._get("/settings")
         self.provider = provider or os.getenv("CHARMCHAT_PROVIDER") or settings["provider"]
         self.model = model or os.getenv("CHARMCHAT_MODEL") or settings.get("model", "")
+        if self.provider == "bedrock" and self.model.startswith("anthropic.") and not self.model.startswith(
+            ("us.anthropic.", "eu.anthropic.", "apac.anthropic.", "global.anthropic.")
+        ):
+            # CharmChat's Node backend calls Bedrock's InvokeModel directly, which (unlike the
+            # Python Anthropic SDK's Bedrock client) rejects on-demand throughput for Claude and
+            # needs a cross-region inference-profile ID instead of the bare model ID.
+            fixed = f"us.{self.model}"
+            print(f"WARNING: CharmChat bedrock model '{self.model}' is a bare model ID, which Bedrock "
+                  f"rejects for on-demand throughput; using inference profile '{fixed}' instead.")
+            self.model = fixed
         self.blocked_tools = blocked_tools if blocked_tools is not None else settings.get("blockedTools", [])
 
         if servers is None and os.getenv("CHARMCHAT_SERVERS"):

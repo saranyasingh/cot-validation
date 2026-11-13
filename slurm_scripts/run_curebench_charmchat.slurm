@@ -4,23 +4,28 @@
 #SBATCH --error=slurm_logs/%j.err
 #SBATCH --time=24:00:00
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=16G
-#SBATCH --partition=sapphire        # CPU-only job; kempner_undergrads is denied on sapphire/shared,
-                                    # so submit with a lab account: sbatch --account=amin_lab ...
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=48G
+#SBATCH --gres=gpu:1                 # vLLM reasoning client needs a GPU; change to gpu:a100:1 etc. if needed
+#SBATCH --account=kempner_undergrads
+#SBATCH --partition=kempner           # change to your cluster's GPU partition name
 
-# Runs the CoT → FOL → verify pipeline on CureBench with a CharmChat agent as the verifier,
-# then prints success rates (main_pipeline/curebench_report.py).
+# Runs the CoT → FOL → verify pipeline on CureBench: vLLM serves the reasoning model locally on
+# this node's GPU, and a CharmChat agent is the verifier. Prints success rates
+# (main_pipeline/curebench_report.py) at the end.
 #
-# The job starts its own CharmChat backend on this node (cloned to $CHARMCHAT_DIR on first use),
-# with only the MCP servers in $CHARMCHAT_SERVERS, and shuts it down at the end.
-# Needs on the node: node + npm (module or PATH), uv (for the ToolUniverse server), and the
-# Python env used by the other cot-validation jobs.
+# The job starts its own vLLM server and CharmChat backend on this node (CharmChat cloned to
+# $CHARMCHAT_DIR on first use), with only the MCP servers in $CHARMCHAT_SERVERS, and shuts both
+# down at the end. Needs on the node: node + npm (module or PATH), uv (for the ToolUniverse
+# server), and a conda env (default name vllm-inference) with vllm and the repo's Python deps.
+# CHARMCHAT_PROVIDER=bedrock also needs standard AWS credentials for CharmChat's Node backend
+# (its SDK needs more than the AWS_BEARER_TOKEN_BEDROCK bearer token the Python client accepts).
 #
 # Examples (from slurm_scripts/):
-#   sbatch --account=amin_lab run_curebench_charmchat.slurm
-#   sbatch --account=amin_lab --export=ALL,NUM_PROBLEMS=20,SKIP_TPTP=1 run_curebench_charmchat.slurm
-#   sbatch --account=amin_lab --export=ALL,MODE=repair,MAX_RETRIES=3 run_curebench_charmchat.slurm
+#   sbatch run_curebench_charmchat.slurm
+#   sbatch --export=ALL,NUM_PROBLEMS=20,SKIP_TPTP=1 run_curebench_charmchat.slurm
+#   sbatch --export=ALL,MODE=repair,MAX_RETRIES=3 run_curebench_charmchat.slurm
+#   sbatch --export=ALL,VLLM_MODEL=Qwen/Qwen2.5-7B-Instruct run_curebench_charmchat.slurm
 
 # ── Optional: email notifications ──────────────────────────────────────────────
 # #SBATCH --mail-type=END,FAIL
@@ -29,7 +34,7 @@
 # ── Args (override at submission time via --export or edit here) ───────────────
 DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/curebench_valset_phase1.jsonl}"
 MODE="${MODE:-verify}"                  # verify (confusion matrix) | repair (full repair loop)
-CLIENT="${CLIENT:-openai}"              # reasoning client: openai | claude | kimi | deepseek | bedrock
+CLIENT="${CLIENT:-vllm}"                # reasoning client: openai | claude | kimi | deepseek | bedrock | vllm
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"        # empty = all 459
 START="${START:-0}"
 QUESTION_TYPES="${QUESTION_TYPES:-}"    # e.g. "multi_choice open_ended_multi_choice"
@@ -37,14 +42,20 @@ SKIP_TPTP="${SKIP_TPTP:-}"              # verify mode: set to "1" to pass --skip
 MAX_RETRIES="${MAX_RETRIES:-5}"         # repair mode
 OUTPUT_DIR="${OUTPUT_DIR:-$SLURM_SUBMIT_DIR/../benchmark_outputs}"
 
+# vLLM reasoning client (only started when CLIENT=vllm)
+VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
+VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_MAX_WAIT="${VLLM_MAX_WAIT:-10000}"  # seconds to wait for vLLM to be ready
+CONDA_ENV="${CONDA_ENV:-vllm-inference}"
+
 # CharmChat verifier agent
 CHARMCHAT_DIR="${CHARMCHAT_DIR:-$HOME/charmchat}"
-CHARMCHAT_PROVIDER="${CHARMCHAT_PROVIDER:-anthropic}"    # anthropic | openai | bedrock (needs AWS creds)
-CHARMCHAT_MODEL="${CHARMCHAT_MODEL:-claude-sonnet-4-6}"
+CHARMCHAT_PROVIDER="${CHARMCHAT_PROVIDER:-bedrock}"      # anthropic | openai | bedrock (needs AWS creds)
+CHARMCHAT_MODEL="${CHARMCHAT_MODEL:-us.anthropic.claude-sonnet-5-5}"  # bedrock needs the inference-profile ID, not the bare model ID
 CHARMCHAT_SERVERS="${CHARMCHAT_SERVERS:-tooluniverse}"   # comma-separated MCP servers the agent may use
 CHARMCHAT_PORT="${CHARMCHAT_PORT:-$((3100 + ${SLURM_JOB_ID:-0} % 800))}"
 CHARMCHAT_READY_WAIT="${CHARMCHAT_READY_WAIT:-900}"      # seconds to wait for the MCP servers to connect
-NODE_MODULE="${NODE_MODULE:-nodejs}"                     # module to load if node is not on PATH
+NODE_MODULE="${NODE_MODULE:-ncf/1.0.0-fasrc01 nodejs/24.13.1-ncf}"  # module(s) to load if node is not on PATH
 
 # ── API keys ───────────────────────────────────────────────────────────────────
 export OPENAI_API_KEY="${OPENAI_API_KEY:-$(cat ~/.openai_key 2>/dev/null || echo '')}"
@@ -65,19 +76,44 @@ fi
 mkdir -p slurm_logs
 cd "$SLURM_SUBMIT_DIR"
 
-# ── Python ─────────────────────────────────────────────────────────────────────
-if [ -f "${SLURM_SUBMIT_DIR}/../.venv/bin/activate" ]; then
-    source "${SLURM_SUBMIT_DIR}/../.venv/bin/activate"
+# ── Cleanup: stop vLLM and CharmChat on exit ────────────────────────────────────
+cleanup() {
+    if [ -n "${CHARMCHAT_PID:-}" ]; then
+        echo "Shutting down CharmChat (PID $CHARMCHAT_PID)..."
+        pkill -P "$CHARMCHAT_PID" 2>/dev/null; kill "$CHARMCHAT_PID" 2>/dev/null; wait "$CHARMCHAT_PID" 2>/dev/null
+    fi
+    if [ -n "${VLLM_PID:-}" ]; then
+        echo "Shutting down vLLM (PID $VLLM_PID)..."
+        kill "$VLLM_PID" 2>/dev/null; wait "$VLLM_PID" 2>/dev/null
+    fi
+}
+trap cleanup EXIT
+
+# ── Python (conda env with vllm + the repo's deps) ──────────────────────────────
+# Slurm runs a non-interactive shell, so ~/.bashrc conda init doesn't run; source conda directly.
+if command -v conda >/dev/null 2>&1; then
+    CONDA_BASE="$(conda info --base)"
+elif [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="$HOME/miniconda3"
+elif [ -f "$HOME/anaconda3/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="$HOME/anaconda3"
+elif [ -f "/n/sw/Mambaforge-23.11.0-0/etc/profile.d/conda.sh" ]; then
+    CONDA_BASE="/n/sw/Mambaforge-23.11.0-0"   # FASRC system conda (what vllm-inference was built with)
+else
+    echo "ERROR: Could not find conda installation." && exit 1
 fi
+source "${CONDA_BASE}/etc/profile.d/conda.sh"
+conda activate "$CONDA_ENV" || { echo "ERROR: Failed to activate conda env '$CONDA_ENV'"; exit 1; }
 PYTHON="${PYTHON:-$(command -v python3 2>/dev/null || command -v python 2>/dev/null)}"
 if [ -z "$PYTHON" ]; then
-    echo "ERROR: No Python found. Load a module, create .venv, or set PYTHON=/path/to/python" >&2
+    echo "ERROR: No Python found in conda env '$CONDA_ENV'." >&2
     exit 1
 fi
 
 # ── Node and uv (for CharmChat) ────────────────────────────────────────────────
 if ! command -v node >/dev/null 2>&1 && command -v module >/dev/null 2>&1; then
-    module load "$NODE_MODULE" 2>/dev/null || true
+    # shellcheck disable=SC2086  # NODE_MODULE may list several module names to load in order
+    module load $NODE_MODULE 2>/dev/null || true
 fi
 if ! command -v node >/dev/null 2>&1; then
     echo "ERROR: node not found. Load a Node.js module (NODE_MODULE=...) or install it, e.g. via nvm." >&2
@@ -92,16 +128,56 @@ fi
 
 echo "Job ID       : $SLURM_JOB_ID"
 echo "Node         : $SLURMD_NODENAME"
-echo "Python       : $PYTHON ($("$PYTHON" -c 'import sys; print(sys.version.split()[0])' 2>/dev/null || echo unknown))"
+echo "GPU(s)       : ${CUDA_VISIBLE_DEVICES:-none}"
+echo "Python       : $PYTHON ($("$PYTHON" -c 'import sys; print(sys.version.split()[0])' 2>/dev/null || echo unknown)) [conda $CONDA_ENV]"
 echo "Node.js      : $(node --version)"
 echo "Dataset      : $DATASET"
 echo "Mode         : $MODE"
-echo "Reasoning    : $CLIENT"
+if [ "$CLIENT" = "vllm" ]; then
+    echo "Reasoning    : vllm ($VLLM_MODEL, port $VLLM_PORT)"
+else
+    echo "Reasoning    : $CLIENT"
+fi
 echo "Verifier     : charmchat $CHARMCHAT_PROVIDER:$CHARMCHAT_MODEL (servers: $CHARMCHAT_SERVERS, port $CHARMCHAT_PORT)"
 echo "Anthropic key: $([ -n "${ANTHROPIC_API_KEY:-}" ] && echo set || echo MISSING)"
 echo "OpenAI key   : $([ -n "${OPENAI_API_KEY:-}" ] && echo set || echo MISSING)"
+if [ "$CHARMCHAT_PROVIDER" = "bedrock" ] && [ -z "${AWS_ACCESS_KEY_ID:-}" ] && [ ! -f "$HOME/.aws/credentials" ]; then
+    echo "WARNING      : no AWS_ACCESS_KEY_ID / ~/.aws/credentials found; CharmChat's Bedrock"
+    echo "               provider needs standard AWS credentials and may fail to start."
+fi
 echo "Start time   : $(date)"
 echo "──────────────────────────────────────────"
+
+# ── Start vLLM server (reasoning client) ────────────────────────────────────────
+export VLLM_MODEL
+export VLLM_BASE_URL="http://localhost:${VLLM_PORT}/v1"
+if [ "$CLIENT" = "vllm" ]; then
+    if command -v vllm >/dev/null 2>&1; then
+        echo "Starting vLLM via: vllm serve ..."
+        vllm serve "$VLLM_MODEL" --port "$VLLM_PORT" --dtype auto --max-model-len 4096 &
+    else
+        echo "Starting vLLM via: $PYTHON -m vllm.entrypoints.openai.api_server ..."
+        "$PYTHON" -m vllm.entrypoints.openai.api_server \
+            --model "$VLLM_MODEL" --port "$VLLM_PORT" --dtype auto --max-model-len 4096 &
+    fi
+    VLLM_PID=$!
+
+    echo "Waiting for vLLM server on port $VLLM_PORT..."
+    ELAPSED=0
+    until curl -sf "http://localhost:${VLLM_PORT}/health" > /dev/null 2>&1; do
+        if [ $ELAPSED -ge "$VLLM_MAX_WAIT" ]; then
+            echo "ERROR: vLLM did not start within ${VLLM_MAX_WAIT}s. Exiting." >&2
+            exit 1
+        fi
+        if ! kill -0 "$VLLM_PID" 2>/dev/null; then
+            echo "ERROR: vLLM process exited before becoming ready (see .err log). Exiting." >&2
+            exit 1
+        fi
+        sleep 5
+        ELAPSED=$((ELAPSED + 5))
+    done
+    echo "vLLM is ready after ${ELAPSED}s."
+fi
 
 # ── CharmChat: install on first use ────────────────────────────────────────────
 if [ ! -d "$CHARMCHAT_DIR" ]; then
@@ -149,7 +225,6 @@ echo "Starting CharmChat backend (log: $CHARMCHAT_LOG) ..."
 (cd "$CHARMCHAT_DIR/backend" && PORT="$CHARMCHAT_PORT" exec ./node_modules/.bin/tsx src/index.ts) \
     > "$CHARMCHAT_LOG" 2>&1 &
 CHARMCHAT_PID=$!
-trap 'echo "Shutting down CharmChat (PID $CHARMCHAT_PID)..."; pkill -P $CHARMCHAT_PID 2>/dev/null; kill $CHARMCHAT_PID 2>/dev/null; wait $CHARMCHAT_PID 2>/dev/null' EXIT
 
 export CHARMCHAT_API_BASE="http://localhost:${CHARMCHAT_PORT}/api"
 echo "Waiting for CharmChat and MCP servers ($CHARMCHAT_SERVERS) ..."
