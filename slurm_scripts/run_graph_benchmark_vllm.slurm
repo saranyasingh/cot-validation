@@ -29,7 +29,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-}"              # empty = benchmark_outputs/
 VERIFIER_CLIENT="${VERIFIER_CLIENT:-bedrock}"   # bedrock | claude | openai | kimi | deepseek
 PROVER_TIMEOUT="${PROVER_TIMEOUT:-20}"    # Vampire seconds per step
 VAMPIRE_VERSION="${VAMPIRE_VERSION:-v5.1.0}"
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-$((8000 + ${SLURM_JOB_ID:-0} % 1000))}"  # job-unique: avoids colliding with another vLLM job on a shared multi-GPU node
 VLLM_MAX_MODEL_LEN="${VLLM_MAX_MODEL_LEN:-4096}"
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready

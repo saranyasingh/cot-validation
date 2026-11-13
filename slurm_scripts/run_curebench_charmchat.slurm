@@ -44,7 +44,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-$SLURM_SUBMIT_DIR/../benchmark_outputs}"
 
 # vLLM reasoning client (only started when CLIENT=vllm)
 VLLM_MODEL="${VLLM_MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-$((8000 + ${SLURM_JOB_ID:-0} % 1000))}"  # job-unique: avoids colliding with another vLLM job on a shared multi-GPU node
 VLLM_MAX_WAIT="${VLLM_MAX_WAIT:-10000}"  # seconds to wait for vLLM to be ready
 CONDA_ENV="${CONDA_ENV:-vllm-inference}"
 

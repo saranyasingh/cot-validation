@@ -25,7 +25,7 @@ OUTPUT_DIR="${OUTPUT_DIR:-}"     # leave empty to use default benchmark_outputs/
 SKIP_TPTP="${SKIP_TPTP:-}"       # set to "1" to pass --skip-tptp
 VERIFIER_CLIENT="${VERIFIER_CLIENT:-claude}"  # openai | claude | kimi | deepseek | vllm
 ANTHROPIC_MODEL="${ANTHROPIC_MODEL:-claude-opus-4-5}"
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-$((8000 + ${SLURM_JOB_ID:-0} % 1000))}"  # job-unique: avoids colliding with another vLLM job on a shared multi-GPU node
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 

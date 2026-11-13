@@ -23,7 +23,7 @@ DATASET="${DATASET:-$SLURM_SUBMIT_DIR/../data/proofwriter.json}"
 MAX_RETRIES="${MAX_RETRIES:-3}"
 LIMIT="${LIMIT:-}"              # number of items to process; empty = all
 OUTPUT_DIR="${OUTPUT_DIR:-}"    # leave empty to use default proofwriter_outputs/
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-$((8000 + ${SLURM_JOB_ID:-0} % 1000))}"  # job-unique: avoids colliding with another vLLM job on a shared multi-GPU node
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=600   # seconds to wait for vllm to be ready
 

@@ -24,7 +24,7 @@ MAX_RETRIES="${MAX_RETRIES:-5}"
 NUM_PROBLEMS="${NUM_PROBLEMS:-}"
 OUTPUT_DIR="${OUTPUT_DIR:-}"
 VERIFIER_CLIENT="${VERIFIER_CLIENT:-openai}"   # openai | anthropic | ... (autoformalization/verification)
-VLLM_PORT="${VLLM_PORT:-8000}"
+VLLM_PORT="${VLLM_PORT:-$((8000 + ${SLURM_JOB_ID:-0} % 1000))}"  # job-unique: avoids colliding with another vLLM job on a shared multi-GPU node
 PYTHON="${PYTHON:-python3}"
 VLLM_MAX_WAIT=10000   # seconds to wait for vllm to be ready
 
