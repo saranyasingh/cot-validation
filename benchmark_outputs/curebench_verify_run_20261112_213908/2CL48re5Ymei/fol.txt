@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Takes(p, d) — patient p is taking drug d
+ContainsTHC(d) — drug d contains THC
+FalsePositive(t) — test t result is a false positive caused by contamination
+Contaminated(d) — drug d is contaminated
+Discontinue(d) — the most appropriate action is to discontinue drug d until the source of contamination is identified
+Constants:
+patient, pantoprazole_sodium, urine_test
+
+## FACTS
+FACT-1: The patient is taking Pantoprazole Sodium :: Takes(patient, pantoprazole_sodium)
+FACT-2: Pantoprazole Sodium does not contain THC :: ¬ContainsTHC(pantoprazole_sodium)
+FACT-3: The urine test result may be a false positive indicating contamination :: FalsePositive(urine_test)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a urine test is a false positive, the sample is contaminated by a substance other than the intended one; if the patient takes a drug that does not itself contain THC, the contamination is attributed to that drug's possible contamination :: ∀p∀d∀t ((Takes(p, d) ∧ ¬ContainsTHC(d) ∧ FalsePositive(t)) → Contaminated(d))
+RULE-2: If a drug the patient takes is possibly contaminated, the most appropriate action is to discontinue that drug until the source is identified :: ∀p∀d (Takes(p, d) ∧ Contaminated(d) → Discontinue(d))
+
+## INFERENCES
+INF-1: Pantoprazole Sodium is a possible contaminant source, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Contaminated(pantoprazole_sodium)
+INF-2: The most appropriate action is to discontinue Pantoprazole Sodium, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Discontinue(pantoprazole_sodium)

@@ -1,0 +1,111 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The label of Albuterol Sulfate HFA indicates it for bronchospasm (wheezing) associated with asthma, COPD and certain cardiac conditions",
+      "formula": "Indicated(albuterol_hfa, bronchospasm)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-c5e160: The label indicates it for bronchospasm in reversible obstructive airway disease and for exercise-induced bronchospasm. It does not list COPD or cardiac conditions.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Albuterol Sulfate HFA, given by inhaler, transfers to breastmilk",
+      "formula": "TransfersToMilk(albuterol_hfa)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-a35efe: The label says it is not known whether the components are excreted in human milk. Plasma levels are very low.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The label's listed side effects (tremor, palpitations, tachycardia, etc.) could potentially affect both the mother and her child",
+      "formula": "PosesRisk(albuterol_hfa, mother_and_child)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I did not look up the adverse reactions section, and the nursing label text does not mention these effects for the child.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The label advises against using Albuterol Sulfate HFA in nursing patients, who may be at higher risk for adverse effects",
+      "formula": "AdvisesAgainst(albuterol_hfa, nursing_patients)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-a35efe: The label does not advise against use in nursing patients. It says to exercise caution and to decide whether to stop nursing or stop the drug.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug transfers to breastmilk, poses potential risk to mother and child, and its label advises against use in nursing patients, then it is not recommended during breastfeeding",
+      "formula": "\u2200d (TransfersToMilk(d) \u2227 PosesRisk(d, mother_and_child) \u2227 AdvisesAgainst(d, nursing_patients) \u2192 AdvisesAgainst(d, breastfeeding))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-a35efe: The label only advises caution and a risk-benefit decision, so a drug's transfer to milk and a caution on the label do not make it \"not recommended\".",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a drug is not recommended during breastfeeding, then option A is the answer",
+      "formula": "\u2200d (AdvisesAgainst(d, breastfeeding) \u2192 Answer(option_a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Albuterol Sulfate HFA is not recommended for use during breastfeeding, from FACT-2, FACT-3, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "AdvisesAgainst(albuterol_hfa, breastfeeding)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The answer is option A, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-c5e160: The label indicates it for bronchospasm in reversible obstructive airway disease and for exercise-induced bronchospasm. It does not list COPD or cardiac conditions."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-a35efe: The label says it is not known whether the components are excreted in human milk. Plasma levels are very low."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: I did not look up the adverse reactions section, and the nursing label text does not mention these effects for the child."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-a35efe: The label does not advise against use in nursing patients. It says to exercise caution and to decide whether to stop nursing or stop the drug."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-a35efe: The label only advises caution and a risk-benefit decision, so a drug's transfer to milk and a caution on the label do not make it \"not recommended\"."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

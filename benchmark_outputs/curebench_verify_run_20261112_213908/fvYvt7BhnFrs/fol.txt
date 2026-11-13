@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+HasCondition(p, c) — patient group p has condition c
+ReceivesTreatment(p, d) — patient group p is treated with drug d
+LabelStates(d, s) — the label of drug d states s
+Aligned(o, g) — option o is aligned with treatment goal g (consistent with the high-dose approach and the goal of significantly reducing acid production)
+Answer(o) — option o is the correct answer
+Constants:
+zes_patients, zollinger_ellison, pantoprazole_iv, high_dose_start, no_prior_gastric_surgery, option_a, option_b, option_c, option_d, significant_acid_reduction, lower_target
+
+## FACTS
+FACT-1: The patients have Zollinger-Ellison Syndrome :: HasCondition(zes_patients, zollinger_ellison)
+FACT-2: The patients are treated with pantoprazole sodium for injection :: ReceivesTreatment(zes_patients, pantoprazole_iv)
+FACT-3: The pantoprazole label states the recommended dose is 40 mg IV over 3 minutes, a high-dose start :: LabelStates(pantoprazole_iv, high_dose_start)
+FACT-4: The patients have no prior gastric surgery :: HasCondition(zes_patients, no_prior_gastric_surgery)
+FACT-5: Option A (5 mEq/h) is too low given the high-dose start :: Describes(option_a, lower_target)
+FACT-6: Option B (10 mEq/h) is too low given the high-dose start :: Describes(option_b, lower_target)
+FACT-7: Option C (15 mEq/h) is lower than optimal for patients without prior gastric surgery :: Describes(option_c, lower_target)
+FACT-8: Option D (20 mEq/h) is aligned with significantly reducing acid production :: Aligned(option_d, significant_acid_reduction)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option that is a lower target than optimal is not aligned with the goal of significantly reducing acid production :: ∀o (Describes(o, lower_target) → ¬Aligned(o, significant_acid_reduction))
+RULE-2: Given a high-dose start with no prior gastric surgery, the option aligned with significantly reducing acid production is the answer :: ∀o (LabelStates(pantoprazole_iv, high_dose_start) ∧ HasCondition(zes_patients, no_prior_gastric_surgery) ∧ Aligned(o, significant_acid_reduction) → Answer(o))
+RULE-3: An option not aligned with significantly reducing acid production is not the answer :: ∀o (¬Aligned(o, significant_acid_reduction) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option A is not aligned with significant acid reduction, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Aligned(option_a, significant_acid_reduction)
+INF-2: Option B is not aligned with significant acid reduction, from FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Aligned(option_b, significant_acid_reduction)
+INF-3: Option C is not aligned with significant acid reduction, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Aligned(option_c, significant_acid_reduction)
+INF-4: Option A is not the answer, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-5: Option B is not the answer, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-6: Option C is not the answer, from INF-3 and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-7: Option D is the answer, from FACT-3, FACT-4, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_d)

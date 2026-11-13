@@ -1,0 +1,112 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Albuterol sulfate has been tested for its effect on fertility",
+      "formula": "TestedFertility(albuterol_sulfate)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-c0db55",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is 2 mg/kg",
+      "formula": "Describes(option_a, dose_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is 50 mg/kg",
+      "formula": "Describes(option_b, dose_50)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is 500 mg/kg",
+      "formula": "Describes(option_c, dose_500)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is 100 mg/kg",
+      "formula": "Describes(option_d, dose_100)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The highest oral dose of albuterol sulfate tested is 500 mg/kg",
+      "formula": "HighestTested(albuterol_sulfate, dose_500)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-c0db55: The label's fertility study in rats used oral doses up to 50 mg/kg. The 500 mg/kg figure is a dietary dose from the mouse tumorigenicity study, not an oral fertility dose.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug was tested for fertility, the highest dose tested demonstrates no evidence of impaired fertility",
+      "formula": "\u2200d\u2200x (TestedFertility(d) \u2227 HighestTested(d, x) \u2192 NoImpairedFertility(d, x))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-c0db55: The highest dose tested for any purpose is not the fertility no-effect dose. The label ties the no-impairment finding to the rat reproduction studies (up to 50 mg/kg), while 500 mg/kg is a mouse dietary tumorigenicity dose.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option stating a dose that showed no evidence of impaired fertility is the answer",
+      "formula": "\u2200o\u2200x (Describes(o, x) \u2227 NoImpairedFertility(albuterol_sulfate, x) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The 500 mg/kg dose shows no evidence of impaired fertility, from FACT-1, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "NoImpairedFertility(albuterol_sulfate, dose_500)",
+      "premises": [
+        "FACT-1",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-c0db55: The label's fertility study in rats used oral doses up to 50 mg/kg. The 500 mg/kg figure is a dietary dose from the mouse tumorigenicity study, not an oral fertility dose."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-c0db55: The highest dose tested for any purpose is not the fertility no-effect dose. The label ties the no-impairment finding to the rat reproduction studies (up to 50 mg/kg), while 500 mg/kg is a mouse dietary tumorigenicity dose."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

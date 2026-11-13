@@ -1,0 +1,238 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Zithromax is indicated for acute bacterial sinusitis",
+      "formula": "IndicatedFor(zithromax, acute_sinusitis)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-8a2a89",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Zithromax is indicated for upper respiratory tract infections",
+      "formula": "IndicatedFor(zithromax, upper_respiratory_infection)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lists specific conditions, such as sinusitis, pharyngitis/tonsillitis, otitis media and pneumonia. It does not use the phrase \"upper respiratory tract infections\" as an indication.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Zithromax is not indicated for viral infections",
+      "formula": "\u00acIndicatedFor(zithromax, viral_infection)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-8a2a89",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option A describes using Zithromax for all bacterial infections (broad use)",
+      "formula": "Describes(option_a, broad_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option B describes using Zithromax selectively, only for infections proven or strongly suspected to be bacterial (selective use)",
+      "formula": "Describes(option_b, selective_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option C describes using Zithromax in combination with other antibiotics for ineffective treatment (combining ineffective treatments)",
+      "formula": "Describes(option_c, combine_ineffective)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option D describes exclusive use of Zithromax for viral infections to prevent resistance",
+      "formula": "Describes(option_d, viral_only_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Broad use of a drug beyond specific indications risks resistance and does not help avoid it",
+      "formula": "\u2200c (Broad(c) \u2192 \u00acPreventsResistance(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-8a2a89",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "Combining ineffective treatments is counterproductive to avoiding resistance",
+      "formula": "\u2200c (Describes(option_c, c) \u2192 \u00acPreventsResistance(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Selective use limited to narrow indications helps avoid resistance",
+      "formula": "\u2200c (Describes(option_b, c) \u2227 IndicatedFor(zithromax, acute_sinusitis) \u2227 IndicatedFor(zithromax, upper_respiratory_infection) \u2192 PreventsResistance(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-8a2a89",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "Use for viral infections, which the drug is not indicated for, lacks support as a way to prevent resistance",
+      "formula": "\u2200c (Describes(option_d, c) \u2227 \u00acIndicatedFor(zithromax, viral_infection) \u2192 \u00acPreventsResistance(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-8a2a89",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "An option whose described use helps avoid resistance is the answer",
+      "formula": "\u2200o\u2200c (Describes(o, c) \u2227 PreventsResistance(c) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "An option whose described use does not help avoid resistance is not the answer",
+      "formula": "\u2200o\u2200c (Describes(o, c) \u2227 \u00acPreventsResistance(c) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-7": {
+      "type": "rule",
+      "gloss": "Using Zithromax for all bacterial infections is broad use",
+      "formula": "Broad(broad_use)",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Broad use does not prevent resistance, from RULE-7 and RULE-1 by Modus Ponens",
+      "formula": "\u00acPreventsResistance(broad_use)",
+      "premises": [
+        "RULE-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-4, INF-1, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Selective use helps avoid resistance, from FACT-5, FACT-1, FACT-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "PreventsResistance(selective_use)",
+      "premises": [
+        "FACT-5",
+        "FACT-1",
+        "FACT-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-5, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-5",
+        "INF-3",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Combining ineffective treatments does not prevent resistance, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acPreventsResistance(combine_ineffective)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-6, INF-5, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-6",
+        "INF-5",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Viral-only use does not prevent resistance, from FACT-7, FACT-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acPreventsResistance(viral_only_use)",
+      "premises": [
+        "FACT-7",
+        "FACT-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-7, INF-7, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-7",
+        "INF-7",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lists specific conditions, such as sinusitis, pharyngitis/tonsillitis, otitis media and pneumonia. It does not use the phrase \"upper respiratory tract infections\" as an indication."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

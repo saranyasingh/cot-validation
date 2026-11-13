@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Permitted(d, a) — for drug d, action a is permitted by the label after a dose missed in an emergency
+Supported(d, a) — the label of drug d supports action a
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+jaypirca, continue_asap, skip_dose, double_dose, stop_drug, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The label says that if a dose is missed due to an emergency situation, patients may continue treatment as soon as possible :: Permitted(jaypirca, continue_asap)
+FACT-2: Option A is taking the missed dose immediately, which is continuing treatment as soon as possible :: Describes(option_a, continue_asap)
+FACT-3: Option B is skipping the missed dose and taking the next dose at the usual time :: Describes(option_b, skip_dose)
+FACT-4: Option C is doubling the dose the next day :: Describes(option_c, double_dose)
+FACT-5: Option D is stopping JAYPIRCA entirely :: Describes(option_d, stop_drug)
+FACT-6: Skipping the dose is not allowed under the stated conditions :: ¬Supported(jaypirca, skip_dose)
+FACT-7: The label does not mention doubling the dose :: ¬Supported(jaypirca, double_dose)
+FACT-8: The label gives no indication to stop the drug entirely :: ¬Supported(jaypirca, stop_drug)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An action the label permits is supported by the label :: ∀d∀a (Permitted(d, a) → Supported(d, a))
+RULE-2: An option describing an action the label supports is the answer :: ∀o∀a ((Describes(o, a) ∧ Supported(jaypirca, a)) → Answer(o))
+RULE-3: An option describing an action the label does not support is not the answer :: ∀o∀a ((Describes(o, a) ∧ ¬Supported(jaypirca, a)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Continuing treatment as soon as possible is supported by the JAYPIRCA label, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Supported(jaypirca, continue_asap)
+INF-2: Option A is the answer, from FACT-2, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_a)
+INF-3: Option B is not the answer, from FACT-3, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-4: Option C is not the answer, from FACT-4, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-5: Option D is not the answer, from FACT-5, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

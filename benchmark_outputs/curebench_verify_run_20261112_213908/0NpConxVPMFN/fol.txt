@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Describes(o, t) — answer option o describes storage temperature t
+InRange(t) — temperature t falls within the commonly accepted range of 20°C - 30°C
+Safe(t) — temperature t is safe and appropriate for storing the medication
+Answer(o) — option o is the correct answer
+Constants:
+option_a, option_b, option_c, option_d, temp_15, temp_25, temp_30, temp_10
+
+## FACTS
+FACT-1: Option A is 15°C (59°F) :: Describes(option_a, temp_15)
+FACT-2: Option B is 25°C (77°F) :: Describes(option_b, temp_25)
+FACT-3: Option C is 30°C (86°F) :: Describes(option_c, temp_30)
+FACT-4: Option D is 10°C (50°F) :: Describes(option_d, temp_10)
+FACT-5: The reasoning states that 15°C falls within the range of 20°C - 30°C :: InRange(temp_15)
+FACT-6: The reasoning states that 25°C is outside the commonly accepted range :: ¬InRange(temp_25)
+FACT-7: The reasoning states that 30°C exceeds the safe range and is unsafe for most pharmaceuticals :: ¬Safe(temp_30)
+FACT-8: The reasoning states that 10°C is below the commonly accepted range :: ¬InRange(temp_10)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A temperature within the commonly accepted range is safe and appropriate for storage :: ∀t (InRange(t) → Safe(t))
+RULE-2: A temperature outside the commonly accepted range is not safe for storage :: ∀t (¬InRange(t) → ¬Safe(t))
+RULE-3: An option describing a safe storage temperature is the answer :: ∀o∀t ((Describes(o, t) ∧ Safe(t)) → Answer(o))
+RULE-4: An option describing an unsafe storage temperature is not the answer :: ∀o∀t ((Describes(o, t) ∧ ¬Safe(t)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: 15°C is safe for storage, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: Safe(temp_15)
+INF-2: 25°C is not safe for storage, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Safe(temp_25)
+INF-3: 10°C is not safe for storage, from FACT-8 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Safe(temp_10)
+INF-4: Option B is not the answer, from FACT-2, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-5: Option C is not the answer, from FACT-3, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-6: Option D is not the answer, from FACT-4, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-7: Option A is the answer, from FACT-1, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_a)

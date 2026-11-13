@@ -1,0 +1,191 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Pemetrexed is indicated for first-line treatment of advanced malignant pleural mesothelioma",
+      "formula": "Indicated(pemetrexed, mesothelioma)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-bd0b48",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is pemetrexed with pembrolizumab and platinum chemotherapy",
+      "formula": "OptionIs(option_a, pembrolizumab_platinum)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is pemetrexed with cisplatin",
+      "formula": "OptionIs(option_b, cisplatin)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is pemetrexed with EGFR inhibitors",
+      "formula": "OptionIs(option_c, egfr_inhibitors)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is pemetrexed with ALK inhibitors",
+      "formula": "OptionIs(option_d, alk_inhibitors)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Pembrolizumab and platinum chemotherapy are not indicated for mesothelioma",
+      "formula": "NotIndicated(pembrolizumab_platinum, mesothelioma)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-71b848: The Keytruda label lists pembrolizumab with pemetrexed and platinum chemotherapy as first-line treatment for unresectable advanced or metastatic malignant pleural mesothelioma. The Pemetrexed for Injection label itself lists only the cisplatin combination for mesothelioma.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Cisplatin in combination with pemetrexed is FDA-approved for first-line treatment of advanced malignant pleural mesothelioma",
+      "formula": "Indicated(cisplatin, mesothelioma)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-bd0b48",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "EGFR inhibitors are not indicated for mesothelioma",
+      "formula": "NotIndicated(egfr_inhibitors, mesothelioma)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The pemetrexed and pembrolizumab labels give no mesothelioma indication for EGFR inhibitors, but I did not look up the EGFR inhibitor labels.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "ALK inhibitors are not indicated for mesothelioma",
+      "formula": "NotIndicated(alk_inhibitors, mesothelioma)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The pemetrexed and pembrolizumab labels give no mesothelioma indication for ALK inhibitors, but I did not look up the ALK inhibitor labels.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option whose partner is indicated for mesothelioma, and where pemetrexed is also indicated for it, includes pemetrexed in a valid combination",
+      "formula": "\u2200o\u2200d (OptionIs(o, d) \u2227 Indicated(pemetrexed, mesothelioma) \u2227 Indicated(d, mesothelioma) \u2192 Includes(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-bd0b48",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option whose partner is not indicated for mesothelioma does not include pemetrexed in a valid combination",
+      "formula": "\u2200o\u2200d (OptionIs(o, d) \u2227 NotIndicated(d, mesothelioma) \u2192 \u00acIncludes(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option that includes pemetrexed in a valid combination is the answer",
+      "formula": "\u2200o (Includes(o) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A does not include pemetrexed in a valid combination, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acIncludes(option_a)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B includes pemetrexed in a valid combination, from FACT-3, FACT-1, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Includes(option_b)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C does not include pemetrexed in a valid combination, from FACT-4, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acIncludes(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D does not include pemetrexed in a valid combination, from FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acIncludes(option_d)",
+      "premises": [
+        "FACT-5",
+        "FACT-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-71b848: The Keytruda label lists pembrolizumab with pemetrexed and platinum chemotherapy as first-line treatment for unresectable advanced or metastatic malignant pleural mesothelioma. The Pemetrexed for Injection label itself lists only the cisplatin combination for mesothelioma."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: The pemetrexed and pembrolizumab labels give no mesothelioma indication for EGFR inhibitors, but I did not look up the EGFR inhibitor labels."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: The pemetrexed and pembrolizumab labels give no mesothelioma indication for ALK inhibitors, but I did not look up the ALK inhibitor labels."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

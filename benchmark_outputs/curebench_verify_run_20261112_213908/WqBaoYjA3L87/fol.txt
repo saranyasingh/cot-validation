@@ -1,0 +1,38 @@
+## VOCABULARY
+Predicates:
+Holds(s) — state or need s holds
+Causes(s1, s2) — state s1 leads to state s2
+Describes(o, x) — answer option o describes action or state x
+Unsuitable(a, s) — action a contradicts or fails to address state s
+Answer(o) — option o is the correct answer
+Constants:
+inhibitor_discontinued, slower_metabolism, increased_exposure, dose_increase_needed, decrease_dose, naloxone, discontinue_roxybond, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The CYP3A4 inhibitor is discontinued :: Holds(inhibitor_discontinued)
+FACT-2: Premise 1: discontinuing the CYP3A4 inhibitor may slow RoxyBond metabolism :: Causes(inhibitor_discontinued, slower_metabolism)
+FACT-3: Premise 2: slower metabolism leads to increased exposure :: Causes(slower_metabolism, increased_exposure)
+FACT-4: Conclusion step: increased exposure leads to the need for a dose increase :: Causes(increased_exposure, dose_increase_needed)
+FACT-5: Option A describes decreasing the dosage :: Describes(option_a, decrease_dose)
+FACT-6: Option B describes increasing the dosage (the dose increase needed) :: Describes(option_b, dose_increase_needed)
+FACT-7: Option C describes prescribing naloxone :: Describes(option_c, naloxone)
+FACT-8: Option D describes discontinuing RoxyBond :: Describes(option_d, discontinue_roxybond)
+FACT-9: Decreasing the dose contradicts increased exposure (Premise 2) :: Unsuitable(decrease_dose, increased_exposure)
+FACT-10: Naloxone does not address slower metabolism :: Unsuitable(naloxone, slower_metabolism)
+FACT-11: Discontinuing RoxyBond contradicts the need for an intervention (dose increase) :: Unsuitable(discontinue_roxybond, dose_increase_needed)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If state s1 holds and leads to s2, then s2 holds :: ∀x∀y (Holds(x) ∧ Causes(x, y) → Holds(y))
+RULE-2: An option describing something that holds is the answer :: ∀o∀s (Describes(o, s) ∧ Holds(s) → Answer(o))
+RULE-3: An option describing an action unsuitable for a state that holds is not the answer :: ∀o∀a∀s (Describes(o, a) ∧ Unsuitable(a, s) ∧ Holds(s) → ¬Answer(o))
+
+## INFERENCES
+INF-1: RoxyBond metabolism slows, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Holds(slower_metabolism)
+INF-2: Exposure to RoxyBond increases, from INF-1, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Holds(increased_exposure)
+INF-3: A dose increase is needed, from INF-2, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens :: Holds(dose_increase_needed)
+INF-4: Option A is not the answer, from FACT-5, FACT-9, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-5: Option C is not the answer, from FACT-7, FACT-10, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-6: Option D is not the answer, from FACT-8, FACT-11, INF-3, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-7: Option B is the answer, from FACT-6, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

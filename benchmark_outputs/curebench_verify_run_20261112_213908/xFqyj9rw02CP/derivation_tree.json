@@ -1,0 +1,129 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The label says terbinafine should not be used in patients with active liver disease",
+      "formula": "Contraindicated(terbinafine, active_liver_disease)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-034777",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is chronic liver disease",
+      "formula": "Describes(option_a, chronic_liver_disease)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is active liver disease",
+      "formula": "Describes(option_b, active_liver_disease)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is a history of allergic reaction to oral terbinafine",
+      "formula": "Describes(option_c, allergy_history)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Allergy history is a prior allergic reaction to terbinafine",
+      "formula": "PriorReaction(terbinafine, allergy_history)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-034777",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option D (all of the above) encompasses chronic liver disease",
+      "formula": "Encompasses(option_d, chronic_liver_disease)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option D (all of the above) encompasses active liver disease",
+      "formula": "Encompasses(option_d, active_liver_disease)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing a condition that is a listed contraindication is ruled out",
+      "formula": "\u2200o\u2200c (Describes(o, c) \u2227 Contraindicated(terbinafine, c) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-034777",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A prior allergic reaction to a drug means the patient should avoid that drug",
+      "formula": "\u2200d\u2200c (PriorReaction(d, c) \u2192 Contraindicated(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-034777",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The most comprehensive option that encompasses two conditions, one of which is contraindicated, is the answer",
+      "formula": "\u2200o\u2200x\u2200y (Encompasses(o, x) \u2227 Encompasses(o, y) \u2227 Contraindicated(terbinafine, y) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option B is ruled out, from FACT-3, FACT-1, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Terbinafine should be avoided with a history of allergic reaction, from FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Contraindicated(terbinafine, allergy_history)",
+      "premises": [
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-6, FACT-7, FACT-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-6",
+        "FACT-7",
+        "FACT-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [],
+  "error_stages": []
+}

@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+CausesHeadache(g) — group g's treatment can cause headaches
+HasActiveIngredient(g) — group g's treatment has an active ingredient
+Describes(o, g) — answer option o describes group g
+ExplicitlyListed(g) — headache is explicitly listed as a potential side effect for group g
+Answer(o) — option o is the correct answer
+Constants:
+goprelto_group, cocaine_group, placebo_group, none_group, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is the GOPRELTO 4% solution group :: Describes(option_a, goprelto_group)
+FACT-2: Option B is the Cocaine Hydrochloride 8% solution group :: Describes(option_b, cocaine_group)
+FACT-3: Option C is the placebo group :: Describes(option_c, placebo_group)
+FACT-4: Option D is none of the groups :: Describes(option_d, none_group)
+FACT-5: GOPRELTO 4% solution can cause headaches :: CausesHeadache(goprelto_group)
+FACT-6: Cocaine Hydrochloride 8% solution can cause headaches (severe pain in warnings, likely including headaches) :: CausesHeadache(cocaine_group)
+FACT-7: The placebo has no active ingredient :: ¬HasActiveIngredient(placebo_group)
+FACT-8: Headache is explicitly listed as a potential side effect for GOPRELTO :: ExplicitlyListed(goprelto_group)
+FACT-9: Headache is not explicitly listed as a potential side effect for cocaine hydrochloride 8% solution :: ¬ExplicitlyListed(cocaine_group)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A treatment with no active ingredient cannot cause headaches :: ∀g (¬HasActiveIngredient(g) → ¬CausesHeadache(g))
+RULE-2: An option describing a group whose treatment cannot cause headaches is not the answer :: ∀o∀g ((Describes(o, g) ∧ ¬CausesHeadache(g)) → ¬Answer(o))
+RULE-3: Since some groups can cause headaches, the option "none of the groups" is not the answer :: ∀o∀g∀h ((Describes(o, none_group) ∧ CausesHeadache(g) ∧ g = g) → ¬Answer(o))
+RULE-4: An option describing a group that causes headaches and has headache explicitly listed as a side effect is the answer :: ∀o∀g ((Describes(o, g) ∧ CausesHeadache(g) ∧ ExplicitlyListed(g)) → Answer(o))
+
+## INFERENCES
+INF-1: The placebo group's treatment cannot cause headaches, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬CausesHeadache(placebo_group)
+INF-2: Option C is not the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-3: Option D is not the answer, from FACT-4, FACT-5, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-4: Option A is the answer, from FACT-1, FACT-5, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens :: Answer(option_a)

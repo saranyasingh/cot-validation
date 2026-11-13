@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated for condition c
+LabelWarns(d, s) — the label of drug d warns about risk from use with substance or population s
+Describes(o, s) — answer option o describes substance or population s
+HigherRisk(d, s) — use of d with s presents a higher risk of abuse or overdose
+Answer(o) — option o is the correct answer
+
+Constants:
+roxybond, chronic_pain, other_opioids, benzodiazepines, alcohol, prolonged_opioid_use, drug_alcohol_abuse_history, other_abused_drugs, all_of_above, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: RoxyBond is indicated for pain relief in patients with chronic pain conditions :: Indicated(roxybond, chronic_pain)
+FACT-2: The label warns against using RoxyBond with other opioids :: LabelWarns(roxybond, other_opioids)
+FACT-3: The label warns against using RoxyBond with benzodiazepines :: LabelWarns(roxybond, benzodiazepines)
+FACT-4: The label warns against using RoxyBond with alcohol :: LabelWarns(roxybond, alcohol)
+FACT-5: Option A is patients with a history of prolonged opioid use :: Describes(option_a, prolonged_opioid_use)
+FACT-6: Option B is patients with a history of drug or alcohol abuse :: Describes(option_b, drug_alcohol_abuse_history)
+FACT-7: Option C is patients combining RoxyBond with other abused drugs :: Describes(option_c, other_abused_drugs)
+FACT-8: Option D is all of the above :: Describes(option_d, all_of_above)
+FACT-9: Combining RoxyBond with other abused drugs significantly increases the risk of respiratory depression and overdose :: HigherRisk(roxybond, other_abused_drugs)
+FACT-10: Patients with prolonged opioid use are not at higher risk based solely on past experience with opioids :: ¬HigherRisk(roxybond, prolonged_opioid_use)
+FACT-11: Option C specifies a direct interaction between RoxyBond and other substances, making it more specific and relevant than "all of the above" :: ¬HigherRisk(roxybond, all_of_above)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing a substance or population that presents a higher risk is the answer :: ∀o∀s (Describes(o, s) ∧ HigherRisk(roxybond, s) → Answer(o))
+RULE-2: An option describing a substance or population that does not present a higher risk is not the answer :: ∀o∀s (Describes(o, s) ∧ ¬HigherRisk(roxybond, s) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option C is the answer, from FACT-7, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_c)
+INF-2: Option A is not the answer, from FACT-5, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-3: Option D is not the answer, from FACT-8, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

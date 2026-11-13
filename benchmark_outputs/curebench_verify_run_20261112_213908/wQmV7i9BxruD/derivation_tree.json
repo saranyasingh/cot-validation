@@ -1,0 +1,234 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is freezer storage",
+      "formula": "Describes(option_a, freezer)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is room temperature storage",
+      "formula": "Describes(option_b, room_temperature)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is a high-humidity environment",
+      "formula": "Describes(option_c, high_humidity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is storage below 0\u00b0C",
+      "formula": "Describes(option_d, below_zero)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Freezer storage risks damaging the medication through ice crystal formation and chemical changes",
+      "formula": "Damaging(freezer)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The one FDA label lookup for sterile water returned no storage text, so there was no evidence on ice crystal formation.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Room temperature storage preserves the integrity and sterility of the medication",
+      "formula": "Preserves(room_temperature)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The FDA label lookup returned no storage text on room temperature storage.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "A high-humidity environment risks condensation, microbial growth and deterioration",
+      "formula": "Damaging(high_humidity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: No label evidence on high-humidity storage.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Storage below 0\u00b0C risks freezing and crystallization, making it risky",
+      "formula": "Damaging(below_zero)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: No label evidence on storage below 0\u00b0C.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A storage condition that risks damaging the sterile medication is not appropriate",
+      "formula": "\u2200c (Damaging(c) \u2192 \u00acAppropriate(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A storage condition that preserves the medication's integrity is appropriate",
+      "formula": "\u2200c (Preserves(c) \u2192 Appropriate(c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing an appropriate storage condition is the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 Appropriate(c)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing an inappropriate storage condition is not the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 \u00acAppropriate(c)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Freezer storage is not appropriate, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAppropriate(freezer)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, INF-1, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Room temperature storage is appropriate, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Appropriate(room_temperature)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "A high-humidity environment is not appropriate, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAppropriate(high_humidity)",
+      "premises": [
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Storage below 0\u00b0C is not appropriate, from FACT-8 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAppropriate(below_zero)",
+      "premises": [
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, INF-6, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-6",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-2, INF-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: The one FDA label lookup for sterile water returned no storage text, so there was no evidence on ice crystal formation."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The FDA label lookup returned no storage text on room temperature storage."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: No label evidence on high-humidity storage."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: No label evidence on storage below 0\u00b0C."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Inspra's label indicates it for managing hyperkalemia associated with renal impairment",
+      "formula": "HasProperty(inspra, indicated_hyperkalemia_renal)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-454433: Inspra is indicated for post-MI heart failure and hypertension, not for hyperkalemia.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "A potassium level of 6.0 mEq/L requires immediate intervention",
+      "formula": "HasProperty(potassium_6_0, requires_immediate_intervention)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-5881d1",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Inspra effectively lowers serum potassium levels",
+      "formula": "HasProperty(inspra, lowers_potassium)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-5881d1: Inspra is an aldosterone antagonist that raises the risk of hyperkalemia. The label says to withhold it at potassium \u22656.0.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Inspra does not have significant side effects within therapeutic ranges",
+      "formula": "HasProperty(inspra, no_significant_side_effects)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-5881d1: The label ties higher doses to an increased risk of hyperkalemia and requires potassium-based dose adjustment.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Withholding Inspra would significantly increase the risk of escalating hyperkalemia",
+      "formula": "HasProperty(withholding_inspra, escalating_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-5881d1: At potassium \u22656.0 the label says to withhold Inspra, which removes the source of the potassium rise.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option A is reducing the dose",
+      "formula": "Describes(option_a, reduce_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option B is continuing the current dose",
+      "formula": "Describes(option_b, continue_dose)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by the question: Option B is \"Withhold Inspra therapy\"; continuing the current dose is option C.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option D is increasing the dose",
+      "formula": "Describes(option_d, increase_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Reducing the dose may exacerbate the problem by lowering effectiveness and causing higher potassium",
+      "formula": "HasProperty(reduce_dose, exacerbates_hyperkalemia)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label does not say that reducing the dose raises potassium. It does direct a dose decrease at potassium 5.5\u20135.9.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Increasing the dose is not recommended based on the given information",
+      "formula": "HasProperty(increase_dose, not_recommended)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-5881d1",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Anything with an escalating hyperkalemia risk would likely result in an uncontrolled rise in potassium",
+      "formula": "\u2200x (HasProperty(x, escalating_risk) \u2192 HasProperty(x, uncontrolled_rise))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If Inspra is indicated, the potassium level requires intervention, Inspra lowers potassium and is safe, and withholding it causes an uncontrolled rise, then continuing the current dose is the most appropriate action",
+      "formula": "\u2200x (HasProperty(inspra, indicated_hyperkalemia_renal) \u2227 HasProperty(potassium_6_0, requires_immediate_intervention) \u2227 HasProperty(inspra, lowers_potassium) \u2227 HasProperty(inspra, no_significant_side_effects) \u2227 HasProperty(withholding_inspra, uncontrolled_rise) \u2192 HasProperty(continue_dose, most_appropriate))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-5881d1: The label says to withhold Inspra at potassium \u22656.0, not to continue the current dose.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing the most appropriate action is the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 HasProperty(a, most_appropriate) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An action that exacerbates hyperkalemia is not the most appropriate action",
+      "formula": "\u2200a (HasProperty(a, exacerbates_hyperkalemia) \u2192 \u00acHasProperty(a, most_appropriate))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "An action that is not recommended is not the most appropriate action",
+      "formula": "\u2200a (HasProperty(a, not_recommended) \u2192 \u00acHasProperty(a, most_appropriate))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-6": {
+      "type": "rule",
+      "gloss": "An option describing an action that is not the most appropriate is not the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 \u00acHasProperty(a, most_appropriate) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Withholding Inspra would likely result in an uncontrolled rise in potassium, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "HasProperty(withholding_inspra, uncontrolled_rise)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Continuing the current dose is the most appropriate action, from FACT-1, FACT-2, FACT-3, FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "HasProperty(continue_dose, most_appropriate)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-7, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-7",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Reducing the dose is not the most appropriate action, from FACT-9 and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acHasProperty(reduce_dose, most_appropriate)",
+      "premises": [
+        "FACT-9",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-6, INF-4, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-6",
+        "INF-4",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Increasing the dose is not the most appropriate action, from FACT-10 and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acHasProperty(increase_dose, most_appropriate)",
+      "premises": [
+        "FACT-10",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-8, INF-6, and RULE-6 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-8",
+        "INF-6",
+        "RULE-6"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-454433: Inspra is indicated for post-MI heart failure and hypertension, not for hyperkalemia."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-5881d1: Inspra is an aldosterone antagonist that raises the risk of hyperkalemia. The label says to withhold it at potassium \u22656.0."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-5881d1: The label ties higher doses to an increased risk of hyperkalemia and requires potassium-based dose adjustment."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-5881d1: At potassium \u22656.0 the label says to withhold Inspra, which removes the source of the potassium rise."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "CONTRADICTED by the question: Option B is \"Withhold Inspra therapy\"; continuing the current dose is option C."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label does not say that reducing the dose raises potassium. It does direct a dose decrease at potassium 5.5\u20135.9."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-5881d1: The label says to withhold Inspra at potassium \u22656.0, not to continue the current dose."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

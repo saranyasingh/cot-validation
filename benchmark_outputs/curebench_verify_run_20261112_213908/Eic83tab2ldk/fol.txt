@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+TestedFertility(d) — drug d was tested for its effect on fertility in rats
+HighestTested(d, x) — dose x is the highest oral dose of drug d that was tested
+NoImpairedFertility(d, x) — oral dose x of drug d showed no evidence of impaired fertility
+Describes(o, x) — answer option o states dose x
+Answer(o) — option o is the correct answer
+Constants:
+albuterol_sulfate, dose_2, dose_50, dose_500, dose_100, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Albuterol sulfate has been tested for its effect on fertility :: TestedFertility(albuterol_sulfate)
+FACT-2: Option A is 2 mg/kg :: Describes(option_a, dose_2)
+FACT-3: Option B is 50 mg/kg :: Describes(option_b, dose_50)
+FACT-4: Option C is 500 mg/kg :: Describes(option_c, dose_500)
+FACT-5: Option D is 100 mg/kg :: Describes(option_d, dose_100)
+FACT-6: The highest oral dose of albuterol sulfate tested is 500 mg/kg :: HighestTested(albuterol_sulfate, dose_500)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug was tested for fertility, the highest dose tested demonstrates no evidence of impaired fertility :: ∀d∀x (TestedFertility(d) ∧ HighestTested(d, x) → NoImpairedFertility(d, x))
+RULE-2: An option stating a dose that showed no evidence of impaired fertility is the answer :: ∀o∀x (Describes(o, x) ∧ NoImpairedFertility(albuterol_sulfate, x) → Answer(o))
+
+## INFERENCES
+INF-1: The 500 mg/kg dose shows no evidence of impaired fertility, from FACT-1, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: NoImpairedFertility(albuterol_sulfate, dose_500)
+INF-2: Option C is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_c)

@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+Blocks(b, p) — sunscreen brand b blocks p percent of UV radiation
+Describes(o, n) — answer option o is the SPF value n
+Adequate(n) — SPF value n gives adequate protection to reduce skin cancer risk and early aging
+Recommended(n) — n is the minimum SPF value the guidelines recommend
+Answer(o) — option o is the correct answer
+Constants:
+brand_70, 70, 5, 10, 15, 30, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The sunscreen branded '70%' blocks 70% of UV rays :: Blocks(brand_70, 70)
+FACT-2: Option A is SPF 5 :: Describes(option_a, 5)
+FACT-3: Option B is SPF 10 :: Describes(option_b, 10)
+FACT-4: Option C is SPF 15 :: Describes(option_c, 15)
+FACT-5: Option D is SPF 30 :: Describes(option_d, 30)
+FACT-6: SPF 5 would not provide adequate protection :: ¬Adequate(5)
+FACT-7: SPF 10 is still insufficient :: ¬Adequate(10)
+FACT-8: SPF 30 provides excellent protection and could meet the requirement :: Adequate(30)
+FACT-9: The explanation says SPF 15 may suffice if used correctly :: Adequate(15)
+
+## OPERATIONS
+
+## RULES
+RULE-1: For a brand blocking 70% of UV, an adequate SPF value is the minimum recommended value if the lower values 5 and 10 are not adequate :: ∀b∀n (Blocks(b, 70) ∧ Adequate(n) ∧ ¬Adequate(5) ∧ ¬Adequate(10) → Recommended(n))
+RULE-2: The explanation holds that the most appropriate choice is the option that is SPF 15, given that SPF 15 may suffice :: ∀o (Describes(o, 15) ∧ Adequate(15) → Answer(o))
+
+## INFERENCES
+INF-1: SPF 30 is the recommended minimum SPF for the '70%' sunscreen, from FACT-1, FACT-6, FACT-7, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens :: Recommended(30)
+INF-2: Option C is the answer, from FACT-4, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_c)

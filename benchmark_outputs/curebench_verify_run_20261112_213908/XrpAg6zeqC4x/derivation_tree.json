@@ -1,0 +1,127 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Stiolto Respimat is a bronchodilator inhaler that contains albuterol as the active ingredient",
+      "formula": "Contains(stiolto_respimat, albuterol)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-7ef879: Stiolto Respimat contains tiotropium bromide and olodaterol, not albuterol.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The combination of albuterol and MAOIs increases sympathetic activity (vasoconstriction, increased heart rate)",
+      "formula": "Increases(maois, sympathetic_activity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label says MAOIs may potentiate the action of adrenergic agonists on the cardiovascular system. It does not mention vasoconstriction or heart rate, and it concerns olodaterol, not albuterol.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Combined with MAOIs, albuterol could further elevate blood pressure and contribute to vascular constriction",
+      "formula": "Increases(maois, blood_pressure)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label gives no statement about blood pressure elevation or vascular constriction.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Elevated blood pressure and vascular constriction increase the risk of orthostatic hypotension",
+      "formula": "Causes(blood_pressure, orthostatic_hypotension_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I found nothing in the label on orthostatic hypotension.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Orthostatic hypotension can result in dizziness, fainting, and falls",
+      "formula": "Causes(orthostatic_hypotension_risk, dizziness_fainting_falls)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I found nothing in the label on dizziness, fainting or falls.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option B states that MAOIs may potentiate cardiovascular effects of adrenergic agonists",
+      "formula": "Interacts(maois, albuterol)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug class increases sympathetic activity or blood pressure when combined with a drug, it potentiates that drug's cardiovascular effects",
+      "formula": "\u2200c\u2200d (Increases(c, sympathetic_activity) \u2227 Increases(c, blood_pressure) \u2192 Interacts(c, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-7ef879",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a product contains a drug that a class potentiates, the class potentiates cardiovascular effects for users of that product, so the option stating this is the answer",
+      "formula": "\u2200p\u2200d\u2200c (Contains(p, d) \u2227 Interacts(c, d) \u2192 Answer(option_b))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "MAOIs potentiate the cardiovascular effects of albuterol, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Interacts(maois, albuterol)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-7ef879: Stiolto Respimat contains tiotropium bromide and olodaterol, not albuterol."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label says MAOIs may potentiate the action of adrenergic agonists on the cardiovascular system. It does not mention vasoconstriction or heart rate, and it concerns olodaterol, not albuterol."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label gives no statement about blood pressure elevation or vascular constriction."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "UNVERIFIED: I found nothing in the label on orthostatic hypotension."
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: I found nothing in the label on dizziness, fainting or falls."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

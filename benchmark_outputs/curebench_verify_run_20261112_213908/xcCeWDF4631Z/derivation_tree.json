@@ -1,0 +1,96 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Terbinafine is approved for the treatment of dermatophytosis",
+      "formula": "Approved(terbinafine, dermatophytosis)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-44f3a2: The label indicates terbinafine tablets for onychomycosis due to dermatophytes (tinea unguium). It does not list general dermatophytosis.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Elderly patients may have reduced liver, kidney, and cardiac function",
+      "formula": "ReducedFunction(elderly_patients)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-978430",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Lower doses are more tolerable and less likely to cause side effects in elderly patients",
+      "formula": "Tolerable(elderly_patients)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label says to start at the low end of the dosing range. It does not say that lower doses are more tolerable or less likely to cause side effects in elderly patients.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is to start at the low end of the dosing range due to potential decreased hepatic, renal, or cardiac function",
+      "formula": "LowDoseRecommended(terbinafine, elderly_patients)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug is approved for a condition and a patient group may have reduced organ function and tolerates lower doses better, then starting at the low end of the dosing range is the most appropriate recommendation for that group",
+      "formula": "\u2200d\u2200c\u2200p (Approved(d, c) \u2227 ReducedFunction(p) \u2227 Tolerable(p) \u2192 LowDoseRecommended(d, p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-978430",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If starting at the low end of the dosing range is the most appropriate recommendation for elderly patients, then option C (which states this) is the answer",
+      "formula": "\u2200d (LowDoseRecommended(d, elderly_patients) \u2192 Answer(option_c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Starting at the low end of the dosing range is the most appropriate recommendation for elderly patients on terbinafine, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "LowDoseRecommended(terbinafine, elderly_patients)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-44f3a2: The label indicates terbinafine tablets for onychomycosis due to dermatophytes (tinea unguium). It does not list general dermatophytosis."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label says to start at the low end of the dosing range. It does not say that lower doses are more tolerable or less likely to cause side effects in elderly patients."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

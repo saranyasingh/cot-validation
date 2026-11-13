@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated for condition c
+LabelSpecifies(d, c) — the label of drug d gives specific instructions for patients with condition c
+CautionAdvised(d, c) — caution should be exercised when administering drug d in condition c
+Describes(o, a) — answer option o states approach a
+Answer(o) — option o is the correct answer
+Constants:
+paxlovid, sars_cov_2, severe_hepatic_impairment, not_recommended, option_b
+
+## FACTS
+FACT-1: Paxlovid is indicated for SARS-CoV-2 infection :: Indicated(paxlovid, sars_cov_2)
+FACT-2: The Paxlovid label gives no specific instructions for severe hepatic impairment :: ¬LabelSpecifies(paxlovid, severe_hepatic_impairment)
+FACT-3: Option B states that Paxlovid is not recommended for use :: Describes(option_b, not_recommended)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug's label gives no specific instructions for a condition, caution should be exercised when administering the drug in that condition :: ∀d∀c (¬LabelSpecifies(d, c) → CautionAdvised(d, c))
+RULE-2: If caution is advised for a drug in a condition, an option stating a not-recommended (cautious) approach is the answer :: ∀d∀c∀o ((CautionAdvised(d, c) ∧ Describes(o, not_recommended)) → Answer(o))
+
+## INFERENCES
+INF-1: Caution should be exercised when administering Paxlovid in severe hepatic impairment, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: CautionAdvised(paxlovid, severe_hepatic_impairment)
+INF-2: Option B is the answer, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

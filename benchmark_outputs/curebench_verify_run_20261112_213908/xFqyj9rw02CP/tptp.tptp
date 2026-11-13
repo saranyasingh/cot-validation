@@ -1,0 +1,23 @@
+% --- FACTS ---
+fof(fact_1, axiom, contraindicated(terbinafine, active_liver_disease)).
+fof(fact_2, axiom, describes(option_a, chronic_liver_disease)).
+fof(fact_3, axiom, describes(option_b, active_liver_disease)).
+fof(fact_4, axiom, describes(option_c, allergy_history)).
+fof(fact_5, axiom, prior_reaction(terbinafine, allergy_history)).
+fof(fact_6, axiom, encompasses(option_d, chronic_liver_disease)).
+fof(fact_7, axiom, encompasses(option_d, active_liver_disease)).
+
+% --- OPERATIONS ---
+
+% --- RULES ---
+fof(rule_1, axiom, ! [O,C] : ((describes(O, C) & contraindicated(terbinafine, C)) => ~answer(O))).
+fof(rule_2, axiom, ! [D,C] : (prior_reaction(D, C) => contraindicated(D, C))).
+fof(rule_3, axiom, ! [O,X,Y] : ((encompasses(O, X) & encompasses(O, Y) & contraindicated(terbinafine, Y)) => answer(O))).
+
+% --- INFERENCES ---
+% From fact_3, fact_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, ~answer(option_b)).
+% From fact_5, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, contraindicated(terbinafine, allergy_history)).
+% From fact_6, fact_7, fact_1, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, answer(option_d)).

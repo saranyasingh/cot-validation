@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+AdverseEffect(d, r) — r is listed as an adverse effect of drug d
+Severe(r) — reaction r is a severe adverse event
+Describes(o, a) — answer option o describes action a
+Appropriate(a, r) — action a is the appropriate response to reaction r
+Answer(o) — option o is the correct answer
+Constants:
+levalbuterol, hypersensitivity, increase_dose, discontinue, corticosteroids, monitor_only, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Immediate hypersensitivity reactions are listed as adverse effects of Levalbuterol :: AdverseEffect(levalbuterol, hypersensitivity)
+FACT-2: Option A is to increase the dose :: Describes(option_a, increase_dose)
+FACT-3: Option B is to discontinue Levalbuterol immediately :: Describes(option_b, discontinue)
+FACT-4: Option C is to administer corticosteroids :: Describes(option_c, corticosteroids)
+FACT-5: Option D is to monitor the patient closely without changing treatment :: Describes(option_d, monitor_only)
+FACT-6: Corticosteroids do not address the underlying cause of the reaction, so they are not the appropriate response :: ¬Appropriate(corticosteroids, hypersensitivity)
+FACT-7: Monitoring without changing treatment does not address the immediate problem, so it is not the appropriate response :: ¬Appropriate(monitor_only, hypersensitivity)
+FACT-8: Increasing the dose is not the appropriate response :: ¬Appropriate(increase_dose, hypersensitivity)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A reaction listed as an adverse effect of a drug indicates a severe adverse event that should be taken seriously :: ∀d∀r (AdverseEffect(d, r) → Severe(r))
+RULE-2: For a severe hypersensitivity reaction, discontinuing the drug immediately is the appropriate response :: ∀r (Severe(r) → Appropriate(discontinue, r))
+RULE-3: An option describing the appropriate action is the answer :: ∀o∀a∀r ((Describes(o, a) ∧ Appropriate(a, r)) → Answer(o))
+RULE-4: An option describing an action that is not appropriate is not the answer :: ∀o∀a∀r ((Describes(o, a) ∧ ¬Appropriate(a, r)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Hypersensitivity is a severe adverse event, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Severe(hypersensitivity)
+INF-2: Discontinuing the drug is the appropriate response, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Appropriate(discontinue, hypersensitivity)
+INF-3: Option A is not the answer, from FACT-2, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-4: Option C is not the answer, from FACT-4, FACT-6, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-5: Option D is not the answer, from FACT-5, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-6: Option B is the answer, from FACT-3, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)

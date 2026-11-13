@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+IndicatorZero(d) — the dose indicator of device d has reached 0
+Insufficient(d) — insufficient medication remains in device d to complete another inhalation
+Resolves(a, d) — action a appropriately addresses the empty-indicator situation of device d
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+stiolto_respimat, continue_same_cartridge, new_inhaler, turn_clear_base, clean_mouthpiece, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The dose indicator on Stiolto Respimat has reached 0 :: IndicatorZero(stiolto_respimat)
+FACT-2: Option A is continuing to use the inhaler with the same cartridge until it is empty :: Describes(option_a, continue_same_cartridge)
+FACT-3: Option B is preparing and using a new Stiolto Respimat inhaler :: Describes(option_b, new_inhaler)
+FACT-4: Option C is turning the clear base to reset the dose indicator :: Describes(option_c, turn_clear_base)
+FACT-5: Option D is cleaning the mouthpiece and continuing to use the inhaler :: Describes(option_d, clean_mouthpiece)
+FACT-6: Preparing and using a new Stiolto Respimat inhaler provides continuous and reliable dosing, so it is the appropriate course of action :: Resolves(new_inhaler, stiolto_respimat)
+FACT-7: Turning the clear base is not recommended, as it disrupts alignment and affects performance, so it does not appropriately address the situation :: ¬Resolves(turn_clear_base, stiolto_respimat)
+FACT-8: Cleaning the mouthpiece does not address the core issue of inadequate medication being delivered :: ¬Resolves(clean_mouthpiece, stiolto_respimat)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a device's dose indicator reaches 0, insufficient medication remains to complete another inhalation :: ∀d (IndicatorZero(d) → Insufficient(d))
+RULE-2: If insufficient medication remains in a device, continuing to use the same cartridge does not resolve the situation (incomplete, ineffective treatment) :: ∀d (Insufficient(d) → ¬Resolves(continue_same_cartridge, d))
+RULE-3: An option describing an action that appropriately addresses the situation is the answer :: ∀o∀a∀d (Describes(o, a) ∧ Resolves(a, d) → Answer(o))
+RULE-4: An option describing an action that does not appropriately address the situation is not the answer :: ∀o∀a∀d (Describes(o, a) ∧ ¬Resolves(a, d) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Stiolto Respimat has insufficient medication remaining, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Insufficient(stiolto_respimat)
+INF-2: Continuing to use the same cartridge does not resolve the situation, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Resolves(continue_same_cartridge, stiolto_respimat)
+INF-3: Option A is not the answer, from FACT-2, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-4: Option C is not the answer, from FACT-4, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-5: Option D is not the answer, from FACT-5, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-6: Option B is the answer, from FACT-3, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)

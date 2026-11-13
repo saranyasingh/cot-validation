@@ -1,0 +1,230 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Symbyax contains fluoxetine",
+      "formula": "Contains(symbyax, fluoxetine_hcl)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ab231b",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Symbyax contains olanzapine",
+      "formula": "Contains(symbyax, olanzapine)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ab231b",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Symbyax's label says it should not be used with SSRIs such as Fluoxetine",
+      "formula": "AvoidWith(symbyax, fluoxetine_capsules)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The Symbyax label says SYMBYAX contains fluoxetine, an SSRI, and that other SSRIs raise the risk of serotonin syndrome. In the sections retrieved, I found no statement that it \"should not be used with SSRIs such as Fluoxetine.\"",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Sarafem contains fluoxetine hydrochloride",
+      "formula": "Contains(sarafem, fluoxetine_hcl)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-3e32a4",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Sarafem's label says it should not be combined with any SSRI, including Fluoxetine",
+      "formula": "AvoidWith(sarafem, fluoxetine_capsules)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The Sarafem label lists SSRI-related warnings, but in the retrieved portion I found no statement that it should not be combined with any SSRI, including Fluoxetine.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Prozac Weekly contains fluoxetine hydrochloride",
+      "formula": "Contains(prozac_weekly, fluoxetine_hcl)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-158c7f",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Prozac Weekly does not contain SSRIs",
+      "formula": "\u00acContains(prozac_weekly, ssris)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-158c7f: Prozac Weekly contains fluoxetine hydrochloride, which is itself an SSRI. The label calls PROZAC \"a selective serotonin reuptake inhibitor.\"",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option A is Symbyax",
+      "formula": "Covers(option_a, symbyax)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Option B is Sarafem",
+      "formula": "Covers(option_b, sarafem)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Option C is Prozac Weekly",
+      "formula": "Covers(option_c, prozac_weekly)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Option D (all of the above) includes Symbyax",
+      "formula": "Covers(option_d, symbyax)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "Option D (all of the above) includes Sarafem",
+      "formula": "Covers(option_d, sarafem)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-13": {
+      "type": "fact",
+      "gloss": "Option D (all of the above) includes Prozac Weekly",
+      "formula": "Covers(option_d, prozac_weekly)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A medication that does not contain SSRIs gives no indication of an interaction requiring avoidance with Fluoxetine capsules",
+      "formula": "\u2200m (\u00acContains(m, ssris) \u2192 \u00acAvoidWith(m, fluoxetine_capsules))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-158c7f: Fluoxetine products are themselves SSRIs, so \"does not contain SSRIs\" does not apply to them. Duplicate fluoxetine therapy is also a concern, because the label says serotonergic drugs raise the risk of serotonin syndrome.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A medication containing fluoxetine hydrochloride is a candidate for being incompatible with Fluoxetine capsules",
+      "formula": "\u2200m (Contains(m, fluoxetine_hcl) \u2192 Candidate(m))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-3e32a4",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If Symbyax and Sarafem are both not to be taken with Fluoxetine capsules, and all three medications are candidates for incompatibility, the option covering all three is the answer",
+      "formula": "\u2200o ((Covers(o, symbyax) \u2227 Covers(o, sarafem) \u2227 Covers(o, prozac_weekly) \u2227 AvoidWith(symbyax, fluoxetine_capsules) \u2227 AvoidWith(sarafem, fluoxetine_capsules) \u2227 Candidate(symbyax) \u2227 Candidate(sarafem) \u2227 Candidate(prozac_weekly)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "No indication that Prozac Weekly must be avoided with Fluoxetine capsules, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAvoidWith(prozac_weekly, fluoxetine_capsules)",
+      "premises": [
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Symbyax is a candidate for incompatibility, from FACT-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Candidate(symbyax)",
+      "premises": [
+        "FACT-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Sarafem is a candidate for incompatibility, from FACT-4 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Candidate(sarafem)",
+      "premises": [
+        "FACT-4",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Prozac Weekly is a candidate for incompatibility, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Candidate(prozac_weekly)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-3, FACT-5, FACT-11, FACT-12, FACT-13, INF-2, INF-3, INF-4, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-3",
+        "FACT-5",
+        "FACT-11",
+        "FACT-12",
+        "FACT-13",
+        "INF-2",
+        "INF-3",
+        "INF-4",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "UNVERIFIED: The Symbyax label says SYMBYAX contains fluoxetine, an SSRI, and that other SSRIs raise the risk of serotonin syndrome. In the sections retrieved, I found no statement that it \"should not be used with SSRIs such as Fluoxetine.\""
+    },
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: The Sarafem label lists SSRI-related warnings, but in the retrieved portion I found no statement that it should not be combined with any SSRI, including Fluoxetine."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-158c7f: Prozac Weekly contains fluoxetine hydrochloride, which is itself an SSRI. The label calls PROZAC \"a selective serotonin reuptake inhibitor.\""
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-158c7f: Fluoxetine products are themselves SSRIs, so \"does not contain SSRIs\" does not apply to them. Duplicate fluoxetine therapy is also a concern, because the label says serotonergic drugs raise the risk of serotonin syndrome."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

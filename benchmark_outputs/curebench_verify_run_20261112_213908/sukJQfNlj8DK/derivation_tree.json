@@ -1,0 +1,88 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Pemetrexed's label says it may cause severe hypersensitivity reactions, including anaphylaxis",
+      "formula": "Causes(pemetrexed, severe_hypersensitivity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The warnings and cautions section lists myelosuppression, renal failure, skin toxicity, pneumonitis, radiation recall and embryo-fetal toxicity. It does not list hypersensitivity or anaphylaxis. The contraindications section does cite a history of severe hypersensitivity reaction to pemetrexed.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Severe hypersensitivity reactions such as anaphylaxis require immediate medical attention and could lead to death",
+      "formula": "RequiresAttention(severe_hypersensitivity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The labels I retrieved say nothing about anaphylaxis requiring immediate attention or causing death.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option A is a history of severe hypersensitivity reaction to Pemetrexed",
+      "formula": "Describes(option_a, severe_hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug can cause a condition that requires immediate attention and may be fatal, a history of that condition must be considered before prescribing the drug",
+      "formula": "\u2200d\u2200c ((Causes(d, c) \u2227 RequiresAttention(c)) \u2192 Consider(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a condition that must be considered before prescribing pemetrexed is the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 Consider(pemetrexed, c)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "A history of severe hypersensitivity must be considered before prescribing pemetrexed, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Consider(pemetrexed, severe_hypersensitivity)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: The warnings and cautions section lists myelosuppression, renal failure, skin toxicity, pneumonitis, radiation recall and embryo-fetal toxicity. It does not list hypersensitivity or anaphylaxis. The contraindications section does cite a history of severe hypersensitivity reaction to pemetrexed."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The labels I retrieved say nothing about anaphylaxis requiring immediate attention or causing death."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

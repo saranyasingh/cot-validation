@@ -1,0 +1,158 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The sunscreen branded '70%' blocks 70% of UV rays",
+      "formula": "Blocks(brand_70, 70)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The sunscreen lookups found nothing about a brand called '70%' or what it blocks.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is SPF 5",
+      "formula": "Describes(option_a, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is SPF 10",
+      "formula": "Describes(option_b, 10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is SPF 15",
+      "formula": "Describes(option_c, 15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is SPF 30",
+      "formula": "Describes(option_d, 30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "SPF 5 would not provide adequate protection",
+      "formula": "\u00acAdequate(5)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookups returned no statement on whether SPF 5 is adequate.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "SPF 10 is still insufficient",
+      "formula": "\u00acAdequate(10)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookups returned no statement on whether SPF 10 is adequate.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "SPF 30 provides excellent protection and could meet the requirement",
+      "formula": "Adequate(30)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookups returned labels for SPF 30 and SPF 15 products. They state the same skin-cancer and early-aging claim for both, but they don't say how protective SPF 30 is.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "The explanation says SPF 15 may suffice if used correctly",
+      "formula": "Adequate(15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookups showed nothing on whether SPF 15 may suffice if used correctly. They only show an SPF 15 product carrying the skin-cancer and early-aging claim.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "For a brand blocking 70% of UV, an adequate SPF value is the minimum recommended value if the lower values 5 and 10 are not adequate",
+      "formula": "\u2200b\u2200n (Blocks(b, 70) \u2227 Adequate(n) \u2227 \u00acAdequate(5) \u2227 \u00acAdequate(10) \u2192 Recommended(n))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The explanation holds that the most appropriate choice is the option that is SPF 15, given that SPF 15 may suffice",
+      "formula": "\u2200o (Describes(o, 15) \u2227 Adequate(15) \u2192 Answer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: No source states the 'explanation' the rule refers to. The labels show only that the skin-cancer and early-aging claim appears on SPF 15 and SPF 30 products [ev-7c61e0].",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "SPF 30 is the recommended minimum SPF for the '70%' sunscreen, from FACT-1, FACT-6, FACT-7, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Recommended(30)",
+      "premises": [
+        "FACT-1",
+        "FACT-6",
+        "FACT-7",
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-4, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: The sunscreen lookups found nothing about a brand called '70%' or what it blocks."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookups returned no statement on whether SPF 5 is adequate."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookups returned no statement on whether SPF 10 is adequate."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookups returned labels for SPF 30 and SPF 15 products. They state the same skin-cancer and early-aging claim for both, but they don't say how protective SPF 30 is."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookups showed nothing on whether SPF 15 may suffice if used correctly. They only show an SPF 15 product carrying the skin-cancer and early-aging claim."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: No source states the 'explanation' the rule refers to. The labels show only that the skin-cancer and early-aging claim appears on SPF 15 and SPF 30 products [ev-7c61e0]."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

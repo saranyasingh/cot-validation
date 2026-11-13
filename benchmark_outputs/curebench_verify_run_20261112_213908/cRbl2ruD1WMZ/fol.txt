@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Indicated(d, i) — the label of drug d lists i as an indicated use
+Describes(o, i) — answer option o describes use i
+Answer(o) — option o is the correct answer (the use that is NOT indicated)
+Constants:
+up_and_up_ibuprofen, sleeplessness, minor_aches_pains, chronic_pain, stay_asleep, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is relief of occasional sleeplessness :: Describes(option_a, sleeplessness)
+FACT-2: Option B is relief of minor aches and pains :: Describes(option_b, minor_aches_pains)
+FACT-3: Option C is treatment of chronic pain conditions :: Describes(option_c, chronic_pain)
+FACT-4: Option D is helping users stay asleep :: Describes(option_d, stay_asleep)
+FACT-5: The Up and Up Ibuprofen label does not specifically mention sleeplessness as an indication :: ¬Indicated(up_and_up_ibuprofen, sleeplessness)
+FACT-6: The Up and Up Ibuprofen label states relief of minor aches and pains under Indications :: Indicated(up_and_up_ibuprofen, minor_aches_pains)
+FACT-7: Chronic pain conditions are not listed among the label's indications :: ¬Indicated(up_and_up_ibuprofen, chronic_pain)
+FACT-8: The "users stay asleep" wording in the label is a general statement, not an explicit indication :: ¬Indicated(up_and_up_ibuprofen, stay_asleep)
+
+## OPERATIONS
+
+## RULES
+RULE-1: The question asks which use is NOT indicated, so an option describing a use the label does not list as indicated is the answer :: ∀o∀i (Describes(o, i) ∧ ¬Indicated(up_and_up_ibuprofen, i) → Answer(o))
+RULE-2: An option describing a use the label lists as indicated is not the answer :: ∀o∀i (Describes(o, i) ∧ Indicated(up_and_up_ibuprofen, i) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option B is not the answer, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-2: Option C is the answer, from FACT-3, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_c)

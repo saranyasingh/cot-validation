@@ -1,0 +1,180 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Severe allergic reactions are a known side effect of fosaprepitant",
+      "formula": "SideEffect(fosaprepitant, severe_allergic_reaction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6d154a",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Severe allergic reactions (hives, difficulty breathing, swelling of the face, lips, tongue or throat) indicate anaphylaxis, a life-threatening condition requiring immediate intervention",
+      "formula": "Severe(severe_allergic_reaction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6d154a",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option A is waiting for symptoms to resolve on their own",
+      "formula": "Describes(option_a, wait_resolve)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option B is informing the healthcare provider immediately and seeking emergency medical care",
+      "formula": "Describes(option_b, seek_emergency_care)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option C is stopping chemotherapy permanently",
+      "formula": "Describes(option_c, stop_chemo_permanently)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option D is taking over-the-counter antihistamines",
+      "formula": "Describes(option_d, take_otc_antihistamines)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Waiting for symptoms to resolve is not appropriate for a severe allergic reaction",
+      "formula": "\u00acAppropriate(wait_resolve, severe_allergic_reaction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-011d58",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Seeking emergency care is appropriate for a severe allergic reaction",
+      "formula": "Appropriate(seek_emergency_care, severe_allergic_reaction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-011d58",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Stopping chemotherapy permanently is not appropriate for the severe allergic reaction",
+      "formula": "\u00acAppropriate(stop_chemo_permanently, severe_allergic_reaction)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label says to discontinue fosaprepitant and not to reinitiate it after a reaction. It says nothing about stopping chemotherapy permanently, so I found no evidence either way.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Taking over-the-counter antihistamines is not appropriate for a severe allergic reaction",
+      "formula": "\u00acAppropriate(take_otc_antihistamines, severe_allergic_reaction)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label advises seeking immediate medical attention. It does not mention OTC antihistamines, so I found no evidence either way.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug has a severe side effect that is a severe reaction, the correct response to that reaction is the appropriate action, so an option describing an appropriate action is the answer",
+      "formula": "\u2200o\u2200a\u2200c\u2200d ((SideEffect(d, c) \u2227 Severe(c) \u2227 Describes(o, a) \u2227 Appropriate(a, c)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-011d58",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing an action that is not appropriate for the severe reaction is not the answer",
+      "formula": "\u2200o\u2200a\u2200c\u2200d ((SideEffect(d, c) \u2227 Severe(c) \u2227 Describes(o, a) \u2227 \u00acAppropriate(a, c)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, FACT-2, FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-1, FACT-2, FACT-4, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-4",
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-1, FACT-2, FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-5",
+        "FACT-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-1, FACT-2, FACT-6, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-6",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label says to discontinue fosaprepitant and not to reinitiate it after a reaction. It says nothing about stopping chemotherapy permanently, so I found no evidence either way."
+    },
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label advises seeking immediate medical attention. It does not mention OTC antihistamines, so I found no evidence either way."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

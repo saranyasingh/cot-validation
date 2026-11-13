@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated to treat or manage condition c
+Describes(o, c) — answer option o describes condition c
+NotIndicatedFor(d, c) — drug d has no specific approved indication for condition c
+Answer(o) — option o is the correct answer
+HasPrimaryIndication(d, c) — condition c is the primary indication of drug d
+Constants:
+esomeprazole, gerd_acid_reflux, immediate_heartburn_relief, stomach_ulcers, frequent_heartburn_2_3_times, option_c
+
+## FACTS
+FACT-1: The primary indication for esomeprazole magnesium is gastroesophageal reflux disease (acid reflux disease) :: HasPrimaryIndication(esomeprazole, gerd_acid_reflux)
+FACT-2: Esomeprazole has no specific indication for immediate relief of heartburn symptoms :: NotIndicatedFor(esomeprazole, immediate_heartburn_relief)
+FACT-3: Esomeprazole has no specific indication for management of stomach ulcers :: NotIndicatedFor(esomeprazole, stomach_ulcers)
+FACT-4: Esomeprazole has no approved indication specifically for acid reflux due to frequent heartburn (2-3 times a week) :: NotIndicatedFor(esomeprazole, frequent_heartburn_2_3_times)
+FACT-5: Option C is management of acid reflux disease :: Describes(option_c, gerd_acid_reflux)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A drug's primary indication is a condition it is indicated for :: ∀d∀c (HasPrimaryIndication(d, c) → Indicated(d, c))
+RULE-2: The question asks for an indication of esomeprazole, so an option describing a condition it is indicated for is the answer :: ∀o∀c ((Describes(o, c) ∧ Indicated(esomeprazole, c)) → Answer(o))
+
+## INFERENCES
+INF-1: Esomeprazole is indicated for GERD/acid reflux disease, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Indicated(esomeprazole, gerd_acid_reflux)
+INF-2: Option C is the answer, from FACT-5, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_c)

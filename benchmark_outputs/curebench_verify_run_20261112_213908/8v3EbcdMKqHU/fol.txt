@@ -1,0 +1,36 @@
+## VOCABULARY
+Predicates:
+Approved(d, c) — drug d is approved for the treatment of condition c
+HasLabelInfo(d, i) — the labeling of drug d includes information or warnings i
+RequiresMonitoring(d, a) — extended use of drug d requires action a
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+
+Constants:
+venlafaxine, mdd, gad, side_effects, population_warnings, reevaluate_long_term, increase_dosage, switch_antidepressant, monitor_agitation, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Venlafaxine is approved for major depressive disorder :: Approved(venlafaxine, mdd)
+FACT-2: Venlafaxine is approved for generalized anxiety disorder :: Approved(venlafaxine, gad)
+FACT-3: The venlafaxine labeling includes potential side effects such as dizziness, fatigue, nausea, insomnia, dry mouth, sexual dysfunction and weight gain :: HasLabelInfo(venlafaxine, side_effects)
+FACT-4: The venlafaxine labeling includes warnings for populations with cardiovascular disease, hypertension, diabetes or glaucoma :: HasLabelInfo(venlafaxine, population_warnings)
+FACT-5: Extended use of venlafaxine, a medication with known side effects, requires periodic re-evaluation of its long-term usefulness, assessing whether benefits outweigh risks :: RequiresMonitoring(venlafaxine, reevaluate_long_term)
+FACT-6: Option A is increasing the dosage :: Describes(option_a, increase_dosage)
+FACT-7: Option B is switching to another antidepressant :: Describes(option_b, switch_antidepressant)
+FACT-8: Option C is periodically re-evaluating the long-term usefulness of the drug :: Describes(option_c, reevaluate_long_term)
+FACT-9: Option D is monitoring for psychomotor agitation :: Describes(option_d, monitor_agitation)
+FACT-10: Increasing the dosage does not provide periodic reassessment of long-term usefulness :: ¬RequiresMonitoring(venlafaxine, increase_dosage)
+FACT-11: Switching to another antidepressant does not specifically target long-term evaluation :: ¬RequiresMonitoring(venlafaxine, switch_antidepressant)
+FACT-12: Monitoring for psychomotor agitation does not directly address long-term usefulness evaluation :: ¬RequiresMonitoring(venlafaxine, monitor_agitation)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing an action that extended use of venlafaxine requires is the answer :: ∀o∀a ((Describes(o, a) ∧ RequiresMonitoring(venlafaxine, a)) → Answer(o))
+RULE-2: An option describing an action that extended use of venlafaxine does not require is not the answer :: ∀o∀a ((Describes(o, a) ∧ ¬RequiresMonitoring(venlafaxine, a)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option C is the answer, from FACT-8, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_c)
+INF-2: Option A is not the answer, from FACT-6, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-3: Option B is not the answer, from FACT-7, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-4: Option D is not the answer, from FACT-9, FACT-12, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

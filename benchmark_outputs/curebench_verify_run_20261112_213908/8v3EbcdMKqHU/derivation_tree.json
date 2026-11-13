@@ -1,0 +1,193 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Venlafaxine is approved for major depressive disorder",
+      "formula": "Approved(venlafaxine, mdd)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-8e5ae7",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Venlafaxine is approved for generalized anxiety disorder",
+      "formula": "Approved(venlafaxine, gad)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: This tablet label lists only major depressive disorder under indications. The same label mentions generalized anxiety disorder only in the discontinuation-symptom analyses, not as an approved use.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The venlafaxine labeling includes potential side effects such as dizziness, fatigue, nausea, insomnia, dry mouth, sexual dysfunction and weight gain",
+      "formula": "HasLabelInfo(venlafaxine, side_effects)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-8e5ae7: The adverse reaction table lists dizziness, nausea, insomnia, dry mouth and abnormal ejaculation/impotence. It also shows weight loss (1%), and the label says \"dose-dependent weight loss\". Weight gain is not listed.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The venlafaxine labeling includes warnings for populations with cardiovascular disease, hypertension, diabetes or glaucoma",
+      "formula": "HasLabelInfo(venlafaxine, population_warnings)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The truncated sections I retrieved did not show warnings specific to cardiovascular disease, hypertension, diabetes or glaucoma. They do mention hypertension as an adverse event and in the cimetidine interaction.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Extended use of venlafaxine, a medication with known side effects, requires periodic re-evaluation of its long-term usefulness, assessing whether benefits outweigh risks",
+      "formula": "RequiresMonitoring(venlafaxine, reevaluate_long_term)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-8e5ae7",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option A is increasing the dosage",
+      "formula": "Describes(option_a, increase_dosage)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option B is switching to another antidepressant",
+      "formula": "Describes(option_b, switch_antidepressant)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option C is periodically re-evaluating the long-term usefulness of the drug",
+      "formula": "Describes(option_c, reevaluate_long_term)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Option D is monitoring for psychomotor agitation",
+      "formula": "Describes(option_d, monitor_agitation)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Increasing the dosage does not provide periodic reassessment of long-term usefulness",
+      "formula": "\u00acRequiresMonitoring(venlafaxine, increase_dosage)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Switching to another antidepressant does not specifically target long-term evaluation",
+      "formula": "\u00acRequiresMonitoring(venlafaxine, switch_antidepressant)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "Monitoring for psychomotor agitation does not directly address long-term usefulness evaluation",
+      "formula": "\u00acRequiresMonitoring(venlafaxine, monitor_agitation)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing an action that extended use of venlafaxine requires is the answer",
+      "formula": "\u2200o\u2200a ((Describes(o, a) \u2227 RequiresMonitoring(venlafaxine, a)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-8e5ae7",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing an action that extended use of venlafaxine does not require is not the answer",
+      "formula": "\u2200o\u2200a ((Describes(o, a) \u2227 \u00acRequiresMonitoring(venlafaxine, a)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-8, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-8",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-6, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-6",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-7, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-7",
+        "FACT-11",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-9, FACT-12, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-9",
+        "FACT-12",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: This tablet label lists only major depressive disorder under indications. The same label mentions generalized anxiety disorder only in the discontinuation-symptom analyses, not as an approved use."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-8e5ae7: The adverse reaction table lists dizziness, nausea, insomnia, dry mouth and abnormal ejaculation/impotence. It also shows weight loss (1%), and the label says \"dose-dependent weight loss\". Weight gain is not listed."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "UNVERIFIED: The truncated sections I retrieved did not show warnings specific to cardiovascular disease, hypertension, diabetes or glaucoma. They do mention hypertension as an adverse event and in the cimetidine interaction."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

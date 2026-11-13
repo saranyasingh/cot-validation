@@ -1,0 +1,19 @@
+FACT-1: UNSUPPORTED — CONTRADICTED by tool evidence ev-7ef879: Stiolto Respimat contains tiotropium bromide and olodaterol, not albuterol.
+FACT-2: UNSUPPORTED — UNVERIFIED: The label says MAOIs may potentiate the action of adrenergic agonists on the cardiovascular system. It does not mention vasoconstriction or heart rate, and it concerns olodaterol, not albuterol.
+FACT-3: UNSUPPORTED — UNVERIFIED: The label gives no statement about blood pressure elevation or vascular constriction.
+FACT-4: UNSUPPORTED — UNVERIFIED: I found nothing in the label on orthostatic hypotension.
+FACT-5: UNSUPPORTED — UNVERIFIED: I found nothing in the label on dizziness, fainting or falls.
+FACT-6: SUPPORTED — stated in the question
+RULE-1: PLAUSIBLE — confirmed by tool evidence ev-7ef879
+RULE-2: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 1 (0 returned no data). Provenance claims: 2 (0 with quotes not found in any tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-1 [ev-7ef879] FDA_get_drug_interactions_by_drug_name {"drug_name": "Stiolto Respimat"}
+  quote (exact match): "Stiolto Respimat tiotropium bromide and olodaterol TIOTROPIUM BROMIDE MONOHYDRATE TIOTROPIUM OLODATEROL HYDROCHLORIDE OLODATEROL"
+  tool output: meta: skip: 0 limit: 100 total: 1 results: - openfda.brand name: - stiolto respimat openfda.generic name: - tiotropium bromide and olodaterol spl product data elements: - stiolto respimat tiotropium bromide and olodaterol tiotropium bromide monohydrate tiotropium olodaterol hydrochloride olodaterol drug interactions: - 7 drug interactions other adrenergic drugs may potentiate effect. use with caution. ( 5.3 , 7.1 ) xanthine derivatives, steroids, diuretics, or non-potassium sparing diuretics may potentiate hypokalemia or ecg changes. use with caution. ( 7.2 , 7.3 ) mao inhibitors, tricyclic antidepressants, and drugs that prolong qtc interval may potentiate effect on cardiovascular system. use with extreme caution. ( 7.4 ) beta-blockers may decrease effectiveness. use with caution and only when medically necessary. ( 7.5 ) anticholinergics: may interact additively with concomitantly use…
+
+RULE-1 [ev-7ef879] FDA_get_drug_interactions_by_drug_name {"drug_name": "Stiolto Respimat"}
+  quote (exact match): "because the action of adrenergic agonists on the cardiovascular system may be potentiated by these agents."
+  tool output: …y worsened by beta-agonists, especially when the recommended dosage of the beta-agonist is exceeded. although the clinical significance of these effects is not known, caution is advised in the co-administration of stiolto respimat with non-potassium sparing diuretics. 7.4 monoamine oxidase inhibitors, tricyclic antidepressants, qtc prolonging drugs stiolto respimat, as with other drugs containing beta 2 -agonists, should be administered with extreme caution to patients being treated with monoamine oxidase inhibitors or tricyclic antidepressants or other drugs known to prolong the qtc interval because the action of adrenergic agonists on the cardiovascular system may be potentiated by these agents. drugs that are known to prolong the qtc interval may be associated with an increased risk of ventricular arrhythmias. 7.5 beta-blockers beta-adrenergic receptor antagonists (beta-blockers) and the olodaterol component of stiolto respimat may interfere with the effect of each other when administered concurrently. beta-blockers not only block the therapeutic effects of beta-agonists, but may produce severe bronchospasm in copd patients. therefore, patients with copd should not normally be treated with beta-blockers. however, under certain circumstances, e.g., as prophylaxis after myocardial inf…

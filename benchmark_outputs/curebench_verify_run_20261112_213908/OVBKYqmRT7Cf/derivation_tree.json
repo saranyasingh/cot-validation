@@ -1,0 +1,96 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Lamotrigine is used as an anticonvulsant for the treatment of epilepsy",
+      "formula": "Treats(lamotrigine, epilepsy)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-21a0e5",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Worsening seizure control indicates a lack of efficacy of the current medication regimen",
+      "formula": "Indicates(worsening_seizure_control, inadequate_efficacy)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label only says to notify healthcare providers about worsening seizure control. It does not say this indicates lack of efficacy.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The usual recommended action for inadequate efficacy (inadequate seizure control) is switching to another antiepileptic drug",
+      "formula": "RecommendedAction(inadequate_efficacy, switch_aed)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ce646e: The label tells patients to notify their healthcare providers if seizure control worsens. It does not say the usual action is to switch to another antiepileptic drug.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is switching to a different antiepileptic drug",
+      "formula": "Describes(option_d, switch_aed)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a symptom indicates a problem and the usual recommended action for that problem is action a, then a is the appropriate action for that symptom",
+      "formula": "\u2200s\u2200p\u2200a (Indicates(s, p) \u2227 RecommendedAction(p, a) \u2192 RecommendedAction(s, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing the appropriate action for worsening seizure control is the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 RecommendedAction(worsening_seizure_control, a) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The appropriate action for worsening seizure control is switching to a different antiepileptic drug, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "RecommendedAction(worsening_seizure_control, switch_aed)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label only says to notify healthcare providers about worsening seizure control. It does not say this indicates lack of efficacy."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ce646e: The label tells patients to notify their healthcare providers if seizure control worsens. It does not say the usual action is to switch to another antiepileptic drug."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

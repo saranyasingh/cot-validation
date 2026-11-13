@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+SideEffect(d, c) — c is a known side effect of drug d
+Severe(c) — condition c is a severe, life-threatening reaction requiring immediate intervention
+Appropriate(a, c) — action a is an appropriate response to condition c
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+
+Constants:
+fosaprepitant, severe_allergic_reaction, wait_resolve, seek_emergency_care, stop_chemo_permanently, take_otc_antihistamines, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Severe allergic reactions are a known side effect of fosaprepitant :: SideEffect(fosaprepitant, severe_allergic_reaction)
+FACT-2: Severe allergic reactions (hives, difficulty breathing, swelling of the face, lips, tongue or throat) indicate anaphylaxis, a life-threatening condition requiring immediate intervention :: Severe(severe_allergic_reaction)
+FACT-3: Option A is waiting for symptoms to resolve on their own :: Describes(option_a, wait_resolve)
+FACT-4: Option B is informing the healthcare provider immediately and seeking emergency medical care :: Describes(option_b, seek_emergency_care)
+FACT-5: Option C is stopping chemotherapy permanently :: Describes(option_c, stop_chemo_permanently)
+FACT-6: Option D is taking over-the-counter antihistamines :: Describes(option_d, take_otc_antihistamines)
+FACT-7: Waiting for symptoms to resolve is not appropriate for a severe allergic reaction :: ¬Appropriate(wait_resolve, severe_allergic_reaction)
+FACT-8: Seeking emergency care is appropriate for a severe allergic reaction :: Appropriate(seek_emergency_care, severe_allergic_reaction)
+FACT-9: Stopping chemotherapy permanently is not appropriate for the severe allergic reaction :: ¬Appropriate(stop_chemo_permanently, severe_allergic_reaction)
+FACT-10: Taking over-the-counter antihistamines is not appropriate for a severe allergic reaction :: ¬Appropriate(take_otc_antihistamines, severe_allergic_reaction)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug has a severe side effect that is a severe reaction, the correct response to that reaction is the appropriate action, so an option describing an appropriate action is the answer :: ∀o∀a∀c∀d ((SideEffect(d, c) ∧ Severe(c) ∧ Describes(o, a) ∧ Appropriate(a, c)) → Answer(o))
+RULE-2: An option describing an action that is not appropriate for the severe reaction is not the answer :: ∀o∀a∀c∀d ((SideEffect(d, c) ∧ Severe(c) ∧ Describes(o, a) ∧ ¬Appropriate(a, c)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-1, FACT-2, FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option B is the answer, from FACT-1, FACT-2, FACT-4, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+INF-3: Option C is not the answer, from FACT-1, FACT-2, FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-4: Option D is not the answer, from FACT-1, FACT-2, FACT-6, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

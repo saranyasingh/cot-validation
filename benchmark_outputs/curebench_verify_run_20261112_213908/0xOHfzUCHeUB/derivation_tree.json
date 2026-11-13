@@ -1,0 +1,87 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Venlafaxine has been extensively studied pharmacologically",
+      "formula": "Studied(venlafaxine)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label lookup gave no evidence on how extensively venlafaxine has been studied.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The protein binding of venlafaxine generally ranges between 30% and 60%",
+      "formula": "BindingRange(venlafaxine, 30, 60)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-b2b961: The label gives venlafaxine's plasma protein binding as 27% \u00b1 2%, which is below the stated 30\u201360% range.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option A states 50% \u00b1 5%",
+      "formula": "Describes(option_a, 50, 5)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If an option's stated value falls within the drug's general binding range, it is consistent with that range, and being the only such option makes it the answer.",
+      "formula": "\u2200o\u2200d (WithinRange(o, d) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option stating a \u00b1 b percent, where the drug's general range is 30 to 60 and a is 50, falls within the range.",
+      "formula": "\u2200o\u2200d (BindingRange(d, 30, 60) \u2227 Describes(o, 50, 5) \u2192 WithinRange(o, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A's value of 50% \u00b1 5% falls within venlafaxine's general range of 30% to 60%, from FACT-2, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "WithinRange(option_a, venlafaxine)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from INF-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "INF-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label lookup gave no evidence on how extensively venlafaxine has been studied."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-b2b961: The label gives venlafaxine's plasma protein binding as 27% \u00b1 2%, which is below the stated 30\u201360% range."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

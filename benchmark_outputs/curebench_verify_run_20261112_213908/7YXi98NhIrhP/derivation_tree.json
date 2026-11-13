@@ -1,0 +1,82 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Paxlovid is indicated for SARS-CoV-2 infection",
+      "formula": "Indicated(paxlovid, sars_cov_2)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-6ec325",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The Paxlovid label gives no specific instructions for severe hepatic impairment",
+      "formula": "\u00acLabelSpecifies(paxlovid, severe_hepatic_impairment)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6ec325: The label does give a specific instruction for severe (Child-Pugh C) hepatic impairment: Paxlovid is not recommended, because no PK or safety data exist.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B states that Paxlovid is not recommended for use",
+      "formula": "Describes(option_b, not_recommended)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug's label gives no specific instructions for a condition, caution should be exercised when administering the drug in that condition",
+      "formula": "\u2200d\u2200c (\u00acLabelSpecifies(d, c) \u2192 CautionAdvised(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-6ec325",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If caution is advised for a drug in a condition, an option stating a not-recommended (cautious) approach is the answer",
+      "formula": "\u2200d\u2200c\u2200o ((CautionAdvised(d, c) \u2227 Describes(o, not_recommended)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Caution should be exercised when administering Paxlovid in severe hepatic impairment, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "CautionAdvised(paxlovid, severe_hepatic_impairment)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6ec325: The label does give a specific instruction for severe (Child-Pugh C) hepatic impairment: Paxlovid is not recommended, because no PK or safety data exist."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

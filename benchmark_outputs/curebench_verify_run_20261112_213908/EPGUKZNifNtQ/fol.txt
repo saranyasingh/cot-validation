@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+IncreasedCVRisk(g) — group g has an increased risk of cardiovascular disease
+Recommends(g, o) — general health guidance recommends option o for group g
+Safe(d, g) — drug d has a cardiovascular safety profile specified for group g
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+
+Constants:
+women_over_35_smokers, tri_femynor, reduce_smoking, option_a
+
+## FACTS
+FACT-1: Women over 35 who smoke have an increased risk of cardiovascular disease compared with non-smokers :: IncreasedCVRisk(women_over_35_smokers)
+FACT-2: Option A is reducing or stopping smoking :: Describes(option_a, reduce_smoking)
+FACT-3: There is no specific information on Tri Femynor's cardiovascular safety profile for women over 35 who smoke :: ¬Safe(tri_femynor, women_over_35_smokers)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a group has an increased cardiovascular risk, general health guidelines recommend reducing or stopping smoking for that group :: ∀g (IncreasedCVRisk(g) → Recommends(g, reduce_smoking))
+RULE-2: If guidance recommends an action for the group and the drug has no specified cardiovascular safety profile for that group, then an option describing that action is the answer :: ∀o∀g (Describes(o, reduce_smoking) ∧ Recommends(g, reduce_smoking) ∧ ¬Safe(tri_femynor, g) → Answer(o))
+
+## INFERENCES
+INF-1: General health guidance recommends reducing or stopping smoking for women over 35 who smoke, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Recommends(women_over_35_smokers, reduce_smoking)
+INF-2: Option A is the answer, from FACT-2, INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_a)

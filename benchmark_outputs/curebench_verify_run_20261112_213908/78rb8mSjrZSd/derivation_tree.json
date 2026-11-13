@@ -1,0 +1,131 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Ogivri's label lists liver disease as a contraindication",
+      "formula": "Contraindicated(ogivri, liver_disease)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\").",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Ogivri's label lists kidney failure as a contraindication",
+      "formula": "Contraindicated(ogivri, kidney_failure)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\").",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Ogivri's label lists uncontrolled epilepsy as a contraindication",
+      "formula": "Contraindicated(ogivri, uncontrolled_epilepsy)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\").",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The patient experiences a severe infusion reaction while taking Ogivri",
+      "formula": "SevereReaction(patient, ogivri)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a patient has a severe infusion reaction on a drug, this could indicate an adverse interaction with another substance",
+      "formula": "\u2200p\u2200d (SevereReaction(p, d) \u2192 PossibleInteraction(p, d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: I found no label source saying a severe infusion reaction suggests an interaction with another substance. The boxed warning treats infusion reactions as an effect of the drug itself.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a drug has label contraindications and a patient's reaction suggests a possible interaction, the patient should discontinue the drug",
+      "formula": "\u2200p\u2200d\u2200c (Contraindicated(d, c) \u2227 PossibleInteraction(p, d) \u2192 Discontinue(p, d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-da278d: the label ties discontinuation to specific reactions (anaphylaxis, angioedema, interstitial pneumonitis, ARDS). It does not tie it to contraindications plus a suspected interaction. Ogivri has no listed contraindications, and the label says to interrupt the infusion for dyspnea or clinically significant hypotension.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "If the patient should discontinue Ogivri, the answer is option C",
+      "formula": "\u2200p (Discontinue(p, ogivri) \u2192 Answer(option_c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The patient's severe reaction suggests a possible adverse interaction with Ogivri, from FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "PossibleInteraction(patient, ogivri)",
+      "premises": [
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The patient should discontinue Ogivri, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Discontinue(patient, ogivri)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "The answer is option C, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\")."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\")."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-2823e3: the label lists no contraindications (\"None\")."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: I found no label source saying a severe infusion reaction suggests an interaction with another substance. The boxed warning treats infusion reactions as an effect of the drug itself."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-da278d: the label ties discontinuation to specific reactions (anaphylaxis, angioedema, interstitial pneumonitis, ARDS). It does not tie it to contraindications plus a suspected interaction. Ogivri has no listed contraindications, and the label says to interrupt the infusion for dyspnea or clinically significant hypotension."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

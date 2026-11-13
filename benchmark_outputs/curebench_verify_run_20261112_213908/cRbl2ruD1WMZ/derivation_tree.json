@@ -1,0 +1,128 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is relief of occasional sleeplessness",
+      "formula": "Describes(option_a, sleeplessness)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is relief of minor aches and pains",
+      "formula": "Describes(option_b, minor_aches_pains)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is treatment of chronic pain conditions",
+      "formula": "Describes(option_c, chronic_pain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is helping users stay asleep",
+      "formula": "Describes(option_d, stay_asleep)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The Up and Up Ibuprofen label does not specifically mention sleeplessness as an indication",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, sleeplessness)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ae2cd8: The \"up and up ibuprofen pm\" label lists \"for relief of occasional sleeplessness when associated with minor aches and pains\" as a use. The plain \"up and up ibuprofen\" label does not mention sleeplessness.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The Up and Up Ibuprofen label states relief of minor aches and pains under Indications",
+      "formula": "Indicated(up_and_up_ibuprofen, minor_aches_pains)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ae2cd8",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Chronic pain conditions are not listed among the label's indications",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, chronic_pain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ae2cd8",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The \"users stay asleep\" wording in the label is a general statement, not an explicit indication",
+      "formula": "\u00acIndicated(up_and_up_ibuprofen, stay_asleep)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ae2cd8: The PM label lists \"helps you fall asleep and stay asleep\" as a use, not as a general statement.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "The question asks which use is NOT indicated, so an option describing a use the label does not list as indicated is the answer",
+      "formula": "\u2200o\u2200i (Describes(o, i) \u2227 \u00acIndicated(up_and_up_ibuprofen, i) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a use the label lists as indicated is not the answer",
+      "formula": "\u2200o\u2200i (Describes(o, i) \u2227 Indicated(up_and_up_ibuprofen, i) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-3, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ae2cd8: The \"up and up ibuprofen pm\" label lists \"for relief of occasional sleeplessness when associated with minor aches and pains\" as a use. The plain \"up and up ibuprofen\" label does not mention sleeplessness."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ae2cd8: The PM label lists \"helps you fall asleep and stay asleep\" as a use, not as a general statement."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

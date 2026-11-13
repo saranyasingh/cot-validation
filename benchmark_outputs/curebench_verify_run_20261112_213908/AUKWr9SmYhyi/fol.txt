@@ -1,0 +1,37 @@
+## VOCABULARY
+Predicates:
+Prevents(s, c) — the concept/step s is about preventing or reducing infection risk in context c
+Describes(o, s) — answer option o describes step s
+Associated(t, s) — the term t is most likely associated with step s
+Answer(o) — option o is the correct answer
+
+Constants:
+sterile, infection_risk, wound_care, skin_preparation, injection_site_infection_treatment, chronic_pain_management, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is post-surgical wound care :: Describes(option_a, wound_care)
+FACT-2: Option B is preparation of the skin prior to injection :: Describes(option_b, skin_preparation)
+FACT-3: Option C is treatment of injection site infections :: Describes(option_c, injection_site_infection_treatment)
+FACT-4: Option D is management of chronic pain :: Describes(option_d, chronic_pain_management)
+FACT-5: The primary application of sterility in medical procedures is prevention and reduction of infection risks, especially around injection sites; this applies to skin preparation prior to injection :: Prevents(skin_preparation, infection_risk)
+FACT-6: Treatment of injection site infections does not directly address prevention of infection risk (sterilizing the surroundings does not directly address the site itself) :: ¬Prevents(injection_site_infection_treatment, infection_risk)
+FACT-7: Chronic pain management does not primarily concern sterility or infection prevention at the injection site :: ¬Prevents(chronic_pain_management, infection_risk)
+FACT-8: Post-surgical wound care is not the step that sterility is primarily applied to in this analysis (it focuses on cleaning and treating wounds rather than injection-related sterility) :: ¬Prevents(wound_care, infection_risk)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a step is about preventing infection risk, the term 'sterile' is most likely associated with that step :: ∀s (Prevents(s, infection_risk) → Associated(sterile, s))
+RULE-2: If a step is not about preventing infection risk, the term 'sterile' is not most likely associated with that step :: ∀s (¬Prevents(s, infection_risk) → ¬Associated(sterile, s))
+RULE-3: An option describing a step most associated with 'sterile' is the answer :: ∀o∀s ((Describes(o, s) ∧ Associated(sterile, s)) → Answer(o))
+RULE-4: An option describing a step not associated with 'sterile' is not the answer :: ∀o∀s ((Describes(o, s) ∧ ¬Associated(sterile, s)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: 'Sterile' is associated with skin preparation prior to injection, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: Associated(sterile, skin_preparation)
+INF-2: 'Sterile' is not associated with post-surgical wound care, from FACT-8 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Associated(sterile, wound_care)
+INF-3: 'Sterile' is not associated with treatment of injection site infections, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Associated(sterile, injection_site_infection_treatment)
+INF-4: 'Sterile' is not associated with management of chronic pain, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Associated(sterile, chronic_pain_management)
+INF-5: Option A is not the answer, from FACT-1, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-6: Option C is not the answer, from FACT-3, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-7: Option D is not the answer, from FACT-4, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-8: Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)

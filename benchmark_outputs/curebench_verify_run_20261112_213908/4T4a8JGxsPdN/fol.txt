@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+Causes(d, e) — drug or event d can cause effect e
+Describes(o, p) — answer option o describes precaution p
+Addresses(p, e) — precaution p addresses effect e
+Supported(p) — precaution p is supported as appropriate for AIRSUPRA given its own effects
+Answer(o) — option o is the correct answer
+
+Constants:
+airsupra, tca_discontinuation, withdrawal_symptoms, cardiovascular_effects, potassium_changes, digoxin_toxicity, caution_cardiovascular, monitor_potassium, monitor_digoxin, discontinue_airsupra, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is monitoring potassium levels :: Describes(option_a, monitor_potassium)
+FACT-2: Option B is using AIRSUPRA with extreme caution due to potentiation of cardiovascular effects :: Describes(option_b, caution_cardiovascular)
+FACT-3: Option C is evaluating serum digoxin levels :: Describes(option_c, monitor_digoxin)
+FACT-4: Option D is discontinuing AIRSUPRA :: Describes(option_d, discontinue_airsupra)
+FACT-5: Discontinuing TCAs may cause withdrawal symptoms :: Causes(tca_discontinuation, withdrawal_symptoms)
+FACT-6: AIRSUPRA can increase heart rate and blood pressure, i.e. it affects cardiovascular function :: Causes(airsupra, cardiovascular_effects)
+FACT-7: Extreme caution addresses potentiation of cardiovascular effects :: Addresses(caution_cardiovascular, cardiovascular_effects)
+FACT-8: Monitoring potassium addresses potassium changes :: Addresses(monitor_potassium, potassium_changes)
+FACT-9: AIRSUPRA is not directly related to potassium changes :: ¬Causes(airsupra, potassium_changes)
+FACT-10: Monitoring digoxin levels addresses digoxin toxicity :: Addresses(monitor_digoxin, digoxin_toxicity)
+FACT-11: AIRSUPRA itself does not contain digoxin, so it does not cause digoxin toxicity :: ¬Causes(airsupra, digoxin_toxicity)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A precaution addressing an effect that AIRSUPRA causes is supported :: ∀e∀p ((Causes(airsupra, e) ∧ Addresses(p, e)) → Supported(p))
+RULE-2: A precaution addressing an effect that AIRSUPRA does not cause is not supported :: ∀e∀p ((¬Causes(airsupra, e) ∧ Addresses(p, e)) → ¬Supported(p))
+RULE-3: An option describing a supported precaution is the answer :: ∀o∀p ((Describes(o, p) ∧ Supported(p)) → Answer(o))
+RULE-4: An option describing an unsupported precaution is not the answer :: ∀o∀p ((Describes(o, p) ∧ ¬Supported(p)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Extreme caution for cardiovascular effects is supported, from FACT-6, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: Supported(caution_cardiovascular)
+INF-2: Monitoring potassium is not supported, from FACT-8, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Supported(monitor_potassium)
+INF-3: Monitoring digoxin is not supported, from FACT-10, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Supported(monitor_digoxin)
+INF-4: Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+INF-5: Option A is not the answer, from FACT-1, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-6: Option C is not the answer, from FACT-3, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)

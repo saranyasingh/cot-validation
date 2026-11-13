@@ -1,0 +1,38 @@
+## VOCABULARY
+Predicates:
+HasProperty(x, p) — x has property or status p, as the reasoning asserts it
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+inspra, withholding_inspra, potassium_6_0, indicated_hyperkalemia_renal, requires_immediate_intervention, lowers_potassium, no_significant_side_effects, escalating_risk, uncontrolled_rise, most_appropriate, exacerbates_hyperkalemia, not_recommended, continue_dose, reduce_dose, increase_dose, option_a, option_b, option_d
+
+## FACTS
+FACT-1: Inspra's label indicates it for managing hyperkalemia associated with renal impairment :: HasProperty(inspra, indicated_hyperkalemia_renal)
+FACT-2: A potassium level of 6.0 mEq/L requires immediate intervention :: HasProperty(potassium_6_0, requires_immediate_intervention)
+FACT-3: Inspra effectively lowers serum potassium levels :: HasProperty(inspra, lowers_potassium)
+FACT-4: Inspra does not have significant side effects within therapeutic ranges :: HasProperty(inspra, no_significant_side_effects)
+FACT-5: Withholding Inspra would significantly increase the risk of escalating hyperkalemia :: HasProperty(withholding_inspra, escalating_risk)
+FACT-6: Option A is reducing the dose :: Describes(option_a, reduce_dose)
+FACT-7: Option B is continuing the current dose :: Describes(option_b, continue_dose)
+FACT-8: Option D is increasing the dose :: Describes(option_d, increase_dose)
+FACT-9: Reducing the dose may exacerbate the problem by lowering effectiveness and causing higher potassium :: HasProperty(reduce_dose, exacerbates_hyperkalemia)
+FACT-10: Increasing the dose is not recommended based on the given information :: HasProperty(increase_dose, not_recommended)
+
+## OPERATIONS
+
+## RULES
+RULE-1: Anything with an escalating hyperkalemia risk would likely result in an uncontrolled rise in potassium :: ∀x (HasProperty(x, escalating_risk) → HasProperty(x, uncontrolled_rise))
+RULE-2: If Inspra is indicated, the potassium level requires intervention, Inspra lowers potassium and is safe, and withholding it causes an uncontrolled rise, then continuing the current dose is the most appropriate action :: ∀x (HasProperty(inspra, indicated_hyperkalemia_renal) ∧ HasProperty(potassium_6_0, requires_immediate_intervention) ∧ HasProperty(inspra, lowers_potassium) ∧ HasProperty(inspra, no_significant_side_effects) ∧ HasProperty(withholding_inspra, uncontrolled_rise) → HasProperty(continue_dose, most_appropriate))
+RULE-3: An option describing the most appropriate action is the answer :: ∀o∀a (Describes(o, a) ∧ HasProperty(a, most_appropriate) → Answer(o))
+RULE-4: An action that exacerbates hyperkalemia is not the most appropriate action :: ∀a (HasProperty(a, exacerbates_hyperkalemia) → ¬HasProperty(a, most_appropriate))
+RULE-5: An action that is not recommended is not the most appropriate action :: ∀a (HasProperty(a, not_recommended) → ¬HasProperty(a, most_appropriate))
+RULE-6: An option describing an action that is not the most appropriate is not the answer :: ∀o∀a (Describes(o, a) ∧ ¬HasProperty(a, most_appropriate) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Withholding Inspra would likely result in an uncontrolled rise in potassium, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: HasProperty(withholding_inspra, uncontrolled_rise)
+INF-2: Continuing the current dose is the most appropriate action, from FACT-1, FACT-2, FACT-3, FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: HasProperty(continue_dose, most_appropriate)
+INF-3: Option B is the answer, from FACT-7, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+INF-4: Reducing the dose is not the most appropriate action, from FACT-9 and RULE-4 by Universal Instantiation and Modus Ponens :: ¬HasProperty(reduce_dose, most_appropriate)
+INF-5: Option A is not the answer, from FACT-6, INF-4, and RULE-6 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-6: Increasing the dose is not the most appropriate action, from FACT-10 and RULE-5 by Universal Instantiation and Modus Ponens :: ¬HasProperty(increase_dose, most_appropriate)
+INF-7: Option D is not the answer, from FACT-8, INF-6, and RULE-6 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

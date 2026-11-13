@@ -1,0 +1,23 @@
+FACT-1: SUPPORTED — stated in the question
+FACT-2: SUPPORTED — stated in the question
+FACT-3: SUPPORTED — stated in the question
+FACT-4: SUPPORTED — stated in the question
+FACT-5: SUPPORTED — confirmed by tool evidence ev-421175
+FACT-6: UNSUPPORTED — UNVERIFIED: The label says nicotine reduces craving. It gives a receptor-level mechanism of action. It does not describe craving as "the physical sensation nicotine alleviates."
+FACT-7: UNSUPPORTED — UNVERIFIED: The label lists only craving as an example of the withdrawal symptoms nicotine reduces. It says nothing about headache either way.
+FACT-8: UNSUPPORTED — UNVERIFIED: No label evidence on nausea as a symptom unrelated to nicotine.
+FACT-9: UNSUPPORTED — UNVERIFIED: No label evidence on dizziness in relation to blood pressure, fluid balance or nicotine withdrawal.
+RULE-1: PLAUSIBLE — confirmed by tool evidence ev-9b10ca
+RULE-2: PLAUSIBLE — logical principle, no source needed
+RULE-3: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 2 (0 returned no data). Provenance claims: 2 (0 with quotes not found in any tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-5 [ev-421175] FDA_get_indications_by_drug_name {"drug_name": "nicotine polacrilex"}
+  quote (exact match): "Use reduces withdrawal symptoms, including nicotine craving, associated with quitting smoking"
+  tool output: meta: skip: 0 limit: 100 total: 950 results: record 1 openfda.brand name: none openfda.generic name: none spl product data elements: - nicotine nicotine polacrilex nicotine nicotine acesulfame potassium silicon dioxide hydroxypropyl cellulose, unspecified magnesium stearate mannitol potassium bicarbonate povidone sodium alginate sodium carbonate sucralose xanthan gum a627 indications and usage: - use reduces withdrawal symptoms, including nicotine craving, associated with quitting smoking openfda.route: none record 2 openfda.brand name: - nicotine polacrilex openfda.generic name: - nicotine polacrilex spl product data elements: - nicotine polacrilex nicotine polacrilex nicotine nicotine polacrilin acacia glycerin mentha arvensis leaf oil magnesium stearate mannitol menthol peppermint oil potassium bicarbonate sodium alginate sodium carbonate sucralose triacetin xanthan gum white to off white n484 nicotine polacrilex nicotine polacrilex nicotine nicotine polacrilin acacia glycerin mentha arvensis leaf oil magnesium stearate mannitol menthol peppermint oil potassium bicarbonate …
+
+RULE-1 [ev-9b10ca] FDA_get_mechanism_of_action_by_drug_name {"drug_name": "nicotine"}
+  quote (exact match): "Nicotine, the chief alkaloid in tobacco products, binds stereo-selectively to nicotinic-cholinergic receptors at the autonomic ganglia, in the adrenal medulla, at neuromuscular junctions, and in the brain."
+  tool output: meta: skip: 0 limit: 100 total: 2 results: record 1 openfda.brand name: none openfda.generic name: none spl product data elements: - nicotrol nicotine nicotine nicotine menthol, unspecified form mechanism of action: - pharmacologic action nicotine, the chief alkaloid in tobacco products, binds stereo-selectively to nicotinic-cholinergic receptors at the autonomic ganglia, in the adrenal medulla, at neuromuscular junctions, and in the brain. two types of central nervous system effects are believed to be the basis of nicotine's positively reinforcing properties. a stimulating effect is exerted mainly in the cortex via the locus ceruleus and a reward effect is exerted in the limbic system. at low doses the stimulant effects predominate while at high doses the reward effects predominate. intermittent intravenous administration of nicotine activates neurohormonal pathways, releasing acetylcholine, norepinephrine, dopamine, serotonin, vasopressin, beta-endorphin, growth hormone, and acth. openfda.route: none record 2 openfda.brand nam…

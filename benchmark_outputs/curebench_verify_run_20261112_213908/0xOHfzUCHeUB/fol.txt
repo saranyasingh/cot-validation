@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Studied(d) — drug d has been extensively studied pharmacologically
+BindingRange(d, a, b) — the protein binding percentage of drug d generally ranges between a and b percent
+Describes(o, a, b) — answer option o states a protein binding of a ± b percent
+WithinRange(o, d) — the value stated by option o falls within the general protein binding range of drug d
+Answer(o) — option o is the correct answer
+Constants:
+venlafaxine, 30, 60, 50, 5, option_a
+
+## FACTS
+FACT-1: Venlafaxine has been extensively studied pharmacologically :: Studied(venlafaxine)
+FACT-2: The protein binding of venlafaxine generally ranges between 30% and 60% :: BindingRange(venlafaxine, 30, 60)
+FACT-3: Option A states 50% ± 5% :: Describes(option_a, 50, 5)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If an option's stated value falls within the drug's general binding range, it is consistent with that range, and being the only such option makes it the answer. :: ∀o∀d (WithinRange(o, d) → Answer(o))
+RULE-2: An option stating a ± b percent, where the drug's general range is 30 to 60 and a is 50, falls within the range. :: ∀o∀d (BindingRange(d, 30, 60) ∧ Describes(o, 50, 5) → WithinRange(o, d))
+
+## INFERENCES
+INF-1: Option A's value of 50% ± 5% falls within venlafaxine's general range of 30% to 60%, from FACT-2, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: WithinRange(option_a, venlafaxine)
+INF-2: Option A is the answer, from INF-1 and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_a)

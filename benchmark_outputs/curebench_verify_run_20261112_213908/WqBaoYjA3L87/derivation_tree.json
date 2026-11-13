@@ -1,0 +1,243 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The CYP3A4 inhibitor is discontinued",
+      "formula": "Holds(inhibitor_discontinued)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Premise 1: discontinuing the CYP3A4 inhibitor may slow RoxyBond metabolism",
+      "formula": "Causes(inhibitor_discontinued, slower_metabolism)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f1e3ba: The label says that after a CYP3A4 inhibitor is stopped, oxycodone concentration will decrease. It does not say metabolism slows.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Premise 2: slower metabolism leads to increased exposure",
+      "formula": "Causes(slower_metabolism, increased_exposure)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f1e3ba: The label says exposure decreases after the inhibitor is stopped, with decreased opioid efficacy or withdrawal. It does not say exposure increases.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Conclusion step: increased exposure leads to the need for a dose increase",
+      "formula": "Causes(increased_exposure, dose_increase_needed)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f1e3ba: The label does recommend considering a dose increase when the inhibitor is stopped. The stated reason is wrong: it is decreased exposure, not increased exposure.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option A describes decreasing the dosage",
+      "formula": "Describes(option_a, decrease_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option B describes increasing the dosage (the dose increase needed)",
+      "formula": "Describes(option_b, dose_increase_needed)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option C describes prescribing naloxone",
+      "formula": "Describes(option_c, naloxone)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option D describes discontinuing RoxyBond",
+      "formula": "Describes(option_d, discontinue_roxybond)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Decreasing the dose contradicts increased exposure (Premise 2)",
+      "formula": "Unsuitable(decrease_dose, increased_exposure)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f1e3ba: Exposure decreases rather than increases after the inhibitor is stopped. The label's intervention is a dose increase, not a decrease.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Naloxone does not address slower metabolism",
+      "formula": "Unsuitable(naloxone, slower_metabolism)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-f1e3ba",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Discontinuing RoxyBond contradicts the need for an intervention (dose increase)",
+      "formula": "Unsuitable(discontinue_roxybond, dose_increase_needed)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-f1e3ba",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If state s1 holds and leads to s2, then s2 holds",
+      "formula": "\u2200x\u2200y (Holds(x) \u2227 Causes(x, y) \u2192 Holds(y))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing something that holds is the answer",
+      "formula": "\u2200o\u2200s (Describes(o, s) \u2227 Holds(s) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing an action unsuitable for a state that holds is not the answer",
+      "formula": "\u2200o\u2200a\u2200s (Describes(o, a) \u2227 Unsuitable(a, s) \u2227 Holds(s) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "RoxyBond metabolism slows, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Holds(slower_metabolism)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Exposure to RoxyBond increases, from INF-1, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Holds(increased_exposure)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "A dose increase is needed, from INF-2, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Holds(dose_increase_needed)",
+      "premises": [
+        "INF-2",
+        "FACT-4",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-5, FACT-9, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-5",
+        "FACT-9",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-7, FACT-10, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-7",
+        "FACT-10",
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-8, FACT-11, INF-3, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-8",
+        "FACT-11",
+        "INF-3",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-6, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-6",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f1e3ba: The label says that after a CYP3A4 inhibitor is stopped, oxycodone concentration will decrease. It does not say metabolism slows."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f1e3ba: The label says exposure decreases after the inhibitor is stopped, with decreased opioid efficacy or withdrawal. It does not say exposure increases."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f1e3ba: The label does recommend considering a dose increase when the inhibitor is stopped. The stated reason is wrong: it is decreased exposure, not increased exposure."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f1e3ba: Exposure decreases rather than increases after the inhibitor is stopped. The label's intervention is a dose increase, not a decrease."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

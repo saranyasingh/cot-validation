@@ -1,0 +1,201 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The Gadavist label states that it contains iodinated compounds and may cause anaphylaxis",
+      "formula": "LabelStates(gadavist, anaphylaxis_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-d1b99e: The label describes gadolinium-based hypersensitivity and anaphylactic reactions. It does not say Gadavist contains iodinated compounds. Its listed ingredients are gadobutrol, trometamol and hydrochloric acid.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "A previous severe reaction to iodinated contrast media increases the risk of anaphylaxis significantly (Gadavist)",
+      "formula": "LabelStates(gadavist, prior_reaction_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label only says patients with a history of a reaction to contrast media, asthma or allergic disorders \"may have an increased risk for a hypersensitivity reaction\". It does not mention iodinated contrast media or a \"significant\" increase in anaphylaxis risk.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is avoiding Gadavist administration completely for patients with a history of allergic disorders",
+      "formula": "Describes(option_b, avoid_in_allergic_history)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is avoiding Gadavist for patients with a history of allergic disorders but no severe reaction to contrast media",
+      "formula": "Describes(option_c, avoid_in_allergy_no_severe_reaction)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by the question: Option C is to assess the history of reactions to contrast media and ensure trained resuscitation personnel are available. It is not avoiding Gadavist.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The label does not specifically mention avoiding Gadavist for patients with a history of allergic disorders but no severe reaction to contrast media",
+      "formula": "\u00acLabelStates(gadavist, avoid_in_allergy_no_severe_reaction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-d1b99e",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option D is performing hemodialysis immediately after administration",
+      "formula": "Describes(option_d, hemodialysis_after_admin)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Hemodialysis after administration is not a general precaution against using Gadavist",
+      "formula": "\u00acGeneralPrecaution(gadavist, hemodialysis_after_admin)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-d1b99e",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the Gadavist label states the anaphylaxis risk, an option to avoid Gadavist for patients with allergic history is supported",
+      "formula": "\u2200o (LabelStates(gadavist, anaphylaxis_risk) \u2227 Describes(o, avoid_in_allergic_history) \u2192 Supports(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-d1b99e: The label's response to anaphylaxis risk is to assess the patient's history and have trained personnel available. It does not say to avoid Gadavist in patients with an allergic history. It contraindicates Gadavist only after a prior hypersensitivity reaction to Gadavist itself.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a prior severe reaction increases the anaphylaxis risk, that reinforces the option to avoid Gadavist for patients with allergic history",
+      "formula": "\u2200o (LabelStates(gadavist, prior_reaction_risk) \u2227 Describes(o, avoid_in_allergic_history) \u2192 Supports(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-d1b99e: An increased risk leads the label to recommend assessment and preparedness. It does not recommend avoidance.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing something the label does not state is not supported",
+      "formula": "\u2200o\u2200c (Describes(o, c) \u2227 \u00acLabelStates(gadavist, c) \u2192 \u00acSupports(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing something that is not a general precaution against Gadavist is not supported",
+      "formula": "\u2200o\u2200c (Describes(o, c) \u2227 \u00acGeneralPrecaution(gadavist, c) \u2192 \u00acSupports(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-d1b99e",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "A supported option is the answer",
+      "formula": "\u2200o (Supports(o) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option B is supported, from FACT-1, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Supports(option_b)",
+      "premises": [
+        "FACT-1",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is further reinforced, from FACT-2, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Supports(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not supported, from FACT-4, FACT-5, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupports(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not supported, from FACT-6, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupports(option_d)",
+      "premises": [
+        "FACT-6",
+        "FACT-7",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from INF-1, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "INF-1",
+        "INF-2",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-d1b99e: The label describes gadolinium-based hypersensitivity and anaphylactic reactions. It does not say Gadavist contains iodinated compounds. Its listed ingredients are gadobutrol, trometamol and hydrochloric acid."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label only says patients with a history of a reaction to contrast media, asthma or allergic disorders \"may have an increased risk for a hypersensitivity reaction\". It does not mention iodinated contrast media or a \"significant\" increase in anaphylaxis risk."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by the question: Option C is to assess the history of reactions to contrast media and ensure trained resuscitation personnel are available. It is not avoiding Gadavist."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-d1b99e: The label's response to anaphylaxis risk is to assess the patient's history and have trained personnel available. It does not say to avoid Gadavist in patients with an allergic history. It contraindicates Gadavist only after a prior hypersensitivity reaction to Gadavist itself."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-d1b99e: An increased risk leads the label to recommend assessment and preparedness. It does not recommend avoidance."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

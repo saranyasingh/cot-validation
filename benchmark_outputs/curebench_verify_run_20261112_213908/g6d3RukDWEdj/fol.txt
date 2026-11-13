@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+IndicatedFor(d, c) — drug d is indicated for condition c on its label
+Comprehensive(d) — drug d's label has comprehensive dosage, warning and interaction details
+Describes(o, d) — answer option o is drug d
+Answer(o) — option o is the correct answer
+Constants:
+sklice, lotrimin, nizoral, rogaine, head_lice, hair_loss, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is Sklice :: Describes(option_a, sklice)
+FACT-2: Option B is Lotrimin :: Describes(option_b, lotrimin)
+FACT-3: Option C is Nizoral :: Describes(option_c, nizoral)
+FACT-4: Option D is Rogaine :: Describes(option_d, rogaine)
+FACT-5: Sklice has no indication specified (only contraindications) :: ¬IndicatedFor(sklice, head_lice)
+FACT-6: Lotrimin's label specifically mentions head lice :: IndicatedFor(lotrimin, head_lice)
+FACT-7: Lotrimin lacks the detailed dosage and warning information typical of a drug label :: ¬Comprehensive(lotrimin)
+FACT-8: Nizoral's label also mentions head lice :: IndicatedFor(nizoral, head_lice)
+FACT-9: Nizoral has comprehensive label details :: Comprehensive(nizoral)
+FACT-10: Rogaine is primarily indicated for hair loss :: IndicatedFor(rogaine, hair_loss)
+FACT-11: Rogaine's primary indication is not related to head lice :: ¬IndicatedFor(rogaine, head_lice)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option whose drug is not indicated for head lice is not the answer :: ∀o∀d (Describes(o, d) ∧ ¬IndicatedFor(d, head_lice) → ¬Answer(o))
+RULE-2: An option whose drug is indicated for head lice but lacks comprehensive label details is not the answer :: ∀o∀d (Describes(o, d) ∧ IndicatedFor(d, head_lice) ∧ ¬Comprehensive(d) → ¬Answer(o))
+RULE-3: An option whose drug is indicated for head lice and has comprehensive label details is the answer :: ∀o∀d (Describes(o, d) ∧ IndicatedFor(d, head_lice) ∧ Comprehensive(d) → Answer(o))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-1, FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option B is not the answer, from FACT-2, FACT-6, FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-3: Option C is the answer, from FACT-3, FACT-8, FACT-9 and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_c)
+INF-4: Option D is not the answer, from FACT-4, FACT-11 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

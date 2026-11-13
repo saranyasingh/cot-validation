@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Describes(o, f) — answer option o describes application frequency f
+Distinct(f, g) — frequencies f and g are clearly distinct from each other
+MostAccurate(f) — frequency f is the most accurate representation based on standard clinical practice and user expectations
+Answer(o) — option o is the correct answer
+Constants:
+option_a, option_b, option_c, option_d, once_daily, twice_daily, three_times_daily, every_four_hours
+
+## FACTS
+FACT-1: Option A is "Once daily" :: Describes(option_a, once_daily)
+FACT-2: Option B is "Twice daily" :: Describes(option_b, twice_daily)
+FACT-3: Option C is "Three times daily" :: Describes(option_c, three_times_daily)
+FACT-4: Option D is "Every four hours" :: Describes(option_d, every_four_hours)
+FACT-5: There is a clear distinction between once daily and every four hours :: Distinct(once_daily, every_four_hours)
+FACT-6: Considering typical usage patterns, "Every four hours" appears to be the most accurate representation of frequency :: MostAccurate(every_four_hours)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing the frequency that is the most accurate representation is the correct answer :: ∀o∀f ((Describes(o, f) ∧ MostAccurate(f)) → Answer(o))
+
+## INFERENCES
+INF-1: Option D is the correct answer, from FACT-4, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_d)

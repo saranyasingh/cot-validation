@@ -1,0 +1,196 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is nicotine craving",
+      "formula": "Describes(option_a, craving)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is headache",
+      "formula": "Describes(option_b, headache)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is nausea",
+      "formula": "Describes(option_c, nausea)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is dizziness",
+      "formula": "Describes(option_d, dizziness)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Craving is a withdrawal symptom linked to reduced nicotine levels",
+      "formula": "WithdrawalSymptom(craving)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-421175",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Craving is linked to nicotine's mechanism of action, being the physical sensation nicotine alleviates",
+      "formula": "LinkedToMechanism(craving)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label says nicotine reduces craving. It gives a receptor-level mechanism of action. It does not describe craving as \"the physical sensation nicotine alleviates.\"",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Headache does not specifically link to nicotine's mechanism of action",
+      "formula": "\u00acLinkedToMechanism(headache)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lists only craving as an example of the withdrawal symptoms nicotine reduces. It says nothing about headache either way.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Nausea is a general symptom not necessarily tied to nicotine alone",
+      "formula": "\u00acLinkedToMechanism(nausea)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: No label evidence on nausea as a symptom unrelated to nicotine.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Dizziness is more closely associated with blood pressure and fluid balance than with nicotine withdrawal",
+      "formula": "\u00acLinkedToMechanism(dizziness)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: No label evidence on dizziness in relation to blood pressure, fluid balance or nicotine withdrawal.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A withdrawal symptom that is linked to nicotine's mechanism is alleviated by nicotine",
+      "formula": "\u2200s (WithdrawalSymptom(s) \u2227 LinkedToMechanism(s) \u2192 Alleviates(nicotine, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-9b10ca",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a symptom nicotine alleviates is the answer",
+      "formula": "\u2200o\u2200s (Describes(o, s) \u2227 Alleviates(nicotine, s) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing a symptom not linked to nicotine's mechanism is not the answer",
+      "formula": "\u2200o\u2200s (Describes(o, s) \u2227 \u00acLinkedToMechanism(s) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Nicotine alleviates craving, from FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Alleviates(nicotine, craving)",
+      "premises": [
+        "FACT-5",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label says nicotine reduces craving. It gives a receptor-level mechanism of action. It does not describe craving as \"the physical sensation nicotine alleviates.\""
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lists only craving as an example of the withdrawal symptoms nicotine reduces. It says nothing about headache either way."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: No label evidence on nausea as a symptom unrelated to nicotine."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: No label evidence on dizziness in relation to blood pressure, fluid balance or nicotine withdrawal."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

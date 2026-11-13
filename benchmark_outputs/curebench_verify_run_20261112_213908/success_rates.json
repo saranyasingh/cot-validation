@@ -1,0 +1,69 @@
+{
+  "run_dir": "/n/home06/ssingh/cot-validation/benchmark_outputs/curebench_verify_run_20261112_213908",
+  "mode": "verify",
+  "reasoning_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "verifier_model": "us.anthropic.claude-sonnet-5-5",
+  "overall": {
+    "items": 50,
+    "cot_accuracy": 0.6,
+    "verified_rate": 0.06,
+    "accuracy_of_verified_answers": 1.0,
+    "wrong_answers_caught": 1.0,
+    "right_answers_rejected": 0.9,
+    "judged_correctly": 0.46,
+    "failed_fact_rule_check": 0.94,
+    "failed_tptp_check": 0.0
+  },
+  "by_question_type": {
+    "multi_choice": {
+      "items": 21,
+      "cot_accuracy": 0.619,
+      "verified_rate": 0.0,
+      "accuracy_of_verified_answers": null,
+      "wrong_answers_caught": 1.0,
+      "right_answers_rejected": 1.0,
+      "judged_correctly": 0.381,
+      "failed_fact_rule_check": 1.0,
+      "failed_tptp_check": 0.0
+    },
+    "open_ended": {
+      "items": 5,
+      "cot_accuracy": 0.6,
+      "verified_rate": 0.0,
+      "accuracy_of_verified_answers": null,
+      "wrong_answers_caught": 1.0,
+      "right_answers_rejected": 1.0,
+      "judged_correctly": 0.4,
+      "failed_fact_rule_check": 1.0,
+      "failed_tptp_check": 0.0
+    },
+    "open_ended_multi_choice": {
+      "items": 24,
+      "cot_accuracy": 0.5833,
+      "verified_rate": 0.125,
+      "accuracy_of_verified_answers": 1.0,
+      "wrong_answers_caught": 1.0,
+      "right_answers_rejected": 0.7857,
+      "judged_correctly": 0.5417,
+      "failed_fact_rule_check": 0.875,
+      "failed_tptp_check": 0.0
+    }
+  },
+  "premise_verdicts": {
+    "FACT confirmed by tool": 74,
+    "FACT contradicted/implausible": 64,
+    "FACT from question/logic": 154,
+    "FACT unverified": 57,
+    "RULE confirmed by tool": 28,
+    "RULE contradicted/implausible": 22,
+    "RULE from question/logic": 90,
+    "RULE unverified": 7
+  },
+  "tool_usage": {
+    "agent_calls": 102,
+    "tool_calls": 86,
+    "tool_calls_with_no_data": 0,
+    "tool_calls_per_item": 1.72
+  },
+  "cost_usd": 0.0
+}

@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+HasFormula(d, f) — drug d has molecular formula f
+MatchesMW(f) — formula f matches the expected molecular weight of venlafaxine
+HasSubstituents(f) — formula f includes the substituents the reasoning attributes to venlafaxine (amino group and carboxylic acid)
+Describes(o, f) — answer option o states formula f
+Answer(o) — option o is the correct answer
+Constants:
+venlafaxine_hcl, f_c17h27, f_c18h30, f_c16h25, f_c17h28, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A states C17H27NO2HCl :: Describes(option_a, f_c17h27)
+FACT-2: Option B states C18H30NO2HCl :: Describes(option_b, f_c18h30)
+FACT-3: Option C states C16H25NO2HCl :: Describes(option_c, f_c16h25)
+FACT-4: Option D states C17H28NO2HCl :: Describes(option_d, f_c17h28)
+FACT-5: C17H27NO2HCl lacks the specific substituents found in venlafaxine :: ¬HasSubstituents(f_c17h27)
+FACT-6: C18H30NO2HCl does not fit the expected molecular weight of venlafaxine :: ¬MatchesMW(f_c18h30)
+FACT-7: C16H25NO2HCl lacks the specific substituents (amino group and carboxylic acid) :: ¬HasSubstituents(f_c16h25)
+FACT-8: C17H28NO2HCl matches the molecular weight of venlafaxine :: MatchesMW(f_c17h28)
+FACT-9: C17H28NO2HCl includes the necessary substituents (amino group and carboxylic acid) :: HasSubstituents(f_c17h28)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A formula that does not match the expected molecular weight is not the formula of venlafaxine hydrochloride :: ∀f (¬MatchesMW(f) → ¬HasFormula(venlafaxine_hcl, f))
+RULE-2: A formula lacking the necessary substituents is not the formula of venlafaxine hydrochloride :: ∀f (¬HasSubstituents(f) → ¬HasFormula(venlafaxine_hcl, f))
+RULE-3: A formula that matches the molecular weight and includes the necessary substituents is the formula of venlafaxine hydrochloride :: ∀f ((MatchesMW(f) ∧ HasSubstituents(f)) → HasFormula(venlafaxine_hcl, f))
+RULE-4: An option stating the formula of venlafaxine hydrochloride is the answer :: ∀o∀f ((Describes(o, f) ∧ HasFormula(venlafaxine_hcl, f)) → Answer(o))
+RULE-5: An option stating a formula that is not the formula of venlafaxine hydrochloride is not the answer :: ∀o∀f ((Describes(o, f) ∧ ¬HasFormula(venlafaxine_hcl, f)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: C17H27NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬HasFormula(venlafaxine_hcl, f_c17h27)
+INF-2: C18H30NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬HasFormula(venlafaxine_hcl, f_c18h30)
+INF-3: C16H25NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬HasFormula(venlafaxine_hcl, f_c16h25)
+INF-4: C17H28NO2HCl is the formula of venlafaxine hydrochloride, from FACT-8, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens :: HasFormula(venlafaxine_hcl, f_c17h28)
+INF-5: Option A is not the answer, from FACT-1, INF-1, and RULE-5 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-6: Option B is not the answer, from FACT-2, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-7: Option C is not the answer, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-8: Option D is the answer, from FACT-4, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens :: Answer(option_d)

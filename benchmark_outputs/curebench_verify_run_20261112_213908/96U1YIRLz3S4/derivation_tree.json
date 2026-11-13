@@ -1,0 +1,169 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A states priming the inhaler only once, when first using it",
+      "formula": "Describes(option_a, prime_once)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B states priming before first use, if unused for more than 7 days, or after cleaning",
+      "formula": "Describes(option_b, prime_interval)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C states priming before every single use",
+      "formula": "Describes(option_c, prime_every_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D states that priming is not required for AIRSUPRA",
+      "formula": "Describes(option_d, no_priming)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Priming only once does not align with standard medical guidelines for AIRSUPRA",
+      "formula": "\u00acConsistent(airsupra, prime_once)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-cc45cc",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Priming at intervals based on time since last use or cleaning is overly restrictive",
+      "formula": "Restrictive(prime_interval)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-cc45cc: The label requires re-priming when the inhaler is unused for more than 7 days, is dropped, or is cleaned. That is the actual guideline, so it is not \"overly restrictive\".",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Priming before every single use is excessive and contradicts common recommendations",
+      "formula": "Restrictive(prime_every_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-cc45cc",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "No priming is the most accurate representation of current medical advice for AIRSUPRA",
+      "formula": "MostAccurate(airsupra, no_priming)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-cc45cc: The label says priming is essential: prime before first use and re-prime after more than 7 days without use, a drop, or cleaning.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option whose regimen does not align with medical guidelines for AIRSUPRA is not the answer",
+      "formula": "\u2200o\u2200r (Describes(o, r) \u2227 \u00acConsistent(airsupra, r) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-cc45cc",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option whose regimen is overly restrictive or excessive is not the answer",
+      "formula": "\u2200o\u2200r (Describes(o, r) \u2227 Restrictive(r) \u2192 \u00acAnswer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-cc45cc: The label's own re-priming conditions (unused for more than 7 days, dropped, cleaned) are the correct regimen, so a time- or cleaning-based regimen cannot be dismissed as overly restrictive.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option whose regimen is the most accurate representation of current medical advice for AIRSUPRA is the answer",
+      "formula": "\u2200o\u2200r (Describes(o, r) \u2227 MostAccurate(airsupra, r) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-4, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-cc45cc: The label requires re-priming when the inhaler is unused for more than 7 days, is dropped, or is cleaned. That is the actual guideline, so it is not \"overly restrictive\"."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-cc45cc: The label says priming is essential: prime before first use and re-prime after more than 7 days without use, a drop, or cleaning."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-cc45cc: The label's own re-priming conditions (unused for more than 7 days, dropped, cleaned) are the correct regimen, so a time- or cleaning-based regimen cannot be dismissed as overly restrictive."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

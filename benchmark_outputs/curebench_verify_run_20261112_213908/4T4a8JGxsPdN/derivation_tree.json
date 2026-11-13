@@ -1,0 +1,224 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is monitoring potassium levels",
+      "formula": "Describes(option_a, monitor_potassium)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is using AIRSUPRA with extreme caution due to potentiation of cardiovascular effects",
+      "formula": "Describes(option_b, caution_cardiovascular)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is evaluating serum digoxin levels",
+      "formula": "Describes(option_c, monitor_digoxin)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is discontinuing AIRSUPRA",
+      "formula": "Describes(option_d, discontinue_airsupra)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Discontinuing TCAs may cause withdrawal symptoms",
+      "formula": "Causes(tca_discontinuation, withdrawal_symptoms)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label says nothing about TCA withdrawal symptoms. It only says AIRSUPRA should be used with extreme caution within 2 weeks of stopping TCAs.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "AIRSUPRA can increase heart rate and blood pressure, i.e. it affects cardiovascular function",
+      "formula": "Causes(airsupra, cardiovascular_effects)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label says albuterol's action on the cardiovascular system may be potentiated. It does not say in this section that AIRSUPRA increases heart rate and blood pressure.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Extreme caution addresses potentiation of cardiovascular effects",
+      "formula": "Addresses(caution_cardiovascular, cardiovascular_effects)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Monitoring potassium addresses potassium changes",
+      "formula": "Addresses(monitor_potassium, potassium_changes)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "AIRSUPRA is not directly related to potassium changes",
+      "formula": "\u00acCauses(airsupra, potassium_changes)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Monitoring digoxin levels addresses digoxin toxicity",
+      "formula": "Addresses(monitor_digoxin, digoxin_toxicity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "AIRSUPRA itself does not contain digoxin, so it does not cause digoxin toxicity",
+      "formula": "\u00acCauses(airsupra, digoxin_toxicity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A precaution addressing an effect that AIRSUPRA causes is supported",
+      "formula": "\u2200e\u2200p ((Causes(airsupra, e) \u2227 Addresses(p, e)) \u2192 Supported(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A precaution addressing an effect that AIRSUPRA does not cause is not supported",
+      "formula": "\u2200e\u2200p ((\u00acCauses(airsupra, e) \u2227 Addresses(p, e)) \u2192 \u00acSupported(p))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-235a5d",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing a supported precaution is the answer",
+      "formula": "\u2200o\u2200p ((Describes(o, p) \u2227 Supported(p)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing an unsupported precaution is not the answer",
+      "formula": "\u2200o\u2200p ((Describes(o, p) \u2227 \u00acSupported(p)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Extreme caution for cardiovascular effects is supported, from FACT-6, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Supported(caution_cardiovascular)",
+      "premises": [
+        "FACT-6",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Monitoring potassium is not supported, from FACT-8, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupported(monitor_potassium)",
+      "premises": [
+        "FACT-8",
+        "FACT-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Monitoring digoxin is not supported, from FACT-10, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupported(monitor_digoxin)",
+      "premises": [
+        "FACT-10",
+        "FACT-11",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label says nothing about TCA withdrawal symptoms. It only says AIRSUPRA should be used with extreme caution within 2 weeks of stopping TCAs."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label says albuterol's action on the cardiovascular system may be potentiated. It does not say in this section that AIRSUPRA increases heart rate and blood pressure."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

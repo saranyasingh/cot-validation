@@ -1,0 +1,227 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is mild hypersensitivity reactions to Gadavist",
+      "formula": "Describes(option_a, mild_hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is a history of severe hypersensitivity reactions to Gadavist",
+      "formula": "Describes(option_b, severe_hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is renal impairment",
+      "formula": "Describes(option_c, renal_impairment)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is liver dysfunction",
+      "formula": "Describes(option_d, liver_dysfunction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The Gadavist label lists severe hypersensitivity reaction as a contraindication",
+      "formula": "Listed(gadavist, severe_hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-bb4411",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The Gadavist label mentions mild hypersensitivity reactions as calling for caution, not a strict contraindication",
+      "formula": "CautionOnly(gadavist, mild_hypersensitivity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-b517ee: The label says hypersensitivity reactions \"ranging from mild to severe\" occur and that Gadavist is contraindicated in patients with a history of hypersensitivity reactions to it. It does not describe mild reactions as calling only for caution. The label does say to assess patients with a history of reactions to contrast media, bronchial asthma or allergic disorders, and to monitor patients closely.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The Gadavist label does not list renal impairment as a contraindication",
+      "formula": "\u00acListed(gadavist, renal_impairment)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-bb4411",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The Gadavist label does not list liver dysfunction as a contraindication",
+      "formula": "\u00acListed(gadavist, liver_dysfunction)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-bb4411",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A condition the label lists as a contraindication is a contraindication of the drug",
+      "formula": "\u2200d\u2200c (Listed(d, c) \u2192 Contraindicated(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-bb4411",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A condition that calls only for caution is not a contraindication",
+      "formula": "\u2200d\u2200c (CautionOnly(d, c) \u2192 \u00acContraindicated(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "A condition the label does not list as a contraindication is not a contraindication of the drug",
+      "formula": "\u2200d\u2200c (\u00acListed(d, c) \u2192 \u00acContraindicated(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-bb4411",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "The question asks for a contraindication of Gadavist, so an option describing one is the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 Contraindicated(gadavist, c)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "An option describing a condition Gadavist is not contraindicated in is not the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 \u00acContraindicated(gadavist, c)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Gadavist is contraindicated in severe hypersensitivity, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Contraindicated(gadavist, severe_hypersensitivity)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Gadavist is not contraindicated in mild hypersensitivity, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(gadavist, mild_hypersensitivity)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Gadavist is not contraindicated in renal impairment, from FACT-7 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(gadavist, renal_impairment)",
+      "premises": [
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Gadavist is not contraindicated in liver dysfunction, from FACT-8 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(gadavist, liver_dysfunction)",
+      "premises": [
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-2, INF-1, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-3",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, INF-4, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-4",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-b517ee: The label says hypersensitivity reactions \"ranging from mild to severe\" occur and that Gadavist is contraindicated in patients with a history of hypersensitivity reactions to it. It does not describe mild reactions as calling only for caution. The label does say to assess patients with a history of reactions to contrast media, bronchial asthma or allergic disorders, and to monitor patients closely."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

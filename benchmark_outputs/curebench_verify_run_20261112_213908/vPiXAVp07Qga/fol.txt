@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+TempEffect(x) — x has different effects when applied at various temperatures
+GuidelineTemp(x, t) — the general guideline for applying x is a temperature of about t degrees Celsius
+WarmNotHot(x) — x should be applied in a warm but not hot environment
+OptionTemp(o, t) — answer option o states a water temperature of about t degrees Celsius
+Answer(o) — option o is the correct answer
+
+Constants:
+vaginal_essential_oil, topical_treatment, sitz_bath, option_a, option_b, option_c, option_d, 37, 40
+
+## FACTS
+FACT-1: Vaginal essential oils have different effects when applied at various temperatures :: TempEffect(vaginal_essential_oil)
+FACT-2: The general guideline for applying topical treatments is about 37 degrees Celsius :: GuidelineTemp(topical_treatment, 37)
+FACT-3: Option A is about 37 degrees Celsius :: OptionTemp(option_a, 37)
+FACT-4: Option B is about 40 degrees Celsius :: OptionTemp(option_b, 40)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A sitz bath involves warm water, so a topical treatment like vaginal essential oil used with it should be applied in a warm but not hot environment :: ∀x (TempEffect(x) → WarmNotHot(x))
+RULE-2: An option giving a temperature slightly warmer than the topical guideline fits a warm but not hot sitz bath, so it is the answer :: ∀o∀x∀t∀u (WarmNotHot(x) ∧ GuidelineTemp(topical_treatment, t) ∧ OptionTemp(o, u) ∧ Difference(u, t, 3) → Answer(o))
+
+## INFERENCES
+INF-1: Vaginal essential oil should be applied in a warm but not hot environment, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens :: WarmNotHot(vaginal_essential_oil)
+INF-2: Option B is the answer, from INF-1, FACT-2, FACT-4, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+
+Note: RULE-2 needs Difference(40, 37, 3). The original reasoning does not state this calculation, so I left it out of OPERATIONS. INF-2 therefore depends on an arithmetic step the reasoning never wrote down.

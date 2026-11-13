@@ -1,0 +1,109 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The Levalbuterol label indicates it for COPD",
+      "formula": "Indicated(levalbuterol, copd)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-04b0bf: The label indicates it for bronchospasm in reversible obstructive airway disease, with no mention of COPD.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The Levalbuterol label indicates it for asthma",
+      "formula": "Indicated(levalbuterol, asthma)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The indication says \"reversible obstructive airway disease\". Asthma appears elsewhere in the label (dosing, trials), but the indications section does not name it.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The Levalbuterol label indicates it for certain forms of respiratory failure",
+      "formula": "Indicated(levalbuterol, respiratory_failure)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-04b0bf: The label does not indicate it for respiratory failure. It lists only treatment or prevention of bronchospasm in reversible obstructive airway disease.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Paradoxical bronchospasm requires immediate cessation of the medication until further medical evaluation",
+      "formula": "Requires(paradoxical_bronchospasm, discontinue_and_consult)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-04b0bf",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option B describes discontinuing the medication and consulting a physician",
+      "formula": "Describes(option_b, discontinue_and_consult)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug's label-known side effects are considered, the drug could potentially induce paradoxical bronchospasm; the reasoning treats Levalbuterol as one that can cause paradoxical bronchospasm",
+      "formula": "\u2200d (Indicated(d, asthma) \u2192 CanCause(d, paradoxical_bronchospasm))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-04b0bf",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing the action that an event requires is the answer",
+      "formula": "\u2200o\u2200e\u2200a ((Describes(o, a) \u2227 Requires(e, a) \u2227 CanCause(levalbuterol, e)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Levalbuterol can potentially cause paradoxical bronchospasm, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "CanCause(levalbuterol, paradoxical_bronchospasm)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-5, FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-5",
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-04b0bf: The label indicates it for bronchospasm in reversible obstructive airway disease, with no mention of COPD."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: The indication says \"reversible obstructive airway disease\". Asthma appears elsewhere in the label (dosing, trials), but the indications section does not name it."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-04b0bf: The label does not indicate it for respiratory failure. It lists only treatment or prevention of bronchospasm in reversible obstructive airway disease."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

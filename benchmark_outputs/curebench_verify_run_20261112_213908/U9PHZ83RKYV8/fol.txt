@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+TargetsAcneMechanisms(d) — drug d is a topical medication that targets sebum production, inflammation, and bacterial infection
+FitsDescription(d) — drug d fits the description of an acne treatment among the given options
+AntiInflammatoryCorticosteroid(d) — drug d is an anti-inflammatory corticosteroid used to treat inflammatory skin conditions like acne vulgaris
+Describes(o, d) — answer option o names drug d
+Answer(o) — option o is the correct answer
+
+Constants:
+fluocinonide, option_d
+
+## FACTS
+FACT-1: Option D is fluocinonide :: Describes(option_d, fluocinonide)
+FACT-2: Fluocinonide is an anti-inflammatory corticosteroid used to treat inflammatory skin conditions like acne vulgaris :: AntiInflammatoryCorticosteroid(fluocinonide)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A drug that is an anti-inflammatory corticosteroid used to treat inflammatory skin conditions like acne vulgaris fits the description of an acne treatment (topical medications targeting sebum production, inflammation, and bacterial infection) :: ∀d (AntiInflammatoryCorticosteroid(d) → FitsDescription(d))
+RULE-2: An option naming a drug that fits the acne-treatment description is the most appropriate choice and the answer :: ∀o∀d ((Describes(o, d) ∧ FitsDescription(d)) → Answer(o))
+
+## INFERENCES
+INF-1: Fluocinonide fits the acne-treatment description, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: FitsDescription(fluocinonide)
+INF-2: Option D is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_d)

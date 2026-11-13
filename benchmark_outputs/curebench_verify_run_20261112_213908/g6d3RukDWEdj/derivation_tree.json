@@ -1,0 +1,215 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is Sklice",
+      "formula": "Describes(option_a, sklice)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is Lotrimin",
+      "formula": "Describes(option_b, lotrimin)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is Nizoral",
+      "formula": "Describes(option_c, nizoral)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is Rogaine",
+      "formula": "Describes(option_d, rogaine)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Sklice has no indication specified (only contraindications)",
+      "formula": "\u00acIndicatedFor(sklice, head_lice)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-873865: The Sklice label gives an indication: topical treatment of head lice infestations in patients 6 months and older.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Lotrimin's label specifically mentions head lice",
+      "formula": "IndicatedFor(lotrimin, head_lice)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-ff99a6: The Lotrimin labels list vaginal yeast infections, athlete's foot, jock itch and ringworm. None mention head lice.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Lotrimin lacks the detailed dosage and warning information typical of a drug label",
+      "formula": "\u00acComprehensive(lotrimin)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I did not check Lotrimin's dosage and warning detail. Its OTC labels do carry dosage and warnings sections.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Nizoral's label also mentions head lice",
+      "formula": "IndicatedFor(nizoral, head_lice)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-127666: The Nizoral labels list systemic fungal infections, dandruff, and psoriasis/seborrheic dermatitis of the scalp. None mention head lice.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Nizoral has comprehensive label details",
+      "formula": "Comprehensive(nizoral)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: I did not check the full Nizoral label detail. The Nizoral tablet label does have several sections, such as a boxed warning and contraindications.",
+      "error": true
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Rogaine is primarily indicated for hair loss",
+      "formula": "IndicatedFor(rogaine, hair_loss)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ccb8f6",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Rogaine's primary indication is not related to head lice",
+      "formula": "\u00acIndicatedFor(rogaine, head_lice)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-ccb8f6",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option whose drug is not indicated for head lice is not the answer",
+      "formula": "\u2200o\u2200d (Describes(o, d) \u2227 \u00acIndicatedFor(d, head_lice) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option whose drug is indicated for head lice but lacks comprehensive label details is not the answer",
+      "formula": "\u2200o\u2200d (Describes(o, d) \u2227 IndicatedFor(d, head_lice) \u2227 \u00acComprehensive(d) \u2192 \u00acAnswer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by the logic: Whether a label is comprehensive has no bearing on whether the drug is the answer to an indication question.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option whose drug is indicated for head lice and has comprehensive label details is the answer",
+      "formula": "\u2200o\u2200d (Describes(o, d) \u2227 IndicatedFor(d, head_lice) \u2227 Comprehensive(d) \u2192 Answer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by the logic: Label comprehensiveness is not a criterion for the answer. Sklice is the answer because its indication is head lice.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, FACT-6, FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-3, FACT-8, FACT-9 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-8",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, FACT-11 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-11",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-873865: The Sklice label gives an indication: topical treatment of head lice infestations in patients 6 months and older."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-ff99a6: The Lotrimin labels list vaginal yeast infections, athlete's foot, jock itch and ringworm. None mention head lice."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: I did not check Lotrimin's dosage and warning detail. Its OTC labels do carry dosage and warnings sections."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-127666: The Nizoral labels list systemic fungal infections, dandruff, and psoriasis/seborrheic dermatitis of the scalp. None mention head lice."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "UNVERIFIED: I did not check the full Nizoral label detail. The Nizoral tablet label does have several sections, such as a boxed warning and contraindications."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by the logic: Whether a label is comprehensive has no bearing on whether the drug is the answer to an indication question."
+    },
+    {
+      "node": "RULE-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by the logic: Label comprehensiveness is not a criterion for the answer. Sklice is the answer because its indication is head lice."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,16 @@
+% --- FACTS ---
+fof(fact_1, axiom, on_drug(patient, pertzye)).
+fof(fact_2, axiom, severe_allergy(patient)).
+fof(fact_3, axiom, describes(option_b, seek_emergency_treatment)).
+
+% --- OPERATIONS ---
+
+% --- RULES ---
+fof(rule_1, axiom, ! [X] : (severe_allergy(X) => needs_emergency(X))).
+fof(rule_2, axiom, ! [X,O] : ((needs_emergency(X) & describes(O, seek_emergency_treatment)) => answer(O))).
+
+% --- INFERENCES ---
+% From fact_2, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, needs_emergency(patient)).
+% From inf_1, fact_3, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, answer(option_b)).

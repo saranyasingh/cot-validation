@@ -1,0 +1,46 @@
+## VOCABULARY
+Predicates:
+InhibitsViaP2Y12(d) — drug d inhibits platelet aggregation by direct interaction with P2Y12 receptors
+ComparableIPA(d, e) — the label indicates drugs d and e have comparable inhibition of platelet aggregation (IPA)
+Describes(o, d, e) — answer option o describes the comparison of drug d's IPA relative to drug e's, as a relation r
+LabelSupports(r, d, e) — the label supports relation r between the IPA of drug d and drug e
+Answer(o) — option o is the correct answer
+Constants:
+brilinta, clopidogrel, option_a, option_b, option_c, option_d, lower, similar, higher, none
+
+Describes is revised below to match the declared constants (arity 3 with relation r as a constant): Describes(o, r) — option o states relation r.
+
+Final predicate list (at most 5):
+InhibitsViaP2Y12(d) — drug d inhibits platelet aggregation by direct interaction with P2Y12 receptors
+ComparableIPA(d, e) — the label indicates drugs d and e have comparable IPA
+Describes(o, r) — option o states relation r between BRILINTA's IPA and clopidogrel's IPA
+LabelSupports(r) — the label supports relation r between BRILINTA's IPA and clopidogrel's IPA
+Answer(o) — option o is the correct answer
+
+Constants:
+brilinta, clopidogrel, option_a, option_b, option_c, option_d, lower, similar, higher, none
+
+## FACTS
+FACT-1: BRILINTA inhibits platelet aggregation by direct interaction with P2Y12 receptors :: InhibitsViaP2Y12(brilinta)
+FACT-2: The label indicates BRILINTA and clopidogrel have comparable IPA :: ComparableIPA(brilinta, clopidogrel)
+FACT-3: Option A states BRILINTA shows lower IPA than clopidogrel :: Describes(option_a, lower)
+FACT-4: Option B states BRILINTA shows similar IPA to clopidogrel :: Describes(option_b, similar)
+FACT-5: Option C states BRILINTA shows higher IPA than clopidogrel :: Describes(option_c, higher)
+FACT-6: Option D states BRILINTA shows no IPA effect :: Describes(option_d, none)
+FACT-7: The label gives no specific comparison showing BRILINTA has lower IPA than clopidogrel :: ¬LabelSupports(lower)
+FACT-8: The label gives no evidence that BRILINTA has higher IPA than clopidogrel :: ¬LabelSupports(higher)
+FACT-9: The label states BRILINTA inhibits platelet aggregation, so it does not show no IPA effect :: ¬LabelSupports(none)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If the label indicates two drugs have comparable IPA, the label supports the relation "similar" :: ∀d∀e (ComparableIPA(d, e) → LabelSupports(similar))
+RULE-2: An option stating a relation the label supports is the answer :: ∀o∀r ((Describes(o, r) ∧ LabelSupports(r)) → Answer(o))
+RULE-3: An option stating a relation the label does not support is not the answer :: ∀o∀r ((Describes(o, r) ∧ ¬LabelSupports(r)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: The label supports the relation "similar", from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: LabelSupports(similar)
+INF-2: Option A is not the answer, from FACT-3, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-3: Option C is not the answer, from FACT-5, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-4: Option D is not the answer, from FACT-6, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-5: Option B is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

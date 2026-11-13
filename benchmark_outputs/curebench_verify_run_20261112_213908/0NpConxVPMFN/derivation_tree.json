@@ -1,0 +1,221 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is 15\u00b0C (59\u00b0F)",
+      "formula": "Describes(option_a, temp_15)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is 25\u00b0C (77\u00b0F)",
+      "formula": "Describes(option_b, temp_25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is 30\u00b0C (86\u00b0F)",
+      "formula": "Describes(option_c, temp_30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is 10\u00b0C (50\u00b0F)",
+      "formula": "Describes(option_d, temp_10)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The reasoning states that 15\u00b0C falls within the range of 20\u00b0C - 30\u00b0C",
+      "formula": "InRange(temp_15)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The labels I retrieved give no storage temperature or \"commonly accepted range\". The claim that 15\u00b0C falls within 20\u201330\u00b0C is also numerically false.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The reasoning states that 25\u00b0C is outside the commonly accepted range",
+      "formula": "\u00acInRange(temp_25)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The labels I retrieved give no storage temperature or \"commonly accepted range\". The claim that 25\u00b0C is outside the accepted range is not supported by anything I found.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The reasoning states that 30\u00b0C exceeds the safe range and is unsafe for most pharmaceuticals",
+      "formula": "\u00acSafe(temp_30)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The labels I retrieved give no storage temperature information, so I could not check this claim about 30\u00b0C.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The reasoning states that 10\u00b0C is below the commonly accepted range",
+      "formula": "\u00acInRange(temp_10)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The labels I retrieved give no storage temperature information, so I could not check this claim about 10\u00b0C.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A temperature within the commonly accepted range is safe and appropriate for storage",
+      "formula": "\u2200t (InRange(t) \u2192 Safe(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A temperature outside the commonly accepted range is not safe for storage",
+      "formula": "\u2200t (\u00acInRange(t) \u2192 \u00acSafe(t))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing a safe storage temperature is the answer",
+      "formula": "\u2200o\u2200t ((Describes(o, t) \u2227 Safe(t)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing an unsafe storage temperature is not the answer",
+      "formula": "\u2200o\u2200t ((Describes(o, t) \u2227 \u00acSafe(t)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "15\u00b0C is safe for storage, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Safe(temp_15)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "25\u00b0C is not safe for storage, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSafe(temp_25)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "10\u00b0C is not safe for storage, from FACT-8 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSafe(temp_10)",
+      "premises": [
+        "FACT-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-7",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-1, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "UNVERIFIED: The labels I retrieved give no storage temperature or \"commonly accepted range\". The claim that 15\u00b0C falls within 20\u201330\u00b0C is also numerically false."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The labels I retrieved give no storage temperature or \"commonly accepted range\". The claim that 25\u00b0C is outside the accepted range is not supported by anything I found."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The labels I retrieved give no storage temperature information, so I could not check this claim about 30\u00b0C."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: The labels I retrieved give no storage temperature information, so I could not check this claim about 10\u00b0C."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

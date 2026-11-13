@@ -1,0 +1,185 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The dose indicator on Stiolto Respimat has reached 0",
+      "formula": "IndicatorZero(stiolto_respimat)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is continuing to use the inhaler with the same cartridge until it is empty",
+      "formula": "Describes(option_a, continue_same_cartridge)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is preparing and using a new Stiolto Respimat inhaler",
+      "formula": "Describes(option_b, new_inhaler)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is turning the clear base to reset the dose indicator",
+      "formula": "Describes(option_c, turn_clear_base)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is cleaning the mouthpiece and continuing to use the inhaler",
+      "formula": "Describes(option_d, clean_mouthpiece)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Preparing and using a new Stiolto Respimat inhaler provides continuous and reliable dosing, so it is the appropriate course of action",
+      "formula": "Resolves(new_inhaler, stiolto_respimat)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-a32fba",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Turning the clear base is not recommended, as it disrupts alignment and affects performance, so it does not appropriately address the situation",
+      "formula": "\u00acResolves(turn_clear_base, stiolto_respimat)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-a32fba",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Cleaning the mouthpiece does not address the core issue of inadequate medication being delivered",
+      "formula": "\u00acResolves(clean_mouthpiece, stiolto_respimat)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-a32fba",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a device's dose indicator reaches 0, insufficient medication remains to complete another inhalation",
+      "formula": "\u2200d (IndicatorZero(d) \u2192 Insufficient(d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-a32fba",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If insufficient medication remains in a device, continuing to use the same cartridge does not resolve the situation (incomplete, ineffective treatment)",
+      "formula": "\u2200d (Insufficient(d) \u2192 \u00acResolves(continue_same_cartridge, d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-a32fba",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing an action that appropriately addresses the situation is the answer",
+      "formula": "\u2200o\u2200a\u2200d (Describes(o, a) \u2227 Resolves(a, d) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing an action that does not appropriately address the situation is not the answer",
+      "formula": "\u2200o\u2200a\u2200d (Describes(o, a) \u2227 \u00acResolves(a, d) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Stiolto Respimat has insufficient medication remaining, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Insufficient(stiolto_respimat)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Continuing to use the same cartridge does not resolve the situation, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acResolves(continue_same_cartridge, stiolto_respimat)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-2, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-4, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-7",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-5, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-5",
+        "FACT-8",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-3, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-3",
+        "FACT-6",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [],
+  "error_stages": []
+}

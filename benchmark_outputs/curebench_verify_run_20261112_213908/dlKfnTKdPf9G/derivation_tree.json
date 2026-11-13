@@ -1,0 +1,74 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The patient is taking PERTZYE",
+      "formula": "OnDrug(patient, pertzye)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The patient experiences severe allergic reactions",
+      "formula": "SevereAllergy(patient)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is seeking emergency treatment immediately",
+      "formula": "Describes(option_b, seek_emergency_treatment)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A patient with a severe allergic reaction requires immediate emergency medical care",
+      "formula": "\u2200x (SevereAllergy(x) \u2192 NeedsEmergency(x))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-2d9b9f",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a patient needs emergency care, an option describing seeking emergency treatment is the answer",
+      "formula": "\u2200x\u2200o (NeedsEmergency(x) \u2227 Describes(o, seek_emergency_treatment) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The patient requires immediate emergency medical care, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "NeedsEmergency(patient)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "PROVED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [],
+  "error_stages": []
+}

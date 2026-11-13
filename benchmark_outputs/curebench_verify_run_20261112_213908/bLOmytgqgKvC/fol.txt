@@ -1,0 +1,38 @@
+## VOCABULARY
+Predicates:
+Contains(m, c) — medication m contains component c
+AvoidWith(m, d) — medication m should not be taken together with drug d
+Covers(o, m) — answer option o includes medication m
+Candidate(m) — medication m is a candidate for being incompatible with Fluoxetine capsules
+Answer(o) — option o is the correct answer
+Constants:
+symbyax, sarafem, prozac_weekly, fluoxetine_capsules, fluoxetine_hcl, olanzapine, ssris, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Symbyax contains fluoxetine :: Contains(symbyax, fluoxetine_hcl)
+FACT-2: Symbyax contains olanzapine :: Contains(symbyax, olanzapine)
+FACT-3: Symbyax's label says it should not be used with SSRIs such as Fluoxetine :: AvoidWith(symbyax, fluoxetine_capsules)
+FACT-4: Sarafem contains fluoxetine hydrochloride :: Contains(sarafem, fluoxetine_hcl)
+FACT-5: Sarafem's label says it should not be combined with any SSRI, including Fluoxetine :: AvoidWith(sarafem, fluoxetine_capsules)
+FACT-6: Prozac Weekly contains fluoxetine hydrochloride :: Contains(prozac_weekly, fluoxetine_hcl)
+FACT-7: Prozac Weekly does not contain SSRIs :: ¬Contains(prozac_weekly, ssris)
+FACT-8: Option A is Symbyax :: Covers(option_a, symbyax)
+FACT-9: Option B is Sarafem :: Covers(option_b, sarafem)
+FACT-10: Option C is Prozac Weekly :: Covers(option_c, prozac_weekly)
+FACT-11: Option D (all of the above) includes Symbyax :: Covers(option_d, symbyax)
+FACT-12: Option D (all of the above) includes Sarafem :: Covers(option_d, sarafem)
+FACT-13: Option D (all of the above) includes Prozac Weekly :: Covers(option_d, prozac_weekly)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A medication that does not contain SSRIs gives no indication of an interaction requiring avoidance with Fluoxetine capsules :: ∀m (¬Contains(m, ssris) → ¬AvoidWith(m, fluoxetine_capsules))
+RULE-2: A medication containing fluoxetine hydrochloride is a candidate for being incompatible with Fluoxetine capsules :: ∀m (Contains(m, fluoxetine_hcl) → Candidate(m))
+RULE-3: If Symbyax and Sarafem are both not to be taken with Fluoxetine capsules, and all three medications are candidates for incompatibility, the option covering all three is the answer :: ∀o ((Covers(o, symbyax) ∧ Covers(o, sarafem) ∧ Covers(o, prozac_weekly) ∧ AvoidWith(symbyax, fluoxetine_capsules) ∧ AvoidWith(sarafem, fluoxetine_capsules) ∧ Candidate(symbyax) ∧ Candidate(sarafem) ∧ Candidate(prozac_weekly)) → Answer(o))
+
+## INFERENCES
+INF-1: No indication that Prozac Weekly must be avoided with Fluoxetine capsules, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬AvoidWith(prozac_weekly, fluoxetine_capsules)
+INF-2: Symbyax is a candidate for incompatibility, from FACT-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Candidate(symbyax)
+INF-3: Sarafem is a candidate for incompatibility, from FACT-4 and RULE-2 by Universal Instantiation and Modus Ponens :: Candidate(sarafem)
+INF-4: Prozac Weekly is a candidate for incompatibility, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: Candidate(prozac_weekly)
+INF-5: Option D is the answer, from FACT-3, FACT-5, FACT-11, FACT-12, FACT-13, INF-2, INF-3, INF-4, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_d)

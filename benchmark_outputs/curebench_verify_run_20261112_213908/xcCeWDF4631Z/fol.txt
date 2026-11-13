@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+Approved(d, c) — drug d is approved to treat condition c
+ReducedFunction(p) — patient group p may have reduced hepatic, renal, or cardiac function
+Tolerable(p) — lower doses are more tolerable and less likely to cause side effects in patient group p
+LowDoseRecommended(d, p) — for drug d, starting at the low end of the dosing range is the most appropriate recommendation for patient group p
+Answer(o) — option o is the correct answer
+Constants:
+terbinafine, dermatophytosis, elderly_patients, option_c
+
+## FACTS
+FACT-1: Terbinafine is approved for the treatment of dermatophytosis :: Approved(terbinafine, dermatophytosis)
+FACT-2: Elderly patients may have reduced liver, kidney, and cardiac function :: ReducedFunction(elderly_patients)
+FACT-3: Lower doses are more tolerable and less likely to cause side effects in elderly patients :: Tolerable(elderly_patients)
+FACT-4: Option C is to start at the low end of the dosing range due to potential decreased hepatic, renal, or cardiac function :: LowDoseRecommended(terbinafine, elderly_patients)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug is approved for a condition and a patient group may have reduced organ function and tolerates lower doses better, then starting at the low end of the dosing range is the most appropriate recommendation for that group :: ∀d∀c∀p (Approved(d, c) ∧ ReducedFunction(p) ∧ Tolerable(p) → LowDoseRecommended(d, p))
+RULE-2: If starting at the low end of the dosing range is the most appropriate recommendation for elderly patients, then option C (which states this) is the answer :: ∀d (LowDoseRecommended(d, elderly_patients) → Answer(option_c))
+
+## INFERENCES
+INF-1: Starting at the low end of the dosing range is the most appropriate recommendation for elderly patients on terbinafine, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: LowDoseRecommended(terbinafine, elderly_patients)
+INF-2: Option C is the answer, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_c)

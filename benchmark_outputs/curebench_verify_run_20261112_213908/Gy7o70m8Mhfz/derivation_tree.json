@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The primary indication for esomeprazole magnesium is gastroesophageal reflux disease (acid reflux disease)",
+      "formula": "HasPrimaryIndication(esomeprazole, gerd_acid_reflux)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-4af147",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Esomeprazole has no specific indication for immediate relief of heartburn symptoms",
+      "formula": "NotIndicatedFor(esomeprazole, immediate_heartburn_relief)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-4af147",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Esomeprazole has no specific indication for management of stomach ulcers",
+      "formula": "NotIndicatedFor(esomeprazole, stomach_ulcers)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-4af147: the label lists NSAID-associated gastric ulcer risk reduction and H. pylori eradication to reduce duodenal ulcer recurrence, so ulcer-related indications exist.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Esomeprazole has no approved indication specifically for acid reflux due to frequent heartburn (2-3 times a week)",
+      "formula": "NotIndicatedFor(esomeprazole, frequent_heartburn_2_3_times)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-4af147: the OTC label states \"treats frequent heartburn (occurs 2 or more days a week)\", so an indication for frequent heartburn exists.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option C is management of acid reflux disease",
+      "formula": "Describes(option_c, gerd_acid_reflux)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A drug's primary indication is a condition it is indicated for",
+      "formula": "\u2200d\u2200c (HasPrimaryIndication(d, c) \u2192 Indicated(d, c))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "The question asks for an indication of esomeprazole, so an option describing a condition it is indicated for is the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 Indicated(esomeprazole, c)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Esomeprazole is indicated for GERD/acid reflux disease, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Indicated(esomeprazole, gerd_acid_reflux)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-5, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-5",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-4af147: the label lists NSAID-associated gastric ulcer risk reduction and H. pylori eradication to reduce duodenal ulcer recurrence, so ulcer-related indications exist."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-4af147: the OTC label states \"treats frequent heartburn (occurs 2 or more days a week)\", so an indication for frequent heartburn exists."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

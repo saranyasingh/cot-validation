@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated for first-line treatment of condition c, alone or in combination
+OptionIs(o, d) — answer option o is the combination of pemetrexed with drug or drug class d
+NotIndicated(d, c) — drug or drug class d is not indicated for condition c
+Includes(o) — option o is a valid combination therapy that includes pemetrexed as an initial treatment for the condition
+Answer(o) — option o is the correct answer
+
+Constants:
+pemetrexed, cisplatin, pembrolizumab_platinum, egfr_inhibitors, alk_inhibitors, mesothelioma, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Pemetrexed is indicated for first-line treatment of advanced malignant pleural mesothelioma :: Indicated(pemetrexed, mesothelioma)
+FACT-2: Option A is pemetrexed with pembrolizumab and platinum chemotherapy :: OptionIs(option_a, pembrolizumab_platinum)
+FACT-3: Option B is pemetrexed with cisplatin :: OptionIs(option_b, cisplatin)
+FACT-4: Option C is pemetrexed with EGFR inhibitors :: OptionIs(option_c, egfr_inhibitors)
+FACT-5: Option D is pemetrexed with ALK inhibitors :: OptionIs(option_d, alk_inhibitors)
+FACT-6: Pembrolizumab and platinum chemotherapy are not indicated for mesothelioma :: NotIndicated(pembrolizumab_platinum, mesothelioma)
+FACT-7: Cisplatin in combination with pemetrexed is FDA-approved for first-line treatment of advanced malignant pleural mesothelioma :: Indicated(cisplatin, mesothelioma)
+FACT-8: EGFR inhibitors are not indicated for mesothelioma :: NotIndicated(egfr_inhibitors, mesothelioma)
+FACT-9: ALK inhibitors are not indicated for mesothelioma :: NotIndicated(alk_inhibitors, mesothelioma)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option whose partner is indicated for mesothelioma, and where pemetrexed is also indicated for it, includes pemetrexed in a valid combination :: ∀o∀d (OptionIs(o, d) ∧ Indicated(pemetrexed, mesothelioma) ∧ Indicated(d, mesothelioma) → Includes(o))
+RULE-2: An option whose partner is not indicated for mesothelioma does not include pemetrexed in a valid combination :: ∀o∀d (OptionIs(o, d) ∧ NotIndicated(d, mesothelioma) → ¬Includes(o))
+RULE-3: An option that includes pemetrexed in a valid combination is the answer :: ∀o (Includes(o) → Answer(o))
+
+## INFERENCES
+INF-1: Option A does not include pemetrexed in a valid combination, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Includes(option_a)
+INF-2: Option B includes pemetrexed in a valid combination, from FACT-3, FACT-1, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: Includes(option_b)
+INF-3: Option C does not include pemetrexed in a valid combination, from FACT-4, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Includes(option_c)
+INF-4: Option D does not include pemetrexed in a valid combination, from FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Includes(option_d)
+INF-5: Option B is the answer, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)

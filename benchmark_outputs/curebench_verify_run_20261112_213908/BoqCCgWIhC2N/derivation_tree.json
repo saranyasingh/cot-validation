@@ -1,0 +1,171 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "RoxyBond is indicated for pain relief in patients with chronic pain conditions",
+      "formula": "Indicated(roxybond, chronic_pain)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-46520a: The label says RoxyBond is for pain severe enough to require an opioid analgesic when alternative treatments are inadequate. It does not limit use to chronic pain.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The label warns against using RoxyBond with other opioids",
+      "formula": "LabelWarns(roxybond, other_opioids)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-46520a",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The label warns against using RoxyBond with benzodiazepines",
+      "formula": "LabelWarns(roxybond, benzodiazepines)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-46520a",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "The label warns against using RoxyBond with alcohol",
+      "formula": "LabelWarns(roxybond, alcohol)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-46520a",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option A is patients with a history of prolonged opioid use",
+      "formula": "Describes(option_a, prolonged_opioid_use)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option B is patients with a history of drug or alcohol abuse",
+      "formula": "Describes(option_b, drug_alcohol_abuse_history)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option C is patients combining RoxyBond with other abused drugs",
+      "formula": "Describes(option_c, other_abused_drugs)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option D is all of the above",
+      "formula": "Describes(option_d, all_of_above)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Combining RoxyBond with other abused drugs significantly increases the risk of respiratory depression and overdose",
+      "formula": "HigherRisk(roxybond, other_abused_drugs)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-46520a",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "Patients with prolonged opioid use are not at higher risk based solely on past experience with opioids",
+      "formula": "\u00acHigherRisk(roxybond, prolonged_opioid_use)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-46520a: The label says addiction, abuse, misuse and overdose were observed in patients with long-term opioid use. It also says the risk of opioid-related overdose persists over the course of therapy.",
+      "error": true
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "Option C specifies a direct interaction between RoxyBond and other substances, making it more specific and relevant than \"all of the above\"",
+      "formula": "\u00acHigherRisk(roxybond, all_of_above)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: This is a reasoning judgment about which option is more specific. The label gives no source for it.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing a substance or population that presents a higher risk is the answer",
+      "formula": "\u2200o\u2200s (Describes(o, s) \u2227 HigherRisk(roxybond, s) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a substance or population that does not present a higher risk is not the answer",
+      "formula": "\u2200o\u2200s (Describes(o, s) \u2227 \u00acHigherRisk(roxybond, s) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option C is the answer, from FACT-7, FACT-9, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_c)",
+      "premises": [
+        "FACT-7",
+        "FACT-9",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-5, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-5",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-8, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-8",
+        "FACT-11",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-46520a: The label says RoxyBond is for pain severe enough to require an opioid analgesic when alternative treatments are inadequate. It does not limit use to chronic pain."
+    },
+    {
+      "node": "FACT-10",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-46520a: The label says addiction, abuse, misuse and overdose were observed in patients with long-term opioid use. It also says the risk of opioid-related overdose persists over the course of therapy."
+    },
+    {
+      "node": "FACT-11",
+      "stage": "verify",
+      "message": "UNVERIFIED: This is a reasoning judgment about which option is more specific. The label gives no source for it."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

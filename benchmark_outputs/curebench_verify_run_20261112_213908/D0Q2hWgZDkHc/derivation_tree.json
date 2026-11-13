@@ -1,0 +1,177 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The label says that if a dose is missed due to an emergency situation, patients may continue treatment as soon as possible",
+      "formula": "Permitted(jaypirca, continue_asap)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f16316: The label says that a dose missed by more than 12 hours is not made up, and the next dose is taken as scheduled. It says nothing about an emergency exception or continuing treatment as soon as possible.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is taking the missed dose immediately, which is continuing treatment as soon as possible",
+      "formula": "Describes(option_a, continue_asap)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is skipping the missed dose and taking the next dose at the usual time",
+      "formula": "Describes(option_b, skip_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is doubling the dose the next day",
+      "formula": "Describes(option_c, double_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is stopping JAYPIRCA entirely",
+      "formula": "Describes(option_d, stop_drug)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Skipping the dose is not allowed under the stated conditions",
+      "formula": "\u00acSupported(jaypirca, skip_dose)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-f16316: The label directs the patient not to make up a dose missed by more than 12 hours and to take the next dose as scheduled. That means skipping the missed dose is the recommended action.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The label does not mention doubling the dose",
+      "formula": "\u00acSupported(jaypirca, double_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-f16316",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The label gives no indication to stop the drug entirely",
+      "formula": "\u00acSupported(jaypirca, stop_drug)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-f16316",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An action the label permits is supported by the label",
+      "formula": "\u2200d\u2200a (Permitted(d, a) \u2192 Supported(d, a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing an action the label supports is the answer",
+      "formula": "\u2200o\u2200a ((Describes(o, a) \u2227 Supported(jaypirca, a)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing an action the label does not support is not the answer",
+      "formula": "\u2200o\u2200a ((Describes(o, a) \u2227 \u00acSupported(jaypirca, a)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Continuing treatment as soon as possible is supported by the JAYPIRCA label, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Supported(jaypirca, continue_asap)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-2, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-3, FACT-6, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-3",
+        "FACT-6",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-4, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-5, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-5",
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f16316: The label says that a dose missed by more than 12 hours is not made up, and the next dose is taken as scheduled. It says nothing about an emergency exception or continuing treatment as soon as possible."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-f16316: The label directs the patient not to make up a dose missed by more than 12 hours and to take the next dose as scheduled. That means skipping the missed dose is the recommended action."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,26 @@
+## VOCABULARY
+Predicates:
+Treats(d, c) — drug d is indicated to treat condition c
+Indicates(s, p) — symptom s indicates problem p
+RecommendedAction(p, a) — action a is the usual recommended action for problem p
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+
+Constants:
+lamotrigine, epilepsy, worsening_seizure_control, inadequate_efficacy, switch_aed, option_d
+
+## FACTS
+FACT-1: Lamotrigine is used as an anticonvulsant for the treatment of epilepsy :: Treats(lamotrigine, epilepsy)
+FACT-2: Worsening seizure control indicates a lack of efficacy of the current medication regimen :: Indicates(worsening_seizure_control, inadequate_efficacy)
+FACT-3: The usual recommended action for inadequate efficacy (inadequate seizure control) is switching to another antiepileptic drug :: RecommendedAction(inadequate_efficacy, switch_aed)
+FACT-4: Option D is switching to a different antiepileptic drug :: Describes(option_d, switch_aed)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a symptom indicates a problem and the usual recommended action for that problem is action a, then a is the appropriate action for that symptom :: ∀s∀p∀a (Indicates(s, p) ∧ RecommendedAction(p, a) → RecommendedAction(s, a))
+RULE-2: An option describing the appropriate action for worsening seizure control is the answer :: ∀o∀a (Describes(o, a) ∧ RecommendedAction(worsening_seizure_control, a) → Answer(o))
+
+## INFERENCES
+INF-1: The appropriate action for worsening seizure control is switching to a different antiepileptic drug, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: RecommendedAction(worsening_seizure_control, switch_aed)
+INF-2: Option D is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_d)

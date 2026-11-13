@@ -1,0 +1,39 @@
+## VOCABULARY
+Predicates:
+IndicatedFor(d, c) — drug d is indicated for condition c
+Describes(o, c) — answer option o describes a use or principle c
+PreventsResistance(c) — use c helps avoid the development of antibiotic-resistant bacteria
+Broad(c) — use c is broad or unnecessary and risks promoting resistance
+Answer(o) — option o is the correct answer
+Constants:
+zithromax, acute_sinusitis, upper_respiratory_infection, viral_infection, option_a, option_b, option_c, option_d, broad_use, selective_use, combine_ineffective, viral_only_use
+
+## FACTS
+FACT-1: Zithromax is indicated for acute bacterial sinusitis :: IndicatedFor(zithromax, acute_sinusitis)
+FACT-2: Zithromax is indicated for upper respiratory tract infections :: IndicatedFor(zithromax, upper_respiratory_infection)
+FACT-3: Zithromax is not indicated for viral infections :: ¬IndicatedFor(zithromax, viral_infection)
+FACT-4: Option A describes using Zithromax for all bacterial infections (broad use) :: Describes(option_a, broad_use)
+FACT-5: Option B describes using Zithromax selectively, only for infections proven or strongly suspected to be bacterial (selective use) :: Describes(option_b, selective_use)
+FACT-6: Option C describes using Zithromax in combination with other antibiotics for ineffective treatment (combining ineffective treatments) :: Describes(option_c, combine_ineffective)
+FACT-7: Option D describes exclusive use of Zithromax for viral infections to prevent resistance :: Describes(option_d, viral_only_use)
+
+## OPERATIONS
+
+## RULES
+RULE-1: Broad use of a drug beyond specific indications risks resistance and does not help avoid it :: ∀c (Broad(c) → ¬PreventsResistance(c))
+RULE-2: Combining ineffective treatments is counterproductive to avoiding resistance :: ∀c (Describes(option_c, c) → ¬PreventsResistance(c))
+RULE-3: Selective use limited to narrow indications helps avoid resistance :: ∀c (Describes(option_b, c) ∧ IndicatedFor(zithromax, acute_sinusitis) ∧ IndicatedFor(zithromax, upper_respiratory_infection) → PreventsResistance(c))
+RULE-4: Use for viral infections, which the drug is not indicated for, lacks support as a way to prevent resistance :: ∀c (Describes(option_d, c) ∧ ¬IndicatedFor(zithromax, viral_infection) → ¬PreventsResistance(c))
+RULE-5: An option whose described use helps avoid resistance is the answer :: ∀o∀c (Describes(o, c) ∧ PreventsResistance(c) → Answer(o))
+RULE-6: An option whose described use does not help avoid resistance is not the answer :: ∀o∀c (Describes(o, c) ∧ ¬PreventsResistance(c) → ¬Answer(o))
+RULE-7: Using Zithromax for all bacterial infections is broad use :: Broad(broad_use)
+
+## INFERENCES
+INF-1: Broad use does not prevent resistance, from RULE-7 and RULE-1 by Modus Ponens :: ¬PreventsResistance(broad_use)
+INF-2: Option A is not the answer, from FACT-4, INF-1, and RULE-6 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-3: Selective use helps avoid resistance, from FACT-5, FACT-1, FACT-2, and RULE-3 by Universal Instantiation and Modus Ponens :: PreventsResistance(selective_use)
+INF-4: Option B is the answer, from FACT-5, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens :: Answer(option_b)
+INF-5: Combining ineffective treatments does not prevent resistance, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: ¬PreventsResistance(combine_ineffective)
+INF-6: Option C is not the answer, from FACT-6, INF-5, and RULE-6 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-7: Viral-only use does not prevent resistance, from FACT-7, FACT-3, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬PreventsResistance(viral_only_use)
+INF-8: Option D is not the answer, from FACT-7, INF-7, and RULE-6 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

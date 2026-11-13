@@ -1,0 +1,85 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is \"Once daily\"",
+      "formula": "Describes(option_a, once_daily)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is \"Twice daily\"",
+      "formula": "Describes(option_b, twice_daily)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is \"Three times daily\"",
+      "formula": "Describes(option_c, three_times_daily)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is \"Every four hours\"",
+      "formula": "Describes(option_d, every_four_hours)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "There is a clear distinction between once daily and every four hours",
+      "formula": "Distinct(once_daily, every_four_hours)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Considering typical usage patterns, \"Every four hours\" appears to be the most accurate representation of frequency",
+      "formula": "MostAccurate(every_four_hours)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The question doesn't name the antifungal drug, so I could not look up its label dosing frequency. I made no tool calls.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing the frequency that is the most accurate representation is the correct answer",
+      "formula": "\u2200o\u2200f ((Describes(o, f) \u2227 MostAccurate(f)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option D is the correct answer, from FACT-4, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-1",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The question doesn't name the antifungal drug, so I could not look up its label dosing frequency. I made no tool calls."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

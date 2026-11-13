@@ -1,0 +1,34 @@
+FACT-1: SUPPORTED — stated in the question
+FACT-2: SUPPORTED — stated in the question
+FACT-3: SUPPORTED — stated in the question
+FACT-4: SUPPORTED — stated in the question
+FACT-5: UNSUPPORTED — CONTRADICTED by tool evidence ev-67c244: The PubChem structure CN(C)CC(C1=CC=C(C=C1)OC)C2(CCCCC2)O.Cl works out to C17H27NO2·HCl, which is option A. Venlafaxine therefore has these substituents (dimethylamino, methoxyphenyl, cyclohexanol), and A is the correct formula.
+FACT-6: UNSUPPORTED — UNVERIFIED: marked SUPPORTED but no cited tool output contains the quoted evidence
+FACT-7: UNSUPPORTED — CONTRADICTED by tool evidence ev-67c244: Venlafaxine has a dimethylamino group but no carboxylic acid (it has a cyclohexanol and a methoxy group). The C16 formula is wrong because it has too few carbons, not because it lacks a carboxylic acid.
+FACT-8: UNSUPPORTED — CONTRADICTED by tool evidence ev-67c244: The structure and MW 313.9 correspond to C17H27NO2·HCl (option A). C17H28NO2HCl has one extra hydrogen.
+FACT-9: UNSUPPORTED — CONTRADICTED by tool evidence ev-67c244: Venlafaxine has no carboxylic acid group, and the structure gives C17H27NO2·HCl rather than C17H28NO2HCl.
+RULE-1: PLAUSIBLE — logical principle, no source needed
+RULE-2: PLAUSIBLE — logical principle, no source needed
+RULE-3: PLAUSIBLE — logical principle, no source needed
+RULE-4: PLAUSIBLE — logical principle, no source needed
+RULE-5: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 6 (0 returned no data). Provenance claims: 5 (1 with quotes not found in any tool output).
+  quote not found [ev-67c244]: "**Molecularweight:** 313.9"
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-5 [ev-67c244] PubChem_get_compound_properties_by_CID {"cid": 62923}
+  quote (exact match): "CN(C)CC(C1=CC=C(C=C1)OC)C2(CCCCC2)O.Cl"
+  tool output: status: success data: propertytable: properties: - cid: 62923 molecularweight: 313.9 connectivitysmiles: cn(c)cc(c1=cc=c(c=c1)oc)c2(ccccc2)o.cl iupacname: 1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride
+
+FACT-7 [ev-67c244] PubChem_get_compound_properties_by_CID {"cid": 62923}
+  quote (exact match): "1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride"
+  tool output: status: success data: propertytable: properties: - cid: 62923 molecularweight: 313.9 connectivitysmiles: cn(c)cc(c1=cc=c(c=c1)oc)c2(ccccc2)o.cl iupacname: 1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride
+
+FACT-8 [ev-67c244] PubChem_get_compound_properties_by_CID {"cid": 62923}
+  quote (exact match): "CN(C)CC(C1=CC=C(C=C1)OC)C2(CCCCC2)O.Cl"
+  tool output: status: success data: propertytable: properties: - cid: 62923 molecularweight: 313.9 connectivitysmiles: cn(c)cc(c1=cc=c(c=c1)oc)c2(ccccc2)o.cl iupacname: 1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride
+
+FACT-9 [ev-67c244] PubChem_get_compound_properties_by_CID {"cid": 62923}
+  quote (exact match): "1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride"
+  tool output: status: success data: propertytable: properties: - cid: 62923 molecularweight: 313.9 connectivitysmiles: cn(c)cc(c1=cc=c(c=c1)oc)c2(ccccc2)o.cl iupacname: 1-[2-(dimethylamino)-1-(4-methoxyphenyl)ethyl]cyclohexan-1-ol;hydrochloride

@@ -1,0 +1,99 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "The patient is taking Pantoprazole Sodium",
+      "formula": "Takes(patient, pantoprazole_sodium)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Pantoprazole Sodium does not contain THC",
+      "formula": "\u00acContainsTHC(pantoprazole_sodium)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: the label lookup did not state whether pantoprazole contains THC. The label does say the false positives come from PPIs in the screening test, not from THC in the drug.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The urine test result may be a false positive indicating contamination",
+      "formula": "FalsePositive(urine_test)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-0514fd: The label describes these results as false positive screening tests reported with PPIs. It does not attribute them to contamination, and it advises an alternative confirmatory method.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a urine test is a false positive, the sample is contaminated by a substance other than the intended one; if the patient takes a drug that does not itself contain THC, the contamination is attributed to that drug's possible contamination",
+      "formula": "\u2200p\u2200d\u2200t ((Takes(p, d) \u2227 \u00acContainsTHC(d) \u2227 FalsePositive(t)) \u2192 Contaminated(d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-0514fd: The label reports that PPIs themselves can cause false positive THC screens. It does not attribute them to contamination of the sample or the drug.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a drug the patient takes is possibly contaminated, the most appropriate action is to discontinue that drug until the source is identified",
+      "formula": "\u2200p\u2200d (Takes(p, d) \u2227 Contaminated(d) \u2192 Discontinue(d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-0514fd: For false positive THC screens the label advises an alternative confirmatory method, not discontinuing the drug.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Pantoprazole Sodium is a possible contaminant source, from FACT-1, FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Contaminated(pantoprazole_sodium)",
+      "premises": [
+        "FACT-1",
+        "FACT-2",
+        "FACT-3",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "The most appropriate action is to discontinue Pantoprazole Sodium, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Discontinue(pantoprazole_sodium)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "UNVERIFIED: the label lookup did not state whether pantoprazole contains THC. The label does say the false positives come from PPIs in the screening test, not from THC in the drug."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-0514fd: The label describes these results as false positive screening tests reported with PPIs. It does not attribute them to contamination, and it advises an alternative confirmatory method."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-0514fd: The label reports that PPIs themselves can cause false positive THC screens. It does not attribute them to contamination of the sample or the drug."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-0514fd: For false positive THC screens the label advises an alternative confirmatory method, not discontinuing the drug."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

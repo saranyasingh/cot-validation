@@ -1,0 +1,190 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is the GOPRELTO 4% solution group",
+      "formula": "Describes(option_a, goprelto_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is the Cocaine Hydrochloride 8% solution group",
+      "formula": "Describes(option_b, cocaine_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is the placebo group",
+      "formula": "Describes(option_c, placebo_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is none of the groups",
+      "formula": "Describes(option_d, none_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "GOPRELTO 4% solution can cause headaches",
+      "formula": "CausesHeadache(goprelto_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-24ab16",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Cocaine Hydrochloride 8% solution can cause headaches (severe pain in warnings, likely including headaches)",
+      "formula": "CausesHeadache(cocaine_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-24ab16",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The placebo has no active ingredient",
+      "formula": "\u00acHasActiveIngredient(placebo_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Headache is explicitly listed as a potential side effect for GOPRELTO",
+      "formula": "ExplicitlyListed(goprelto_group)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-24ab16",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Headache is not explicitly listed as a potential side effect for cocaine hydrochloride 8% solution",
+      "formula": "\u00acExplicitlyListed(cocaine_group)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-24ab16: The Phase 3 table lists headache for the cocaine hydrochloride 8% group (4 patients, 2%) in the same Adverse Reactions section. The Goprelto label never lists headache as a side effect of the 8% solution separately from the trial data.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A treatment with no active ingredient cannot cause headaches",
+      "formula": "\u2200g (\u00acHasActiveIngredient(g) \u2192 \u00acCausesHeadache(g))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-24ab16: The placebo group did report headache (1 patient, 1%). A treatment with no active ingredient can therefore be associated with headache.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a group whose treatment cannot cause headaches is not the answer",
+      "formula": "\u2200o\u2200g ((Describes(o, g) \u2227 \u00acCausesHeadache(g)) \u2192 \u00acAnswer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-24ab16: This depends on RULE-1, which is wrong. The placebo group had headache reports, so placebo is not ruled out for that reason. Placebo is still not the answer, because its rate was the lowest.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Since some groups can cause headaches, the option \"none of the groups\" is not the answer",
+      "formula": "\u2200o\u2200g\u2200h ((Describes(o, none_group) \u2227 CausesHeadache(g) \u2227 g = g) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing a group that causes headaches and has headache explicitly listed as a side effect is the answer",
+      "formula": "\u2200o\u2200g ((Describes(o, g) \u2227 CausesHeadache(g) \u2227 ExplicitlyListed(g)) \u2192 Answer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-24ab16: Being listed as a side effect does not decide the answer. The question asks for the highest percentage, and that is the Goprelto 4% group at 3%, compared with 2% for the 8% group and 1% for placebo.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The placebo group's treatment cannot cause headaches, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acCausesHeadache(placebo_group)",
+      "premises": [
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, FACT-5, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-5",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-1, FACT-5, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "FACT-8",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-24ab16: The Phase 3 table lists headache for the cocaine hydrochloride 8% group (4 patients, 2%) in the same Adverse Reactions section. The Goprelto label never lists headache as a side effect of the 8% solution separately from the trial data."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-24ab16: The placebo group did report headache (1 patient, 1%). A treatment with no active ingredient can therefore be associated with headache."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-24ab16: This depends on RULE-1, which is wrong. The placebo group had headache reports, so placebo is not ruled out for that reason. Placebo is still not the answer, because its rate was the lowest."
+    },
+    {
+      "node": "RULE-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-24ab16: Being listed as a side effect does not decide the answer. The question asks for the highest percentage, and that is the Goprelto 4% group at 3%, compared with 2% for the 8% group and 1% for placebo."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

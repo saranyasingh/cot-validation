@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+Describes(o, r) — answer option o states priming regimen r
+Consistent(d, r) — priming regimen r aligns with standard medical guidelines for drug d
+Restrictive(r) — priming regimen r is overly restrictive or excessive
+MostAccurate(d, r) — priming regimen r is the most accurate representation of current medical advice for drug d
+Answer(o) — option o is the correct answer
+Constants:
+airsupra, option_a, option_b, option_c, option_d, prime_once, prime_interval, prime_every_use, no_priming
+
+## FACTS
+FACT-1: Option A states priming the inhaler only once, when first using it :: Describes(option_a, prime_once)
+FACT-2: Option B states priming before first use, if unused for more than 7 days, or after cleaning :: Describes(option_b, prime_interval)
+FACT-3: Option C states priming before every single use :: Describes(option_c, prime_every_use)
+FACT-4: Option D states that priming is not required for AIRSUPRA :: Describes(option_d, no_priming)
+FACT-5: Priming only once does not align with standard medical guidelines for AIRSUPRA :: ¬Consistent(airsupra, prime_once)
+FACT-6: Priming at intervals based on time since last use or cleaning is overly restrictive :: Restrictive(prime_interval)
+FACT-7: Priming before every single use is excessive and contradicts common recommendations :: Restrictive(prime_every_use)
+FACT-8: No priming is the most accurate representation of current medical advice for AIRSUPRA :: MostAccurate(airsupra, no_priming)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option whose regimen does not align with medical guidelines for AIRSUPRA is not the answer :: ∀o∀r (Describes(o, r) ∧ ¬Consistent(airsupra, r) → ¬Answer(o))
+RULE-2: An option whose regimen is overly restrictive or excessive is not the answer :: ∀o∀r (Describes(o, r) ∧ Restrictive(r) → ¬Answer(o))
+RULE-3: An option whose regimen is the most accurate representation of current medical advice for AIRSUPRA is the answer :: ∀o∀r (Describes(o, r) ∧ MostAccurate(airsupra, r) → Answer(o))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-1, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option B is not the answer, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-3: Option C is not the answer, from FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-4: Option D is the answer, from FACT-4, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_d)

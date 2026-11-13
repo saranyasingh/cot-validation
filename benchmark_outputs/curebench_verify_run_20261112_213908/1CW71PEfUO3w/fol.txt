@@ -1,0 +1,32 @@
+## VOCABULARY
+Predicates:
+WithdrawalSymptom(d, c) — c is a common withdrawal symptom after abrupt discontinuation of drug d
+Describes(o, c) — answer option o describes condition c
+Supported(o) — option o is a supported adverse reaction upon abrupt discontinuation of fluoxetine
+Answer(o) — option o is the correct answer
+Constants:
+fluoxetine, dysphoric_sensory, weight_gain, improved_glycemic_control, reduced_serotonin_syndrome_risk, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is dysphoric mood and sensory disturbances :: Describes(option_a, dysphoric_sensory)
+FACT-2: Option B is weight gain :: Describes(option_b, weight_gain)
+FACT-3: Option C is improved glycemic control :: Describes(option_c, improved_glycemic_control)
+FACT-4: Option D is reduced risk of serotonin syndrome :: Describes(option_d, reduced_serotonin_syndrome_risk)
+FACT-5: Dysphoric mood and sensory disturbances are common withdrawal symptoms associated with SSRIs like fluoxetine :: WithdrawalSymptom(fluoxetine, dysphoric_sensory)
+FACT-6: Weight gain is not typically considered a direct withdrawal symptom of fluoxetine :: ¬WithdrawalSymptom(fluoxetine, weight_gain)
+FACT-7: Improved glycemic control is not a withdrawal symptom of fluoxetine (no indication fluoxetine affects blood sugar or glucose metabolism) :: ¬WithdrawalSymptom(fluoxetine, improved_glycemic_control)
+FACT-8: Reduced risk of serotonin syndrome is not a withdrawal consequence of abrupt discontinuation of fluoxetine :: ¬WithdrawalSymptom(fluoxetine, reduced_serotonin_syndrome_risk)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing a withdrawal symptom of fluoxetine is a supported adverse reaction upon abrupt discontinuation :: ∀o∀c ((Describes(o, c) ∧ WithdrawalSymptom(fluoxetine, c)) → Supported(o))
+RULE-2: An option describing a condition that is not a withdrawal symptom of fluoxetine is not supported :: ∀o∀c ((Describes(o, c) ∧ ¬WithdrawalSymptom(fluoxetine, c)) → ¬Supported(o))
+RULE-3: The supported option is the answer :: ∀o (Supported(o) → Answer(o))
+
+## INFERENCES
+INF-1: Option A is supported, from FACT-1, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens :: Supported(option_a)
+INF-2: Option B is not supported, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Supported(option_b)
+INF-3: Option C is not supported, from FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Supported(option_c)
+INF-4: Option D is not supported, from FACT-4, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Supported(option_d)
+INF-5: Option A is the answer, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_a)

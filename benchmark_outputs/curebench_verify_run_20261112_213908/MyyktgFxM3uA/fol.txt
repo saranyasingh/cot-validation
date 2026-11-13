@@ -1,0 +1,35 @@
+## VOCABULARY
+Predicates:
+Contains(d, i) — drug d contains active ingredient i
+Induces(i) — i is an enzyme-inducing hormone or drug
+Recommends(d, a) — the label of drug d recommends action a when taken with enzyme-inducing drugs
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+tri_femynor, ethinylestradiol, drospirenone, backup_contraception, stop_immediately, increase_dose, take_with_food, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Tri Femynor contains ethinylestradiol :: Contains(tri_femynor, ethinylestradiol)
+FACT-2: Tri Femynor contains drospirenone :: Contains(tri_femynor, drospirenone)
+FACT-3: Ethinylestradiol is treated as enzyme-inducing in the reasoning :: Induces(ethinylestradiol)
+FACT-4: Drospirenone is treated as enzyme-inducing in the reasoning :: Induces(drospirenone)
+FACT-5: Option A is stopping Tri Femynor immediately :: Describes(option_a, stop_immediately)
+FACT-6: Option B is using a back-up or alternative method of contraception :: Describes(option_b, backup_contraception)
+FACT-7: Option C is increasing the dose :: Describes(option_c, increase_dose)
+FACT-8: Option D is taking Tri Femynor with food :: Describes(option_d, take_with_food)
+FACT-9: The label does not recommend stopping Tri Femynor immediately :: ¬Recommends(tri_femynor, stop_immediately)
+FACT-10: The label does not recommend increasing the dose :: ¬Recommends(tri_femynor, increase_dose)
+FACT-11: The label does not recommend taking Tri Femynor with food :: ¬Recommends(tri_femynor, take_with_food)
+FACT-12: Using another form of birth control prevents unintended pregnancies when Tri Femynor is combined with enzyme-inducing drugs :: Recommends(tri_femynor, backup_contraception)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing an action the label recommends is the answer :: ∀o∀a (Describes(o, a) ∧ Recommends(tri_femynor, a) → Answer(o))
+RULE-2: An option describing an action the label does not recommend is not the answer :: ∀o∀a (Describes(o, a) ∧ ¬Recommends(tri_femynor, a) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Option A is not the answer, from FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-2: Option C is not the answer, from FACT-7, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-3: Option D is not the answer, from FACT-8, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-4: Option B is the answer, from FACT-6, FACT-12, and RULE-1 by Universal Instantiation and Modus Ponens :: Answer(option_b)

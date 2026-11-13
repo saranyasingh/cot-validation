@@ -1,0 +1,172 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is dysphoric mood and sensory disturbances",
+      "formula": "Describes(option_a, dysphoric_sensory)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is weight gain",
+      "formula": "Describes(option_b, weight_gain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is improved glycemic control",
+      "formula": "Describes(option_c, improved_glycemic_control)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is reduced risk of serotonin syndrome",
+      "formula": "Describes(option_d, reduced_serotonin_syndrome_risk)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Dysphoric mood and sensory disturbances are common withdrawal symptoms associated with SSRIs like fluoxetine",
+      "formula": "WithdrawalSymptom(fluoxetine, dysphoric_sensory)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-53ccbc",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Weight gain is not typically considered a direct withdrawal symptom of fluoxetine",
+      "formula": "\u00acWithdrawalSymptom(fluoxetine, weight_gain)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-53ccbc",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Improved glycemic control is not a withdrawal symptom of fluoxetine (no indication fluoxetine affects blood sugar or glucose metabolism)",
+      "formula": "\u00acWithdrawalSymptom(fluoxetine, improved_glycemic_control)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-53ccbc: The label says fluoxetine may alter glycemic control. Hyperglycemia developed after discontinuation, and hypoglycemia occurred during therapy. So there is an indication that it affects blood sugar. Improved glycemic control is still not a listed withdrawal reaction.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Reduced risk of serotonin syndrome is not a withdrawal consequence of abrupt discontinuation of fluoxetine",
+      "formula": "\u00acWithdrawalSymptom(fluoxetine, reduced_serotonin_syndrome_risk)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-53ccbc",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing a withdrawal symptom of fluoxetine is a supported adverse reaction upon abrupt discontinuation",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 WithdrawalSymptom(fluoxetine, c)) \u2192 Supported(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-53ccbc",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a condition that is not a withdrawal symptom of fluoxetine is not supported",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 \u00acWithdrawalSymptom(fluoxetine, c)) \u2192 \u00acSupported(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-53ccbc",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The supported option is the answer",
+      "formula": "\u2200o (Supported(o) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is supported, from FACT-1, FACT-5, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Supported(option_a)",
+      "premises": [
+        "FACT-1",
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option B is not supported, from FACT-2, FACT-6, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupported(option_b)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not supported, from FACT-3, FACT-7, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupported(option_c)",
+      "premises": [
+        "FACT-3",
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not supported, from FACT-4, FACT-8, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acSupported(option_d)",
+      "premises": [
+        "FACT-4",
+        "FACT-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from INF-1 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-53ccbc: The label says fluoxetine may alter glycemic control. Hyperglycemia developed after discontinuation, and hypoglycemia occurred during therapy. So there is an indication that it affects blood sugar. Improved glycemic control is still not a listed withdrawal reaction."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

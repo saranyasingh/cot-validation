@@ -1,0 +1,12 @@
+FACT-1: UNSUPPORTED — UNVERIFIED: the label lookup gave no evidence on how extensively venlafaxine has been studied.
+FACT-2: UNSUPPORTED — CONTRADICTED by tool evidence ev-b2b961: The label gives venlafaxine's plasma protein binding as 27% ± 2%, which is below the stated 30–60% range.
+FACT-3: SUPPORTED — stated in the question
+RULE-1: PLAUSIBLE — logical principle, no source needed
+RULE-2: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 1 (0 returned no data). Provenance claims: 1 (0 with quotes not found in any tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-2 [ev-b2b961] FDA_get_drug_label {"drug_name": "venlafaxine", "max_section_chars": 6000}
+  quote (exact match): "The degree of binding of venlafaxine to human plasma is 27% ± 2% at concentrations ranging from 2.5 to 2215 ng/mL."
+  tool output: … metabolite. on the basis of mass balance studies, at least 92% of a single dose of venlafaxine is absorbed. approximately 87% of a venlafaxine dose is recovered in the urine within 48 hours as either unchanged venlafaxine (5%), unconjugated odv (29%), conjugated odv (26%), or other minor inactive metabolites (27%). renal elimination of venlafaxine and its metabolites is the primary route of excretion. the relative bioavailability of venlafaxine from a tablet was 100% when compared to an oral solution. food has no significant effect on the absorption of venlafaxine or on the formation of odv. the degree of binding of venlafaxine to human plasma is 27% ± 2% at concentrations ranging from 2.5 to 2215 ng/ml. the degree of odv binding to human plasma is 30% ± 12% at concentrations ranging from 100 to 500 ng/ml. protein-binding-induced drug interactions with venlafaxine are not expected. steady-state concentrations of both venlafaxine and odv in plasma were attained within 3 days of multiple-dose therapy. venlafaxine and odv exhibited linear kinetics over the dose range of 75 to 450 mg total dose per day (administered on a q8h schedule). plasma clearance, elimination half-life and steady-state volume of distribution were unaltered for both venlafaxine and odv after multiple-dosing. mean ± sd steady…

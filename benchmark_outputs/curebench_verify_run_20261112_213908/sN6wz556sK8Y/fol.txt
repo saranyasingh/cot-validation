@@ -1,0 +1,36 @@
+## VOCABULARY
+Predicates:
+Contraindicated(d, c) — drug d is contraindicated in patients with condition c
+Indicated(d, c) — drug d is indicated to treat condition c
+Describes(o, c) — answer option o describes condition c
+HypersensitivityBased(c) — condition c is a hypersensitivity-based condition (excipient or drug-class hypersensitivity)
+Answer(o) — option o is the correct answer
+Constants:
+nuzyra, severe_liver_disease, staph_skin_infection, cond_a, cond_c, cond_d, excipient_hypersensitivity, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: NUZYRA is indicated for acute uncomplicated skin infections caused by susceptible Staphylococcus aureus :: Indicated(nuzyra, staph_skin_infection)
+FACT-2: The label's contraindications section states severe liver disease :: Contraindicated(nuzyra, severe_liver_disease)
+FACT-3: Option A suggests a hypersensitivity-based contraindication (excipient or drug class) :: Describes(option_a, cond_a)
+FACT-4: Option C suggests a hypersensitivity-based contraindication (excipient or drug class) :: Describes(option_c, cond_c)
+FACT-5: Option D suggests a hypersensitivity-based contraindication (excipient or drug class) :: Describes(option_d, cond_d)
+FACT-6: The condition in option A is hypersensitivity-based :: HypersensitivityBased(cond_a)
+FACT-7: The condition in option C is hypersensitivity-based :: HypersensitivityBased(cond_c)
+FACT-8: The condition in option D is hypersensitivity-based :: HypersensitivityBased(cond_d)
+FACT-9: Option B is hypersensitivity to NUZYRA's excipients :: Describes(option_b, excipient_hypersensitivity)
+
+## OPERATIONS
+
+## RULES
+RULE-1: Since the label's contraindication is severe liver disease, which does not relate to hypersensitivity, no hypersensitivity-based condition is a contraindication of NUZYRA :: ∀c ((Contraindicated(nuzyra, severe_liver_disease) ∧ HypersensitivityBased(c)) → ¬Contraindicated(nuzyra, c))
+RULE-2: An option describing a condition NUZYRA is not contraindicated in is not the answer :: ∀o∀c ((Describes(o, c) ∧ ¬Contraindicated(nuzyra, c)) → ¬Answer(o))
+RULE-3: Exactly the listed options are candidates, so one of them is the answer (exhaustive case split) :: ∀x (Answer(option_a) ∨ Answer(option_b) ∨ Answer(option_c) ∨ Answer(option_d))
+
+## INFERENCES
+INF-1: NUZYRA is not contraindicated in the condition of option A, from FACT-2, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Contraindicated(nuzyra, cond_a)
+INF-2: NUZYRA is not contraindicated in the condition of option C, from FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Contraindicated(nuzyra, cond_c)
+INF-3: NUZYRA is not contraindicated in the condition of option D, from FACT-2, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Contraindicated(nuzyra, cond_d)
+INF-4: Option A is not the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-5: Option C is not the answer, from FACT-4, INF-2, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-6: Option D is not the answer, from FACT-5, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-7: Option B is the answer, from RULE-3, INF-4, INF-5, and INF-6 by Universal Instantiation and Disjunctive Syllogism :: Answer(option_b)

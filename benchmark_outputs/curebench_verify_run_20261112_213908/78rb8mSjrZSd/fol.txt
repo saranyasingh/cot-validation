@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Contraindicated(d, c) — drug d's label lists condition c as a contraindication
+SevereReaction(p, d) — patient p experiences a severe infusion reaction while taking drug d
+PossibleInteraction(p, d) — patient p's reaction to drug d may indicate an adverse interaction with a co-administered substance
+Discontinue(p, d) — patient p should discontinue drug d
+Answer(o) — option o is the correct answer
+Constants:
+ogivri, patient, liver_disease, kidney_failure, uncontrolled_epilepsy, option_c
+
+## FACTS
+FACT-1: Ogivri's label lists liver disease as a contraindication :: Contraindicated(ogivri, liver_disease)
+FACT-2: Ogivri's label lists kidney failure as a contraindication :: Contraindicated(ogivri, kidney_failure)
+FACT-3: Ogivri's label lists uncontrolled epilepsy as a contraindication :: Contraindicated(ogivri, uncontrolled_epilepsy)
+FACT-4: The patient experiences a severe infusion reaction while taking Ogivri :: SevereReaction(patient, ogivri)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a patient has a severe infusion reaction on a drug, this could indicate an adverse interaction with another substance :: ∀p∀d (SevereReaction(p, d) → PossibleInteraction(p, d))
+RULE-2: If a drug has label contraindications and a patient's reaction suggests a possible interaction, the patient should discontinue the drug :: ∀p∀d∀c (Contraindicated(d, c) ∧ PossibleInteraction(p, d) → Discontinue(p, d))
+RULE-3: If the patient should discontinue Ogivri, the answer is option C :: ∀p (Discontinue(p, ogivri) → Answer(option_c))
+
+## INFERENCES
+INF-1: The patient's severe reaction suggests a possible adverse interaction with Ogivri, from FACT-4 and RULE-1 by Universal Instantiation and Modus Ponens :: PossibleInteraction(patient, ogivri)
+INF-2: The patient should discontinue Ogivri, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Discontinue(patient, ogivri)
+INF-3: The answer is option C, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_c)

@@ -1,0 +1,19 @@
+FACT-1: SUPPORTED — stated in the question
+FACT-2: SUPPORTED — stated in the question
+FACT-3: SUPPORTED — stated in the question
+FACT-4: SUPPORTED — stated in the question
+FACT-5: SUPPORTED — confirmed by tool evidence ev-db9bcb
+FACT-6: UNSUPPORTED — UNVERIFIED: The label lookup did not cover whether treating injection site infections addresses infection prevention.
+FACT-7: UNSUPPORTED — UNVERIFIED: The label lookup did not cover chronic pain management.
+FACT-8: UNSUPPORTED — UNVERIFIED: The label lookup did not cover post-surgical wound care.
+RULE-1: PLAUSIBLE — logical principle, no source needed
+RULE-2: PLAUSIBLE — logical principle, no source needed
+RULE-3: PLAUSIBLE — logical principle, no source needed
+RULE-4: PLAUSIBLE — logical principle, no source needed
+
+Tool calls: 1 (0 returned no data). Provenance claims: 1 (0 with quotes not found in any tool output).
+
+=== EVIDENCE FROM TOOL CALLS ===
+FACT-5 [ev-db9bcb] FDA_search_drug_labels {"drug_name": "sterile alcohol prep pad", "limit": 3}
+  quote (exact match): "For preparation of the skin prior to injection Indications & Usage Section Updated to match label claim"
+  tool output: status: success data: record 1 brand name: dukal sterile alcohol prep pad generic name: isopropyl alcohol manufacturer: dukal llc route: topical pharm class: none rxcui: - 797544 boxed warning: none indications and usage: for preparation of the skin prior to injection indications & usage section updated to match label claim dosage and administration: other information store at room temperature 15 - 30 c (59 - 86 f) dosage forms and strengths: none contraindications: none warnings and precautions: warnings for external use only flammable, keep away from fire or flame adverse reactions: none drug interactions: none use in specific populations: none precautions: none clinical pharmacology: none mechanism of action: none spl id: 3377f917-0508-a40c-e063-6394a90ac2ff record 2 brand name: dukal sterile alcohol prep pad generic name: isopropyl alcohol manufacturer: dukal corporation route: topical pharm class: none rxcu…

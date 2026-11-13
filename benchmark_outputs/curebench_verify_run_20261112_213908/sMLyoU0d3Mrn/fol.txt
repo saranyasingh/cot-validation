@@ -1,0 +1,29 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated to treat condition c
+Contraindicated(d, c) — drug d is contraindicated in patients with condition c
+Insufficient(d) — the current dose of drug d is insufficient to control the patient's blood pressure
+Advisable(a) — course of action a is an appropriate/viable course of action
+Answer(a) — course of action a is the correct answer
+Constants:
+nutrex_odt, hypertension, severe_renal_impairment, discontinue_nutrex, switch_cgrp, option_d
+
+(option_d is the option "adding additional antihypertensive medications".)
+
+## FACTS
+FACT-1: NUTREX ODT's primary indication is hypertension :: Indicated(nutrex_odt, hypertension)
+FACT-2: NUTREX ODT is contraindicated for patients with severe renal impairment :: Contraindicated(nutrex_odt, severe_renal_impairment)
+FACT-3: The patient has inadequate blood pressure control despite NUTREX ODT, so the current dose is insufficient :: Insufficient(nutrex_odt)
+FACT-4: Switching to another CGRP antagonist does not address the inability to control blood pressure, so it is not advisable :: ¬Advisable(switch_cgrp)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug's current dose is insufficient and it is contraindicated in severe renal impairment, discontinuing NUTREX ODT solely for lack of blood pressure control is not advisable :: ∀d (Insufficient(d) ∧ Contraindicated(d, severe_renal_impairment) → ¬Advisable(discontinue_nutrex))
+RULE-2: If a drug indicated for hypertension has an insufficient dose, adding additional antihypertensive medications (option D) is advisable :: ∀d (Insufficient(d) ∧ Indicated(d, hypertension) → Advisable(option_d))
+RULE-3: The most appropriate course of action is the answer :: ∀a (Advisable(a) → Answer(a))
+
+## INFERENCES
+INF-1: Discontinuing NUTREX ODT is not advisable, from FACT-3, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Advisable(discontinue_nutrex)
+INF-2: Adding additional antihypertensive medications (option D) is advisable, from FACT-3, FACT-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Advisable(option_d)
+INF-3: Option D is the answer, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_d)

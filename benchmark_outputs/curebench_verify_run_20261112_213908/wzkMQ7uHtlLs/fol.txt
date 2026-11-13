@@ -1,0 +1,25 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated for condition c
+TransfersToMilk(d) — drug d transfers into breastmilk
+PosesRisk(d, p) — drug d poses potential adverse-effect risk to population p
+AdvisesAgainst(d, p) — the label of drug d advises against, or does not recommend, its use in population or situation p
+Answer(o) — option o is the correct answer
+Constants:
+albuterol_hfa, bronchospasm, mother_and_child, nursing_patients, breastfeeding, option_a
+
+## FACTS
+FACT-1: The label of Albuterol Sulfate HFA indicates it for bronchospasm (wheezing) associated with asthma, COPD and certain cardiac conditions :: Indicated(albuterol_hfa, bronchospasm)
+FACT-2: Albuterol Sulfate HFA, given by inhaler, transfers to breastmilk :: TransfersToMilk(albuterol_hfa)
+FACT-3: The label's listed side effects (tremor, palpitations, tachycardia, etc.) could potentially affect both the mother and her child :: PosesRisk(albuterol_hfa, mother_and_child)
+FACT-4: The label advises against using Albuterol Sulfate HFA in nursing patients, who may be at higher risk for adverse effects :: AdvisesAgainst(albuterol_hfa, nursing_patients)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug transfers to breastmilk, poses potential risk to mother and child, and its label advises against use in nursing patients, then it is not recommended during breastfeeding :: ∀d (TransfersToMilk(d) ∧ PosesRisk(d, mother_and_child) ∧ AdvisesAgainst(d, nursing_patients) → AdvisesAgainst(d, breastfeeding))
+RULE-2: If a drug is not recommended during breastfeeding, then option A is the answer :: ∀d (AdvisesAgainst(d, breastfeeding) → Answer(option_a))
+
+## INFERENCES
+INF-1: Albuterol Sulfate HFA is not recommended for use during breastfeeding, from FACT-2, FACT-3, FACT-4, and RULE-1 by Universal Instantiation and Modus Ponens :: AdvisesAgainst(albuterol_hfa, breastfeeding)
+INF-2: The answer is option A, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_a)

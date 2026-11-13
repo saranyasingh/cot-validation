@@ -1,0 +1,220 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "NUZYRA is indicated for acute uncomplicated skin infections caused by susceptible Staphylococcus aureus",
+      "formula": "Indicated(nuzyra, staph_skin_infection)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-c31ab6: The label indicates NUZYRA for acute bacterial skin and skin structure infections (ABSSSI) in adults. It does not say \"acute uncomplicated skin infections\", and the list of organisms is broader than S. aureus.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The label's contraindications section states severe liver disease",
+      "formula": "Contraindicated(nuzyra, severe_liver_disease)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-4e7006: The only contraindication is hypersensitivity to omadacycline, tetracycline class antibacterials, or any excipient. Severe liver disease is not listed.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option A suggests a hypersensitivity-based contraindication (excipient or drug class)",
+      "formula": "Describes(option_a, cond_a)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C suggests a hypersensitivity-based contraindication (excipient or drug class)",
+      "formula": "Describes(option_c, cond_c)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D suggests a hypersensitivity-based contraindication (excipient or drug class)",
+      "formula": "Describes(option_d, cond_d)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "The condition in option A is hypersensitivity-based",
+      "formula": "HypersensitivityBased(cond_a)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The condition in option C is hypersensitivity-based",
+      "formula": "HypersensitivityBased(cond_c)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The condition in option D is hypersensitivity-based",
+      "formula": "HypersensitivityBased(cond_d)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "Option B is hypersensitivity to NUZYRA's excipients",
+      "formula": "Describes(option_b, excipient_hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "Since the label's contraindication is severe liver disease, which does not relate to hypersensitivity, no hypersensitivity-based condition is a contraindication of NUZYRA",
+      "formula": "\u2200c ((Contraindicated(nuzyra, severe_liver_disease) \u2227 HypersensitivityBased(c)) \u2192 \u00acContraindicated(nuzyra, c))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-4e7006: NUZYRA's contraindication is itself hypersensitivity-based, including hypersensitivity to excipients. So hypersensitivity-based conditions can be contraindications.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing a condition NUZYRA is not contraindicated in is not the answer",
+      "formula": "\u2200o\u2200c ((Describes(o, c) \u2227 \u00acContraindicated(nuzyra, c)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "Exactly the listed options are candidates, so one of them is the answer (exhaustive case split)",
+      "formula": "\u2200x (Answer(option_a) \u2228 Answer(option_b) \u2228 Answer(option_c) \u2228 Answer(option_d))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "NUZYRA is not contraindicated in the condition of option A, from FACT-2, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(nuzyra, cond_a)",
+      "premises": [
+        "FACT-2",
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "NUZYRA is not contraindicated in the condition of option C, from FACT-2, FACT-7, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(nuzyra, cond_c)",
+      "premises": [
+        "FACT-2",
+        "FACT-7",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "NUZYRA is not contraindicated in the condition of option D, from FACT-2, FACT-8, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acContraindicated(nuzyra, cond_d)",
+      "premises": [
+        "FACT-2",
+        "FACT-8",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-3",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-4, INF-2, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-4",
+        "INF-2",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-5, INF-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-5",
+        "INF-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from RULE-3, INF-4, INF-5, and INF-6 by Universal Instantiation and Disjunctive Syllogism",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "RULE-3",
+        "INF-4",
+        "INF-5",
+        "INF-6"
+      ],
+      "inference_rule": "Universal Instantiation and Disjunctive Syllogism",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-7",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-c31ab6: The label indicates NUZYRA for acute bacterial skin and skin structure infections (ABSSSI) in adults. It does not say \"acute uncomplicated skin infections\", and the list of organisms is broader than S. aureus."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-4e7006: The only contraindication is hypersensitivity to omadacycline, tetracycline class antibacterials, or any excipient. Severe liver disease is not listed."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-4e7006: NUZYRA's contraindication is itself hypersensitivity-based, including hypersensitivity to excipients. So hypersensitivity-based conditions can be contraindications."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

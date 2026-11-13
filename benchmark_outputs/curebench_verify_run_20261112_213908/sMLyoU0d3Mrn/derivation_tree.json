@@ -1,0 +1,132 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "NUTREX ODT's primary indication is hypertension",
+      "formula": "Indicated(nutrex_odt, hypertension)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6da07a: NURTEC ODT is indicated for migraine (acute and preventive treatment), not hypertension. Hypertension is listed as a warning.",
+      "error": true
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "NUTREX ODT is contraindicated for patients with severe renal impairment",
+      "formula": "Contraindicated(nutrex_odt, severe_renal_impairment)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6da07a: The only contraindication is hypersensitivity. The label says no dosage adjustment is needed in severe renal impairment, and it advises avoiding use only in end-stage renal disease.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "The patient has inadequate blood pressure control despite NUTREX ODT, so the current dose is insufficient",
+      "formula": "Insufficient(nutrex_odt)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6da07a: Nurtec is not an antihypertensive. The label lists hypertension as an adverse effect, so poor blood pressure control does not mean the dose is insufficient. The maximum dose in 24 hours is 75 mg.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Switching to another CGRP antagonist does not address the inability to control blood pressure, so it is not advisable",
+      "formula": "\u00acAdvisable(switch_cgrp)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a drug's current dose is insufficient and it is contraindicated in severe renal impairment, discontinuing NUTREX ODT solely for lack of blood pressure control is not advisable",
+      "formula": "\u2200d (Insufficient(d) \u2227 Contraindicated(d, severe_renal_impairment) \u2192 \u00acAdvisable(discontinue_nutrex))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6da07a: The label says to consider discontinuing NURTEC ODT if blood pressure is inadequately controlled. Severe renal impairment is not a contraindication.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a drug indicated for hypertension has an insufficient dose, adding additional antihypertensive medications (option D) is advisable",
+      "formula": "\u2200d (Insufficient(d) \u2227 Indicated(d, hypertension) \u2192 Advisable(option_d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-6da07a: NURTEC ODT is not an antihypertensive, so the premise that a drug indicated for hypertension has an insufficient dose does not apply.",
+      "error": true
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "The most appropriate course of action is the answer",
+      "formula": "\u2200a (Advisable(a) \u2192 Answer(a))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Discontinuing NUTREX ODT is not advisable, from FACT-3, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAdvisable(discontinue_nutrex)",
+      "premises": [
+        "FACT-3",
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Adding additional antihypertensive medications (option D) is advisable, from FACT-3, FACT-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Advisable(option_d)",
+      "premises": [
+        "FACT-3",
+        "FACT-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from INF-2 and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-3",
+  "errors": [
+    {
+      "node": "FACT-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6da07a: NURTEC ODT is indicated for migraine (acute and preventive treatment), not hypertension. Hypertension is listed as a warning."
+    },
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6da07a: The only contraindication is hypersensitivity. The label says no dosage adjustment is needed in severe renal impairment, and it advises avoiding use only in end-stage renal disease."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6da07a: Nurtec is not an antihypertensive. The label lists hypertension as an adverse effect, so poor blood pressure control does not mean the dose is insufficient. The maximum dose in 24 hours is 75 mg."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6da07a: The label says to consider discontinuing NURTEC ODT if blood pressure is inadequately controlled. Severe renal impairment is not a contraindication."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-6da07a: NURTEC ODT is not an antihypertensive, so the premise that a drug indicated for hypertension has an insufficient dose does not apply."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,33 @@
+## VOCABULARY
+Predicates:
+Takes(x, d) — x takes drug d
+Finding(x, f) — x has clinical finding f
+Needs(x, a) — x's situation calls for action a
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+patient, segluromet, lithium, positive_urine_glucose, increased_glucose_monitoring, lithium_level_monitoring, continue_segluromet, reliable_monitoring_tools, monitoring_and_dose_adjustment, option_d
+
+## FACTS
+FACT-1: The patient is taking SEGLUROMET :: Takes(patient, segluromet)
+FACT-2: The patient has a positive urine glucose test :: Finding(patient, positive_urine_glucose)
+FACT-3: The reasoning treats the patient's SEGLUROMET as lithium, so the patient is taking lithium :: Takes(patient, lithium)
+FACT-4: Option D is increasing the frequency of monitoring and possibly adjusting the SEGLUROMET dosage :: Describes(option_d, monitoring_and_dose_adjustment)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A positive urine glucose test indicates a possible blood sugar regulation problem, which prompts increased glucose monitoring :: ∀x (Finding(x, positive_urine_glucose) → Needs(x, increased_glucose_monitoring))
+RULE-2: Lithium therapy requires close monitoring of lithium levels :: ∀x (Takes(x, lithium) → Needs(x, lithium_level_monitoring))
+RULE-3: Discontinuing SEGLUROMET could worsen the problem, so a patient taking it needs to continue it :: ∀x (Takes(x, segluromet) → Needs(x, continue_segluromet))
+RULE-4: When increased glucose monitoring is needed, reliable tools such as fingerstick meters or continuous glucose monitors should be used :: ∀x (Needs(x, increased_glucose_monitoring) → Needs(x, reliable_monitoring_tools))
+RULE-5: A patient who needs increased glucose monitoring, continued SEGLUROMET and reliable monitoring tools needs increased monitoring with possible dose adjustment :: ∀x (Needs(x, increased_glucose_monitoring) ∧ Needs(x, continue_segluromet) ∧ Needs(x, reliable_monitoring_tools) → Needs(x, monitoring_and_dose_adjustment))
+RULE-6: An option describing an action the patient needs is the answer :: ∀o∀x∀a (Needs(x, a) ∧ Describes(o, a) → Answer(o))
+
+## INFERENCES
+INF-1: The patient needs increased glucose monitoring, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: Needs(patient, increased_glucose_monitoring)
+INF-2: The patient needs close lithium level monitoring, from FACT-3 and RULE-2 by Universal Instantiation and Modus Ponens :: Needs(patient, lithium_level_monitoring)
+INF-3: The patient needs to continue SEGLUROMET, from FACT-1 and RULE-3 by Universal Instantiation and Modus Ponens :: Needs(patient, continue_segluromet)
+INF-4: The patient needs reliable monitoring tools, from INF-1 and RULE-4 by Universal Instantiation and Modus Ponens :: Needs(patient, reliable_monitoring_tools)
+INF-5: The patient needs increased monitoring with possible dose adjustment, from INF-1, INF-3, INF-4 and RULE-5 by Conjunction Introduction, Universal Instantiation and Modus Ponens :: Needs(patient, monitoring_and_dose_adjustment)
+INF-6: Option D is the answer, from INF-5, FACT-4 and RULE-6 by Universal Instantiation and Modus Ponens :: Answer(option_d)

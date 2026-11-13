@@ -1,0 +1,185 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "BRILINTA inhibits platelet aggregation by direct interaction with P2Y12 receptors",
+      "formula": "InhibitsViaP2Y12(brilinta)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-52904e",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "The label indicates BRILINTA and clopidogrel have comparable IPA",
+      "formula": "ComparableIPA(brilinta, clopidogrel)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-52904e: the label reports a higher IPA for ticagrelor at 6 weeks (mean maximum IPA 88% vs 62% for clopidogrel). Only the 24-hour trough IPA is called similar (58% vs 52%).",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option A states BRILINTA shows lower IPA than clopidogrel",
+      "formula": "Describes(option_a, lower)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option B states BRILINTA shows similar IPA to clopidogrel",
+      "formula": "Describes(option_b, similar)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option C states BRILINTA shows higher IPA than clopidogrel",
+      "formula": "Describes(option_c, higher)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option D states BRILINTA shows no IPA effect",
+      "formula": "Describes(option_d, none)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "The label gives no specific comparison showing BRILINTA has lower IPA than clopidogrel",
+      "formula": "\u00acLabelSupports(lower)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-52904e",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "The label gives no evidence that BRILINTA has higher IPA than clopidogrel",
+      "formula": "\u00acLabelSupports(higher)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-52904e: the label shows a higher mean maximum IPA for BRILINTA (88%) than for clopidogrel (62%) after 6 weeks.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "The label states BRILINTA inhibits platelet aggregation, so it does not show no IPA effect",
+      "formula": "\u00acLabelSupports(none)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-52904e",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If the label indicates two drugs have comparable IPA, the label supports the relation \"similar\"",
+      "formula": "\u2200d\u2200e (ComparableIPA(d, e) \u2192 LabelSupports(similar))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option stating a relation the label supports is the answer",
+      "formula": "\u2200o\u2200r ((Describes(o, r) \u2227 LabelSupports(r)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option stating a relation the label does not support is not the answer",
+      "formula": "\u2200o\u2200r ((Describes(o, r) \u2227 \u00acLabelSupports(r)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "The label supports the relation \"similar\", from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "LabelSupports(similar)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-3, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-3",
+        "FACT-7",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-5, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-5",
+        "FACT-8",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-6, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-6",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-4",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-5",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-52904e: the label reports a higher IPA for ticagrelor at 6 weeks (mean maximum IPA 88% vs 62% for clopidogrel). Only the 24-hour trough IPA is called similar (58% vs 52%)."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-52904e: the label shows a higher mean maximum IPA for BRILINTA (88%) than for clopidogrel (62%) after 6 weeks."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

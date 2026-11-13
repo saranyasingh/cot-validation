@@ -1,0 +1,38 @@
+## VOCABULARY
+Predicates:
+Describes(o, c) — answer option o describes storage condition c
+Appropriate(c) — storage condition c is appropriate for sterile medications
+Damaging(c) — storage condition c risks damaging or contaminating sterile medications
+Answer(o) — option o is the correct answer
+Preserves(c) — storage condition c preserves the sterile integrity of the medication
+
+Constants:
+option_a, option_b, option_c, option_d, freezer, room_temperature, high_humidity, below_zero
+
+## FACTS
+FACT-1: Option A is freezer storage :: Describes(option_a, freezer)
+FACT-2: Option B is room temperature storage :: Describes(option_b, room_temperature)
+FACT-3: Option C is a high-humidity environment :: Describes(option_c, high_humidity)
+FACT-4: Option D is storage below 0°C :: Describes(option_d, below_zero)
+FACT-5: Freezer storage risks damaging the medication through ice crystal formation and chemical changes :: Damaging(freezer)
+FACT-6: Room temperature storage preserves the integrity and sterility of the medication :: Preserves(room_temperature)
+FACT-7: A high-humidity environment risks condensation, microbial growth and deterioration :: Damaging(high_humidity)
+FACT-8: Storage below 0°C risks freezing and crystallization, making it risky :: Damaging(below_zero)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A storage condition that risks damaging the sterile medication is not appropriate :: ∀c (Damaging(c) → ¬Appropriate(c))
+RULE-2: A storage condition that preserves the medication's integrity is appropriate :: ∀c (Preserves(c) → Appropriate(c))
+RULE-3: An option describing an appropriate storage condition is the answer :: ∀o∀c ((Describes(o, c) ∧ Appropriate(c)) → Answer(o))
+RULE-4: An option describing an inappropriate storage condition is not the answer :: ∀o∀c ((Describes(o, c) ∧ ¬Appropriate(c)) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Freezer storage is not appropriate, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Appropriate(freezer)
+INF-2: Option A is not the answer, from FACT-1, INF-1, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_a)
+INF-3: Room temperature storage is appropriate, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens :: Appropriate(room_temperature)
+INF-4: A high-humidity environment is not appropriate, from FACT-7 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Appropriate(high_humidity)
+INF-5: Option C is not the answer, from FACT-3, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-6: Storage below 0°C is not appropriate, from FACT-8 and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Appropriate(below_zero)
+INF-7: Option D is not the answer, from FACT-4, INF-6, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)
+INF-8: Option B is the answer, from FACT-2, INF-3, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_b)

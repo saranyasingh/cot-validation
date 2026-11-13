@@ -1,0 +1,193 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Immediate hypersensitivity reactions are listed as adverse effects of Levalbuterol",
+      "formula": "AdverseEffect(levalbuterol, hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-814511",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is to increase the dose",
+      "formula": "Describes(option_a, increase_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option B is to discontinue Levalbuterol immediately",
+      "formula": "Describes(option_b, discontinue)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option C is to administer corticosteroids",
+      "formula": "Describes(option_c, corticosteroids)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option D is to monitor the patient closely without changing treatment",
+      "formula": "Describes(option_d, monitor_only)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Corticosteroids do not address the underlying cause of the reaction, so they are not the appropriate response",
+      "formula": "\u00acAppropriate(corticosteroids, hypersensitivity)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label says to discontinue the drug for immediate hypersensitivity. It says nothing about corticosteroids treating the reaction, so this reasoning is not confirmed. The label does say the drug \"is not a substitute for corticosteroids\" in asthma, which is a different point.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Monitoring without changing treatment does not address the immediate problem, so it is not the appropriate response",
+      "formula": "\u00acAppropriate(monitor_only, hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-13fdf7",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Increasing the dose is not the appropriate response",
+      "formula": "\u00acAppropriate(increase_dose, hypersensitivity)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-13fdf7",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A reaction listed as an adverse effect of a drug indicates a severe adverse event that should be taken seriously",
+      "formula": "\u2200d\u2200r (AdverseEffect(d, r) \u2192 Severe(r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-814511",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "For a severe hypersensitivity reaction, discontinuing the drug immediately is the appropriate response",
+      "formula": "\u2200r (Severe(r) \u2192 Appropriate(discontinue, r))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "confirmed by tool evidence ev-13fdf7",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing the appropriate action is the answer",
+      "formula": "\u2200o\u2200a\u2200r ((Describes(o, a) \u2227 Appropriate(a, r)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing an action that is not appropriate is not the answer",
+      "formula": "\u2200o\u2200a\u2200r ((Describes(o, a) \u2227 \u00acAppropriate(a, r)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Hypersensitivity is a severe adverse event, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Severe(hypersensitivity)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Discontinuing the drug is the appropriate response, from INF-1 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Appropriate(discontinue, hypersensitivity)",
+      "premises": [
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-2, FACT-8, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-2",
+        "FACT-8",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-4, FACT-6, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-4",
+        "FACT-6",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-5, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-5",
+        "FACT-7",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-3, INF-2, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-3",
+        "INF-2",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-6",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label says to discontinue the drug for immediate hypersensitivity. It says nothing about corticosteroids treating the reaction, so this reasoning is not confirmed. The label does say the drug \"is not a substitute for corticosteroids\" in asthma, which is a different point."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

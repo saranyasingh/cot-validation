@@ -1,0 +1,28 @@
+## VOCABULARY
+Predicates:
+Contains(d, s) — drug d contains active ingredient s
+Interacts(c, d) — drug class c interacts with / potentiates cardiovascular effects of drug d
+Increases(x, y) — x increases y
+Causes(x, y) — x results in y
+Answer(o) — option o is the correct answer
+
+Constants:
+stiolto_respimat, albuterol, maois, sympathetic_activity, blood_pressure, orthostatic_hypotension_risk, cardiovascular_effects, dizziness_fainting_falls, option_b
+
+## FACTS
+FACT-1: Stiolto Respimat is a bronchodilator inhaler that contains albuterol as the active ingredient :: Contains(stiolto_respimat, albuterol)
+FACT-2: The combination of albuterol and MAOIs increases sympathetic activity (vasoconstriction, increased heart rate) :: Increases(maois, sympathetic_activity)
+FACT-3: Combined with MAOIs, albuterol could further elevate blood pressure and contribute to vascular constriction :: Increases(maois, blood_pressure)
+FACT-4: Elevated blood pressure and vascular constriction increase the risk of orthostatic hypotension :: Causes(blood_pressure, orthostatic_hypotension_risk)
+FACT-5: Orthostatic hypotension can result in dizziness, fainting, and falls :: Causes(orthostatic_hypotension_risk, dizziness_fainting_falls)
+FACT-6: Option B states that MAOIs may potentiate cardiovascular effects of adrenergic agonists :: Interacts(maois, albuterol)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug class increases sympathetic activity or blood pressure when combined with a drug, it potentiates that drug's cardiovascular effects :: ∀c∀d (Increases(c, sympathetic_activity) ∧ Increases(c, blood_pressure) → Interacts(c, d))
+RULE-2: If a product contains a drug that a class potentiates, the class potentiates cardiovascular effects for users of that product, so the option stating this is the answer :: ∀p∀d∀c (Contains(p, d) ∧ Interacts(c, d) → Answer(option_b))
+
+## INFERENCES
+INF-1: MAOIs potentiate the cardiovascular effects of albuterol, from FACT-2, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Interacts(maois, albuterol)
+INF-2: Option B is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

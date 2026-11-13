@@ -1,0 +1,193 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Tri Femynor contains ethinylestradiol",
+      "formula": "Contains(tri_femynor, ethinylestradiol)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-14aa51",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Tri Femynor contains drospirenone",
+      "formula": "Contains(tri_femynor, drospirenone)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-14aa51: The Tri Femynor label lists norgestimate and ethinyl estradiol, not drospirenone.",
+      "error": true
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Ethinylestradiol is treated as enzyme-inducing in the reasoning",
+      "formula": "Induces(ethinylestradiol)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-14aa51: The label says the enzyme inducers are other drugs and herbal products (phenytoin, carbamazepine, rifampicin, St. John's wort). It describes ethinyl estradiol as a substance whose levels they lower.",
+      "error": true
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Drospirenone is treated as enzyme-inducing in the reasoning",
+      "formula": "Induces(drospirenone)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-adb0e0: The drospirenone label says the main metabolites of DRSP are made without the cytochrome P450 system. It also says DRSP did not inhibit CYP2C19 or CYP3A4 in vivo. Tri Femynor does not contain drospirenone.",
+      "error": true
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "Option A is stopping Tri Femynor immediately",
+      "formula": "Describes(option_a, stop_immediately)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Option B is using a back-up or alternative method of contraception",
+      "formula": "Describes(option_b, backup_contraception)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Option C is increasing the dose",
+      "formula": "Describes(option_c, increase_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Option D is taking Tri Femynor with food",
+      "formula": "Describes(option_d, take_with_food)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "The label does not recommend stopping Tri Femynor immediately",
+      "formula": "\u00acRecommends(tri_femynor, stop_immediately)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-14aa51",
+      "error": false
+    },
+    "FACT-10": {
+      "type": "fact",
+      "gloss": "The label does not recommend increasing the dose",
+      "formula": "\u00acRecommends(tri_femynor, increase_dose)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-14aa51",
+      "error": false
+    },
+    "FACT-11": {
+      "type": "fact",
+      "gloss": "The label does not recommend taking Tri Femynor with food",
+      "formula": "\u00acRecommends(tri_femynor, take_with_food)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-14aa51",
+      "error": false
+    },
+    "FACT-12": {
+      "type": "fact",
+      "gloss": "Using another form of birth control prevents unintended pregnancies when Tri Femynor is combined with enzyme-inducing drugs",
+      "formula": "Recommends(tri_femynor, backup_contraception)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-14aa51",
+      "error": false
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "An option describing an action the label recommends is the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 Recommends(tri_femynor, a) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option describing an action the label does not recommend is not the answer",
+      "formula": "\u2200o\u2200a (Describes(o, a) \u2227 \u00acRecommends(tri_femynor, a) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-5, FACT-9, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-5",
+        "FACT-9",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-7, FACT-10, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-7",
+        "FACT-10",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-8, FACT-11, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-8",
+        "FACT-11",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-6, FACT-12, and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-6",
+        "FACT-12",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-4",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-14aa51: The Tri Femynor label lists norgestimate and ethinyl estradiol, not drospirenone."
+    },
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-14aa51: The label says the enzyme inducers are other drugs and herbal products (phenytoin, carbamazepine, rifampicin, St. John's wort). It describes ethinyl estradiol as a substance whose levels they lower."
+    },
+    {
+      "node": "FACT-4",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-adb0e0: The drospirenone label says the main metabolites of DRSP are made without the cytochrome P450 system. It also says DRSP did not inhibit CYP2C19 or CYP3A4 in vivo. Tri Femynor does not contain drospirenone."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

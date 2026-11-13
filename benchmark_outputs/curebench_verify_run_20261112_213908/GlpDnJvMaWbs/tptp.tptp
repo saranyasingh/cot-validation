@@ -1,0 +1,31 @@
+% --- FACTS ---
+fof(fact_1, axiom, indicator_zero(stiolto_respimat)).
+fof(fact_2, axiom, describes(option_a, continue_same_cartridge)).
+fof(fact_3, axiom, describes(option_b, new_inhaler)).
+fof(fact_4, axiom, describes(option_c, turn_clear_base)).
+fof(fact_5, axiom, describes(option_d, clean_mouthpiece)).
+fof(fact_6, axiom, resolves(new_inhaler, stiolto_respimat)).
+fof(fact_7, axiom, ~resolves(turn_clear_base, stiolto_respimat)).
+fof(fact_8, axiom, ~resolves(clean_mouthpiece, stiolto_respimat)).
+
+% --- OPERATIONS ---
+
+% --- RULES ---
+fof(rule_1, axiom, ! [D] : (indicator_zero(D) => insufficient(D))).
+fof(rule_2, axiom, ! [D] : (insufficient(D) => ~resolves(continue_same_cartridge, D))).
+fof(rule_3, axiom, ! [O,A,D] : ((describes(O, A) & resolves(A, D)) => answer(O))).
+fof(rule_4, axiom, ! [O,A,D] : ((describes(O, A) & ~resolves(A, D)) => ~answer(O))).
+
+% --- INFERENCES ---
+% From fact_1, rule_1 by Universal Instantiation and Modus Ponens
+fof(inf_1, axiom, insufficient(stiolto_respimat)).
+% From inf_1, rule_2 by Universal Instantiation and Modus Ponens
+fof(inf_2, axiom, ~resolves(continue_same_cartridge, stiolto_respimat)).
+% From fact_2, inf_2, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_3, axiom, ~answer(option_a)).
+% From fact_4, fact_7, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_4, axiom, ~answer(option_c)).
+% From fact_5, fact_8, rule_4 by Universal Instantiation and Modus Ponens
+fof(inf_5, axiom, ~answer(option_d)).
+% From fact_3, fact_6, rule_3 by Universal Instantiation and Modus Ponens
+fof(inf_6, axiom, answer(option_b)).

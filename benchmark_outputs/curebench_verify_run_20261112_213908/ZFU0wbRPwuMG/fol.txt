@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+LabelStates(d, c) — the label of drug d states claim c
+GeneralPrecaution(d, c) — c is a general precaution against using drug d
+Describes(o, c) — answer option o describes action or claim c
+Supports(o) — the reasoning's premises support option o
+Answer(o) — option o is the correct answer
+Constants:
+gadavist, anaphylaxis_risk, prior_reaction_risk, avoid_in_allergic_history, avoid_in_allergy_no_severe_reaction, hemodialysis_after_admin, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The Gadavist label states that it contains iodinated compounds and may cause anaphylaxis :: LabelStates(gadavist, anaphylaxis_risk)
+FACT-2: A previous severe reaction to iodinated contrast media increases the risk of anaphylaxis significantly (Gadavist) :: LabelStates(gadavist, prior_reaction_risk)
+FACT-3: Option B is avoiding Gadavist administration completely for patients with a history of allergic disorders :: Describes(option_b, avoid_in_allergic_history)
+FACT-4: Option C is avoiding Gadavist for patients with a history of allergic disorders but no severe reaction to contrast media :: Describes(option_c, avoid_in_allergy_no_severe_reaction)
+FACT-5: The label does not specifically mention avoiding Gadavist for patients with a history of allergic disorders but no severe reaction to contrast media :: ¬LabelStates(gadavist, avoid_in_allergy_no_severe_reaction)
+FACT-6: Option D is performing hemodialysis immediately after administration :: Describes(option_d, hemodialysis_after_admin)
+FACT-7: Hemodialysis after administration is not a general precaution against using Gadavist :: ¬GeneralPrecaution(gadavist, hemodialysis_after_admin)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If the Gadavist label states the anaphylaxis risk, an option to avoid Gadavist for patients with allergic history is supported :: ∀o (LabelStates(gadavist, anaphylaxis_risk) ∧ Describes(o, avoid_in_allergic_history) → Supports(o))
+RULE-2: If a prior severe reaction increases the anaphylaxis risk, that reinforces the option to avoid Gadavist for patients with allergic history :: ∀o (LabelStates(gadavist, prior_reaction_risk) ∧ Describes(o, avoid_in_allergic_history) → Supports(o))
+RULE-3: An option describing something the label does not state is not supported :: ∀o∀c (Describes(o, c) ∧ ¬LabelStates(gadavist, c) → ¬Supports(o))
+RULE-4: An option describing something that is not a general precaution against Gadavist is not supported :: ∀o∀c (Describes(o, c) ∧ ¬GeneralPrecaution(gadavist, c) → ¬Supports(o))
+RULE-5: A supported option is the answer :: ∀o (Supports(o) → Answer(o))
+
+## INFERENCES
+INF-1: Option B is supported, from FACT-1, FACT-3, and RULE-1 by Universal Instantiation and Modus Ponens :: Supports(option_b)
+INF-2: Option B is further reinforced, from FACT-2, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Supports(option_b)
+INF-3: Option C is not supported, from FACT-4, FACT-5, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Supports(option_c)
+INF-4: Option D is not supported, from FACT-6, FACT-7, and RULE-4 by Universal Instantiation and Modus Ponens :: ¬Supports(option_d)
+INF-5: Option B is the answer, from INF-1, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens :: Answer(option_b)

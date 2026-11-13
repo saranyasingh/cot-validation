@@ -1,0 +1,30 @@
+## VOCABULARY
+Predicates:
+Contraindicated(d, c) — drug d should not be used in patients with condition c
+Describes(o, c) — answer option o describes condition c
+PriorReaction(d, c) — condition c is a history of an allergic reaction to drug d
+Encompasses(o, c) — answer option o encompasses condition c
+Answer(o) — option o is the correct answer
+Constants:
+terbinafine, chronic_liver_disease, active_liver_disease, allergy_history, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: The label says terbinafine should not be used in patients with active liver disease :: Contraindicated(terbinafine, active_liver_disease)
+FACT-2: Option A is chronic liver disease :: Describes(option_a, chronic_liver_disease)
+FACT-3: Option B is active liver disease :: Describes(option_b, active_liver_disease)
+FACT-4: Option C is a history of allergic reaction to oral terbinafine :: Describes(option_c, allergy_history)
+FACT-5: Allergy history is a prior allergic reaction to terbinafine :: PriorReaction(terbinafine, allergy_history)
+FACT-6: Option D (all of the above) encompasses chronic liver disease :: Encompasses(option_d, chronic_liver_disease)
+FACT-7: Option D (all of the above) encompasses active liver disease :: Encompasses(option_d, active_liver_disease)
+
+## OPERATIONS
+
+## RULES
+RULE-1: An option describing a condition that is a listed contraindication is ruled out :: ∀o∀c (Describes(o, c) ∧ Contraindicated(terbinafine, c) → ¬Answer(o))
+RULE-2: A prior allergic reaction to a drug means the patient should avoid that drug :: ∀d∀c (PriorReaction(d, c) → Contraindicated(d, c))
+RULE-3: The most comprehensive option that encompasses two conditions, one of which is contraindicated, is the answer :: ∀o∀x∀y (Encompasses(o, x) ∧ Encompasses(o, y) ∧ Contraindicated(terbinafine, y) → Answer(o))
+
+## INFERENCES
+INF-1: Option B is ruled out, from FACT-3, FACT-1, and RULE-1 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-2: Terbinafine should be avoided with a history of allergic reaction, from FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens :: Contraindicated(terbinafine, allergy_history)
+INF-3: Option D is the answer, from FACT-6, FACT-7, FACT-1, and RULE-3 by Universal Instantiation and Modus Ponens :: Answer(option_d)

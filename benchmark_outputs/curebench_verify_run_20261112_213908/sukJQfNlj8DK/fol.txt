@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+Causes(d, c) — drug d is labeled as able to cause condition c
+RequiresAttention(c) — condition c requires immediate medical attention and can lead to death
+Consider(d, c) — a history of condition c must be considered before prescribing drug d
+Describes(o, c) — answer option o describes condition c
+Answer(o) — option o is the correct answer
+Constants:
+pemetrexed, severe_hypersensitivity, option_a
+
+## FACTS
+FACT-1: Pemetrexed's label says it may cause severe hypersensitivity reactions, including anaphylaxis :: Causes(pemetrexed, severe_hypersensitivity)
+FACT-2: Severe hypersensitivity reactions such as anaphylaxis require immediate medical attention and could lead to death :: RequiresAttention(severe_hypersensitivity)
+FACT-3: Option A is a history of severe hypersensitivity reaction to Pemetrexed :: Describes(option_a, severe_hypersensitivity)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug can cause a condition that requires immediate attention and may be fatal, a history of that condition must be considered before prescribing the drug :: ∀d∀c ((Causes(d, c) ∧ RequiresAttention(c)) → Consider(d, c))
+RULE-2: An option describing a condition that must be considered before prescribing pemetrexed is the answer :: ∀o∀c ((Describes(o, c) ∧ Consider(pemetrexed, c)) → Answer(o))
+
+## INFERENCES
+INF-1: A history of severe hypersensitivity must be considered before prescribing pemetrexed, from FACT-1, FACT-2, and RULE-1 by Universal Instantiation and Modus Ponens :: Consider(pemetrexed, severe_hypersensitivity)
+INF-2: Option A is the answer, from FACT-3, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_a)

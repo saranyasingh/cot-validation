@@ -1,0 +1,34 @@
+## VOCABULARY
+Predicates:
+Describes(o, s) — answer option o describes symptom s
+WithdrawalSymptom(s) — symptom s is a common nicotine withdrawal symptom
+LinkedToMechanism(s) — symptom s is directly linked to nicotine's mechanism of action or the physical sensation nicotine alleviates
+Alleviates(d, s) — drug d helps alleviate symptom s
+Answer(o) — option o is the correct answer
+Constants:
+nicotine, craving, headache, nausea, dizziness, option_a, option_b, option_c, option_d
+
+## FACTS
+FACT-1: Option A is nicotine craving :: Describes(option_a, craving)
+FACT-2: Option B is headache :: Describes(option_b, headache)
+FACT-3: Option C is nausea :: Describes(option_c, nausea)
+FACT-4: Option D is dizziness :: Describes(option_d, dizziness)
+FACT-5: Craving is a withdrawal symptom linked to reduced nicotine levels :: WithdrawalSymptom(craving)
+FACT-6: Craving is linked to nicotine's mechanism of action, being the physical sensation nicotine alleviates :: LinkedToMechanism(craving)
+FACT-7: Headache does not specifically link to nicotine's mechanism of action :: ¬LinkedToMechanism(headache)
+FACT-8: Nausea is a general symptom not necessarily tied to nicotine alone :: ¬LinkedToMechanism(nausea)
+FACT-9: Dizziness is more closely associated with blood pressure and fluid balance than with nicotine withdrawal :: ¬LinkedToMechanism(dizziness)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A withdrawal symptom that is linked to nicotine's mechanism is alleviated by nicotine :: ∀s (WithdrawalSymptom(s) ∧ LinkedToMechanism(s) → Alleviates(nicotine, s))
+RULE-2: An option describing a symptom nicotine alleviates is the answer :: ∀o∀s (Describes(o, s) ∧ Alleviates(nicotine, s) → Answer(o))
+RULE-3: An option describing a symptom not linked to nicotine's mechanism is not the answer :: ∀o∀s (Describes(o, s) ∧ ¬LinkedToMechanism(s) → ¬Answer(o))
+
+## INFERENCES
+INF-1: Nicotine alleviates craving, from FACT-5, FACT-6, and RULE-1 by Universal Instantiation and Modus Ponens :: Alleviates(nicotine, craving)
+INF-2: Option A is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_a)
+INF-3: Option B is not the answer, from FACT-2, FACT-7, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_b)
+INF-4: Option C is not the answer, from FACT-3, FACT-8, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_c)
+INF-5: Option D is not the answer, from FACT-4, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens :: ¬Answer(option_d)

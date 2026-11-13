@@ -1,0 +1,79 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option D is fluocinonide",
+      "formula": "Describes(option_d, fluocinonide)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Fluocinonide is an anti-inflammatory corticosteroid used to treat inflammatory skin conditions like acne vulgaris",
+      "formula": "AntiInflammatoryCorticosteroid(fluocinonide)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-b2ebc8: The fluocinonide label lists only corticosteroid-responsive dermatoses (inflammatory and pruritic manifestations). It does not list acne vulgaris.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A drug that is an anti-inflammatory corticosteroid used to treat inflammatory skin conditions like acne vulgaris fits the description of an acne treatment (topical medications targeting sebum production, inflammation, and bacterial infection)",
+      "formula": "\u2200d (AntiInflammatoryCorticosteroid(d) \u2192 FitsDescription(d))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-b2ebc8: The fluocinonide label lists corticosteroid-responsive dermatoses, not acne. Being a corticosteroid for inflammatory skin conditions does not make a drug an acne treatment. Topical corticosteroids are not acne therapy.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "An option naming a drug that fits the acne-treatment description is the most appropriate choice and the answer",
+      "formula": "\u2200o\u2200d ((Describes(o, d) \u2227 FitsDescription(d)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "Fluocinonide fits the acne-treatment description, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "FitsDescription(fluocinonide)",
+      "premises": [
+        "FACT-2",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-1, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-b2ebc8: The fluocinonide label lists only corticosteroid-responsive dermatoses (inflammatory and pruritic manifestations). It does not list acne vulgaris."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-b2ebc8: The fluocinonide label lists corticosteroid-responsive dermatoses, not acne. Being a corticosteroid for inflammatory skin conditions does not make a drug an acne treatment. Topical corticosteroids are not acne therapy."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

@@ -1,0 +1,27 @@
+## VOCABULARY
+Predicates:
+Indicated(d, c) — drug d is indicated for condition c
+CanCause(d, e) — drug d can cause effect e
+Requires(e, a) — event e requires action a
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+
+Constants:
+levalbuterol, copd, asthma, respiratory_failure, paradoxical_bronchospasm, discontinue_and_consult, option_b
+
+## FACTS
+FACT-1: The Levalbuterol label indicates it for COPD :: Indicated(levalbuterol, copd)
+FACT-2: The Levalbuterol label indicates it for asthma :: Indicated(levalbuterol, asthma)
+FACT-3: The Levalbuterol label indicates it for certain forms of respiratory failure :: Indicated(levalbuterol, respiratory_failure)
+FACT-4: Paradoxical bronchospasm requires immediate cessation of the medication until further medical evaluation :: Requires(paradoxical_bronchospasm, discontinue_and_consult)
+FACT-5: Option B describes discontinuing the medication and consulting a physician :: Describes(option_b, discontinue_and_consult)
+
+## OPERATIONS
+
+## RULES
+RULE-1: If a drug's label-known side effects are considered, the drug could potentially induce paradoxical bronchospasm; the reasoning treats Levalbuterol as one that can cause paradoxical bronchospasm :: ∀d (Indicated(d, asthma) → CanCause(d, paradoxical_bronchospasm))
+RULE-2: An option describing the action that an event requires is the answer :: ∀o∀e∀a ((Describes(o, a) ∧ Requires(e, a) ∧ CanCause(levalbuterol, e)) → Answer(o))
+
+## INFERENCES
+INF-1: Levalbuterol can potentially cause paradoxical bronchospasm, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: CanCause(levalbuterol, paradoxical_bronchospasm)
+INF-2: Option B is the answer, from FACT-5, FACT-4, INF-1, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

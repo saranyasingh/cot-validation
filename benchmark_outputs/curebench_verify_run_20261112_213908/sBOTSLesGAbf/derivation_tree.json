@@ -1,0 +1,256 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A states C17H27NO2HCl",
+      "formula": "Describes(option_a, f_c17h27)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B states C18H30NO2HCl",
+      "formula": "Describes(option_b, f_c18h30)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C states C16H25NO2HCl",
+      "formula": "Describes(option_c, f_c16h25)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D states C17H28NO2HCl",
+      "formula": "Describes(option_d, f_c17h28)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "C17H27NO2HCl lacks the specific substituents found in venlafaxine",
+      "formula": "\u00acHasSubstituents(f_c17h27)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-67c244: The PubChem structure CN(C)CC(C1=CC=C(C=C1)OC)C2(CCCCC2)O.Cl works out to C17H27NO2\u00b7HCl, which is option A. Venlafaxine therefore has these substituents (dimethylamino, methoxyphenyl, cyclohexanol), and A is the correct formula.",
+      "error": true
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "C18H30NO2HCl does not fit the expected molecular weight of venlafaxine",
+      "formula": "\u00acMatchesMW(f_c18h30)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: marked SUPPORTED but no cited tool output contains the quoted evidence",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "C16H25NO2HCl lacks the specific substituents (amino group and carboxylic acid)",
+      "formula": "\u00acHasSubstituents(f_c16h25)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-67c244: Venlafaxine has a dimethylamino group but no carboxylic acid (it has a cyclohexanol and a methoxy group). The C16 formula is wrong because it has too few carbons, not because it lacks a carboxylic acid.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "C17H28NO2HCl matches the molecular weight of venlafaxine",
+      "formula": "MatchesMW(f_c17h28)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-67c244: The structure and MW 313.9 correspond to C17H27NO2\u00b7HCl (option A). C17H28NO2HCl has one extra hydrogen.",
+      "error": true
+    },
+    "FACT-9": {
+      "type": "fact",
+      "gloss": "C17H28NO2HCl includes the necessary substituents (amino group and carboxylic acid)",
+      "formula": "HasSubstituents(f_c17h28)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-67c244: Venlafaxine has no carboxylic acid group, and the structure gives C17H27NO2\u00b7HCl rather than C17H28NO2HCl.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "A formula that does not match the expected molecular weight is not the formula of venlafaxine hydrochloride",
+      "formula": "\u2200f (\u00acMatchesMW(f) \u2192 \u00acHasFormula(venlafaxine_hcl, f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "A formula lacking the necessary substituents is not the formula of venlafaxine hydrochloride",
+      "formula": "\u2200f (\u00acHasSubstituents(f) \u2192 \u00acHasFormula(venlafaxine_hcl, f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "A formula that matches the molecular weight and includes the necessary substituents is the formula of venlafaxine hydrochloride",
+      "formula": "\u2200f ((MatchesMW(f) \u2227 HasSubstituents(f)) \u2192 HasFormula(venlafaxine_hcl, f))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option stating the formula of venlafaxine hydrochloride is the answer",
+      "formula": "\u2200o\u2200f ((Describes(o, f) \u2227 HasFormula(venlafaxine_hcl, f)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-5": {
+      "type": "rule",
+      "gloss": "An option stating a formula that is not the formula of venlafaxine hydrochloride is not the answer",
+      "formula": "\u2200o\u2200f ((Describes(o, f) \u2227 \u00acHasFormula(venlafaxine_hcl, f)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "C17H27NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-5 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acHasFormula(venlafaxine_hcl, f_c17h27)",
+      "premises": [
+        "FACT-5",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "C18H30NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-6 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acHasFormula(venlafaxine_hcl, f_c18h30)",
+      "premises": [
+        "FACT-6",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "C16H25NO2HCl is not the formula of venlafaxine hydrochloride, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acHasFormula(venlafaxine_hcl, f_c16h25)",
+      "premises": [
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "C17H28NO2HCl is the formula of venlafaxine hydrochloride, from FACT-8, FACT-9, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "HasFormula(venlafaxine_hcl, f_c17h28)",
+      "premises": [
+        "FACT-8",
+        "FACT-9",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, INF-1, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-1",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option B is not the answer, from FACT-2, INF-2, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-2",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-3, and RULE-5 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-3",
+        "RULE-5"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option D is the answer, from FACT-4, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "FACT-5",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-67c244: The PubChem structure CN(C)CC(C1=CC=C(C=C1)OC)C2(CCCCC2)O.Cl works out to C17H27NO2\u00b7HCl, which is option A. Venlafaxine therefore has these substituents (dimethylamino, methoxyphenyl, cyclohexanol), and A is the correct formula."
+    },
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: marked SUPPORTED but no cited tool output contains the quoted evidence"
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-67c244: Venlafaxine has a dimethylamino group but no carboxylic acid (it has a cyclohexanol and a methoxy group). The C16 formula is wrong because it has too few carbons, not because it lacks a carboxylic acid."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-67c244: The structure and MW 313.9 correspond to C17H27NO2\u00b7HCl (option A). C17H28NO2HCl has one extra hydrogen."
+    },
+    {
+      "node": "FACT-9",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-67c244: Venlafaxine has no carboxylic acid group, and the structure gives C17H27NO2\u00b7HCl rather than C17H28NO2HCl."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

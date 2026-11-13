@@ -1,0 +1,93 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Women over 35 who smoke have an increased risk of cardiovascular disease compared with non-smokers",
+      "formula": "IncreasedCVRisk(women_over_35_smokers)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-3c1bb0",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option A is reducing or stopping smoking",
+      "formula": "Describes(option_a, reduce_smoking)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "There is no specific information on Tri Femynor's cardiovascular safety profile for women over 35 who smoke",
+      "formula": "\u00acSafe(tri_femynor, women_over_35_smokers)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "CONTRADICTED by tool evidence ev-3c1bb0: The label has a boxed warning stating that Tri Femynor is contraindicated in women over 35 who smoke because of serious cardiovascular events.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a group has an increased cardiovascular risk, general health guidelines recommend reducing or stopping smoking for that group",
+      "formula": "\u2200g (IncreasedCVRisk(g) \u2192 Recommends(g, reduce_smoking))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "UNVERIFIED: I did not search for general health guidelines on reducing or stopping smoking. The label only shows that smoking raises cardiovascular risk with COC use.",
+      "error": true
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If guidance recommends an action for the group and the drug has no specified cardiovascular safety profile for that group, then an option describing that action is the answer",
+      "formula": "\u2200o\u2200g (Describes(o, reduce_smoking) \u2227 Recommends(g, reduce_smoking) \u2227 \u00acSafe(tri_femynor, g) \u2192 Answer(o))",
+      "verify_status": "IMPLAUSIBLE",
+      "verify_reason": "CONTRADICTED by tool evidence ev-3c1bb0: The label gives a specific contraindication for this group, so the drug's cardiovascular safety profile is specified. The answer is to avoid the drug, not to reduce smoking.",
+      "error": true
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "General health guidance recommends reducing or stopping smoking for women over 35 who smoke, from FACT-1 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Recommends(women_over_35_smokers, reduce_smoking)",
+      "premises": [
+        "FACT-1",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "Option A is the answer, from FACT-2, INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_a)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "FACT-3",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-2",
+  "errors": [
+    {
+      "node": "FACT-3",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-3c1bb0: The label has a boxed warning stating that Tri Femynor is contraindicated in women over 35 who smoke because of serious cardiovascular events."
+    },
+    {
+      "node": "RULE-1",
+      "stage": "verify",
+      "message": "UNVERIFIED: I did not search for general health guidelines on reducing or stopping smoking. The label only shows that smoking raises cardiovascular risk with COC use."
+    },
+    {
+      "node": "RULE-2",
+      "stage": "verify",
+      "message": "CONTRADICTED by tool evidence ev-3c1bb0: The label gives a specific contraindication for this group, so the drug's cardiovascular safety profile is specified. The answer is to avoid the drug, not to reduce smoking."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}

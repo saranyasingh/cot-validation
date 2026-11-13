@@ -1,0 +1,24 @@
+## VOCABULARY
+Predicates:
+OnDrug(p, d) — patient p is taking drug d
+SevereAllergy(p) — patient p experiences severe allergic reactions
+NeedsEmergency(p) — patient p requires immediate emergency medical care
+Describes(o, a) — answer option o describes action a
+Answer(o) — option o is the correct answer
+Constants:
+patient, pertzye, seek_emergency_treatment, option_b
+
+## FACTS
+FACT-1: The patient is taking PERTZYE :: OnDrug(patient, pertzye)
+FACT-2: The patient experiences severe allergic reactions :: SevereAllergy(patient)
+FACT-3: Option B is seeking emergency treatment immediately :: Describes(option_b, seek_emergency_treatment)
+
+## OPERATIONS
+
+## RULES
+RULE-1: A patient with a severe allergic reaction requires immediate emergency medical care :: ∀x (SevereAllergy(x) → NeedsEmergency(x))
+RULE-2: If a patient needs emergency care, an option describing seeking emergency treatment is the answer :: ∀x∀o (NeedsEmergency(x) ∧ Describes(o, seek_emergency_treatment) → Answer(o))
+
+## INFERENCES
+INF-1: The patient requires immediate emergency medical care, from FACT-2 and RULE-1 by Universal Instantiation and Modus Ponens :: NeedsEmergency(patient)
+INF-2: Option B is the answer, from INF-1, FACT-3, and RULE-2 by Universal Instantiation and Modus Ponens :: Answer(option_b)

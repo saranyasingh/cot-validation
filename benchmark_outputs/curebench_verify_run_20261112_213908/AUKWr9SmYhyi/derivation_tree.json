@@ -1,0 +1,229 @@
+{
+  "nodes": {
+    "FACT-1": {
+      "type": "fact",
+      "gloss": "Option A is post-surgical wound care",
+      "formula": "Describes(option_a, wound_care)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-2": {
+      "type": "fact",
+      "gloss": "Option B is preparation of the skin prior to injection",
+      "formula": "Describes(option_b, skin_preparation)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-3": {
+      "type": "fact",
+      "gloss": "Option C is treatment of injection site infections",
+      "formula": "Describes(option_c, injection_site_infection_treatment)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-4": {
+      "type": "fact",
+      "gloss": "Option D is management of chronic pain",
+      "formula": "Describes(option_d, chronic_pain_management)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "stated in the question",
+      "error": false
+    },
+    "FACT-5": {
+      "type": "fact",
+      "gloss": "The primary application of sterility in medical procedures is prevention and reduction of infection risks, especially around injection sites; this applies to skin preparation prior to injection",
+      "formula": "Prevents(skin_preparation, infection_risk)",
+      "verify_status": "SUPPORTED",
+      "verify_reason": "confirmed by tool evidence ev-db9bcb",
+      "error": false
+    },
+    "FACT-6": {
+      "type": "fact",
+      "gloss": "Treatment of injection site infections does not directly address prevention of infection risk (sterilizing the surroundings does not directly address the site itself)",
+      "formula": "\u00acPrevents(injection_site_infection_treatment, infection_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookup did not cover whether treating injection site infections addresses infection prevention.",
+      "error": true
+    },
+    "FACT-7": {
+      "type": "fact",
+      "gloss": "Chronic pain management does not primarily concern sterility or infection prevention at the injection site",
+      "formula": "\u00acPrevents(chronic_pain_management, infection_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookup did not cover chronic pain management.",
+      "error": true
+    },
+    "FACT-8": {
+      "type": "fact",
+      "gloss": "Post-surgical wound care is not the step that sterility is primarily applied to in this analysis (it focuses on cleaning and treating wounds rather than injection-related sterility)",
+      "formula": "\u00acPrevents(wound_care, infection_risk)",
+      "verify_status": "UNSUPPORTED",
+      "verify_reason": "UNVERIFIED: The label lookup did not cover post-surgical wound care.",
+      "error": true
+    },
+    "RULE-1": {
+      "type": "rule",
+      "gloss": "If a step is about preventing infection risk, the term 'sterile' is most likely associated with that step",
+      "formula": "\u2200s (Prevents(s, infection_risk) \u2192 Associated(sterile, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-2": {
+      "type": "rule",
+      "gloss": "If a step is not about preventing infection risk, the term 'sterile' is not most likely associated with that step",
+      "formula": "\u2200s (\u00acPrevents(s, infection_risk) \u2192 \u00acAssociated(sterile, s))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-3": {
+      "type": "rule",
+      "gloss": "An option describing a step most associated with 'sterile' is the answer",
+      "formula": "\u2200o\u2200s ((Describes(o, s) \u2227 Associated(sterile, s)) \u2192 Answer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "RULE-4": {
+      "type": "rule",
+      "gloss": "An option describing a step not associated with 'sterile' is not the answer",
+      "formula": "\u2200o\u2200s ((Describes(o, s) \u2227 \u00acAssociated(sterile, s)) \u2192 \u00acAnswer(o))",
+      "verify_status": "PLAUSIBLE",
+      "verify_reason": "logical principle, no source needed",
+      "error": false
+    },
+    "INF-1": {
+      "type": "inference",
+      "gloss": "'Sterile' is associated with skin preparation prior to injection, from FACT-5 and RULE-1 by Universal Instantiation and Modus Ponens",
+      "formula": "Associated(sterile, skin_preparation)",
+      "premises": [
+        "FACT-5",
+        "RULE-1"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-2": {
+      "type": "inference",
+      "gloss": "'Sterile' is not associated with post-surgical wound care, from FACT-8 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAssociated(sterile, wound_care)",
+      "premises": [
+        "FACT-8",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-3": {
+      "type": "inference",
+      "gloss": "'Sterile' is not associated with treatment of injection site infections, from FACT-6 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAssociated(sterile, injection_site_infection_treatment)",
+      "premises": [
+        "FACT-6",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-4": {
+      "type": "inference",
+      "gloss": "'Sterile' is not associated with management of chronic pain, from FACT-7 and RULE-2 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAssociated(sterile, chronic_pain_management)",
+      "premises": [
+        "FACT-7",
+        "RULE-2"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-5": {
+      "type": "inference",
+      "gloss": "Option A is not the answer, from FACT-1, INF-2, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_a)",
+      "premises": [
+        "FACT-1",
+        "INF-2",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-6": {
+      "type": "inference",
+      "gloss": "Option C is not the answer, from FACT-3, INF-3, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_c)",
+      "premises": [
+        "FACT-3",
+        "INF-3",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-7": {
+      "type": "inference",
+      "gloss": "Option D is not the answer, from FACT-4, INF-4, and RULE-4 by Universal Instantiation and Modus Ponens",
+      "formula": "\u00acAnswer(option_d)",
+      "premises": [
+        "FACT-4",
+        "INF-4",
+        "RULE-4"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    },
+    "INF-8": {
+      "type": "inference",
+      "gloss": "Option B is the answer, from FACT-2, INF-1, and RULE-3 by Universal Instantiation and Modus Ponens",
+      "formula": "Answer(option_b)",
+      "premises": [
+        "FACT-2",
+        "INF-1",
+        "RULE-3"
+      ],
+      "inference_rule": "Universal Instantiation and Modus Ponens",
+      "tptp_status": "NOT_CHECKED",
+      "tptp_reason": null,
+      "error": false
+    }
+  },
+  "root": "INF-8",
+  "errors": [
+    {
+      "node": "FACT-6",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookup did not cover whether treating injection site infections addresses infection prevention."
+    },
+    {
+      "node": "FACT-7",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookup did not cover chronic pain management."
+    },
+    {
+      "node": "FACT-8",
+      "stage": "verify",
+      "message": "UNVERIFIED: The label lookup did not cover post-surgical wound care."
+    }
+  ],
+  "error_stages": [
+    "verify"
+  ]
+}
