@@ -133,6 +133,8 @@ def main():
     parser.add_argument("--eval-only", action="store_true", help="evaluate on the test split and stop")
     parser.add_argument("--program", default=None, help="start from a saved program.json")
     parser.add_argument("--output-dir", default=os.path.join(REPO_ROOT, "formal_dspy", "runs"))
+    parser.add_argument("--resume", default=None, metavar="RUN_DIR",
+                        help="continue an interrupted run in this formal_<timestamp> folder (same other args)")
     args = parser.parse_args()
     if not args.eval_only and not (args.auto or args.max_metric_calls):
         args.auto = "light"
@@ -145,7 +147,9 @@ def main():
         sys.exit(f"No labelled CoTs found in {args.runs}")
     train, dev, test = split_by_question(examples, args.seed)
 
-    run_dir = os.path.join(args.output_dir, datetime.now().strftime("formal_%Y%m%d_%H%M%S"))
+    # GEPA reloads gepa/gepa_state.bin from the run folder; DSPy's response cache replays
+    # calls that already finished, so the baseline evaluation is not paid for twice.
+    run_dir = args.resume or os.path.join(args.output_dir, datetime.now().strftime("formal_%Y%m%d_%H%M%S"))
     os.makedirs(run_dir, exist_ok=True)
     start_cost_log(os.path.join(run_dir, "api_calls.jsonl"))
     mark = call_log_mark()

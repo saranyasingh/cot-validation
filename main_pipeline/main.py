@@ -10,6 +10,7 @@ import verify as verify_module
 import tptp as tptp_module
 from main_pipeline.clients import make_client, OpenAILLMClient
 from main_pipeline.arithmetic import check_operations
+from main_pipeline.gsm8k_prompts import GSM8K_FOL_TEMPLATE
 
 load_dotenv()
 
@@ -278,7 +279,7 @@ class Task:
 
 MATH_TASK = Task(
     cot_prompt=COT_PROMPT,
-    fol_template=STRUCTURED_FOL_TEMPLATE,
+    fol_template=GSM8K_FOL_TEMPLATE,
     cot_repair_template=COT_REPAIR_TEMPLATE,
     fol_repair_template=FOL_REPAIR_TEMPLATE,
     extract_answer=extract_answer,

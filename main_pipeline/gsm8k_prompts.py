@@ -1,0 +1,197 @@
+"""
+GSM8K FOL-extraction prompt, optimized with DSPy GEPA (formal_dspy/, run formal_20261112_140222).
+Test-set score 0.744 -> 0.854: wrong CoTs refuted 2/15 -> 9/15, correct CoTs proved 24/26 -> 26/26.
+CureBench keeps the base STRUCTURED_FOL_TEMPLATE in main.py.
+"""
+
+GSM8K_FOL_TEMPLATE = '''\
+Convert the following chain-of-thought (CoT) reasoning into structured first-order logic (FOL).
+
+PURPOSE: Your output is machine-checked. Every OPERATION is checked arithmetically, and every INFERENCE is checked with an automated theorem prover (Vampire) against the cited FACTS, OPS, RULES and earlier INFs. The goal is a faithful mirror of the CoT:
+- When the CoT is correct, every OP and every INF must prove. This includes the final answer line, even if the CoT rounds it.
+- When the CoT is wrong, its error must surface as an INCORRECT operation or an inference that is NOT PROVED.
+- If the CoT's answer is wrong and your formalization still proves everything, you have almost certainly written a false rule that encodes the CoT's mistake. That is a failure.
+
+IMPORTANT: Represent the EXACT reasoning steps in the chain of thought.
+- Do not add new inferences.
+- Do not skip steps.
+- Do not alter the logic.
+- Do not correct numbers.
+- Do not add premises to force an outcome.
+- Every inference must correspond directly to a step in the original reasoning.
+
+=== FAITHFULNESS RULES (critical) ===
+1. FORMALIZE THE FINAL CLAIM EXACTLY AS THE COT STATES IT.
+   - If the CoT's conclusion describes a different quantity than the one it actually computed, the last INFERENCE must assert the claimed quantity.
+   - Example: the CoT computes only Toulouse's sheep (160), then says "the total number of sheep in Toulouse, Charleston, and Seattle together is 160." The final inference must be Total(all_three, 160), citing the sum rule. Do not stop at the last computed value.
+
+2. RULES MUST BE TRUE, GENERAL PRINCIPLES, never rules tailored to license the CoT's step.
+   - Before writing each rule, ask: "Is this rule true in the real world, independent of this CoT?" If the CoT applied the wrong operation, write the CORRECT rule and still write the CoT's OP and INF. The prover will then fail, which is the desired outcome.
+   - Pay special attention to directional and temporal semantics. These are common traps:
+     - "x was born n years before y, and y is m years old" → x is m + n years old, i.e. x was born m + n years ago. The rule must use Sum(m, n, r), NOT Difference. A CoT computing 31 − 6 = 25 for "born 6 years before Samantha (31)" is wrong, and the correct rule exposes it.
+     - "x had a son at age k, and x is a years old (born a years ago)" → the son was born a − k years ago. The rule must use Difference(a, k, r), NOT Sum.
+     - Apply the same care to older/younger, before/after, more/less, increase/decrease, "n times as many" versus "n more than", and percent-of versus percent-off.
+     - Rates and unit conversions: calories per gram = total calories ÷ grams. Grams for C calories = C ÷ (calories per gram).
+   - A total over several items must be defined as the Sum of all of them. It must never be defined as one item's value.
+   - If the CoT's step does not follow from correct principles, still write the INFERENCE the CoT claims. Cite the premises the CoT relied on and let the prover fail. Never invent a rule that makes a non-sequitur valid.
+
+3. Do not repair errors. Copy all numbers, operands and results exactly, even if they look wrong.
+
+4. Misreadings of the problem are acceptable. If the CoT misreads a given quantity, record that premise as the CoT states it. This does NOT cover applying the wrong relation to correctly read data (e.g. subtracting where "born before" requires adding). That is a reasoning error, and correct rules must expose it.
+
+5. One step per line. Every intermediate quantity the CoT computes and uses gets its own OP and INF. Simplifications the CoT performs (e.g. 2 × (4 × S) = 8 × S) are also separate OPs and INFs.
+
+6. EVERY INFERENCE MUST BE DERIVABLE from its cited labels.
+   - Never cite a pseudo-rule such as "Approximation", "Rounding" or "Restatement" without an actual RULE and OP that make the step provable.
+   - Rounding / final-answer steps: when the CoT reports a rounded final answer (e.g. computes ≈ 47.96, then says "The answer is: 48"), give the rounding its own OP and a true general rule, so the final INF is provable.
+     - The arithmetic checker tolerates reasonable approximations of the kind the CoT writes. For example, Quotient(1250, 300, 4.17) was accepted as CORRECT.
+     - Option A: write an OP reproducing the CoT's last calculation with the rounded result, e.g. Quotient(200, 4.17, 48).
+     - Option B: use a rule that the final answer equals the computed quantity, e.g. ∀n (Value(grams_of_chips, n) → Value(final_answer, n)).
+   - Make sure the number in the final INF is reachable from the rule's antecedents. A rule mapping quantity n to final_answer n cannot prove final_answer 48 from 47.96.
+   - Simplest robust approach: let the final INF assert the same quantity with the CoT's final number, supported by an OP whose result is that number.
+
+=== SYNTAX ===
+- Quantifiers: ∀ (universal), ∃ (existential)
+- Connectives: ∧ (and), ∨ (or), → (implies), ¬ (not)
+- Predicates: CamelCase (e.g., InRoom, Holding, Value)
+- Constants: lowercase with underscores (e.g., alice, total_calories), or plain numbers
+- Variables: SINGLE lowercase letters only (x, y, z, w, t, n, m, p, r, a, b, c, k, s, d). They appear only in quantified formulas.
+  - Never use multi-letter variable names.
+  - Never reuse a declared constant's name as a variable.
+
+=== VOCABULARY ===
+Read the whole reasoning first. Then CHOOSE and FIX the vocabulary:
+- the predicates, each with its arity and a one-line description of what it means
+- the constants, covering every entity, quantity-label and number used, including the final answer
+
+Keep the vocabulary small: AT MOST 5 predicates.
+- A good pattern is one generic value predicate, e.g. Value(x, n), with constants naming the quantities, plus a few relation predicates (e.g. TimesAsMany(x, y, n), BornBeforeBy(x, y, n)).
+- The built-in arithmetic predicates (Sum, Difference, Product, Quotient) do not count toward the limit and must NOT be declared.
+
+Output the fixed vocabulary first (## VOCABULARY). Once fixed, every FACT, OP, RULE and INFERENCE must use ONLY these predicates, the built-ins, and these constants.
+
+=== BUILT-IN ARITHMETIC PREDICATES ===
+The last argument is always the result:
+- Sum(a, b, ..., r) — a + b + ... = r
+- Difference(a, b, r) — a − b = r
+- Product(a, b, ..., r) — a × b × ... = r
+- Quotient(a, b, r) — a ÷ b = r
+
+Arguments are plain numbers:
+- no units, $, % or thousands separators
+- write percentages as decimals (20% of 50 → Product(0.2, 50, 10))
+
+=== OUTPUT CATEGORIES ===
+After the vocabulary, produce exactly four sections.
+
+## FACTS
+- Ground atomic formulas taken from the problem as stated in the CoT. No quantifiers.
+- Each fact is one atomic predicate applied to constants.
+- A fact may contain only given numbers, or direct restatements of them ("a dozen" → 12, "twice" → 2).
+- Never put a computed value in a fact.
+
+## OPERATIONS
+- Every arithmetic calculation the reasoning performs, one per line, as a single built-in predicate.
+- Copy operands and results EXACTLY as the CoT states them, even if wrong.
+- Break multi-step calculations into one line per step.
+
+## RULES
+- Universally quantified formulas encoding external, linguistic or basic mathematical knowledge.
+- Every rule MUST start with ∀.
+- Rules must be general and TRUE (see Faithfulness Rule 2).
+- Arithmetic appears as a built-in predicate condition. Example: ∀x∀n∀m∀p (Boxes(x,n) ∧ PerBox(x,m) ∧ Product(n,m,p) → Total(x,p)).
+
+## INFERENCES
+- Derived conclusions, in the CoT's order.
+- Each inference cites the FACT/OP/RULE/INF labels it depends on.
+- Each inference names the inference rule used (Universal Instantiation and Modus Ponens, Modus Tollens, Disjunctive Syllogism, etc.).
+- The last inference is the CoT's stated final conclusion/answer, worded as the CoT words it.
+
+=== OUTPUT FORMAT ===
+LABEL: <natural language gloss> :: <FOL formula>
+- Use :: as the delimiter.
+- Labels are FACT-1..., OP-1..., RULE-1..., INF-1....
+- Output ONLY the vocabulary section and the four labeled sections. Keep ## OPERATIONS even if it is empty. No extra explanation.
+
+=== EXAMPLE 1 (logic) ===
+CoT: Bonnie is a student who attends the school. Anyone who chaperones dances is not a student, so Bonnie does not chaperone. Every inactive member chaperones, so Bonnie is not inactive. Everyone performs in talent shows or is inactive, so Bonnie performs. Performers are engaged, so Bonnie is engaged.
+
+## VOCABULARY
+Predicates:
+Students(x) — x is a student who attends the school
+Chaperone(x) — x chaperones high school dances
+Inactive(x) — x is an inactive and disinterested community member
+TalentShows(x) — x performs in school talent shows often
+Engaged(x) — x attends and is very engaged with school events
+Constants:
+bonnie
+
+## FACTS
+FACT-1: Bonnie is a student who attends the school :: Students(bonnie)
+
+## OPERATIONS
+
+## RULES
+RULE-1: Chaperones are not students :: ∀x (Chaperone(x) → ¬Students(x))
+RULE-2: Inactive members chaperone :: ∀x (Inactive(x) → Chaperone(x))
+RULE-3: Everyone performs or is inactive :: ∀x (TalentShows(x) ∨ Inactive(x))
+RULE-4: Performers are engaged :: ∀x (TalentShows(x) → Engaged(x))
+
+## INFERENCES
+INF-1: Bonnie does not chaperone, from FACT-1 and RULE-1 by Modus Tollens :: ¬Chaperone(bonnie)
+INF-2: Bonnie is not inactive, from INF-1 and RULE-2 by Modus Tollens :: ¬Inactive(bonnie)
+INF-3: Bonnie performs, from INF-2 and RULE-3 by Disjunctive Syllogism :: TalentShows(bonnie)
+INF-4: Bonnie is engaged, from INF-3 and RULE-4 by Modus Ponens :: Engaged(bonnie)
+
+=== EXAMPLE 2 (arithmetic) ===
+CoT: Sam buys 3 boxes with 12 pencils each: 3 × 12 = 36. He gives away 5: 36 − 5 = 31.
+
+## VOCABULARY
+Predicates:
+Boxes(x, n) — x bought n boxes
+PerBox(x, n) — each of x's boxes holds n pencils
+GaveAway(x, n) — x gave away n pencils
+Has(x, n) — x has n pencils
+Constants:
+sam, 3, 12, 5, 36, 31
+
+## FACTS
+FACT-1: Sam buys 3 boxes :: Boxes(sam, 3)
+FACT-2: Each box holds 12 :: PerBox(sam, 12)
+FACT-3: Sam gives away 5 :: GaveAway(sam, 5)
+
+## OPERATIONS
+OP-1: 3 times 12 is 36 :: Product(3, 12, 36)
+OP-2: 36 minus 5 is 31 :: Difference(36, 5, 31)
+
+## RULES
+RULE-1: n boxes of m each with n × m = p gives p pencils :: ∀x∀n∀m∀p (Boxes(x,n) ∧ PerBox(x,m) ∧ Product(n,m,p) → Has(x,p))
+RULE-2: Having n, giving away k, with n − k = r leaves r :: ∀x∀n∀k∀r (Has(x,n) ∧ GaveAway(x,k) ∧ Difference(n,k,r) → Has(x,r))
+
+## INFERENCES
+INF-1: Sam has 36, from FACT-1, FACT-2, OP-1, RULE-1 by Universal Instantiation and Modus Ponens :: Has(sam, 36)
+INF-2: Sam has 31 left, from INF-1, FACT-3, OP-2, RULE-2 by Universal Instantiation and Modus Ponens :: Has(sam, 31)
+
+=== EXAMPLE 3 (flawed final claim — must NOT prove) ===
+Seattle has 20 sheep, Charleston 4× Seattle, Toulouse 2× Charleston. The CoT computes Toulouse = 160, then claims the total of all three is 160.
+- Include the constant all_three.
+- Write a true rule: total = Sum of the three counts.
+- The final INF is SheepCount(all_three, 160), citing the Toulouse result and the sum rule.
+- The prover reports NOT PROVED, correctly.
+
+=== EXAMPLE 4 (wrong relation — must NOT prove) ===
+Samantha is 31. Raymond was born 6 years before Samantha. The CoT says Raymond was born 31 − 6 = 25 years ago.
+- Keep the OP as Difference(31, 6, 25); it is arithmetically correct.
+- Write the TRUE rule: ∀x∀y∀n∀m∀r (BornBeforeBy(x,y,n) ∧ Age(y,m) ∧ Sum(m,n,r) → BornAgo(x,r)).
+- Write INF-1 BornAgo(raymond, 25), citing FACT-1, FACT-2, OP-1 and this rule. It will be NOT PROVED, exposing the error.
+- Likewise, a son born when the father was 23 was born (father's years ago) − 23 years ago. The true rule uses Difference, so a CoT step 25 + 23 = 48 must not prove.
+
+=== EXAMPLE 5 (rounded final answer of a correct CoT — must prove) ===
+The CoT computes 200 ÷ 4.17 ≈ 47.96 grams, then says "The answer is: 48".
+- Do not end with an INF citing only "Approximation".
+- Provide an OP whose result is the stated final number, e.g. Quotient(200, 4.17, 48). The checker accepts reasonable approximations.
+- Provide a rule that derives the final-answer quantity from it, so the last INF (e.g. Value(grams_of_chips, 48) or Value(final_answer, 48)) actually proves.
+
+=== CHAIN OF THOUGHT REASONING TO CONVERT ===
+{cot_text}
+'''
