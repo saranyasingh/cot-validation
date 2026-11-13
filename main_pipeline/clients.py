@@ -283,15 +283,18 @@ class BedrockLLMClient(ClaudeLLMClient):
     name = "bedrock"
 
     def __init__(self):
-        from anthropic import AnthropicBedrockMantle
-        self._client = AnthropicBedrockMantle(aws_region=os.getenv("AWS_REGION", "us-east-1"))
+        # Not AnthropicBedrockMantle: that's a separate Anthropic-hosted bridge and 404s on every
+        # model for this account, regardless of ID format. AnthropicBedrock is genuine AWS Bedrock
+        # (SigV4 or the AWS_BEARER_TOKEN_BEDROCK bearer token) and is what actually has access.
+        from anthropic import AnthropicBedrock
+        self._client = AnthropicBedrock(aws_region=os.getenv("AWS_REGION", "us-east-1"))
         self.model = os.getenv("BEDROCK_MODEL", "anthropic.claude-sonnet-5-5")
         if self.model.startswith("anthropic.") and not self.model.startswith(
             ("us.anthropic.", "eu.anthropic.", "apac.anthropic.", "global.anthropic.")
         ):
-            # Bedrock rejects on-demand throughput for Claude models; a bare model ID 404s
-            # ("The model '...' does not exist") and needs a cross-region inference-profile ID
-            # instead. Same fix as CharmChatClient above.
+            # Bedrock rejects on-demand throughput for Claude models; a bare model ID 400s
+            # ("on-demand throughput isn't supported") and needs a cross-region inference-profile
+            # ID instead. Same fix as CharmChatClient above.
             fixed = f"us.{self.model}"
             print(f"WARNING: Bedrock model '{self.model}' is a bare model ID, which Bedrock rejects "
                   f"for on-demand throughput; using inference profile '{fixed}' instead.")
